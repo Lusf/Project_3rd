@@ -41,7 +41,7 @@
           <div class="container">
             <div class="navbar-header">
               <!-- Logo Starts -->
-              <a class="navbar-brand" href="#home"><img src="${pageContext.request.contextPath }/images/logo.png" alt="logo"></a>
+              <a class="navbar-brand" href="#home"><img src="${pageContext.request.contextPath}/images/logo.png" alt="logo"></a>
               <!-- #Logo Ends -->
 
 
