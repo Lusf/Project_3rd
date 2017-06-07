@@ -4,29 +4,32 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+<title>Home</title>
+
 <!-- Google fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
 
 <!-- font awesome -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- href="<c:url value='/resources/css/bootstrap.min.css' />"> -->
 <!-- bootstrap -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="<c:url value='/resources/assets/bootstrap/css/bootstrap.min.css' />">
 
 <!-- animate.css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/animate/animate.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/animate/set.css" />
+<link rel="stylesheet" href="<c:url value='/resources/assets/animate/animate.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/assets/animate/set.css'/>" >
 
 <!-- gallery -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/gallery/blueimp-gallery.min.css">
+<link rel="stylesheet" href="<c:url value= '/resources/assets/gallery/blueimp-gallery.min.css'/>">
 
 <!-- favicon -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="${pageContext.request.contextPath }/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="<c:url value= '/resources/images/favicon.ico'/>"type="image/x-icon">
+<link rel="icon" href="<c:url value= '/resources/images/favicon.ico'/>" type="image/x-icon">
 
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/style.css">
+<link rel="stylesheet" href="<c:url value= '/resources/assets/style.css'/>">
 
 </head>
 
@@ -41,7 +44,8 @@
           <div class="container">
             <div class="navbar-header">
               <!-- Logo Starts -->
-              <a class="navbar-brand" href="#home"><img src="${pageContext.request.contextPath }/images/logo.png" alt="logo"></a>
+
+              <a class="navbar-brand" href="#home"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="logo"></a>
               <!-- #Logo Ends -->
 
 
@@ -82,100 +86,100 @@
 <!-- works -->
 <div id="works"  class=" clearfix grid"> 
     <figure class="effect-oscar  wowload fadeIn">
-        <img src="${pageContext.request.contextPath }/images/portfolio/1.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/1.jpg" "alt="img01"/>
         <figcaption>
             <h2>Nature</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/1.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/1.jpg"  title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/2.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/2.jpg"  alt="img01"/>
         <figcaption>
             <h2>Events</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/2.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/2.jpg"  title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/3.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/3.jpg"  alt="img01"/>
         <figcaption>
             <h2>music</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/3.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/3.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/4.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/4.jpg" alt="img01"/>
         <figcaption>
             <h2>Vintage</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/4.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/4.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/5.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/5.jpg" alt="img01"/>
         <figcaption>
             <h2>Typers</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/5.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/5.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
      
      <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/6.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/6.jpg" alt="img01"/>
         <figcaption>
             <h2>hotel</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/6.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/6.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/7.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/7.jpg" alt="img01"/>
         <figcaption>
             <h2>Chinese</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/7.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/7.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/8.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/8.jpg" alt="img01"/>
         <figcaption>
             <h2>Dicrap</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/8.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/8.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/9.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/9.jpg" alt="img01"/>
         <figcaption>
             <h2>Coffee</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/9.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/9.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/10.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/10.jpg" alt="img01"/>
         <figcaption>
             <h2>cameras</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/10.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/10.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/11.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/11.jpg" alt="img01"/>
         <figcaption>
             <h2>design</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/11.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/11.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="${pageContext.request.contextPath }/images/portfolio/12.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/portfolio/12.jpg" alt="img01"/>
         <figcaption>
             <h2>studio</h2>
             <p>Lily likes to play with crayons and pencils<br>
-            <a href="${pageContext.request.contextPath }/images/portfolio/12.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="${pageContext.request.contextPath}/resources/images/portfolio/12.jpg" title="1" data-gallery>View more</a></p>            
         </figcaption>
     </figure>
     
@@ -183,6 +187,10 @@
      
 </div>
 <!-- works -->
+
+
+
+
 
 
 <!-- Cirlce Starts -->
@@ -259,10 +267,10 @@
 	<h2 class="text-center  wowload fadeInUp">Some of our happy clients</h2>
   <div class="clearfix">
     <div class="col-sm-6 partners  wowload fadeInLeft">
-         <img src="${pageContext.request.contextPath }/images/partners/1.jpg" alt="partners">
-         <img src="${pageContext.request.contextPath }/images/partners/2.jpg" alt="partners">
-         <img src="${pageContext.request.contextPath }/images/partners/3.jpg" alt="partners">
-         <img src="${pageContext.request.contextPath }/images/partners/4.jpg" alt="partners">
+         <img src="${pageContext.request.contextPath}/resources/images/partners/1.jpg" alt="partners">
+         <img src="${pageContext.request.contextPath}/resources/images/partners/2.jpg" alt="partners">
+         <img src="${pageContext.request.contextPath}/resources/images/partners/3.jpg" alt="partners">
+         <img src="${pageContext.request.contextPath}/resources/images/partners/4.jpg" alt="partners">
     </div>
     <div class="col-sm-6">
 
@@ -270,21 +278,21 @@
     <div id="carousel-testimonials" class="carousel slide testimonails  wowload fadeInRight" data-ride="carousel">
     <div class="carousel-inner">  
       <div class="item active animated bounceInRight row">
-      <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="${pageContext.request.contextPath }/images/team/1.jpg" width="100" class="img-circle img-responsive"></div>
+      <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="${pageContext.request.contextPath}/resources/images/team/1.jpg" width="100" class="img-circle img-responsive"></div>
       <div  class="col-xs-10">
       <p> I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. </p>      
       <span>Angel Smith - <b>eshop Canada</b></span>
       </div>
       </div>
       <div class="item  animated bounceInRight row">
-      <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="${pageContext.request.contextPath }/images/team/2.jpg" width="100" class="img-circle img-responsive"></div>
+      <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="${pageContext.request.contextPath}/resources/images/team/2.jpg" width="100" class="img-circle img-responsive"></div>
       <div  class="col-xs-10">
       <p>No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
       <span>John Partic - <b>Crazy Pixel</b></span>
       </div>
       </div>
       <div class="item  animated bounceInRight row">
-      <div class="animated slideInLeft  col-xs-2"><img alt="portfolio" src="${pageContext.request.contextPath }/images/team/3.jpg" width="100" class="img-circle img-responsive"></div>
+      <div class="animated slideInLeft  col-xs-2"><img alt="portfolio" src="${pageContext.request.contextPath}/resources/images/team/3.jpg" width="100" class="img-circle img-responsive"></div>
       <div  class="col-xs-10">
       <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue.</p>
       <span>Harris David - <b>Jet London</b></span>
@@ -313,7 +321,7 @@
 <div class="row grid team  wowload fadeInUpBig">	
 	<div class=" col-sm-3 col-xs-6">
 	<figure class="effect-chico">
-        <img src="${pageContext.request.contextPath }/images/team/8.jpg" alt="img01" class="img-responsive" />
+        <img src="${pageContext.request.contextPath}/resources/images/team/8.jpg" alt="img01" class="img-responsive" />
         <figcaption>
             <p><b>Barbara Husto</b><br>Senior Designer<br><br><a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a></p>            
         </figcaption>
@@ -322,7 +330,7 @@
 
     <div class=" col-sm-3 col-xs-6">
 	<figure class="effect-chico">
-        <img src="${pageContext.request.contextPath }/images/team/10.jpg" alt="img01"/>
+        <img src="images/team/10.jpg" alt="img01"/>
         <figcaption>            
             <p><b>Barbara Husto</b><br>Senior Designer<br><br><a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a></p>            
         </figcaption>
@@ -331,7 +339,7 @@
 
     <div class=" col-sm-3 col-xs-6">
 	<figure class="effect-chico">
-        <img src="${pageContext.request.contextPath }/images/team/12.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/team/12.jpg" alt="img01"/>
         <figcaption>
             <p><b>Barbara Husto</b><br>Senior Designer<br><br><a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a></p>          
         </figcaption>
@@ -340,7 +348,7 @@
 
     <div class=" col-sm-3 col-xs-6">
 	<figure class="effect-chico">
-        <img src="${pageContext.request.contextPath }/images/team/17.jpg" alt="img01"/>
+        <img src="${pageContext.request.contextPath}/resources/images/team/17.jpg" alt="img01"/>
         <figcaption>
             <p><b>Barbara Husto</b><br>Senior Designer<br><br><a href="#"><i class="fa fa-dribbble"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a></p>
         </figcaption>
@@ -416,17 +424,24 @@ Copyright 2014 Cyrus Creative Studio. All rights reserved.
 
 
 <!-- jquery -->
-<script src="assets/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/jquery.js"></script>
+
 <!-- wow script -->
-<script src="assets/wow/wow.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script>
+
+
 <!-- boostrap -->
-<script src="assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
+<script src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
+
 <!-- jquery mobile -->
-<script src="assets/mobile/touchSwipe.min.js"></script>
-<script src="assets/respond/respond.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/mobile/touchSwipe.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/respond/respond.js"></script>
+
 <!-- gallery -->
-<script src="assets/gallery/jquery.blueimp-gallery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/gallery/jquery.blueimp-gallery.min.js"></script>
+
 <!-- custom script -->
-<script src="assets/script.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
+
 </body>
 </html>

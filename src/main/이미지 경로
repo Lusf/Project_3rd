@@ -1,0 +1,21 @@
+js파일, css파일 등등을 link 할때
+<c:url value=""> 태그 이용할것
+
+ex)<link rel="stylesheet" href="<c:url value='/resources/assets/bootstrap/css/bootstrap.min.css' />">
+
+
+----------------------------------------------
+이미지 경로 설정시
+${pageContext.request.contextPath}를 이용할것
+
+ex)   <img src="${pageContext.request.contextPath}/resources/images/portfolio/1.jpg" "alt="img01"/>
+
+----------------------------------------------
+servlet-context에
+<mvc:default-servlet-handler/> 추가할것
+없으면 
+확장자가 없는 경우 모두 servlet에 가기 때문에 이미지 경로도 servlet에 가게 되서 404가 뜸
+
+------------------------------
+이미지 저장은 
+webapp/resources 밑에 저장할것
