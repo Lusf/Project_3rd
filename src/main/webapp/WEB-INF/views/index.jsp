@@ -414,9 +414,9 @@ Copyright 2014 Cyrus Creative Studio. All rights reserved.
     <div class="slides"></div>
     <!-- Controls for the borderless lightbox -->
     <h3 class="title">Title</h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
+    <a class="prev">&lt;</a>
+    <a class="next">></a>
+    <a class="close">x</a>
     <!-- The modal dialog, which will be used to wrap the lightbox content -->    
 </div>
 
