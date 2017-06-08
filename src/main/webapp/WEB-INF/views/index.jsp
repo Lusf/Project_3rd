@@ -1,12 +1,19 @@
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>	
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<title>Home</title>
-
-	<!-- jquery -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<!-- jquery -->
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/jquery.js"></script>
 
@@ -40,26 +47,8 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700'
 	rel='stylesheet' type='text/css'>
 
-
-<!-- font awesome -->
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-
-<!-- href="<c:url value='/resources/css/bootstrap.min.css' />"> -->
-<!-- bootstrap -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/assets/bootstrap/css/bootstrap.min.css' />">
-
-<!-- animate.css -->
-<link rel="stylesheet"
-	href="<c:url value='/resources/assets/animate/animate.css' />">
-<link rel="stylesheet"
-	href="<c:url value='/resources/assets/animate/set.css'/>">
-
-<!-- gallery -->
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/gallery/blueimp-gallery.min.css'/>">
+	
+<link rel="stylesheet" href="<c:url value= '/resources/assets/gallery/blueimp-gallery.min.css'/>">
 
 <!-- favicon -->
 <link rel="shortcut icon"
@@ -183,5 +172,21 @@ $(document).ready(function() {
 	</div>
 
 
+=======
+	href="<c:url value='/resources/assets/materialize/css/materialize.min.css' />">
+ <script type="text/javascript" src="<c:url value='/resources/assets/materialize/js/materialize.min.js'/>"></script>		
+
+</head>
+
+<!-- header -->
+<!-- header �� -->
+
+<!-- content -->
+<!-- content �� -->
+
+<!-- footer -->
+<!-- footer �� -->
+<body>
+>>>>>>> 546e1b136bbc864296fd0c0f1a34550a68e20926
 </body>
 </html>
