@@ -36,8 +36,15 @@
 			<div class="userinfo">
 				<div class="user">
 					<ul>
-						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/header/user-pic.png"
-								title="user-name" /><span>Ipsum</span></a></li>
+						<li>
+							<a href="login/login">
+							<img src="${pageContext.request.contextPath }/resources/images/header/user-pic.png"	title="user-name" />
+								로그인
+							</a>
+						</li>
+						<li>
+							<a href="login/joinForm">회원가입</a>
+						</li>
 					</ul>
 				</div>
 			</div>
