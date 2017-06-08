@@ -146,7 +146,7 @@ a.boxclose{
 	transition: all 0.5s ease-in-out;
 }
 .menu_box_list li a:hover{
-	color:#B9CB41;
+	color:#47b5cf;
 }
 .menu_box_list li a > i > img{
 	vertical-align:middle;
