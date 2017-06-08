@@ -39,6 +39,7 @@ body{
 	width: 100%;
 	top: 0;
 	z-index: 999;
+	height: 
 }
 .logo{
 	float:left;
@@ -681,8 +682,11 @@ span.mail a:hover{
 @media only screen and (max-width:1024px) and (min-width:768px) {
 	.wrap{
 		width:90%;
-	}
 
+	}
+	.header{
+		height: 10em;
+	}
 	.contact-to input[type="text"] {
 		width: 30%;
 	}
@@ -891,6 +895,7 @@ span.mail a:hover{
 }
 /*--//End-media Quries for 640px-monitors-*/
 /*--media Quries for 480px-monitors-*/
+/*¸ð¹ÙÀÏ??*/
 @media only screen and (max-width:480px) and (min-width:320px) {
 	.wrap{
 		width:90%;

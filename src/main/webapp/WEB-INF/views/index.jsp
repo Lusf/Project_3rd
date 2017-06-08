@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -95,77 +96,29 @@
 
 	});
 </script>
+<style>
+#indexGrid{padding-top: 6em}
+
+@media only screen and (max-width:1024px) and (min-width:768px)
+{
+	#indexGrid{padding-top: 10em}
+}
+
+</style>
+
+<script>
+$('html, body').css({'overflow' : 'hidden', 'height':'100%'});
+</script>
 </head>
 
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
-	<!---start-header---->
-
-	<!-- works -->
-	<div class="clearfix grid" style="padding-top: 6em">
-
-		<div class=" col-xs-12 col-md-4"
-			style="padding-right: 0px; padding-left: 0px;">
-			<figure class="effect-oscar  wowload fadeIn" style="width: 100%">
-			<img
-				src="${pageContext.request.contextPath}/resources/images/portfolio/1.jpg"
-				style="width: 100%; height: 70%" /> <figcaption>
-			<h1 style="font-size: 4em">Nature</h1>
-			<p>
-				Lily likes to play with crayons and pencils<br>
-			</p>
-			</figcaption> </figure>
-		</div>
-		<div class=" col-xs-12 col-md-4"
-			style="padding-right: 0px; padding-left: 0px;">
-			<figure class="effect-oscar  wowload fadeInUp" style="width: 100%">
-			<img
-				src="${pageContext.request.contextPath}/resources/images/portfolio/2.jpg"
-				style="width: 100%; height: 70%" /> <figcaption>
-			<h1 style="font-size: 4em">Events</h1>
-			<p>
-				Lily likes to play with crayons and pencils<br>
-			</p>
-			</figcaption> </figure>
-
-		</div>
-		<div class=" col-xs-12 col-md-4"
-			style="padding-right: 0px; padding-left: 0px;">
-
-			<figure class="effect-oscar  wowload fadeInUp" style="width: 100%">
-			<img
-				src="${pageContext.request.contextPath}/resources/images/portfolio/3.jpg"
-				style="width: 100%; height: 70%" /> <figcaption>
-			<h1 style="font-size: 4em">music</h1>
-			<p>
-				Lily likes to play with crayons and pencils<br>
-			</p>
-			</figcaption> </figure>
-		</div>
-	</div>
-
-	<!-- works -->
-
-
-
-
-	<div class="footer text-center spacer" style="height: 15%">
-
-		<br> footer입니다
-
-	</div>
-
-
-	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-	<div id="blueimp-gallery"
-		class="blueimp-gallery blueimp-gallery-controls">
-		<!-- The container for the modal slides -->
-		<div class="slides"></div>
-		<!-- Controls for the borderless lightbox -->
-		<h3 class="title">Title</h3>
-		<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a>
-		<!-- The modal dialog, which will be used to wrap the lightbox content -->
-	</div>
+	
+	
+	<%@include file="/WEB-INF/views/contents.jsp" %>
+	
+	<!--  -->
+	<%@include file="/WEB-INF/views/footer.jsp"%>
 
 
 </body>
