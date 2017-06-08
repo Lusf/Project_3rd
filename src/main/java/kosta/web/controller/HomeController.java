@@ -12,7 +12,17 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping("login/joinForm")
+	public String joinForm(){
+		
+		return "login/joinForm";
+	}
 	
+	@RequestMapping("login/login")
+	public String login(){
+		
+		return "login/login";
+	}
 	
 	
 }
