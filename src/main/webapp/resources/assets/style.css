@@ -83,13 +83,6 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 /*about us*/
 
 
-
-
-
-
-
-
-
 /*contact*/
 #contact{background-color: #f5f5f5;}
 .contactform textarea,.contactform input{width: 100%;padding:1em;border:1px solid #ccc;margin-bottom: 1em;border-radius: 0;outline: none;}
@@ -101,6 +94,9 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 
 .gototop{position: fixed;bottom: 20px; right: 20px;background: rgba(0,0,0,0.5);padding: 10px;color: #fff;}
 .gototop i{line-height: 0.5em;}
+
+
+/* ¼öÁ¤*/
 
 
 @media (max-width: 1200px) {
