@@ -1,20 +1,20 @@
-package kosta.web.controller.place;
+package kosta.web.controller.travelge;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kosta.web.model.service.place.PlaceService;
+import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
-import kosta.web.model.vo.place.TravelgeInfoVo;
-import kosta.web.model.vo.place.TravelgeRecommandationVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 @Controller
 @RequestMapping("/travelge")
-public class PlaceController {
+public class TravelgeController {
 	
 	@Autowired
-	private PlaceService placeService;
+	private TravelgeService travelgeService;
 	
 	@RequestMapping("/main")
 	public String travelgeMain()

@@ -1,13 +1,13 @@
-package kosta.web.model.service.place;
+package kosta.web.model.service.travelge;
 
 import java.util.List;
 
 import kosta.web.model.vo.AvgScoreVo;
-import kosta.web.model.vo.place.TravelgeInfoVo;
-import kosta.web.model.vo.place.TravelgeRecommandationVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 
-public interface PlaceService {
+public interface TravelgeService {
 /*	travelgeInfoInsert 여행지등록 -member
 	travelgeInfoUpdate 여행지수정 -등록자/관리자
 	travelgeInfoDelete 여행지삭제 -등록자/관리자

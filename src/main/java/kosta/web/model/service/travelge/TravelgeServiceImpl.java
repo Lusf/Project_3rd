@@ -1,20 +1,20 @@
-package kosta.web.model.service.place;
+package kosta.web.model.service.travelge;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kosta.web.model.dao.place.TravelgeAvgScoreDAO;
-import kosta.web.model.dao.place.TravelgeInfoDAO;
-import kosta.web.model.dao.place.TravelgeRecommandationDAO;
+import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
+import kosta.web.model.dao.travelge.TravelgeInfoDAO;
+import kosta.web.model.dao.travelge.TravelgeRecommandationDAO;
 import kosta.web.model.vo.AvgScoreVo;
-import kosta.web.model.vo.place.TravelgeInfoVo;
-import kosta.web.model.vo.place.TravelgeRecommandationVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 
 @Service
-public class PlaceServiceImpl implements PlaceService {
+public class TravelgeServiceImpl implements TravelgeService {
 
 	
 	@Autowired

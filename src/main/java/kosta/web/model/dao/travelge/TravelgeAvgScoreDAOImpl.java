@@ -1,4 +1,4 @@
-package kosta.web.model.dao.place;
+package kosta.web.model.dao.travelge;
 
 import org.springframework.stereotype.Repository;
 

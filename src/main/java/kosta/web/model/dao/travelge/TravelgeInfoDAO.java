@@ -1,8 +1,8 @@
-package kosta.web.model.dao.place;
+package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
-import kosta.web.model.vo.place.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 public interface TravelgeInfoDAO {
 /*travelgeInfoInsert 여행지등록 -member

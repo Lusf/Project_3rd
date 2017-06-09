@@ -1,10 +1,10 @@
-package kosta.web.model.dao.place;
+package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import kosta.web.model.vo.place.TravelgeRecommandationVo;
+import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 @Repository
 public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO {

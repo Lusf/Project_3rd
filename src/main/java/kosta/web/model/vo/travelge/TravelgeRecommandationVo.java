@@ -1,4 +1,4 @@
-package kosta.web.model.vo.place;
+package kosta.web.model.vo.travelge;
 
 public class TravelgeRecommandationVo {
 	/*

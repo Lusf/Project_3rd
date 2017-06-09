@@ -1,8 +1,8 @@
-package kosta.web.model.dao.place;
+package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
-import kosta.web.model.vo.place.TravelgeRecommandationVo;
+import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 public interface TravelgeRecommandationDAO {
 	/*
