@@ -61,9 +61,9 @@
 				id="title-font">더보기+</a></span>
 		</div>
 	</div>
-	
-	<hr style="color: white	;">
-	
+
+	<hr style="color: white;">
+
 	<div class="row">
 		<div class="col-xs-12 col-md-8 col-md-offset-2"
 			style="padding-right: 0px; padding-left: 0px">
@@ -115,18 +115,22 @@
 		<!-- 		<div class="clearfix grid" > -->
 		<div class="col-xs-6 col-md-4 col-md-offset-2"
 			style="padding-left: 0em;">
+
 			<div class="card">
-				<div class="card-image">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/travelge/recommand/recommand4.jpg">
-					<span class="card-title">Card Title</span>
-				</div>
-				<div class="card-content">
-					<p>I am a very simple card. I am good at containing small bits
-						of information. I am convenient because I require little markup to
-						use effectively.</p>
-				</div>
+				<a href="${pageContext.request.contextPath }/travelge/travelgeRecommandSearch">
+					<div class="card-image">
+						<img
+							src="${pageContext.request.contextPath}/resources/images/travelge/recommand/recommand4.jpg">
+						<span class="card-title">Card Title</span>
+					</div>
+					<div class="card-content">
+						<p>I am a very simple card. I am good at containing small bits
+							of information. I am convenient because I require little markup
+							to use effectively.</p>
+					</div>
+				</a>
 			</div>
+
 		</div>
 		<div class="col-xs-6 col-md-4"
 			style="padding-right: 0em; padding-left: 1em;">
@@ -177,7 +181,7 @@
 		</div>
 	</div>
 
-<hr style="color: white;">
+	<hr style="color: white;">
 
 	<%@include file="/WEB-INF/views/footer.jsp"%>
 </body>

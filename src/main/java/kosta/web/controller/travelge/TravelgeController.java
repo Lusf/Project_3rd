@@ -22,6 +22,8 @@ public class TravelgeController {
 		return "travelge/main";
 	}
 	
+
+	
 	public void travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo){
 		
 	};
@@ -50,9 +52,18 @@ public class TravelgeController {
 		
 	};
 	
-	public void travelgeRecommandSearch(String contentCode){
-		
+	
+	@RequestMapping("/travelgeRecommandSearch")
+	public String travelgeRecommandSearch(String contentCode){
+	
+		if(contentCode != null)
+		{
+			return "travelge/single-page";
+		}
+		return "travelge/single-page";
 	};
+	
+	
 	
 	public void travelgeWishListAdd(AvgScoreVo avgScoreVo){
 		
