@@ -40,7 +40,7 @@
 				<div class="form_content">
 					<div class="menu_box_list">
 						<ul>
-							<li><a href="#"><span>home</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/"><span>home</span></a></li>
 							<li><a href="#"><span>About</span></a></li>
 							<li><a href="#"><span>Works</span></a></li>
 							<li><a href="#"><span>Clients</span></a></li>

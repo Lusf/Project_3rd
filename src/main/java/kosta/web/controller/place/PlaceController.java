@@ -10,7 +10,6 @@ public class PlaceController {
 	@RequestMapping("/main")
 	public String travelgeMain()
 	{
-		System.out.println(1);
 		return "Travelge/main";
 	}
 }
