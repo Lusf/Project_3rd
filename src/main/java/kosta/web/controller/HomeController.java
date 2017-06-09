@@ -24,5 +24,10 @@ public class HomeController {
 		return "login/login";
 	}
 	
+	@RequestMapping("eating/eatingMain")
+	public String eatingMain(){
+		
+		return "eating/eatingMain";
+	}
 	
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <style>
 h1 {
 	font-size: 2em
@@ -27,8 +26,8 @@ h1 {
 #indexGrid {
 	padding-top: 6em
 }
-@media only screen and (max-width:1024px) and (min-width:768px) {
 
+@media only screen and (max-width:1024px) and (min-width:768px) {
 	h1 {
 		font-size: 4em
 	}
@@ -48,10 +47,17 @@ h1 {
 		padding: 0.7em 3em;
 	}
 	#indexGrid {
-	padding-top: 10em
-}
+		padding-top: 10em
+	}
 }
 </style>
+<script type="text/javascript">
+	function eat() {
+		location.href = "eating/eatingMain"
+	}
+</script>
+
+</head>
 
 <div class="clearfix grid" id="indexGrid">
 
@@ -87,6 +93,7 @@ h1 {
 	<div class=" col-xs-12 col-md-4"
 		style="padding-right: 0px; padding-left: 0px;">
 
+
 		<figure class="effect-oscar  wowload fadeInUp" style="width: 100%;">
 			<img
 				src="${pageContext.request.contextPath}/resources/images/index/Food.png"
@@ -94,9 +101,11 @@ h1 {
 			<figcaption style="padding-top: 6em">
 				<h1>Food</h1>
 				<p id="desc">
-					<br> 나에게 음식이란???<br> <a href="" id="astyle">View more</a>
+					<br> 나에게 음식이란???<br> <a href="" id="astyle"
+						onclick="eat()">View more</a>
 				</p>
 			</figcaption>
 		</figure>
 	</div>
 </div>
+
