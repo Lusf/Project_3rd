@@ -1,5 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<script type="text/javascript">
+	var $ = jQuery.noConflict();
+	$(function() {
+		$('#activator').click(function() {
+			$('#box').animate({
+				'top' : '0px'
+			}, 500);
+		});
+		$('#boxclose').click(function() {
+			$('#box').animate({
+				'top' : '-700px'
+			}, 500);
+		});
+	});
+	$(document).ready(function() {
+		// Hide (Collapse) the toggle containers on load
+		$(".toggle_container").hide();
+		// Switch the "Open" and "Close" state per click then slide up/down
+		// (depending on open/close state)
+		$(".trigger").click(function() {
+			$(this).toggleClass("active").next().slideToggle("slow");
+			return false; // Prevent the browser jump to the link anchor
+		});
+
+	});
+</script>
+
 <div class="header">
 	<div class="col-xs-2 col-md-2">
 		<div class="nav-icon">
@@ -34,11 +62,9 @@
 		</div>
 	</div>
 
-	<div class="col-xs-2 col-md-2 col-md-offset-3 col-xs-offset-3">
-		<a href="login/login"> <img
-			src="${pageContext.request.contextPath }/resources/images/header/user-pic.png"
-			title="user-name" /> 로그인
-		</a> <a href="login/joinForm">회원가입</a>
+	<div class="col-xs-2 col-md-2 col-md-offset-3 col-xs-offset-3" >
+		<a href="login/login" style="margin-right: 1em "> 로그인
+		</a> <a href="login/joinForm"  >회원가입</a>
 
 	</div>
 	<div class="clear"></div>

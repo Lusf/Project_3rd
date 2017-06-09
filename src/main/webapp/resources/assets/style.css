@@ -35,7 +35,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 .navbar-inverse{background: #111;}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{background: none;color: #21abca;}
 
-#head,.carousel{margin-top: 0;}
+#head,.carousel{margin-top: 0;} 
 
 #home{padding-top: 6em;}
 .carousel-caption{top:0;bottom: 0;left: 0; right: 0;padding: 0;}
