@@ -9,7 +9,7 @@
 				'top' : '0px'
 			}, 500);
 		});
-		$('#boxclose').click(function() {
+		$('#box').click(function() {
 			$('#box').animate({
 				'top' : '-700px'
 			}, 500);
@@ -27,6 +27,9 @@
 
 	});
 </script>
+<style>
+li span {font-weight: bold; font-size: 20px;}
+</style>
 
 <div class="header">
 	<div class="col-xs-2 col-md-2">
@@ -49,7 +52,7 @@
 							
 						</ul>
 					</div>
-					<a class="boxclose" id="boxclose"> <span> </span></a>
+					<!-- <a class="boxclose" id="boxclose"> <span> </span></a> -->
 				</div>
 			</div>
 		</div>

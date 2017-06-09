@@ -2,7 +2,7 @@
 /* db 수정 시, 구글 스프레드시트도 같이 수정할 것!!
  * 수정 된 부분에 주석으로 표시. */
 
-
+select * from USERTABLE
 
 drop table usertable;
 
