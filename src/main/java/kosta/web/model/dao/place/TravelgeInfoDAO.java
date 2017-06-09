@@ -1,5 +1,9 @@
 package kosta.web.model.dao.place;
 
+import java.util.List;
+
+import kosta.web.model.vo.place.TravelgeInfoVo;
+
 public interface TravelgeInfoDAO {
 /*travelgeInfoInsert 여행지등록 -member
 	travelgeInfoUpdate 여행지수정 -등록자/관리자
@@ -8,4 +12,15 @@ public interface TravelgeInfoDAO {
 	travelgeInfoSearch 부분/전체여행지조회 - 전체
 
 	searchAroundMe 내주변검색 -모든사용자*/
+	
+	
+	int travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo);
+	
+	int travelgeInfoUpdate(TravelgeInfoVo travelgeInfoVo);
+	
+	int travelgeInfoDelete(String contentCode);
+	
+	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo);
+	
+	List<TravelgeInfoVo> searchAroundMe(String travelgeRegion);
 }
