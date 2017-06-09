@@ -1,4 +1,4 @@
-package kosta.web.model.vo.place;
+package kosta.web.model.vo.travelge;
 
 import kosta.web.model.vo.AvgScoreVo;
 

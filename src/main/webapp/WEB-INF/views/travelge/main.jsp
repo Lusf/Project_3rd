@@ -61,6 +61,9 @@
 				id="title-font">더보기+</a></span>
 		</div>
 	</div>
+	
+	<hr style="color: white	;">
+	
 	<div class="row">
 		<div class="col-xs-12 col-md-8 col-md-offset-2"
 			style="padding-right: 0px; padding-left: 0px">
@@ -105,9 +108,8 @@
 				</a>
 			</div>
 		</div>
-
 	</div>
-
+	<hr style="color: white;">
 	<!-- --여기부턴 아래 카드 부분 -->
 	<div class="row">
 		<!-- 		<div class="clearfix grid" > -->
@@ -175,6 +177,7 @@
 		</div>
 	</div>
 
+<hr style="color: white;">
 
 	<%@include file="/WEB-INF/views/footer.jsp"%>
 </body>
