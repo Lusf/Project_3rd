@@ -10,7 +10,6 @@ public class TravelgeController {
 	@RequestMapping("/main")
 	public String travelgeMain()
 	{
-		System.out.println(1);
-		return "Travelge/main";
+		return "travelge/main";
 	}
 }
