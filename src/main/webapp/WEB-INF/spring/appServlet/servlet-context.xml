@@ -24,6 +24,9 @@
 	
 	<context:component-scan base-package="kosta.web.controller" />
 	
+	<context:component-scan base-package="kosta.web.model.service.*"/>
+	
+	<context:component-scan base-package="kosta.web.model.dao"/>
 	
 	<!-- 이거 없으면 경로 에러 -->
 	<mvc:default-servlet-handler/>
