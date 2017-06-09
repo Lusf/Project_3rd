@@ -12,34 +12,36 @@
 <style>
 #title-row {
 	margin-top: 6em;
-	padding:0.5em 0;
+	padding: 0.5em 0;
 	background-color: #0d47a1;
 }
-#title-left-grid{
-	padding-left: 0em; 
+
+#title-left-grid {
+	padding-left: 0em;
 }
-#title-right-grid{
-	padding-left: 1.5em; 
+
+#title-right-grid {
+	padding-left: 1.5em;
 }
+
 #title-font {
-	color:white;
+	color: white;
 	font-size: 1.5em;
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px) {
-	#title-row{
+	#title-row {
 		margin-top: 10em;
-		padding:1em 0;
-
+		padding: 1em 0;
 	}
-	#title-left-grid{
-	padding-left: 1em;
-	}	
-	#title-right-grid{
-	padding-left: 1em; 
+	#title-left-grid {
+		padding-left: 1em;
+	}
+	#title-right-grid {
+		padding-left: 1em;
 	}
 	#title-font {
-		color:white;
+		color: white;
 		font-size: 4em;
 	}
 }
@@ -50,11 +52,13 @@
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
 	<div class="row" id="title-row">
-		<div class="col-md-offset-2 col-md-4 col-xs-6" id="title-left-grid" >
+		<div class="col-md-offset-2 col-md-4 col-xs-6" id="title-left-grid">
 			<span id="title-font">요즘 화제 어디?</span>
 		</div>
-		<div class="col-md-offset-3 col-md-2 col-xs-3 col-xs-offset-3" id="title-right-grid"  >
-			<span><a href="#" style="text-decoration: none"id="title-font" >더보기+</a></span>
+		<div class="col-md-offset-3 col-md-2 col-xs-3 col-xs-offset-3"
+			id="title-right-grid">
+			<span><a href="#" style="text-decoration: none"
+				id="title-font">더보기+</a></span>
 		</div>
 	</div>
 	<div class="row">
@@ -102,6 +106,73 @@
 			</div>
 		</div>
 
+	</div>
+
+	<!-- --여기부턴 아래 카드 부분 -->
+	<div class="row">
+		<!-- 		<div class="clearfix grid" > -->
+		<div class="col-xs-6 col-md-4 col-md-offset-2"
+			style="padding-left: 0em;">
+			<div class="card">
+				<div class="card-image">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/travelge/recommand/recommand4.jpg">
+					<span class="card-title">Card Title</span>
+				</div>
+				<div class="card-content">
+					<p>I am a very simple card. I am good at containing small bits
+						of information. I am convenient because I require little markup to
+						use effectively.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-md-4"
+			style="padding-right: 0em; padding-left: 1em;">
+			<div class="card">
+				<div class="card-image">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/travelge/recommand/recommand4.jpg">
+					<span class="card-title">Card Title</span>
+				</div>
+				<div class="card-content">
+					<p>I am a very simple card. I am good at containing small bits
+						of information. I am convenient because I require little markup to
+						use effectively.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-md-4 col-md-offset-2"
+			style="padding-left: 0em;">
+			<div class="card">
+				<div class="card-image">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/travelge/recommand/recommand4.jpg">
+					<span class="card-title">Card Title</span>
+				</div>
+				<div class="card-content">
+					<p>I am a very simple card. I am good at containing small bits
+						of information. I am convenient because I require little markup to
+						use effectively.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-md-4"
+			style="padding-right: 0em; padding-left: 1em;">
+			<div class="card">
+				<div class="card-image">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/travelge/recommand/recommand4.jpg">
+					<span class="card-title">Card Title</span>
+				</div>
+				<div class="card-content">
+					<p>I am a very simple card. I am good at containing small bits
+						of information. I am convenient because I require little markup to
+						use effectively.</p>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
