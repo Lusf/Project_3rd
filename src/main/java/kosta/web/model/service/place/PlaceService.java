@@ -1,5 +1,12 @@
 package kosta.web.model.service.place;
 
+import java.util.List;
+
+import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.place.TravelgeInfoVo;
+import kosta.web.model.vo.place.TravelgeRecommandationVo;
+
+
 public interface PlaceService {
 /*	travelgeInfoInsert 여행지등록 -member
 	travelgeInfoUpdate 여행지수정 -등록자/관리자
@@ -11,6 +18,8 @@ public interface PlaceService {
 	travelgeRecommandUpdate 추천페이지수정 -관리자
 	travelgeRecommandDelete 추천페이지삭제 -관리자
 	
+	travelgeRecommandSearch 추천페이지조회 - 전체
+	
 	travelgeWishListAdd 여행지 찜 추가
 	travelgeWishListDelete 여행지 찜 취소
 
@@ -19,4 +28,30 @@ public interface PlaceService {
 
 
 	searchAroundMe 내주변검색 -모든사용자*/
+	
+	int travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo);
+	
+	int travelgeInfoUpdate(TravelgeInfoVo travelgeInfoVo);
+	
+	int travelgeInfoDelete(String contentCode);
+	
+	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo);
+	
+	int travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo);
+	
+	int travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo);
+	
+	int travelgeRecommandDelete(String contentCode);
+	
+	List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode);
+	
+	int travelgeWishListAdd(AvgScoreVo avgScoreVo);
+	
+	int travelgeWishListDelete(AvgScoreVo avgScoreVo);
+	
+	int travelgeScoreInsert(AvgScoreVo avgScoreVo);
+	
+	int travelgeScoreUpdate(AvgScoreVo avgScoreVo);
+	
+	List<TravelgeInfoVo> searchAroundMe(String travelgeRegion);
 }
