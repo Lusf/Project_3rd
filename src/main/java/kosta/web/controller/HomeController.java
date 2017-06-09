@@ -1,6 +1,7 @@
 package kosta.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,15 +13,13 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping("login/joinForm")
+	@RequestMapping({"login/joinForm","{folder}/login/joinForm"})
 	public String joinForm(){
-		
 		return "login/joinForm";
 	}
 	
-	@RequestMapping("login/login")
+	@RequestMapping({"login/login","{folder}/login/login"})
 	public String login(){
-		
 		return "login/login";
 	}	
 }

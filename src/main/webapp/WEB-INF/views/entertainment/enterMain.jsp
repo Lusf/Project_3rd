@@ -1,101 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Entertainment</title>
-	
-	<!-- jquery -->
-	<script src="${pageContext.request.contextPath}/resources/assets/jquery.js"></script>
-	
-	<!-- wow script -->
-	<script src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script>
-	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Entertainment</title>
+<!-- Include javascript -->
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.mixitup.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.bxslider.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.cslider.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.placeholder.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.inview.js"></script>
+<!-- Load google maps api and call initializeMap function defined in app.js -->
+<script async="" defer="" type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initializeMap"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/app.js"></script>
+
+
+<%--
 	<!-- materialize -->
 	<script src="${pageContext.request.contextPath}/resources/js/materialize.min.js"></script>
 	<link rel="stylesheet" href="<c:url value= '/resources/css/materialize.min.css'/>">
-	
-	<!-- bootstrap -->
-	<script src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>" >
-	
-	<!-- jquery mobile -->
-	<script src="${pageContext.request.contextPath}/resources/assets/mobile/touchSwipe.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/respond/respond.js"></script>
-	
-	<!-- gallery -->
-	<script src="${pageContext.request.contextPath}/resources/assets/gallery/jquery.blueimp-gallery.min.js"></script>
-	
-	<!-- custom script -->
-	<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
-	
-	<!-- animate.css -->
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/animate/animate.css'/>" >
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/animate/set.css'/>" >
-	
-	<!-- Google fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-	
-	<!-- font awesome -->
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	
-	<!-- animate.css -->
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/animate/animate.css'/>" >
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/animate/set.css'/>" >
-	
-	<!-- gallery -->
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/gallery/blueimp-gallery.min.css'/>">
-	
-	<!-- favicon -->
-	<link rel="shortcut icon" href="<c:url value= '/resources/images/favicon.ico'/>" type="image/x-icon">
-	<link rel="icon" href="<c:url value= '/resources/images/favicon.ico'/>" type="image/x-icon">
-	
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/main.css'/>">
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/style.css'/>">
-	<link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
-	
-	<script type="text/javascript">
-	var $ = jQuery.noConflict();
-	$(function() {
-		$('#activator').click(function() {
-			$('#box').animate({
-				'top' : '0px'
-			}, 500);
-		});
-		$('#boxclose').click(function() {
-			$('#box').animate({
-				'top' : '-700px'
-			}, 500);
-		});
-	});
-	$(document).ready(function() {
-		// Hide (Collapse) the toggle containers on load
-		$(".toggle_container").hide();
-		// Switch the "Open" and "Close" state per click then slide up/down
-		// (depending on open/close state)
-		$(".trigger").click(function() {
-			$(this).toggleClass("active").next().slideToggle("slow");
-			return false; // Prevent the browser jump to the link anchor
-		});
-
-	});
-	</script>
-	<style>
-	#indexGrid{padding-top: 6em}
-	
-	@media only screen and (max-width:1024px) and (min-width:768px)
-	{#indexGrid{padding-top: 10em}}
-	</style>
-	<script>
-	$('html, body').css({'overflow' : 'hidden', 'height':'100%'});
-	</script>
+	--%>
 </head>
 <body>
+	<%@include file="/WEB-INF/views/includeFile.jsp" %>
+	<%@include file="/WEB-INF/views/entertainment/includePluton.jsp" %>
 	<%@include file="/WEB-INF/views/header.jsp"%>
-	
-	<%@include file="/WEB-INF/views/entertainment/enterContents.jsp" %>
-	
+
+	<%@include file="/WEB-INF/views/entertainment/enterContents.jsp"%>
+
 	<%@include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>

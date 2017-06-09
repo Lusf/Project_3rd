@@ -9,7 +9,7 @@
 				'top' : '0px'
 			}, 500);
 		});
-		$('#boxclose').click(function() {
+		$('#box').click(function() {
 			$('#box').animate({
 				'top' : '-700px'
 			}, 500);
@@ -27,11 +27,14 @@
 
 	});
 </script>
+<style>
+li span {font-weight: bold; font-size: 20px;}
+</style>
 
 <div class="header">
 	<div class="col-xs-2 col-md-2">
 		<div class="nav-icon">
-			<a href="#" class="right_bt" id="activator"><span> </span> </a>
+			<a class="right_bt" id="activator"><span> </span> </a>
 		</div>
 	</div>
 	<div class="box" id="box">
@@ -40,16 +43,16 @@
 				<div class="form_content">
 					<div class="menu_box_list">
 						<ul>
-							<li><a href="#"><span>home</span></a></li>
-							<li><a href="#"><span>About</span></a></li>
-							<li><a href="#"><span>Works</span></a></li>
-							<li><a href="#"><span>Clients</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/"><span>home</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/travelge/main"><span>Travelge</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/entertainment/enterMain"><span>Entertainment</span></a></li>
+							<li><a href="#"><span>Food</span></a></li>
 							<li><a href="#"><span>Blog</span></a></li>
 							<li><a href="#"><span>Contact</span></a></li>
 							
 						</ul>
 					</div>
-					<a class="boxclose" id="boxclose"> <span> </span></a>
+					<!-- <a class="boxclose" id="boxclose"> <span> </span></a> -->
 				</div>
 			</div>
 		</div>

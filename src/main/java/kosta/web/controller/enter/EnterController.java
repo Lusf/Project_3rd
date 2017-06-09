@@ -11,14 +11,4 @@ public class EnterController {
 	public String enterMain(){
 		return "entertainment/enterMain";
 	}
-	
-	@RequestMapping("login/joinForm")
-	public String joinForm(){
-		return "login/joinForm";
-	}
-	
-	@RequestMapping("login/login")
-	public String login(){
-		return "login/login";
-	}
 }
