@@ -19,7 +19,6 @@ public class PlaceController {
 	@RequestMapping("/main")
 	public String travelgeMain()
 	{
-		
 		return "travelge/main";
 	}
 	
