@@ -4,12 +4,13 @@
 <style>
 #blank-row {
 	height: 3em;
+	margin-top: 5em;
 }
 
 .footer {
 	position: fixed;
 	width: 100%;
-	height: 3em;
+	height: 5em;
 	bottom: 0em;
 	z-index: 999;
 	background-color: #eeeeee;
@@ -19,8 +20,12 @@
 }
 
 #icon {
-	font-size: 2.3em;
+	font-size: 2.2em;
 	margin: 0 2.1em;
+}
+
+#tabelAlign{
+		margin:auto;
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px) {
@@ -38,20 +43,37 @@
 		text-align: left;
 	}
 	#icon {
-		font-size: 8em;
+		font-size: 3em;
 		margin: 0 0.3em;
 	}
 }
 </style>
 <!-- Footer Starts -->
 <div id="blank-row"></div>
-<div class="footer">
-	<a href="${pageContext.request.contextPath }/travelge/main"> <i
-		class="glyphicon glyphicon-list-alt" id="icon"></i></a> <a
-		href="${pageContext.request.contextPath}/travelge/travelgeInfoSearch"><i
-		class="material-icons" id="icon">map</i> </a> <a href="${pageContext.request.contextPath}/travelge/travelgeAroundMe"> <i
-		class="material-icons" id="icon">my_location</i>
-	</a><a href="${pageContext.request.contextPath}/travelge/searchPage"> <i class="glyphicon glyphicon-search" id="icon"></i>
-	</a>
+<div class="footer" >
+
+	<table id="tabelAlign">
+	<tr>
+	<td>	
+	<a href="${pageContext.request.contextPath }/travelge/main" title="채널"> 
+	<i class="glyphicon glyphicon-list-alt" id="icon" ></i></a> </td>
+	<td>	
+	<a href="${pageContext.request.contextPath}/travelge/travelgeInfoSearch" title="지역별">
+	<i class="material-icons" id="icon">map</i></a> </td>
+	<td>	
+	<a href="${pageContext.request.contextPath}/travelge/travelgeAroundMe" title="내주변"> 
+	<i class="material-icons" id="icon">my_location</i></a></td>
+	<td>	
+	<a href="${pageContext.request.contextPath}/travelge/searchPage" title="검색"> 
+	<i class="glyphicon glyphicon-search" id="icon"></i></a></td>
+	</tr>
+	<tr>
+	<td><label style="vertical-align: bottom;">채널</label></td>
+	<td><label style="vertical-align: bottom;">지역별</label></td>
+	<td><label style="vertical-align: bottom;">내주변</label></td>
+	<td><label style="vertical-align: bottom;">검색</label></td>
+	</tr>
+	</table>	
+
 </div>
 <!-- # Footer Ends -->

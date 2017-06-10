@@ -10,7 +10,6 @@
 #title-row {
 	margin-top: 6em;
 	padding: 0.5em 0;
-	background-color: #0d47a1;
 	text-align: center;
 }
 
@@ -40,10 +39,26 @@
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
 
-	<div class="row" id="title-row">
-		<span id="title-font">관광지</span> <span id="title-font">숙박</span> <span
-			id="title-font">문화</span> <span id="title-font">레포츠</span>
-	</div>
+<div>
+	<div class="row" id="title-row"></div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home1" aria-controls="home" role="tab" data-toggle="tab">관광지</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">숙박</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">문화</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">레포츠</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home1">관광지</div>
+    <div role="tabpanel" class="tab-pane" id="profile">숙박</div>
+    <div role="tabpanel" class="tab-pane" id="messages">문화</div>
+    <div role="tabpanel" class="tab-pane" id="settings">레포츠</div>
+  </div>
+
+</div>
+
 
 
 

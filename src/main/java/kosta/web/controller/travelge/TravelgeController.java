@@ -41,12 +41,6 @@ public class TravelgeController {
 	
 	}
 
-	@RequestMapping("{url}")
-	public String url(@PathVariable String url)
-	{
-		return "travelge/"+url;
-	}
-
 	@RequestMapping("/travelgeInfoSearch")
 	public String travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo){
 		
