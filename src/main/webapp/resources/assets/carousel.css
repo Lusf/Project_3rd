@@ -305,7 +305,7 @@
 }
 
 /* tab */
-.tabs {
+/* .tabs {
 	position: relative;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -400,4 +400,4 @@
 	.tabs .tab a {
 		padding: 0 12px;
 	}
-}
+} */

@@ -3,7 +3,6 @@
 
 <style>
 #blank-row {
-
 	height: 3em;
 }
 
@@ -51,8 +50,8 @@
 		class="glyphicon glyphicon-list-alt" id="icon"></i></a> <a
 		href="${pageContext.request.contextPath}/travelge/travelgeInfoSearch"><i
 		class="material-icons" id="icon">map</i> </a> <a href=""> <i
-		class="glyphicon glyphicon-search" id="icon"></i>
-	</a> <a href=""> <i class="material-icons" id="icon">my_location</i>
+		class="material-icons" id="icon">my_location</i>
+	</a><a href=""> <i class="glyphicon glyphicon-search" id="icon"></i>
 	</a>
 </div>
 <!-- # Footer Ends -->
