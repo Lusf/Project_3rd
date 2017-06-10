@@ -2,6 +2,7 @@ package kosta.web.controller.travelge;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kosta.web.model.service.travelge.TravelgeService;
@@ -22,7 +23,11 @@ public class TravelgeController {
 		return "travelge/main";
 	}
 	
-
+	@RequestMapping("{url}")
+	public String url(@PathVariable String url){
+	
+		return "travelge/"+url;
+	}
 	
 	public void travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo){
 		
