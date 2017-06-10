@@ -19,7 +19,7 @@
 
 <nav>
 		<div class="nav-wrapper teal darken-4" >
-		<a href="../index.html" class="brand-logo center" ><i class="large material-icons">thumb_up</i></a>
+		<a href="${pageContext.request.contextPath}/" class="brand-logo center" ><i class="large material-icons">thumb_up</i></a>
 		</div>
 		</nav>
 	
