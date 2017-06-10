@@ -23,7 +23,11 @@ public class TravelgeController {
 		return "travelge/main";
 	}
 	
-
+	@RequestMapping("{url}")
+	public String url(@PathVariable String url){
+	
+		return "travelge/"+url;
+	}
 	
 	public void travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo){
 		
