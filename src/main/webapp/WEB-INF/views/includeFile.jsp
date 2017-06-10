@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<meta name="viewport" content="initial-scale=1.0">
 <!-- jquery -->
 <script
 	src="${pageContext.request.contextPath}/resources/assets/jquery.js"></script>

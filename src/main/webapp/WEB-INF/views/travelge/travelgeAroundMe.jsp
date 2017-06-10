@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Simple Map</title>
-<meta name="viewport" content="initial-scale=1.0">
+
 <style>
 #map {
 	height: 400px;
