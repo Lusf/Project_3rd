@@ -6,41 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- Load Roboto font -->
-<link
-	href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext'
-	rel='stylesheet' type='text/css'>
-<!-- Load css styles -->
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/bootstrap.css'/>" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value= '/resources/pluton/css/bootstrap-responsive.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/style.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/pluton.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/jquery.cslider.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/jquery.bxslider.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/animate.css'/>" />
-<!-- Fav and touch icons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="<c:url value= '/resources/pluton/images/ico/apple-touch-icon-144.png'/>">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="<c:url value= '/resources/pluton/images/ico/apple-touch-icon-114.png'/>">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="<c:url value= '/resources/pluton/images/apple-touch-icon-72.png'/>">
-<link rel="apple-touch-icon-precomposed"
-	href="<c:url value= '/resources/pluton/images/ico/apple-touch-icon-57.png'/>">
-<link rel="shortcut icon" href="<c:url value= '/resources/pluton/images/ico/favicon.ico'/>">
 
-<script src="js/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.mixitup.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/modernizr.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.bxslider.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.placeholder.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/jquery.inview.js"></script>
-<!-- Load google maps api and call initializeMap function defined in app.js -->
-<script async="" defer="" type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initializeMap"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/pluton/js/app.js"></script>
+	<meta content="" name="description">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="width=device-width" name="viewport">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<link href="${pageContext.request.contextPath}/resources/images/eating/favicon.png" rel="icon" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script%7CLato:300,400,700" rel="stylesheet">
+	<link href="<c:url value='/resources/css/eating/bootstrap-eating.css'/>" rel="stylesheet">
+	<link id="pagestyle" href="<c:url value='/resources/css/eating/theme-eating.css'/>" rel="stylesheet">
+	<link rel="stylesheet" href="<c:url value= '/resources/pluton/css/style3.css'/>">
+
+	<script src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
+	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
+
 </head>
 </html>
