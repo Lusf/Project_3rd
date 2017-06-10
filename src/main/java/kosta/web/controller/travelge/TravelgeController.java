@@ -35,7 +35,12 @@ public class TravelgeController {
 	public void travelgeInfoDelete(String contentCode){;
 	
 	}
-	
+
+	@RequestMapping("/searchPage")
+	public String searchPage()
+	{
+		return "travelge/searchPage";
+	}
 	@RequestMapping("/travelgeInfoSearch")
 	public String travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo){
 		
