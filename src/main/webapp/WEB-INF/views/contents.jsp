@@ -67,9 +67,8 @@ h1 {
 			<img
 				src="${pageContext.request.contextPath}/resources/images/index/Travelge.png"
 				style="width: 100%; height: 28em;" />
-			<figcaption style="padding-top: 6em; cursor: default">
+			<figcaption style="padding-top: 1em; cursor: default">
 				<h1>Travelge</h1>
-				<p>
 				<p id="desc">
 					<br> 여행지 정보가 모두<br> <a href="travelge/main" id="astyle">View
 						more</a>
@@ -82,7 +81,7 @@ h1 {
 			<img
 				src="${pageContext.request.contextPath}/resources/images/index/Entertainment.jpg"
 				style="width: 100%; height: 28em" />
-			<figcaption style="padding-top: 6em">
+			<figcaption style="padding-top: 1em">
 				<h1>Entertainment</h1>
 				<p id="desc">
 					<br> TV부터 공연까지<br> <a href="entertainment/enterMain" id="astyle">View more</a>
@@ -97,7 +96,7 @@ h1 {
 			<img
 				src="${pageContext.request.contextPath}/resources/images/index/Food.png"
 				style="width: 100%; height: 28em" />
-			<figcaption style="padding-top: 6em">
+			<figcaption style="padding-top: 1em">
 				<h1>Food</h1>
 				<p id="desc">
 					<br> 나에게 음식이란???<br> <a href="" id="astyle"

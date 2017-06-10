@@ -26,7 +26,7 @@ $('html, body').css({'overflow' : 'hidden', 'height':'100%'});
 </head>
 
 <body>
-	<%@include file="/WEB-INF/views/includeFile.jsp" %>
+<%-- 	<%@include file="/WEB-INF/views/includeFile.jsp" %> --%>
 	<%@include file="/WEB-INF/views/header.jsp"%>	
 	<%@include file="/WEB-INF/views/contents.jsp" %>
 	<%@include file="/WEB-INF/views/footer.jsp"%>

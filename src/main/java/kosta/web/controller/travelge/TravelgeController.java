@@ -41,11 +41,12 @@ public class TravelgeController {
 	
 	}
 
-	@RequestMapping("/searchPage")
-	public String searchPage()
+	@RequestMapping("{url}")
+	public String url(@PathVariable String url)
 	{
-		return "travelge/searchPage";
+		return "travelge/"+url;
 	}
+
 	@RequestMapping("/travelgeInfoSearch")
 	public String travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo){
 		
