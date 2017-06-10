@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+ 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
@@ -21,7 +21,7 @@
 </style>
  -->
 <script>
-$('html, body').css({'overflow' : 'hidden', 'height':'100%'});
+/* $('html, body').css({'overflow' : 'hidden', 'height':'100%'}); */
 </script>
 </head>
 

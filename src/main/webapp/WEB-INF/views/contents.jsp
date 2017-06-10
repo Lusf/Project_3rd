@@ -53,7 +53,7 @@ h1 {
 </style>
 <script type="text/javascript">
 	function eat() {
-		location.href = "eating/eatingMain"
+		location.href = "eating/eating_Main"
 	}
 </script>
 
@@ -93,14 +93,12 @@ h1 {
 
 
 		<figure class="effect-oscar  wowload fadeInUp" style="width: 100%;">
-			<img
-				src="${pageContext.request.contextPath}/resources/images/index/Food.png"
-				style="width: 100%; height: 28em" />
-			<figcaption style="padding-top: 1em">
+			<img src="${pageContext.request.contextPath}/resources/images/index/Food.png" style="width: 100%; height: 28em" />
+			<figcaption style="padding-top: 1em" >
 				<h1>Food</h1>
 				<p id="desc">
-					<br> 나에게 음식이란???<br> <a href="" id="astyle"
-						onclick="eat()">View more</a>
+					<br> 나에게 음식이란???<br> 
+					<a href="eating/eatingMain" id="astyle"	onclick="eat()">View more</a>
 				</p>
 			</figcaption>
 		</figure>

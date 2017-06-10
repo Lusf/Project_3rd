@@ -34,10 +34,10 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="#home">home</a></li>
-					<li><a href="#products">products</a></li>
+					<li><a href="#hot_deal">hot deal</a></li>
 					<li><a href="#about">about us</a></li>
 					<li><a href="#special">special</a></li>
-					<li><a href="#testimonials">testimonials</a></li>
+					<li><a href="#review">review</a></li>
 					<li><a href="#news">news</a></li>
 					<li><a href="#history">history</a></li>
 					<li><a href="#contact">contact</a></li>
@@ -152,7 +152,7 @@
 	<!-- / CART WIDGET -->
 
 
-	<section class="section-min section product" id="products">
+	<section class="section-min section product" id="hot_deal">
 		<div class="container overflow-hidden">
 			<div class="row">
 				<div class="col-md-12">
@@ -433,7 +433,7 @@
         	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
         	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        	<a href="#" class="btn btn-default">click action</a>
+        	<a href="#" class="btn btn-default">click top</a>
         </div>
         <div class="col-md-6"></div>
     </div>
@@ -512,11 +512,11 @@
 		</div>
 	</section>
 
-	<section class="testimonials" id="testimonials">
+	<section class="review" id="review">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="section-heading">Testimonials</h3>
+					<h3 class="section-heading">리뷰 </h3>
 				</div>
 
 				<div class="col-md-12 testimonials-slider text-center">
