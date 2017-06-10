@@ -12,22 +12,22 @@
 	padding: 0.5em 0;
 }
 
-#title-font {
-	color: white;
-	font-size: 1.5em;
-	margin: 0 3.5em;
-}
-
 @media only screen and (max-width:1024px) and (min-width:768px) {
 	#title-row {
 		margin-top: 10em;
 		padding: 1em 0;
 	}
-	#title-font {
-		color: white;
-		font-size: 4em;
-		margin: 0 0.3em;
+	#search-row{
+		margin-left : 0.5em;
+		margin-right : -10em;
 	}
+	#input-search {
+		padding-top: 1.5em;
+		padding-bottom: 1.5em;
+		font-size: 3em;
+		border-radius: 0.5em;
+	}
+	
 }
 </style>
 
@@ -37,8 +37,15 @@
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
 
-	<div class="row" id="title-row">
+	<div class="row" id="title-row"></div>
+	<div class="row" id="search-row">
+		<div class="col-md-8 col-xs-12 col-md-offset-2">
+			<input type="search" class="form-control" id="input-search"
+				placeholder=" 장소명 또는 지역명 입력해주세요.">
+		</div>
 	</div>
+
+
 	<%@include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
 </body>
 </html>
