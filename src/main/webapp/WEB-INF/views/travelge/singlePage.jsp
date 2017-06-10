@@ -22,7 +22,7 @@
 </style>
 
 </head>
-<body style="background-color: white;">
+<body style="background-color: white;  margin-right: 1em">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
@@ -45,6 +45,6 @@
 	</div>
 
 
-	<%@include file="/WEB-INF/views/footer.jsp"%>
+	<%@include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
 </body>
 </html>

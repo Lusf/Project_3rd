@@ -36,8 +36,10 @@ public class TravelgeController {
 	
 	}
 	
-	public void travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo){
+	@RequestMapping("/travelgeInfoSearch")
+	public String travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo){
 		
+		return "travelge/travelgeList";
 	};
 	
 	public void travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo){
@@ -58,9 +60,9 @@ public class TravelgeController {
 	
 		if(contentCode != null)
 		{
-			return "travelge/single-page";
+			return "travelge/singlePage";
 		}
-		return "travelge/single-page";
+		return "travelge/singlePage";
 	};
 	
 	
