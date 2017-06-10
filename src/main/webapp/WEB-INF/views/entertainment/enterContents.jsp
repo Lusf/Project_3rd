@@ -2,115 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<style>
-</style>
-<script>
-/* 	$(document).ready(function() {
-		$('.carousel').carousel({
-			interval : 4000
-		})
-	}); */
-</script>
-<%-- 
-<div class="clearfix grid" id="indexGrid">
-	<h1>HelloHoHo</h1>
-</div>
-
-<!-- 왔다갔다 -->
-<div class="container">
-	<div class="col-xs-12">
-
-		<div class="page-header">
-			<h3>♥</h3>
-		</div>
-
-		<div class="carousel slide" id="myCarousel">
-			<div class="carousel-inner">
-				<div class="item active">
-					<ul class="thumbnails">
-					<c:forEach begin="1" end="4" varStatus="state">
-						<li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img
-										src="${pageContext.request.contextPath}/resources/images/entertainment/캐비.jpg"
-										alt=""></a>
-										<h1>${state.count}</h1>
-								</div>
-
-							</div>
-						</li>
-					</c:forEach>
-					</ul>
-				</div>
-				<!-- /Slide1 -->
-				<div class="item">
-					<ul class="thumbnails">
-						<li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img
-										src="${pageContext.request.contextPath}/resources/images/entertainment/심야.jpg"
-										alt=""></a>
-								</div>
-
-							</div>
-						</li>
-						<li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img
-										src="${pageContext.request.contextPath}/resources/images/entertainment/원더우먼.jpg"
-										alt=""></a>
-								</div>
-
-							</div>
-						</li>
-						<li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img
-										src="${pageContext.request.contextPath}/resources/images/entertainment/미이라.jpg"
-										alt=""></a>
-								</div>
-
-							</div>
-						</li>
-						<li class="col-sm-3">
-							<div class="fff">
-								<div class="thumbnail">
-									<a href="#"><img
-										src="${pageContext.request.contextPath}/resources/images/entertainment/베이블레.jpg"
-										alt=""></a>
-								</div>
-
-							</div>
-						</li>
-					</ul>
-				</div>
-				<!-- /Slide3 -->
-			</div>
-
-
-			<nav>
-				<ul class="control-box pager">
-					<li><a data-slide="prev" href="#myCarousel" class=""><i
-							class="glyphicon glyphicon-chevron-left"></i></a></li>
-					<li><a data-slide="next" href="#myCarousel" class=""><i
-							class="glyphicon glyphicon-chevron-right"></i></li>
-				</ul>
-			</nav>
-			<!-- /.control-box -->
-
-		</div>
-		<!-- /#myCarousel -->
-
-	</div>
-	<!-- /.col-xs-12 -->
-
-</div>
-<!-- /.container --> --%>
-
 <!-- Portfolio section start -->
         <div class="section secondary-section " id="portfolio">
             <div class="triangle"></div>
@@ -387,9 +278,9 @@
                     </div>
                     <!-- End details for portfolio project 9 -->
                     <ul id="portfolio-grid" class="thumbnails row">
-                        <li class="span4 mix web">
+                        <li class="span3 mix web">
                             <div class="thumbnail">
-                                <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio01.png" alt="project 1">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/Team1.png" alt="project 1">
                                 <a href="#single-project" class="more show_hide" rel="#slidingDiv">
                                     <i class="icon-plus"></i>
                                 </a>
@@ -398,7 +289,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix photo">
+                        <li class="span3 mix photo">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio02.png" alt="project 2">
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv1">
@@ -409,7 +300,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix identity">
+                        <li class="span3 mix identity">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio03.png" alt="project 3">
                                 <a href="#single-project" class="more show_hide" rel="#slidingDiv2">
@@ -420,7 +311,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix web">
+                        <li class="span3 mix web">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio04.png" alt="project 4">
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv3">
@@ -431,7 +322,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix photo">
+                        <li class="span3 mix photo">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio05.png" alt="project 5">
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv4">
@@ -442,7 +333,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix identity">
+                        <li class="span3 mix identity">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio06.png" alt="project 6">
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv5">
@@ -453,7 +344,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix web">
+                        <li class="span3 mix web">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio07.png" alt="project 7" />
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv6">
@@ -464,7 +355,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix photo">
+                        <li class="span3 mix photo">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio08.png" alt="project 8">
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv7">
@@ -475,7 +366,7 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="span4 mix identity">
+                        <li class="span3 mix identity">
                             <div class="thumbnail">
                                 <img src="${pageContext.request.contextPath}/resources/pluton/images/Portfolio09.png" alt="project 9">
                                 <a href="#single-project" class="show_hide more" rel="#slidingDiv8">
@@ -491,6 +382,60 @@
             </div>
         </div>
         <!-- Portfolio section end -->
+        
+        <div class="section third-section">
+            <div class="container centered">
+                <div class="sub-section">
+                    <div class="title clearfix">
+                        <div class="pull-left">
+                            <h3>Our Clients</h3>
+                        </div>
+                        <ul class="client-nav pull-right">
+                            <li id="client-prev"></li>
+                            <li id="client-next"></li>
+                        </ul>
+                    </div>
+                    <ul class="row client-slider" id="clint-slider">
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/Team1.png" alt="client logo 1">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/clients/ClientLogo02.png" alt="client logo 2">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/clients/ClientLogo03.png" alt="client logo 3">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/clients/ClientLogo04.png" alt="client logo 4">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/clients/ClientLogo05.png" alt="client logo 5">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/clients/ClientLogo02.png" alt="client logo 6">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/resources/pluton/images/clients/ClientLogo04.png" alt="client logo 7">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      
         
         <!-- ScrollUp button start -->
         <div class="scrollup">
