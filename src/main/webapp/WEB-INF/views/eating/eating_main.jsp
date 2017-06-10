@@ -13,8 +13,6 @@
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<link href="${pageContext.request.contextPath}/resources/images/eating/favicon.png" rel="icon" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script%7CLato:300,400,700" rel="stylesheet">
-   <%--  <link href="<c:url value='/resources/fonts/eating/themify.woff'/>" rel="stylesheet">
-    <link href="<c:url value='/resources/fonts/eating/themify.ttf'/>" rel="stylesheet"> --%>
 	<link href="<c:url value='/resources/css/eating/bootstrap-eating.css'/>" rel="stylesheet">
 	<link id="pagestyle" href="<c:url value='/resources/css/eating/theme-eating.css'/>" rel="stylesheet">
 </head>
@@ -626,7 +624,7 @@
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
 								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
+									<span class="post-entry-cover" style="background-image:url(/resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
 
@@ -645,26 +643,7 @@
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
 								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:les/eating/blog-cover.jpg);">
-									</span>
-								</a>
-
-								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
-								</a>
-								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
-									read more 
-									<span class="ti-arrow-right icon"></span>
-								</a>
-							</div>
-						</div>
-						<!-- / SINGLE NEWS ITEM -->
-
-						<!-- SINGLE NEWS ITEM -->
-						<div class="swiper-slide">
-							<div class="post-entry wow fadeInUp">
-								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
+									<span class="post-entry-cover" style="background-image:url(../../../resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
 
@@ -702,7 +681,26 @@
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
 								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
+									<span class="post-entry-cover" style="background-image:url(../../../resources/images/eating/blog-cover.jpg);">
+									</span>
+								</a>
+
+								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
+									Estibulum ante ipsum primis lobortis
+								</a>
+								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
+									read more 
+									<span class="ti-arrow-right icon"></span>
+								</a>
+							</div>
+						</div>
+						<!-- / SINGLE NEWS ITEM -->
+
+						<!-- SINGLE NEWS ITEM -->
+						<div class="swiper-slide">
+							<div class="post-entry wow fadeInUp">
+								<a href="#" data-toggle="modal" data-target="#post-01">
+									<span class="post-entry-cover" style="background-image:url(../../../resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
 
@@ -1033,15 +1031,15 @@
 			</div>
 		</footer>
 	</div>
-	<script src="<c:url value='/resources/js/eating/vendor/wow.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/vendor/bootstrap.min.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/vendor/jquery.inview.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"/>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"/>
-	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"/>
-	<script src="<c:url value='/resources/js/eating/main.js'/>"/>
+	<script src="<c:url value='/resources/js/eating/vendor/wow.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/jquery.inview.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
+	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
+	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
 </body>
 </html>

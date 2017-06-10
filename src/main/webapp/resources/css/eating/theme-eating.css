@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'themify';
-  src: url("../fonts/themify.eot?-fvbane");
-  src: url("../fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("../fonts/themify.woff?-fvbane") format("woff"), url("../fonts/themify.ttf?-fvbane") format("truetype"), url("../fonts/themify.svg?-fvbane#themify") format("svg");
+  src: url("../../fonts/eating/themify.eot");
+  src: url("../../fonts/eating/themify.eot") format("embedded-opentype"), url("../../fonts/eating/themify.woff") format("woff"), url("../../fonts/eating/themify.ttf") format("truetype"), url("../../fonts/eating/themify.svg") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="ti-"], [class*=" ti-"] {
@@ -4256,11 +4256,11 @@ body.modal-open {
   width: 100%;
   float: left; }
   .about-background-1 {
-    background-image: url("../img/news-1.jpg"); }
+    background-image: url("../../images/eating/news-1.jpg"); }
   .about-background-2 {
-    background-image: url("../img/news-2.jpg"); }
+    background-image: url("../../images/eating/news-2.jpg"); }
   .about-background-3 {
-    background-image: url("../img/news-3.jpg"); }
+    background-image: url("../../images/eating/news-3.jpg"); }
 .about-black-box {
   min-height: 70vh;
   background: rgba(0, 0, 0, 0.9);
@@ -4323,7 +4323,7 @@ body.modal-open {
   text-align: center; }
 
 .testimonials {
-  background: url("../img/testimonials.jpg") no-repeat scroll center center/cover #262626; }
+  background: url("../../images/eating/testimonials.jpg") no-repeat scroll center center/cover #262626; }
   .testimonials-container {
     max-width: 700px;
     margin: 40px auto 0;
@@ -4363,7 +4363,7 @@ body.modal-open {
 
 .post-list {
   position: relative;
-  background: url("../img/news.jpg") no-repeat scroll center center/cover #262626; }
+  background: url("../../images/eating/news.jpg") no-repeat scroll center center/cover #262626; }
 @media (max-width: 479px) {
   .post-slider {
     margin: 0 15px;
@@ -4449,42 +4449,42 @@ body.modal-open {
     transition: all 600ms ease-in-out;
     background-size: cover; }
     .timeline-block.timeline-block-image-1 {
-      background-image: url("../img/timeline-1.jpg"); }
+      background-image: url("../../images/eating/timeline-1.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-1 {
           background: none; } }
     .timeline-block.timeline-block-image-2 {
-      background-image: url("../img/timeline-2.jpg"); }
+      background-image: url("../../images/eating/timeline-2.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-2 {
           background: none; } }
     .timeline-block.timeline-block-image-3 {
-      background-image: url("../img/timeline-3.jpg"); }
+      background-image: url("../../images/eating/timeline-3.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-3 {
           background: none; } }
     .timeline-block.timeline-block-image-4 {
-      background-image: url("../img/timeline-4.jpg"); }
+      background-image: url("../../images/eating/timeline-4.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-4 {
           background: none; } }
     .timeline-block.timeline-block-image-5 {
-      background-image: url("../img/timeline-5.jpg"); }
+      background-image: url("../../images/eating/timeline-5.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-5 {
           background: none; } }
     .timeline-block.timeline-block-image-6 {
-      background-image: url("../img/timeline-6.jpg"); }
+      background-image: url("../../images/eating/timeline-6.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-6 {
           background: none; } }
     .timeline-block.timeline-block-image-7 {
-      background-image: url("../img/timeline-7.jpg"); }
+      background-image: url("../../images/eating/timeline-7.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-7 {
           background: none; } }
     .timeline-block.timeline-block-image-8 {
-      background-image: url("../img/timeline-8.jpg"); }
+      background-image: url("../../images/eating/timeline-8.jpg"); }
       @media (max-width: 479px) {
         .timeline-block.timeline-block-image-8 {
           background: none; } }
@@ -4646,7 +4646,7 @@ body.modal-open {
       color: #aaa; }
 
 .contact {
-  background: url("../img/footer-bg.jpg") no-repeat scroll center center/cover #262626; }
+  background: url("../../images/eating/footer-bg.jpg") no-repeat scroll center center/cover #262626; }
   .contact-with-map {
     padding-bottom: 0; }
   .contact-form {
