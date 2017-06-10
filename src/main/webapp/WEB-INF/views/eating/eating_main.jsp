@@ -624,26 +624,7 @@
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
 								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(/resources/images/eating/blog-cover.jpg);">
-									</span>
-								</a>
-
-								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
-								</a>
-								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
-									read more 
-									<span class="ti-arrow-right icon"></span>
-								</a>
-							</div>
-						</div>
-						<!-- / SINGLE NEWS ITEM -->
-
-						<!-- SINGLE NEWS ITEM -->
-						<div class="swiper-slide">
-							<div class="post-entry wow fadeInUp">
-								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(../../../resources/images/eating/blog-cover.jpg);">
+									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
 
@@ -681,7 +662,7 @@
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
 								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(../../../resources/images/eating/blog-cover.jpg);">
+									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
 
@@ -700,7 +681,26 @@
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
 								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(../../../resources/images/eating/blog-cover.jpg);">
+									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
+									</span>
+								</a>
+
+								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
+									Estibulum ante ipsum primis lobortis
+								</a>
+								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
+									read more 
+									<span class="ti-arrow-right icon"></span>
+								</a>
+							</div>
+						</div>
+						<!-- / SINGLE NEWS ITEM -->
+
+						<!-- SINGLE NEWS ITEM -->
+						<div class="swiper-slide">
+							<div class="post-entry wow fadeInUp">
+								<a href="#" data-toggle="modal" data-target="#post-01">
+									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
 
