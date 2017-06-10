@@ -3,6 +3,7 @@
 
 <style>
 #blank-row {
+
 	height: 3em;
 }
 
@@ -38,13 +39,13 @@
 		text-align: left;
 	}
 	#icon {
-		font-size: 9em;
+		font-size: 8em;
 		margin: 0 0.3em;
 	}
 }
 </style>
 <!-- Footer Starts -->
-<div class="row" id="blank-row"></div>
+<div id="blank-row"></div>
 <div class="footer">
 	<a href="${pageContext.request.contextPath }/travelge/main"> <i
 		class="glyphicon glyphicon-list-alt" id="icon"></i></a> <a
