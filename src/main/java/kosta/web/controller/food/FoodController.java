@@ -8,6 +8,6 @@ public class FoodController {
 	@RequestMapping("eating/eatingMain")
 	public String eatingMain(){
 		
-		return "eating/eatingMain";
+		return "eating/eating_main";
 	}
 }
