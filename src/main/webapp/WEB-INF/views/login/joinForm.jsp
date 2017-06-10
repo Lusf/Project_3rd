@@ -1,85 +1,116 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-	<!-- Bootstrap -->
-    <link href="<c:url value='/resources/assets/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="<c:url value='/resources/assets/bootstrap/css/font-awesome.min.css' />" media="screen" title="no title" charset="utf-8">
-    <!-- <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8"> -->
-    <!-- Custom style -->
-    <link rel="stylesheet" href="<c:url value='/resources/assets/bootstrap/css/style.css' />" media="screen" title="no title" charset="utf-8">
-    <!-- <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8"> -->
+<!-- Bootstrap -->
+<link
+	href="<c:url value='/resources/assets/bootstrap/css/bootstrap.min.css' />"
+	rel="stylesheet">
+<!-- font awesome -->
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/bootstrap/css/font-awesome.min.css' />"
+	media="screen" title="no title" charset="utf-8">
+<!-- <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8"> -->
+<!-- Custom style -->
+<link rel="stylesheet"
+	href="<c:url value='/resources/assets/bootstrap/css/style.css' />"
+	media="screen" title="no title" charset="utf-8">
+<!-- <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8"> -->
+
+<SCRIPT language=javascript>
+	function checkValid() {
+		var f = window.document.writeForm;
+
+		if (f.idForm.value == "") {
+			alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
+			f.idForm.focus();
+			return false;
+		}
+		if (f.InputPassword1.value == "") {
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”..");
+			f.InputPassword1.focus();
+			return false;
+		}
+		if (f.InputPassword2.value == "") {
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+			f.InputPassword2.focus();
+			return false;
+		}
+		if (f.tell.value == "") {
+			alert("ì „í™”ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
+			f.tell.focus();
+			return false;
+		}
+		if(f.InputPassword1.value != f.InputPassword2.value){
+			alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			f.InputPassword2.value="";
+			f.InputPassword2.focus();
+			return false;
+		}
+
+		return true;
+	}
+</SCRIPT>
 </head>
 <body>
+	<div class="page-header">
+		<h1>íšŒì›ê°€ì…</h1>
+	</div>
+	<div class="col-md-6 col-md-offset-3">
+		<form name="writeForm" method="post"
+			action="${pageContext.request.contextPath }/user/join"
+			onsubmit ='return checkValid()' enctype="multipart/form-data">
+			<div class="form-group">
+				<div>ì•„ì´ë””</div>
+				<input type="text" class="form-control" placeholder="ì•„ì´ë””"
+					name="idForm">
+			</div>
+			<div class="form-group">
+				<div>ë¹„ë°€ë²ˆí˜¸</div>
+				<input type="password" class="form-control" name="InputPassword1"
+					placeholder="ë¹„ë°€ë²ˆí˜¸">
+			</div>
+			<div class="form-group">
+				<div>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</div>
+				<input type="password" class="form-control" name="InputPassword2"
+					placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸">
+				<p class="help-block">ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì„ ìœ„í•´ ë‹¤ì‹œí•œë²ˆ ì…ë ¥ í•´ ì£¼ì„¸ìš”</p>
+			</div>
+			<div class="form-group">
+				<div>ì „í™”ë²ˆí˜¸</div>
+				<input type="text" class="form-control" name="tell"
+					placeholder="ì „í™”ë²ˆí˜¸">
+			</div>
+			<div class="form-group">
+				<div>í”„ë¡œí•„ ì‚¬ì§„</div>
 
-
-      <article class="container">
-        <div class="page-header">
-          <h1>È¸¿ø°¡ÀÔ <small>basic form</small></h1>
-        </div>
-        <div class="col-md-6 col-md-offset-3">
-          <form role="form">
-            <div class="form-group">
-              <label for="InputEmail">ÀÌ¸ŞÀÏ ÁÖ¼Ò</label>
-              <input type="email" class="form-control" id="InputEmail" placeholder="ÀÌ¸ŞÀÏ ÁÖ¼Ò">
-            </div>
-            <div class="form-group">
-              <label for="InputPassword1">ºñ¹Ğ¹øÈ£</label>
-              <input type="password" class="form-control" id="InputPassword1" placeholder="ºñ¹Ğ¹øÈ£">
-            </div>
-            <div class="form-group">
-              <label for="InputPassword2">ºñ¹Ğ¹øÈ£ È®ÀÎ</label>
-              <input type="password" class="form-control" id="InputPassword2" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ">
-              <p class="help-block">ºñ¹Ğ¹øÈ£ È®ÀÎÀ» À§ÇØ ´Ù½ÃÇÑ¹ø ÀÔ·Â ÇØ ÁÖ¼¼¿ä</p>
-            </div>
-            <div class="form-group">
-              <label for="username">ÀÌ¸§</label>
-              <input type="text" class="form-control" id="username" placeholder="ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä">
-            </div>
-            <div class="form-group">
-              <label for="username">ÈŞ´ëÆù ÀÎÁõ</label>
-              <div class="input-group">
-                <input type="tel" class="form-control" id="username" placeholder="- ¾øÀÌ ÀÔ·ÂÇØ ÁÖ¼¼¿ä">
-                <span class="input-group-btn">
-                  <button class="btn btn-success">ÀÎÁõ¹øÈ£ Àü¼Û<i class="fa fa-mail-forward spaceLeft"></i></button>
-                </span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="username">ÀÎÁõ¹øÈ£ ÀÔ·Â</label>
-              <div class="input-group">
-                <input type="text" class="form-control" id="username" placeholder="ÀÎÁõ¹øÈ£">
-                <span class="input-group-btn">
-                  <button class="btn btn-success">ÀÎÁõ¹øÈ£ ÀÔ·Â<i class="fa fa-edit spaceLeft"></i></button>
-                </span>
-              </div>
-            </div>
-            <div class="form-group">
-                <label>¾à°ü µ¿ÀÇ</label>
-              <div data-toggle="buttons">
-              <label class="btn btn-primary active">
-                  <span class="fa fa-check"></span>
-                  <input id="agree" type="checkbox" autocomplete="off" checked>
-              </label>
-              <a href="#">ÀÌ¿ë¾à°ü</a>¿¡ µ¿ÀÇÇÕ´Ï´Ù.
-              </div>
-            </div>
-            <div class="form-group text-center">
-              <button type="submit" class="btn btn-info">È¸¿ø°¡ÀÔ<i class="fa fa-check spaceLeft"></i></button>
-              <button type="submit" class="btn btn-warning">°¡ÀÔÃë¼Ò<i class="fa fa-times spaceLeft"></i></button>
-            </div>
-          </form>
-        </div>
+				<!-- í”„ë¡œí•„ ì‚¬ì§„ ì´ë¯¸ì§€ëŠ” ajax ì²˜ë¦¬ í•´ì•¼í•¨ -->
+				<img
+					src="${pageContext.request.contextPath}/resources/images/join/unknown.jpg"
+					style="width: 25%" name="pic"> <input type="file" name="file">
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-info">
+					íšŒì›ê°€ì…<i class="fa fa-check spaceLeft"></i>
+				</button>
+				<button type="reset" class="btn btn-warning"
+					onclick="location.href='${pageContext.request.contextPath}'">
+					ê°€ì…ì·¨ì†Œ<i class="fa fa-times spaceLeft"></i>
+				</button>
+			</div>
+		</form>
+	</div>
 	</article>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<c:url value='/resources/assets/bootstrap/js/bootstrap.min.js' />"></script>
-  </body>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script
+		src="<c:url value='/resources/assets/bootstrap/js/bootstrap.min.js' />"></script>
+</body>
 </html>
