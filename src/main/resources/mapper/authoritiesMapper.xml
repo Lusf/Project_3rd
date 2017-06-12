@@ -7,12 +7,12 @@
 		select username, role
 		from AUTHORITIES
 		where
-		id=#{_parameter}
+		username=#{_parameter}
 
 	</select>
 	
 	
-	<insert id="inserAuthority" parameterType="kosta.web.model.vo.Authorities">
+	<insert id="insertAuthority" parameterType="kosta.web.model.vo.Authorities">
 		insert into AUTHORITIES(username, role)
 		values(#{username}, #{role})
 	</insert>

@@ -26,7 +26,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserVo userSearchById(String id) {
 		
-		return null;
+		return sqlSession.selectOne("userMapper.userSearchById",id);
 	}
 
 	@Override
