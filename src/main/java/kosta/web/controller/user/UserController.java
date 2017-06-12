@@ -33,7 +33,7 @@ public class UserController {
 	@RequestMapping({"login","{folder}/login"})
 	public String login(){
 
-		return "user/login";
+		return "redirect:/";
 	}
 
 	@RequestMapping("join")

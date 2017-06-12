@@ -36,7 +36,7 @@
 
 	<div class="row">
 		<form class="col s12"
-			action="${pageContext.request.contextPath}/login" method="post"
+			action="${pageContext.request.contextPath}/user/login" method="post"
 			name="f">
 			<div class="row">
 				<div class="input-field col s4 offset-s4">
