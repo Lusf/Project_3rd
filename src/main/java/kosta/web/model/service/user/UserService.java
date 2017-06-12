@@ -13,5 +13,4 @@ public interface UserService {
 
 	UserVo userSearchById(String id);
 
-	List<UserBlogVo> userBlog(String id);
 }

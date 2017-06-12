@@ -29,10 +29,11 @@ drop table blog;
 
 create table blog(
   id primary key constraint id_blog_fk references usertable(id),
-  blog_title varchar2(30),
-  blog_cont varchar2(200),
   blog_num number(4),
   category varchar2(20),
+  content_code varchar2(20),
+  blog_title varchar2(30),
+  blog_cont varchar2(200),
   blog_img varchar2(50)
 );
 
@@ -152,6 +153,7 @@ drop table look_info;
 
 create table look_info(
   content_code varchar2(20) constraint content_code_li_pk primary key,
+  id constraint look_info_id_fk references usertable(id),
   look_title varchar2(50),
   look_story varchar2(200),
   look_maker varchar2(20),

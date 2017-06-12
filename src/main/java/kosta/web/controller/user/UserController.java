@@ -71,10 +71,4 @@ public class UserController {
 	public String userSearchById(String id){
 		return null;
 	}
-
-	@RequestMapping("blog/{id}")
-	public String userBlog(@PathVariable String id){
-		
-		return "user/blog";
-	}
 }
