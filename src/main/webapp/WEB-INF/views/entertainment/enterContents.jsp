@@ -120,6 +120,7 @@ $( document ).ready(function() {
   $('#stars-existing').on('starrr:change', function(e, value){
     $('#count-existing').html(value);
   });
+  
 });
 </script> 
 
@@ -137,7 +138,7 @@ $( document ).ready(function() {
 		</div>
 	</div> 
 
-	<!-- NEWS MODAL -->
+	<!-- detail MODAL -->
 	<div class="modal fade" id="post-01" role="dialog" tabindex="-1">
 		<div class="modal-dialog">
 			<!-- NEWS MODAL CONTENT -->
@@ -149,27 +150,13 @@ $( document ).ready(function() {
 						<h3 class="section-heading">Duis aute irure dolor in
 							reprehenderit in voluptate.</h3>
 
-					<%-- 	<span class="post-entry-meta"> <img alt="user avatar"
-							class="post-entry-author pull-left"
-							src="${pageContext.request.contextPath}/resources/images/entertainment/zootopia.jpg">
-							<span class="post-entry-author-name pull-left">Alex
-								Example</span> <span class="post-entry-time pull-right">6 min
-								read <span class="post-entry-category">interior,
-									furnitures</span>
-						</span> --%>
-						</span> <span class="post-entry-cover"
-							style="background-image:url(${pageContext.request.contextPath}/resources/images/entertainment/zootopia.jpg);"></span>
-						
-						<!-- star  -->
- 						<span class="container">
+						<a href="#" data-toggle="modal" data-target="#starScore"
+							class="post-entry-more">★</a>
 
-							<span class="row lead">
-								<p>Also you can give a default rating by adding attribute
-									data-rating</p>
-								<span id="stars-existing" class="starrr" data-rating='1'></span>
-								<span id="count-existing">1</span>점
-							</span>
-						</span><!-- star끝 -->
+						<!-- picture -->
+						<span class="post-entry-cover"
+							style="background-image:url(${pageContext.request.contextPath}/resources/images/entertainment/zootopia.jpg);"></span>
+
 
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 							sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -178,10 +165,33 @@ $( document ).ready(function() {
 					</div>
 				</div>
 			</div>
-			<!-- / modal 내용 -->
 		</div>
 	</div>
+	<!-- /detail modal 끝 -->
+			
+			<!-- starScore modal -->		
+			<div class="modal fade" id="starScore" role="dialog" tabindex="-1">
+				<div class="modal-dialog" >
+				
+				<!-- star  -->
+				<div class="container"> 
+					<div class="row lead">
+					<span id="stars-existing" class="starrr" data-rating='1'></span> 
+					<span id="count-existing">1</span>점
+					</div>
+				</div><!-- star 끝 -->
+				
+				<!-- save, cancle -->
+				<div class="modal-footer">
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Save</button>
+                    </div>
+                </div><!-- save,cancle 끝 -->
+                
+				</div><!-- modal-dialog 끝 -->
 
+			</div><!-- starScore modal 끝 -->
 </section>
 
 
