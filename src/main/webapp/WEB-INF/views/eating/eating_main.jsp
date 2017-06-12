@@ -19,8 +19,13 @@
 
 <body data-offset="50" data-spy="scroll" data-target=".navbar" class="dark-theme">
 	
+	<!-- header -->
+<%@include file="/WEB-INF/views/includeFile.jsp" %>
+<%@include file="/WEB-INF/views/header.jsp"%>
+
+	
 	<!-- 상단 HEADER -->
-	<nav class="navbar navbar-fixed-top shadow" id="js-nav">
+	<%-- <nav class="navbar navbar-fixed-top shadow" id="js-nav">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
@@ -38,13 +43,13 @@
 					<li><a href="#about">about us</a></li>
 					<li><a href="#special">special</a></li>
 					<li><a href="#review">review</a></li>
-					<li><a href="#news">news</a></li>
+					<li><a href="#list">on air</a></li>
 					<li><a href="#history">history</a></li>
 					<li><a href="#contact">contact</a></li>
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> --%>
 	
 	<!--  Main 슬라이더 부분 -->
 	<section class="home section image-slider" id="home">
@@ -610,11 +615,11 @@
 		</div>
 	</section>
 
-	<section class="post-list" id="news">
+	<section class="onair-list" id="list">
 		<div class="container overflow-hidden">
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="section-heading">news</h3>
+					<h3 class="section-heading">방송 리스트</h3>
 				</div>
 
 				<div class="post-slider col-md-12">
@@ -629,7 +634,7 @@
 								</a>
 
 								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
+									철구 먹방
 								</a>
 								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
 									read more 
@@ -648,7 +653,7 @@
 								</a>
 
 								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
+									맛있는 녀석들
 								</a>
 								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
 									read more 
@@ -667,7 +672,7 @@
 								</a>
 
 								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
+									삼대천왕
 								</a>
 								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
 									read more 
@@ -686,7 +691,7 @@
 								</a>
 
 								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
+									갓형욱
 								</a>
 								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
 									read more 
@@ -770,9 +775,10 @@
 
 								<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
 
-								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
+								<p> <font face="궁서체">안녕하세요</font> </p> 
 
-								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
+								<p> <font face="궁서체">치킨을 먹어보겠슴다. </font></p>
+								
 
 								<p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 

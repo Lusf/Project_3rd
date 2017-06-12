@@ -11,8 +11,4 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping("eating/eating_Main")
-	public String eatingMain(){
-		return "eating/eating_Main";
-	}
 }
