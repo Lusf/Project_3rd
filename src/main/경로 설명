@@ -19,3 +19,8 @@ servlet-context에
 ------------------------------
 이미지 저장은 
 webapp/resources 밑에 저장할것
+
+
+--------------------------------
+유저 이미지 경로
+.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\3rd_project\resources\user
