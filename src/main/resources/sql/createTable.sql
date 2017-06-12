@@ -37,6 +37,9 @@ create table blog(
   blog_img varchar2(50)
 );
 
+insert into blog values()
+id, blog_num, category, content_code, blog_title, blog_cont, blog_img
+
 
 drop table avg_score;
 

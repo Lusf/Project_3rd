@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blogMapper">
+
+<resultMap type="UserBlogVo" id="blogMap">
+	<id column="id" property="id"/>
+	<result column="blog_num" property="blogNum"/>
+	<result column="content_code" property="contentCode"/>
+	<result column="blog_title" property="blogTitle"/>
+	<result column="blog_cont" property="blogCont"/>
+	<result column="blog_img" property="blogImg"/>
+</resultMap>
+
+<sql id="blogColumn">
+	id, blog_num, category, content_code, blog_title, blog_cont, blog_img
+</sql>
+
+<select id="selectCont" parameterType="string">
+	select <include refid="blogColumn"/> from blog where id=#{value}
+</select>
+
+</mapper>

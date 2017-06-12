@@ -5,7 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Blog</title>
-<meta name="viewport" content="initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="">  
+<meta name="author" content="">
+
 <!-- jquery -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.mixitup.js"></script>
@@ -21,6 +24,7 @@
 <script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
 <!-- app -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+<!-- blog -->
 
 <!-- style -->
 
@@ -45,20 +49,20 @@
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/carousel.css'/>">
+<!-- blog -->
 
+<style>
+.centerView {margin-top: 6.3em;}
+table, td {border: 1px solid blue; }
+table {
+	width: 100%;
+	height: auto;
+}
+</style>
 
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
-	
-	<style>
-	.centerView {margin-top: 6.3em;}
-	table, td {border: 1px solid blue; }
-	table {
-		width: 100%;
-		height: auto;
-	}
-	</style>
 	
 	<div class="centerView">
 		<table>

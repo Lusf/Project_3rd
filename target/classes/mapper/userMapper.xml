@@ -12,6 +12,18 @@
 		<result column="point" property="point" />
 	</resultMap>
 
+
+
+	<select id="userSearchById" resultMap="userVo"
+		parameterType="String">
+		SELECT
+		<include refid="userColumn" />
+		FROM usertable
+		WHERE id = #{_parameter}
+	</select>
+
+
+
 	<insert id="userJoin" parameterType="kosta.web.model.vo.UserVo">
 		<choose>
 			<when test="userPic !=null">
@@ -21,7 +33,8 @@
 				values(#{id},#{password},#{tell},#{userPic},#{point})
 			</when>
 			<otherwise>
-				insert into usertable(id, password, tell , point) values (#{id},#{password},#{tell},#{point})
+				insert into usertable(id, password, tell , point) values
+				(#{id},#{password},#{tell},#{point})
 			</otherwise>
 		</choose>
 

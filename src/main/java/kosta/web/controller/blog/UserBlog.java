@@ -10,6 +10,6 @@ public class UserBlog {
 	@RequestMapping("blog/{id}")
 	public String userBlog(@PathVariable String id){
 		
-		return "user/blog";
+		return "blog/blog";
 	}
 }

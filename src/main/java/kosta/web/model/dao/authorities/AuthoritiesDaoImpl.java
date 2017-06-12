@@ -23,7 +23,7 @@ public class AuthoritiesDaoImpl implements AuthoritiesDao {
 
 	@Override
 	public int inserAuthority(Authorities authorities) {
-		return sqlSession.insert("authoritiesMapper.inserAuthority",authorities);
+		return sqlSession.insert("authoritiesMapper.insertAuthority",authorities);
 	}
 
 }
