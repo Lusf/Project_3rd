@@ -5,6 +5,7 @@
 <resultMap type="UserBlogVo" id="blogMap">
 	<id column="id" property="id"/>
 	<result column="blog_num" property="blogNum"/>
+	<result column="category" property="category"/>
 	<result column="content_code" property="contentCode"/>
 	<result column="blog_title" property="blogTitle"/>
 	<result column="blog_cont" property="blogCont"/>
@@ -15,8 +16,20 @@
 	id, blog_num, category, content_code, blog_title, blog_cont, blog_img
 </sql>
 
-<select id="selectCont" parameterType="string">
+<!-- select -->
+<select id="selectBlog" parameterType="string" resultMap="blogMap">
 	select <include refid="blogColumn"/> from blog where id=#{value}
 </select>
+
+<!-- insert -->
+<insert id="insertBlog" parameterType="UserBlogVo">
+	insert into blog(<include refid="blogColumn"/>)
+	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},#{blogCont},#{blogImg})
+</insert>
+
+<!-- delete -->
+<delete id="deleteBlog" parameterType="map">
+	delete blog where id=#{id} and content_code=#{contentCode}
+</delete>
 
 </mapper>

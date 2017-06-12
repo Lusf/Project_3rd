@@ -37,8 +37,9 @@ create table blog(
   blog_img varchar2(50)
 );
 
-insert into blog values()
-id, blog_num, category, content_code, blog_title, blog_cont, blog_img
+select * from BLOG where id='a';
+
+insert into blog values('a','1','볼거리','aa02a2','제에목','내애요옹','캐비.jpg');
 
 
 drop table avg_score;

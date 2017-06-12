@@ -71,9 +71,17 @@ table {
 				<td>
 					left
 				</td>
-				<td>
-					right
-				</td>
+				<c:forEach items="${list}" var="list">
+					<td>
+						${list.id}
+						${list.blogNum}
+						${list.category}
+						${list.contentCode}
+						${list.blogTitle}
+						${list.blogCont}
+						${list.blogImg}
+					</td>
+				</c:forEach>
 			</tr>
 		</table>
 	</div>

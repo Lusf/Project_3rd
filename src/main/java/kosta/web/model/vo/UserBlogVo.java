@@ -9,6 +9,7 @@ public class UserBlogVo {
 	private String blogCont;
 	private String blogImg;
 	
+	public UserBlogVo() {}
 	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogCont, String blogImg) {
 		this.id = id;
 		this.blogNum = blogNum;
