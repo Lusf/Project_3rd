@@ -30,11 +30,11 @@ public class UserController {
 		return "user/loginForm";
 	}	
 	
-	@RequestMapping({"login","{folder}/login"})
+/*	@RequestMapping({"login","{folder}/login"})
 	public String login(){
 
 		return "redirect:/";
-	}
+	}*/
 
 	@RequestMapping("join")
 	public String userJoin(HttpServletRequest request, UserVo userVo) throws Exception {

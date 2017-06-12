@@ -14,8 +14,8 @@
 	<security:intercept-url pattern="/member/main" access="isAuthenticated()"/> -->
 	
 	<security:form-login
-		login-page="/loginForm"
-		login-processing-url="/login"
+		login-page="/user/loginForm"
+		login-processing-url="/user/login"
 		username-parameter="id"
 		password-parameter="password"
 		default-target-url="/"
