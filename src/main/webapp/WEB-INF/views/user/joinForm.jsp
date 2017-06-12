@@ -135,6 +135,7 @@ reader.onload = function(event) {
    img.src = event.target.result;
    img.width = 200;
    img.height = 200;
+   img.className="img-circle";
    holder.innerHTML = '';
    holder.appendChild(img);
 };
@@ -145,8 +146,7 @@ return false;
 
 
 </script>
-<hr><hr>
-<h1>${_csrf.parameterName} <br>${_csrf.token}</h1>
+
 </body>
 
 
