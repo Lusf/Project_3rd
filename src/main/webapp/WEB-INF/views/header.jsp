@@ -29,6 +29,8 @@
 </script>
 <style>
 li span {font-weight: bold; font-size: 20px;}
+
+
 </style>
 
 <div class="header">
@@ -69,7 +71,7 @@ li span {font-weight: bold; font-size: 20px;}
 		<a href="${pageContext.request.contextPath}/user/login" style="margin-right: 1em "> 로그인
 		</a> <a href="${pageContext.request.contextPath}/user/joinForm"  >회원가입</a>
 	</div>
-	<div class="clear"></div>
+
 </div>
 
 <!---//End-header---->

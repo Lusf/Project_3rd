@@ -4,7 +4,7 @@
 
 	<select id="selectAuthorityByUserName" parameterType="String"
 		resultType="kosta.web.model.vo.Authorities">
-		select id, role
+		select username as id, role
 		from AUTHORITIES
 		where
 		id=#{_parameter}
@@ -13,7 +13,7 @@
 	
 	
 	<insert id="inserAuthority" parameterType="kosta.web.model.vo.Authorities">
-		insert into AUTHORITIES(id, role)
+		insert into AUTHORITIES(username, role)
 		values(#{id}, #{role})
 	</insert>
 

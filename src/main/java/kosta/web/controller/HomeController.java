@@ -10,14 +10,4 @@ public class HomeController {
 	public String home() {
 		return "index";
 	}
-	
-	@RequestMapping({"login/joinForm","{folder}/login/joinForm"})
-	public String joinForm(){
-		return "login/joinForm";
-	}
-	
-	@RequestMapping({"login/login","{folder}/login/login"})
-	public String login(){
-		return "login/login";
-	}
 }

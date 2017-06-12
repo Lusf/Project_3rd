@@ -11,10 +11,6 @@ create table usertable(
   password varchar2(20),
   tell varchar2(20),
   user_pic varchar2(50),
-  user_code varchar2(20),
-  travel_like varchar2(20),
-  tasty_like varchar2(20),
-  look_like varchar2(20),
   point number(10)
 );
 
