@@ -30,33 +30,35 @@ public class UserController {
 	}	
 	
 	@RequestMapping("join")
-	public String userJoin() throws Exception{
-		/*
+	public String userJoin(UserVo userVo) throws Exception{
+		
 		MultipartFile file = userVo.getFile();
 		
-		System.out.println(file.getOriginalFilename());
+/*		System.out.println(file.getOriginalFilename());
 		System.out.println("아이디 : " + userVo.getId());
 		System.out.println("비밀번호 : " + userVo.getPassword());*/
-//		int result = userService.userJoin(userVo);
-//		if(result == 0)
-//		{
-//			throw new Exception();
-//		}
-//		if(file.getSize()>0)
-//		{
-//			File folder = new File(path);
-//			if(!folder.exists())
-//			{
-//				folder.mkdir();
-//			}
-//			try {
-//				file.transferTo(new File(path+"/"+file.getOriginalFilename()));
-//			} catch (Exception e) {	
-//			}	
-//			
-//			
-//		}
-		
+		if(file.getSize()>0)
+		{
+			userVo.setUserPic(userVo.getId()+"_"+file.getOriginalFilename());
+		}
+			
+		int result = userService.userJoin(userVo);
+		if(result == 0)
+		{
+			throw new Exception();
+		}
+		if(file.getSize()>0)
+		{
+			File folder = new File(path);
+			if(!folder.exists())
+			{
+				folder.mkdir();
+			}
+			try {
+				file.transferTo(new File(path+"/"+userVo.getUserPic()));
+			} catch (Exception e) {	
+			}	
+		}
 	
 		return "index";
 	}

@@ -11,16 +11,9 @@
 		<result column="tell" property="tell"/>
 		<result column="point" property="point"/>
 	</resultMap>
-
-	<select id="selectMemberById" resultMap="userVo">
-		select
-		<include refid="userColumn" />
-		from member where ID=#{_parameter}
-
-	</select>
 	
 	<insert id="userJoin" parameterType="kosta.web.model.vo.UserVo">
-	insert into member(<include refid="userColumn"/>)
+	insert into usertable(<include refid="userColumn"/>)
 	values(#{id},#{password},#{tell},#{userPic},#{point})
 	</insert>
 

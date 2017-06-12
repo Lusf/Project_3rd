@@ -12,17 +12,17 @@
 function checkValid() {
 	var f = window.document.writeForm;
 
-	if (f.idForm.value == "") {
+	if (f.id.value == "") {
 		alert("아이디를 입력해 주세요.");
 		f.idForm.focus();
 		return false;
 	}
-	if (f.InputPassword1.value == "") {
+	if (f.password.value == "") {
 		alert("비밀번호를 입력해 주세요..");
 		f.InputPassword1.focus();
 		return false;
 	}
-	if (f.InputPassword2.value == "") {
+	if (f.password2.value == "") {
 		alert("비밀번호를 입력해주세요");
 		f.InputPassword2.focus();
 		return false;
@@ -32,10 +32,10 @@ function checkValid() {
 		f.tell.focus();
 		return false;
 	}
-	if(f.InputPassword1.value != f.InputPassword2.value){
+	if(f.password.value != f.password2.value){
 		alert("비밀번호가 일치하지 않습니다.");
-		f.InputPassword2.value="";
-		f.InputPassword2.focus();
+		f.password2.value="";
+		f.password2.focus();
 		return false;
 	}
 
@@ -72,20 +72,21 @@ function checkValid() {
 			action="${pageContext.request.contextPath }/user/join"
 			onsubmit='return checkValid()' enctype="multipart/form-data"
 			id="writeForm">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
 			<div class="form-group">
 				<div>아이디</div>
 				<input type="text" class="form-control" placeholder="아이디"
-					name="idForm">
+					name="id">
 			</div>
 			<div class="form-group">
 				<div>비밀번호</div>
-				<input type="password" class="form-control" name="InputPassword1"
+				<input type="password" class="form-control" name="password"
 					placeholder="비밀번호">
 			</div>
 			<div class="form-group">
 				<div>비밀번호 확인</div>
-				<input type="password" class="form-control" name="InputPassword2"
+				<input type="password" class="form-control" name="password2"
 					placeholder="비밀번호 확인">
 				<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 			</div>
