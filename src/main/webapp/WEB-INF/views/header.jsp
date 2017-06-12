@@ -49,7 +49,7 @@ li span {font-weight: bold; font-size: 20px;}
 							<li><a href="${pageContext.request.contextPath}/travelge/main"><span>Travelge</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/entertainment/enterMain"><span>Entertainment</span></a></li>
 							<li><a href="#"><span>Food</span></a></li>
-							<li><a href="#"><span>Blog</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/user/blog/id1"><span>Blog</span></a></li>
 							<li><a href="#"><span>Contact</span></a></li>
 							
 						</ul>
@@ -69,8 +69,10 @@ li span {font-weight: bold; font-size: 20px;}
 
 	<div class="col-xs-2 col-md-2 col-md-offset-3 col-xs-offset-3" >
 
+
 		<a href="${pageContext.request.contextPath }/user/login" style="margin-right: 1em "> 로그인
 		</a> <a href="user/joinForm"  >회원가입</a>
+
 
 	</div>
 
