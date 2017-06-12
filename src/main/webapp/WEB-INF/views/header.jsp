@@ -29,6 +29,8 @@
 </script>
 <style>
 li span {font-weight: bold; font-size: 20px;}
+
+
 </style>
 
 <div class="header">
@@ -66,11 +68,12 @@ li span {font-weight: bold; font-size: 20px;}
 	</div>
 
 	<div class="col-xs-2 col-md-2 col-md-offset-3 col-xs-offset-3" >
-		<a href="${pageContext.request.contextPath }/user/loginForm" style="margin-right: 1em "> 로그인
-		</a> <a href="user/joinForm"  >회원가입</a>
+
+		<a href="${pageContext.request.contextPath }/user/loginForm" style="margin-right: 1em "> 로그인</a> 
+		<a href="user/joinForm"  >회원가입</a>
 
 	</div>
-	<div class="clear"></div>
+
 </div>
 
 <!---//End-header---->

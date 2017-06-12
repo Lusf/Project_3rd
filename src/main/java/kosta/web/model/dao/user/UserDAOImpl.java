@@ -16,8 +16,8 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public int userJoin(UserVo userVo) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert("userMapper.userJoin",userVo);
 	}
 
 	@Override
