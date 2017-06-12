@@ -19,6 +19,11 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
+	@RequestMapping({"loginForm","{folder}/loginForm"})
+	public String loginForm(){
+		return "user/loginForm";
+	}	
+	
 	@RequestMapping({"login","{folder}/login"})
 	public String login(){
 		return "user/login";
