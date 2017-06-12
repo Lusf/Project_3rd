@@ -66,9 +66,8 @@ li span {font-weight: bold; font-size: 20px;}
 	</div>
 
 	<div class="col-xs-2 col-md-2 col-md-offset-3 col-xs-offset-3" >
-		<a href="login/login" style="margin-right: 1em "> 로그인
-		</a> <a href="login/joinForm"  >회원가입</a>
-
+		<a href="login/login" style="margin-right: 1em "> 로그인</a> 
+		<a href="login/joinForm"  >회원가입</a>
 	</div>
 	<div class="clear"></div>
 </div>

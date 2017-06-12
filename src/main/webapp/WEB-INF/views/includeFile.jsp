@@ -70,7 +70,7 @@
 	href="<c:url value= '/resources/assets/style2.css'/>">
 <link rel="stylesheet"
 	href="<c:url value= '/resources/assets/carousel.css'/>">
-	
+<!-- eat -->	
 
 </head>
 
