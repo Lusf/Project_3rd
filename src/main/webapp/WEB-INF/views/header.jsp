@@ -29,6 +29,8 @@
 </script>
 <style>
 li span {font-weight: bold; font-size: 20px;}
+
+
 </style>
 
 <div class="header">
@@ -70,7 +72,7 @@ li span {font-weight: bold; font-size: 20px;}
 		</a> <a href="user/joinForm"  >회원가입</a>
 
 	</div>
-	<div class="clear"></div>
+
 </div>
 
 <!---//End-header---->
