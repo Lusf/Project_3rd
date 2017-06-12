@@ -22,8 +22,4 @@ public class HomeController {
 	public String login(){
 		return "login/login";
 	}	
-	@RequestMapping("eating/eating_Main")
-	public String eatingMain(){
-		return "eating/eating_Main";
-	}
 }

@@ -9,10 +9,9 @@
 <body>
 <!-- header -->
 <%@include file="/WEB-INF/views/header.jsp"%>
+
 <!-- contents -->
-
-
-	
+<%@include file="/WEB-INF/views/eating/eating_main.jsp"%>
 	
 <!-- footer -->
 <%@include file="/WEB-INF/views/footer.jsp"%>
