@@ -43,7 +43,13 @@
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
 			<div class="flip">
+			
+				<c:if test="${flag ==1 }">
 				<div class="card">
+				</c:if>
+				<c:if test="${flag ==0 }">
+				<div class="card flipped">
+				</c:if>
 					<div class="face front">
 						<div class="panel panel-default">
 
@@ -67,7 +73,7 @@
 								<hr>
 								<hr>
 								<p class="text-center">
-									<a href="#" class="fliper-btn">Create new account?</a>
+									<a  class="fliper-btn">Create new account?</a>
 								</p>
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
@@ -101,7 +107,7 @@
 								type="file" name="file" placeholder="사진" id="upload" />
 								<button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
 								<p class="text-center">
-									<a href="#" class="fliper-btn">Already have an account?</a>
+									<a  class="fliper-btn">Already have an account?</a>
 								</p>
 
 							</form>

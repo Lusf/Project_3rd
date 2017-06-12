@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.user.UserService;
 import kosta.web.model.vo.UserVo;
@@ -21,13 +21,20 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping({ "joinForm" })
-	public String joinForm() {
-		return "user/joinForm";
+	public ModelAndView joinForm() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/loginForm");
+		mv.addObject("flag", 0);
+		return mv;
 	}
 
 	@RequestMapping({"loginForm","{folder}/loginForm"})
-	public String loginForm(){
-		return "user/loginForm";
+	public ModelAndView loginForm(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/loginForm");
+		mv.addObject("flag", 1);
+		return mv;
 	}	
 	
 /*	@RequestMapping({"login","{folder}/login"})
