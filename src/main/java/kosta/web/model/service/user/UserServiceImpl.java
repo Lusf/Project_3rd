@@ -1,7 +1,5 @@
 package kosta.web.model.service.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import kosta.web.model.dao.authorities.AuthoritiesDao;
 import kosta.web.model.dao.user.UserDAO;
 
-import kosta.web.model.vo.UserBlogVo;
 import kosta.web.model.vo.Authorities;
 import kosta.web.model.vo.UserVo;
 import kosta.web.security.Constants;
@@ -41,13 +38,6 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-	
-	
-	////////////////////
-
-	
-	
-
 	@Override
 	public int userLogout() {
 		// TODO Auto-generated method stub
@@ -56,12 +46,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVo userSearchById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<UserBlogVo> userBlog(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

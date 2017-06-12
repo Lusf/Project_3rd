@@ -4,14 +4,17 @@ public class UserBlogVo {
 	private String id;
 	private int blogNum;
 	private String category;
+	private String contentCode;
 	private String blogTitle;
 	private String blogCont;
 	private String blogImg;
 	
-	public UserBlogVo(String id, int blogNum, String category, String blogTitle, String blogCont, String blogImg) {
+	public UserBlogVo() {}
+	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogCont, String blogImg) {
 		this.id = id;
 		this.blogNum = blogNum;
 		this.category = category;
+		this.contentCode = contentCode;
 		this.blogTitle = blogTitle;
 		this.blogCont = blogCont;
 		this.blogImg = blogImg;
@@ -39,6 +42,14 @@ public class UserBlogVo {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getContentCode() {
+		return contentCode;
+	}
+
+	public void setContentCode(String contentCode) {
+		this.contentCode = contentCode;
 	}
 
 	public String getBlogTitle() {

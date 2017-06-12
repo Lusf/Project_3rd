@@ -72,7 +72,7 @@ function checkValid() {
 			action="${pageContext.request.contextPath }/user/join"
 			onsubmit='return checkValid()' enctype="multipart/form-data"
 			id="writeForm">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 			<div class="form-group">
 				<div>아이디</div>
@@ -135,6 +135,7 @@ reader.onload = function(event) {
    img.src = event.target.result;
    img.width = 200;
    img.height = 200;
+   img.className="img-circle";
    holder.innerHTML = '';
    holder.appendChild(img);
 };
@@ -145,8 +146,6 @@ return false;
 
 
 </script>
-<hr><hr>
-<h1>${_csrf.parameterName} <br>${_csrf.token}</h1>
 </body>
 
 

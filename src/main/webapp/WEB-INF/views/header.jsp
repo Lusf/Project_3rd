@@ -59,8 +59,7 @@ li span {
 							<li><a
 								href="${pageContext.request.contextPath}/entertainment/enterMain"><span>Entertainment</span></a></li>
 							<li><a href="#"><span>Food</span></a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/user/blog/id1"><span>Blog</span></a></li>
+							<li><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />"><span>Blog</span></a></sec:authorize></li>
 							<li><a href="#"><span>Contact</span></a></li>
 
 						</ul>

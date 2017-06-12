@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="">  
+<meta name="author" content="">
 
-<meta name="viewport" content="initial-scale=1.0">
 <!-- jquery -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.mixitup.js"></script>
@@ -14,34 +16,15 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.cslider.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.placeholder.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.inview.js"></script>
-
-<!-- pluton modernizr -->
-<script src="${pageContext.request.contextPath}/resources/js/modernizr.custom.js"></script>
-
 <!-- wow script -->
 <script src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script>
-
 <!-- boostrap -->
 <script src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js"></script>
-
-<!-- jquery mobile -->
-<script src="${pageContext.request.contextPath}/resources/assets/mobile/touchSwipe.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/respond/respond.js"></script>
-
-<!-- gallery -->
-<script src="${pageContext.request.contextPath}/resources/assets/gallery/jquery.blueimp-gallery.min.js"></script>
-
 <!-- custom script -->
 <script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
-
 <!-- app -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-
-<!-- 외부 js -->
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initializeMap"></script>
-
-
-
+<!-- blog -->
 
 <!-- style -->
 
@@ -53,41 +36,56 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <!-- font awesome -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
 <!-- bootstrap -->
 <link rel="stylesheet" href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>" >
 <link rel="stylesheet" href="<c:url value= '/resources/pluton/css/bootstrap-responsive.css'/>" />
-
 <!-- animate.css -->
 <link rel="stylesheet" href="<c:url value= '/resources/assets/animate/animate.css'/>" >
 <link rel="stylesheet" href="<c:url value= '/resources/assets/animate/set.css'/>" >
-
-<!-- gallery -->
-<link rel="stylesheet" href="<c:url value= '/resources/assets/gallery/blueimp-gallery.min.css'/>">
-
 <!-- favicon -->
 <link rel="shortcut icon" href="<c:url value= '/resources/images/favicon.ico'/>" type="image/x-icon">
 <link rel="icon" href="<c:url value= '/resources/images/favicon.ico'/>" type="image/x-icon">
-
 <link rel="stylesheet" href="<c:url value= '/resources/assets/main.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/carousel.css'/>">
+<!-- blog -->
 
-<!-- pluton -->
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/pluton.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/jquery.cslider.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/jquery.bxslider.css'/>" />
-<!-- Fav and touch icons -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="<c:url value= '/resources/pluton/images/ico/apple-touch-icon-144.png'/>">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="<c:url value= '/resources/pluton/images/ico/apple-touch-icon-114.png'/>">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="<c:url value= '/resources/pluton/images/apple-touch-icon-72.png'/>">
-<link rel="apple-touch-icon-precomposed"
-	href="<c:url value= '/resources/pluton/images/ico/apple-touch-icon-57.png'/>">
-<link rel="shortcut icon" href="<c:url value= '/resources/pluton/images/ico/favicon.ico'/>">
+<style>
+.centerView {margin-top: 6.3em;}
+table, td {border: 1px solid blue; }
+table {
+	width: 100%;
+	height: auto;
+}
+</style>
 
 </head>
+<body>
+	<%@include file="/WEB-INF/views/header.jsp"%>
+	
+	<div class="centerView">
+		<table>
+			<tr><td colspan="2">blog header</td></tr>
+			<tr>
+				<td>
+					left
+				</td>
+				<c:forEach items="${list}" var="list">
+					<td>
+						${list.id}
+						${list.blogNum}
+						${list.category}
+						${list.contentCode}
+						${list.blogTitle}
+						${list.blogCont}
+						${list.blogImg}
+					</td>
+				</c:forEach>
+			</tr>
+		</table>
+	</div>
+	
+	<%@include file="/WEB-INF/views/footer.jsp"%>
+</body>
 </html>
