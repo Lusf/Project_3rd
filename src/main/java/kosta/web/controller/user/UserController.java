@@ -2,6 +2,8 @@ package kosta.web.controller.user;
 
 import java.io.File;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,67 +16,74 @@ import kosta.web.model.vo.UserVo;
 @Controller
 @RequestMapping("user")
 public class UserController {
-	
-	
-	private final String path = "C:\\Edu\\3rd_project_picture";
+
 	@Autowired
 	private UserService userService;
-	
-	@RequestMapping({"joinForm"})
-	public String joinForm(){
+
+	@RequestMapping({ "joinForm" })
+	public String joinForm() {
 		return "user/joinForm";
 	}
-	
-	@RequestMapping({"login"})
-	public String login(){
+
+	@RequestMapping({ "login" })
+	public String login() {
 		return "user/login";
-	}	
-	
+	}
+
 	@RequestMapping("join")
-	public String userJoin(UserVo userVo) throws Exception{
-		
+	public String userJoin(HttpServletRequest request, UserVo userVo) throws Exception {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/user");
+
+//		System.out.println(path);
 		MultipartFile file = userVo.getFile();
-		
-/*		System.out.println(file.getOriginalFilename());
-		System.out.println("아이디 : " + userVo.getId());
-		System.out.println("비밀번호 : " + userVo.getPassword());*/
-		if(file.getSize()>0)
-		{
-			userVo.setUserPic(userVo.getId()+"_"+file.getOriginalFilename());
+
+		if (file.getSize() > 0) {
+			userVo.setUserPic(file.getOriginalFilename());
 		}
-			
+
 		int result = userService.userJoin(userVo);
-		if(result == 0)
-		{
+		if (result == 0) {
 			throw new Exception();
 		}
-		if(file.getSize()>0)
-		{
-			File folder = new File(path);
-			if(!folder.exists())
-			{
-				folder.mkdir();
-			}
-			try {
-				file.transferTo(new File(path+"/"+userVo.getUserPic()));
-			} catch (Exception e) {	
-			}	
+
+//		폴더 생성
+		File mainFolder = new File(path);
+		if (!mainFolder.exists()) {
+			mainFolder.mkdir();
 		}
-	
-		return "index";
+		File idFolder = new File(path + "/" + userVo.getId());
+		if (!idFolder.exists()) {
+			idFolder.mkdir();
+		}
+		File profileFolder = new File(path + "/" + userVo.getId()+"/profile");
+		if (!profileFolder.exists()) {
+			profileFolder.mkdir();
+		}		
+//		-----폴더 생성 끝
+		if (file.getSize() > 0) {
+
+			try {
+				file.transferTo(new File(path + "/" +userVo.getId()+"/profile/"+ userVo.getUserPic()));
+			} catch (Exception e) {
+			}
+		}
+
+		return "redirect:/";
 	}
-	
-	public String userLogout(){
+
+	public String userLogout() {
 		return null;
 	}
+
 	@RequestMapping("userSearchById")
-	public String userSearchById(String id){
+	public String userSearchById(String id) {
 		return null;
 	}
 
 	@RequestMapping("blog/{id}")
-	public String userBlog(@PathVariable String id){
-		
+	public String userBlog(@PathVariable String id) {
+
 		return "user/blog";
 	}
 }
