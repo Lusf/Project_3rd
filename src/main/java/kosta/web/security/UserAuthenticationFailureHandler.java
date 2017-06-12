@@ -17,13 +17,13 @@ import org.springframework.stereotype.Component;
  *  authentication-failure-handler-ref 추가하면
  *  로그인 실패시 onAuthenticationFailure 메소드가 차동 호출된다. */
 
-@Component
-public class MemberAuthenticationFailureHandler implements AuthenticationFailureHandler {
+@Component("userAuthenticationFailureHandler")
+public class UserAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse resp, AuthenticationException auth)
 			throws IOException, ServletException {
-		req.setAttribute("errorMessage", auth.getMessage());
+	req.setAttribute("errorMessage", auth.getMessage());
 		req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req, resp);
 	}
 }
