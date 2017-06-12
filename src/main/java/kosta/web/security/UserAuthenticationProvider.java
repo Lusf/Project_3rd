@@ -34,12 +34,12 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		if (!supports(auth.getClass())) { // 인증 전에 지원 여부로 걸러내기
+		if(!supports(auth.getClass())){
 			return null;
 		}
-
-		// 1. 인수로 받은 user정보를 가지고 db에 존재하는지 체크
-		String id = auth.getName();
+		
+		//1. 인수로 받는 user정보를 가지고 DB에 존재하는지 체크
+		String id = auth.getName(); //아이디
 		UserVo userVo = userDAO.userSearchById(id);
 
 		if (userVo == null) {
@@ -62,20 +62,25 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 		if (list.isEmpty()) { // 아무 권한이 없는 경우..
 			throw new UsernameNotFoundException(id + "는 아무 권한이 없습니다.");
 		}
-
+				
 		// db에서 가지고 온 권한을 GrantedAuthority로 변환해야 함(하나당 권한 1개밖에 안됨..)
 		List<SimpleGrantedAuthority> authList = new ArrayList<>();
 
 		for (Authorities au : list) {
 			authList.add(new SimpleGrantedAuthority(au.getRole()));
 		}
-
+		
 		return new UsernamePasswordAuthenticationToken(userVo, null, authList);
 	}
-
+	/**
+	 * 해당 타입의 Authentication객체를 이용해서 인증 처리를
+	 * 할 수 있는지 여부를 리턴해주는 메소드
+	 */
 	@Override
-	public boolean supports(Class<?> authen) {
-		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authen);
+	public boolean supports(Class<?> authentication) {
+		
+		//들어오는 객체로부터 인증 처리가 가능한지 true와 false를 return.
+		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
 
 }

@@ -1,5 +1,7 @@
 package kosta.web.model.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserVo {
 
 	private String id;
@@ -8,16 +10,25 @@ public class UserVo {
 	private String userPic;
 	private int point;
 
+	private MultipartFile file;
+
 	public UserVo() {
 	}
 
 	public UserVo(String id, String password, String tell, String userPic, int point) {
-		super();
 		this.id = id;
 		this.password = password;
 		this.tell = tell;
 		this.userPic = userPic;
 		this.point = point;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	public String getId() {

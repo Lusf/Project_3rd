@@ -1,6 +1,9 @@
 package kosta.web.model.dao.user;
 
+import kosta.web.model.vo.UserBlogVo;
 import kosta.web.model.vo.UserVo;
+
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +19,20 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public int userJoin(UserVo userVo) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert("userMapper.userJoin",userVo);
 	}
 
 	@Override
 	public UserVo userSearchById(String id) {
+		
+		return sqlSession.selectOne("userMapper.userSearchById",id);
+	}
+
+	@Override
+	public List<UserBlogVo> userBlog(String id) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
