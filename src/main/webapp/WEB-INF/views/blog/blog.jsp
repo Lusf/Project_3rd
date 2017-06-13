@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Blog</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="">  
 <meta name="author" content="">
@@ -20,8 +21,8 @@
 <script src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script>
 <!-- boostrap -->
 <script src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js"></script>
-<!-- custom script -->
-<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
+<!-- custom script --><%-- 
+<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script> --%>
 <!-- app -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 <!-- blog -->
@@ -31,13 +32,12 @@
 <!-- Google fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 <!-- Google Icon -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- Load Roboto font -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <!-- font awesome -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- bootstrap -->
-<link rel="stylesheet" href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>" >
 <link rel="stylesheet" href="<c:url value= '/resources/pluton/css/bootstrap-responsive.css'/>" />
 <!-- animate.css -->
 <link rel="stylesheet" href="<c:url value= '/resources/assets/animate/animate.css'/>" >
@@ -50,41 +50,100 @@
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/carousel.css'/>">
 <!-- blog -->
+<link rel="stylesheet" href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>" >
 
 <style>
-.centerView {margin-top: 6.3em;}
-table, td {border: 1px solid blue; }
-table {
-	width: 100%;
-	height: auto;
+/* container 간격 조절 */
+.container {margin-top: 7em; margin-bottom: 3em;}
+
+/* 사이드바 메뉴 조절 */
+.list-unstyled {
+	margin-top: 10px;
+	margin-left: 15px;
+	line-height: 1.4;
 }
+.list-unstyled li{font-size: 20px;}
+
+/* 화면 조절 */
+.col-lg-8 {
+	width: 73%;
+}
+.col-md-4 {
+	width: 27%;
+	position: absolute;
+	top: 7em;
+	left: 72%;
+}
+
+/* 내부 */
+.blogTop {height: 50px; width: 100%;}
+.blogTop tr td:FIRST-CHILD {width:80%; text-align: left; vertical-align: middle;}
+.blogTop tr td:NTH-CHILD(2) {text-align: right; vertical-align: bottom;}
+
 </style>
 
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 	
-	<div class="centerView">
-		<table>
-			<tr><td colspan="2">blog header</td></tr>
-			<tr>
-				<td>
-					left
-				</td>
-				<c:forEach items="${list}" var="list">
-					<td>
-						${list.id}
-						${list.blogNum}
-						${list.category}
-						${list.contentCode}
-						${list.blogTitle}
-						${list.blogCont}
-						${list.blogImg}
-					</td>
-				</c:forEach>
-			</tr>
-		</table>
-	</div>
+	<!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+            <iframe src="blogDetail.jsp" name="c" width="100%" height="100%" frameborder="0"></iframe>
+            <%-- <%@include file="/WEB-INF/views/blog/blogDetail.jsp"%> --%>
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Blog Categories</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Travelge</a></li>
+                                <li><a href="#">Entertainment</a></li>
+                                <li><a href="#">Food</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Titles</h4>
+                    <c:forEach items="${list}" var="list">
+                    	<p>${list.blogTitle}
+                    </c:forEach>
+                </div>
+                
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        	</button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+        
+    </div>
+    <!-- /.container -->
 	
 	<%@include file="/WEB-INF/views/footer.jsp"%>
 </body>

@@ -23,7 +23,7 @@ public class RestaurantInfoDAOImpl implements RestaurantInfoDAO{
 
 	@Override
 	public int RestaurantUpdate(RestaurentVo restaurentVo) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 

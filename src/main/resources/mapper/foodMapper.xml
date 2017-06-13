@@ -17,7 +17,7 @@
 	</resultMap> -->
 
 
-	<!-- 레스토랑 정보 등록하기 -->
+	<!-- 맛집정보 등록하기 -->
 	<insert id="restaurantInsert" parameterType="restaurentVo">
 		insert into Restaurant_INFO(
 		<include refid="restaurentColumn" />
@@ -25,7 +25,7 @@
 		values (#{restaurantName}, #{addr}, #{category}, #{contentCode},#{id})
 	</insert>
 
-	<!-- 레스토랑 정보 확인하기 -->
+	<!-- 맛집정보 확인하기 -->
 	<select id="selectByRestaurant" parameterType="String"
 		resultType="kosta.web.model.vo.restaurant.RestaurentVo">
 		select 	content_CODE as contentCode, RESTAURANT_NAME as restaurantName, ADDRESS as addr, CATEGORY , id
@@ -36,6 +36,26 @@
 			</if>
 		</where>
 	</select>
-
+	
+	
+	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
+	<!-- 맛집 수정하기 -->
+	<update id="updateRestaurant" >
+	update Restaurant_INFO
+		   set RESTAURANT_NAME = ${restaurantName},
+		   		 ADDRESS = ${addr},
+		   		 CATEGORY = ${category}
+	 where content_CODE=${contentCode}
+	</update>
+	
+	
+	<!-- 맛집 삭제하기-->
+	<delete id="deleteRestaurant" parameterType="String">
+		delete Restaurant_INFO where content_CODE=#{_parameter}
+	</delete>
+	
+	
+	
+	
 </mapper>
 

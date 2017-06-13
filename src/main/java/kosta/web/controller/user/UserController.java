@@ -30,7 +30,7 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping({"loginForm","{folder}/loginForm"})
+	@RequestMapping("loginForm")
 	public ModelAndView loginForm(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/loginForm");
@@ -47,10 +47,14 @@ public class UserController {
 	@RequestMapping("join")
 	public String userJoin(HttpServletRequest request, UserVo userVo) throws Exception {
 
+//		String path = request.getSession().getServletContext().getContextPath()+"/resources/data";
 		String path = request.getSession().getServletContext().getRealPath("/resources/user");
 
+		
 //		System.out.println(path);
 		MultipartFile file = userVo.getFile();
+		
+//		System.out.println(file.getOriginalFilename());
 
 		if (file.getSize() > 0) {
 			userVo.setUserPic(file.getOriginalFilename());

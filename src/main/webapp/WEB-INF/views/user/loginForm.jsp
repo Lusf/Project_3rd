@@ -25,15 +25,66 @@
 <link rel="stylesheet"
 	href="<c:url value= '/resources/assets/login/login.css'/>">
 
+<style type="text/css">
+.filebox input[type="file"] {
+ position: absolute;
+ width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; 
+  clip:rect(0,0,0,0); border: 0; } 
+.filebox label { 
+display: inline-block;
+ padding: .5em .75em; 
+ color: #fff; 
+ font-size: inherit; 
+ line-height: normal; 
+ vertical-align: middle; 
+ background-color: #337ab7; 
+ cursor: pointer; 
+ border: 1px solid #ebebeb; 
+ border-bottom-color: #e2e2e2; }
+
+
+.filebox .upload-name { 
+display: inline-block; 
+padding: .5em .75em;
+margin-bottom: 5px;
+ /* label의 패딩값과 일치 */ 
+ font-size: inherit; 
+ font-family: inherit; 
+ line-height: normal;
+ vertical-align: middle; 
+ background-color: #f5f5f5; 
+ border: 1px solid #ebebeb; 
+ border-bottom-color: #e2e2e2; 
+ -webkit-appearance: none; /* 네이티브 외형 감추기 */
+ -moz-appearance: none; 
+ appearance: none; }
+
+
+</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
 		$('.fliper-btn').click(function() {
 			$('.flip').find('.card').toggleClass('flipped');
 
-		});
-
-	})
+		});	
+		
+		var fileTarget = $('.filebox .upload-hidden'); 
+		fileTarget.on('change', function(){
+			// 값이 변경되면
+			if(window.FileReader){ 
+				// modern browser 
+				var filename = $(this)[0].files[0].name; 
+				} else { 
+					// old IE 
+					var filename = $(this).val().split('/').pop().split('\\').pop(); }
+					// 파일명만 추출 } // 추출한 파일명 삽입 
+					$(this).siblings('.upload-name').val(filename); 
+					
+		});		
+	});
 function checkValid() {
 	var f = window.document.writeForm;
 
@@ -76,7 +127,7 @@ function checkValid() {
 		<div class="col-md-4">
 			<div class="flip">
 
-				<c:if test="${flag ==1 }">
+				<c:if test="${flag ==1 or flag eq null }">
 					<div class="card">
 				</c:if>
 				<c:if test="${flag ==0 }">
@@ -96,7 +147,7 @@ function checkValid() {
 							</h4>
 
 							<br> <input class="form-control" placeholder="Username"
-								name="id" /> <input class="form-control" placeholder="Password"
+								name="id" /> <input type="password" class="form-control" placeholder="Password"
 								name="password" />
 							<p class="text-right">
 								<a href="">Forgot Password</a>
@@ -129,16 +180,19 @@ function checkValid() {
 
 							</div>
 
-							<br> <label>기본사항</label> <input class="form-control"
-								placeholder="아이디" name="id" /> <input type="password"
-								class="form-control" placeholder="비밀번호" name="password" /> <input
-								type="password" class="form-control" placeholder="비밀번호확인"
-								name="password2" /> <input class="form-control"
-								placeholder="전화번호" name="tell" /> <label>추가사항</label> <input
-								class="form-control" type="file" name="file" placeholder="사진"
-								id="upload" />
-							<button type="submit" class="btn btn-primary btn-block">SIGN
-								UP</button>
+							<br> <label>기본사항</label> 
+								<input class="form-control" placeholder="아이디" name="id" /> 
+								<input type="password" class="form-control" placeholder="비밀번호" name="password" /> 
+								<input type="password" class="form-control" placeholder="비밀번호확인" name="password2" /> 
+								<input class="form-control" placeholder="전화번호" name="tell" /> 
+								<label>추가사항</label> 
+								<div class="filebox">
+<!-- 	<input class="form-control" type="file" name="file" placeholder="사진" id="upload" /> -->
+								<input class="upload-name" value="파일선택" disabled="disabled"> 
+								<label for="upload">사진 업로드</label> 
+								<input type="file" id="upload" class="upload-hidden" name="file"> 
+								</div>
+								<button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
 							<p class="text-center">
 								<a class="fliper-btn">Already have an account?</a>
 							</p>

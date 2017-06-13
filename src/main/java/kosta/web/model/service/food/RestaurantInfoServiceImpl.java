@@ -32,7 +32,7 @@ public class RestaurantInfoServiceImpl implements RestaurantInfoService {
 
 	@Override
 	public List<RestaurentVo> RestauranSearch(String contentCode) {
-		return restaurentInfoDAO.RestauranSearch("a");
+		return restaurentInfoDAO.RestauranSearch(contentCode);
 	}
 
 }
