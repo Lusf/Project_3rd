@@ -20,7 +20,7 @@ public class TravelgeController {
 	@RequestMapping("/main")
 	public String travelgeMain()
 	{
-		return "travelge/main";
+		return "travelge/travelgeMain";
 	}
 	
 	@RequestMapping("{url}")

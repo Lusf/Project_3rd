@@ -107,4 +107,9 @@ li span {
 			value="${_csrf.token}" />
 	</form>
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<script>
+		location.href="${pageContext.request.contextPath}/admin/index";
+	</script>			
+</sec:authorize>
 <!---//End-header---->
