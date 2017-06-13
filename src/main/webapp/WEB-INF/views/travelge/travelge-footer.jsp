@@ -13,7 +13,7 @@
 	height: 5em;
 	bottom: 0em;
 	z-index: 999;
-	background-color: #eeeeee;
+	background-color: #212121;
 	border-top: 1px grey solid;
 	padding: 00.5em;
 	text-align: center;
