@@ -127,7 +127,7 @@ function checkValid() {
 		<div class="col-md-4">
 			<div class="flip">
 
-				<c:if test="${flag ==1 }">
+				<c:if test="${flag ==1 or flag eq null }">
 					<div class="card">
 				</c:if>
 				<c:if test="${flag ==0 }">
