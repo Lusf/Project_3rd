@@ -29,7 +29,7 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping({"loginForm","{folder}/loginForm"})
+	@RequestMapping("loginForm")
 	public ModelAndView loginForm(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/loginForm");
