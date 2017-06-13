@@ -160,7 +160,8 @@ $( document ).ready(function() {
 			<h1>Have You Seen our Works?</h1>
 			<p>Duis mollis placerat quam, eget laoreet tellus tempor eu.
 				Quisque dapibus in purus in dignissim.</p>
-			<a href="${pageContext.request.contextPath}/entertainment/detailView" >안녕♡</a>
+			<a href="${pageContext.request.contextPath}/entertainment/detailView" >안녕♡</a><br>
+			<a href="${pageContext.request.contextPath}/entertainment/board/userBoardList" >게시판♡</a>
 		</div>
 		<ul class="nav nav-pills">
 			<li class="filter" data-filter="all"><a href="#noAction">All</a>

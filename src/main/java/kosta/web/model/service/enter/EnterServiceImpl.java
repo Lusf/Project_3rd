@@ -44,7 +44,6 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public int lookInfoDelete(String contentCode) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -62,20 +61,17 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public int lookgoodBoardDelete(int lgbNum) {
-		// TODO Auto-generated method stub
-		return 0;
+		return lookgoodBoardDAO.lookgoodBoardDelete(lgbNum);
 	}
 
 	@Override
 	public List<LookgoodBoardVo> lookgoodBoardSearchAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return lookgoodBoardDAO.lookgoodBoardSearchAll();
 	}
 
 	@Override
-	public List<LookgoodBoardVo> lookgoodBoardSearchByNum(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public LookgoodBoardVo lookgoodBoardSearchByNum(int lgnNum) {
+		return lookgoodBoardDAO.lookgoodBoardSearchByNum(lgnNum);
 	}
 
 	@Override

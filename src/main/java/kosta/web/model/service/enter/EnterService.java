@@ -45,9 +45,9 @@ public interface EnterService {
 	List<LookgoodBoardVo> lookgoodBoardSearchAll();
 	
 	/**
-	 * 유저 추천 게시글 검색(부분 : id)
+	 * 유저 추천 게시글 검색(부분 : lgnNum)
 	 * */
-	List<LookgoodBoardVo> lookgoodBoardSearchByNum(String id);
+	LookgoodBoardVo lookgoodBoardSearchByNum(int lgnNum);
 	
 	/**
 	 * 유저 추천 게시판 댓글 등록

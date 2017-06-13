@@ -7,7 +7,7 @@ package kosta.web.model.vo.enter;
  * 
  * */
 public class LookgoodBoardVo {
-	private String id;
+	private String id; 
 	private int lgbNum;
 	private String lgbDate;
 	private String lgbTitle;

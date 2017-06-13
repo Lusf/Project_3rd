@@ -10,7 +10,7 @@ public interface LookgoodBoardDAO {
 	 * lookgoodBoardDelete - 유저 추천 게시글 삭제
 	 * 
 	 * lookgoodBoardSearchAll - 유저 추천 게시글 검색(전체)
-	 * lookgoodBoardSearchById  - 유저 추천 게시글 검색(부분 : id)*/
+	 * lookgoodBoardSearchById  - 유저 추천 게시글 검색(부분 : int lgnNum)*/
 	
 	/**
 	 * 유저 추천 게시글 등록(회원사용자)
@@ -28,13 +28,13 @@ public interface LookgoodBoardDAO {
 	int lookgoodBoardDelete(int lgbNum);
 	
 	/**
-	 * 유저 추천 게시글 검색(전체)
+	 * 유저 추천 게시글 검색(전체/부분)
 	 * */
 	List<LookgoodBoardVo> lookgoodBoardSearchAll();
 	
 	/**
 	 * 유저 추천 게시글 검색(부분 : id)
 	 * */
-	List<LookgoodBoardVo> lookgoodBoardSearchByNum(String id);
+	LookgoodBoardVo lookgoodBoardSearchByNum(int lgnNum);
 	
 }
