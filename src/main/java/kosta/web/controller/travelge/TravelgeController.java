@@ -20,7 +20,7 @@ public class TravelgeController {
 	@RequestMapping("/main")
 	public String travelgeMain()
 	{
-		return "travelge/main";
+		return "travelge/travelgeMain";
 	}
 	
 	@RequestMapping("{url}")
@@ -46,9 +46,9 @@ public class TravelgeController {
 		
 		return "travelge/travelgeList";
 	};
-	
+	@RequestMapping("travelgeRecommandInsert")
 	public void travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo){
-		
+		System.out.println(travelgeRecommandationVo.getRecommadationDescription());
 	};
 	
 	public void travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo){

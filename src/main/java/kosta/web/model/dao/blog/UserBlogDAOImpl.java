@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kosta.web.model.vo.UserBlogVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 @Repository
 public class UserBlogDAOImpl implements UserBlogDAO {

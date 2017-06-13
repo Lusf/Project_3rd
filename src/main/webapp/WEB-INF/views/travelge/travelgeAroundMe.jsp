@@ -16,7 +16,7 @@
 </style>
 
 </head>
-<body>
+<body style="background-color: black;">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 	<div id="map"></div>
