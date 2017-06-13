@@ -16,7 +16,6 @@
 	<link id="pagestyle" href="<c:url value='/resources/css/eating/theme-eating.css'/>" rel="stylesheet">
 </head>
 
-
 <!-- star plugin -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
@@ -138,6 +137,7 @@ $( document ).ready(function() {
 });
 </script>
 
+
 <!-- detailView... -->
 <section class="post-list" id="news">
 
@@ -164,15 +164,7 @@ $( document ).ready(function() {
 						<h3 class="section-heading">Duis aute irure dolor in
 							reprehenderit in voluptate.</h3>
 
-						<span class="post-entry-meta"> <img alt="user avatar"
-							class="post-entry-author pull-left"
-							src="${pageContext.request.contextPath}/resources/images/eating/user.png">
-							<span class="post-entry-author-name pull-left">Alex
-								Example</span> <span class="post-entry-time pull-right">6 min
-								read <span class="post-entry-category">interior,
-									furnitures</span>
-						</span>
-						</span> <span class="post-entry-cover"
+						<span class="post-entry-cover"
 							style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
 						
 						<!-- star  -->
@@ -183,6 +175,7 @@ $( document ).ready(function() {
 									data-rating</p>
 								<span id="stars-existing" class="starrr" data-rating='1'></span>
 								<span id="count-existing">1</span>점
+								<span id="count">2</span>
 							</span>
 						</span><!-- star끝 -->
 
