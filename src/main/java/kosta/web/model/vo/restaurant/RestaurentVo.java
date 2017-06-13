@@ -1,19 +1,28 @@
 package kosta.web.model.vo.restaurant;
 
 public class RestaurentVo {
-//	restaurantName	addr	category	contentCode
+//	restaurantName	addr	category	contentCode id
+	private String contentCode;
 	private String restaurantName;
 	private String addr;
 	private String category;
-	private String contentCode;
+	private String id;
 	
 	public RestaurentVo() {}
-	public RestaurentVo(String restaurantName, String addr, String category, String contentCode) {
+	public RestaurentVo(String contentCode, String restaurantName, String addr, String category, String id) {
 		super();
+		this.contentCode = contentCode;
 		this.restaurantName = restaurantName;
 		this.addr = addr;
 		this.category = category;
-		this.contentCode = contentCode;
+		this.id = id;
+	}
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getRestaurantName() {
 		return restaurantName;
@@ -41,7 +50,7 @@ public class RestaurentVo {
 	}
 	@Override
 	public String toString() {
-		return "RestaurentVo [restaurantName=" + restaurantName + ", addr=" + addr + ", category=" + category
-				+ ", contentCode=" + contentCode + "]";
+		return "RestaurentVo [contentCode=" + contentCode + ", restaurantName=" + restaurantName + ", addr=" + addr
+				+ ", category=" + category + ", id=" + id + "]";
 	}
 }

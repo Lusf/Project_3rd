@@ -123,13 +123,17 @@ create table travelge_recommandation(
 
 drop table restaurant_info;
 
+select * from restaurant_info;
+
 create table restaurant_info(
   content_code varchar2(20) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
   address varchar2(50),
-  category varchar2(20)
+  category varchar2(20),
+   id constraint id_restaurant_info_fk references usertable(id)
 );
 
+insert into restaurant_INFO 	values ('a','a','a','a','a');
 
 drop table hot_deal;
 
@@ -191,3 +195,6 @@ create table lgboard_comment(
   lgbcom_date varchar2(20),
   lgb_comment varchar2(200)
 );
+
+
+select   content_CODE,  RESTAURANT_NAME, ADDRESS, CATEGORY   from Restaurant_INFO   ;

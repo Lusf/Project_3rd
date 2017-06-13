@@ -16,7 +16,9 @@ public class RestaurantInfoDAOImpl implements RestaurantInfoDAO{
 	
 	@Override
 	public int RestaurantInsert(RestaurentVo restaurentVo) {
-		return 0;
+		
+		
+		return sqlSession.insert("foodMapper.restaurantInsert",restaurentVo);
 	}
 
 	@Override
@@ -32,9 +34,9 @@ public class RestaurantInfoDAOImpl implements RestaurantInfoDAO{
 	}
 
 	@Override
-	public List<RestaurentVo> RestauranSearch(RestaurentVo restaurentVo) {
+	public List<RestaurentVo> RestauranSearch(String contentCode) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("foodMapper.selectByRestaurant",contentCode);
 	}
 
 }

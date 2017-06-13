@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
@@ -573,15 +573,19 @@
 
 	<section class="text-center shadow section section-min">
 		<div class="about-counter" id="about-counter">
+			<div><span class="btn btn-default"></span>
 			<div class="container">
 				<div class="row">
-					<!-- SINGLE COUNTER ITEM -->
-					<div class="col-md-3 wow fadeInLeft about-counter-single" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0">
-						<div class="counter"> <span class="ti-crown icon"></span>
-							<h2 class="timer">250</h2>
-							<p> Projects Finished </p>
+					<div class="addBtn">
+						<!-- SINGLE COUNTER ITEM -->
+						<div class="col-md-3 wow fadeInLeft about-counter-single" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0">
+							<div class="counter"> <span class="ti-crown icon"></span>
+								<h2 class="timer">250</h2>
+								<p> Projects Finished </p>
+							</div>
 						</div>
 					</div>
+				</div>
 					<!-- / SINGLE COUNTER ITEM -->
 
 					<!-- SINGLE COUNTER ITEM -->

@@ -17,25 +17,22 @@ public class RestaurantInfoServiceImpl implements RestaurantInfoService {
 	@Override
 	public int RestaurantInsert(RestaurentVo restaurentVo) {
 		
-		return 0;
+		return restaurentInfoDAO.RestaurantInsert(restaurentVo);
 	}
 
 	@Override
 	public int RestaurantUpdate(RestaurentVo restaurentVo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int RestaurantDelete(String contentCode) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<RestaurentVo> RestauranSearch(RestaurentVo restaurentVo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RestaurentVo> RestauranSearch(String contentCode) {
+		return restaurentInfoDAO.RestauranSearch("a");
 	}
 
 }
