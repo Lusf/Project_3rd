@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Blog</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="">  
 <meta name="author" content="">
@@ -50,41 +51,199 @@
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/carousel.css'/>">
 <!-- blog -->
+<link href="css/blog-post.css" rel="stylesheet">
 
 <style>
-.centerView {margin-top: 6.3em;}
-table, td {border: 1px solid blue; }
-table {
-	width: 100%;
-	height: auto;
+/* container 간격 조절 */
+.container {margin-top: 7em; margin-bottom: 3em;}
+
+/* 사이드바 메뉴 조절 */
+.list-unstyled {
+	margin-top: 10px;
+	margin-left: 15px;
+	line-height: 1.4;
 }
+
+/* 화면 조절 */
+.col-lg-8 {
+	width: 73%;
+}
+.col-md-4 {
+	width: 27%;
+	position: absolute;
+	top: 7em;
+	left: 72%;
+}
+
+/* 검색 부분 */
+.btn-default {height: 10px; width: 20px;}
+
+/* 내부 */
+.blogTop {height: 50px; width: 100%;}
+.blogTop tr td:FIRST-CHILD {width:80%; text-align: left; vertical-align: middle;}
+.blogTop tr td:NTH-CHILD(2) {text-align: right; vertical-align: bottom;}
+
 </style>
 
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 	
-	<div class="centerView">
-		<table>
-			<tr><td colspan="2">blog header</td></tr>
-			<tr>
-				<td>
-					left
-				</td>
-				<c:forEach items="${list}" var="list">
-					<td>
-						${list.id}
-						${list.blogNum}
-						${list.category}
-						${list.contentCode}
-						${list.blogTitle}
-						${list.blogCont}
-						${list.blogImg}
-					</td>
-				</c:forEach>
-			</tr>
-		</table>
-	</div>
+	<!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Blog Post -->
+                
+                <table class="blogTop">
+                	<tr>
+                		<td>
+                			<!-- Title -->
+                			<h1>Blog Post Title</h1>
+                		</td>
+                		<td>
+                			<!-- Date/Time -->
+               				<p><span class="glyphicon glyphicon-time"></span> 2017.06.13 화요일</p>
+                		</td>
+                	</tr>
+                </table>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+
+                <hr>
+
+                <!-- Post Content -->
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+
+                <hr>
+
+                <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <hr>
+
+                <!-- Posted Comments -->
+
+                <!-- Comment -->
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Start Bootstrap
+                            <small>August 25, 2014 at 9:30 PM</small>
+                        </h4>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </div>
+
+                <!-- Comment -->
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Start Bootstrap
+                            <small>August 25, 2014 at 9:30 PM</small>
+                        </h4>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <!-- Nested Comment -->
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="http://placehold.it/64x64" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Nested Start Bootstrap
+                                    <small>August 25, 2014 at 9:30 PM</small>
+                                </h4>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                        <!-- End Nested Comment -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Blog Categories</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Side Widget Well</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                </div>
+                
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        	</button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+        
+    </div>
+    <!-- /.container -->
 	
 	<%@include file="/WEB-INF/views/footer.jsp"%>
 </body>

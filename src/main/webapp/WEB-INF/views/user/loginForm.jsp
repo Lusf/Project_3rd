@@ -127,7 +127,7 @@ function checkValid() {
 		<div class="col-md-4">
 			<div class="flip">
 
-				<c:if test="${flag ==1 }">
+				<c:if test="${flag ==1 or flag eq null }">
 					<div class="card">
 				</c:if>
 				<c:if test="${flag ==0 }">
@@ -190,7 +190,7 @@ function checkValid() {
 <!-- 	<input class="form-control" type="file" name="file" placeholder="사진" id="upload" /> -->
 								<input class="upload-name" value="파일선택" disabled="disabled"> 
 								<label for="upload">사진 업로드</label> 
-								<input type="file" id="upload" class="upload-hidden"> 
+								<input type="file" id="upload" class="upload-hidden" name="file"> 
 								</div>
 								<button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
 							<p class="text-center">

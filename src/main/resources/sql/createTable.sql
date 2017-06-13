@@ -33,6 +33,7 @@ create table blog(
   category varchar2(20),
   content_code varchar2(20),
   blog_title varchar2(30),
+  blog_date date,
   blog_cont varchar2(200),
   blog_img varchar2(50)
 );

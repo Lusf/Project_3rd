@@ -18,7 +18,9 @@
 <body>
 
     <div id="wrapper">
-	<%@ include file="/WEB-INF/views/admin/nav.jsp" %>
+
+     	<%@include file="/WEB-INF/views/admin/nav.jsp" %>
+
         <div id="page-wrapper">
 
             <div class="container-fluid">

@@ -1,4 +1,4 @@
-package kosta.web.model.vo;
+package kosta.web.model.vo.blog;
 
 public class UserBlogVo {
 	private String id;
@@ -6,16 +6,18 @@ public class UserBlogVo {
 	private String category;
 	private String contentCode;
 	private String blogTitle;
+	private String blogDate;
 	private String blogCont;
 	private String blogImg;
 	
 	public UserBlogVo() {}
-	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogCont, String blogImg) {
+	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogDate, String blogCont, String blogImg) {
 		this.id = id;
 		this.blogNum = blogNum;
 		this.category = category;
 		this.contentCode = contentCode;
 		this.blogTitle = blogTitle;
+		this.blogDate = blogDate;
 		this.blogCont = blogCont;
 		this.blogImg = blogImg;
 	}
@@ -60,6 +62,14 @@ public class UserBlogVo {
 		this.blogTitle = blogTitle;
 	}
 
+	public String getBlogDate() {
+		return blogDate;
+	}
+	
+	public void setBlogDate(String blogDate) {
+		this.blogDate = blogDate;
+	}
+	
 	public String getBlogCont() {
 		return blogCont;
 	}
