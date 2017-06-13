@@ -128,10 +128,12 @@
 
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</section>
-<section class="countdown" id="special">
+	<section class="countdown" id="special">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -167,7 +169,7 @@
 			</div>
 		</div>
 	</section>
-<section class="countdown" id="special">
+	<section class="countdown" id="special">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -202,11 +204,25 @@
 				</div>
 			</div>
 		</div>
-	</section>	
-	
+	</section>
+
+	<!-- PRODUCT MODAL -->
+	<div class="modal fade product-modal" id="product-01" role="dialog"
+		tabindex="-1">
+		<div class="modal-dialog">
+
+			<!-- MODAL CONTENT -->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+				<div class="modal-body">
+					<%@include file="/WEB-INF/views/travelge/singlePage.jsp"%>
+				</div>
+			</div>
+			<!-- / MODAL CONTENT -->
+		</div>
+	</div>
 
 
-	
 	<section class="timeline" id="history">
 		<div class="container">
 			<div class="row">
