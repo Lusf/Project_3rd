@@ -2,7 +2,7 @@ package kosta.web.model.dao.blog;
 
 import java.util.List;
 
-import kosta.web.model.vo.UserBlogVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 public interface UserBlogDAO {
 

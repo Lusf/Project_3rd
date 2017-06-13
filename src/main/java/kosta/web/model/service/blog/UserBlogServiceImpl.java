@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kosta.web.model.dao.blog.UserBlogDAO;
-import kosta.web.model.vo.UserBlogVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 @Service
 public class UserBlogServiceImpl implements UserBlogService {
