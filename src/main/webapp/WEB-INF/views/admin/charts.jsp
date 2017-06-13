@@ -225,11 +225,12 @@
 
     <!-- Flot Charts JavaScript -->
     <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="${pageContext.request.contextPath}/resources/assets/admin/js/plugins/flot/flot-data.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/admin/js/plugins/flot/jquery.flot.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/admin/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/admin/js/plugins/flot/jquery.flot.resize.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/admin/js/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/admin/js/plugins/flot/flot-data.js"></script>
+    
 
 </body>
 

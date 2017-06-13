@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+=======
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
+>>>>>>> 3ec4c39e5ef2d5ffcbb3438d96b2fb3146b9943a
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +18,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value= '/resources/assets/admin/css/bootstrap.min.css'/>"  rel="stylesheet">
@@ -26,16 +33,11 @@
     <!-- Custom Fonts -->
     <link href="<c:url value= '/resources/assets/admin/font-awesome/css/font-awesome.min.css'/>"   rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 <body>
   <!-- Navigation -->
+
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -45,7 +47,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/index">Admin</a>
+
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -59,8 +63,10 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
+
                                         <h5 class="media-heading">
                                             <strong><sec:authentication property="principal.id" /> </strong>
+
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -75,8 +81,10 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
+
                                         <h5 class="media-heading">
                                             <strong><sec:authentication property="principal.id" /> </strong>
+
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -91,8 +99,10 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
+
                                         <h5 class="media-heading">
                                             <strong><sec:authentication property="principal.id" /> </strong>
+
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -133,7 +143,9 @@
                     </ul>
                 </li>
                 <li class="dropdown">
+
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <sec:authentication property="principal.id" />  <b class="caret"></b></a>
+
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -154,9 +166,25 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+
                     <li>
                         <a href="${pageContext.request.contextPath }/admin/index"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#travelge">
+                        <i class="fa fa-fw fa-sitemap"></i> Travelge <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="travelge" class="collapse">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/travelgeInfo">TravelgeInfo</a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/travelgeRecommandation">TravelgeRecommandation</a>
+                            </li>
+                    </ul>
+                    </li>
+ <!--                   
+ 
+
                     <li>
                         <a href="${pageContext.request.contextPath }/admin/charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                     </li>
@@ -171,6 +199,7 @@
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath }/admin/bootstrap-grid"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -183,15 +212,25 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li> -->
+
                     <li class="active">
                         <a href="${pageContext.request.contextPath }/admin/blank-page"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath }/admin/index-rtl"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+
 </body>
 </html>
