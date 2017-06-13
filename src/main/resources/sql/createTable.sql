@@ -11,10 +11,6 @@ create table usertable(
   password varchar2(20),
   tell varchar2(20),
   user_pic varchar2(50),
-  user_code varchar2(20),
-  travel_like varchar2(20),
-  tasty_like varchar2(20),
-  look_like varchar2(20),
   point number(10)
 );
 
@@ -33,12 +29,17 @@ drop table blog;
 
 create table blog(
   id primary key constraint id_blog_fk references usertable(id),
-  blog_title varchar2(30),
-  blog_cont varchar2(200),
   blog_num number(4),
   category varchar2(20),
+  content_code varchar2(20),
+  blog_title varchar2(30),
+  blog_cont varchar2(200),
   blog_img varchar2(50)
 );
+
+select * from BLOG where id='a';
+
+insert into blog values('a','1','볼거리','aa02a2','제에목','내애요옹','캐비.jpg');
 
 
 drop table avg_score;
@@ -160,6 +161,7 @@ drop table look_info;
 
 create table look_info(
   content_code varchar2(20) constraint content_code_li_pk primary key,
+  id constraint look_info_id_fk references usertable(id),
   look_title varchar2(50),
   look_story varchar2(200),
   look_maker varchar2(20),

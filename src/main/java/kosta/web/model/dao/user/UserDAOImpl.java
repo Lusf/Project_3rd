@@ -16,14 +16,14 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public int userJoin(UserVo userVo) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert("userMapper.userJoin",userVo);
 	}
 
 	@Override
 	public UserVo userSearchById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectOne("userMapper.userSearchById",id);
 	}
 
 }

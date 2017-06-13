@@ -11,4 +11,9 @@ public class EnterController {
 	public String enterMain(){
 		return "entertainment/enterMain";
 	}
+	
+	@RequestMapping("detailView")
+	public String detailView(){
+		return "entertainment/detailView";
+	}
 }

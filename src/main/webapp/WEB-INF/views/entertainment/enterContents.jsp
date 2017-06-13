@@ -2,6 +2,199 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- star plugin -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
+<script type="text/javascript">
+
+var __slice = [].slice;
+
+(function($, window) {
+    var Starrr;
+
+    Starrr = (function() {
+        Starrr.prototype.defaults = {
+            rating: void 0,
+            numStars: 5,
+            change: function(e, value) {}
+        };
+
+        function Starrr($el, options) {
+            var i, _, _ref,
+                _this = this;
+
+            this.options = $.extend({}, this.defaults, options);
+            this.$el = $el;
+            _ref = this.defaults;
+            for (i in _ref) {
+                _ = _ref[i];
+                if (this.$el.data(i) != null) {
+                    this.options[i] = this.$el.data(i);
+                }
+            }
+            this.createStars();
+            this.syncRating();
+            this.$el.on('mouseover.starrr', 'i', function(e) {
+                return _this.syncRating(_this.$el.find('i').index(e.currentTarget) + 1);
+            });
+            this.$el.on('mouseout.starrr', function() {
+                return _this.syncRating();
+            });
+            this.$el.on('click.starrr', 'i', function(e) {
+                return _this.setRating(_this.$el.find('i').index(e.currentTarget) + 1);
+            });
+            this.$el.on('starrr:change', this.options.change);
+        }
+
+        Starrr.prototype.createStars = function() {
+            var _i, _ref, _results;
+
+            _results = [];
+            for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+                _results.push(this.$el.append("<i class='fa fa-star-o'></i>"));
+            }
+            return _results;
+        };
+
+        Starrr.prototype.setRating = function(rating) {
+            if (this.options.rating === rating) {
+                rating = void 0;
+            }
+            this.options.rating = rating;
+            this.syncRating();
+            return this.$el.trigger('starrr:change', rating);
+        };
+
+        Starrr.prototype.syncRating = function(rating) {
+            var i, _i, _j, _ref;
+
+            rating || (rating = this.options.rating);
+            if (rating) {
+                for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+                    this.$el.find('i').eq(i).removeClass('fa-star-o').addClass('fa-star');
+                }
+            }
+            if (rating && rating < 5) {
+                for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+                    this.$el.find('i').eq(i).removeClass('fa-star').addClass('fa-star-o');
+                }
+            }
+            if (!rating) {
+                return this.$el.find('i').removeClass('fa-star').addClass('fa-star-o');
+            }
+        };
+
+        return Starrr;
+
+    })();
+    return $.fn.extend({
+        starrr: function() {
+            var args, option;
+
+            option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+            return this.each(function() {
+                var data;
+
+                data = $(this).data('star-rating');
+                if (!data) {
+                    $(this).data('star-rating', (data = new Starrr($(this), option)));
+                }
+                if (typeof option === 'string') {
+                    return data[option].apply(data, args);
+                }
+            });
+        }
+    });
+})(window.jQuery, window);  /* star plugin끝 */
+
+$(function() {
+    return $(".starrr").starrr();
+});
+
+$( document ).ready(function() {
+      
+  $('#stars').on('starrr:change', function(e, value){
+    $('#count').html(value);
+  });
+  
+  $('#stars-existing').on('starrr:change', function(e, value){
+    $('#count-existing').html(value);
+  });
+  
+});
+</script> 
+
+<!-- detailView... -->
+<section class="post-list" id="news">
+
+	<!-- SINGLE NEWS ITEM -->
+	<div class="swiper-slide">
+		<div class="post-entry wow fadeInUp">
+			<br><br>
+ 			<a href="#"
+				data-toggle="modal" data-target="#post-01" class="post-entry-more">
+				read more 
+			</a> 
+		</div>
+	</div> 
+
+	<!-- detail MODAL -->
+	<div class="modal fade" id="post-01" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+			<!-- NEWS MODAL CONTENT -->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
+						<h3 class="section-heading">Duis aute irure dolor in
+							reprehenderit in voluptate.</h3>
+
+						<a href="#" data-toggle="modal" data-target="#starScore"
+							class="post-entry-more">★</a>
+
+						<!-- picture -->
+						<span class="post-entry-cover"
+							style="background-image:url(${pageContext.request.contextPath}/resources/images/entertainment/zootopia.jpg);"></span>
+
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam,</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /detail modal 끝 -->
+			
+			<!-- starScore modal -->		
+			<div class="modal fade" id="starScore" role="dialog" tabindex="-1">
+				<div class="modal-dialog" >
+				
+				<!-- star  -->
+				<div class="container"> 
+					<div class="row lead">
+					<span id="stars-existing" class="starrr" data-rating='1'></span> 
+					<span id="count-existing">1</span>점
+					</div>
+				</div><!-- star 끝 -->
+				
+				<!-- save, cancle -->
+				<div class="modal-footer">
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Save</button>
+                    </div>
+                </div><!-- save,cancle 끝 -->
+                
+				</div><!-- modal-dialog 끝 -->
+
+			</div><!-- starScore modal 끝 -->
+</section>
+
+
 <!--  Main 슬라이더 부분 -->
 <section class="home section image-slider" id="home">
 	<div class="home-slider text-center">
@@ -58,6 +251,7 @@
 			<h1>Have You Seen our Works?</h1>
 			<p>Duis mollis placerat quam, eget laoreet tellus tempor eu.
 				Quisque dapibus in purus in dignissim.</p>
+			<a href="${pageContext.request.contextPath}/entertainment/detailView" >안녕♡</a>
 		</div>
 		<ul class="nav nav-pills">
 			<li class="filter" data-filter="all"><a href="#noAction">All</a>
