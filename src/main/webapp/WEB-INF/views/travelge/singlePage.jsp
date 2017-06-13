@@ -11,19 +11,17 @@
 
 </head>
 
-	<div class="row">
-		
-			<div class="card">
-				<div class="card-panel">
-					<div style="text-align: center">
-					</div>
-					<h2>타이틀 영역</h2>
-					<span>I am a very simple card. I am good at containing small
-						bits of information. I am convenient because I require little
-						markup to use effectively. I am similar to what is called a panel
-						in other frameworks. </span>
-				</div>
-			</div>
+<div class="row">
 
+	<div class="card">
+		<div class="card-panel" style="text-align: center">
+			<h2>타이틀 영역</h2>
+			<span>I am a very simple card. I am good at containing small
+				bits of information. I am convenient because I require little markup
+				to use effectively. I am similar to what is called a panel in other
+				frameworks. </span>
+		</div>
 	</div>
+
+</div>
 </html>
