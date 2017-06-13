@@ -21,8 +21,8 @@
 <script src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script>
 <!-- boostrap -->
 <script src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js"></script>
-<!-- custom script -->
-<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
+<!-- custom script --><%-- 
+<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script> --%>
 <!-- app -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 <!-- blog -->
@@ -32,13 +32,12 @@
 <!-- Google fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 <!-- Google Icon -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- Load Roboto font -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <!-- font awesome -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- bootstrap -->
-<link rel="stylesheet" href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>" >
 <link rel="stylesheet" href="<c:url value= '/resources/pluton/css/bootstrap-responsive.css'/>" />
 <!-- animate.css -->
 <link rel="stylesheet" href="<c:url value= '/resources/assets/animate/animate.css'/>" >
@@ -51,7 +50,7 @@
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/carousel.css'/>">
 <!-- blog -->
-<link href="css/blog-post.css" rel="stylesheet">
+<link rel="stylesheet" href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>" >
 
 <style>
 /* container 간격 조절 */
@@ -63,6 +62,7 @@
 	margin-left: 15px;
 	line-height: 1.4;
 }
+.list-unstyled li{font-size: 20px;}
 
 /* 화면 조절 */
 .col-lg-8 {
@@ -74,9 +74,6 @@
 	top: 7em;
 	left: 72%;
 }
-
-/* 검색 부분 */
-.btn-default {height: 10px; width: 20px;}
 
 /* 내부 */
 .blogTop {height: 50px; width: 100%;}
@@ -97,17 +94,17 @@
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
 
-                <!-- Blog Post -->
-                
+                <!-- Blog Post -->                
+                <c:forEach items="${list}" var="list">
                 <table class="blogTop">
                 	<tr>
                 		<td>
                 			<!-- Title -->
-                			<h1>Blog Post Title</h1>
+                			<h1>${list.blogTitle}</h1>
                 		</td>
                 		<td>
                 			<!-- Date/Time -->
-               				<p><span class="glyphicon glyphicon-time"></span> 2017.06.13 화요일</p>
+               				<p><span class="glyphicon glyphicon-time"></span>${list.blogDate}</p>
                 		</td>
                 	</tr>
                 </table>
@@ -115,16 +112,13 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                	<img src="${pageContext.request.contextPath}/resources/user/${list.id}/blog/${list.blogImg}" />
+                
 
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+                <p class="lead">${list.blogCont}</p>
 
                 <hr>
 
@@ -184,6 +178,7 @@
                     </div>
                 </div>
 
+                </c:forEach>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
@@ -195,22 +190,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+                                <li><a href="#">Travelge</a></li>
+                                <li><a href="#">Entertainment</a></li>
+                                <li><a href="#">Food</a></li>
                             </ul>
                         </div>
                     </div>

@@ -33,18 +33,15 @@ create table blog(
   category varchar2(20),
   content_code varchar2(20),
   blog_title varchar2(30),
-<<<<<<< HEAD
   blog_date date,
-=======
->>>>>>> 65be714ff97d4547ac20760576a5c04b666f9b55
   blog_cont varchar2(200),
   blog_img varchar2(50)
 );
 
 select * from BLOG where id='a';
 
-insert into blog values('a','1','볼거리','aa02a2','제에목','내애요옹','캐비.jpg');
-
+insert into blog values('a','1','볼거리','aa02a2','제에목',sysdate,'내애요옹','캐비.jpg');
+commit
 
 drop table avg_score;
 
