@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-=======
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+
 <%@ taglib uri="http://www.springframework.org/security/tags"  prefix="sec"%>
->>>>>>> 3ec4c39e5ef2d5ffcbb3438d96b2fb3146b9943a
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -220,12 +216,12 @@
                         <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li> -->
 
-                    <li class="active">
+<%--                     <li class="active">
                         <a href="${pageContext.request.contextPath }/admin/blank-page"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath }/admin/index-rtl"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li>
+                    </li> --%>
 
                 </ul>
             </div>
