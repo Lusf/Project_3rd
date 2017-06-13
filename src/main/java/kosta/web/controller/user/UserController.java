@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -92,5 +93,17 @@ public class UserController {
 	@RequestMapping("userSearchById")
 	public String userSearchById(String id) {
 		return null;
+	}
+	
+	//마이페이지
+	@RequestMapping("mypage")
+	public ModelAndView mypage(HttpServletRequest req, String id){
+		System.out.println(id);
+		
+		String sss = req.getUserPrincipal().getName();
+
+		System.out.println(sss);
+		
+		return new ModelAndView("mypage/mypage", "userInfo", null);
 	}
 }

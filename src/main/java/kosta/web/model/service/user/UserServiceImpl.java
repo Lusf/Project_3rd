@@ -46,8 +46,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVo userSearchById(String id) {
-		// TODO Auto-generated method stub
+		
 		return null;
+	}
+
+	@Override
+	public UserVo userInfo(String id) {
+		
+		return userDAO.userSearchById(id);
 	}
 
 }

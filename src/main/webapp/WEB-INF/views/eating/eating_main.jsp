@@ -19,11 +19,6 @@
 
 <body data-offset="50" data-spy="scroll" data-target=".navbar" class="dark-theme">
 	
-	<!-- header -->
-<%@include file="/WEB-INF/views/includeFile.jsp" %>
-<%@include file="/WEB-INF/views/header.jsp"%>
-
-	
 	<!-- 상단 HEADER -->
 	<%-- <nav class="navbar navbar-fixed-top shadow" id="js-nav">
 		<div class="container-fluid">

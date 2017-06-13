@@ -26,4 +26,5 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("userMapper.userSearchById",id);
 	}
 
+	
 }

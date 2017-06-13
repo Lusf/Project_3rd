@@ -18,7 +18,7 @@
 		parameterType="String">
 		SELECT
 		<include refid="userColumn" />
-		FROM usertable
+		FROM USERTABLE
 		WHERE id = #{_parameter}
 	</select>
 

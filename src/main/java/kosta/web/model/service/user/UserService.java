@@ -13,4 +13,5 @@ public interface UserService {
 
 	UserVo userSearchById(String id);
 
+	UserVo userInfo(String id);
 }

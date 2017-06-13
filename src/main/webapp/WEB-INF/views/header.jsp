@@ -83,6 +83,7 @@ li span {
 			<sec:authentication property="principal.id" /> 
 			 님 환영합니다.
 			 </div> <!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+			<a href="user/mypage">My Page</a>
 			<a href="javascript:logout();">로그아웃</a>
 		</sec:authorize>
 		<sec:authorize access="!isAuthenticated()">
