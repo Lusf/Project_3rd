@@ -39,7 +39,30 @@
 		})
 	})
 </script>
+<!-- 스크롤 페이징 -->
+<script>
 
+	var currentPage = 1;
+    function getReadList() { 
+        $('#loading').html('데이터 로딩중입니다.');
+        //ajax
+        $.post("data.html?action=getLastList&lastID=" + $(".list:last").attr("id"),    
+        function(data){
+            if (data != "") {
+                $(".list:last").after(data);            
+            }
+            $('#loading').empty();
+        });
+    }; 
+    //무한 스크롤
+    $(window).scroll(function() { 
+        if($(window).scrollTop() == $(document).height() - $(window).height()){
+        	currentPage = currentPage+1;
+           	 getReadList();
+        }
+    });  
+
+        </script>
 </head>
 <body style="background-color: black">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
@@ -51,10 +74,11 @@
 		<div class="dropdown" role="presentation" style="width: 100%">
 			<button class="btn btn-default dropdown-toggle" type="button"
 				id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="true" style="width:100%">
+				aria-expanded="true" style="width: 100%">
 				전국 <span class="caret"></span>
 			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="locationDropdown">
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
+				id="locationDropdown">
 				<li><a href="#">전국</a></li>
 				<li><a href="#">서울</a></li>
 				<li><a href="#">경기/인천</a></li>
@@ -65,7 +89,7 @@
 				<li><a href="#">경남/울산</a></li>
 				<li><a href="#">전북</a></li>
 				<li><a href="#">전남/광주</a></li>
-				<li><a href="#">제주도</a></li>							
+				<li><a href="#">제주도</a></li>
 			</ul>
 		</div>
 	</div>
@@ -90,7 +114,129 @@
 		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
 	</div>
 
+<div class="list">content</div>
 
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list">content</div>
+
+	<div class="list" id="9">content</div>
+
+	<div id="loading"></div>
 
 
 
