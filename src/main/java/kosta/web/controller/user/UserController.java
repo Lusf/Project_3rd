@@ -5,6 +5,8 @@ import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,13 +103,12 @@ public class UserController {
 	
 	//마이페이지
 	@RequestMapping("mypage")
-	public ModelAndView mypage(HttpServletRequest req, String id){
-		System.out.println(id);
+	public ModelAndView mypage(HttpServletRequest req){
 		
-		String sss = req.getUserPrincipal().getName();
-
-		System.out.println(sss);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
-		return new ModelAndView("mypage/mypage", "userInfo", null);
+		UserVo uservo = (UserVo)authentication.getPrincipal();
+		
+		return new ModelAndView("mypage/mypage", "userInfo", uservo);
 	}
 }
