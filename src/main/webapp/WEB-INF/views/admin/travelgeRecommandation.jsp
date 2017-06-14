@@ -98,8 +98,8 @@
 											features : {
 												left : 250,
 												top : 65,
-												width : 400,
-												height : 190,
+												width : 465,
+												height : 220,
 												scrollbars : 0
 											}, //팝업창 사이즈 
 											popPageUrl : '${pageContext.request.contextPath}/daumOpenEditor/imagePopup' //팝업창 주소 
