@@ -10,7 +10,7 @@
 <context:component-scan base-package="kosta.web.security"/>
 
 <security:http use-expressions="true" auto-config="true">
-<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>	
+ <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>	
 	<!-- <security:intercept-url pattern="/member/main" access="isAuthenticated()"/> -->
 	
 	<security:form-login
@@ -28,6 +28,7 @@
 		logout-url="/user/logout"
 		logout-success-url="/"
 	 />
+	 
 </security:http>
 
 <security:authentication-manager>
