@@ -18,8 +18,12 @@
 </sql>
 
 <!-- select -->
-<select id="selectBlog" parameterType="string" resultMap="blogMap">
-	select <include refid="blogColumn"/> from blog where id=#{value}
+<select id="selectCont" parameterType="map" resultMap="blogMap">
+	select <include refid="blogColumn"/> from blog where id=#{id} and content_code=#{contentCode}
+</select>
+
+<select id="selectTitle" parameterType="map" resultMap="blogMap">
+	select blog_title, content_code from blog where id=#{id} and category=#{category}
 </select>
 
 <!-- insert -->

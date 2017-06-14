@@ -19,7 +19,12 @@
 							</div>
 						</li>
 						<!-- 이미지 첨부 버튼 끝 -->
-						<li class="tx-list">
+
+							<ul class="tx-extra-menu tx-menu" style="left:-48px;" unselectable="on">
+								<!--
+									@decsription
+									일부 버튼들을 빼서 레이어로 숨기는 기능을 원할 경우 이 곳으로 이동시킬 수 있다.
+															<li class="tx-list">
 							<div unselectable="on" id="tx_file" class="tx-file tx-btn-trans">
 								<a href="javascript:;" title="파일" class="tx-text">파일</a>
 							</div>
@@ -33,10 +38,6 @@
 							<div unselectable="on" class="tx-btn-nlrbg tx-extra">
 								<a href="javascript:;" class="tx-icon" title="버튼 더보기">버튼 더보기</a>
 							</div>
-							<ul class="tx-extra-menu tx-menu" style="left:-48px;" unselectable="on">
-								<!--
-									@decsription
-									일부 버튼들을 빼서 레이어로 숨기는 기능을 원할 경우 이 곳으로 이동시킬 수 있다.
 								-->
 							</ul>
 						</li>
@@ -49,13 +50,13 @@
 							</div>
 						</li>
 					</ul>
-					<ul class="tx-bar tx-bar-right tx-nav-opt">
+					<!-- <ul class="tx-bar tx-bar-right tx-nav-opt">
 						<li class="tx-list">
 							<div unselectable="on" class="tx-switchtoggle" id="tx_switchertoggle">
 								<a href="javascript:;" title="에디터 타입">에디터</a>
 							</div>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 

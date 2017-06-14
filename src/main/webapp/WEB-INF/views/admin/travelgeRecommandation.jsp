@@ -14,8 +14,9 @@
 	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
 <title>Travelge Recommandation</title>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
+	type="text/javascript" charset="utf-8"></script>
 
 
 </head>
@@ -43,27 +44,49 @@
 						</ol>
 					</div>
 					<div class="col-lg-12">
-					<form name="tx_editor_form" id="tx_editor_form" action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert" method="post" accept-charset="utf-8">
-					<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
-					<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}">
-					<input type="submit" value="전송" onclick="saveContent()">
-					</form>
-						
+						<form name="tx_editor_form" id="tx_editor_form"
+							action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert"
+							method="post" accept-charset="utf-8">
+													<div class="panel panel-default">
+							                            <div class="form-group">
+								
+									
+									                            <div class="form-group input-group">
+                                <span class="input-group-addon">제목</span>
+                                <input type="text" class="form-control" placeholder="제목을 작성해주세요">
+                            </div>
+									
+								</div>
+							<div class="panel-body"><jsp:include
+								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
+						</div>
+							<input type="hidden" name="contentCode" value="A2RECODE">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}"> 
+							<div style="text-align: center; margin-bottom: 3em">
+							<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
+							<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>	
+							
+								
+						</form>
+
 
 
 						<script type="text/javascript">
-						if('${board!=null}'=='true') Editor.modify({'content': '${board.board_content}'});
+							if ('${board!=null}' == 'true')
+								Editor.modify({
+									'content' : '${board.board_content}'
+								});
 
-						
-						var config = {
-								txHost: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
-								txPath: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
-								txService: 'sample', /* 수정필요없음. */
-								txProject: 'sample', /* 수정필요없음. 프로젝트가 여러개일 경우만 수정한다. */
-								initializedId: "", /* 대부분의 경우에 빈문자열 */
-								wrapper: "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
-								form: 'tx_editor_form'+"", /* 등록하기 위한 Form 이름 */
+							var config = {
+								txHost : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
+								txPath : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
+								txService : 'sample', /* 수정필요없음. */
+								txProject : 'sample', /* 수정필요없음. 프로젝트가 여러개일 경우만 수정한다. */
+								initializedId : "", /* 대부분의 경우에 빈문자열 */
+								wrapper : "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
+								form : 'tx_editor_form' + "", /* 등록하기 위한 Form 이름 */
 								txIconPath : "${ pageContext.request.contextPath }/resources/assets/daumOpenEditor/images/icon/editor/", /* 에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
 								txDecoPath : "${ pageContext.request.contextPath }/resources/assets/daumOpenEditor/images/deco/contents/", /* 본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
 								canvas : {
@@ -82,10 +105,24 @@
 									preventUnload : false
 								},
 								sidebar : {
+
 									attachbox : {
 										show : true,
 										confirmForDeleteAll : true
+									},
+									attacher : {
+										image : {
+											features : {
+												left : 250,
+												top : 65,
+												width : 465,
+												height : 220,
+												scrollbars : 0
+											}, //팝업창 사이즈 
+											popPageUrl : '${pageContext.request.contextPath}/daumOpenEditor/imagePopup' //팝업창 주소 
+										}
 									}
+
 								},
 								size : {
 									contentWidth : 700
@@ -94,7 +131,7 @@
 							EditorJSLoader.ready(function(Editor) {
 								var editor = new Editor(config);
 							});
-							
+
 							function saveContent() {
 								Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
 							}
@@ -114,24 +151,21 @@
 							}
 
 							function setForm(editor) {
-						        var i, input;
-						        var form = editor.getForm();
-						        var content = editor.getContent();
+								var i, input;
+								var form = editor.getForm();
+								var content = editor.getContent();
 
-						        // 본문 내용을 필드를 생성하여 값을 할당하는 부분
-						        var textarea = document.createElement('textarea');
-						        textarea.name = 'recommadationDescription';
-						        textarea.value = content;
-						        textarea.style.display = "none";
-						        form.createField(textarea);
-						        return true;
+								// 본문 내용을 필드를 생성하여 값을 할당하는 부분
+								var textarea = document
+										.createElement('textarea');
+								textarea.name = 'recommadationDescription';
+								textarea.value = content;
+								textarea.style.display = "none";
+								form.createField(textarea);
+								return true;
 							}
-							
 						</script>
-						<div class="panel panel-default">
-							<div class="panel-heading">글머리</div>
-							<div class="panel-body">글내용</div>
-						</div>
+
 
 					</div>
 				</div>
