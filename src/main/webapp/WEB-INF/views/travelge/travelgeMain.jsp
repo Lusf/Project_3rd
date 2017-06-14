@@ -420,5 +420,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
 	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
+	
+	<%@ include file="/WEB-INF/views/travelge/travelge-footer.jsp" %>
 </body>
 </html>
