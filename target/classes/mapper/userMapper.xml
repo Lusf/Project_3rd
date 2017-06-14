@@ -10,14 +10,14 @@
 		<result column="password" property="password" />
 		<result column="tell" property="tell" />
 		<result column="point" property="point" />
+		<result column="user_pic" property="userPic"/>
 	</resultMap>
 
 
 
 	<select id="userSearchById" resultMap="userVo"
-		parameterType="String">
-		SELECT
-		<include refid="userColumn" />
+		parameterType="string">
+		SELECT <include refid="userColumn" />
 		FROM USERTABLE
 		WHERE id = #{_parameter}
 	</select>
