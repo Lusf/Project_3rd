@@ -44,14 +44,22 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo) {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo);
+		
+/*		for (TravelgeInfoVo str : list) {
+			if(travelgeAvgScoreDAO.travelgeAvgScore(str.getAvgScoreVo().getContentCode()) != null)
+			str.setAvgScoreVo(travelgeAvgScoreDAO.travelgeAvgScore(str.getAvgScoreVo().getContentCode()));
+		}*/
+		
+		return list;
 	}
 
 	@Override
 	public int travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		
+		return travelgeRecommandationDAO.travelgeRecommandInsert(travelgeRecommandationVo);
 	}
 
 	@Override

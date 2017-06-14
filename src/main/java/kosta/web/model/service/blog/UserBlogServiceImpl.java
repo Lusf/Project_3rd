@@ -15,12 +15,12 @@ public class UserBlogServiceImpl implements UserBlogService {
 	private UserBlogDAO blogDAO;
 
 	@Override
-	public List<UserBlogVo> userBlog(String id) {
-		return blogDAO.userBlog(id);
+	public List<UserBlogVo> selectCont(String id, String contentCode) {
+		return blogDAO.selectCont(id, contentCode);
 	}
 
 	@Override
-	public List<String> blogTitle(String id, String category) {
+	public List<UserBlogVo> blogTitle(String id, String category) {
 		return blogDAO.blogTitle(id, category);
 	}
 
