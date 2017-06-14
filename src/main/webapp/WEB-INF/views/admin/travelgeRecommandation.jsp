@@ -47,8 +47,19 @@
 						<form name="tx_editor_form" id="tx_editor_form"
 							action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert"
 							method="post" accept-charset="utf-8">
-							<jsp:include
-								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
+													<div class="panel panel-default">
+							                            <div class="form-group">
+									<div>
+										<span>제목</span> <input class="form-control"
+											placeholder="제목을 작성해 주세요"
+											style="width: 50%; text-align: center;"
+											name="recommadationTitle">
+									</div>
+								</div>
+							<div class="panel-body"><jsp:include
+								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
+						</div>
+							<input type="hidden" name="contentCode" value="A2RECODE">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}"> <input type="submit" value="전송"
 								onclick="saveContent()">
@@ -148,10 +159,7 @@
 								return true;
 							}
 						</script>
-						<div class="panel panel-default">
-							<div class="panel-heading">글머리</div>
-							<div class="panel-body">글내용</div>
-						</div>
+
 
 					</div>
 				</div>

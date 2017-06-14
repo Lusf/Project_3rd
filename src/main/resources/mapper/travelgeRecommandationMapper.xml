@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="travelgeRecommandationMapper">
+
+	<resultMap type="kosta.web.model.vo.travelge.TravelgeRecommandationVo" id="travelgeRecommandationVo">
+	<id column="CONTENT_CODE" property="contentCode"/>
+	<result column="RECOMMANDATION_TITLE" property="recommadationTitle"/>
+	<result column="RECOMMANDATION_Description" property="recommadationDescription"/>
+	<result column="READ_NUM" property="readNum"/>
+	</resultMap>
+
+
+	<sql id="RECOMMANDATION">
+	Content_Code, RECOMMANDATION_TITLE, RECOMMANDATION_Description, READ_NUM, RECOMMANDATION_DATE
+	
+	</sql>
+
+	<insert id="recommadationInsert" parameterType="kosta.web.model.vo.travelge.TravelgeRecommandationVo">
+	INSERT INTO TRAVELGE_RECOMMANDATION (Content_Code, RECOMMANDATION_TITLE, RECOMMANDATION_Description, READ_NUM, RECOMMANDATION_DATE)	
+	VALUES (#{contentCode}, #{recommadationTitle},#{recommadationDescription}, 0, SYSDATE)
+	</insert>
+
+
+</mapper>

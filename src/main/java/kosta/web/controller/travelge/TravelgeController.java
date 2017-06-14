@@ -47,8 +47,12 @@ public class TravelgeController {
 		return "travelge/travelgeList";
 	};
 	@RequestMapping("travelgeRecommandInsert")
-	public void travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo){
-		System.out.println(travelgeRecommandationVo.getRecommadationDescription());
+	public String travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo){
+
+		travelgeService.travelgeRecommandInsert(travelgeRecommandationVo);
+		
+		return "admin/index";
+		
 	};
 	
 	public void travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo){

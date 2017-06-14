@@ -56,7 +56,7 @@ public class DaumOpenEditorController {
 			// 저장경로
 			String defaultPath = httpSession.getServletContext().getRealPath("/"); //
 			// 서버기본경로 (프로젝트 폴더 아님)
-			String path = defaultPath + File.separator + "upload" + File.separator + "board"
+			String path = defaultPath + "upload" + File.separator + "board"
 					+ File.separator + "images" + File.separator + ""; //
 			// 저장경로 처리
 			File file = new File(path);

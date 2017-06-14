@@ -50,8 +50,9 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public int travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		
+		return travelgeRecommandationDAO.travelgeRecommandInsert(travelgeRecommandationVo);
 	}
 
 	@Override
