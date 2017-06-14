@@ -7,12 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Blog</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
 <!-- jquery -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.mixitup.js"></script>
 <script
@@ -78,6 +82,8 @@
 <!-- blog -->
 <link rel="stylesheet"
 	href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>">
+<link href="<c:url value= '/resources/css/blog/blog-post.css'/>"
+	rel="stylesheet">
 
 <style>
 /* container 간격 조절 */
@@ -97,42 +103,113 @@
 	font-size: 20px;
 }
 
+.profileImg {
+	margin: 0 auto;
+	width: 100px;
+	height: 100px;
+}
+
 /* 화면 조절 */
-.cont {width: 73%;}
+.cont {
+	width: 73%;
+}
+
 .side {
 	width: 20%;
 	position: absolute;
 	top: 7.7em;
 	left: 73%;
 }
+.footer {margin-top: 300px;}
+
+/* 내부 */
+.blogTop {
+	height: 50px;
+	width: 100%;
+}
+
+.blogTop tr td:FIRST-CHILD {
+	width: 80%;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.blogTop tr td:NTH-CHILD(2) {
+	text-align: right;
+	vertical-align: bottom;
+}
 </style>
 
+<!-- security + ajax를 위해.. -->
+<script type="text/javascript">
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+ 
+$(function() {
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+</script>
+
+<!-- blogTitle을 위한 script -->
 <script>
-$(function(){
-	$("input[name=category]").click(function(){
-		$.ajax({
-			type: "post",
-			url: "blog/selectTitle",
-			data: "category="+$(this).attr('value'),
-			dataType: "json",	//'중복입니다','사용가능합니다'
-			success: function(result){
-				$("#blogTitle tr:eq(0)").nextAll().remove();
-				
-				var str = "";
-				$.each(result, function(index, item){
-					str += "<tr>";
-					str += "<td><a href='#'>"+item+"</a></td>";
-					str += "</tr>";
-				});
-				
-				$("#blogTitle").append(str);
-			},
-			error: function(err){
-				console.log("오류발생: "+err)
-			}
+	$(function() {
+		$(".list-unstyled li a").click(function() {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/blog/selectTitle",
+				type : "post",
+				data : "category="+$(this).attr('id'),
+				dataType : "json", //'중복입니다','사용가능합니다'
+				success : function(result) {
+					$("#blogTitle tr:eq(0)").nextAll().remove();
+
+					var str = "";
+					$.each(result, function(index, item) {
+						str += "<tr>";
+						str += "<td><a href='#'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
+						str += "</tr>";
+					});
+
+					$("#blogTitle").append(str);
+					
+					$("#blogTitle tr td a").click(function() {
+						$.ajax({
+							url : "${pageContext.request.contextPath}/blog/selectCont",
+							type : "post",
+							data : "contentCode="+$(this).children().attr('value'),
+							dataType : "json", //'중복입니다','사용가능합니다'
+							success : function(result) {
+								$(".cont").empty();
+
+								var str = "";
+								$.each(result, function(index, item) {
+									str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td><p><span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
+									str+="<hr>"
+									
+									var img = item.blogImg.split(";");
+									$.each(img, function(imgIndex, imgName){
+										str+="<img src='${pageContext.request.contextPath}/resources/user/"+item.id+"/blog/"+imgName+"' alt='"+imgName+"' />";
+									});
+									
+									str+="<hr>"
+									str+="<p class='lead'>"+item.blogCont+"</p>";
+								});
+
+								$(".cont").html(str);
+							},
+							error : function(err) {
+								console.log("오류발생: " + err)
+							}
+						});
+					});
+				},
+				error : function(err) {
+					console.log("오류발생: " + err)
+				}
+			});
 		});
 	});
-});
 </script>
 
 </head>
@@ -141,53 +218,50 @@ $(function(){
 
 	<!-- Page Content -->
 	<div class="container">
-		<form name="inForm" method="post" id="inForm">
-			<!-- Blog Post Content Column -->
-			<div class="cont">
-				<jsp:include page="blogContent.jsp" />
+		<!-- Blog Post Content Column -->
+		<div class="cont">
+			<h1>리뷰 좀 적어봐!!</h1>
+			<div style="height: 500px"></div>
+		</div>
+
+		<!-- Blog Sidebar Widgets Column -->
+		<div class="side">
+			<!-- Blog Profile Well -->
+			<div class="well">
+				<h4>Blog Owner</h4>
+				<div class="input-group profileImg">
+					<img src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}" alt="${blogUserPic}"/>
+					<h1>${blogId}</h1>
+				</div>
+				<!-- /.input-group -->
 			</div>
 			
-			<!-- Blog Sidebar Widgets Column -->
-			<div class="side">
-				<!-- Blog Categories Well -->
-				<div class="well">
-					<h4>Blog Categories</h4>
-					<div class="row">
-						<div class="col-lg-6">
+			<!-- Blog Categories Well -->
+			<div class="well">
+				<h4>Blog Categories</h4>
+				<div class="row">
+					<div class="col-lg-6">
+						<form name="listForm" method="post" id="listForm">
 							<ul class="list-unstyled">
-								<li><input type="button" id="travelge" name="category" value="Travelge" /></li>
-								<li><input type="button" id="entertainment" name="category" value="Entertainment" /></li>
-								<li><input type="button" id="food" name="category" value="Food" /></li>
+								<li><a href="#" id="Travelge">Travelge</a></li>
+								<li><a href="#" id="Entertainment">Entertainment</a></li>
+								<li><a href="#" id="Food">Food</a></li>
 							</ul>
-						</div>
+						</form>
 					</div>
-					<!-- /.row -->
 				</div>
-
-				<!-- Side Widget Well -->
-				<div class="well">
-					<table id="blogTitle">
-						<tr>
-							<td><h4>Title</h4></td>
-						</tr>
-					</table>
-				</div>
-
-				<!-- Blog Search Well -->
-				<div class="well">
-					<h4>Blog Search</h4>
-					<div class="input-group">
-						<input type="text" class="form-control"> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-					</div>
-					<!-- /.input-group -->
-				</div>
+				<!-- /.row -->
 			</div>
-		</form>
+
+			<!-- Side Widget Well -->
+			<div class="well">
+				<table id="blogTitle">
+					<tr>
+						<td><h4>Title</h4></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 	<!-- /.container -->
 

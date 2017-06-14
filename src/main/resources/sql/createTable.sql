@@ -14,7 +14,6 @@ create table usertable(
   point number(10)
 );
 
-
 drop table authorities;
 
 CREATE TABLE AUTHORITIES(
@@ -40,9 +39,21 @@ create table blog(
 );
 
 select * from BLOG where id='a';
+truncate table blog;
 
 insert into blog values('a','1','Entertainment','ba02a2','볼거리제목',sysdate,'뭘 볼까..','캐비.jpg');
 insert into blog values('a','2','Food','ca02a2','먹거리제목',sysdate,'밥바밥바밥바바밥','캐비.jpg');
+insert into blog values('a','3','Entertainment','b354654','볼거리제목2',sysdate,'뭘 볼까2..','캐비.jpg');
+insert into blog values('a','4','Entertainment','b4324354','볼거리제목3',sysdate,'뭘 볼까3..','캐비.jpg');
+insert into blog values('a','5','Food','c00000','먹거리2',sysdate,'먹거리2..','캐비.jpg');
+insert into blog values('a','6','Travelge','a65465','여행1',sysdate,'여행1..','캐비.jpg');
+insert into blog values('a','7','Travelge','a765465415','여행2',sysdate,'여행2..','캐비.jpg');
+insert into blog values('a','8','Travelge','a8654sdf','여행3',sysdate,'여행3..','캐비.jpg');
+
+insert into blog values('b','1','Entertainment','b654654','볼거리제목3',sysdate,'뭘 볼까3..','캐비.jpg;미이라.jpg;원더우먼.jpg');
+insert into blog values('b','2','Food','c6546','먹거리2',sysdate,'먹거리2..','심야.jpg;베이블레.jpg');
+insert into blog values('b','3','Travelge','a65465','여행1',sysdate,'여행1..','악녀.jpg');
+
 commit
 
 drop table avg_score;
