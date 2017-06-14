@@ -47,11 +47,28 @@
 						<form name="tx_editor_form" id="tx_editor_form"
 							action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert"
 							method="post" accept-charset="utf-8">
-							<jsp:include
-								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
+													<div class="panel panel-default">
+							                            <div class="form-group">
+								
+									
+									                            <div class="form-group input-group">
+                                <span class="input-group-addon">제목</span>
+                                <input type="text" class="form-control" placeholder="제목을 작성해주세요">
+                            </div>
+									
+								</div>
+							<div class="panel-body"><jsp:include
+								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
+						</div>
+							<input type="hidden" name="contentCode" value="A2RECODE">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}"> <input type="submit" value="전송"
-								onclick="saveContent()">
+								value="${_csrf.token}"> 
+							<div style="text-align: center; margin-bottom: 3em">
+							<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
+							<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>	
+							
+								
 						</form>
 
 
@@ -148,10 +165,7 @@
 								return true;
 							}
 						</script>
-						<div class="panel panel-default">
-							<div class="panel-heading">글머리</div>
-							<div class="panel-body">글내용</div>
-						</div>
+
 
 					</div>
 				</div>

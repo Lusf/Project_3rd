@@ -33,40 +33,40 @@ public class DaumOpenEditorController {
       
       HashMap fileInfo = new HashMap(); // CallBack할 때 이미지 정보를 담을 Map
 
-      // 업로드 파일이 존재하면
-      if (multipartFile != null && !(multipartFile.getOriginalFilename().equals(""))) {
-         // 확장자 제한
-         String originalName = multipartFile.getOriginalFilename(); // 실제
-                                 // 파일명
-         String originalNameExtension = originalName.substring(originalName.lastIndexOf(".") + 1)
-               .toLowerCase(); // 실제파일 확장자 (소문자변경)
-         if (!((originalNameExtension.equals("jpg")) || (originalNameExtension.equals("gif"))
-               || (originalNameExtension.equals("png"))
-               || (originalNameExtension.equals("bmp")))) {
-            fileInfo.put("result", -1); // 허용 확장자가 아닐 경우
-            return fileInfo;
-         }
-         // 파일크기제한 (1MB)
-         long filesize = multipartFile.getSize();// 파일크기
-         long limitFileSize = 1 * 1024 * 1024; // 1MB
-         if (limitFileSize < filesize) { // 제한보다 파일크기가 클 경우
-            fileInfo.put("result", -2);
-            return fileInfo;
-         }
-         // 저장경로
-         String defaultPath = httpSession.getServletContext().getRealPath("/"); //
-         // 서버기본경로 (프로젝트 폴더 아님)
-         String path = defaultPath + "upload" + File.separator + "board"
-               + File.separator + "images" + File.separator + ""; //
-         // 저장경로 처리
-         File file = new File(path);
-         if (!file.exists()) { // 디렉토리 존재하지 않을경우 디렉토리 생성
-            file.mkdirs();
-         } // 파일 저장명 처리 (20150702091941-fd8-db619e6040d5.확장자)
-         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-         String today = formatter.format(new Date());
-         String modifyName = today + "-" + UUID.randomUUID().toString().substring(20) + "."
-               + originalNameExtension;
+		// 업로드 파일이 존재하면
+		if (multipartFile != null && !(multipartFile.getOriginalFilename().equals(""))) {
+			// 확장자 제한
+			String originalName = multipartFile.getOriginalFilename(); // 실제
+											// 파일명
+			String originalNameExtension = originalName.substring(originalName.lastIndexOf(".") + 1)
+					.toLowerCase(); // 실제파일 확장자 (소문자변경)
+			if (!((originalNameExtension.equals("jpg")) || (originalNameExtension.equals("gif"))
+					|| (originalNameExtension.equals("png"))
+					|| (originalNameExtension.equals("bmp")))) {
+				fileInfo.put("result", -1); // 허용 확장자가 아닐 경우
+				return fileInfo;
+			}
+			// 파일크기제한 (1MB)
+			long filesize = multipartFile.getSize();// 파일크기
+			long limitFileSize = 1 * 1024 * 1024; // 1MB
+			if (limitFileSize < filesize) { // 제한보다 파일크기가 클 경우
+				fileInfo.put("result", -2);
+				return fileInfo;
+			}
+			// 저장경로
+			String defaultPath = httpSession.getServletContext().getRealPath("/"); //
+			// 서버기본경로 (프로젝트 폴더 아님)
+			String path = defaultPath + "upload" + File.separator + "board"
+					+ File.separator + "images" + File.separator + ""; //
+			// 저장경로 처리
+			File file = new File(path);
+			if (!file.exists()) { // 디렉토리 존재하지 않을경우 디렉토리 생성
+				file.mkdirs();
+			} // 파일 저장명 처리 (20150702091941-fd8-db619e6040d5.확장자)
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+			String today = formatter.format(new Date());
+			String modifyName = today + "-" + UUID.randomUUID().toString().substring(20) + "."
+					+ originalNameExtension;
 
          // Multipart 처리
          try {
