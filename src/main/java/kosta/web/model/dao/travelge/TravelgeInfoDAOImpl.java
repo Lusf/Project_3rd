@@ -2,6 +2,7 @@ package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,8 +35,10 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 
 	@Override
 	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo) {
-
-			return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch");
+			 travelgeInfoVo.setTravelgeAddr("Áß±¸");
+			 int offset = 1;
+			 //System.out.println(travelgeInfoVo.getTravelgeName());
+			return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(offset, 10));
 
 	}
 

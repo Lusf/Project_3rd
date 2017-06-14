@@ -12,9 +12,7 @@
 <meta name="author" content="">
 
 <title>Travelge Info</title>
-<link
-	href="<c:url value= '/resources/assets/admin/css/dataTables.bootstrap4.css'/>"
-	rel="stylesheet">
+
 </head>
 
 <body>
@@ -90,10 +88,7 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.dataTables.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/dataTables.bootstrap4.js"></script>
+
 </body>
 
 </html>
