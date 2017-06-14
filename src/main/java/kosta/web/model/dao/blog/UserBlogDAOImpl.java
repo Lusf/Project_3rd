@@ -20,6 +20,16 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 	public List<UserBlogVo> userBlog(String id) {
 		return sqlSession.selectList("blogMapper.selectBlog", id);
 	}
+	
+	@Override
+	public List<String> blogTitle(String id, String category) {
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("id", id);
+		map.put("category", category);
+		
+		return sqlSession.selectList("blogMapper.selectTitle", map);
+	}
 
 	@Override
 	public int insert(UserBlogVo blogVo) {
