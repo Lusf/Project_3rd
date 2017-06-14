@@ -12,4 +12,11 @@ insert into LOOKGOOD_BOARD values(2, 'lim2', sysdate, '이거보세요', '재미없어', 
 insert into LOOKGOOD_BOARD values(3, 'lim2', sysdate, '저거보세요', '꿀잼', '이미지3');
 insert into LOOKGOOD_BOARD values(4, 'lim2', sysdate, '그거보세요', '그렇구나', '이미지4');
 
+create sequence seq_num 
+start with 1 
+increment BY 1 
+maxvalue 10000
+
+drop sequence seq_num;
+
 commit

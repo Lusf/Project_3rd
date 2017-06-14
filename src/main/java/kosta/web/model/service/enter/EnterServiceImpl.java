@@ -54,13 +54,12 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public int lookgoodBoardUpdate(LookgoodBoardVo lookgoodBoardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return lookgoodBoardDAO.lookgoodBoardUpdate(lookgoodBoardVo);
 	}
 
 	@Override
-	public int lookgoodBoardDelete(int lgbNum) {
-		return lookgoodBoardDAO.lookgoodBoardDelete(lgbNum);
+	public int lookgoodBoardDelete(LookgoodBoardVo lookgoodBoardVo) {
+		return lookgoodBoardDAO.lookgoodBoardDelete(lookgoodBoardVo);
 	}
 
 	@Override

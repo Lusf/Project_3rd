@@ -52,8 +52,8 @@ public class EnterController {
 	
 	//게시글 삭제하기
 	@RequestMapping("board/userBoardDetailView/delete")
-	public String delete(HttpServletRequest request, int lgbNum){
-		int result = enterService.lookgoodBoardDelete(lgbNum);
+	public String delete(HttpServletRequest request, LookgoodBoardVo lookgoodBoardVo){
+		int result = enterService.lookgoodBoardDelete(lookgoodBoardVo);
 		return "redirect:/entertainment/board/userBoardList";
 	}	
 	
@@ -70,5 +70,21 @@ public class EnterController {
 		enterService.lookgoodBoardInsert(lookgoodBoardVo);
 		return "redirect:/entertainment/board/userBoardList";
 	}
-			
+	
+	//게시글 수정하기(수정폼으로 이동)
+	@RequestMapping("board/userBoardUpdate")
+	public ModelAndView updateForm(HttpServletRequest request, int lgbNum){
+		LookgoodBoardVo boardUpBefore = enterService.lookgoodBoardSearchByNum(lgbNum);
+		return new ModelAndView("entertainment/board/userBoardUpdate", "boardUpBefore", boardUpBefore);
+	}
+
+	
+	//게시글 수정하기
+	@RequestMapping("board/userBoardUpdate/update")
+	public ModelAndView update(HttpServletRequest request, LookgoodBoardVo lookgoodBoardVo){
+		enterService.lookgoodBoardUpdate(lookgoodBoardVo);
+		LookgoodBoardVo boardUp =
+				enterService.lookgoodBoardSearchByNum(lookgoodBoardVo.getLgbNum());
+		return new ModelAndView("entertainment/board/userBoardDetailView", "boardList", boardUp);
+	}
 }
