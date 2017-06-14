@@ -21,16 +21,17 @@
 	</resultMap>
 
 	
-	<select id="travelgeInfoSearch" resultMap="selectMap" >
+	<select id="travelgeInfoSearch" resultMap="selectMap" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
 	select * from TRAVELGE_INFO
-<!-- 	<where>
+	<where>
 	<choose>
 	<when test="contentCode!=null">CONTENT_CODE = #{contentCode}</when>
 	<when test="travelgeName!=null">TRAVELGE_NAME LIKE '%'||#{travelgeName}||'%'</when>
+	<when test="travelgeAddr!=null">TRAVELGE_ADDR LIKE '%'||#{travelgeAddr}||'%'</when>
 	<otherwise>1=1</otherwise>
 	</choose>
 	</where>
- -->
+
 	</select>
 
 

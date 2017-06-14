@@ -939,103 +939,6 @@
         </div>
     </section>
 
-	<section id="contact" class="contact contact-with-map">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">contact</h3>
-				</div>
-				<div class="col-md-3">
-					<div class="contact-data">
-						<ul class="white-color">
-							<li><span class="ti-mobile icon"></span>+ 49 123 456 789</li>
-							<li><span class="ti-email icon"></span>mail@example.com</li>
-							<li><span class="ti-skype icon"></span>@choco</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-8 col-md-push-1">
-					<!-- CONTACT FORM -->
-					<div class="contact-form">
-						<form>
-							<div class="form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-							</div>
-
-							<div class="form-group">
-								<input type="text" class="form-control" id="contact-email" name="contact-email" placeholder="Email" required>
-							</div>
-
-							<div class="form-group">
-								<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
-							</div>
-
-							<div class="form-group">
-								<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
-							</div>
-
-							<div class="form-group">
-								<textarea class="form-control" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
-							</div>
-
-							<button type="button" type="button" id="submit" name="submit" class="btn btn-primary btn-lg text-center float-right">Submit your message</button>
-						</form>
-					</div>
-					<!-- / CONTACT FORM -->
-				</div>
-			</div>
-		</div>
-		<!-- GOOGLE MAP CONTAINER -->
-		<div class="google-maps">
-			<div id="map-canvas"></div>
-		</div>
-		<!-- / GOOGLE MAP CONTAINER -->
-	</section>
-
-	<div class="section section-min">
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-4 col-md-push-4 text-center"> <img class="footer-logo" src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png" alt="footer-logo">
-								<div class="social">
-									<ul>
-										<li><a href="http://facebook.com/" target="_blank"><span class="ti-facebook"></span></a></li>
-										<li><a href="https://twitter.com/" target="_blank"><span class="ti-twitter-alt"></span></a></li>
-										<li><a href="http://linkedin.com/" target="_blank"><span class="ti-linkedin"></span></a></li>
-										<li><a href="https://vimeo.com/" target="_blank"><span class="ti-vimeo-alt"></span></a></li>
-										<li><a href="http://youtube.com/" target="_blank"><span class="ti-youtube"></span></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-4 col-md-offset-4 col-sm-12">
-								<div class="footer-newsletter">
-									<div class="center text-center">
-										<h4>stay tuned</h4>
-										<form action="#" method="post">
-											<div class="input-group">
-												<input class="form-control" type="text" placeholder="e-mail"> 
-												<span class="input-group-btn">
-													<button type="button" class="btn btn-default" type="button"><span class="ti-arrow-right"></span></button>
-												</span>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</footer>
-	</div>
 	<script src="<c:url value='/resources/js/eating/vendor/wow.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"></script>
@@ -1043,7 +946,6 @@
 	<script src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/vendor/jquery.inview.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
 	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
 </body>
