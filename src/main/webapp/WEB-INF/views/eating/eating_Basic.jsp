@@ -3,7 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zxx">
+<script type="text/javascript">
 
+/* function addBtn()
+{
+     window.showModalDialog("/images/helper/smp_400_21.jpg", null, \"dialogWidth:400px; dialogHeight:293px; center:1; scroll:0; help:0; status:0")
+} */
+
+</script>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Choco - micro store </title>
@@ -516,7 +523,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="section-heading">리뷰 </h3>
+					<h3 class="section-heading">맛집</h3>
 				</div>
 
 				<div class="col-md-12 testimonials-slider text-center">
@@ -568,13 +575,15 @@
 
 	<section class="text-center shadow section section-min">
 		<div class="about-counter" id="about-counter">
-			<div><span class="btn btn-default"></span>
+			<!-- <div><span class="btn btn-default"  onclick="addBtn()">등록하기 </span> -->
+			<div><span class="h3" href="#" data-toggle="modal" data-target="#new">등록하기 </span>
 			<div class="container">
 				<div class="row">
-					<div class="addBtn">
+					<div class="addBtn" >
 						<!-- SINGLE COUNTER ITEM -->
 						<div class="col-md-3 wow fadeInLeft about-counter-single" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0">
-							<div class="counter"> <span class="ti-crown icon"></span>
+							<div class="counter">
+								<span class="ti-crown icon"></span>
 								<h2 class="timer">250</h2>
 								<p> Projects Finished </p>
 							</div>
@@ -789,6 +798,43 @@
 				</div>
 			</div>
 			<!-- / NEWS MODAL -->
+			
+			<!-- NEWS MODAL -->
+			<div class="modal fade" id="new" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<!-- NEWS MODAL CONTENT -->
+					<div class="modal-content shadow">
+						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+						
+						<div class="modal-body">
+							<div class="post-entry post-entry-modal">
+								<h3 class="section-heading"><input type="text" ></h3> 
+								
+								<span class="post-entry-meta">
+									<img alt="user avatar" class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
+									<span class="post-entry-author-name pull-left"></span> 
+									<span class="post-entry-time pull-right">6 min read
+										<span class="post-entry-category">interior, furnitures</span>
+									</span>
+								</span>
+
+								<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
+
+								<p> <font face="궁서체">테스트입니다.</font> </p> 
+
+								<p> <font face="궁서체">치킨을 먹어보겠슴다. </font></p>
+								
+
+								<p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+
+								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+							</div>
+						</div>
+					</div>
+					<!-- / NEWS MODAL CONTENT -->
+				</div>
+			</div>
+			<!-- / NEWS MODAL -->
 		</div>
 	</section>
 
@@ -986,9 +1032,9 @@
 			</div>
 		</div>
 		<!-- GOOGLE MAP CONTAINER -->
-		<div class="google-maps">
+		<!-- <div class="google-maps">
 			<div id="map-canvas"></div>
-		</div>
+		</div> -->
 		<!-- / GOOGLE MAP CONTAINER -->
 	</section>
 

@@ -5,7 +5,7 @@
 	<sql id="restaurentColumn">
 		<!-- RESTAURANT_NAME ADDRESS CATEGORY content_CODE restaurantName addr 
 			category contentCode -->
-		content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id
+		content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY, restaurant_pic,id
 	</sql>
 
 <!-- 	<resultMap type="kosta.web.model.vo.restaurant.RestaurentVo" id="restaurentSelectMap">
@@ -22,13 +22,13 @@
 		insert into Restaurant_INFO(
 		<include refid="restaurentColumn" />
 		)
-		values (#{restaurantName}, #{addr}, #{category}, #{contentCode},#{id})
+		values (#{restaurantName}, #{addr}, #{category}, #{contentCode},#{pic},#{id})
 	</insert>
 
 	<!-- 맛집정보 확인하기 -->
 	<select id="selectByRestaurant" parameterType="String"
 		resultType="kosta.web.model.vo.restaurant.RestaurentVo">
-		select 	content_CODE as contentCode, RESTAURANT_NAME as restaurantName, ADDRESS as addr, CATEGORY , id
+		select 	content_CODE as contentCode, RESTAURANT_NAME as restaurantName, ADDRESS as addr, CATEGORY,  restaurant_pic as pic, id
 		from Restaurant_INFO
 		<where>
 			<if test="_parameter!=null">
@@ -44,7 +44,8 @@
 	update Restaurant_INFO
 		   set RESTAURANT_NAME = ${restaurantName},
 		   		 ADDRESS = ${addr},
-		   		 CATEGORY = ${category}
+		   		 CATEGORY = ${category},
+		   		 restaurant_pic = ${pic}
 	 where content_CODE=${contentCode}
 	</update>
 	
