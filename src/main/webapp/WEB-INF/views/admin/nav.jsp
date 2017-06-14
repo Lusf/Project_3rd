@@ -164,15 +164,43 @@
 				<li><a href="${pageContext.request.contextPath }/admin/index"><i
 						class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#travelge"> <i class="fa fa-fw fa-sitemap"></i>
-						Travelge <i class="fa fa-fw fa-caret-down"></i></a>
+					data-target="#travelge"> <i class="fa fa-fw fa-sitemap"></i>Travelge <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="travelge" class="collapse">
-						<li><a
+						<li>	
+						<a href="javascript:;" data-toggle="collapse" data-target="#travelgeInfo">Info</a>
+		
+						<ul id="travelgeInfo" class="collapse">
+							<li>
+							<a href="${pageContext.request.contextPath}/admin/travelgeInfo">Insert</a>
+							</li>
+							<li>
+								<a href="">Delete</a>
+							</li>
+							<li>
+								<a href="">Update</a>
+							</li>
+						</ul>
+						</li>
+						<li>
+						<a href="javascript:;" data-toggle="collapse" data-target="#travelgeRecommandation">Recommandation</a>
+						<ul id="travelgeRecommandation" class="collapse">
+							<li>
+								<a href="${pageContext.request.contextPath}/admin/travelgeRecommandation">Insert</a>
+							</li>
+							<li>
+								<a href="">Delete</a>
+							</li>
+							<li>
+								<a href="">Update</a>
+							</li>
+						</ul>
+						</li>
+						<%-- <li><a
 							href="${pageContext.request.contextPath}/admin/travelgeInfo">TravelgeInfo</a>
 						</li>
 						<li><a
 							href="${pageContext.request.contextPath}/admin/travelgeRecommandation">TravelgeRecommandation</a>
-						</li>
+						</li> --%>
 					</ul></li>
 				<!--                   
  

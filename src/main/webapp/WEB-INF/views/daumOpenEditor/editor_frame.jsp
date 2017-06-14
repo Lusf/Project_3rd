@@ -50,13 +50,13 @@
 							</div>
 						</li>
 					</ul>
-					<ul class="tx-bar tx-bar-right tx-nav-opt">
+					<!-- <ul class="tx-bar tx-bar-right tx-nav-opt">
 						<li class="tx-list">
 							<div unselectable="on" class="tx-switchtoggle" id="tx_switchertoggle">
 								<a href="javascript:;" title="에디터 타입">에디터</a>
 							</div>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 
