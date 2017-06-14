@@ -1,5 +1,7 @@
 package kosta.web.model.vo.enter;
 
+import kosta.web.model.vo.UserVo;
+
 /*
  * **LookgoodBoard(유저 추천 게시판)
  * 
@@ -14,6 +16,18 @@ public class LookgoodBoardVo {
 	private String lgbCont;
 	private String lgbImg;
 	
+	private UserVo userVo;
+	
+	
+	
+	public UserVo getUserVo() {
+		return userVo;
+	}
+
+	public void setUserVo(UserVo userVo) {
+		this.userVo = userVo;
+	}
+
 	public LookgoodBoardVo(){}	
 	
 	public LookgoodBoardVo(String id, int lgbNum, String lgbDate, String lgbTitle, String lgbCont, String lgbImg) {

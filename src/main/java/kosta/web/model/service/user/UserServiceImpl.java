@@ -46,8 +46,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVo userSearchById(String id) {
-		
-		return null;
+		return userDAO.userSearchById(id);
 	}
 
 	@Override

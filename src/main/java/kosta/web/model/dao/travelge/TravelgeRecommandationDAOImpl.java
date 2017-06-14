@@ -2,17 +2,21 @@ package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 @Repository
 public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO {
+	@Autowired
+	private SqlSession sqlSession;
 
 	@Override
 	public int travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert("travelgeRecommandationMapper.recommadationInsert", travelgeRecommandationVo);
 	}
 
 	@Override

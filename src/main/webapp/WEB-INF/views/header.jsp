@@ -89,7 +89,7 @@ li span {
 		<sec:authorize access="!isAuthenticated()">
 			<a href="${pageContext.request.contextPath }/user/loginForm"
 				style="margin-right: 1em"> 로그인</a>
-			<a href="user/joinForm">회원가입</a>
+			<a href="${pageContext.request.contextPath }/user/joinForm">회원가입</a>
 		</sec:authorize>
 
 

@@ -72,8 +72,6 @@
 <link rel="stylesheet" href="<c:url value= '/resources/assets/main.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style.css'/>">
 <link rel="stylesheet" href="<c:url value= '/resources/assets/style2.css'/>">
-<link rel="stylesheet" href="<c:url value= '/resources/assets/carousel.css'/>">
-
 <!-- pluton -->
 <link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/pluton.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value= '/resources/pluton/css/jquery.cslider.css'/>" />

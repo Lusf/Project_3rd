@@ -6,17 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script
+	src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
 <style>
 #title-row {
 	margin-top: 6em;
 	padding: 0.5em 0;
 	text-align: center;
-}
-
-#title-font {
-	color: white;
-	font-size: 1.5em;
-	margin: 0 3.5em;
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px) {
@@ -25,100 +22,78 @@
 		padding: 1em 0;
 		background-color: #0d47a1;
 	}
-	#title-font {
-		color: white;
-		font-size: 4em;
-		margin: 0 0.3em;
-	}
 }
 </style>
+<script>
+	$(document).ready(function() {
+		$('#myTab a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		})
+		$('#locationDropdown li').click(function(){
+			var tempText = $(this).text();
+			//alert($(this).text());
+			$('#dropdownMenu1').text(tempText);
+			
+			
+		})
+	})
+</script>
 
 </head>
-<body>
+<body style="background-color: black">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
-
-<div>
 	<div class="row" id="title-row"></div>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home1" aria-controls="home" role="tab" data-toggle="tab">관광지</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">숙박</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">문화</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">레포츠</a></li>
-  </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home1">관광지</div>
-    <div role="tabpanel" class="tab-pane" id="profile">숙박</div>
-    <div role="tabpanel" class="tab-pane" id="messages">문화</div>
-    <div role="tabpanel" class="tab-pane" id="settings">레포츠</div>
-  </div>
-
-</div>
-
-
-
-
-	<div class="row">
-		<div class="col-xs-12 col-md-8 col-md-offset-2"
-			style="padding-right: 0px; padding-left: 0px">
-			<div class="card horizontal">
-				<div class="card-image">
-					<img src="http://lorempixel.com/100/190/nature/6">
-				</div>
-				<div class="card-stacked">
-					<div class="card-content">
-						<p>I am a very simple card. I am good at containing small bits
-							of information.</p>
-					</div>
-					<div class="card-action">
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-			</div>
+	<div class="col-md-offset-5 col-md-2">
+		<div class="dropdown" role="presentation" style="width: 100%">
+			<button class="btn btn-default dropdown-toggle" type="button"
+				id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="true" style="width:100%">
+				전국 <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="locationDropdown">
+				<li><a href="#">전국</a></li>
+				<li><a href="#">서울</a></li>
+				<li><a href="#">경기/인천</a></li>
+				<li><a href="#">충북/대전</a></li>
+				<li><a href="#">충남/세종</a></li>
+				<li><a href="#">부산</a></li>
+				<li><a href="#">경북/대구</a></li>
+				<li><a href="#">경남/울산</a></li>
+				<li><a href="#">전북</a></li>
+				<li><a href="#">전남/광주</a></li>
+				<li><a href="#">제주도</a></li>							
+			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12 col-md-8 col-md-offset-2"
-			style="padding-right: 0px; padding-left: 0px">
-			<div class="card horizontal">
-				<div class="card-image">
-					<img src="http://lorempixel.com/100/190/nature/6">
-				</div>
-				<div class="card-stacked">
-					<div class="card-content">
-						<p>I am a very simple card. I am good at containing small bits
-							of information.</p>
-					</div>
-					<div class="card-action">
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="row"></div>
+	<!-- Tab Title -->
+	<ul id="myTab" class="nav nav-tabs">
+		<li role="presentation" class="active"><a href="#home1"
+			aria-controls="home" role="tab" data-toggle="tab">관광지</a></li>
+		<li role="presentation"><a href="#lodgement"
+			aria-controls="profile" role="tab" data-toggle="tab">숙박</a></li>
+		<li role="presentation"><a href="#cultures"
+			aria-controls="messages" role="tab" data-toggle="tab">문화</a></li>
+		<li role="presentation"><a href="#leports"
+			aria-controls="settings" role="tab" data-toggle="tab">레포츠</a></li>
+	</ul>
+
+	<!-- Tab Contents -->
+	<div id="myTabContent" class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="home1">관광지</div>
+		<div role="tabpanel" class="tab-pane" id="lodgement">숙박</div>
+		<div role="tabpanel" class="tab-pane" id="cultures">문화</div>
+		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12 col-md-8 col-md-offset-2"
-			style="padding-right: 0px; padding-left: 0px">
-			<div class="card horizontal">
-				<div class="card-image">
-					<img src="http://lorempixel.com/100/190/nature/6">
-				</div>
-				<div class="card-stacked">
-					<div class="card-content">
-						<p>I am a very simple card. I am good at containing small bits
-							of information.</p>
-					</div>
-					<div class="card-action">
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+
+
+
 	<%@include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
 </body>
 </html>

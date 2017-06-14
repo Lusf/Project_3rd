@@ -1,5 +1,6 @@
 package kosta.web.model.dao.blog;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,23 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<UserBlogVo> userBlog(String id) {
-		return sqlSession.selectList("blogMapper.selectBlog", id);
+	public List<UserBlogVo> selectCont(String id, String contentCode) {
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("id", id);
+		map.put("contentCode", contentCode);
+		
+		return sqlSession.selectList("blogMapper.selectCont", map);
+	}
+	
+	@Override
+	public List<UserBlogVo> blogTitle(String id, String category) {
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("id", id);
+		map.put("category", category);
+		
+		return sqlSession.selectList("blogMapper.selectTitle", map);
 	}
 
 	@Override
