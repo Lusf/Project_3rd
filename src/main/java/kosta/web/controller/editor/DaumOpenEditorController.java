@@ -19,19 +19,19 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = "/daumOpenEditor")
 
 public class DaumOpenEditorController {
-	// 이미지 첨부 팝업
-	@RequestMapping(value = "/imagePopup")
-	public String imagePopup() {
-		return "daumOpenEditor/image";
-	}
+   // 이미지 첨부 팝업
+   @RequestMapping(value = "/imagePopup")
+   public String imagePopup() {
+      return "daumOpenEditor/image";
+   }
 
-	// 단일 파일 업로드 Ajax
-	@RequestMapping(value = "/singleUploadImageAjax", method = RequestMethod.POST)
-	@ResponseBody
-	public  HashMap singleUploadImageAjax(@RequestParam("Filedata") MultipartFile multipartFile,
-		HttpSession httpSession) {
-		
-		HashMap fileInfo = new HashMap(); // CallBack할 때 이미지 정보를 담을 Map
+   // 단일 파일 업로드 Ajax
+   @RequestMapping(value = "/singleUploadImageAjax", method = RequestMethod.POST)
+   @ResponseBody
+   public  HashMap singleUploadImageAjax(@RequestParam("Filedata") MultipartFile multipartFile,
+      HttpSession httpSession) {
+      
+      HashMap fileInfo = new HashMap(); // CallBack할 때 이미지 정보를 담을 Map
 
 		// 업로드 파일이 존재하면
 		if (multipartFile != null && !(multipartFile.getOriginalFilename().equals(""))) {
@@ -68,36 +68,36 @@ public class DaumOpenEditorController {
 			String modifyName = today + "-" + UUID.randomUUID().toString().substring(20) + "."
 					+ originalNameExtension;
 
-			// Multipart 처리
-			try {
-				// 서버에파일 저장 (쓰기)
-				multipartFile.transferTo(new File(path + modifyName));
+         // Multipart 처리
+         try {
+            // 서버에파일 저장 (쓰기)
+            multipartFile.transferTo(new File(path + modifyName));
 
-				// 로그
-				System.out.println("** upload 정보**");
-				System.out.println("** path : " + path + "**");
-				System.out.println("** originalName : " + originalName + " **");
-				System.out.println("** modifyName : " + modifyName + " **");
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("이미지파일업로드 실패 - singleUploadImageAjax");
-			}
+            // 로그
+            System.out.println("** upload 정보**");
+            System.out.println("** path : " + path + "**");
+            System.out.println("** originalName : " + originalName + " **");
+            System.out.println("** modifyName : " + modifyName + " **");
+         } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("이미지파일업로드 실패 - singleUploadImageAjax");
+         }
 
-			// CallBack - Map에 담기
-			String imageurl = httpSession.getServletContext().getContextPath() + "/upload/board/images/"
-					+ modifyName; // separator와는 다름!
-			fileInfo.put("imageurl", imageurl); // 상대파일경로(사이즈변환이나
-								// 변형된 파일)
-			fileInfo.put("filename", modifyName); // 파일명
-			fileInfo.put("filesize", filesize); // 파일사이즈
-			fileInfo.put("imagealign", "C"); // 이미지정렬(C:center)
-			fileInfo.put("originalurl", imageurl); // 실제파일경로
-			fileInfo.put("thumburl", imageurl); // 썸네일파일경로(사이즈변환이나
-								// 변형된 파일)
-			fileInfo.put("result", 1); // -1, -2를 제외한 아무거나 싣어도 됨
-		}
-		return fileInfo; // @ResponseBody 어노테이션을 사용하여 Map을 JSON형태로 반환 }
-	}
-	
+         // CallBack - Map에 담기
+         String imageurl = httpSession.getServletContext().getContextPath() + "/upload/board/images/"
+               + modifyName; // separator와는 다름!
+         fileInfo.put("imageurl", imageurl); // 상대파일경로(사이즈변환이나
+                        // 변형된 파일)
+         fileInfo.put("filename", modifyName); // 파일명
+         fileInfo.put("filesize", filesize); // 파일사이즈
+         fileInfo.put("imagealign", "C"); // 이미지정렬(C:center)
+         fileInfo.put("originalurl", imageurl); // 실제파일경로
+         fileInfo.put("thumburl", imageurl); // 썸네일파일경로(사이즈변환이나
+                        // 변형된 파일)
+         fileInfo.put("result", 1); // -1, -2를 제외한 아무거나 싣어도 됨
+      }
+      return fileInfo; // @ResponseBody 어노테이션을 사용하여 Map을 JSON형태로 반환 }
+   }
+   
 
 }

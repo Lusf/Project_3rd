@@ -20,6 +20,11 @@ public class UserBlogServiceImpl implements UserBlogService {
 	}
 
 	@Override
+	public List<String> blogTitle(String id, String category) {
+		return blogDAO.blogTitle(id, category);
+	}
+
+	@Override
 	public int insert(UserBlogVo blogVo) {
 		return blogDAO.insert(blogVo);
 	}
