@@ -1,9 +1,12 @@
 package kosta.web.controller.travelge;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.travelge.TravelgeService;
@@ -46,8 +49,21 @@ public class TravelgeController {
 	public ModelAndView travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo){
 		
 		
-		return new ModelAndView("admin/travelgeInfo", "list", travelgeService.travelgeInfoSearch(travelgeInfoVo));
+		return new ModelAndView("admin/travelgeInfo", "list", travelgeService.travelgeInfoSearch(travelgeInfoVo, 0));
 	};
+	
+	// 스크롤 페이징  jackson
+	@RequestMapping("travelgeInfoScroll")
+	@ResponseBody
+	public List<TravelgeInfoVo> travelgeInfoScroll(String index){
+		
+		System.out.println(index);
+		int currentPage = Integer.parseInt(index);
+		
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(null ,currentPage);
+		return list;
+	}
+	
 	
 	// 추천 여행지 정보 추가 
 	@RequestMapping("travelgeRecommandInsert")

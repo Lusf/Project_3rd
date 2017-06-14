@@ -34,11 +34,11 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 	}
 
 	@Override
-	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo) {
-			 travelgeInfoVo.setTravelgeAddr("중구");
-			 int offset = 1;
+	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage) {
+			 //travelgeInfoVo.setTravelgeAddr("중구");
+
 			 //System.out.println(travelgeInfoVo.getTravelgeName());
-			return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(offset, 10));
+			return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(currentPage, 10));
 
 	}
 
