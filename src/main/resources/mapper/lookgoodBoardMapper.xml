@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="lookgoodBoardMapper">
 
 <resultMap type="LookgoodBoardVo" id="selectMap">
@@ -14,18 +15,32 @@
 	<select id="boardSelect" resultMap="selectMap">
 		select lgb_num, lgb_title, lgb_date, id
 		from Lookgood_Board
+		order by lgb_num desc
 	</select>
 	
 	<!-- 글번호검색 -->
-	<select id="boardSelectByNum" resultMap="selectMap" parameterType="Integer">
+	<select id="boardSelectByNum" resultMap="selectMap" parameterType="int">
 		select lgb_num, lgb_title, lgb_date, id, lgb_cont
 		from Lookgood_Board
 		where lgb_num=#{_parameter}
 	</select>
 	
-	<!-- 글삭제 -->
-	<delete id="boardDelete" parameterType="Integer">
+	<!-- 글삭제-->
+	<delete id="boardDelete" parameterType="LookgoodBoardVo">
 		delete from Lookgood_Board
-		where lgb_num=#{_parameter}
+		where lgb_num=#{lgbNum} and id=#{id}
 	</delete>
+	
+	<!-- 글작성 : id?-->
+	<insert id="boardInsert" parameterType="LookgoodBoardVo" >
+		insert into Lookgood_Board (lgb_num, lgb_title, lgb_cont, id, lgb_date)
+		values(seq_num.nextval, #{lgbTitle}, #{lgbCont}, #{id}, sysdate)
+	</insert>
+	
+	<!-- 글수정 -->
+	<update id="boardUpdate" parameterType="LookgoodBoardVo">
+		update Lookgood_Board
+		set lgb_title=#{lgbTitle}, lgb_cont=#{lgbCont}
+		where id=#{id} and lgb_num=#{lgbNum}
+	</update>
 </mapper>

@@ -6,9 +6,9 @@ import kosta.web.model.vo.blog.UserBlogVo;
 
 public interface UserBlogDAO {
 
-	List<UserBlogVo> userBlog(String id);
+	List<UserBlogVo> selectCont(String id, String contentCode);
 	
-	List<String> blogTitle(String id, String category);
+	List<UserBlogVo> blogTitle(String id, String category);
 	
 	int insert(UserBlogVo blogVo);
 	

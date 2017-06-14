@@ -37,7 +37,7 @@ public interface EnterService {
 	/**
 	 * 유저 추천 게시글 삭제(회원사용자)
 	 * */
-	int lookgoodBoardDelete(int lgbNum);
+	int lookgoodBoardDelete(LookgoodBoardVo lookgoodBoardVo);
 	
 	/**
 	 * 유저 추천 게시글 검색(전체)

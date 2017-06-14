@@ -16,19 +16,17 @@ public class LookgoodBoardDAOImpl implements LookgoodBoardDAO {
 	
 	@Override
 	public int lookgoodBoardInsert(LookgoodBoardVo lookgoodBoardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("lookgoodBoardMapper.boardInsert", lookgoodBoardVo);
 	}
 
 	@Override
 	public int lookgoodBoardUpdate(LookgoodBoardVo lookgoodBoardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("lookgoodBoardMapper.boardUpdate", lookgoodBoardVo);
 	}
 
 	@Override
-	public int lookgoodBoardDelete(int lgbNum) {
-		return sqlSession.delete("lookgoodBoardMapper.boardDelete", lgbNum);
+	public int lookgoodBoardDelete(LookgoodBoardVo lookgoodBoardVo) {
+		return sqlSession.delete("lookgoodBoardMapper.boardDelete", lookgoodBoardVo);
 	}
 
 	@Override
@@ -37,9 +35,9 @@ public class LookgoodBoardDAOImpl implements LookgoodBoardDAO {
 	}
 
 	@Override
-	public LookgoodBoardVo lookgoodBoardSearchByNum(int lgnNum) {
+	public LookgoodBoardVo lookgoodBoardSearchByNum(int lgbNum) {
 		
-		return sqlSession.selectOne("lookgoodBoardMapper.boardSelectByNum", lgnNum);
+		return sqlSession.selectOne("lookgoodBoardMapper.boardSelectByNum", lgbNum);
 	}
 
 }
