@@ -49,20 +49,26 @@
 							method="post" accept-charset="utf-8">
 													<div class="panel panel-default">
 							                            <div class="form-group">
-									<div>
-										<span>제목</span> <input class="form-control"
-											placeholder="제목을 작성해 주세요"
-											style="width: 50%; text-align: center;"
-											name="recommadationTitle">
-									</div>
+								
+									
+									                            <div class="form-group input-group">
+                                <span class="input-group-addon">제목</span>
+                                <input type="text" class="form-control" placeholder="제목을 작성해주세요">
+                            </div>
+									
 								</div>
 							<div class="panel-body"><jsp:include
 								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
 						</div>
 							<input type="hidden" name="contentCode" value="A2RECODE">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}"> <input type="submit" value="전송"
-								onclick="saveContent()">
+								value="${_csrf.token}"> 
+							<div style="text-align: center; margin-bottom: 3em">
+							<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
+							<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>	
+							
+								
 						</form>
 
 
