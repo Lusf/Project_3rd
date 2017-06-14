@@ -6,16 +6,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 
-<SCRIPT language=javascript>
+<script language=javascript>
 function sendUpdate(){
 	document.requestForm.action="${pageContext.request.contextPath}/entertainment/board/userBoardUpdate";
 	document.requestForm.submit();
 }
 
 function sendDelete(){	
+	/* <input type="hidden"   name="${_csrf.parameterName}" value="${_csrf.token}"/> */
+
+	/* $('requestForm').append('<input type="hidden" name="'+${_csrf.parameterName}+'" value="'+${_csrf.token}+'">'); */
+	
 	document.requestForm.action = "${pageContext.request.contextPath}/entertainment/board/userBoardDetailView/delete";
 	document.requestForm.submit();
 }
+
+/* function doSubmit(actionName,token, param_name, param_value) {
+
+	 var actionUrl = actionName;
+	    var forms = document.forms[0];
+	    if ( param_name != null ) {
+	     var isType = $('input[name="'+param_name+'"]').val();
+	        if( isType != null &&  isType != undefined ) {
+	            $('input[name="'+param_name+'"]').val(param_value);
+	        } else {
+	         $('form').append('<input type="hidden" name="'+param_name+'" value="'+param_value+'">');
+	         //Spring Security의 token값 설정
+	         $('form').append('<input type="hidden" name="_csrf" value="'+token+'">');
+	        }
+	    }
+	    forms.method="POST";
+	    forms.action= actionUrl;
+	    forms.submit();
+	} */
+
 </script>
 
 </head>
@@ -61,9 +85,9 @@ function sendDelete(){
     <tr>
         <td height="20" colspan="4" align="center" valign="middle">
 			<form name="requestForm" method=post >
-				<input type=hidden name="modelNum" value="${boardList.lgbNum}">
 				
-				<input type=hidden name="password" value="">
+				<input type=hidden name="lgbNum" value="${boardList.lgbNum}">
+				<input type="hidden"   name="${_csrf.parameterName}" value="${_csrf.token}"/>
  				<input type=button value="수정하기" onClick="sendUpdate()">
 				<input type=button value="삭제하기" onClick="sendDelete()">
 			</form>

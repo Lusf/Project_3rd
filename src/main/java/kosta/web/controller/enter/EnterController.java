@@ -30,6 +30,7 @@ public class EnterController {
 		return "entertainment/detailView";
 	}
 	
+	//게시판 리스트
 	@RequestMapping("board/userBoardList")
 	public ModelAndView userBoardList(HttpServletRequest request){
 		List<LookgoodBoardVo> list = enterService.lookgoodBoardSearchAll();
@@ -40,17 +41,34 @@ public class EnterController {
 		return mv;
 	}
 	
-	@RequestMapping("board/userBoardDetailView/{lgnNum}") 
-	public ModelAndView read(HttpServletRequest request, @PathVariable int lgnNum) {
+	//게시글 상세보기
+	@RequestMapping("board/userBoardDetailView/{lgbNum}") 
+	public ModelAndView read(HttpServletRequest request, @PathVariable int lgbNum) {
 		
-		LookgoodBoardVo boardList = enterService.lookgoodBoardSearchByNum(lgnNum);		
+		LookgoodBoardVo boardList = enterService.lookgoodBoardSearchByNum(lgbNum);		
 		ModelAndView mv = new ModelAndView("entertainment/board/userBoardDetailView", "boardList", boardList);
 		return mv;
 	}
 	
+	//게시글 삭제하기
 	@RequestMapping("board/userBoardDetailView/delete")
-	public String delete(int lgbNum){
-		enterService.lookgoodBoardDelete(lgbNum);
-		return "redirect:list";
+	public String delete(HttpServletRequest request, int lgbNum){
+		int result = enterService.lookgoodBoardDelete(lgbNum);
+		return "redirect:/entertainment/board/userBoardList";
+	}	
+	
+	
+	//게시글 작성하기(작성폼으로 이동)
+	@RequestMapping("board/userBoardWrite")
+	public String writeForm(HttpServletRequest request){
+		return "entertainment/board/userBoardWrite";
 	}
+	
+	//게시글 작성하기
+	@RequestMapping("board/userBoardWrite/insert")
+	public String write(HttpServletRequest request, LookgoodBoardVo lookgoodBoardVo){
+		enterService.lookgoodBoardInsert(lookgoodBoardVo);
+		return "redirect:/entertainment/board/userBoardList";
+	}
+			
 }

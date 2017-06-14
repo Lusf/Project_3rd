@@ -48,9 +48,8 @@ public class EnterServiceImpl implements EnterService {
 	}
 
 	@Override
-	public int lookgoodBoardInsert(LookgoodBoardVo lookgoodBoardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int lookgoodBoardInsert(LookgoodBoardVo lookgoodBoardVo) {		
+		return lookgoodBoardDAO.lookgoodBoardInsert(lookgoodBoardVo);
 	}
 
 	@Override
@@ -70,8 +69,8 @@ public class EnterServiceImpl implements EnterService {
 	}
 
 	@Override
-	public LookgoodBoardVo lookgoodBoardSearchByNum(int lgnNum) {
-		return lookgoodBoardDAO.lookgoodBoardSearchByNum(lgnNum);
+	public LookgoodBoardVo lookgoodBoardSearchByNum(int lgbNum) {
+		return lookgoodBoardDAO.lookgoodBoardSearchByNum(lgbNum);
 	}
 
 	@Override

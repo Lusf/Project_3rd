@@ -34,6 +34,7 @@
 	
 <!-- 게시글목록 -->
 <div class="container-fluid">
+	<span style="font-size:9pt;color: white">&lt;<a href="${pageContext.request.contextPath}/entertainment/board/userBoardWrite">글쓰기</a>&gt;</span></div>
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table">
