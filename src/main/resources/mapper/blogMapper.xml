@@ -22,6 +22,10 @@
 	select <include refid="blogColumn"/> from blog where id=#{value}
 </select>
 
+<select id="selectTitle" parameterType="map">
+	select blog_title from blog where id=#{blogTitle} and category=#{category}
+</select>
+
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">
 	insert into blog(<include refid="blogColumn"/>)

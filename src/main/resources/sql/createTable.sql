@@ -28,19 +28,21 @@ CREATE TABLE AUTHORITIES(
 drop table blog;
 
 create table blog(
-  id primary key constraint id_blog_fk references usertable(id),
+  id constraint id_blog_fk references usertable(id),
   blog_num number(4),
   category varchar2(20),
   content_code varchar2(20),
   blog_title varchar2(30),
   blog_date date,
   blog_cont varchar2(200),
-  blog_img varchar2(50)
+  blog_img varchar2(50),
+  constraint blog_pk primary key(id, blog_num)
 );
 
 select * from BLOG where id='a';
 
-insert into blog values('a','1','º¼°Å¸®','aa02a2','Á¦¿¡¸ñ',sysdate,'³»¾Ö¿ä¿Ë','Ä³ºñ.jpg');
+insert into blog values('a','1','Entertainment','ba02a2','º¼°Å¸®Á¦¸ñ',sysdate,'¹» º¼±î..','Ä³ºñ.jpg');
+insert into blog values('a','2','Food','ca02a2','¸Ô°Å¸®Á¦¸ñ',sysdate,'¹ä¹Ù¹ä¹Ù¹ä¹Ù¹Ù¹ä','Ä³ºñ.jpg');
 commit
 
 drop table avg_score;
