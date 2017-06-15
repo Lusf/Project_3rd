@@ -28,6 +28,10 @@
 	<when test="contentCode!=null">CONTENT_CODE = #{contentCode}</when>
 	<when test="travelgeName!=null">TRAVELGE_NAME LIKE '%'||#{travelgeName}||'%'</when>
 	<when test="travelgeAddr!=null">TRAVELGE_ADDR LIKE '%'||#{travelgeAddr}||'%'</when>
+	<when test="travelgeTheme!=null">
+		TRAVELGE_THEME = #{travelgeTheme}
+		<if test="travelgeRegion != null"> and TRAVELGE_REGION =#{travelgeRegion}</if>
+	</when>
 	<otherwise>1=1</otherwise>
 	</choose>
 	</where>

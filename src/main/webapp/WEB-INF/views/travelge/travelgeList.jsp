@@ -141,19 +141,19 @@
 	<div class="row"></div>
 	<!-- Tab Title -->
 	<ul id="myTab" class="nav nav-tabs">
-		<li role="presentation" class="active"><a href="#home1"
-			aria-controls="home" role="tab" data-toggle="tab">관광지</a></li>
+		<li role="presentation" class="active"><a href="#tourlist"
+			aria-controls="tourlist" role="tab" data-toggle="tab">관광지</a></li>
 		<li role="presentation"><a href="#lodgement"
-			aria-controls="profile" role="tab" data-toggle="tab">숙박</a></li>
+			aria-controls="lodgement" role="tab" data-toggle="tab">숙박</a></li>
 		<li role="presentation"><a href="#cultures"
-			aria-controls="messages" role="tab" data-toggle="tab">문화</a></li>
+			aria-controls="cultures" role="tab" data-toggle="tab">문화</a></li>
 		<li role="presentation"><a href="#leports"
-			aria-controls="settings" role="tab" data-toggle="tab">레포츠</a></li>
+			aria-controls="leports" role="tab" data-toggle="tab">레포츠</a></li>
 	</ul>
 
 	<!-- Tab Contents -->
 	<div id="myTabContent" class="tab-content">
-		<div role="tabpanel" class="tab-pane active" id="home1">관광지</div>
+		<div role="tabpanel" class="tab-pane active" id="tourlist">관광지</div>
 		<div role="tabpanel" class="tab-pane" id="lodgement">숙박</div>
 		<div role="tabpanel" class="tab-pane" id="cultures">문화</div>
 		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
