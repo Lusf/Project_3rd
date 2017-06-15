@@ -43,6 +43,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}
 
 	@Override
+
 	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage) {
 
 		if(currentPage==1)
@@ -53,6 +54,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 		{
 			currentPage = (currentPage * 10) - 10;
 		}
+
 		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo, currentPage);
 		
 /*		for (TravelgeInfoVo str : list) {
