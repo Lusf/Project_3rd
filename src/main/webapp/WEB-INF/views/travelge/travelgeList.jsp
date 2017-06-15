@@ -59,35 +59,54 @@
 			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 				xhr.setRequestHeader(header, token)
 			},
-
 			success : function(result) {
-	            		console.log("result = " + result);
-	            		var str = "";
-	            		$.each(result, function(index, item){
-	            			str+= "<span class='scrollPaging'>"+item.contentCode+"<br/></span>";
-	            		})
-	            		 if (result != "") {
-	                         	$(".scrollPaging:last").after(str);            
-	                     	}
-	                     	$('#loading').empty();
+				console.log("result = " + result);
+				var str = "";
+				$.each(result, function(index, item) {
+					str += makeCard(item, index);
+				})
+				if (result != "") {
+					$(".scrollPaging:last").after(str);
+				}
+				$('#loading').empty();
 			},
 			error : function(err) {
 				alert("오류 발생 : " + err);
 			}
-
 		});
-
 	};
+	function makeCard(item, index) {
+		var contentCode = item.contentCode;
+		var str = "";
+		str += "<div class='row scrollPaging'>";
+		str += "<div class='col-md-offset-1 col-md-10'>";
+		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
+		str += "<div class='thumbnail' style='height: 7em;'>";
+		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
+		str += "<div class='caption'>";
+		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
+				+ "</h3>";
+		str += "<p>" + item.travelgeDescription + "</p>";
+		str += "</div>";
+		str += "</div>";
+		str += "</a>";
+		str += "</div>";
+		str += "</div>";
+
+		return str;
+	};
+
 	//무한 스크롤
 	$(window).scroll(
 			function() {
-				if ($(window).scrollTop() > $(document).height()
-						- $(window).height()-0.1) {
-					currentPage = currentPage+1;
+				if ($(window).scrollTop() > $(document).height()- $(window).height() - 1) {
+					currentPage = currentPage + 1;
 					getReadList();
 				}
 			});
-	getReadList();
+	$(document).ready(function() {
+		getReadList();
+	})
 </script>
 </head>
 <body style="background-color: black">
@@ -140,9 +159,42 @@
 		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
 	</div>
 
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	
-	<span class="scrollPaging"></span>
+	<%-- 
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <div class="thumbnail" style="height: 7em;">
+      <img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" style="float: left; height: 100%">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <div class="thumbnail" style="height: 7em;">
+      <img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" style="float: left; height: 100%">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <div class="thumbnail" style="height: 7em;">
+      <img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" style="float: left; height: 100%">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+</div> --%>
+
+	<div class="scrollPaging"></div>
 
 	<div id="loading"></div>
 
