@@ -38,7 +38,8 @@ create table blog(
   constraint blog_pk primary key(id, blog_num)
 );
 
-select * from BLOG where id='a';
+select blog_title, content_code from BLOG where id='a' order by blog_date;
+select * from BLOG where id='a' order by blog_date;
 truncate table blog;
 
 insert into blog values('a','1','Entertainment','ba02a2','볼거리제목',sysdate,'뭘 볼까..','캐비.jpg');

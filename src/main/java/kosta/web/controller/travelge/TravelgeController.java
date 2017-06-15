@@ -100,12 +100,20 @@ public class TravelgeController {
 	// 스크롤 페이징  jackson
 	@RequestMapping("/travelgeInfoScroll")
 	@ResponseBody
-	public List<TravelgeInfoVo> travelgeInfoScroll(String index){
+	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme){
 		
-		System.out.println(index);
+		//System.out.println(index);
+		//System.out.println("현재 지역 : " + currentRegion + " / 현재 테마 : " + currentTheme);
 		int currentPage = Integer.parseInt(index);
 		
-		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(null ,currentPage);
+		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
+		tempInfo.setTravelgeTheme(currentTheme);
+		if(!currentRegion.equals("전국"))
+		{
+			tempInfo.setTravelgeRegion(currentRegion);
+		}
+		
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo ,currentPage);
 		return list;
 	}
 	
