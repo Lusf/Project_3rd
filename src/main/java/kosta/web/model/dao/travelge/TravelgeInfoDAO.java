@@ -20,7 +20,7 @@ public interface TravelgeInfoDAO {
 	
 	int travelgeInfoDelete(String contentCode);
 	
-	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo);
+	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage);
 	
 	List<TravelgeInfoVo> searchAroundMe(String travelgeRegion);
 }

@@ -35,7 +35,7 @@ public interface TravelgeService {
 	
 	int travelgeInfoDelete(String contentCode);
 	
-	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo);
+	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage);
 	
 	int travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo);
 	

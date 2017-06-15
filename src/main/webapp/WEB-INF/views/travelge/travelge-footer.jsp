@@ -58,7 +58,7 @@
 	<a href="${pageContext.request.contextPath }/travelge/main" title="채널"> 
 	<i class="glyphicon glyphicon-list-alt" id="icon" ></i></a> </td>
 	<td>	
-	<a href="${pageContext.request.contextPath}/travelge/travelgeInfoSearch" title="지역별">
+	<a href="${pageContext.request.contextPath}/travelge/travelgeList" title="지역별">
 	<i class="material-icons" id="icon">map</i></a> </td>
 	<td>	
 	<a href="${pageContext.request.contextPath}/travelge/travelgeAroundMe" title="내주변"> 
