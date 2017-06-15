@@ -81,7 +81,7 @@ public class TravelgeController {
 	};
 	
 	// 스크롤 페이징  jackson
-	@RequestMapping("travelgeInfoScroll")
+	@RequestMapping("/travelgeInfoScroll")
 	@ResponseBody
 	public List<TravelgeInfoVo> travelgeInfoScroll(String index){
 		
@@ -92,6 +92,20 @@ public class TravelgeController {
 		return list;
 	}
 	
+	//DetailView
+	@RequestMapping("/detailView/{contentCode}")
+	public ModelAndView detailView(@PathVariable String contentCode){
+		
+		//System.out.println(contentCode);
+		TravelgeInfoVo temp = new TravelgeInfoVo();
+		temp.setContentCode(contentCode);
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp ,0);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("travelge/detailView");
+		mv.addObject("info", list.get(0));
+		return mv;
+	}
 	
 	// 추천 여행지 정보 추가 
 	@RequestMapping("travelgeRecommandInsert")
