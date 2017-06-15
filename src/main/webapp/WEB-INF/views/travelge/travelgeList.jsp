@@ -20,33 +20,60 @@
 	text-align: center;
 }
 
+
+#list-selector{
+	position: fixed;
+	width: 100%;
+	top: 6em;
+	z-index: 999;
+	background-color: #000000;
+	border-top: 1px grey solid;
+	padding: 0.5em;
+	text-align: center;
+}
+
+
 @media only screen and (max-width:1024px) and (min-width:768px) {
 	#title-row {
 		margin-top: 10em;
 		padding: 1em 0;
 		background-color: #0d47a1;
 	}
+	
 }
 </style>
 <script>
+	var currentPage = 1;
+	var currentTheme = '관광지';
+	var currentRegion = '전국';
+	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+
 	$(document).ready(function() {
 		$('#myTab a').click(function(e) {
 			e.preventDefault();
 			$(this).tab('show');
+			var tempTheme = $(this).text();
+			currentPage = 1;
+			currentTheme = tempTheme;
+			$(".scrollPaging:gt(0)").remove();
+			getReadList();
 		})
 		$('#locationDropdown li').click(function() {
 			var tempText = $(this).text();
 			//alert($(this).text());
 			$('#dropdownMenu1').text(tempText);
+			currentPage = 1;
+			currentRegion = tempText;
+			$(".scrollPaging:gt(0)").remove();
+			getReadList();
 
 		})
+		getReadList();
 	})
-</script>
-<!-- 스크롤 페이징 -->
-<script>
-	var currentPage = 1;
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
+
 
 	function getReadList() {
 		$('#loading').html('데이터 로딩중입니다.');
@@ -55,47 +82,65 @@
 			url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 			type : "post",
 			dataType : "json",
-			data : "index=" + currentPage,
+			data : "index=" + currentPage+"&currentRegion="+currentRegion
+			+"&currentTheme=" + currentTheme,
 			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 				xhr.setRequestHeader(header, token)
 			},
-
 			success : function(result) {
-	            		console.log("result = " + result);
-	            		var str = "";
-	            		$.each(result, function(index, item){
-	            			str+= "<span class='scrollPaging'>"+item.contentCode+"<br/></span>";
-	            		})
-	            		 if (result != "") {
-	                         	$(".scrollPaging:last").after(str);            
-	                     	}
-	                     	$('#loading').empty();
+				console.log("result = " + result);
+				var str = "";
+				$.each(result, function(index, item) {
+					str += makeCard(item, index);
+				})
+				if (result != "") {
+					$(".scrollPaging:last").after(str);
+				}
+				$('#loading').empty();
 			},
 			error : function(err) {
 				alert("오류 발생 : " + err);
 			}
-
 		});
-
 	};
+	function makeCard(item, index) {
+		var contentCode = item.contentCode;
+		var str = "";
+		str += "<div class='row scrollPaging'>";
+		str += "<div class='col-md-offset-1 col-md-10'>";
+		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
+		str += "<div class='thumbnail' style='height: 7em;'>";
+		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
+		str += "<div class='caption'>";
+		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
+				+ "</h3>";
+		str += "<p>" + item.travelgeDescription + "</p>";
+		str += "</div>";
+		str += "</div>";
+		str += "</a>";
+		str += "</div>";
+		str += "</div>";
+
+		return str;
+	};
+
 	//무한 스크롤
 	$(window).scroll(
 			function() {
-				if ($(window).scrollTop() > $(document).height()
-						- $(window).height()-0.1) {
-					currentPage = currentPage+1;
+				if ($(window).scrollTop() > $(document).height()- $(window).height() - 1) {
+					currentPage = currentPage + 1;
 					getReadList();
 				}
 			});
-	getReadList();
 </script>
 </head>
 <body style="background-color: black">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
-	<div class="row" id="title-row"></div>
+	 <div class="row" id="title-row"></div> 
 
+	<div id="list-selector">
 	<div class="col-md-offset-5 col-md-2">
 		<div class="dropdown" role="presentation" style="width: 100%">
 			<button class="btn btn-default dropdown-toggle" type="button"
@@ -121,28 +166,26 @@
 	</div>
 	<div class="row"></div>
 	<!-- Tab Title -->
-	<ul id="myTab" class="nav nav-tabs">
-		<li role="presentation" class="active"><a href="#home1"
-			aria-controls="home" role="tab" data-toggle="tab">관광지</a></li>
+	<ul id="myTab" class="nav nav-tabs" style="background-color: black">
+		<li role="presentation" class="active"><a href="#tourlist"
+			aria-controls="tourlist" role="tab" data-toggle="tab">관광지</a></li>
 		<li role="presentation"><a href="#lodgement"
-			aria-controls="profile" role="tab" data-toggle="tab">숙박</a></li>
+			aria-controls="lodgement" role="tab" data-toggle="tab">숙박</a></li>
 		<li role="presentation"><a href="#cultures"
-			aria-controls="messages" role="tab" data-toggle="tab">문화</a></li>
+			aria-controls="cultures" role="tab" data-toggle="tab">문화</a></li>
 		<li role="presentation"><a href="#leports"
-			aria-controls="settings" role="tab" data-toggle="tab">레포츠</a></li>
+			aria-controls="leports" role="tab" data-toggle="tab">레포츠</a></li>
 	</ul>
-
+	</div>
 	<!-- Tab Contents -->
-	<div id="myTabContent" class="tab-content">
-		<div role="tabpanel" class="tab-pane active" id="home1">관광지</div>
+	<!-- <div id="myTabContent" class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="tourlist">관광지</div>
 		<div role="tabpanel" class="tab-pane" id="lodgement">숙박</div>
 		<div role="tabpanel" class="tab-pane" id="cultures">문화</div>
 		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
-	</div>
-
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	
-	<span class="scrollPaging"></span>
+	</div>  -->
+	 <div class="row" id="title-row"></div> 
+	<div class="scrollPaging" id="first-scroll"></div>
 
 	<div id="loading"></div>
 
