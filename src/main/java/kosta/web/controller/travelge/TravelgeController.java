@@ -47,18 +47,22 @@ public class TravelgeController {
 	// 여행지 정보 검색 부분/전체
 	@RequestMapping("/travelgeInfoSearch")
 
-	public ModelAndView travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, String currentPage){
+	public ModelAndView travelgeInfoSearch(String keyField, String keyWord, String currentPage){
         int spage = 1;
         String page = currentPage;
         
         if(page != null)
             spage = Integer.parseInt(page);
         ModelAndView modelAndView = new ModelAndView();
-
-        int listCount = 100;			
+        TravelgeInfoVo travelgeInfoVo = new TravelgeInfoVo();
+        if(keyField.equals("all"))travelgeInfoVo=null;
+        if(keyField.equals("contentCode"))travelgeInfoVo.setContentCode(keyWord);
+        if(keyField.equals("travelgeAddr"))travelgeInfoVo.setTravelgeAddr(keyWord);	
 	        // 한 화면에 10개의 게시글을 보여지게함
 	        // 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
 	        List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(travelgeInfoVo, spage);
+	        
+	        int listCount = list.get(0).getCnt();	
 	        // 전체 페이지 수
 	        int maxPage = (int)(listCount/10.0 + 0.9);
 	        //시작 페이지 번호
@@ -74,7 +78,8 @@ public class TravelgeController {
 	        modelAndView.addObject("endPage", endPage);
 	        modelAndView.addObject("listCount", listCount);
 	        modelAndView.addObject("list", list);
-
+	        modelAndView.addObject("keyField",keyField);
+	        modelAndView.addObject("keyWord",keyWord);
 	        modelAndView.setViewName("admin/travelgeInfo");
 		return modelAndView;
 

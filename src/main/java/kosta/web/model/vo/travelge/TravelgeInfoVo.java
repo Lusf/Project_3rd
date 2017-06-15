@@ -9,6 +9,7 @@ public class TravelgeInfoVo {
 	 * 
 	 * AvgScoreVo avgScoreVo
 	 */
+	
 	private String contentCode;
 	private String travelgeName;
 	private String travelgeAddr;
@@ -18,6 +19,8 @@ public class TravelgeInfoVo {
 	private String travelgeCoordinates;
 
 	private AvgScoreVo avgScoreVo;
+	
+	private int cnt;
 
 	public TravelgeInfoVo() {
 	}
@@ -30,6 +33,22 @@ public class TravelgeInfoVo {
 		this.travelgeAddr = travelgeAddr;
 		this.travelgeTheme = travelgeTheme;
 		this.travelgeRegion = travelgeRegion;
+	}
+	
+	
+
+	public TravelgeInfoVo(String contentCode, String travelgeName, String travelgeAddr, String travelgeDescription,
+			String travelgeTheme, String travelgeRegion, String travelgeCoordinates, AvgScoreVo avgScoreVo, int cnt) {
+		super();
+		this.contentCode = contentCode;
+		this.travelgeName = travelgeName;
+		this.travelgeAddr = travelgeAddr;
+		this.travelgeDescription = travelgeDescription;
+		this.travelgeTheme = travelgeTheme;
+		this.travelgeRegion = travelgeRegion;
+		this.travelgeCoordinates = travelgeCoordinates;
+		this.avgScoreVo = avgScoreVo;
+		this.cnt = cnt;
 	}
 
 	public TravelgeInfoVo(String contentCode, String travelgeName, String travelgeAddr, String travelgeDescription,
@@ -107,6 +126,14 @@ public class TravelgeInfoVo {
 
 	public void setAvgScoreVo(AvgScoreVo avgScoreVo) {
 		this.avgScoreVo = avgScoreVo;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 }

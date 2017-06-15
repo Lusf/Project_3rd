@@ -10,10 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <title>Travelge Info</title>
 
 </head>
+
 
 <body>
 	<div id="wrapper">
@@ -37,9 +39,35 @@
 						</ol>
 
 						<div class="panel panel-default">
-							<div class="panel-body" >
-								<a
-									href="${pageContext.request.contextPath }/travelge/travelgeInfoSearch">test</a>
+
+
+							<!-- 검색 옵션 -->
+							<form action="${pageContext.request.contextPath }/travelge/travelgeInfoSearch" method="post">
+							<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}">
+							<div class="form-group" style="width: 20%">
+									<select class="form-control" name="keyField">
+									<option value="all">All</option>
+									<option value="contentCode">Content_Code</option>
+									<option value="travelgeName">travelgeName</option>
+									<option value="travelgeAddr">travelgeAddr</option>
+									<option value="travelgeDescription">travelgeDescription</option>
+									<option value="travelgeTheme">travelgeTheme</option>
+									<option value="travelgeRegion">travelgeRegion</option>
+								</select>
+							</div>
+
+
+							<!-- 서치바 -->
+							<div class="form-group input-group" style="width: 50%">
+								<input type="text" class="form-control" name="keyWord"> <span
+									class="input-group-btn">
+									<button class="btn btn-default"type="submit" ><i class="fa fa-search"></i>
+									</button></span>
+							</div>
+							</form>
+
+
+							<div class="panel-body">
 
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover table-striped">
@@ -71,8 +99,8 @@
 											<ul class="center-align pagination">
 												<!-- < 버튼 -->
 												<c:if test="${startPage != 1 and startPage != null}">
-													<li class="waves-effect"><a
-														href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?currentPage=${startPage-1}'><i
+													<li class="waves-effect">
+													<a href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
 															class="material-icons">chevron_left</i></a></li>
 												</c:if>
 												<c:forEach var="pageNum" begin="${startPage}"
@@ -84,7 +112,7 @@
 													<!-- 선택되지 않은 페이지 -->
 													<c:if test="${pageNum != spage and pageNum != 0}">
 														<li class="waves-effect"><a
-															href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
+															href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
 
 													</c:if>
 												</c:forEach>
