@@ -20,33 +20,60 @@
 	text-align: center;
 }
 
+
+#list-selector{
+	position: fixed;
+	width: 100%;
+	top: 6em;
+	z-index: 999;
+	background-color: #000000;
+	border-top: 1px grey solid;
+	padding: 0.5em;
+	text-align: center;
+}
+
+
 @media only screen and (max-width:1024px) and (min-width:768px) {
 	#title-row {
 		margin-top: 10em;
 		padding: 1em 0;
 		background-color: #0d47a1;
 	}
+	
 }
 </style>
 <script>
+	var currentPage = 1;
+	var currentTheme = '관광지';
+	var currentRegion = '전국';
+	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+
 	$(document).ready(function() {
 		$('#myTab a').click(function(e) {
 			e.preventDefault();
 			$(this).tab('show');
+			var tempTheme = $(this).text();
+			currentPage = 1;
+			currentTheme = tempTheme;
+			$(".scrollPaging:gt(0)").remove();
+			getReadList();
 		})
 		$('#locationDropdown li').click(function() {
 			var tempText = $(this).text();
 			//alert($(this).text());
 			$('#dropdownMenu1').text(tempText);
+			currentPage = 1;
+			currentRegion = tempText;
+			$(".scrollPaging:gt(0)").remove();
+			getReadList();
 
 		})
+		getReadList();
 	})
-</script>
-<!-- 스크롤 페이징 -->
-<script>
-	var currentPage = 1;
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
+
 
 	function getReadList() {
 		$('#loading').html('데이터 로딩중입니다.');
@@ -55,7 +82,8 @@
 			url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 			type : "post",
 			dataType : "json",
-			data : "index=" + currentPage,
+			data : "index=" + currentPage+"&currentRegion="+currentRegion
+			+"&currentTheme=" + currentTheme,
 			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 				xhr.setRequestHeader(header, token)
 			},
@@ -104,17 +132,15 @@
 					getReadList();
 				}
 			});
-	$(document).ready(function() {
-		getReadList();
-	})
 </script>
 </head>
 <body style="background-color: black">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
-	<div class="row" id="title-row"></div>
+	 <div class="row" id="title-row"></div> 
 
+	<div id="list-selector">
 	<div class="col-md-offset-5 col-md-2">
 		<div class="dropdown" role="presentation" style="width: 100%">
 			<button class="btn btn-default dropdown-toggle" type="button"
@@ -140,7 +166,7 @@
 	</div>
 	<div class="row"></div>
 	<!-- Tab Title -->
-	<ul id="myTab" class="nav nav-tabs">
+	<ul id="myTab" class="nav nav-tabs" style="background-color: black">
 		<li role="presentation" class="active"><a href="#tourlist"
 			aria-controls="tourlist" role="tab" data-toggle="tab">관광지</a></li>
 		<li role="presentation"><a href="#lodgement"
@@ -150,51 +176,16 @@
 		<li role="presentation"><a href="#leports"
 			aria-controls="leports" role="tab" data-toggle="tab">레포츠</a></li>
 	</ul>
-
+	</div>
 	<!-- Tab Contents -->
-	<div id="myTabContent" class="tab-content">
+	<!-- <div id="myTabContent" class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="tourlist">관광지</div>
 		<div role="tabpanel" class="tab-pane" id="lodgement">숙박</div>
 		<div role="tabpanel" class="tab-pane" id="cultures">문화</div>
 		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
-	</div>
-
-	<%-- 
-<div class="row">
-  <div class="col-md-offset-1 col-md-10">
-    <div class="thumbnail" style="height: 7em;">
-      <img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" style="float: left; height: 100%">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-offset-1 col-md-10">
-    <div class="thumbnail" style="height: 7em;">
-      <img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" style="float: left; height: 100%">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-offset-1 col-md-10">
-    <div class="thumbnail" style="height: 7em;">
-      <img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" style="float: left; height: 100%">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-      </div>
-    </div>
-  </div>
-</div> --%>
-
-	<div class="scrollPaging"></div>
+	</div>  -->
+	 <div class="row" id="title-row"></div> 
+	<div class="scrollPaging" id="first-scroll"></div>
 
 	<div id="loading"></div>
 
