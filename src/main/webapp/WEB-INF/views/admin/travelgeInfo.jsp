@@ -37,7 +37,7 @@
 						</ol>
 
 						<div class="panel panel-default">
-							<div class="panel-body">
+							<div class="panel-body" >
 								<a
 									href="${pageContext.request.contextPath }/travelge/travelgeInfoSearch">test</a>
 

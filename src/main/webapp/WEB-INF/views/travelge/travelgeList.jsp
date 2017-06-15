@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
@@ -30,39 +34,61 @@
 			e.preventDefault();
 			$(this).tab('show');
 		})
-		$('#locationDropdown li').click(function(){
+		$('#locationDropdown li').click(function() {
 			var tempText = $(this).text();
 			//alert($(this).text());
 			$('#dropdownMenu1').text(tempText);
-			
-			
+
 		})
 	})
 </script>
 <!-- 스크롤 페이징 -->
 <script>
-
 	var currentPage = 1;
-    function getReadList() { 
-        $('#loading').html('데이터 로딩중입니다.');
-        //ajax
-        $.post("data.html?action=getLastList&lastID=" + $(".list:last").attr("id"),    
-        function(data){
-            if (data != "") {
-                $(".list:last").after(data);            
-            }
-            $('#loading').empty();
-        });
-    }; 
-    //무한 스크롤
-    $(window).scroll(function() { 
-        if($(window).scrollTop() == $(document).height() - $(window).height()){
-        	currentPage = currentPage+1;
-           	 getReadList();
-        }
-    });  
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 
-        </script>
+	function getReadList() {
+		$('#loading').html('데이터 로딩중입니다.');
+		//ajax
+		$.ajax({
+			url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
+			type : "post",
+			dataType : "json",
+			data : "index=" + currentPage,
+			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader(header, token)
+			},
+
+			success : function(result) {
+	            		console.log("result = " + result);
+	            		var str = "";
+	            		$.each(result, function(index, item){
+	            			str+= "<span class='scrollPaging'>"+item.contentCode+"<br/></span>";
+	            		})
+	            		 if (result != "") {
+	                         	$(".scrollPaging:last").after(str);            
+	                     	}
+	                     	$('#loading').empty();
+			},
+			error : function(err) {
+				alert("오류 발생 : " + err);
+			}
+
+		});
+
+	};
+	//무한 스크롤
+	$(window).scroll(
+			function() {
+				if ($(window).scrollTop() > $(document).height()
+						- $(window).height()-0.1) {
+					currentPage = currentPage+1;
+					getReadList();
+				}
+			});
+	getReadList();
+</script>
 </head>
 <body style="background-color: black">
 	<%@include file="/WEB-INF/views/includeFile.jsp"%>
@@ -114,127 +140,9 @@
 		<div role="tabpanel" class="tab-pane" id="leports">레포츠</div>
 	</div>
 
-<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list">content</div>
-
-	<div class="list" id="9">content</div>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	
+	<span class="scrollPaging"></span>
 
 	<div id="loading"></div>
 

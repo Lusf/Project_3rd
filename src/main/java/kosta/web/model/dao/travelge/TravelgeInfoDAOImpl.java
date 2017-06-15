@@ -36,7 +36,6 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 	@Override
 	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage) {
 			 //travelgeInfoVo.setTravelgeAddr("Áß±¸");
-			
 			 //System.out.println(travelgeInfoVo.getTravelgeName());
 			return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(currentPage, 10));
 

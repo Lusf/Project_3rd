@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +31,11 @@
             <p align="right"><b><span style="font-size:9pt;">작성자</span></b></p>
         </td>
         <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<input type=text name="id" size="50" value="lim2" readonly="readonly"></span></b></td>
+		<sec:authorize access="isAuthenticated()">
+			<input type=text name="id" size="50" value="<sec:authentication property="principal.id" />" readonly="readonly">
+		</sec:authorize>
+		</span></b>
+		</td>
     </tr> 
     <tr>
         <td width="150" height="20">

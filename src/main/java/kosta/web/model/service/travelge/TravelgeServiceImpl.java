@@ -43,11 +43,18 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}
 
 	@Override
-	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo,int currentPage) {
-		if(currentPage == 1){
-			currentPage = 0;
+
+	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage) {
+
+		if(currentPage==1)
+		{
+			currentPage=0;
 		}
-		currentPage = (currentPage * 10) - 10;
+		else
+		{
+			currentPage = (currentPage * 10) - 10;
+		}
+
 		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo, currentPage);
 		
 /*		for (TravelgeInfoVo str : list) {
