@@ -51,4 +51,9 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 		
 		return sqlSession.delete("blogMapper.deleteBlog", map);
 	}
+
+	@Override
+	public List<Integer> selectBlogNum(String id) {
+		return sqlSession.selectList("blogMapper.selectBlogNum", id);
+	}
 }

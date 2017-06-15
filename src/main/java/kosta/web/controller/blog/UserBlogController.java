@@ -63,4 +63,9 @@ public class UserBlogController {
 		blogService.delete((String)session.getAttribute("blogId"), contentCode);
 	}
 	
+	@RequestMapping("/insertBlogReview")
+	public String insertReview(UserBlogVo blogVo){
+		blogService.insert(blogVo);
+		return "forward:"+blogVo.getId();
+	}
 }
