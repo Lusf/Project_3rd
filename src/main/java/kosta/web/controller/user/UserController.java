@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	@RequestMapping("loginForm")
-	public ModelAndView loginForm(){
+	public ModelAndView loginForm(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/loginForm");
 		mv.addObject("flag", 1);
