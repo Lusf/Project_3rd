@@ -10,7 +10,7 @@
 		<result column="TRAVELGE_NAME" property="travelgeName" />
 		<result column="TRAVELGE_REGION" property="travelgeRegion" />
 		<result column="TRAVELGE_THEME" property="travelgeTheme" />
-
+		<result column="cnt" property="cnt"/>
 <!-- 		<association property="avgScoreVo" javaType="AvgScoreVo">
 			<id column="id" property="id" />
 			<result column="content_code" property="contentCode" />
@@ -22,16 +22,19 @@
 
 	
 	<select id="travelgeInfoSearch" resultMap="selectMap" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
-	select * from TRAVELGE_INFO
+	
+	SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT 
+	FROM( SELECT * FROM TRAVELGE_INFO 
 	<where>
 	<choose>
-	<when test="contentCode!=null">CONTENT_CODE = #{contentCode}</when>
+	<when test="travelgeRegion!=null and travelgeTheme!=null">TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%' and TRAVELGE_THEME  LIKE '%'||#{travelgeTheme}||'%'</when>
+	<when test="contentCode!=null">CONTENT_CODE LIKE '%'||#{contentCode}||'%'</when>
 	<when test="travelgeName!=null">TRAVELGE_NAME LIKE '%'||#{travelgeName}||'%'</when>
 	<when test="travelgeAddr!=null">TRAVELGE_ADDR LIKE '%'||#{travelgeAddr}||'%'</when>
 	<otherwise>1=1</otherwise>
 	</choose>
 	</where>
-
+	) T1) order by content_code
 	</select>
 
 
