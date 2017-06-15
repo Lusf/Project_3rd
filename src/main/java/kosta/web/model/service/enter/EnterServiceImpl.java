@@ -104,8 +104,8 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public int lookScoreInsert(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return lookAvgScoreDAO.lookScoreInsert(avgScoreVo);
 	}
 
 	@Override
@@ -116,8 +116,7 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo) {
-		// TODO Auto-generated method stub
-		return null;
+		return lookInfoDAO.lookInfoSearch(lookInfoVo);
 	}
 
 }

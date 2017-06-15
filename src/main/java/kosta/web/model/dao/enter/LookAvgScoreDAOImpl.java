@@ -1,15 +1,20 @@
 package kosta.web.model.dao.enter;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kosta.web.model.vo.AvgScoreVo;
 
 @Repository
 public class LookAvgScoreDAOImpl implements LookAvgScoreDAO {
-
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
 	@Override
 	public int lookWishListAdd(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
@@ -21,8 +26,8 @@ public class LookAvgScoreDAOImpl implements LookAvgScoreDAO {
 
 	@Override
 	public int lookScoreInsert(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.insert("LookAvgScoreMapper.insertScore", avgScoreVo);
 	}
 
 	@Override
