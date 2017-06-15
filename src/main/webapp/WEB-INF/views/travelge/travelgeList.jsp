@@ -31,7 +31,10 @@
 	padding: 0.5em;
 	text-align: center;
 }
-
+#locationDropdown li:hover{
+	background-color: red;
+	cursor: pointer;
+}
 
 @media only screen and (max-width:1024px) and (min-width:768px) {
 	#title-row {
@@ -150,17 +153,17 @@
 			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
 				id="locationDropdown">
-				<li><a href="#">전국</a></li>
-				<li><a href="#">서울</a></li>
-				<li><a href="#">경기/인천</a></li>
-				<li><a href="#">충북/대전</a></li>
-				<li><a href="#">충남/세종</a></li>
-				<li><a href="#">부산</a></li>
-				<li><a href="#">경북/대구</a></li>
-				<li><a href="#">경남/울산</a></li>
-				<li><a href="#">전북</a></li>
-				<li><a href="#">전남/광주</a></li>
-				<li><a href="#">제주도</a></li>
+				<li><a>전국</a></li>
+				<li><a>서울</a></li>
+				<li><a>경기/인천</a></li>
+				<li><a>충북/대전</a></li>
+				<li><a>충남/세종</a></li>
+				<li><a>부산</a></li>
+				<li><a>경북/대구</a></li>
+				<li><a>경남/울산</a></li>
+				<li><a>전북</a></li>
+				<li><a>전남/광주</a></li>
+				<li><a>제주도</a></li>
 			</ul>
 		</div>
 	</div>
