@@ -42,28 +42,38 @@
 
 
 							<!-- 검색 옵션 -->
-							<form action="${pageContext.request.contextPath }/travelge/travelgeInfoSearch" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}">
-							<div class="form-group" style="width: 20%">
-									<select class="form-control" name="keyField">
-									<option value="all">All</option>
-									<option value="contentCode">Content_Code</option>
-									<option value="travelgeName">travelgeName</option>
-									<option value="travelgeAddr">travelgeAddr</option>
-									<option value="travelgeDescription">travelgeDescription</option>
-									<option value="travelgeTheme">travelgeTheme</option>
-									<option value="travelgeRegion">travelgeRegion</option>
-								</select>
-							</div>
+							<form
+								action="${pageContext.request.contextPath }/travelge/travelgeInfoSearch"
+								method="post" class="form-inline form-horizontal" role="form">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}">
+								<div class="form-group"
+									style="margin-left: 12px; margin-right: 10px; margin-top: 12px">
+									<label for="keyField" class="sr-only">keyField</label> <select
+										class="form-control" name="keyField" id="keyField"
+										style="margin-left: 3px; margin-right: 10px">
+										<option value="all">All</option>
+										<option value="contentCode">Content_Code</option>
+										<option value="travelgeName">travelgeName</option>
+										<option value="travelgeAddr">travelgeAddr</option>
+										<option value="travelgeDescription">travelgeDescription</option>
+										<option value="travelgeTheme">travelgeTheme</option>
+										<option value="travelgeRegion">travelgeRegion</option>
+									</select>
+								</div>
 
 
-							<!-- 서치바 -->
-							<div class="form-group input-group" style="width: 50%">
-								<input type="text" class="form-control" name="keyWord"> <span
-									class="input-group-btn">
-									<button class="btn btn-default"type="submit" ><i class="fa fa-search"></i>
-									</button></span>
-							</div>
+								<!-- 서치바 -->
+								<div class="form-group input-group" style="margin-top: 12px">
+
+									<input type="text" class="form-control" name="keyWord"
+										id="keyWord"> <span class="input-group-btn">
+										<button class="btn btn-default" type="submit"
+											style="height: 34px">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
 							</form>
 
 
@@ -79,7 +89,7 @@
 											<th>THEME</th>
 											<th>REGION</th>
 											<th>COORDINATES</th>
-
+											<th>DELETE</th>
 										</tr>
 										<c:forEach items="${list }" var="list" varStatus="state">
 											<Tr>
@@ -90,42 +100,42 @@
 												<td>${list.travelgeAddr }</td>
 												<td>${list.travelgeAddr }</td>
 												<td>${list.travelgeAddr }</td>
+												<td><a href="${pageContext.request.contextPath }/travelge/travelgeInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
 											</Tr>
 
 										</c:forEach>
 									</table>
-									<div id="pageForm">
-										<div class="container">
-											<ul class="center-align pagination">
-												<!-- < 버튼 -->
-												<c:if test="${startPage != 1 and startPage != null}">
-													<li class="waves-effect">
-													<a href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
-															class="material-icons">chevron_left</i></a></li>
-												</c:if>
-												<c:forEach var="pageNum" begin="${startPage}"
-													end="${endPage}">
-													<c:if test="${pageNum == spage and pageNum != null}">
-														<!-- 선택페이지 -->
-														<li class="waves-effect active"><a>${pageNum}</a></li>
-													</c:if>
-													<!-- 선택되지 않은 페이지 -->
-													<c:if test="${pageNum != spage and pageNum != 0}">
-														<li class="waves-effect"><a
-															href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
+								</div>
+								
+								<div id="pageForm" style="text-align: center;">
 
-													</c:if>
-												</c:forEach>
-												<!-- > 버튼 -->
-												<c:if test="${endPage != maxPage }">
-													<li class="waves-effect"><a
-														href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch&currentPage=${endPage+1 }'><i
-															class="material-icons">chevron_right</i></a></li>
-												</c:if>
+									<ul class="center-align pagination">
+										<!-- < 버튼 -->
+										<c:if test="${startPage != 1 and startPage != null}">
+											<li ><a
+												href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
+													class="material-icons">chevron_left</i></a></li>
+										</c:if>
+										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
+											<c:if test="${pageNum == spage and pageNum != null}">
+												<!-- 선택페이지 -->
+												<li class="active"><a>${pageNum}</a></li>
+											</c:if>
+											<!-- 선택되지 않은 페이지 -->
+											<c:if test="${pageNum != spage and pageNum != 0}">
+												<li ><a
+													href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
 
-											</ul>
-										</div>
-									</div>
+											</c:if>
+										</c:forEach>
+										<!-- > 버튼 -->
+										<c:if test="${endPage != maxPage }">
+											<li><a
+												href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch&currentPage=${endPage+1 }'><i
+													class="material-icons">chevron_right</i></a></li>
+										</c:if>
+
+									</ul>
 								</div>
 							</div>
 						</div>
