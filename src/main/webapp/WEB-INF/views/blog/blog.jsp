@@ -84,7 +84,7 @@
 	href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>">
 <link href="<c:url value= '/resources/css/blog/blog-post.css'/>"
 	rel="stylesheet">
-
+	
 <style>
 /* container 간격 조절 */
 .container {
@@ -138,6 +138,9 @@
 	text-align: right;
 	vertical-align: bottom;
 }
+
+/* insert를 위한 modal화면 수정 */
+.modal-dialog {width: 900px;}
 </style>
 
 <!-- security + ajax를 위해.. -->
@@ -254,6 +257,22 @@ $(function() {
 		<!-- Blog Post Content Column -->
 		<div class="cont">
 			<h1>리뷰 좀 적어봐!!</h1>
+			<a href="#"data-toggle="modal" data-target="#insertReview" class="post-entry-more">
+				Review 
+			</a>
+			
+			<!-- detail MODAL -->
+			<div class="modal fade" id="insertReview" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content shadow">
+						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+						<div class="modal-body">
+							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp" %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /detail modal 끝 -->
 			<div style="height: 500px"></div>
 		</div>
 
@@ -264,7 +283,7 @@ $(function() {
 				<h4>Blog Owner</h4>
 				<div class="input-group profileImg">
 					<img src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}" alt="${blogUserPic}"/>
-					<h1>${blogId}</h1>
+					<a href="${pageContext.request.contextPath}/blog/${blogId}"><h1>${blogId}</h1></a>
 				</div>
 				<!-- /.input-group -->
 			</div>
