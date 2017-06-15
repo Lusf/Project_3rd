@@ -169,10 +169,10 @@
 						<a href="javascript:;" data-toggle="collapse" data-target="#travelgeInfo">Info</a>
 						<ul id="travelgeInfo" class="collapse ">
 							<li>
-							<a href="${pageContext.request.contextPath}/admin/travelgeInfo">Insert</a>
+							<a href="${pageContext.request.contextPath}/admin/travelgeInfoSearch">Search</a>
 							</li>
 							<li>
-								<a href="">Delete</a>
+								<a href="${pageContext.request.contextPath}/admin/travelgeInfoInsertForm">insert</a>
 							</li>
 							<li>
 								<a href="">Update</a>
