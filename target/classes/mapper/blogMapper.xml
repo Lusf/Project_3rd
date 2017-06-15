@@ -23,14 +23,20 @@
 </select>
 
 <select id="selectTitle" parameterType="map" resultMap="blogMap">
-	select blog_title, content_code from blog where id=#{id} and category=#{category}
+	select blog_title, content_code, blog_date from blog where id=#{id}
+	<if test="category!=null">
+		and category=#{category}
+	</if>
+	order by blog_date
 </select>
+
 
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">
 	insert into blog(<include refid="blogColumn"/>)
 	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont},#{blogImg})
 </insert>
+
 
 <!-- delete -->
 <delete id="deleteBlog" parameterType="map">

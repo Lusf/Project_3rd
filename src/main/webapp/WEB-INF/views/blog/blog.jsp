@@ -157,10 +157,10 @@ $(function() {
 	$(function() {
 		$(".list-unstyled li a").click(function() {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/blog/selectTitle",
+				url : "${pageContext.request.contextPath}/blog/selectBlogTitle",
 				type : "post",
 				data : "category="+$(this).attr('id'),
-				dataType : "json", //'중복입니다','사용가능합니다'
+				dataType : "json",
 				success : function(result) {
 					$("#blogTitle tr:eq(0)").nextAll().remove();
 
@@ -173,42 +173,75 @@ $(function() {
 
 					$("#blogTitle").append(str);
 					
-					$("#blogTitle tr td a").click(function() {
-						$.ajax({
-							url : "${pageContext.request.contextPath}/blog/selectCont",
-							type : "post",
-							data : "contentCode="+$(this).children().attr('value'),
-							dataType : "json", //'중복입니다','사용가능합니다'
-							success : function(result) {
-								$(".cont").empty();
-
-								var str = "";
-								$.each(result, function(index, item) {
-									str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td><p><span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
-									str+="<hr>"
-									
-									var img = item.blogImg.split(";");
-									$.each(img, function(imgIndex, imgName){
-										str+="<img src='${pageContext.request.contextPath}/resources/user/"+item.id+"/blog/"+imgName+"' alt='"+imgName+"' />";
-									});
-									
-									str+="<hr>"
-									str+="<p class='lead'>"+item.blogCont+"</p>";
-								});
-
-								$(".cont").html(str);
-							},
-							error : function(err) {
-								console.log("오류발생: " + err)
-							}
-						});
-					});
+					title();
 				},
 				error : function(err) {
 					console.log("오류발생: " + err)
 				}
 			});
 		});
+		
+		function title(){
+			$("#blogTitle tr td a").click(function() {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
+					type : "post",
+					data : "contentCode="+$(this).children().attr('value'),
+					dataType : "json",
+					success : function(result) {
+						$(".cont").empty();
+	
+						var str = "";
+						var conCode = "";
+						$.each(result, function(index, item) {
+							conCode = item.contentCode;
+							
+							str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td>";
+								str+="<a href='#' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
+								str+="<a href='#' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
+							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
+							str+="<hr>"
+							
+							var img = item.blogImg.split(";");
+							$.each(img, function(imgIndex, imgName){
+								str+="<img src='${pageContext.request.contextPath}/resources/user/"+item.id+"/blog/"+imgName+"' alt='"+imgName+"' />";
+							});
+							
+							str+="<hr>"
+							str+="<p class='lead'>"+item.blogCont+"</p>";
+						});
+	
+						$(".cont").html(str);
+						
+						//삭제하기
+						$("#dlt").click(function(){
+							if(confirm("정말 삭제하시겠습니까?")){
+								$.ajax({
+									url : "${pageContext.request.contextPath}/blog/deleteBlogCont",
+									type : "post",
+									data : "contentCode="+conCode,
+									dataType : "text",
+									success : function(result) {
+										alert("삭제를 완료하였습니다.");
+										location.href = "${pageContext.request.contextPath}/blog/${blogId}";
+									},
+									error : function(err) {
+										console.log("오류발생: " + err)
+									}
+								})
+							}
+							else{
+								return false;
+							}
+						});
+					},
+					error : function(err) {
+						console.log("오류발생: " + err)
+					}
+				});
+			});
+		}
+		title();
 	});
 </script>
 
@@ -259,6 +292,11 @@ $(function() {
 					<tr>
 						<td><h4>Title</h4></td>
 					</tr>
+					<c:forEach items="${blogAllTitle}" var="title">
+					<tr>
+						<td><a href='#'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
+					</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>
