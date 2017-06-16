@@ -44,7 +44,7 @@ public class FoodController {
 		MultipartFile file = restaurentVo.getFile();
 
 		if (file.getSize() > 0) {
-			restaurentVo.setPic(file.getOriginalFilename());
+			restaurentVo.setRestaurantPic(file.getOriginalFilename());
 		}
 
 		int result = restaurantInfoService.RestaurantInsert(restaurentVo);
@@ -67,7 +67,7 @@ public class FoodController {
 		// -----폴더 생성 끝
 		if (file.getSize() > 0) {
 			try {
-				file.transferTo(new File(path + "/" + restaurentVo.getId() + "/info/" + restaurentVo.getPic()));
+				file.transferTo(new File(path + "/" + restaurentVo.getId() + "/info/" + restaurentVo.getRestaurantPic()));
 			} catch (Exception e) {
 			}
 		}

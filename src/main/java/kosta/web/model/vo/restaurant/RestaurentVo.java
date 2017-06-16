@@ -3,29 +3,30 @@ package kosta.web.model.vo.restaurant;
 import org.springframework.web.multipart.MultipartFile;
 
 public class RestaurentVo {
-//	restaurantName	addr	category	contentCode id
+
 	private String contentCode;
 	private String restaurantName;
-	private String addr;
+	private String restaurantAddr;
 	private String category;
-	private String pic;
+	private String restaurantInfo;
+	private String restaurantPic;
 	private String id;
 	
 	private MultipartFile file;
 	
 	public RestaurentVo() {}
 
-	public RestaurentVo(String contentCode, String restaurantName, String addr, String category, String pic,
-			String id) {
+	public RestaurentVo(String contentCode, String restaurantName, String restaurantAddr, String category,
+			String restaurantInfo, String restaurantPic, String id) {
 		super();
 		this.contentCode = contentCode;
 		this.restaurantName = restaurantName;
-		this.addr = addr;
+		this.restaurantAddr = restaurantAddr;
 		this.category = category;
-		this.pic = pic;
+		this.restaurantInfo = restaurantInfo;
+		this.restaurantPic = restaurantPic;
 		this.id = id;
 	}
-	
 
 	public MultipartFile getFile() {
 		return file;
@@ -51,12 +52,12 @@ public class RestaurentVo {
 		this.restaurantName = restaurantName;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getRestaurantAddr() {
+		return restaurantAddr;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setRestaurantAddr(String restaurantAddr) {
+		this.restaurantAddr = restaurantAddr;
 	}
 
 	public String getCategory() {
@@ -67,12 +68,20 @@ public class RestaurentVo {
 		this.category = category;
 	}
 
-	public String getPic() {
-		return pic;
+	public String getRestaurantInfo() {
+		return restaurantInfo;
 	}
 
-	public void setPic(String pic) {
-		this.pic = pic;
+	public void setRestaurantInfo(String restaurantInfo) {
+		this.restaurantInfo = restaurantInfo;
+	}
+
+	public String getRestaurantPic() {
+		return restaurantPic;
+	}
+
+	public void setRestaurantPic(String restaurantPic) {
+		this.restaurantPic = restaurantPic;
 	}
 
 	public String getId() {
@@ -85,8 +94,8 @@ public class RestaurentVo {
 
 	@Override
 	public String toString() {
-		return "RestaurentVo [contentCode=" + contentCode + ", restaurantName=" + restaurantName + ", addr=" + addr
-				+ ", category=" + category + ", pic=" + pic + ", id=" + id + "]";
+		return "RestaurentVo [contentCode=" + contentCode + ", restaurantName=" + restaurantName + ", restaurantAddr="
+				+ restaurantAddr + ", category=" + category + ", restaurantInfo=" + restaurantInfo + ", restaurantPic="
+				+ restaurantPic + ", id=" + id + ", file=" + file + "]";
 	}
-	
 }

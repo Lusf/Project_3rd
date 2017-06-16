@@ -3,14 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zxx">
+
 <script type="text/javascript">
 
-/* function addBtn()
-{
-     window.showModalDialog("/images/helper/smp_400_21.jpg", null, \"dialogWidth:400px; dialogHeight:293px; center:1; scroll:0; help:0; status:0")
+/* function fnMove(seq){
+    var offset = $("#div" + seq).offset();
+    $('html, body').animate({scrollTop : offset.top}, 400);
 } */
-
 </script>
+<style type="text/css">
+.textblk	{
+		width:100px;
+	}
+</style>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Choco - micro store </title>
@@ -256,266 +261,10 @@
 								</button> 	
 							</li>
 							<!-- / 핫딜 상품 4 -->
-
-							<!-- 핫딜 상품 5 -->
-							<li class="swiper-slide text-center"> 
-								<span class="product-list-left pull-left">
-									<a href="#" data-target="#product-01" data-toggle="modal">
-					<!-- 평상시 상태 --><img alt="product image" class="product-list-primary-img" src="${pageContext.request.contextPath}/resources/images/eating/product3.png"> 
-			   <!-- 마우스 올렸을 때 --><img alt="product image" class="product-list-secondary-img" src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
-									</a>
-								</span> 
-
-								<a href="#" data-target="#product-01" data-toggle="modal">
-									<span class="product-list-right pull-left">
-										<span class="product-list-name h3">Chocolate desire no. 3</span>
-										<span class="product-list-price">￦600.00</span>
-									</span>
-								</a> 
-
-								<button type="button" class="btn btn-default add-item" data-image="${pageContext.request.contextPath}/resources/images/eating/product3.png" data-name="Chocolate desire no. 3" data-cost="600.00" data-id="5" >
-									<span class="ti-shopping-cart"></span>add to cart
-								</button> 		
-							</li>
-							<!-- / 핫딜 상품 5 -->
-							
-							<!-- 핫딜 상품 6 -->
-							<li class="swiper-slide text-center"> 
-								<span class="product-list-left pull-left">
-									<a href="#" data-target="#product-01" data-toggle="modal">
-					<!-- 평상시 상태 --><img alt="product image" class="product-list-primary-img" src="${pageContext.request.contextPath}/resources/images/eating/product3.png"> 
-			   <!-- 마우스 올렸을 때 --><img alt="product image" class="product-list-secondary-img" src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
-									</a>
-								</span> 
-
-								<a href="#" data-target="#product-01" data-toggle="modal">
-									<span class="product-list-right pull-left">
-										<span class="product-list-name h3">Chocolate desire no. 3</span>
-										<span class="product-list-price">￦500.00</span>
-									</span>
-								</a>
-
-								<button type="button" class="btn btn-default add-item" data-image="${pageContext.request.contextPath}/resources/images/eating/product3.png" data-name="Chocolate desire no. 3" data-cost="500.00" data-id="6" >
-									<span class="ti-shopping-cart"></span>add to cart
-								</button> 	
-							</li>
-							<!-- / 핫딜 상품 6 -->
-						</ul>
-
-						<!-- CAROUSEL CONTROLS -->
-						<div class="product-list-pagination text-center"></div>
-						<div class="product-list-slider-next right-arrow-negative">
-							<span class="ti-arrow-right"></span>
-						</div>
-
-						<div class="product-list-slider-prev left-arrow-negative">
-							<span class="ti-arrow-left"></span>
-						</div>
-						<!-- CAROUSEL CONTROLS -->
 					</div>
 				</div>
 			</div>
 			<!-- PRODUCT MODAL -->
-			<div class="modal fade product-modal" id="product-01" role="dialog" tabindex="-1">
-				<div class="modal-dialog">
-					
-					<!-- MODAL CONTENT -->
-					<div class="modal-content shadow">
-						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
-						<div class="modal-body">
-							<!-- Wrapper for slides -->
-							<div class="carousel slide product-slide" id="product-carousel">
-								<!-- CAROSUEL SLIDER -->
-								<div class="carousel-inner cont-slider">
-									<div class="item active"> <img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product3.png" title=""> </div>
-									<div class="item"> <img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product4.png" title=""> </div>
-									<div class="item"> <img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product3.png" title=""> </div>
-									<div class="item"> <img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product4.png" title=""> </div>
-								</div>
-								<!-- / CAROSUEL SLIDER -->
-
-								<!-- CAROUSEL INDICATORS -->
-								<ol class="carousel-indicators">
-									<li class="active" data-slide-to="0" data-target="#product-carousel"> 
-										<img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product3.png"> 
-									</li>
-
-									<li class="" data-slide-to="1" data-target="#product-carousel"> 
-										<img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product4.png"> 
-									</li>
-
-									<li class="" data-slide-to="2" data-target="#product-carousel"> 
-										<img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product3.png"> 
-									</li>
-
-									<li class="" data-slide-to="3" data-target="#product-carousel"> 
-										<img alt="" src="${pageContext.request.contextPath}/resources/images/eating/product4.png"> 
-									</li>
-								</ol>
-								<!-- / CAROUSEL INDICATORS -->
-							</div>
-
-							<!-- PRODUCT DESCRIPTION -->
-							<div class="container">
-								<div class="row">
-									<div class="col-md-8 col-md-push-2">
-										<div class="row">
-											<div class="col-md-12 product-modal-header">
-												<h3 class="pull-left product-modal-title">Chocolate desire</h3>
-										
-												<span class="product-action-section">
-													<span class="price">$299.00</span>
-													<button type="button" class="btn btn-default add-item" data-image="${pageContext.request.contextPath}/resources/images/eating/product3.png" data-name="Chocolate desire" data-cost="299.00" data-id="8">
-													<span class="ti-shopping-cart"></span>add to cart </button>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-8 col-md-push-2 product-description">
-										<h4 class="section-heading">Ut enim ad minim veniam</h4>
-										<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-
-										<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-
-										<div class="row">
-											<div class="col-md-6"> 
-												<img src="${pageContext.request.contextPath}/resources/images/eating/product3.png" class="img-responsive" alt="product image">
-											</div>
-											
-											<div class="col-md-6">
-												<h4 class="section-heading">Ut enim ad minim veniam</h4>
-												<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-											</div>
-										</div>
-
-										<div class="product-tabs">
-											<ul class="nav nav-tabs">
-												<li class="active"><a data-toggle="tab" href="#tab1">Details</a></li>
-												<li><a data-toggle="tab" href="#tab2">Info tab</a></li>
-												<li><a data-toggle="tab" href="#tab3">Other info </a></li>
-											</ul>
-
-											<div class="tab-content">
-												<div id="tab1" class="tab-pane fade in active">
-													<h4 class="section-heading">details</h4>
-
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-												</div>
-
-												<div id="tab2" class="tab-pane fade">
-													<h4 class="section-heading">Info tab</h4>
-
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-												</div>
-
-												<div id="tab3" class="tab-pane fade">
-													<h4 class="section-heading">other info</h4>
-
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- / PRODUCT DESCRIPTION -->
-						</div>
-					</div>
-					<!-- / MODAL CONTENT -->
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="container-fluid about white-color no-padding" id="about">
-    <div class="about-background about-background-1 row no-margin">
-        <div class="col-md-6 about-black-box">
-        	<h3 class="section-heading">Cocoa!</h3>
-        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        	<a href="#" class="btn btn-default">click top</a>
-        </div>
-        <div class="col-md-6"></div>
-    </div>
-
-    <div class="about-background about-background-2 row no-margin">
-        <div class="col-md-4 about-white-box col-md-offset-4">
-	        <h2 class="section-claim wow fadeInDown" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">
-	        the best quality
-	        	<span>cocoa bean</span>
-	        </h2>
-        	
-        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        	<a href="#" class="btn btn-default">click action</a>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-
-    <div class="about-background about-background-3 row no-margin">
-        <div class="col-md-6 about-black-box col-md-offset-6">
-        	<h3 class="section-heading">Special!</h3>
-        	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        	<a href="#" class="btn btn-default">click action</a>
-        </div>
-    </div>
-  </section>
-
-	<section class="countdown" id="special">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">special!</h3>
-				</div>
-
-				<div class="col-md-5">
-					<ul class="product-list product-list-vertical">
-						<li class="wow fadeInUp" data-wow-delay=".2s">
-							<span class="product-list-left pull-left">
-									<a href="#" data-target="#product-01" data-toggle="modal">
-										<img alt="product image" class="product-list-primary-img" src="${pageContext.request.contextPath}/resources/images/eating/product3.png"> 
-										<img alt="product image" class="product-list-secondary-img" src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
-									</a>
-							</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-md-7 text-center">
-					<div class="countdown-container">
-						<h3 class="wow fadeInDown">Chocolate desire</h3>
-						
-						<p class="wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-
-						<!-- DATA COUNDOWN INJECTED BY JS -->
-						<ul id="countdown" class="countdown-counter wow fadeInUp"></ul>
-						<!-- / DATA COUNDOWN INJECTED BY JS -->
-
-						<span class="countdown-price h3 wow fadeInUp">$420.00</span>
-						<button type="button" class="btn btn-default add-item wow swing" data-image="${pageContext.request.contextPath}/resources/images/eating/product3.png" data-name="Chocolate desire [promo]" data-cost="420.00" data-id="9">
-							<span class="ti-shopping-cart"></span>add to cart
-						</button>
-					</div>
-				</div>
-			</div>
 		</div>
 	</section>
 
@@ -530,23 +279,7 @@
 					<!-- CAROUSEL WRAPPER -->
 					<div class="swiper-wrapper">
 
-						<!-- SINGLE TESTIMONIALS ITEM -->
-						<div class="swiper-slide">
-							<div class="testimonials-container shadow"> <img alt="user avatar" class="wow fadeInUp" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
-								<h3 class="wow fadeInUp" data-wow-delay=".4s"> Martin Johe, Co-Founder / CEO <span>Fastcompany ltd.</span> </h3>
-								<p class="wow fadeInUp" data-wow-delay=".6s"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-							</div>
-						</div>
-						<!-- / SINGLE TESTIMONIALS ITEM-->
 
-						<!-- SINGLE TESTIMONIALS ITEM -->
-						<div class="swiper-slide">
-							<div class="testimonials-container shadow"> <img alt="user avatar" class="wow fadeInUp" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
-								<h3 class="wow fadeInUp" data-wow-delay=".4s"> Martin Johe, Co-Founder / CEO <span>Fastcompany ltd.</span> </h3>
-								<p class="wow fadeInUp" data-wow-delay=".6s"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-							</div>
-						</div>
-						<!-- / SINGLE TESTIMONIALS ITEM-->
 
 						<!-- SINGLE TESTIMONIALS ITEM -->
 						<div class="swiper-slide">
@@ -576,16 +309,14 @@
 	<section class="text-center shadow section section-min">
 		<div class="about-counter" id="about-counter">
 			<!-- <div><span class="btn btn-default"  onclick="addBtn()">등록하기 </span> -->
-			<div><span class="h3" href="#" data-toggle="modal" data-target="#new">등록하기 </span>
+			<div>
+				<div>
+					<div>
+				<span class="h3" href="#post-01" data-toggle="modal" data-target="#new">등록하기</span> 
+				<span class="h3" href="#" data-toggle="modal" data-target="#new">맛집리스트</span>
 			<div class="container">
 				<div class="row">
 					<div class="addBtn" >
-						<!-- SINGLE COUNTER ITEM -->
-						<div class="col-md-3 wow fadeInLeft about-counter-single" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0">
-							<div class="counter">
-								<span class="ti-crown icon"></span>
-								<h2 class="timer">250</h2>
-								<p> Projects Finished </p>
 							</div>
 						</div>
 					</div>
@@ -600,6 +331,16 @@
 						</div>
 					</div>
 					<!-- / SINGLE COUNTER ITEM -->
+					
+					<!-- SINGLE COUNTER ITEM -->
+						<div class="col-md-3 wow fadeInLeft about-counter-single" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0">
+							<div class="counter">
+								<span class="ti-crown icon"></span>
+								<h2 class="timer">250</h2>
+								<p> Projects Finished </p>
+							</div>
+						</div>
+						<!-- / SINGLE COUNTER ITEM -->
 
 					<!-- SINGLE COUNTER ITEM -->
 					<div class="col-md-3 wow fadeInLeft about-counter-single" data-wow-delay="0.4s" data-wow-duration="1s" data-wow-offset="0">
@@ -674,7 +415,7 @@
 						<!-- SINGLE NEWS ITEM -->
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
-								<a href="#" data-toggle="modal" data-target="#post-01">
+								<a href="#" data-toggle="modal" data-target="review">
 									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
 									</span>
 								</a>
@@ -709,43 +450,7 @@
 						</div>
 						<!-- / SINGLE NEWS ITEM -->
 
-						<!-- SINGLE NEWS ITEM -->
-						<div class="swiper-slide">
-							<div class="post-entry wow fadeInUp">
-								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
-									</span>
-								</a>
-
-								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
-								</a>
-								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
-									read more 
-									<span class="ti-arrow-right icon"></span>
-								</a>
-							</div>
-						</div>
-						<!-- / SINGLE NEWS ITEM -->
-
-						<!-- SINGLE NEWS ITEM -->
-						<div class="swiper-slide">
-							<div class="post-entry wow fadeInUp">
-								<a href="#" data-toggle="modal" data-target="#post-01">
-									<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
-									</span>
-								</a>
-
-								<a class="h3" href="#" data-toggle="modal" data-target="#post-01">
-									Estibulum ante ipsum primis lobortis
-								</a>
-								<a href="#" data-toggle="modal" data-target="#post-01" class="post-entry-more">
-									read more 
-									<span class="ti-arrow-right icon"></span>
-								</a>
-							</div>
-						</div>
-						<!-- / SINGLE NEWS ITEM -->
+			
 					</div>
 					<!-- / NEWS CAROSUEL -->
 
@@ -762,42 +467,6 @@
 				</div>
 			</div>
 
-			<!-- NEWS MODAL -->
-			<div class="modal fade" id="post-01" role="dialog" tabindex="-1">
-				<div class="modal-dialog">
-					<!-- NEWS MODAL CONTENT -->
-					<div class="modal-content shadow">
-						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
-						
-						<div class="modal-body">
-							<div class="post-entry post-entry-modal">
-								<h3 class="section-heading">Duis aute irure dolor in reprehenderit in voluptate.</h3> 
-								
-								<span class="post-entry-meta">
-									<img alt="user avatar" class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
-									<span class="post-entry-author-name pull-left">Alex Example</span> 
-									<span class="post-entry-time pull-right">6 min read
-										<span class="post-entry-category">interior, furnitures</span>
-									</span>
-								</span>
-
-								<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
-
-								<p> <font face="궁서체">안녕하세요</font> </p> 
-
-								<p> <font face="궁서체">치킨을 먹어보겠슴다. </font></p>
-								
-
-								<p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-
-								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-							</div>
-						</div>
-					</div>
-					<!-- / NEWS MODAL CONTENT -->
-				</div>
-			</div>
-			<!-- / NEWS MODAL -->
 			
 			<!-- NEWS MODAL -->
 			<div class="modal fade" id="new" role="dialog" tabindex="-1">
@@ -808,7 +477,9 @@
 						
 						<div class="modal-body">
 							<div class="post-entry post-entry-modal">
-								<h3 class="section-heading"><input type="text" ></h3> 
+								<h3 class="section-heading">
+									<input type="text"  id=textBlk width="100px" style="color : black">
+								</h3> 
 								
 								<span class="post-entry-meta">
 									<img alt="user avatar" class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
@@ -817,17 +488,24 @@
 										<span class="post-entry-category">interior, furnitures</span>
 									</span>
 								</span>
-
-								<span class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
-
-								<p> <font face="궁서체">테스트입니다.</font> </p> 
-
-								<p> <font face="궁서체">치킨을 먹어보겠슴다. </font></p>
-								
-
-								<p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-
-								<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+<%-- style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);" --%>
+								<div>
+									<form action="eatingMain" >
+								<span  id="holder"></span></div>
+								<p><div>
+									<textarea rows="" cols="" style="color : black"></textarea>
+									<p> <font face="궁서체">테스트입니다.</font> </p> 
+	
+									<p> <font face="궁서체">치킨을 먹어보겠슴다. </font></p>
+									<div class="filebox">
+										<label for="upload">사진 업로드</label>
+										<input type="file" id="upload" class="upload-hidden" name="file">
+									</div>
+									<p><div>
+										<input type="submit" value="등록하기"  >
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -838,205 +516,7 @@
 		</div>
 	</section>
 
-	<section class="timeline" id="history">
-        <div class="container">
-            <div class="row">
-            	<div class="col-md-12">
-	                <h3 class="section-heading">Our history</h3>
-	                <div id="timeline" class="timeline-container">
-	                     <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-1">
-	                        <div class="timeline-point">
-	                        </div>
 
-	                        <div class="timeline-content wow fadeInLeft">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">May</span>
-	                            <span class="timeline-year">2016</span>
-	                            </span>
-	                            <h2>Envelope title</h2>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-2">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInRight">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">March</span>
-	                            <span class="timeline-year">2016</span>
-	                            </span>
-	                            <h2>Lecce, Magnificat Lupiae</h2>
-	                            <p>Lorem ipsm dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-3">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInLeft">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">July</span>
-	                            <span class="timeline-year">2015</span>
-	                            </span>
-	                            <h2>Lecce, Magnificat Lupiae</h2>
-	                            <p>Lorem ipsm dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-4">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInRight">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">May</span>
-	                            <span class="timeline-year">2009</span>
-	                            </span>
-	                            <h2>Lecce, Magnificat Lupiae</h2>
-	                            <p>Lorem ipsm dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-5">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInLeft">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">August</span>
-	                            <span class="timeline-year">2008</span>
-	                            </span>
-	                            <h2>Envelope title</h2>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-6">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInRight">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">October</span>
-	                            <span class="timeline-year">2006</span>
-	                            </span>
-	                            <h2>Lecce, Magnificat Lupiae</h2>
-	                            <p>Lorem ipsm dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-7">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInLeft">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">December</span>
-	                            <span class="timeline-year">2004</span>
-	                            </span>
-	                            <h2>Lecce, Magnificat Lupiae</h2>
-	                            <p>Lorem ipsm dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                    <!-- / TIMELINE ITEM -->
-
-	                    <!-- TIMELINE ITEM -->
-	                    <div class="timeline-block timeline-block-image-8">
-	                        <div class="timeline-point">
-	                        </div>
-	                        
-	                        <div class="timeline-content wow fadeInRight">
-	                            <span class="timeline-date">
-	                            <span class="timeline-month">May</span>
-	                            <span class="timeline-year">2000</span>
-	                            </span>
-	                            <h2>Lecce, Magnificat Lupiae</h2>
-	                            <p>Lorem ipsm dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	                            </p>
-	                        </div>
-	                    </div>
-	                </div>
-	                <!-- / TIMELINE ITEM -->
-	            </div>
-	        </div>
-        </div>
-    </section>
-
-	<section id="contact" class="contact contact-with-map">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">contact</h3>
-				</div>
-				<div class="col-md-3">
-					<div class="contact-data">
-						<ul class="white-color">
-							<li><span class="ti-mobile icon"></span>+ 49 123 456 789</li>
-							<li><span class="ti-email icon"></span>mail@example.com</li>
-							<li><span class="ti-skype icon"></span>@choco</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-8 col-md-push-1">
-					<!-- CONTACT FORM -->
-					<div class="contact-form">
-						<form>
-							<div class="form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-							</div>
-
-							<div class="form-group">
-								<input type="text" class="form-control" id="contact-email" name="contact-email" placeholder="Email" required>
-							</div>
-
-							<div class="form-group">
-								<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
-							</div>
-
-							<div class="form-group">
-								<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
-							</div>
-
-							<div class="form-group">
-								<textarea class="form-control" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
-							</div>
-
-							<button type="button" type="button" id="submit" name="submit" class="btn btn-primary btn-lg text-center float-right">Submit your message</button>
-						</form>
-					</div>
-					<!-- / CONTACT FORM -->
-				</div>
-			</div>
-		</div>
-		<!-- GOOGLE MAP CONTAINER -->
-		<!-- <div class="google-maps">
-			<div id="map-canvas"></div>
-		</div> -->
-		<!-- / GOOGLE MAP CONTAINER -->
-	</section>
 
 	<div class="section section-min">
 		<footer class="footer">
@@ -1057,27 +537,6 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-4 col-md-offset-4 col-sm-12">
-								<div class="footer-newsletter">
-									<div class="center text-center">
-										<h4>stay tuned</h4>
-										<form action="#" method="post">
-											<div class="input-group">
-												<input class="form-control" type="text" placeholder="e-mail"> 
-												<span class="input-group-btn">
-													<button type="button" class="btn btn-default" type="button"><span class="ti-arrow-right"></span></button>
-												</span>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</footer>
@@ -1092,5 +551,31 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
 	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
+	<script type="text/javascript">
+
+var upload = document.getElementById('upload'),
+holder = document.getElementById('holder');
+
+upload.onchange = function(e) {
+e.preventDefault();
+
+var file = upload.files[0],
+   reader = new FileReader();
+   reader.onload = function(event) {
+   var img = new Image();
+   img.src = event.target.result;
+   /*
+   img.width = 200;
+   img.height = 200; 
+   img.className="img-circle"; */
+   holder.innerHTML = '';
+   holder.appendChild(img);
+};
+reader.readAsDataURL(file);
+
+return false;
+};
+
+</script>
 </body>
 </html>

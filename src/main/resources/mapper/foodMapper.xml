@@ -5,7 +5,7 @@
 	<sql id="restaurentColumn">
 		<!-- RESTAURANT_NAME ADDRESS CATEGORY content_CODE restaurantName addr 
 			category contentCode -->
-		content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY, restaurant_pic,id
+		content_code,restaurant_name,restaurant_address,category,restaurant_info,restaurant_pic,id
 	</sql>
 
 <!-- 	<resultMap type="kosta.web.model.vo.restaurant.RestaurentVo" id="restaurentSelectMap">
@@ -13,7 +13,13 @@
 		<result column="RESTAURANT_NAME" property="restaurantName" />
 		<result column="ADDRESS" property="addr" />
 		<result column="CATEGORY" property="category" />
-
+content_code varchar2(30) constraint content_code_ri_pk primary key,
+  restaurant_name varchar2(30),
+  restaurant_address varchar2(50),
+  category varchar2(50),
+  restaurant_info varchar2(2000),
+  restaurant_pic varchar2(50),
+  id constraint id_restaurant_info_fk references usertable(id)
 	</resultMap> -->
 
 
@@ -22,17 +28,17 @@
 		insert into Restaurant_INFO(
 		<include refid="restaurentColumn" />
 		)
-		values (#{restaurantName}, #{addr}, #{category}, #{contentCode},#{pic},#{id})
+		values (#{contentCode},#{restaurantName}, #{restaurantAddr}, #{category}, #{restaurantInfo},#{restaurantPic},#{id})
 	</insert>
 
 	<!-- 맛집정보 확인하기 -->
 	<select id="selectByRestaurant" parameterType="String"
 		resultType="kosta.web.model.vo.restaurant.RestaurentVo">
-		select 	content_CODE as contentCode, RESTAURANT_NAME as restaurantName, ADDRESS as addr, CATEGORY,  restaurant_pic as pic, id
-		from Restaurant_INFO
+		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_ADDRESS , CATEGORY, RESTAURANT_INFO, RESTAURANT_PIC , ID
+		from Restaurant
 		<where>
 			<if test="_parameter!=null">
-				content_CODE=#{_parameter}
+				CONTENT_CODE = #{_parameter}
 			</if>
 		</where>
 	</select>
@@ -43,9 +49,10 @@
 	<update id="updateRestaurant" >
 	update Restaurant_INFO
 		   set RESTAURANT_NAME = ${restaurantName},
-		   		 ADDRESS = ${addr},
+		   		 RESTAURANT_ADDRESS = ${restaurantAddr},
 		   		 CATEGORY = ${category},
-		   		 restaurant_pic = ${pic}
+		   		 Restaurant_INFO = ${restaurantInfo},
+		   		 restaurant_pic = ${restaurantPic}
 	 where content_CODE=${contentCode}
 	</update>
 	
