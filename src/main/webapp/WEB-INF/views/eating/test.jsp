@@ -52,19 +52,19 @@
 	<div>
 		<a href="eating/test"></a>
 		<c:forEach items="${requestScope.list}" var="test">
-		  ${test.contentCode},${test.addr},${test.restaurantName},${test.category},${test. pic},${test.id}
+		  ${test.contentCode},${test.restaurantAddr},${test.restaurantName},${test.category},${test. restaurantInfo},${test. restaurantPic},${test.id}
 	</c:forEach>
 		<!--   restaurant_name varchar2(30),
   address varchar2(50),
   category -->
 	</div>
 
-	<form class="form-horizontal" name="writeForm" method="post"
+	<%-- <form class="form-horizontal" name="writeForm" method="post"
 		action="${pageContext.request.contextPath }/eating/test"
 		onsubmit='return checkValid()' enctype="multipart/form-data"
 		id="writeForm">
 		<br> <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}">
+			value="${_csrf.token}"> --%>
 		<%-- <div class="form-group" align="center" id="holder">
 								<img
 									src="${pageContext.request.contextPath}/resources/images/join/unknown.jpg"
@@ -76,13 +76,13 @@
 	private String category;
 	private String pic;
 	private String id; -->
-		<br> <label>기본사항</label> <br> <input type="text"
+		<!-- <br> <label>기본사항</label> <br> <input type="text"
 			class="form-control" placeholder="맛집이름" name="restaurantName" /> <input
 			type="text" class="form-control" placeholder="주소" name="addr" /> <input
 			type="text" class="form-control" placeholder="카테고리" name="category" />
 		<br> <label>추가사항</label><br>
 		<div class="filebox">
-			<!-- 	<input class="form-control" type="file" name="file" placeholder="사진" id="upload" /> -->
+				<input class="form-control" type="file" name="file" placeholder="사진" id="upload" />
 			<input class="upload-name" value="파일선택" disabled="disabled">
 			<label for="upload">사진 업로드</label>
 			<input type="file" id="upload" class="upload-hidden" name="file">
@@ -110,7 +110,7 @@
 			reader.readAsDataURL(file);
 
 			return false;
-		};
+		}; -->
 	</script>
 </body>
 </html>

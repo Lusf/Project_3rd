@@ -24,8 +24,8 @@ content_code varchar2(30) constraint content_code_ri_pk primary key,
 
 
 	<!-- 맛집정보 등록하기 -->
-	<insert id="restaurantInsert" parameterType="restaurentVo">
-		insert into Restaurant_INFO(
+	<insert id="insertRestaurent" parameterType="restaurentVo">
+		insert into Restaurant(
 		<include refid="restaurentColumn" />
 		)
 		values (#{contentCode},#{restaurantName}, #{restaurantAddr}, #{category}, #{restaurantInfo},#{restaurantPic},#{id})
@@ -47,7 +47,7 @@ content_code varchar2(30) constraint content_code_ri_pk primary key,
 	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
 	<!-- 맛집 수정하기 -->
 	<update id="updateRestaurant" >
-	update Restaurant_INFO
+	update Restaurant
 		   set RESTAURANT_NAME = ${restaurantName},
 		   		 RESTAURANT_ADDRESS = ${restaurantAddr},
 		   		 CATEGORY = ${category},

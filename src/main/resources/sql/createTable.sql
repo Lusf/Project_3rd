@@ -148,10 +148,10 @@ create table restaurant(
   category varchar2(50),
   restaurant_info varchar2(2000),
   restaurant_pic varchar2(50),
-  id constraint id_restaurant_info_fk references usertable(id)
+  id constraint id_restaurant_fk references usertable(id)
 );
 
-insert into restaurant 	values ('C_SU_0001','¿µ¼·ÀÌ³×','¼­¿ï','ÇÑ½Ä','°³²Ü¸À','1.jpg','admin');
+insert into restaurant 	values ('C_SU_0001','¿µ¼·ÀÌ³×','¼­¿ï','ÇÑ½Ä','°³²Ü¸À','Ä¸Ã³.png','1111');
 commit
 drop table hot_deal;
 

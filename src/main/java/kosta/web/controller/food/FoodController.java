@@ -24,7 +24,12 @@ public class FoodController {
 
 		return "eating/eatingMain";
 	}
-
+	
+	@RequestMapping("eating/newdesign")
+	public String testMark2(){
+		return "eating/new_theme_mark2/index";
+	}
+	
 	@RequestMapping("eating/test")
 	public ModelAndView Test(String contentCode) {
 		System.out.println("123");
@@ -35,7 +40,7 @@ public class FoodController {
 		return new ModelAndView("eating/test", "list", list);
 
 	}
-
+	
 	@RequestMapping("eating/insert")
 	public String insertRestaurent(HttpServletRequest req, RestaurentVo restaurentVo) throws Exception {
 
@@ -73,10 +78,5 @@ public class FoodController {
 		}
 
 		return "redirect:/";
-	}
-	
-	@RequestMapping("eating/newdesign")
-	public String testMark2(){
-		return "eating/new_theme_mark2/index";
 	}
 }
