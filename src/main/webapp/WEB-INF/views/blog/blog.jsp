@@ -209,6 +209,7 @@ $(function() {
 						});
 	
 						$(".cont").html(str);
+						$(".ct img").attr("width","80%");
 						
 						//삭제하기
 						$("#dlt").click(function(){
