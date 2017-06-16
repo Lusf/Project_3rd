@@ -1,77 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>index</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+
+<!-- daumOpenEditor -->
 <link rel=stylesheet type=text/css
 	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
-<title>Travelge Recommandation</title>
-
 <script
 	src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
 	type="text/javascript" charset="utf-8"></script>
-
+<!-- jQuery -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
-
 	<div id="wrapper">
-		<%@ include file="/WEB-INF/views/admin/nav.jsp"%>
-
 		<div id="page-wrapper">
-
 			<div class="container-fluid">
-
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">
-							Travelge <small>Travelge Recommandation</small>
-						</h1>
-						<ol class="breadcrumb">
-							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
-							</li>
-							<li class="active"><i class="fa fa-file"></i> Travelge
-								Recommandation</li>
-						</ol>
+						<h1 class="page-header">리뷰 쓰기</h1>
 					</div>
 					<div class="col-lg-12">
 						<form name="tx_editor_form" id="tx_editor_form"
-							action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert"
+							action="${pageContext.request.contextPath}/blog/insertBlogReview"
 							method="post" accept-charset="utf-8">
-													<div class="panel panel-default">
-							                            <div class="form-group">
-								
-									
-									                            <div class="form-group input-group">
-                                <span class="input-group-addon">제목</span>
-                                <input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommadationTitle">
-                            </div>
-									
+							<div class="panel panel-default">
+								<div class="form-group">
+									<div class="form-group input-group">
+										<span class="input-group-addon">제목</span> <input type="text"
+											class="form-control" placeholder="제목을 작성해주세요" name="blogTitle">
+									</div>
 								</div>
-							<div class="panel-body"><jsp:include
-								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
-						</div>
-							<input type="hidden" name="contentCode" value="A2RECODE">
+								<div class="panel-body">
+									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
+								</div>
+							</div>
+							<input type="hidden" name="contentCode" value="B2RECODE">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}"> 
+								value="${_csrf.token}">
+							<sec:authorize access="isAuthenticated()">
+								<input type="hidden" name="id" value="<sec:authentication property="principal.id" />">
+							</sec:authorize>
 							<div style="text-align: center; margin-bottom: 3em">
-							<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
-							<button type="reset" class="btn btn-default">다시쓰기</button>
-							</div>	
-							
-								
+								<button type="submit" class="btn btn-default"
+									onclick="saveContent()">전송</button>
+								<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>
 						</form>
-
-
 
 						<script type="text/javascript">
 							if ('${board!=null}' == 'true')
@@ -158,7 +147,7 @@
 								// 본문 내용을 필드를 생성하여 값을 할당하는 부분
 								var textarea = document
 										.createElement('textarea');
-								textarea.name = 'recommadationDescription';
+								textarea.name = 'blogCont';
 								textarea.value = content;
 								textarea.style.display = "none";
 								form.createField(textarea);
@@ -179,16 +168,5 @@
 
 	</div>
 	<!-- /#wrapper -->
-
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
-
-
 </body>
-
 </html>

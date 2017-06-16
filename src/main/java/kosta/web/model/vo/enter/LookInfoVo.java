@@ -1,5 +1,7 @@
 package kosta.web.model.vo.enter;
 
+import kosta.web.model.vo.AvgScoreVo;
+
 /*
  * **LookInfo(볼거리 정보)
  * 
@@ -20,6 +22,18 @@ public class LookInfoVo {
 	private String lookLoca;
 	private String lookCate;
 	
+	private AvgScoreVo avgScoreVo;
+	
+	
+	
+	public AvgScoreVo getAvgScoreVo() {
+		return avgScoreVo;
+	}
+
+	public void setAvgScoreVo(AvgScoreVo avgScoreVo) {
+		this.avgScoreVo = avgScoreVo;
+	}
+
 	public LookInfoVo(){}
 	
 	public LookInfoVo(String contentCode, String id, String lookTitle, String lookStory, String lookMaker, String lookImg, String lookGenre,

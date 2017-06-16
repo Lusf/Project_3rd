@@ -33,12 +33,13 @@ create table blog(
   content_code varchar2(20),
   blog_title varchar2(30),
   blog_date date,
-  blog_cont varchar2(200),
+  blog_cont varchar2(2000),
   blog_img varchar2(50),
   constraint blog_pk primary key(id, blog_num)
 );
 
-select * from BLOG where id='a';
+select blog_title, content_code from BLOG where id='a' order by blog_date;
+select * from BLOG where id='a' order by blog_date;
 truncate table blog;
 
 insert into blog values('a','1','Entertainment','ba02a2','볼거리제목',sysdate,'뭘 볼까..','캐비.jpg');

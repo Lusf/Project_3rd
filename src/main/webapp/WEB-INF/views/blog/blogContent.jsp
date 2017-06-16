@@ -60,9 +60,10 @@
 						<h1>${blogCont.blogTitle}</h1>
 					</td>
 					<td>
+						
+					
 						<!-- Date/Time -->
-						<p>
-							<span class="glyphicon glyphicon-time"></span>${blogCont.blogDate}</p>
+						<span class="glyphicon glyphicon-time"></span>${blogCont.blogDate}</p>
 					</td>
 				</tr>
 			</table>
