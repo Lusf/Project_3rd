@@ -30,6 +30,10 @@
 	order by blog_date
 </select>
 
+<select id="selectBlogNum" parameterType="string" resultType="int">
+	select blog_num from blog where id=#{id}
+</select>
+
 
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">

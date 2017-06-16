@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,22 +36,25 @@
 					</div>
 					<div class="col-lg-12">
 						<form name="tx_editor_form" id="tx_editor_form"
-							action="${pageContext.request.contextPath }/blog"
+							action="${pageContext.request.contextPath}/blog/insertBlogReview"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">
 									<div class="form-group input-group">
 										<span class="input-group-addon">제목</span> <input type="text"
-											class="form-control" placeholder="제목을 작성해주세요">
+											class="form-control" placeholder="제목을 작성해주세요" name="blogTitle">
 									</div>
 								</div>
 								<div class="panel-body">
 									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 								</div>
 							</div>
-							<input type="hidden" name="contentCode" value="A2RECODE">
+							<input type="hidden" name="contentCode" value="B2RECODE">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
+							<sec:authorize access="isAuthenticated()">
+								<input type="hidden" name="id" value="<sec:authentication property="principal.id" />">
+							</sec:authorize>
 							<div style="text-align: center; margin-bottom: 3em">
 								<button type="submit" class="btn btn-default"
 									onclick="saveContent()">전송</button>
@@ -143,7 +147,7 @@
 								// 본문 내용을 필드를 생성하여 값을 할당하는 부분
 								var textarea = document
 										.createElement('textarea');
-								textarea.name = 'recommadationDescription';
+								textarea.name = 'blogCont';
 								textarea.value = content;
 								textarea.style.display = "none";
 								form.createField(textarea);
