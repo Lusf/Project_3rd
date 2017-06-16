@@ -26,30 +26,31 @@
 
 </head>
 <body>
+	<%@include file="/WEB-INF/views/includeFile.jsp" %>
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">리뷰 쓰기</h1>
+						<h1 class="page-header">리뷰 수정하기</h1>
 					</div>
 					<div class="col-lg-12">
 						<form name="tx_editor_form" id="tx_editor_form"
-							action="${pageContext.request.contextPath}/blog/insertBlogReview"
+							action="${pageContext.request.contextPath}/blog/updateBlogReview"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">
 									<div class="form-group input-group">
 										<span class="input-group-addon">제목</span> <input type="text"
-											class="form-control" placeholder="제목을 작성해주세요" name="blogTitle">
+											class="form-control" name="blogTitle" value="${item.blogTitle}">
 									</div>
 								</div>
 								<div class="panel-body">
 									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 								</div>
 							</div>
-							<input type="hidden" name="contentCode" value="B2R2DE">
+							<input type="hidden" name="contentCode" value="${item.contentCode}">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
 							<sec:authorize access="isAuthenticated()">
@@ -63,9 +64,9 @@
 						</form>
 
 						<script type="text/javascript">
-							if ('${blogCont!=null}' == 'true')
+							if ('${item.blogCont!=null}' == 'true')
 								Editor.modify({
-									'content' : '${blogCont}'
+									'content' : '${item.blogCont}'
 								});
 
 							var config = {

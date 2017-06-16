@@ -14,5 +14,7 @@ public interface UserBlogService {
 	
 	int delete(String id, String contentCode);
 	
+	int update(UserBlogVo userBlogVo);
+	
 	List<Integer> selectBlogNum(String id);
 }
