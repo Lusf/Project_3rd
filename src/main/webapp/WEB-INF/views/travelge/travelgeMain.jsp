@@ -138,7 +138,7 @@
 					</ul>
 				</div>
 
-								<div class="col-md-7 text-center">
+				<div class="col-md-7 text-center">
 					<div class="countdown-container">
 						<h3 class="wow fadeInDown">${card5.recommadationTitle }</h3>
 
@@ -161,16 +161,16 @@
 						<li class="wow fadeInUp" data-wow-delay=".2s"><span
 							class="product-list-left pull-left"> <a href="#"
 								data-target="#product-01" data-toggle="modal"> <img
-									alt="product image" class="product-list-primary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product3.png">
+									class="product-list-primary-img"
+									src="${card6Thumbnail }">
 									<img alt="product image" class="product-list-secondary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
+									src="${card6Thumbnail }">
 							</a>
 						</span></li>
 					</ul>
 				</div>
 
-								<div class="col-md-7 text-center">
+				<div class="col-md-7 text-center">
 					<div class="countdown-container">
 						<h3 class="wow fadeInDown">${card6.recommadationTitle }</h3>
 
@@ -396,7 +396,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
 	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
-	
-	<%@ include file="/WEB-INF/views/travelge/travelge-footer.jsp" %>
+
+	<%@ include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
 </body>
 </html>

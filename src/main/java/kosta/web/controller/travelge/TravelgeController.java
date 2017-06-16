@@ -37,8 +37,11 @@ public class TravelgeController {
 			int index = temp.indexOf("<img");
 			if(index != -1)
 			{
-				String imgsrc = temp.substring(index, index+130);
+				index+=21;
+				//String imgsrc = "${pageContex.request.contextPath}"+temp.substring(index, index+56);
+				String imgsrc = "/controller"+temp.substring(index, index+56);
 				System.out.println(imgsrc);
+				mv.addObject(card+"Thumbnail",imgsrc);
 			}
 		}
 		
