@@ -60,7 +60,7 @@ public class TravelgeController {
 	@RequestMapping("/travelgeInfoInsert")
 	public String travelgeInfoInsert(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) throws Exception{
 
-		String path = request.getSession().getServletContext().getRealPath("/resources/user");
+		String path = request.getSession().getServletContext().getRealPath("/resources/travelge");
 
 		MultipartFile file = travelgeInfoVo.getFile();
 
@@ -90,7 +90,7 @@ public class TravelgeController {
 		if (file.getSize() > 0) {
 
 			try {
-				file.transferTo(new File(path + "/" +travelgeInfoVo.getContentCode()+"/profile/"+ travelgeInfoVo.getTravelgePhotos()));
+				file.transferTo(new File(path + "/" +travelgeInfoVo.getContentCode()+"/photos/"+ travelgeInfoVo.getFile()));
 			} catch (Exception e) {
 			}
 		}

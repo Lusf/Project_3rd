@@ -19,6 +19,8 @@
 		username-parameter="id"
 		password-parameter="password"
 		default-target-url="/"
+		always-use-default-target="true"
+		authentication-success-handler-ref="authLoginSuccessHandler"
 		authentication-failure-handler-ref="userAuthenticationFailureHandler"
 	/>
 	
@@ -29,6 +31,7 @@
 		logout-success-url="/"
 	 />
 	 
+	
 </security:http>
 
 <security:authentication-manager>

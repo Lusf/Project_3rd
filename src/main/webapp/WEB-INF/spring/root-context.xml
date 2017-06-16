@@ -12,15 +12,12 @@
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-
-	
-	
 	<context:component-scan base-package="kosta.web.model.service"/>
 	
 	<context:component-scan base-package="kosta.web.model.dao"/>
 	
 	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder"/>
 	 
-	 
+	<bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler" id="authLoginSuccessHandler"></bean>
 		
 </beans>
