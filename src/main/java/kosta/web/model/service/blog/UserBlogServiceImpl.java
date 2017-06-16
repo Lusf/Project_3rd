@@ -57,4 +57,10 @@ public class UserBlogServiceImpl implements UserBlogService {
 	public List<Integer> selectBlogNum(String id) {
 		return blogDAO.selectBlogNum(id);
 	}
+	
+	@Override
+	public List<UserBlogVo> selectByContentCode(String contentCode)
+	{
+		return blogDAO.selectByContentCode(contentCode);
+	}
 }

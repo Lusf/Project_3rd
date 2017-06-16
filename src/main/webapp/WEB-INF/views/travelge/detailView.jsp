@@ -70,9 +70,16 @@
 					</div>
 				</div>
 				<!-- /detail modal 끝 -->
-				<div style="height: 500px"></div>
+				<hr>
+				<c:forEach var="comment" items="${commentList }">
+				<a href="${pageContext.request.contextPath}/blog/selectBlogCont">
+					<span> ${comment.id } </span>
+					<br>
+					<span>${comment.blogTitle }</span>
+					<br>
+				</a>	
+				</c:forEach>
 			</div>
-			<hr>
 
 		</div>
 	</div>

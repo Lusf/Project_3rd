@@ -53,9 +53,12 @@ public class UserBlogController {
 	
 	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)
 	@ResponseBody
-	public List<UserBlogVo> selectCont(String contentCode){
-		String id = (String)session.getAttribute("blogId");
+	public List<UserBlogVo> selectCont(String contentCode, String id){
 		
+		if(id.equals("") || id==null)
+		{
+			 id = (String)session.getAttribute("blogId");
+		}
 		List<UserBlogVo> list = blogService.selectCont(id, contentCode);
 		
 		return list;
