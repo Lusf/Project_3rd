@@ -34,22 +34,21 @@ create table blog(
   blog_title varchar2(30),
   blog_date date,
   blog_cont varchar2(2000),
-  blog_img varchar2(20),
-  constraint blog_pk primary key(id, blog_num)
+  constraint blog_pk primary key(id, content_code)
 );
 
 select blog_title, content_code from BLOG where id='a' order by blog_date;
 select * from BLOG where id='a' order by blog_date;
 truncate table blog;
 
-insert into blog values('a','1','Entertainment','ba02a2','볼거리제목',sysdate,'뭘 볼까..',null);
-insert into blog values('a','2','Food','ca02a2','먹거리제목',sysdate,'밥바밥바밥바바밥',null);
-insert into blog values('a','3','Entertainment','b354654','볼거리제목2',sysdate,'뭘 볼까2..',null);
-insert into blog values('a','4','Entertainment','b4324354','볼거리제목3',sysdate,'뭘 볼까3..',null);
-insert into blog values('a','5','Food','c00000','먹거리2',sysdate,'먹거리2..',null);
-insert into blog values('a','6','Travelge','a65465','여행1',sysdate,'여행1..',null);
-insert into blog values('a','7','Travelge','a765465415','여행2',sysdate,'여행2..',null);
-insert into blog values('a','8','Travelge','a8654sdf','여행3',sysdate,'여행3..',null);
+insert into blog values('a','1','Entertainment','ba02a2','볼거리제목',sysdate,'뭘 볼까..');
+insert into blog values('a','2','Food','ca02a2','먹거리제목',sysdate,'밥바밥바밥바바밥');
+insert into blog values('a','3','Entertainment','b354654','볼거리제목2',sysdate,'뭘 볼까2..');
+insert into blog values('a','4','Entertainment','b4324354','볼거리제목3',sysdate,'뭘 볼까3..');
+insert into blog values('a','5','Food','c00000','먹거리2',sysdate,'먹거리2..');
+insert into blog values('a','6','Travelge','a65465','여행1',sysdate,'여행1..');
+insert into blog values('a','7','Travelge','a765465415','여행2',sysdate,'여행2..');
+insert into blog values('a','8','Travelge','a8654sdf','여행3',sysdate,'여행3..');
 
 insert into blog values('b','1','Entertainment','b654654','볼거리제목3',sysdate,'뭘 볼까3..');
 insert into blog values('b','2','Food','c6546','먹거리2',sysdate,'먹거리2..');
