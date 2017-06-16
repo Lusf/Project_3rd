@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.enter.EnterService;
+import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
 
 @Controller
@@ -20,10 +21,10 @@ public class EnterController {
 	@Autowired
 	private EnterService enterService;
 	
-	@RequestMapping("enterMain")
+/*	@RequestMapping("enterMain")
 	public String enterMain(){
 		return "entertainment/enterMain";
-	}
+	}*/
 	
 	@RequestMapping("detailView")
 	public String detailView(){
@@ -87,4 +88,27 @@ public class EnterController {
 				enterService.lookgoodBoardSearchByNum(lookgoodBoardVo.getLgbNum());
 		return new ModelAndView("entertainment/board/userBoardDetailView", "boardList", boardUp);
 	}
+	
+	//메인 볼거리 정보 가져오기
+	@RequestMapping("enterMain")
+	public ModelAndView enterContents(LookInfoVo lookInfoVo){
+		List<LookInfoVo> lookInfoList =  enterService.lookInfoSearch(lookInfoVo);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("entertainment/enterMain");
+		mv.addObject("lookInfoList", lookInfoList);
+/*		
+		if(lookInfoVo.getAvgScoreVo().getScore()==0){
+			
+		}*/
+/*		
+		int result = enterService.lookScoreInsert(lookInfoVo.getAvgScoreVo());
+		System.out.println("score result : " + result);
+		*/
+		System.out.println(lookInfoList);
+		return mv;
+	}
+	
+	//별점등록하기
+	//@RequestMapping("")
 }

@@ -43,13 +43,13 @@
 						</li>
 					</ul>
 					<!-- 사이드바 / 우측영역 -->
-					<ul class="tx-bar tx-bar-right">
+					<!-- <ul class="tx-bar tx-bar-right">
 						<li class="tx-list">
 							<div unselectable="on" class="tx-btn-lrbg tx-fullscreen" id="tx_fullscreen">
 								<a href="javascript:;" class="tx-icon" title="넓게쓰기 (Ctrl+M)">넓게쓰기</a>
 							</div>
 						</li>
-					</ul>
+					</ul> -->
 					<!-- <ul class="tx-bar tx-bar-right tx-nav-opt">
 						<li class="tx-list">
 							<div unselectable="on" class="tx-switchtoggle" id="tx_switchertoggle">

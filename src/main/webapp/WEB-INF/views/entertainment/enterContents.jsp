@@ -3,27 +3,199 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- star plugin -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
+
 <script type="text/javascript">
+	$(function() {
+		return $(".starrr").starrr();
+	});
 
-$(function() {
-    return $(".starrr").starrr();
-});
+	$(document).ready(function() {
 
-$( document ).ready(function() {
-      
-  $('#stars').on('starrr:change', function(e, value){
-    $('#count').html(value);
-  });
-  
-  $('#stars-existing').on('starrr:change', function(e, value){
-    $('#count-existing').html(value);
-  });
-  
-});
-</script> 
+		$('#stars').on('starrr:change', function(e, value) {
+			$('#count').html(value);
+		});
 
+		$('#stars-existing').on('starrr:change', function(e, value) {
+			$('#count-existing').html(value);
+		});
+		
+		$('#starScoreSave').on(function(e, value){
+			
+			$('#count').html(value);
+		});
+	});
+</script>
+<br>
+<br>
+<br>
+<br>
+<!-- 영화 -->
+<section class="onair-list" id="list">
+	<div class="container overflow-hidden">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="section-heading">영화★</h3>
+			</div>
+
+			<div class="post-slider col-md-12">
+				<!-- NEWS CAROSUEL -->
+				<div class="swiper-wrapper">
+					<!-- SINGLE NEWS ITEM -->
+					<c:choose>
+						<c:when test="${empty lookInfoList}">
+											정보가 없습니다.
+									</c:when>
+						<c:otherwise>
+							<c:forEach items="${lookInfoList}" var="infoList"
+								varStatus="state">
+								<div class="swiper-slide">				
+										<div class="post-entry wow fadeInUp">
+											<c:if test="${infoList.lookCate eq 'movie'}">
+											<a href="#" data-toggle="modal"
+												data-target="#${infoList.lookTitle}"> 
+											<span
+												class="post-entry-cover"
+												style="background-image:url(${pageContext.request.contextPath}/resources/images/entertainment/movie/${infoList.lookImg}"
+												alt="${infoList.lookImg};"> </span>
+											</a> <a class="h3" href="#" data-toggle="modal"
+												data-target="#${infoList.lookTitle}">
+												${infoList.lookTitle} </a> <a href="#" data-toggle="modal"
+												data-target="#${infoList.lookTitle}" class="post-entry-more">
+												read more<span class="ti-arrow-right icon"></span>
+											</a>
+											</c:if>
+										</div>
+								</div>
+
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+			<!-- / SINGLE NEWS ITEM -->
+		</div>
+		
+
+		<!-- CAROUSEL CONTROLS -->
+		<div class="post-pagination text-center"></div>
+		<div class="post-slider-next right-arrow-negative">
+			<span class="ti-arrow-right"></span>
+		</div>
+
+		<div class="post-slider-prev left-arrow-negative">
+			<span class="ti-arrow-left"></span>
+		</div>
+		<!-- / CAROUSEL CONTROLS -->
+	</div>
+
+	<div>
+		<!-- 영화 detail MODAL -->
+		<c:choose>
+			<c:when test="${empty lookInfoList}">
+			영화 정보가 없습니다.
+	</c:when>
+			<c:otherwise>
+				<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
+					<c:if test="${infoList.lookCate eq 'movie'}">
+						<div class="modal fade" id="${infoList.lookTitle}" role="dialog"
+							tabindex="-1">
+							<div class="modal-dialog">
+								<!-- NEWS MODAL CONTENT -->
+								<div class="modal-content shadow">
+									<a class="close" data-dismiss="modal"> <span
+										class="ti-close"></span>
+									</a>
+
+									<div class="modal-body">
+										<div class="post-entry post-entry-modal">
+											<h3 class="section-heading">${infoList.lookTitle}</h3>
+											<a href="#" data-toggle="modal" data-target="#starScore"
+												class="post-entry-more"> 
+												<span
+												class="glyphicon glyphicon-star"
+												style="font-size: 50px; color: yellow !important;"> </span>
+												<span class="glyphicon glyphicon-heart"
+												style="font-size: 50px; color: #ff6666 !important;"></span>
+											</a>
+											<!-- picture -->
+											<span class="post-entry-cover"
+												style="background-image:url(${pageContext.request.contextPath}/resources/images/entertainment/movie/${infoList.lookImg});"></span>
+											<p>
+											<span> ${infoList.lookStory}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<!-- 영화 detail modal 끝 -->
+
+</section>
+
+<!-- starScore modal -->
+<div class="modal fade" id="starScore" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+
+		<!-- star  -->
+		<div class="container">
+			<div class="row lead">
+				<span id="stars-existing" class="starrr" data-rating='1'></span> <span
+					id="count-existing">1</span>점
+			</div>
+		</div>
+		<!-- star 끝 -->
+
+		<!-- save, cancle -->
+		<div class="modal-footer">
+			<div class="btn-group">
+				<button class="btn btn-danger" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove"></span> Cancel
+				</button>
+				<button class="btn btn-primary" type="submit">
+					<span class="glyphicon glyphicon-check" id="starScoreSave"></span> Save
+				</button>
+			</div>
+		</div>
+		<!-- save,cancle 끝 -->
+
+	</div>
+	<!-- modal-dialog 끝 -->
+
+</div>
+<!-- starScore modal 끝 -->
+
+<%-- 			<div>
+				<c:choose>
+					<c:when test="${empty lookInfoList}">
+						정보가 없습니다.
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${lookInfoList}" var="infoList"
+							varStatus="state">
+							<tr>
+								<td>${infoList.lookTitle}</td>
+								<td><img
+									src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookImg}"
+									alt="${infoList.lookImg}" /></td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div> --%>
+
+<%-- 			<!-- Preview Image -->
+<img src="${pageContext.request.contextPath}/resources/enter/${blogCont.id}/blog/${blogCont.blogImg}"
+	alt="${blogCont.blogImg}" /> --%>
+
+
+<%-- 
 <!-- detailView... -->
 <section class="post-list" id="news">
 
@@ -36,72 +208,8 @@ $( document ).ready(function() {
 				read more 
 			</a> 
 		</div>
-	</div> 
-
-	<!-- detail MODAL -->
-	<div class="modal fade" id="post-01" role="dialog" tabindex="-1">
-		<div class="modal-dialog">
-			<!-- NEWS MODAL CONTENT -->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
-
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-						<h3 class="section-heading">Duis aute irure dolor in
-							reprehenderit in voluptate.</h3>
-
-<!-- 						
-						     <ul>
-								<li> -->
-									<a href="#" data-toggle="modal" data-target="#starScore" class="post-entry-more">
-									<span class="glyphicon glyphicon-heart"
-										  style="font-size: 200px; 
-										  color: #ff6666 !important;"></span>
-									</a>
-<!-- 								</li>
-							</ul>						
-						</a> -->
-
-						<!-- picture -->
-						<span class="post-entry-cover"
-							style="background-image:url(${pageContext.request.contextPath}/resources/images/entertainment/zootopia.jpg);"></span>
-
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam,</p>
-
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
-	<!-- /detail modal 끝 -->
-			
-			<!-- starScore modal -->		
-			<div class="modal fade" id="starScore" role="dialog" tabindex="-1">
-				<div class="modal-dialog" >
-				
-				<!-- star  -->
-				<div class="container"> 
-					<div class="row lead">
-					<span id="stars-existing" class="starrr" data-rating='1'></span> 
-					<span id="count-existing">1</span>점
-					</div>
-				</div><!-- star 끝 -->
-				
-				<!-- save, cancle -->
-				<div class="modal-footer">
-                    <div class="btn-group">
-                        <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                        <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Save</button>
-                    </div>
-                </div><!-- save,cancle 끝 -->
-                
-				</div><!-- modal-dialog 끝 -->
-
-			</div><!-- starScore modal 끝 -->
-</section>
+</section> 
 
 
 <!--  Main 슬라이더 부분 -->
@@ -665,7 +773,24 @@ $( document ).ready(function() {
 			</ul>
 		</div>
 	</div>
-</div>
+</div> --%>
+
+
+<script src="<c:url value='/resources/js/eating/vendor/wow.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"></script>
+<script src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/eating/vendor/bootstrap.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/eating/vendor/jquery.inview.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"></script>
+<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
+<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
+<script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
 
 <!-- ScrollUp button start -->
 <div class="scrollup">
