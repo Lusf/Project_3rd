@@ -33,7 +33,6 @@
   <body>
 	<%@include file="/WEB-INF/views/includeFile.jsp" %>
 	<%@include file="/WEB-INF/views/header.jsp"%>
-	<%@include file="/WEB-INF/views/entertainment/includePluton.jsp"%>
 	<br><br><br><br><br><br>
 	
 <!-- 게시글목록 -->

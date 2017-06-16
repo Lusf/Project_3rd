@@ -84,7 +84,9 @@ h1 {
 			<figcaption style="padding-top: 1em">
 				<h1>Entertainment</h1>
 				<p id="desc">
-					<br> TV부터 공연까지<br> <a href="entertainment/enterMain" id="astyle">View more</a>
+					<br> TV부터 공연까지<br> 
+					<!-- <a href="entertainment/enterMain" id="astyle">View more</a> -->
+					<a href="entertainment/new/enterMain" id="astyle">New</a>
 			</figcaption>
 		</figure>
 	</div>

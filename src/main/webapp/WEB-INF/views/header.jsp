@@ -1,116 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@page import="java.util.Enumeration"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-<script type="text/javascript">
-	var $ = jQuery.noConflict();
-	$(function() {
-		$('#activator').click(function() {
-			$('#box').animate({
-				'top' : '0px'
-			}, 500);
-		});
-		$('#box').click(function() {
-			$('#box').animate({
-				'top' : '-700px'
-			}, 500);
-		});
-	});
-	$(document).ready(function() {
-		// Hide (Collapse) the toggle containers on load
-		$(".toggle_container").hide();
-		// Switch the "Open" and "Close" state per click then slide up/down
-		// (depending on open/close state)
-		$(".trigger").click(function() {
-			$(this).toggleClass("active").next().slideToggle("slow");
-			return false; // Prevent the browser jump to the link anchor
-		});
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 
-	});
-	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 
-	function logout() {
-		document.getElementById("logoutForm").submit();
-	}	
-</script>
-<style>
-li span {
-	font-weight: bold;
-	font-size: 20px;
+<script>
+function logout() {
+	document.getElementById("logoutForm").submit();
 }
-</style>
+</script>
 
-<div class="header">
-	<div class="col-xs-2 col-md-2">
-		<div class="nav-icon">
-			<a class="right_bt" id="activator"><span> </span> </a>
-		</div>
-	</div>
-	<div class="box" id="box">
-		<div class="box_content">
-			<div class="box_content_center">
-				<div class="form_content">
-					<div class="menu_box_list">
-						<ul>
-							<li><a href="${pageContext.request.contextPath}/"><span>home</span></a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/travelge/main"><span>Travelge</span></a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/entertainment/enterMain"><span>Entertainment</span></a></li>
-							<li><a href="#"><span>Food</span></a></li>
-							<li><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />"><span>Blog</span></a></sec:authorize></li>
-							<li><a href="#"><span>Contact</span></a></li>
+<header class="header header-fixed nav-down">
+	<div class="box mb-0">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a href="${pageContext.request.contextPath}/" class="header-logo-small mt-15"><img
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+					alt="store logo"></a>
+				<button class="navbar-toggle" type="button" data-toggle="collapse"
+					data-target=".js-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
 
-						</ul>
-					</div>
-					<!-- <a class="boxclose" id="boxclose"> <span> </span></a> -->
+			<div class="collapse navbar-collapse js-navbar-collapse row">
+				<ul class="nav navbar-nav">
+					<li class="header-link"><a href="newdesign">home</a></li>
+					<li class="header-link"><a href="#">메뉴1</a></li>
+					<li class="header-link"><a href="#">메뉴2</a></li>
+					<li class="header-link"><a href="#">메뉴3</a></li>
+					<li class="header-link"><a href="#">메뉴4</a></li>
+					<li class="header-link"><a href="#">메뉴5</a></li>
+					<li class="header-link"><a href="#">메뉴6</a></li>
+					<li class="header-link dropdown mega pull-left "><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
+							class="ti-angle-down"></span></a>
+						<ul class="dropdown-menu mega-menu container">
+							<li class="col-sm-3">
+								<ul>
+									<li><img class="img-responsive  col-lg-12 mb-15"
+										src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
+										alt="category image"> <img
+										class="img-responsive col-lg-12"
+										src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
+										alt="category image"></li>
+								</ul>
+							</li>
+
+							<li class="col-sm-3 col-xs-6 smartphone-fw">
+								<ul>
+									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/user/mypage">My Page</a></li>
+									<li class="dropdown-header"><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a></sec:authorize></li>
+								</ul>
+							</li>
+						</ul></li>
+
+				</ul>
+
+				<div class="navbar-buttons">
+					<sec:authorize access="isAuthenticated()"><p><p>
+						<sec:authentication property="principal.id" />님 환영합니다.
+						<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+						<a href="javascript:logout();">로그아웃</a>
+					</sec:authorize>
+					<sec:authorize access="!isAuthenticated()">
+						<a href="${pageContext.request.contextPath }/user/loginForm" class="btn btn-link btn-sm mt-10">Login</a>
+						<a href="${pageContext.request.contextPath }/user/joinForm" class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
+					</sec:authorize>
 				</div>
 			</div>
-		</div>
+		</nav>
 	</div>
-	<div class="col-xs-2 col-md-2 col-md-offset-3 col-xs-offset-3">
-		<div class="logo">
-			<a href="${pageContext.request.contextPath }/"><img
-				src="${pageContext.request.contextPath }/resources/images/header/logo.png"
-				title="pinbal" /></a>
-		</div>
-	</div>
-
-	<div class="col-xs-2 col-md-2 col-md-offset-2 col-xs-offset-2">
-		<sec:authorize access="isAuthenticated()">
-			<div style="color: black">
-			<sec:authentication property="principal.id" /> 
-			 님 환영합니다.
-			 </div> <!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-			<a href="user/mypage">My Page</a>
-			<a href="javascript:logout();">로그아웃</a>
-		</sec:authorize>
-		<sec:authorize access="!isAuthenticated()">
-			<a href="${pageContext.request.contextPath }/user/loginForm"
-				style="margin-right: 1em"> 로그인</a>
-			<a href="${pageContext.request.contextPath }/user/joinForm">회원가입</a>
-		</sec:authorize>
-
-
-	</div>
-
-</div>
-<!-- 로그아웃 -->
-
-		<!-- 
-로그아웃은 스프링시큐리티 4 부터는 로그아웃시 POST 방식으로 이동하며 /logout url로 요청한다. (따로 정의하지 않으면)
-그리고 _csrf 를 요청파라미터로 보내야 한다.
- -->
+	
 	<form id="logoutForm" action="${pageContext.request.contextPath}/user/logout"
 		method="post" style="display: none">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
 
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-	<script>
-		location.href="${pageContext.request.contextPath}/admin/index";
-	</script>			
-</sec:authorize>
-<!---//End-header---->
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<script>
+			location.href="${pageContext.request.contextPath}/admin/index";
+		</script>			
+	</sec:authorize>
+</header>

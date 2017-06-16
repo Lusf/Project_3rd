@@ -28,7 +28,7 @@ public class UserBlogServiceImpl implements UserBlogService {
 	public int insert(UserBlogVo blogVo) {
 		//블로그 번호 넣기
 		List<Integer> list = selectBlogNum(blogVo.getId());
-		int last = list.get(list.size()-1);
+		int last = list.get(list.size()-1);System.out.println(last);
 		blogVo.setBlogNum(last+1);
 		
 		//contentCode를 받아서 category설정하기
