@@ -33,8 +33,8 @@ public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO 
 
 	@Override
 	public List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectList("travelgeRecommandationMapper.travelgeRecommandSearch", contentCode);
 	}
 
 }

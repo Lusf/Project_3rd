@@ -86,8 +86,8 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return travelgeRecommandationDAO.travelgeRecommandSearch(contentCode);
 	}
 
 	@Override

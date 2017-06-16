@@ -1,5 +1,6 @@
 package kosta.web.controller.travelge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,26 @@ public class TravelgeController {
 	private TravelgeService travelgeService;
 	
 	@RequestMapping("/main")
-	public String travelgeMain()
+	public ModelAndView travelgeMain()
 	{
-		return "travelge/travelgeMain";
+		ModelAndView mv =new ModelAndView();
+		mv.setViewName("travelge/travelgeMain");
+		List<TravelgeRecommandationVo> list =  travelgeService.travelgeRecommandSearch(null);
+		for(int i = 0; i < 6; i++)
+		{
+			String card = "card"+(i+1);
+			mv.addObject(card , list.get(i));
+			
+			String temp  = list.get(i).getRecommadationDescription();
+			int index = temp.indexOf("<img");
+			if(index != -1)
+			{
+				String imgsrc = temp.substring(index, index+130);
+				System.out.println(imgsrc);
+			}
+		}
+		
+		return mv;
 	}
 	// url 에 해당하는 jsp파일로 이동
 	@RequestMapping("{url}")
