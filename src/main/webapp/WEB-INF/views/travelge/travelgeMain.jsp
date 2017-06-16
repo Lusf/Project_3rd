@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>appart - property and classifieds bootstrap template</title>
+<title>travelge main - 오지랖</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -13,113 +13,22 @@
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-	$('.txc-image').css("width","100%");	
+	$(document).ready(function() {
+		$('.txc-image').css("width", "100%");
 
-})
-
+	})
 </script>
 
 
 </head>
 <body>
 
-	<header class="header header-fixed nav-down">
-		<div class="box mb-0">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header">
-					<a href="#" class="header-logo-small mt-15"><img
-						src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
-						alt="store logo"></a>
-					<button class="navbar-toggle" type="button" data-toggle="collapse"
-						data-target=".js-navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-				</div>
-
-				<div class="collapse navbar-collapse js-navbar-collapse row">
-					<ul class="nav navbar-nav">
-						<li class="header-link"><a href="newdesign">home</a></li>
-						<li class="header-link"><a href="#">메뉴1</a></li>
-						<li class="header-link"><a href="#">메뉴2</a></li>
-						<li class="header-link"><a href="#">메뉴3</a></li>
-						<li class="header-link"><a href="#">메뉴4</a></li>
-						<li class="header-link"><a href="#">메뉴5</a></li>
-						<li class="header-link"><a href="#">메뉴6</a></li>
-						<li class="header-link dropdown mega pull-left "><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
-								class="ti-angle-down"></span></a>
-							<ul class="dropdown-menu mega-menu container">
-								<li class="col-sm-3">
-									<ul>
-										<li><img class="img-responsive  col-lg-12 mb-15"
-											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
-											alt="category image"> <img
-											class="img-responsive col-lg-12"
-											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
-											alt="category image"></li>
-									</ul>
-								</li>
-
-								<li class="col-sm-3 col-xs-6 smartphone-fw">
-									<ul>
-										<li class="dropdown-header">Excepteur s cupidatat</li>
-										<li><a href="#">lorem ipsum dolor </a></li>
-										<li><a href="#">laboris nisi ut aliquip</a></li>
-										<li><a href="#">int occaecat</a></li>
-										<li><a href="#">Newsletter Form</a></li>
-										<li><a href="#">fugiat nulla pariatur</a></li>
-										<li class="divider"></li>
-										<li class="dropdown-header">Reprehenderit</li>
-										<li><a href="#">ullamco ex ea commodo</a></li>
-										<li><a href="#">incididunt ut labore </a></li>
-										<li><a href="#">fugiat nulla pariatur</a></li>
-									</ul>
-								</li>
-
-								<li class="col-sm-3 col-xs-6 smartphone-fw">
-									<ul>
-										<li class="dropdown-header">Culpa qui officia deserunt</li>
-										<li><a href="#">laboris nisi ut aliquip</a></li>
-										<li><a href="#">int occaecat</a></li>
-										<li><a href="#">nostrud exercitation </a></li>
-										<li><a href="#">fugiat nulla pariatur</a></li>
-										<li class="divider"></li>
-
-										<li class="dropdown-header">Consectetur adipisicing</li>
-										<li><a href="#">enim ad minim veniam</a></li>
-										<li><a href="#">dolore magna aliqua</a></li>
-										<li><a href="#"> aute irure dolor</a></li>
-									</ul>
-								</li>
-
-								<li class="col-sm-3 col-xs-6 smartphone-fw">
-									<ul>
-										<li class="dropdown-header">Aute irure dolor</li>
-										<li><a href="#">mollit anim id est</a></li>
-										<li><a href="#">enim ad minim veniam</a></li>
-										<li><a href="#">dolore magna aliqua</a></li>
-										<li class="divider"></li>
-									</ul>
-								</li>
-							</ul></li>
-
-					</ul>
-
-					<div class="navbar-buttons">
-						<a class="btn btn-link btn-sm mt-10">your account</a> <a
-							class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>place
-							a free ad</a>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</header>
+	<%@include file="/WEB-INF/views/travelge/travelge-header.jsp"%>
 
 	<section class="home">
 		<div class="home-slider home-slider-half-page">
@@ -128,21 +37,21 @@ $(document).ready(function(){
 					style="background-image:url(${card1Thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card1.recommadationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
-							data-target="#card1view">browse <span
+						data-target="#card1view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card2Thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card2.recommadationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
-							data-target="#card2view">browse <span
+						data-target="#card2view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card3Thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card3.recommadationTitle }</h1>
-<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
-							data-target="#card3view">browse <span
+					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+						data-target="#card3view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 			</div>
@@ -280,7 +189,7 @@ $(document).ready(function(){
 		<!--/ container -->
 	</section>
 
-	
+
 	<div id="card1view" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -288,14 +197,11 @@ $(document).ready(function(){
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card1.recommadationTitle }</span> <span
-							class="offer-box-location"><i class="material-icons">visibility</i>${card1.readNum }
-							</span> <span class="offer-box-meta">${card1.recommandationDate}</span> 
-							<span class="descriptionImg">
-							${card1.recommadationDescription }
-							</span>
-							 <a class="close"
-							data-dismiss="modal"><span class="ti-close"></span></a>
+						<span class="h4 offer-box-title">${card1.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card1.readNum }
+						</span> <span class="offer-box-meta">${card1.recommandationDate}</span> <span
+							class="descriptionImg"> ${card1.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
 			</div>
@@ -308,14 +214,11 @@ $(document).ready(function(){
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card2.recommadationTitle }</span> <span
-							class="offer-box-location"><i class="material-icons">visibility</i>${card2.readNum }
-							</span> <span class="offer-box-meta">${card2.recommandationDate}</span> 
-							<span class="descriptionImg">
-							${card2.recommadationDescription }
-							</span>
-							 <a class="close"
-							data-dismiss="modal"><span class="ti-close"></span></a>
+						<span class="h4 offer-box-title">${card2.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card2.readNum }
+						</span> <span class="offer-box-meta">${card2.recommandationDate}</span> <span
+							class="descriptionImg"> ${card2.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
 			</div>
@@ -328,14 +231,11 @@ $(document).ready(function(){
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card3.recommadationTitle }</span> <span
-							class="offer-box-location"><i class="material-icons">visibility</i>${card3.readNum }
-							</span> <span class="offer-box-meta">${card3.recommandationDate}</span> 
-							<span class="descriptionImg">
-							${card3.recommadationDescription }
-							</span>
-							 <a class="close"
-							data-dismiss="modal"><span class="ti-close"></span></a>
+						<span class="h4 offer-box-title">${card3.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card3.readNum }
+						</span> <span class="offer-box-meta">${card3.recommandationDate}</span> <span
+							class="descriptionImg"> ${card3.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
 			</div>
@@ -348,14 +248,11 @@ $(document).ready(function(){
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card4.recommadationTitle }</span> <span
-							class="offer-box-location"><i class="material-icons">visibility</i>${card4.readNum }
-							</span> <span class="offer-box-meta">${card4.recommandationDate}</span> 
-							<span class="descriptionImg">
-							${card4.recommadationDescription }
-							</span>
-							 <a class="close"
-							data-dismiss="modal"><span class="ti-close"></span></a>
+						<span class="h4 offer-box-title">${card4.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card4.readNum }
+						</span> <span class="offer-box-meta">${card4.recommandationDate}</span> <span
+							class="descriptionImg"> ${card4.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
 			</div>
@@ -369,14 +266,11 @@ $(document).ready(function(){
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card5.recommadationTitle }</span> <span
-							class="offer-box-location"><i class="material-icons">visibility</i>${card5.readNum }
-							</span> <span class="offer-box-meta">${card5.recommandationDate}</span> 
-							<span class="descriptionImg">
-							${card5.recommadationDescription }
-							</span>
-							 <a class="close"
-							data-dismiss="modal"><span class="ti-close"></span></a>
+						<span class="h4 offer-box-title">${card5.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card5.readNum }
+						</span> <span class="offer-box-meta">${card5.recommandationDate}</span> <span
+							class="descriptionImg"> ${card5.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
 			</div>
@@ -390,20 +284,17 @@ $(document).ready(function(){
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card6.recommadationTitle }</span> <span
-							class="offer-box-location"><i class="material-icons">visibility</i>${card6.readNum }
-							</span> <span class="offer-box-meta">${card6.recommandationDate}</span> 
-							<span class="descriptionImg">
-							${card6.recommadationDescription }
-							</span>
-							 <a class="close"
-							data-dismiss="modal"><span class="ti-close"></span></a>
+						<span class="h4 offer-box-title">${card6.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card6.readNum }
+						</span> <span class="offer-box-meta">${card6.recommandationDate}</span> <span
+							class="descriptionImg"> ${card6.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- / OFFER CONTACT FORM -->
 
 	<section class="padding post-list" id="news">

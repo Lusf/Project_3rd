@@ -168,10 +168,14 @@ public class TravelgeController {
 		int currentPage = Integer.parseInt(index);
 		
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
-		tempInfo.setTravelgeTheme(currentTheme);
+
 		if(!currentRegion.equals("전국"))
 		{
 			tempInfo.setTravelgeRegion(currentRegion);
+		}
+		if(!currentTheme.equals("전체"))
+		{
+			tempInfo.setTravelgeTheme(currentTheme);
 		}
 		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo ,currentPage);
