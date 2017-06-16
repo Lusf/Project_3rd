@@ -205,12 +205,6 @@ $(function() {
 							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
 							str+="<hr>"
 							
-							var img = item.blogImg.split(";");
-							$.each(img, function(imgIndex, imgName){
-								str+="<img src='${pageContext.request.contextPath}/resources/user/"+item.id+"/blog/"+imgName+"' alt='"+imgName+"' />";
-							});
-							
-							str+="<hr>"
 							str+="<p class='lead'>"+item.blogCont+"</p>";
 						});
 	
