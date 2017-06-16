@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 </head>
 <body>
+<%@include file="/WEB-INF/views/header.jsp"%>
 
 <!-- 슬라이드 & 검색 -->
 	<section class="home">
