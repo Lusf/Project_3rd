@@ -53,7 +53,7 @@
 									
 									                            <div class="form-group input-group">
                                 <span class="input-group-addon">제목</span>
-                                <input type="text" class="form-control" placeholder="제목을 작성해주세요">
+                                <input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommadationTitle">
                             </div>
 									
 								</div>

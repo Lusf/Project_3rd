@@ -98,7 +98,8 @@ h1 {
 				<h1>Food</h1>
 				<p id="desc">
 					<br> 나에게 음식이란???<br> 
-					<a href="eating/eatingMain" id="astyle"	onclick="eat()">View more</a>
+					<a href="eating/eatingMain" id="astyle"	onclick="eat()">Mark1</a>
+					<a href="eating/newdesign" id="astyle">Mark2</a>
 				</p>
 			</figcaption>
 		</figure>

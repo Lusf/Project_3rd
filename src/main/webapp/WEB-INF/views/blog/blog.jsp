@@ -84,7 +84,7 @@
 	href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>">
 <link href="<c:url value= '/resources/css/blog/blog-post.css'/>"
 	rel="stylesheet">
-
+	
 <style>
 /* container 간격 조절 */
 .container {
@@ -138,6 +138,9 @@
 	text-align: right;
 	vertical-align: bottom;
 }
+
+/* insert를 위한 modal화면 수정 */
+.modal-dialog {width: 900px;}
 </style>
 
 <!-- security + ajax를 위해.. -->
@@ -157,10 +160,10 @@ $(function() {
 	$(function() {
 		$(".list-unstyled li a").click(function() {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/blog/selectTitle",
+				url : "${pageContext.request.contextPath}/blog/selectBlogTitle",
 				type : "post",
 				data : "category="+$(this).attr('id'),
-				dataType : "json", //'중복입니다','사용가능합니다'
+				dataType : "json",
 				success : function(result) {
 					$("#blogTitle tr:eq(0)").nextAll().remove();
 
@@ -173,42 +176,69 @@ $(function() {
 
 					$("#blogTitle").append(str);
 					
-					$("#blogTitle tr td a").click(function() {
-						$.ajax({
-							url : "${pageContext.request.contextPath}/blog/selectCont",
-							type : "post",
-							data : "contentCode="+$(this).children().attr('value'),
-							dataType : "json", //'중복입니다','사용가능합니다'
-							success : function(result) {
-								$(".cont").empty();
-
-								var str = "";
-								$.each(result, function(index, item) {
-									str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td><p><span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
-									str+="<hr>"
-									
-									var img = item.blogImg.split(";");
-									$.each(img, function(imgIndex, imgName){
-										str+="<img src='${pageContext.request.contextPath}/resources/user/"+item.id+"/blog/"+imgName+"' alt='"+imgName+"' />";
-									});
-									
-									str+="<hr>"
-									str+="<p class='lead'>"+item.blogCont+"</p>";
-								});
-
-								$(".cont").html(str);
-							},
-							error : function(err) {
-								console.log("오류발생: " + err)
-							}
-						});
-					});
+					title();
 				},
 				error : function(err) {
 					console.log("오류발생: " + err)
 				}
 			});
 		});
+		
+		function title(){
+			$("#blogTitle tr td a").click(function() {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
+					type : "post",
+					data : "contentCode="+$(this).children().attr('value'),
+					dataType : "json",
+					success : function(result) {
+						$(".cont").empty();
+	
+						var str = "";
+						var conCode = "";
+						$.each(result, function(index, item) {
+							conCode = item.contentCode;
+							
+							str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td>";
+								str+="<a href='#' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
+								str+="<a href='#' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
+							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
+							str+="<hr>"
+							
+							str+="<p class='lead'>"+item.blogCont+"</p>";
+						});
+	
+						$(".cont").html(str);
+						
+						//삭제하기
+						$("#dlt").click(function(){
+							if(confirm("정말 삭제하시겠습니까?")){
+								$.ajax({
+									url : "${pageContext.request.contextPath}/blog/deleteBlogCont",
+									type : "post",
+									data : "contentCode="+conCode,
+									dataType : "text",
+									success : function(result) {
+										alert("삭제를 완료하였습니다.");
+										location.href = "${pageContext.request.contextPath}/blog/${blogId}";
+									},
+									error : function(err) {
+										console.log("오류발생: " + err)
+									}
+								})
+							}
+							else{
+								return false;
+							}
+						});
+					},
+					error : function(err) {
+						console.log("오류발생: " + err)
+					}
+				});
+			});
+		}
+		title();
 	});
 </script>
 
@@ -221,6 +251,22 @@ $(function() {
 		<!-- Blog Post Content Column -->
 		<div class="cont">
 			<h1>리뷰 좀 적어봐!!</h1>
+			<a href="#"data-toggle="modal" data-target="#insertReview" class="post-entry-more">
+				Review 
+			</a>
+			
+			<!-- detail MODAL -->
+			<div class="modal fade" id="insertReview" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content shadow">
+						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+						<div class="modal-body">
+							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp" %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /detail modal 끝 -->
 			<div style="height: 500px"></div>
 		</div>
 
@@ -231,7 +277,7 @@ $(function() {
 				<h4>Blog Owner</h4>
 				<div class="input-group profileImg">
 					<img src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}" alt="${blogUserPic}"/>
-					<h1>${blogId}</h1>
+					<a href="${pageContext.request.contextPath}/blog/${blogId}"><h1>${blogId}</h1></a>
 				</div>
 				<!-- /.input-group -->
 			</div>
@@ -259,6 +305,11 @@ $(function() {
 					<tr>
 						<td><h4>Title</h4></td>
 					</tr>
+					<c:forEach items="${blogAllTitle}" var="title">
+					<tr>
+						<td><a href='#'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
+					</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>

@@ -20,5 +20,15 @@
 	VALUES (#{contentCode}, #{recommadationTitle},#{recommadationDescription}, 0, SYSDATE)
 	</insert>
 
+	<select id="travelgeRecommandSearch" parameterType="string" resultMap="travelgeRecommandationVo">
+	SELECT *
+	FROM TRAVELGE_RECOMMANDATION
+	<where>
+		<if test="_parameter!=null">
+			Content_Code=#{_parameter}
+		</if>
+	</where>
+	
+	</select>
 
 </mapper>

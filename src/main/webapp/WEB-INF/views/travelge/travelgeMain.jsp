@@ -42,11 +42,7 @@
 					<img
 						src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png"
 						alt="store logo">
-					<h2 class="home-slider-title-main white-color">진해 군항제</h2>
-					<div class="home-buttons text-center">
-						<a href="#products" class="btn btn-lg  btn-primary">our
-							products</a>
-					</div>
+					<h2 class="home-slider-title-main white-color">${card1.recommadationTitle }</h2>
 					<a class="arrow bounce text-center" href="#products"> <span
 						class="ti-mouse"></span> <span class="ti-angle-double-down"></span>
 					</a>
@@ -57,11 +53,7 @@
 					<img
 						src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png"
 						alt="store logo">
-					<h2 class="home-slider-title-main white-color">속초 영금정</h2>
-					<div class="home-buttons text-center">
-						<a href="#products" class="btn btn-lg  btn-primary">our
-							products</a>
-					</div>
+					<h2 class="home-slider-title-main white-color">${card2.recommadationTitle }</h2>
 					<a class="arrow bounce text-center" href="#about"> <span
 						class="ti-mouse"></span> <span class="ti-angle-double-down"></span>
 					</a>
@@ -72,11 +64,7 @@
 					<img
 						src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png"
 						alt="store logo">
-					<h2 class="home-slider-title-main white-color">에버랜드 장미축제</h2>
-					<div class="home-buttons text-center">
-						<a href="#products" class="btn btn-lg  btn-primary">our
-							products</a>
-					</div>
+					<h2 class="home-slider-title-main white-color">${card3.recommadationTitle }</h2>
 					<a class="arrow bounce text-center" href="#about"> <span
 						class="ti-mouse"></span> <span class="ti-angle-double-down"></span>
 					</a>
@@ -118,13 +106,9 @@
 
 				<div class="col-md-7 text-center">
 					<div class="countdown-container">
-						<h3 class="wow fadeInDown">Chocolate desire</h3>
+						<h3 class="wow fadeInDown">${card4.recommadationTitle }</h3>
 
-						<p class="wow fadeInDown">Lorem ipsum dolor sit amet,
-							consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-							nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-							commodo consequat.</p>
+						<p class="wow fadeInDown">${card4.recommadationDescription }</p>
 
 					</div>
 				</div>
@@ -156,13 +140,9 @@
 
 				<div class="col-md-7 text-center">
 					<div class="countdown-container">
-						<h3 class="wow fadeInDown">Chocolate desire</h3>
+						<h3 class="wow fadeInDown">${card5.recommadationTitle }</h3>
 
-						<p class="wow fadeInDown">Lorem ipsum dolor sit amet,
-							consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-							nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-							commodo consequat.</p>
+						<p class="wow fadeInDown">${card5.recommadationDescription }</p>
 
 					</div>
 				</div>
@@ -181,10 +161,10 @@
 						<li class="wow fadeInUp" data-wow-delay=".2s"><span
 							class="product-list-left pull-left"> <a href="#"
 								data-target="#product-01" data-toggle="modal"> <img
-									alt="product image" class="product-list-primary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product3.png">
+									class="product-list-primary-img"
+									src="${card6Thumbnail }">
 									<img alt="product image" class="product-list-secondary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
+									src="${card6Thumbnail }">
 							</a>
 						</span></li>
 					</ul>
@@ -192,13 +172,9 @@
 
 				<div class="col-md-7 text-center">
 					<div class="countdown-container">
-						<h3 class="wow fadeInDown">Chocolate desire</h3>
+						<h3 class="wow fadeInDown">${card6.recommadationTitle }</h3>
 
-						<p class="wow fadeInDown">Lorem ipsum dolor sit amet,
-							consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-							nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-							commodo consequat.</p>
+						<p class="wow fadeInDown">${card6.recommadationDescription }</p>
 
 					</div>
 				</div>
@@ -420,7 +396,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
 	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
 	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
-	
-	<%@ include file="/WEB-INF/views/travelge/travelge-footer.jsp" %>
+
+	<%@ include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
 </body>
 </html>

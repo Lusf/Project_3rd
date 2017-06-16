@@ -10,11 +10,10 @@
 	<result column="blog_title" property="blogTitle"/>
 	<result column="blog_date" property="blogDate"/>
 	<result column="blog_cont" property="blogCont"/>
-	<result column="blog_img" property="blogImg"/>
 </resultMap>
 
 <sql id="blogColumn">
-	id, blog_num, category, content_code, blog_title, blog_date, blog_cont, blog_img
+	id, blog_num, category, content_code, blog_title, blog_date, blog_cont
 </sql>
 
 <!-- select -->
@@ -23,14 +22,24 @@
 </select>
 
 <select id="selectTitle" parameterType="map" resultMap="blogMap">
-	select blog_title, content_code from blog where id=#{id} and category=#{category}
+	select blog_title, content_code, blog_date from blog where id=#{id}
+	<if test="category!=null">
+		and category=#{category}
+	</if>
+	order by blog_date
 </select>
+
+<select id="selectBlogNum" parameterType="string" resultType="int">
+	select blog_num from blog where id=#{id}
+</select>
+
 
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">
 	insert into blog(<include refid="blogColumn"/>)
-	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont},#{blogImg})
+	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont})
 </insert>
+
 
 <!-- delete -->
 <delete id="deleteBlog" parameterType="map">

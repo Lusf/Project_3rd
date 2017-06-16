@@ -35,25 +35,37 @@ public class UserBlogController {
 		UserVo user = userService.userSearchById(id);
 		session.setAttribute("blogId", id);
 		session.setAttribute("blogUserPic", user.getUserPic());
+		List<UserBlogVo> title = blogService.blogTitle(id, null);
+		session.setAttribute("blogAllTitle", title);
 		return "blog/blog";
 	}
 	
-	@RequestMapping(value = "/selectTitle", method = RequestMethod.POST)
+	@RequestMapping(value = "/selectBlogTitle", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserBlogVo> selectTitle(String category){
 		List<UserBlogVo> list = blogService.blogTitle((String)session.getAttribute("blogId"), category);
-		//System.out.println(list.get(0).getBlogTitle()+", "+list.get(0).getContentCode());
 		return list;
 	}
 	
-	@RequestMapping(value = "/selectCont", method = RequestMethod.POST)
+	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserBlogVo> selectCont(String contentCode){
 		String id = (String)session.getAttribute("blogId");
 		
 		List<UserBlogVo> list = blogService.selectCont(id, contentCode);
-		System.out.println(list.get(0).getBlogCont());
 		
 		return list;
+	}
+	
+	@RequestMapping(value = "/deleteBlogCont", method = RequestMethod.POST)
+	@ResponseBody
+	public void deleteCont(String contentCode){
+		blogService.delete((String)session.getAttribute("blogId"), contentCode);
+	}
+	
+	@RequestMapping("/insertBlogReview")
+	public String insertReview(UserBlogVo blogVo){
+		blogService.insert(blogVo);
+		return "forward:"+blogVo.getId();
 	}
 }
