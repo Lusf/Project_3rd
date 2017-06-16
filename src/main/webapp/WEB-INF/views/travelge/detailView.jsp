@@ -51,9 +51,27 @@
 			</script>
 
 			<hr>
-			<h3>리뷰</h3>
-			<div>리뷰 영역</div>
-			<a href="">리뷰 작성</a>
+			<!-- Blog Post Content Column -->
+			<div class="cont">
+				<h1>리뷰 좀 적어봐!!</h1>
+				<a href="#" data-toggle="modal" data-target="#insertReview"
+					class="post-entry-more"> Review </a>
+
+				<!-- detail MODAL -->
+				<div class="modal fade" id="insertReview" role="dialog"
+					tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content shadow">
+							<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+							<div class="modal-body">
+								<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /detail modal 끝 -->
+				<div style="height: 500px"></div>
+			</div>
 			<hr>
 
 		</div>
