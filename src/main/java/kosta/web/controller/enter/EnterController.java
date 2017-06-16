@@ -21,10 +21,10 @@ public class EnterController {
 	@Autowired
 	private EnterService enterService;
 	
-/*	@RequestMapping("enterMain")
+	@RequestMapping("new/enterMain")
 	public String enterMain(){
-		return "entertainment/enterMain";
-	}*/
+		return "entertainment/new/enterMain";
+	}
 	
 	@RequestMapping("detailView")
 	public String detailView(){
@@ -101,9 +101,9 @@ public class EnterController {
 		if(lookInfoVo.getAvgScoreVo().getScore()==0){
 			
 		}*/
-		
+/*		
 		int result = enterService.lookScoreInsert(lookInfoVo.getAvgScoreVo());
-		System.out.println("score result : " + result);
+		System.out.println("score result : " + result);*/
 		
 		System.out.println(lookInfoList);
 		return mv;
