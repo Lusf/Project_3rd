@@ -13,7 +13,7 @@
     </head>
 	<body>
 
-	<header class="header header-fixed nav-down">
+	<%-- <header class="header header-fixed nav-down">
 		<div class="box mb-0">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
@@ -98,7 +98,7 @@
 				</div>
 			</nav>
 		</div>
-	</header>
+	</header> --%>
 
 	<section class="home">
 		<div class="home-slider home-slider-half-page">
