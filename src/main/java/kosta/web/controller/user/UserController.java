@@ -41,12 +41,13 @@ public class UserController {
 		return mv;
 	}	
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginPage(HttpServletRequest request) {
+		System.out.println("¿À³Ä");
 	    String referrer = request.getHeader("Referer");
 	    request.getSession().setAttribute("prevPage", referrer);
 	    return "login";
-	}
+	}*/
 
 	@RequestMapping("join")
 	public String userJoin(HttpServletRequest request, UserVo userVo) throws Exception {

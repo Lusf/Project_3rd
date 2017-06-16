@@ -18,6 +18,8 @@
 	
 	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder"/>
 	 
-	<bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler" id="authLoginSuccessHandler"></bean>
+	<!-- <bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler" id="authLoginSuccessHandler">
+	
+	</bean> -->
 		
 </beans>
