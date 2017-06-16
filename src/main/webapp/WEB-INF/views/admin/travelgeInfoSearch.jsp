@@ -94,12 +94,12 @@
 										<c:forEach items="${list }" var="list" varStatus="state">
 											<Tr>
 												<td>${list.contentCode }</td>
+												<td>${list.travelgeName }</td>
 												<td>${list.travelgeAddr }</td>
-												<td>${list.travelgeAddr }</td>
-												<td>${list.travelgeAddr }</td>
-												<td>${list.travelgeAddr }</td>
-												<td>${list.travelgeAddr }</td>
-												<td>${list.travelgeAddr }</td>
+												<td>${list.travelgeDescription }</td>
+												<td>${list.travelgeTheme }</td>
+												<td>${list.travelgeRegion }</td>
+												<td>${list.travelgeCoordinates }</td>
 												<td><a href="${pageContext.request.contextPath }/travelge/travelgeInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
 											</Tr>
 
