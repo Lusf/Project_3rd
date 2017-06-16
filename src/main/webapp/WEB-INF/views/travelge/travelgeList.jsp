@@ -123,7 +123,7 @@
 		str += "<div class='caption'>";
 		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
 				+ "</h3>";
-		str += "<p>" + item.travelgeDescription + "</p>";
+		str += "<p>" + item.travelgeAddr + "</p>";
 		str += "</div>";
 		str += "</div>";
 		str += "</a>";
