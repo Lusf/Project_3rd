@@ -36,6 +36,7 @@ public class UserBlogController {
 
 	@RequestMapping("/{id}")
 	public String userBlog(@PathVariable String id){
+
 		UserVo user = userService.userSearchById(id);
 		session.setAttribute("blogId", id);
 		session.setAttribute("blogUserPic", user.getUserPic());
@@ -53,16 +54,16 @@ public class UserBlogController {
 	
 	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)
 	@ResponseBody
-	public List<UserBlogVo> selectCont(String contentCode, String id){
-		
-		if(id.equals("") || id==null)
-		{
-			 id = (String)session.getAttribute("blogId");
-		}
+	public List<UserBlogVo> selectCont(String contentCode){
+
+		String id = (String)session.getAttribute("blogId");
+
 		List<UserBlogVo> list = blogService.selectCont(id, contentCode);
 		
 		return list;
 	}
+	
+	
 	
 	@RequestMapping(value = "/deleteBlogCont", method = RequestMethod.POST)
 	@ResponseBody
