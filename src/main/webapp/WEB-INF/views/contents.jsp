@@ -84,7 +84,9 @@ h1 {
 			<figcaption style="padding-top: 1em">
 				<h1>Entertainment</h1>
 				<p id="desc">
-					<br> TV부터 공연까지<br> <a href="entertainment/enterMain" id="astyle">View more</a>
+					<br> TV부터 공연까지<br> 
+					<!-- <a href="entertainment/enterMain" id="astyle">View more</a> -->
+					<a href="entertainment/new/enterMain" id="astyle">New</a>
 			</figcaption>
 		</figure>
 	</div>
@@ -98,7 +100,8 @@ h1 {
 				<h1>Food</h1>
 				<p id="desc">
 					<br> 나에게 음식이란???<br> 
-					<a href="eating/eatingMain" id="astyle"	onclick="eat()">View more</a>
+					<a href="eating/eatingMain" id="astyle"	onclick="eat()">Mark1</a>
+					<a href="eating/newdesign" id="astyle">Mark2</a>
 				</p>
 			</figcaption>
 		</figure>

@@ -31,7 +31,7 @@ public class TravelgeController {
 		ModelAndView mv =new ModelAndView();
 		mv.setViewName("travelge/travelgeMain");
 		List<TravelgeRecommandationVo> list =  travelgeService.travelgeRecommandSearch(null);
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i < list.size(); i++)
 		{
 			String card = "card"+(i+1);
 			mv.addObject(card , list.get(i));
@@ -40,8 +40,11 @@ public class TravelgeController {
 			int index = temp.indexOf("<img");
 			if(index != -1)
 			{
-				String imgsrc = temp.substring(index, index+130);
+				index+=21;
+				//String imgsrc = "${pageContex.request.contextPath}"+temp.substring(index, index+56);
+				String imgsrc = "/controller"+temp.substring(index, index+56);
 				System.out.println(imgsrc);
+				mv.addObject(card+"Thumbnail",imgsrc);
 			}
 		}
 		

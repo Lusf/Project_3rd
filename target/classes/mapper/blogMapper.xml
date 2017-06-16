@@ -10,11 +10,10 @@
 	<result column="blog_title" property="blogTitle"/>
 	<result column="blog_date" property="blogDate"/>
 	<result column="blog_cont" property="blogCont"/>
-	<result column="blog_img" property="blogImg"/>
 </resultMap>
 
 <sql id="blogColumn">
-	id, blog_num, category, content_code, blog_title, blog_date, blog_cont, blog_img
+	id, blog_num, category, content_code, blog_title, blog_date, blog_cont
 </sql>
 
 <!-- select -->
@@ -38,7 +37,7 @@
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">
 	insert into blog(<include refid="blogColumn"/>)
-	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont},#{blogImg})
+	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont})
 </insert>
 
 

@@ -36,4 +36,9 @@ public class FoodController {
 		return new ModelAndView("eating/test","list", list);
 		
 	}
+	
+	@RequestMapping("eating/newdesign")
+	public String testMark2(){
+		return "eating/new_theme_mark2/index";
+	}
 }
