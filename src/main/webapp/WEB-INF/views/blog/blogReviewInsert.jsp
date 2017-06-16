@@ -49,7 +49,7 @@
 									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 								</div>
 							</div>
-							<input type="hidden" name="contentCode" value="B2R2DE">
+							<input type="hidden" name="contentCode" value="${info.contentCode }">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
 							<sec:authorize access="isAuthenticated()">

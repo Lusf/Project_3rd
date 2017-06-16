@@ -28,12 +28,17 @@ public class UserBlogServiceImpl implements UserBlogService {
 	public int insert(UserBlogVo blogVo) {
 		//블로그 번호 넣기
 		List<Integer> list = selectBlogNum(blogVo.getId());
-		int last = list.get(list.size()-1);System.out.println(last);
-		blogVo.setBlogNum(last+1);
+		int last = 0;
+		if(list.size() > 0)
+		{
+			last = list.get(list.size()-1);
+		}
 		
+		blogVo.setBlogNum(last+1);
+		System.out.println(last);
 		//contentCode를 받아서 category설정하기
 		String ini = blogVo.getContentCode().substring(0,1);
-		if(ini.equals("A"))
+		if(ini.equals("T"))
 			blogVo.setCategory("Travelge");
 		else if(ini.equals("B"))
 			blogVo.setCategory("Entertainment");
@@ -51,5 +56,11 @@ public class UserBlogServiceImpl implements UserBlogService {
 	@Override
 	public List<Integer> selectBlogNum(String id) {
 		return blogDAO.selectBlogNum(id);
+	}
+	
+	@Override
+	public List<UserBlogVo> selectByContentCode(String contentCode)
+	{
+		return blogDAO.selectByContentCode(contentCode);
 	}
 }

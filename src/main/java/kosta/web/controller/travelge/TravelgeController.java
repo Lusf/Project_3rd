@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
@@ -24,6 +26,9 @@ public class TravelgeController {
 	
 	@Autowired
 	private TravelgeService travelgeService;
+	
+	@Autowired
+	private UserBlogService userBlogService;
 	
 	@RequestMapping("/main")
 	public ModelAndView travelgeMain()
@@ -190,10 +195,13 @@ public class TravelgeController {
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp ,0);
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
 		mv.addObject("info", list.get(0));
+		mv.addObject("commentList",commentList);
+		
 		return mv;
 	}
 	
