@@ -14,6 +14,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.txc-image').css("width","100%");	
+
+})
+
+</script>
+
+
 </head>
 <body>
 
@@ -117,19 +127,22 @@
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card1Thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card1.recommadationTitle }</h1>
-					<a class="btn btn-primary wow fadeInUp">browse <span
+					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+							data-target="#card1view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card2Thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card2.recommadationTitle }</h1>
-					<a class="btn btn-primary wow fadeInUp">browse <span
+					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+							data-target="#card2view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card3Thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card3.recommadationTitle }</h1>
-					<a class="btn btn-primary wow fadeInUp">browse <span
+<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+							data-target="#card3view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 			</div>
@@ -267,6 +280,67 @@
 		<!--/ container -->
 	</section>
 
+	
+	<div id="card1view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card1.recommadationTitle }</span> <span
+							class="offer-box-location"><i class="material-icons">visibility</i>${card1.readNum }
+							</span> <span class="offer-box-meta">${card1.recommandationDate}</span> 
+							<span class="descriptionImg">
+							${card1.recommadationDescription }
+							</span>
+							 <a class="close"
+							data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="card2view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card2.recommadationTitle }</span> <span
+							class="offer-box-location"><i class="material-icons">visibility</i>${card2.readNum }
+							</span> <span class="offer-box-meta">${card2.recommandationDate}</span> 
+							<span class="descriptionImg">
+							${card2.recommadationDescription }
+							</span>
+							 <a class="close"
+							data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="card3view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card3.recommadationTitle }</span> <span
+							class="offer-box-location"><i class="material-icons">visibility</i>${card3.readNum }
+							</span> <span class="offer-box-meta">${card3.recommandationDate}</span> 
+							<span class="descriptionImg">
+							${card3.recommadationDescription }
+							</span>
+							 <a class="close"
+							data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="card4view" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -277,7 +351,9 @@
 						<span class="h4 offer-box-title">${card4.recommadationTitle }</span> <span
 							class="offer-box-location"><i class="material-icons">visibility</i>${card4.readNum }
 							</span> <span class="offer-box-meta">${card4.recommandationDate}</span> 
+							<span class="descriptionImg">
 							${card4.recommadationDescription }
+							</span>
 							 <a class="close"
 							data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
@@ -296,7 +372,9 @@
 						<span class="h4 offer-box-title">${card5.recommadationTitle }</span> <span
 							class="offer-box-location"><i class="material-icons">visibility</i>${card5.readNum }
 							</span> <span class="offer-box-meta">${card5.recommandationDate}</span> 
+							<span class="descriptionImg">
 							${card5.recommadationDescription }
+							</span>
 							 <a class="close"
 							data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
@@ -315,7 +393,9 @@
 						<span class="h4 offer-box-title">${card6.recommadationTitle }</span> <span
 							class="offer-box-location"><i class="material-icons">visibility</i>${card6.readNum }
 							</span> <span class="offer-box-meta">${card6.recommandationDate}</span> 
+							<span class="descriptionImg">
 							${card6.recommadationDescription }
+							</span>
 							 <a class="close"
 							data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
@@ -323,6 +403,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- / OFFER CONTACT FORM -->
 
 	<section class="padding post-list" id="news">
