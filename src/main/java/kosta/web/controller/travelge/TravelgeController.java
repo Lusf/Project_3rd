@@ -28,7 +28,7 @@ public class TravelgeController {
 		ModelAndView mv =new ModelAndView();
 		mv.setViewName("travelge/travelgeMain");
 		List<TravelgeRecommandationVo> list =  travelgeService.travelgeRecommandSearch(null);
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i < list.size(); i++)
 		{
 			String card = "card"+(i+1);
 			mv.addObject(card , list.get(i));
