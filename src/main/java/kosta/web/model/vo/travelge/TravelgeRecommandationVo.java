@@ -9,6 +9,9 @@ public class TravelgeRecommandationVo {
 	private String recommadationTitle;
 	private String recommadationDescription;
 	private int readNum;
+	private String recommandationDate;
+
+
 
 	public TravelgeRecommandationVo() {
 	}
@@ -29,6 +32,16 @@ public class TravelgeRecommandationVo {
 		this.readNum = readNum;
 	}
 
+	public TravelgeRecommandationVo(String contentCode, String recommadationTitle, String recommadationDescription,
+			int readNum, String recommandationDate) {
+		super();
+		this.contentCode = contentCode;
+		this.recommadationTitle = recommadationTitle;
+		this.recommadationDescription = recommadationDescription;
+		this.readNum = readNum;
+		this.recommandationDate = recommandationDate;
+	}
+	
 	public String getContentCode() {
 		return contentCode;
 	}
@@ -59,6 +72,13 @@ public class TravelgeRecommandationVo {
 
 	public void setReadNum(int readNum) {
 		this.readNum = readNum;
+	}
+	public String getRecommandationDate() {
+		return recommandationDate;
+	}
+
+	public void setRecommandationDate(String recommandationDate) {
+		this.recommandationDate = recommandationDate;
 	}
 
 }
