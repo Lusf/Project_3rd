@@ -8,10 +8,9 @@ public class UserBlogVo {
 	private String blogTitle;
 	private String blogDate;
 	private String blogCont;
-	private String blogImg;
 	
 	public UserBlogVo() {}
-	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogDate, String blogCont, String blogImg) {
+	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogDate, String blogCont) {
 		this.id = id;
 		this.blogNum = blogNum;
 		this.category = category;
@@ -19,7 +18,6 @@ public class UserBlogVo {
 		this.blogTitle = blogTitle;
 		this.blogDate = blogDate;
 		this.blogCont = blogCont;
-		this.blogImg = blogImg;
 	}
 
 	public String getId() {
@@ -76,13 +74,5 @@ public class UserBlogVo {
 
 	public void setBlogCont(String blogCont) {
 		this.blogCont = blogCont;
-	}
-
-	public String getBlogImg() {
-		return blogImg;
-	}
-
-	public void setBlogImg(String blogImg) {
-		this.blogImg = blogImg;
 	}
 }

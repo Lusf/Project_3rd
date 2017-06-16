@@ -39,8 +39,6 @@ public class UserBlogServiceImpl implements UserBlogService {
 			blogVo.setCategory("Entertainment");
 		else if(ini.equals("C"))
 			blogVo.setCategory("Food");
-
-		blogVo.setBlogImg("½É¾ß.jpg");
 		
 		return blogDAO.insert(blogVo);
 	}
