@@ -1271,27 +1271,6 @@
 			</div>
 		</div>
 	</footer>
-<<<<<<< HEAD
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
-</body>
-=======
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
@@ -1327,5 +1306,4 @@ return false;
 };
 
 </script>
->>>>>>> 135353d56a1330e5764f83fccf5bf59dd6fa895c
 </html>
