@@ -58,7 +58,7 @@
 
 <!-- update -->
 <update id="updateBlog" parameterType="UserBlogVo">
-	update blog_title, blog_cont from blog where id=#{id} and content_code=#{contentCode}
+	update blog set blog_title=#{blogTitle}, blog_cont=#{blogCont} where id=#{id} and content_code=#{contentCode}
 </update>
 
 </mapper>
