@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
@@ -14,98 +14,101 @@
     <body>
 
     <header class="header header-fixed nav-down">
-        <div class="box mb-0">
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <a href="#" class="header-logo-small mt-15"><img src="assets/img/logo.png" alt="store logo"></a>
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
+		<div class="box mb-0">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<a href="${pageContext.request.contextPath}/"
+						class="header-logo-small mt-15"><img
+						src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+						alt="store logo"></a>
+					<button class="navbar-toggle" type="button" data-toggle="collapse"
+						data-target=".js-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
 
-                <div class="collapse navbar-collapse js-navbar-collapse row">
-                    <ul class="nav navbar-nav">
-                        <li class="header-link"><a href="index.html">home</a></li>
-                        <li class="header-link"><a href="listing.html">listing</a></li>
-                        <li class="header-link"><a href="offer.html">offer</a></li>
-                        <li class="header-link"><a href="landing.html">landing</a></li>
-                        <li class="header-link"><a href="developer.html">developer page</a></li>
-                        <li class="header-link"><a href="blog-post.html">blog - post</a></li>
-                        <li class="header-link"><a href="about-us.html">about-us</a></li>
-                        <li class="header-link dropdown mega pull-left ">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">mega menu<span class="ti-angle-down"></span></a>
-                            <ul class="dropdown-menu mega-menu container">
-                                <li class="col-sm-3">
-                                    <ul>
-                                    <li><img class="img-responsive  col-lg-12 mb-15" src="assets/img/menu-add.png" alt="category image">
-                                    <img class="img-responsive col-lg-12" src="assets/img/menu-add.png" alt="category image"></li>
-                                    </ul>
-                                </li>
+				<div class="collapse navbar-collapse js-navbar-collapse row">
+					<ul class="nav navbar-nav">
+						<li class="header-link"><a href="newdesign">home</a></li>
+						<li class="header-link"><a href="about-us">메뉴1</a></li>
+						<li class="header-link"><a href="blog-post">메뉴2</a></li>
+						<li class="header-link"><a href="developer">메뉴3</a></li>
+						<li class="header-link"><a href="landing">메뉴4</a></li>
+						<li class="header-link"><a href="offer">메뉴6</a></li>
+						<li class="header-link dropdown mega pull-left "><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
+								class="ti-angle-down"></span></a>
+							<ul class="dropdown-menu mega-menu container">
+								<li class="col-sm-3">
+									<ul>
+										<li><img class="img-responsive  col-lg-12 mb-15"
+											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
+											alt="category image"> <img
+											class="img-responsive col-lg-12"
+											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
+											alt="category image"></li>
+									</ul>
+								</li>
 
-                                <li class="col-sm-3 col-xs-6 smartphone-fw">
-                                    <ul>
-                                        <li class="dropdown-header">Excepteur s cupidatat </li>
-                                        <li><a href="#">lorem ipsum dolor </a></li>
-                                        <li><a href="#">laboris nisi ut aliquip</a></li>
-                                        <li><a href="#">int occaecat</a></li>
-                                        <li><a href="#">Newsletter Form</a></li>
-                                        <li><a href="#">fugiat nulla pariatur</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Reprehenderit </li>
-                                        <li><a href="#">ullamco  ex ea commodo</a></li>
-                                        <li><a href="#">incididunt ut labore </a></li>
-                                        <li><a href="#">fugiat nulla pariatur</a></li>
-                                    </ul>
-                                </li>
+								<li class="col-sm-3 col-xs-6 smartphone-fw">
+									<ul>
+										<li class="dropdown-header"><a
+											href="${pageContext.request.contextPath}/user/mypage">My
+												Page</a></li>
+										<li class="dropdown-header"><sec:authorize
+												access="isAuthenticated()">
+												<a
+													href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a>
+											</sec:authorize></li>
+									</ul>
+								</li>
+							</ul></li>
 
-                                <li class="col-sm-3 col-xs-6 smartphone-fw">
-                                    <ul>
-                                        <li class="dropdown-header">Culpa qui officia deserunt</li>
-                                        <li><a href="#">laboris nisi ut aliquip</a></li>
-                                        <li><a href="#">int occaecat</a></li>
-                                        <li><a href="#">nostrud exercitation </a></li>
-                                        <li><a href="#">fugiat nulla pariatur</a></li>
-                                        <li class="divider"></li>
+					</ul>
 
-                                        <li class="dropdown-header">Consectetur adipisicing </li>
-                                        <li><a href="#">enim ad minim veniam</a></li>
-                                        <li><a href="#">dolore magna aliqua</a></li>
-                                        <li><a href="#"> aute irure dolor</a></li>
-                                    </ul>
-                                </li>
+					<div class="navbar-buttons">
+						<sec:authorize access="isAuthenticated()">
+							<p>
+							<p>
+								<sec:authentication property="principal.id" />
+								님 환영합니다.
+								<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+								<a href="javascript:logout();">로그아웃</a>
+						</sec:authorize>
+						<sec:authorize access="!isAuthenticated()">
+							<a href="${pageContext.request.contextPath }/user/loginForm"
+								class="btn btn-link btn-sm mt-10">Login</a>
+							<a href="${pageContext.request.contextPath }/user/joinForm"
+								class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
+						</sec:authorize>
+					</div>
+				</div>
+			</nav>
+		</div>
 
-                                <li class="col-sm-3 col-xs-6 smartphone-fw">
-                                    <ul>
-                                        <li class="dropdown-header">Aute irure dolor</li>
-                                        <li><a href="#">mollit anim id est</a></li>
-                                        <li><a href="#">enim ad minim veniam</a></li>
-                                        <li><a href="#">dolore magna aliqua</a></li>
-                                        <li class="divider"></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                    </ul>
+		<form id="logoutForm"
+			action="${pageContext.request.contextPath}/user/logout" method="post"
+			style="display: none">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form>
 
-                    <div class="navbar-buttons">
-                        <a class="btn btn-link btn-sm mt-10">your account</a>
-                        <a class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>place a free ad</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<script>
+				location.href = "${pageContext.request.contextPath}/admin/index";
+			</script>
+		</sec:authorize>
+	</header>
+	
     <div class="container">
         <div class="row">
             <div class="post padding-medium">
                 <div class="col-xs-12 col-md-9">
                     <div class=" post-content">
-                        <div class="post-header" style="background-image: url('assets/img/blog/blog-02.jpg');">
-                            <img class="post-user mb-30" src="assets/img/users/01.jpg" alt="user avatar">
+                        <div class="post-header" style="background-image: url('${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/blog-02.jpg');">
+                            <img class="post-user mb-30" src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/users/01.jpg" alt="user avatar">
                         </div>
                         
                         <h2 class="section-claim negative">new products<span>are comming</span></h2>
@@ -118,13 +121,13 @@
                         </p>
                         <hr>
                         <p>
-                            <img src="assets/img/blog/blog-01.jpg" class="col-xs-12 col-sm-6 pull-left left" alt="blog image"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.<br>
+                            <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/blog-01.jpg" class="col-xs-12 col-sm-6 pull-left left" alt="blog image"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.<br>
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id Duis aute irure dolor in reprehenderit in voluptate velit est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
                         </p>
                         <hr>
                         <p>
-                            <img src="assets/img/blog/blog-01.jpg" class="col-xs-12 col-sm-6 pull-right right" alt="blog image"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/blog-01.jpg" class="col-xs-12 col-sm-6 pull-right right" alt="blog image"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </div>
                     <!-- comments-->
@@ -262,7 +265,7 @@
                         <h5 class="mt-0 mb-30">Latest posts</h5>
                         <div class="post-list-sidebar-item mb-15">
                             <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="assets/img/blog/01.jpg" alt="blog image">
+                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/01.jpg" alt="blog image">
                             </a>
 
                             <div class="col-xs-8 col-sm-9">
@@ -274,7 +277,7 @@
                         </div>
                         <div class="post-list-sidebar-item mb-15">
                             <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="assets/img/blog/02.jpg" alt="blog image">
+                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/02.jpg" alt="blog image">
                             </a>
 
                             <div class="col-xs-8 col-sm-9">
@@ -286,7 +289,7 @@
                         </div>
                         <div class="post-list-sidebar-item mb-15">
                             <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="assets/img/blog/01.jpg" alt="blog image">
+                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/01.jpg" alt="blog image">
                             </a>
 
                             <div class="col-xs-8 col-sm-9">
@@ -298,7 +301,7 @@
                         </div>
                         <div class="post-list-sidebar-item mb-15">
                             <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="assets/img/blog/02.jpg" alt="blog image">
+                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/blog/02.jpg" alt="blog image">
                             </a>
 
                             <div class="col-xs-8 col-sm-9">
@@ -315,7 +318,7 @@
                     <!-- single offer box-->
                         <div class="offer-box pull-left">
                         <div class="offer-box-head">
-                        <img src="assets/img/offer/08.jpg" alt="offer image">
+                        <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image">
                         <span class="offer-box-price">$350pw</span>
                         <span class="offer-box-label"><span class="ti-star"></span>featured</span>  
                         </div>

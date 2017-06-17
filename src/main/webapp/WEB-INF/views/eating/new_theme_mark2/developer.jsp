@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
@@ -17,96 +17,100 @@
 		<div class="box mb-0">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
-					<a href="#" class="header-logo-small mt-15"><img src="assets/img/logo.png" alt="store logo"></a>
-					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+					<a href="${pageContext.request.contextPath}/"
+						class="header-logo-small mt-15"><img
+						src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+						alt="store logo"></a>
+					<button class="navbar-toggle" type="button" data-toggle="collapse"
+						data-target=".js-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 					</button>
 				</div>
 
 				<div class="collapse navbar-collapse js-navbar-collapse row">
 					<ul class="nav navbar-nav">
-						<li class="header-link"><a href="index.html">home</a></li>
-						<li class="header-link"><a href="listing.html">listing</a></li>
-						<li class="header-link"><a href="offer.html">offer</a></li>
-						<li class="header-link"><a href="landing.html">landing</a></li>
-						<li class="header-link"><a href="developer.html">developer page</a></li>
-						<li class="header-link"><a href="blog-post.html">blog - post</a></li>
-						<li class="header-link"><a href="about-us.html">about-us</a></li>
-						<li class="header-link dropdown mega pull-left ">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">mega menu<span class="ti-angle-down"></span></a>
+						<li class="header-link"><a href="newdesign">home</a></li>
+						<li class="header-link"><a href="about-us">메뉴1</a></li>
+						<li class="header-link"><a href="blog-post">메뉴2</a></li>
+						<li class="header-link"><a href="developer">메뉴3</a></li>
+						<li class="header-link"><a href="landing">메뉴4</a></li>
+						<li class="header-link"><a href="offer">메뉴6</a></li>
+						<li class="header-link dropdown mega pull-left "><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
+								class="ti-angle-down"></span></a>
 							<ul class="dropdown-menu mega-menu container">
 								<li class="col-sm-3">
 									<ul>
-									<li><img class="img-responsive  col-lg-12 mb-15" src="assets/img/menu-add.png" alt="category image">
-									<img class="img-responsive col-lg-12" src="assets/img/menu-add.png" alt="category image"></li>
+										<li><img class="img-responsive  col-lg-12 mb-15"
+											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
+											alt="category image"> <img
+											class="img-responsive col-lg-12"
+											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
+											alt="category image"></li>
 									</ul>
 								</li>
 
 								<li class="col-sm-3 col-xs-6 smartphone-fw">
 									<ul>
-										<li class="dropdown-header">Excepteur s cupidatat </li>
-										<li><a href="#">lorem ipsum dolor </a></li>
-										<li><a href="#">laboris nisi ut aliquip</a></li>
-										<li><a href="#">int occaecat</a></li>
-										<li><a href="#">Newsletter Form</a></li>
-										<li><a href="#">fugiat nulla pariatur</a></li>
-										<li class="divider"></li>
-										<li class="dropdown-header">Reprehenderit </li>
-										<li><a href="#">ullamco  ex ea commodo</a></li>
-										<li><a href="#">incididunt ut labore </a></li>
-										<li><a href="#">fugiat nulla pariatur</a></li>
+										<li class="dropdown-header"><a
+											href="${pageContext.request.contextPath}/user/mypage">My
+												Page</a></li>
+										<li class="dropdown-header"><sec:authorize
+												access="isAuthenticated()">
+												<a
+													href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a>
+											</sec:authorize></li>
 									</ul>
 								</li>
+							</ul></li>
 
-								<li class="col-sm-3 col-xs-6 smartphone-fw">
-									<ul>
-										<li class="dropdown-header">Culpa qui officia deserunt</li>
-										<li><a href="#">laboris nisi ut aliquip</a></li>
-										<li><a href="#">int occaecat</a></li>
-										<li><a href="#">nostrud exercitation </a></li>
-										<li><a href="#">fugiat nulla pariatur</a></li>
-										<li class="divider"></li>
-
-										<li class="dropdown-header">Consectetur adipisicing </li>
-										<li><a href="#">enim ad minim veniam</a></li>
-										<li><a href="#">dolore magna aliqua</a></li>
-										<li><a href="#"> aute irure dolor</a></li>
-									</ul>
-								</li>
-
-								<li class="col-sm-3 col-xs-6 smartphone-fw">
-									<ul>
-										<li class="dropdown-header">Aute irure dolor</li>
-										<li><a href="#">mollit anim id est</a></li>
-										<li><a href="#">enim ad minim veniam</a></li>
-										<li><a href="#">dolore magna aliqua</a></li>
-										<li class="divider"></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
 					</ul>
 
 					<div class="navbar-buttons">
-						<a class="btn btn-link btn-sm mt-10">your account</a>
-						<a class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>place a free ad</a>
+						<sec:authorize access="isAuthenticated()">
+							<p>
+							<p>
+								<sec:authentication property="principal.id" />
+								님 환영합니다.
+								<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+								<a href="javascript:logout();">로그아웃</a>
+						</sec:authorize>
+						<sec:authorize access="!isAuthenticated()">
+							<a href="${pageContext.request.contextPath }/user/loginForm"
+								class="btn btn-link btn-sm mt-10">Login</a>
+							<a href="${pageContext.request.contextPath }/user/joinForm"
+								class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
+						</sec:authorize>
 					</div>
 				</div>
 			</nav>
 		</div>
+
+		<form id="logoutForm"
+			action="${pageContext.request.contextPath}/user/logout" method="post"
+			style="display: none">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form>
+
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<script>
+				location.href = "${pageContext.request.contextPath}/admin/index";
+			</script>
+		</sec:authorize>
 	</header>
+	
 	<!-- inline background image style is necessary here to allow integrate with your cms -->
-	<div class="developer-header" style="background-image: url(assets/img/developer/nordman.jpg);">
+	<div class="developer-header" style="background-image: url(${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/developer/nordman.jpg);">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="contact-info">
 					<div class="border pull-left text-center pb-15">
 						<div class="contact-info-logo">
-						<img src="assets/img/offer/agency-logo.png" alt="agency logo">
+						<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/agency-logo.png" alt="agency logo">
 					</div>
 						<span class="h5 contact-info-agent">Nordman Agency</span>
 						<span class="h4">+32 454 454 4323</span>
@@ -129,8 +133,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/06.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/07.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -159,8 +163,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/06.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/07.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -189,8 +193,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/06.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/07.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -226,7 +230,7 @@
 					<div class="contact-info">
 						<div class="border pull-left text-center pb-15">
 						<div class="contact-info-logo">
-							<img src="assets/img/offer/agency-logo.png" alt="agency logo">
+							<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/agency-logo.png" alt="agency logo">
 						</div>
 						<span class="h5 contact-info-agent">Nordman Agency</span>
 						<span class="h4">+32 454 454 4323</span>
@@ -276,8 +280,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/01.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/02.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/01.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/02.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -308,8 +312,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/03.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/04.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/03.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/04.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -340,8 +344,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/05.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/06.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/05.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -371,8 +375,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/06.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/07.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -403,8 +407,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/08.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/09.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -435,8 +439,8 @@
 								<div class="offer-box-head">
 									<div class="offer-slider">
 										<div class="swiper-wrapper">
-											<div class="swiper-slide"><img src="assets/img/offer/10.jpg" alt="offer image"></div>
-											<div class="swiper-slide"><img src="assets/img/offer/1.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/10.jpg" alt="offer image"></div>
+											<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/1.jpg" alt="offer image"></div>
 										</div>
 
 										<div class="offer-pagination-prev left-arrow">
@@ -496,8 +500,8 @@
 						<div class="offer-box-head">
 							<div class="offer-slider">
 								<div class="swiper-wrapper">
-									<div class="swiper-slide"><img src="assets/img/offer/08.jpg" alt="offer image"></div>
-									<div class="swiper-slide"><img src="assets/img/offer/09.jpg" alt="offer image"></div>
+									<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"></div>
+									<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image"></div>
 								</div>
 
 								<div class="offer-pagination-prev left-arrow">
