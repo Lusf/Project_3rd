@@ -1,17 +1,22 @@
 package kosta.web.controller.travelge;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
@@ -22,13 +27,16 @@ public class TravelgeController {
 	@Autowired
 	private TravelgeService travelgeService;
 	
+	@Autowired
+	private UserBlogService userBlogService;
+	
 	@RequestMapping("/main")
 	public ModelAndView travelgeMain()
 	{
 		ModelAndView mv =new ModelAndView();
 		mv.setViewName("travelge/travelgeMain");
 		List<TravelgeRecommandationVo> list =  travelgeService.travelgeRecommandSearch(null);
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i < list.size(); i++)
 		{
 			String card = "card"+(i+1);
 			mv.addObject(card , list.get(i));
@@ -55,10 +63,45 @@ public class TravelgeController {
 	}
 	// 여행지 정보 입력
 	@RequestMapping("/travelgeInfoInsert")
-	public void travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo){
-		
-		System.out.println(travelgeInfoVo);
-		
+	public String travelgeInfoInsert(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) throws Exception{
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/travelge");
+
+		MultipartFile file = travelgeInfoVo.getFile();
+
+		if (file.getSize() > 0) {
+			travelgeInfoVo.setTravelgePhotos(file.getOriginalFilename());
+		}
+
+		int result = travelgeService.travelgeInfoInsert(travelgeInfoVo);
+		if (result == 0) {
+			throw new Exception();
+		}
+
+//		폴더 생성
+		File mainFolder = new File(path);
+		if (!mainFolder.exists()) {
+			mainFolder.mkdir();
+		}
+		File idFolder = new File(path + "/" + travelgeInfoVo.getContentCode());
+		if (!idFolder.exists()) {
+			idFolder.mkdir();
+		}
+		File profileFolder = new File(path + "/" + travelgeInfoVo.getContentCode()+"/photos");
+		if (!profileFolder.exists()) {
+			profileFolder.mkdir();
+		}		
+//		-----폴더 생성 끝
+		if (file.getSize() > 0) {
+
+			try {
+				file.transferTo(new File(path + "/" +travelgeInfoVo.getContentCode()+"/photos/"+ travelgeInfoVo.getFile()));
+			} catch (Exception e) {
+			}
+		}
+
+		return "redirect:/";
+	
 	};
 	// 여행지 정보 수정
 	public void travelgeInfoUpdate(TravelgeInfoVo travelgeInfoVo){
@@ -66,9 +109,11 @@ public class TravelgeController {
 	};
 	// 여행지 정보 삭제
 	@RequestMapping("/travelgeInfoDelete")
-	public void travelgeInfoDelete(String contentCode){;
+	public String travelgeInfoDelete(String contentCode){;
 	
-	System.out.println(contentCode);
+		travelgeService.travelgeInfoDelete(contentCode);
+		
+		return "admin/travelgeInfoSearch";
 	
 	}
 	// 여행지 정보 검색 부분/전체
@@ -113,7 +158,7 @@ public class TravelgeController {
 	        modelAndView.addObject("list", list);
 	        modelAndView.addObject("keyField",keyField);
 	        modelAndView.addObject("keyWord",keyWord);
-	        modelAndView.setViewName("admin/travelgeInfo");
+	        modelAndView.setViewName("admin/travelgeInfoSearch");
 		return modelAndView;
 
 	};
@@ -128,10 +173,14 @@ public class TravelgeController {
 		int currentPage = Integer.parseInt(index);
 		
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
-		tempInfo.setTravelgeTheme(currentTheme);
+
 		if(!currentRegion.equals("전국"))
 		{
 			tempInfo.setTravelgeRegion(currentRegion);
+		}
+		if(!currentTheme.equals("전체"))
+		{
+			tempInfo.setTravelgeTheme(currentTheme);
 		}
 		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo ,currentPage);
@@ -146,10 +195,13 @@ public class TravelgeController {
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp ,0);
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
 		mv.addObject("info", list.get(0));
+		mv.addObject("commentList",commentList);
+		
 		return mv;
 	}
 	

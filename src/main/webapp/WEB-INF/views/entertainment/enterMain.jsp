@@ -12,8 +12,6 @@
 	<%@include file="/WEB-INF/views/includeFile.jsp" %>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 	
-	
-	<%@include file="/WEB-INF/views/entertainment/includePluton.jsp"%>
 	<%@include file="/WEB-INF/views/entertainment/enterContents.jsp"%>
 
 	<%@include file="/WEB-INF/views/footer.jsp"%>

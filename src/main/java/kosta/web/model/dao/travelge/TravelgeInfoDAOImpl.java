@@ -17,8 +17,8 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 
 	@Override
 	public int travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.insert("travelgeInfoMapper.travelgeInfoInsert", travelgeInfoVo);
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 
 	@Override
 	public int travelgeInfoDelete(String contentCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("travelgeInfoMapper.travelgeInfoDelete", contentCode);
 	}
 
 	@Override

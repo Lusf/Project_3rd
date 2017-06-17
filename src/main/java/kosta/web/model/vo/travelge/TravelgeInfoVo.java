@@ -1,5 +1,7 @@
 package kosta.web.model.vo.travelge;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kosta.web.model.vo.AvgScoreVo;
 
 public class TravelgeInfoVo {
@@ -17,13 +19,55 @@ public class TravelgeInfoVo {
 	private String travelgeTheme;
 	private String travelgeRegion;
 	private String travelgeCoordinates;
-
+	private String travelgePhotos;
+	
 	private AvgScoreVo avgScoreVo;
 	
 	private int cnt;
+	
+	private MultipartFile file;
 
 	public TravelgeInfoVo() {
 	}
+	
+	
+
+	public TravelgeInfoVo(String contentCode, String travelgeName, String travelgeAddr, String travelgeDescription,
+			String travelgeTheme, String travelgeRegion, String travelgeCoordinates, String travelgePhotos,
+			AvgScoreVo avgScoreVo, int cnt, MultipartFile file) {
+		super();
+		this.contentCode = contentCode;
+		this.travelgeName = travelgeName;
+		this.travelgeAddr = travelgeAddr;
+		this.travelgeDescription = travelgeDescription;
+		this.travelgeTheme = travelgeTheme;
+		this.travelgeRegion = travelgeRegion;
+		this.travelgeCoordinates = travelgeCoordinates;
+		this.travelgePhotos = travelgePhotos;
+		this.avgScoreVo = avgScoreVo;
+		this.cnt = cnt;
+		this.file = file;
+	}
+
+
+
+	public TravelgeInfoVo(String contentCode, String travelgeName, String travelgeAddr, String travelgeDescription,
+			String travelgeTheme, String travelgeRegion, String travelgeCoordinates, String travelgePhotos,
+			AvgScoreVo avgScoreVo, int cnt) {
+		super();
+		this.contentCode = contentCode;
+		this.travelgeName = travelgeName;
+		this.travelgeAddr = travelgeAddr;
+		this.travelgeDescription = travelgeDescription;
+		this.travelgeTheme = travelgeTheme;
+		this.travelgeRegion = travelgeRegion;
+		this.travelgeCoordinates = travelgeCoordinates;
+		this.travelgePhotos = travelgePhotos;
+		this.avgScoreVo = avgScoreVo;
+		this.cnt = cnt;
+	}
+
+
 
 	public TravelgeInfoVo(String contentCode, String travelgeName, String travelgeAddr, String travelgeTheme,
 			String travelgeRegion) {
@@ -119,6 +163,27 @@ public class TravelgeInfoVo {
 	public void setTravelgeCoordinates(String travelgeCoordinates) {
 		this.travelgeCoordinates = travelgeCoordinates;
 	}
+	
+
+	public String getTravelgePhotos() {
+		return travelgePhotos;
+	}
+
+	public void setTravelgePhotos(String travelgePhotos) {
+		this.travelgePhotos = travelgePhotos;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+
 
 	public AvgScoreVo getAvgScoreVo() {
 		return avgScoreVo;
@@ -134,6 +199,17 @@ public class TravelgeInfoVo {
 
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "TravelgeInfoVo [contentCode=" + contentCode + ", travelgeName=" + travelgeName + ", travelgeAddr="
+				+ travelgeAddr + ", travelgeDescription=" + travelgeDescription + ", travelgeTheme=" + travelgeTheme
+				+ ", travelgeRegion=" + travelgeRegion + ", travelgeCoordinates=" + travelgeCoordinates
+				+ ", travelgePhotos=" + travelgePhotos + ", avgScoreVo=" + avgScoreVo + ", cnt=" + cnt + ", file="
+				+ file + "]";
 	}
 
 }

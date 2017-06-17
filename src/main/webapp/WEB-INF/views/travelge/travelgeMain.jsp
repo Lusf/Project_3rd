@@ -2,401 +2,455 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Choco - micro store</title>
-<meta content="" name="description">
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<meta content="width=device-width" name="viewport">
-<meta content="IE=edge" http-equiv="X-UA-Compatible">
-<link
-	href="${pageContext.request.contextPath}/resources/images/eating/favicon.png"
-	rel="icon" type="image/png">
-<link
-	href="https://fonts.googleapis.com/css?family=Dancing+Script%7CLato:300,400,700"
+<meta charset="utf-8">
+<title>travelge main - 오지랖</title>
+<meta name="description" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link href="<c:url value='/resources/css/eating/bootstrap-eating.css'/>"
-	rel="stylesheet">
-<link id="pagestyle"
-	href="<c:url value='/resources/css/eating/theme-eating.css'/>"
-	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.txc-image').css("width", "100%");
+
+	})
+</script>
+
+
 </head>
+<body>
 
-<body data-offset="50" data-spy="scroll" data-target=".navbar"
-	class="dark-theme">
+	<%@include file="/WEB-INF/views/travelge/travelge-header.jsp"%>
 
-	<!-- header -->
-	<%@include file="/WEB-INF/views/includeFile.jsp"%>
-	<%@include file="/WEB-INF/views/header.jsp"%>
-
-	<!--  Main 슬라이더 부분 -->
-	<section class="home section image-slider" id="home">
-		<div class="home-slider text-center">
-
-
+	<section class="home">
+		<div class="home-slider home-slider-half-page">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide"
-					style="background: url(${pageContext.request.contextPath}/resources/images/travelge/recommand/slider/recommand1.jpg);">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png"
-						alt="store logo">
-					<h2 class="home-slider-title-main white-color">${card1.recommadationTitle }</h2>
-					<a class="arrow bounce text-center" href="#products"> <span
-						class="ti-mouse"></span> <span class="ti-angle-double-down"></span>
-					</a>
+				<div class="swiper-slide home-slider-centered"
+					style="background-image:url(${card1Thumbnail})">
+					<h1 class="light wow fadeInDown mb-30">${card1.recommadationTitle }</h1>
+					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+						data-target="#card1view">browse <span
+						class="ti-arrow-right light"></span></a>
 				</div>
-
-				<div class="swiper-slide"
-					style="background: url(${pageContext.request.contextPath}/resources/images/travelge/recommand/slider/recommand2.jpg);">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png"
-						alt="store logo">
-					<h2 class="home-slider-title-main white-color">${card2.recommadationTitle }</h2>
-					<a class="arrow bounce text-center" href="#about"> <span
-						class="ti-mouse"></span> <span class="ti-angle-double-down"></span>
-					</a>
+				<div class="swiper-slide home-slider-centered"
+					style="background-image:url(${card2Thumbnail})">
+					<h1 class="light wow fadeInDown mb-30">${card2.recommadationTitle }</h1>
+					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+						data-target="#card2view">browse <span
+						class="ti-arrow-right light"></span></a>
 				</div>
-
-				<div class="swiper-slide"
-					style="background: url(${pageContext.request.contextPath}/resources/images/travelge/recommand/slider/recommand3.jpg);">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/eating/logo-white.png"
-						alt="store logo">
-					<h2 class="home-slider-title-main white-color">${card3.recommadationTitle }</h2>
-					<a class="arrow bounce text-center" href="#about"> <span
-						class="ti-mouse"></span> <span class="ti-angle-double-down"></span>
-					</a>
+				<div class="swiper-slide home-slider-centered"
+					style="background-image:url(${card3Thumbnail})">
+					<h1 class="light wow fadeInDown mb-30">${card3.recommadationTitle }</h1>
+					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
+						data-target="#card3view">browse <span
+						class="ti-arrow-right light"></span></a>
 				</div>
-
 			</div>
-			<div class="home-pagination"></div>
-			<div class="home-slider-next right-arrow-negative">
-				<span class="ti-arrow-right"></span>
+			<!-- Add Pagination -->
+			<div class="home-slider-pagination"></div>
+
+			<div class="home-slider-prev left-arrow">
+				<span class="ti-angle-left"></span>
 			</div>
-			<div class="home-slider-prev left-arrow-negative">
-				<span class="ti-arrow-left"></span>
+
+			<div class="home-slider-next right-arrow">
+				<span class="ti-angle-right"></span>
 			</div>
 		</div>
-	</section>
+		<div class="box home-search">
+			<div class="container">
+				<div class="row">
+					<div class="">
+						<div class="box">
+							<form class="form-inline" action="search.html">
+								<div class="form-group col-md-2">
+									<!-- 진하게 바꾸기 -->
+									<select id="type2" class="selectpicker"
+										data-live-search="false" title="전국">
+										<!-- 진하게 바꾸기 -->
+										<option>전국</option>
+										<!-- 진하게 바꾸기 -->
+										<option>서울</option>
+										<!-- 진하게 바꾸기 -->
+										<option>경기</option>
+										<!-- 진하게 바꾸기 -->
+										<option>인천</option>
+										<!-- 진하게 바꾸기 -->
+										<option>대전/충청/세종</option>
+										<!-- 진하게 바꾸기 -->
+										<option>부산/대구/경상</option>
+										<!-- 진하게 바꾸기 -->
+										<option>광주/전라</option>
+										<!-- 진하게 바꾸기 -->
+										<option>강원</option>
+										<!-- 진하게 바꾸기 -->
+										<option>제주</option>
+									</select>
+								</div>
 
+								<div class="form-group col-md-2">
+									<select id="type" class="selectpicker" data-live-search="false"
+										title="음식 종류">
+										<option>전체</option>
+										<option>한식</option>
+										<option>양식</option>
+										<option>중식</option>
+										<option>일식</option>
+										<option>아시아식</option>
+										<option>컨템퍼러리</option>
+										<option>뷔페</option>
+										<option>술집</option>
+										<option>카페/베이커리</option>
+										<option>구이</option>
+									</select>
+								</div>
 
+								<div class="form-group col-md-6">
+									<input type="text" class="form-control"
+										placeholder="지역, 식당 또는 음식" />
+								</div>
 
-	<section class="countdown" id="special">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">여름에 가볼 만한 곳</h3>
-				</div>
-
-				<div class="col-md-5">
-					<ul class="product-list product-list-vertical">
-						<li class="wow fadeInUp" data-wow-delay=".2s"><span
-							class="product-list-left pull-left"> <a href="#"
-								data-target="#product-01" data-toggle="modal"> <img
-									alt="product image" class="product-list-primary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product3.png">
-									<img alt="product image" class="product-list-secondary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
-							</a>
-						</span></li>
-					</ul>
-				</div>
-
-				<div class="col-md-7 text-center">
-					<div class="countdown-container">
-						<h3 class="wow fadeInDown">${card4.recommadationTitle }</h3>
-
-						<p class="wow fadeInDown">${card4.recommadationDescription }</p>
-
-					</div>
-				</div>
-
-
-			</div>
-		</div>
-	</section>
-	<section class="countdown" id="special">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">아이들과 주말 나들이</h3>
-				</div>
-
-				<div class="col-md-5">
-					<ul class="product-list product-list-vertical">
-						<li class="wow fadeInUp" data-wow-delay=".2s"><span
-							class="product-list-left pull-left"> <a href="#"
-								data-target="#product-01" data-toggle="modal"> <img
-									alt="product image" class="product-list-primary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product3.png">
-									<img alt="product image" class="product-list-secondary-img"
-									src="${pageContext.request.contextPath}/resources/images/eating/product4.png">
-							</a>
-						</span></li>
-					</ul>
-				</div>
-
-				<div class="col-md-7 text-center">
-					<div class="countdown-container">
-						<h3 class="wow fadeInDown">${card5.recommadationTitle }</h3>
-
-						<p class="wow fadeInDown">${card5.recommadationDescription }</p>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="countdown" id="special">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">연인과 함께</h3>
-				</div>
-
-				<div class="col-md-5">
-					<ul class="product-list product-list-vertical">
-						<li class="wow fadeInUp" data-wow-delay=".2s"><span
-							class="product-list-left pull-left"> <a href="#"
-								data-target="#product-01" data-toggle="modal"> <img
-									class="product-list-primary-img"
-									src="${card6Thumbnail }">
-									<img alt="product image" class="product-list-secondary-img"
-									src="${card6Thumbnail }">
-							</a>
-						</span></li>
-					</ul>
-				</div>
-
-				<div class="col-md-7 text-center">
-					<div class="countdown-container">
-						<h3 class="wow fadeInDown">${card6.recommadationTitle }</h3>
-
-						<p class="wow fadeInDown">${card6.recommadationDescription }</p>
-
+								<div class="form-group col-md-2">
+									<button type="submit" class="btn btn-primary">
+										search <span class="ti-angle-right"></span>
+									</button>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- PRODUCT MODAL -->
-	<div class="modal fade product-modal" id="product-01" role="dialog"
-		tabindex="-1">
+	<section class="padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="heading">Featured adds</h4>
+				</div>
+				<!-- / single offer box-->
+				<div class="col-md-4">
+					<div class="offer-box">
+						<div class="offer-box-head">
+							<div class="offer-slider">
+								<div class="swiper-slide">
+									<img src="${card4Thumbnail }" alt="offer image">
+								</div>
+							</div>
+						</div>
+						<a href="#" class="btn btn-default" data-toggle="modal"
+							data-target="#card4view"><span class="h4 offer-box-title">${card4.recommadationTitle }</span>
+						</a>
+					</div>
+				</div>
+				<!-- / single offer box-->
+				<div class="col-md-4">
+					<div class="offer-box">
+						<div class="offer-box-head">
+							<div class="offer-slider">
+								<div class="swiper-slide">
+									<img src="${card5Thumbnail }" alt="offer image">
+								</div>
+							</div>
+						</div>
+						<a href="#" class="btn btn-default" data-toggle="modal"
+							data-target="#card5view"><span class="h4 offer-box-title">${card5.recommadationTitle }</span>
+						</a>
+					</div>
+				</div>
+				<!-- / single offer box-->
+				<div class="col-md-4">
+					<div class="offer-box">
+						<div class="offer-box-head">
+							<div class="offer-slider">
+								<div class="swiper-slide">
+									<img src="${card6Thumbnail }" alt="offer image">
+								</div>
+							</div>
+						</div>
+						<a href="#" class="btn btn-default" data-toggle="modal"
+							data-target="#card6view"> <span class="h4 offer-box-title">${card6.recommadationTitle }</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--/ row -->
+		</div>
+		<!--/ container -->
+	</section>
+
+
+	<div id="card1view" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
-
-			<!-- MODAL CONTENT -->
+			<!-- Modal content-->
 			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
-				<div class="modal-body">
-					<%@include file="/WEB-INF/views/travelge/singlePage.jsp"%>
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card1.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card1.readNum }
+						</span> <span class="offer-box-meta">${card1.recommandationDate}</span> <span
+							class="descriptionImg"> ${card1.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
 				</div>
 			</div>
-			<!-- / MODAL CONTENT -->
+		</div>
+	</div>
+	<div id="card2view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card2.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card2.readNum }
+						</span> <span class="offer-box-meta">${card2.recommandationDate}</span> <span
+							class="descriptionImg"> ${card2.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="card3view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card3.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card3.readNum }
+						</span> <span class="offer-box-meta">${card3.recommandationDate}</span> <span
+							class="descriptionImg"> ${card3.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="card4view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card4.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card4.readNum }
+						</span> <span class="offer-box-meta">${card4.recommandationDate}</span> <span
+							class="descriptionImg"> ${card4.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
+	<div id="card5view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
 
-	<section class="timeline" id="history">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="section-heading">리뷰</h3>
-					<div id="timeline" class="timeline-container">
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-1">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInLeft">
-								<span class="timeline-date"> <span class="timeline-month">May</span>
-									<span class="timeline-year">2016</span>
-								</span>
-								<h2>Envelope title</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-2">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInRight">
-								<span class="timeline-date"> <span class="timeline-month">March</span>
-									<span class="timeline-year">2016</span>
-								</span>
-								<h2>Lecce, Magnificat Lupiae</h2>
-								<p>Lorem ipsm dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-3">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInLeft">
-								<span class="timeline-date"> <span class="timeline-month">July</span>
-									<span class="timeline-year">2015</span>
-								</span>
-								<h2>Lecce, Magnificat Lupiae</h2>
-								<p>Lorem ipsm dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-4">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInRight">
-								<span class="timeline-date"> <span class="timeline-month">May</span>
-									<span class="timeline-year">2009</span>
-								</span>
-								<h2>Lecce, Magnificat Lupiae</h2>
-								<p>Lorem ipsm dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-5">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInLeft">
-								<span class="timeline-date"> <span class="timeline-month">August</span>
-									<span class="timeline-year">2008</span>
-								</span>
-								<h2>Envelope title</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-6">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInRight">
-								<span class="timeline-date"> <span class="timeline-month">October</span>
-									<span class="timeline-year">2006</span>
-								</span>
-								<h2>Lecce, Magnificat Lupiae</h2>
-								<p>Lorem ipsm dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-7">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInLeft">
-								<span class="timeline-date"> <span class="timeline-month">December</span>
-									<span class="timeline-year">2004</span>
-								</span>
-								<h2>Lecce, Magnificat Lupiae</h2>
-								<p>Lorem ipsm dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
-						<!-- / TIMELINE ITEM -->
-
-						<!-- TIMELINE ITEM -->
-						<div class="timeline-block timeline-block-image-8">
-							<div class="timeline-point"></div>
-
-							<div class="timeline-content wow fadeInRight">
-								<span class="timeline-date"> <span class="timeline-month">May</span>
-									<span class="timeline-year">2000</span>
-								</span>
-								<h2>Lecce, Magnificat Lupiae</h2>
-								<p>Lorem ipsm dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore magna
-									aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-									aute irure dolor in reprehenderit in voluptate velit esse
-									cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-									cupidatat non proident, sunt in culpa qui officia deserunt
-									mollit anim id est laborum.</p>
-							</div>
-						</div>
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card5.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card5.readNum }
+						</span> <span class="offer-box-meta">${card5.recommandationDate}</span> <span
+							class="descriptionImg"> ${card5.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
-					<!-- / TIMELINE ITEM -->
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="card6view" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<div class="offer-box">
+
+					<div class="offer-content pl-30 pr-30">
+						<span class="h4 offer-box-title">${card6.recommadationTitle }</span>
+						<span class="offer-box-location"><i class="material-icons">visibility</i>${card6.readNum }
+						</span> <span class="offer-box-meta">${card6.recommandationDate}</span> <span
+							class="descriptionImg"> ${card6.recommadationDescription }
+						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- / OFFER CONTACT FORM -->
+
+	<section class="padding post-list" id="news">
+		<div class="container">
+			<h5 class="mt-0 mb-30">Latest Review</h5>
+			<div class="post-list-sidebar-item mb-15">
+				<a href="#"> <img
+					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
+					src="assets/img/blog/01.jpg" alt="blog image">
+				</a>
+
+				<div class="col-xs-8 col-sm-9">
+					<a class="dark" href="#"> <span class="h6 mt-0">Post
+							title</span> <span class="post-list-sidebar-item-description">최신
+							리뷰1</span>
+					</a>
+				</div>
+			</div>
+			<div class="post-list-sidebar-item mb-15">
+				<a href="#"> <img
+					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
+					src="assets/img/blog/02.jpg" alt="blog image">
+				</a>
+
+				<div class="col-xs-8 col-sm-9">
+					<a class="dark" href="#"> <span class="h6 mt-0">Post
+							title</span> <span class="post-list-sidebar-item-description">최신
+							리뷰2</span>
+					</a>
+				</div>
+			</div>
+			<div class="post-list-sidebar-item mb-15">
+				<a href="#"> <img
+					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
+					src="assets/img/blog/01.jpg" alt="blog image">
+				</a>
+
+				<div class="col-xs-8 col-sm-9">
+					<a class="dark" href="#"> <span class="h6 mt-0">Post
+							title</span> <span class="post-list-sidebar-item-description">최신
+							리뷰3</span>
+					</a>
+				</div>
+			</div>
+			<div class="post-list-sidebar-item mb-15">
+				<a href="#"> <img
+					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
+					src="assets/img/blog/02.jpg" alt="blog image">
+				</a>
+
+				<div class="col-xs-8 col-sm-9">
+					<a class="dark" href="#"> <span class="h6 mt-0">Post
+							title</span> <span class="post-list-sidebar-item-description">최신
+							리뷰4</span>
+					</a>
+				</div>
+			</div>
+			<div class="post-list-sidebar-item mb-15">
+				<a href="#"> <img
+					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
+					src="assets/img/blog/02.jpg" alt="blog image">
+				</a>
+
+				<div class="col-xs-8 col-sm-9">
+					<a class="dark" href="#"> <span class="h6 mt-0">Post
+							title</span> <span class="post-list-sidebar-item-description">최신
+							리뷰5</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
 	</section>
 
+	<footer class="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p>
+							Support: <span>+48 123 456 789</span>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<ul class="footer-social pull-right">
+							<li><a href="#" class="pull-left"><span
+									class="ti-facebook"></span></a></li>
+							<li><a href="#" class="pull-left"><span
+									class="ti-twitter"></span></a></li>
+							<li><a href="#" class="pull-left"><span
+									class="ti-instagram"></span></a></li>
+							<li><a href="#" class="pull-left"><span
+									class="ti-youtube"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<script src="<c:url value='/resources/js/eating/vendor/wow.js'/>"></script>
-	<script
-		src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/js/eating/vendor/bootstrap.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"></script>
-	<script
-		src="<c:url value='/resources/js/eating/vendor/jquery.inview.js'/>"></script>
-	<script
-		src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_6m6Glf1-P7jvVdHZ00e3Ue_EoUNe39g"></script>
-	<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
-	<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-12 smartphone-fw">
+					<address>
+						<strong>Main office (HQ)</strong><br> consectetur adipisicing
+						elit 122<br> CF 55678 USA <br> <br> Phone:
+						+1-222-333-4444 <br> E-mail: office@apart.com
+					</address>
+				</div>
+				<div class="col-md-2 col-sm-12 smartphone-fw">
+					<h6 class="heading">ACCOUNT</h6>
+					<ul>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+					</ul>
+				</div>
+				<div class="col-md-2 col-sm-12 smartphone-fw">
+					<h6 class="heading">INFORMATION</h6>
+					<ul>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+					</ul>
+				</div>
 
-	<%@ include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
+				<div class="col-md-2 col-sm-12 smartphone-fw">
+					<h6 class="heading">ACCOUNT</h6>
+					<ul>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> Lorem Ipsum </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
 </body>
 </html>

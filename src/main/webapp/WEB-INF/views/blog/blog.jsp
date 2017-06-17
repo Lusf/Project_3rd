@@ -17,7 +17,7 @@
 
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
+<%-- <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.mixitup.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.js"></script>
@@ -34,8 +34,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js"></script>
 <!-- custom script -->
-<%-- 
-<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script> --%>
+
+<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
 <!-- app -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/app.js"></script>
@@ -83,7 +83,7 @@
 <link rel="stylesheet"
 	href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>">
 <link href="<c:url value= '/resources/css/blog/blog-post.css'/>"
-	rel="stylesheet">
+	rel="stylesheet"> --%>
 	
 <style>
 /* container 간격 조절 */
@@ -111,13 +111,13 @@
 
 /* 화면 조절 */
 .cont {
-	width: 73%;
+	width: 70%;
 }
-
+.ct {position: relative;}
 .side {
 	width: 20%;
 	position: absolute;
-	top: 7.7em;
+	top: 5em;
 	left: 73%;
 }
 .footer {margin-top: 300px;}
@@ -205,10 +205,11 @@ $(function() {
 							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
 							str+="<hr>"
 							
-							str+="<p class='lead'>"+item.blogCont+"</p>";
+							str+="<p class='lead'><div class='ct'>"+item.blogCont+"</div></p>";
 						});
 	
 						$(".cont").html(str);
+						$(".ct img").attr("width","80%");
 						
 						//삭제하기
 						$("#dlt").click(function(){
@@ -244,6 +245,7 @@ $(function() {
 
 </head>
 <body>
+	<%@include file="/WEB-INF/views/includeFile.jsp" %>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
 	<!-- Page Content -->

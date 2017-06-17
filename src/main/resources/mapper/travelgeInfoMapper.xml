@@ -10,6 +10,7 @@
 		<result column="TRAVELGE_NAME" property="travelgeName" />
 		<result column="TRAVELGE_REGION" property="travelgeRegion" />
 		<result column="TRAVELGE_THEME" property="travelgeTheme" />
+		<result column="TRAVELGE_PHOTOS" property="travelgePhotos" />
 		<result column="cnt" property="cnt"/>
 <!-- 		<association property="avgScoreVo" javaType="AvgScoreVo">
 			<id column="id" property="id" />
@@ -43,6 +44,22 @@
 	</where>
 	) T1) order by content_code
 	</select>
-
+	
+	
+	<!-- 추가 -->
+	
+	<insert id="travelgeInfoInsert" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
+	INSERT INTO TRAVELGE_INFO
+	VALUES 
+	(#{contentCode},#{travelgeName}, #{travelgeAddr},#{travelgeDescription}, 
+	#{travelgeTheme}, #{travelgeRegion},#{travelgeCoordinates},#{travelgePhotos} )
+	
+	</insert>
+	
+	<!-- 삭제 -->
+	
+	<delete id="travelgeInfoDelete" parameterType="string">
+	DELETE from TRAVELGE_INFO where content_code = #{_parameter}
+	</delete>
 
 </mapper>
