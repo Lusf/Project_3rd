@@ -69,8 +69,7 @@
 </style>
 
 <script type="text/javascript">
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 
 				$('.fliper-btn').click(function() {
 					$('.flip').find('.card').toggleClass('flipped');
@@ -89,9 +88,33 @@
 								'\\').pop();
 					}
 					// 파일명만 추출 } // 추출한 파일명 삽입 
-					$(this).siblings('.upload-name').val(filename);
-
+					$(this).siblings('.upload-name').val(filename);		
 				});
+				
+				$("#password").blur(function(){
+				if( $("#password").val().length < 8 ){
+					$("#password").css("background-color", "red");
+					$("#password").attr("placeholder","비밀번호 8자 이상");
+					$("#password").val("");
+				}else{
+					$("#password").css("background-color", "white");
+				}	
+				});
+				
+				$("#password2").blur(function(){
+					
+				if($("#password").val() != "" && $("#password").val() != null){
+					if( $("#password").val() == $("#password2").val() ){
+						
+						$("#password2").css("background-color", "green");
+					}else{
+						$("#password2").css("background-color", "red");
+						$("#password2").attr("placeholder","비밀번호 불일치");
+						$("#password2").val("");
+					}
+				}
+				});
+				
 			});
 	function checkValid() {
 		var f = window.document.writeForm;
@@ -149,9 +172,9 @@
 							<br>
 							<h4 class="text-center"></h4>
 
-							<br> <input class="form-control" placeholder="Username"
+							<br> <input class="form-control" placeholder="아이디"
 								name="id" /> <input type="password" class="form-control"
-								placeholder="Password" name="password" />
+								placeholder="비밀번호" name="password" />
 							<p class="text-right"></p>
 							<button class="btn btn-primary btn-block">로그인</button>
 							<hr>
@@ -160,7 +183,7 @@
 							</c:if>
 							<hr>
 							<p class="text-center">
-								<a class="fliper-btn">Create new account?</a>
+								<a class="fliper-btn">새로운 계정 생성</a>
 							</p>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}"> <input type="hidden"
@@ -187,9 +210,9 @@
 
 							<br> <label>기본사항</label> <input class="form-control"
 								placeholder="아이디" name="id" /> <input type="password"
-								class="form-control" placeholder="비밀번호" name="password" /> <input
+								class="form-control" placeholder="비밀번호" name="password" id="password"/> <input
 								type="password" class="form-control" placeholder="비밀번호확인"
-								name="password2" /> <input class="form-control"
+								name="password2" id="password2"/> <input class="form-control"
 								placeholder="전화번호" name="tell" /> <label>추가사항</label>
 							<div class="filebox">
 								<!-- 	<input class="form-control" type="file" name="file" placeholder="사진" id="upload" /> -->
@@ -197,10 +220,9 @@
 								<label for="upload">사진 업로드</label> <input type="file"
 									id="upload" class="upload-hidden" name="file">
 							</div>
-							<button type="submit" class="btn btn-primary btn-block">SIGN
-								UP</button>
+							<button type="submit" class="btn btn-primary btn-block">가입하기</button>
 							<p class="text-center">
-								<a class="fliper-btn">Already have an account?</a>
+								<a class="fliper-btn">이미 계정이 있으십니까?</a>
 							</p>
 
 						</form>
