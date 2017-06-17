@@ -65,7 +65,7 @@ function logout() {
 
 				<div class="navbar-buttons">
 					<sec:authorize access="isAuthenticated()"><p><p>
-						<sec:authentication property="principal.id" />님 환영합니다.
+						<a><sec:authentication property="principal.id" />님 환영합니다.</a>
 						<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 						<a href="javascript:logout();">로그아웃</a>
 					</sec:authorize>

@@ -2,6 +2,7 @@ package kosta.web.controller.blog;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,22 +56,18 @@ public class UserBlogController {
 	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserBlogVo> selectCont(String contentCode){
-
 		String id = (String)session.getAttribute("blogId");
-
 		List<UserBlogVo> list = blogService.selectCont(id, contentCode);
 		
 		return list;
 	}
-	
-	
 	
 	@RequestMapping(value = "/deleteBlogCont", method = RequestMethod.POST)
 	@ResponseBody
 	public void deleteCont(String contentCode){
 		blogService.delete((String)session.getAttribute("blogId"), contentCode);
 	}
-	
+
 	@RequestMapping("/insertBlogReview")
 	public ModelAndView insertReview(UserBlogVo blogVo){
 		blogService.insert(blogVo);
@@ -88,5 +85,17 @@ public class UserBlogController {
 			blogVo.setCategory("Food");
 		
 		return mv;
+	}
+	
+	@RequestMapping("/blogUpdateCall")
+	public String call(){
+		return "blog/blogReviewUpdate";
+	}
+	
+	@RequestMapping(value = "/updateBlogReview", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateReview(UserBlogVo blogVo){
+		blogService.update(blogVo);
+		return "redirect:blog/"+blogVo.getId();
 	}
 }

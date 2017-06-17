@@ -21,9 +21,37 @@ public class EnterController {
    @Autowired
    private EnterService enterService;
    
+
+/*   //볼거리 메인
    @RequestMapping("new/enterMain")
    public String enterMain(){
       return "entertainment/new/enterMain";
+   }*/
+   
+   //볼거리 리스트
+   @RequestMapping("new/enterList")
+   public ModelAndView enterList(LookInfoVo lookInfoVo){
+	      List<LookInfoVo> lookInfoList =  enterService.lookInfoSearch(lookInfoVo);
+	      
+	      ModelAndView mv = new ModelAndView();
+	      mv.setViewName("entertainment/new/enterList");
+	      mv.addObject("lookInfoList", lookInfoList);
+	/*      
+	      if(lookInfoVo.getAvgScoreVo().getScore()==0){
+	         
+	      }*/
+	/*      
+	      int result = enterService.lookScoreInsert(lookInfoVo.getAvgScoreVo());
+	      System.out.println("score result : " + result);*/
+	      
+	      System.out.println(lookInfoList);
+	      return mv;
+   }
+   
+   //볼거리 상세화면
+   @RequestMapping("new/enterDetailView")
+   public String enterDetailView(){
+	   return "entertainment/new/enterDetailView";
    }
    
    @RequestMapping("detailView")
@@ -90,12 +118,12 @@ public class EnterController {
    }
    
    //메인 볼거리 정보 가져오기
-   @RequestMapping("enterMain")
+   @RequestMapping("new/enterMain")
    public ModelAndView enterContents(LookInfoVo lookInfoVo){
       List<LookInfoVo> lookInfoList =  enterService.lookInfoSearch(lookInfoVo);
       
       ModelAndView mv = new ModelAndView();
-      mv.setViewName("entertainment/enterMain");
+      mv.setViewName("entertainment/new/enterMain");
       mv.addObject("lookInfoList", lookInfoList);
 /*      
       if(lookInfoVo.getAvgScoreVo().getScore()==0){

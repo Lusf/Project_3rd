@@ -63,9 +63,9 @@
 						</form>
 
 						<script type="text/javascript">
-							if ('${board!=null}' == 'true')
+							if ('${blogCont!=null}' == 'true')
 								Editor.modify({
-									'content' : '${board.board_content}'
+									'content' : '${blogCont}'
 								});
 
 							var config = {
