@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ public class TravelgeController {
 	}
 	// url 에 해당하는 jsp파일로 이동
 	@RequestMapping("{url}")
-	public String url(@PathVariable String url){
+	public String url(HttpServletRequest req, @PathVariable String url){
 	
 		return "travelge/"+url;
 	}
@@ -252,7 +253,14 @@ public class TravelgeController {
 		
 	};
 	
-	public void searchAroundMe(String travelgeRegion){
-		
-	};
+	// 스크롤 페이징
+		@RequestMapping("/searchAroundMe")
+		@ResponseBody
+		public List<TravelgeInfoVo> searchAroundMe(String lat, String lon){
+			
+			//System.out.println(lat);
+			//System.out.println(lon);
+			
+			return travelgeService.searchAroundMe(lat, lon);
+		}
 }

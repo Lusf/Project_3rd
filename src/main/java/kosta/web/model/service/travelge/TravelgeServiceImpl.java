@@ -1,5 +1,6 @@
 package kosta.web.model.service.travelge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,10 +165,36 @@ public class TravelgeServiceImpl implements TravelgeService {
 		return 0;
 	}
 
+	
+	static final double bound = 0.1;
 	@Override
-	public List<TravelgeInfoVo> searchAroundMe(String travelgeRegion) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon){
+		List <TravelgeInfoVo> temp = travelgeInfoDAO.searchAroundMe();
+		List <TravelgeInfoVo> newList = new ArrayList<>();
+		
+		double doubleLat = Double.parseDouble(lat);
+		double doubleLon = Double.parseDouble(lon);
+		for(TravelgeInfoVo dto : temp)
+		{
+			int point = dto.getTravelgeCoordinates().indexOf(',');
+			int last = dto.getTravelgeCoordinates().indexOf(')');
+			//System.out.println(point);
+			double tempLat =Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
+			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point+2, last));
+			
+			
+			if(doubleLat +bound > tempLat && doubleLat - bound < tempLat)
+			{
+				if(doubleLon + bound > tempLon && doubleLon - bound < tempLon)
+				{
+					dto.setX(tempLat+"");
+					dto.setY(tempLon+"");
+					//dto.setTravelgeCoordinates(tempLat+", "+tempLon);
+					newList.add(dto);
+				}
+			}
+		}
+		return newList;
 	}
 
 }

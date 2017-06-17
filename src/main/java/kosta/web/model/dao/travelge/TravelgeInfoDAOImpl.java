@@ -42,9 +42,9 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 	}
 
 	@Override
-	public List<TravelgeInfoVo> searchAroundMe(String travelgeRegion) {
+	public List<TravelgeInfoVo> searchAroundMe() {
 		// TODO Auto-generated method stub
-		return null;
+		 return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch");
 	}
 
 }
