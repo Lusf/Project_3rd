@@ -93,7 +93,7 @@
 										</tr>
 										<c:forEach items="${list }" var="list" varStatus="state">
 											<Tr>
-												<td>${list.contentCode }</td>
+												<td><a href="${pageContext.request.contextPath }/travelge/travelgeInfoUpdateForm?contentCode=${list.contentCode}">${list.contentCode }</a></td>
 												<td>${list.travelgeName }</td>
 												<td>${list.travelgeAddr }</td>
 												<td>${list.travelgeDescription }</td>
