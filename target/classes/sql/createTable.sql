@@ -135,20 +135,24 @@ create table travelge_recommandation(
 );
 
 
-drop table restaurant_info;
+drop table restaurant;
 
-select * from restaurant_info;
+select * from restaurant;
 
-create table restaurant_info(
-  content_code varchar2(20) constraint content_code_ri_pk primary key,
+select * from usertable;
+
+create table restaurant(
+  content_code varchar2(30) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
-  address varchar2(50),
-  category varchar2(20),
-   id constraint id_restaurant_info_fk references usertable(id)
+  restaurant_address varchar2(50),
+  category varchar2(50),
+  restaurant_info varchar2(2000),
+  restaurant_pic varchar2(50),
+  id constraint id_restaurant_fk references usertable(id)
 );
 
-insert into restaurant_INFO 	values ('a','a','a','a','a');
-
+insert into restaurant 	values ('C_SU_0001','¿µ¼·ÀÌ³×','¼­¿ï','ÇÑ½Ä','°³²Ü¸À','Ä¸Ã³.png','1111');
+commit
 drop table hot_deal;
 
 create table hot_deal(

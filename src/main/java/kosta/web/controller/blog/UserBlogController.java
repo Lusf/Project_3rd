@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.controller.travelge.TravelgeController;
 import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.user.UserService;
 import kosta.web.model.vo.UserVo;
@@ -30,9 +31,13 @@ public class UserBlogController {
 	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private TravelgeController travelgeController;
 
 	@RequestMapping("/{id}")
 	public String userBlog(@PathVariable String id){
+
 		UserVo user = userService.userSearchById(id);
 		session.setAttribute("blogId", id);
 		session.setAttribute("blogUserPic", user.getUserPic());
@@ -51,8 +56,8 @@ public class UserBlogController {
 	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserBlogVo> selectCont(String contentCode){
+
 		String id = (String)session.getAttribute("blogId");
-		System.out.println("selcon:"+contentCode+",id"+id);
 		List<UserBlogVo> list = blogService.selectCont(id, contentCode);
 		
 		return list;
@@ -63,16 +68,23 @@ public class UserBlogController {
 	public void deleteCont(String contentCode){
 		blogService.delete((String)session.getAttribute("blogId"), contentCode);
 	}
-	
-	/*@RequestMapping("/insertBlogReview")
-	public String insertReview(UserBlogVo blogVo){
+
+	@RequestMapping("/insertBlogReview")
+	public ModelAndView insertReview(UserBlogVo blogVo){
 		blogService.insert(blogVo);
-		return "forward:"+blogVo.getId();
-	}*/
-	
-	@RequestMapping("/updateBlogCont")
-	@ResponseBody
-	public String updateReview(String contextCode){
-		return "";
+		
+		ModelAndView mv = new ModelAndView();
+		String ini = blogVo.getContentCode().substring(0,1);
+		
+		mv.setViewName("blog/blogReviewInsert");
+		
+		if(ini.equals("T"))
+			mv = travelgeController.detailView(blogVo.getContentCode());
+		else if(ini.equals("B"))
+			blogVo.setCategory("Entertainment");
+		else if(ini.equals("C"))
+			blogVo.setCategory("Food");
+		
+		return mv;
 	}
 }

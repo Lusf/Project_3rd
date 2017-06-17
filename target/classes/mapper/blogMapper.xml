@@ -33,6 +33,15 @@
 	select blog_num from blog where id=#{id}
 </select>
 
+<!-- contentcode를 이용한 검색 -->
+<select id="selectByContentCode" parameterType="String" resultMap="blogMap">
+	select *
+	from blog
+	where content_code = #{_parameter}
+	order by blog_date
+</select>
+
+
 
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">

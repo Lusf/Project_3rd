@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>appart - property and classifieds bootstrap template</title>
+        <title>Food-마시쪙</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="assets/theme/css/theme.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
     </head>
 	<body>
 
@@ -832,16 +835,15 @@
 			</div>
 		</div>	
 	</footer>
-	<script src="assets/js/wow.js"></script>
-	<script>
-	window.jQuery || document.write('<script src="assets/js/jquery-1.11.2.min.js"><\/script>')
-	</script>
-	<script src="assets/js/swiper.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.countTo.js"></script>
-	<script src="assets/js/jquery.inview.js"></script>
-	<script src="assets/js/jquery.countdown.js"></script>
-		<script src="assets/js/bootstrap-select.js"></script>
-	<script src="assets/js/main.js"></script>
+	
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
 	</body>
 </html>

@@ -53,6 +53,11 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 	}
 
 	@Override
+	public List<UserBlogVo> selectByContentCode(String contentCode)
+	{
+		return sqlSession.selectList("blogMapper.selectByContentCode", contentCode);
+	}
+	@Override
 	public List<Integer> selectBlogNum(String id) {
 		return sqlSession.selectList("blogMapper.selectBlogNum", id);
 	}

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
@@ -24,6 +26,9 @@ public class TravelgeController {
 	
 	@Autowired
 	private TravelgeService travelgeService;
+	
+	@Autowired
+	private UserBlogService userBlogService;
 	
 	@RequestMapping("/main")
 	public ModelAndView travelgeMain()
@@ -60,7 +65,7 @@ public class TravelgeController {
 	@RequestMapping("/travelgeInfoInsert")
 	public String travelgeInfoInsert(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) throws Exception{
 
-		String path = request.getSession().getServletContext().getRealPath("/resources/user");
+		String path = request.getSession().getServletContext().getRealPath("/resources/travelge");
 
 		MultipartFile file = travelgeInfoVo.getFile();
 
@@ -90,7 +95,7 @@ public class TravelgeController {
 		if (file.getSize() > 0) {
 
 			try {
-				file.transferTo(new File(path + "/" +travelgeInfoVo.getContentCode()+"/profile/"+ travelgeInfoVo.getTravelgePhotos()));
+				file.transferTo(new File(path + "/" +travelgeInfoVo.getContentCode()+"/photos/"+ travelgeInfoVo.getFile()));
 			} catch (Exception e) {
 			}
 		}
@@ -168,10 +173,14 @@ public class TravelgeController {
 		int currentPage = Integer.parseInt(index);
 		
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
-		tempInfo.setTravelgeTheme(currentTheme);
+
 		if(!currentRegion.equals("전국"))
 		{
 			tempInfo.setTravelgeRegion(currentRegion);
+		}
+		if(!currentTheme.equals("전체"))
+		{
+			tempInfo.setTravelgeTheme(currentTheme);
 		}
 		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo ,currentPage);
@@ -186,10 +195,13 @@ public class TravelgeController {
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp ,0);
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
 		mv.addObject("info", list.get(0));
+		mv.addObject("commentList",commentList);
+		
 		return mv;
 	}
 	

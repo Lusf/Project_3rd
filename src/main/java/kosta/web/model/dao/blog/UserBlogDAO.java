@@ -17,4 +17,6 @@ public interface UserBlogDAO {
 	int update(UserBlogVo userBlogVo);
 	
 	List<Integer> selectBlogNum(String id);
+
+	List<UserBlogVo> selectByContentCode(String contentCode);
 }
