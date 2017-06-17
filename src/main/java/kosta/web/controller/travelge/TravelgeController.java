@@ -60,6 +60,7 @@ public class TravelgeController {
 	public String url(@PathVariable String url) {
 
 		return "travelge/" + url;
+
 	}
 
 	// 여행지 정보 입력
@@ -165,10 +166,10 @@ public class TravelgeController {
 			spage = Integer.parseInt(page);
 		ModelAndView modelAndView = new ModelAndView();
 		TravelgeInfoVo travelgeInfoVo = new TravelgeInfoVo();
-		if (keyField.equals("all")){
-			if(keyWord ==null){
+		if (keyField.equals("all")) {
+			if (keyWord == null) {
 				travelgeInfoVo = null;
-			}else{
+			} else {
 				travelgeInfoVo.setContentCode(keyWord);
 				travelgeInfoVo.setTravelgeAddr(keyWord);
 				travelgeInfoVo.setTravelgeName(keyWord);
@@ -176,7 +177,7 @@ public class TravelgeController {
 				travelgeInfoVo.setTravelgeTheme(keyWord);
 			}
 		}
-			
+
 		if (keyField.equals("contentCode"))
 			travelgeInfoVo.setContentCode(keyWord);
 		if (keyField.equals("travelgeName"))
@@ -224,7 +225,8 @@ public class TravelgeController {
 	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme) {
 
 		// System.out.println(index);
-		// System.out.println("현재 지역 : " + currentRegion + " / 현재 테마 : " +
+		// System.out.println("현재 지역 : " + currentRegion + " / 현재 테마 : "
+		// +
 		// currentTheme);
 		int currentPage = Integer.parseInt(index);
 
@@ -238,6 +240,35 @@ public class TravelgeController {
 		}
 
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
+		return list;
+	}
+
+	// 스크롤 페이징 jackson
+	@RequestMapping("/travelgeSearchScroll")
+	@ResponseBody
+	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme, String keyword) {
+
+
+		int currentPage = Integer.parseInt(index);
+
+		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
+
+		if (!currentRegion.equals("전국")) {
+			tempInfo.setTravelgeRegion(currentRegion);
+		}
+		if (!currentTheme.equals("전체")) {
+			tempInfo.setTravelgeTheme(currentTheme);
+		}
+
+		System.out.println(index);
+		System.out.println(currentRegion);
+		System.out.println(currentTheme);
+		System.out.println(keyword);
+		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i).getTravelgeName());
+		}
 		return list;
 	}
 
@@ -305,7 +336,15 @@ public class TravelgeController {
 
 	};
 
-	public void searchAroundMe(String travelgeRegion) {
+	// 지도 주위 리스트 불러오기
+	@RequestMapping("/searchAroundMe")
+	@ResponseBody
+	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon) {
 
-	};
+		// System.out.println(lat);
+		// System.out.println(lon);
+
+		return travelgeService.searchAroundMe(lat, lon);
+	}
+
 }

@@ -1,6 +1,8 @@
 package kosta.web.model.dao.travelge;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -42,9 +44,21 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 	}
 
 	@Override
-	public List<TravelgeInfoVo> searchAroundMe(String travelgeRegion) {
+	public List<TravelgeInfoVo> searchAroundMe() {
 		// TODO Auto-generated method stub
-		return null;
+		 return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch");
+	}
+
+	@Override
+	public List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage,
+			String keyword) {
+		Map<Object, Object> map = new HashMap<>();
+
+		map.put("travelgeTheme", travelgeInfoVo.getTravelgeTheme());
+		map.put("travelgeRegion", travelgeInfoVo.getTravelgeRegion());
+		map.put("keyword", keyword);	
+
+		return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(currentPage, 10));
 	}
 
 }

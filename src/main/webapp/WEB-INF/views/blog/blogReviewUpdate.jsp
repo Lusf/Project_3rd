@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<!DOCTYPE html>
-<html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>index</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,28 +9,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<!-- daumOpenEditor -->
-<link rel=stylesheet type=text/css
-	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
-<script
-	src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
-	type="text/javascript" charset="utf-8"></script>
-<!-- jQuery -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
 
-</head>
-<body>
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">리뷰 수정하기</h1>
+						<h3 class="page-header">리뷰 수정하기</h3>
 					</div>
 					<div class="col-lg-12">
 						<form name="tx_editor_form" id="tx_editor_form"
@@ -42,14 +26,14 @@
 								<div class="form-group">
 									<div class="form-group input-group">
 										<span class="input-group-addon">제목</span> <input type="text"
-											class="form-control" name="blogTitle" value="${item.blogTitle}">
+											class="form-control" name="blogTitle" value="${param.blogTitle}">
 									</div>
 								</div>
 								<div class="panel-body">
 									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 								</div>
 							</div>
-							<input type="hidden" name="contentCode" value="${item.contentCode}">
+							<input type="hidden" name="contentCode" value="${param.contentCode}">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
 							<sec:authorize access="isAuthenticated()">
@@ -57,17 +41,18 @@
 							</sec:authorize>
 							<div style="text-align: center; margin-bottom: 3em">
 								<button type="submit" class="btn btn-default"
-									onclick="saveContent()">전송</button>
-								<button type="reset" class="btn btn-default">다시쓰기</button>
+									onclick="saveContent()">수정하기</button>
+								<button type="button" class="btn btn-default" id="cancel">취소</button>
 							</div>
 						</form>
 
 						<script type="text/javascript">
-							if ('${item.blogCont!=null}' == 'true')
-								Editor.modify({
-									'content' : '${item.blogCont}'
+							$(function(){
+								$("#cancel").click(function(){
+									location.href="${pageContext.request.contextPath}/blog/${blogId}";
 								});
-
+							});
+						
 							var config = {
 								txHost : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
 								txPath : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
@@ -153,6 +138,11 @@
 								form.createField(textarea);
 								return true;
 							}
+
+							Editor.modify({
+								"content" : '${param.blogCont}'
+							});
+
 						</script>
 
 
@@ -168,5 +158,3 @@
 
 	</div>
 	<!-- /#wrapper -->
-</body>
-</html>
