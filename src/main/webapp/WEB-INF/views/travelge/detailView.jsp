@@ -19,12 +19,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
-<script>
-	$(document).ready(function() {
-		$('.txc-image').css("width", "100%");
 
-	})
-</script>
 
 </head>
 <body>

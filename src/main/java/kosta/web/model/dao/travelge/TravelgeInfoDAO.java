@@ -22,5 +22,5 @@ public interface TravelgeInfoDAO {
 	
 	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage);
 	
-	List<TravelgeInfoVo> searchAroundMe(String travelgeRegion);
+	List<TravelgeInfoVo> searchAroundMe();
 }
