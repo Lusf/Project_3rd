@@ -4,9 +4,9 @@ import java.util.List;
 
 import kosta.web.model.vo.restaurant.RestaurentVo;
 
-public interface RestaurantInfoService {
+public interface RestaurantService {
 	int RestaurantInsert(RestaurentVo restaurentVo);
 	int RestaurantUpdate(RestaurentVo restaurentVo);
 	int RestaurantDelete(String contentCode);
-	List<RestaurentVo> RestauranSearch(String contentCode);
+	List<RestaurentVo> RestauranSearch(RestaurentVo restaurentVo, int i);
 }

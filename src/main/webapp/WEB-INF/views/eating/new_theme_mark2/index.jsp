@@ -395,10 +395,11 @@
 										<%-- <img src="${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg" > --%>
 										<span  id="holder" class="post-entry-cover"style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
 									</div>
-								<form action="eating/insert">
+				<form action="${pageContext.request.contextPath }/eating/insertRestaurent" enctype="multipart/form-data" method="post">
 								<div>
+								 <input type="hidden" name="id" value="${blogId }">
 								<label for="restaurantAddr">지역별</label>
-  	<select class="form-control">
+  	<select class="form-control"  name="restaurantAddr">
   	<option disabled="disabled">지역을 고르세요</option>
   <option value="SU">서울</option>
   <option value="DJ">대전</option>
@@ -410,7 +411,7 @@
   
   <div>
 	<label for="category">음식별</label>
-  	<select class="form-control">
+  	<select class="form-control" name="category">
   	<option disabled="disabled">음식종류를 고르세요</option>
   <option value="KR">한식</option>
   <option value="CN">중식</option>
@@ -420,13 +421,13 @@
   
   <div class="form-group">
     <label for="restaurantName">맛집 이름</label>
-    <input type="text" class="form-control" id="restaurantName" placeholder="상호명을 입력하세요">
+    <input type="text" class="form-control" id="restaurantName" placeholder="상호명을 입력하세요" name="restaurantName">
   </div>
   
   
   <div class="form-group">
     <label for="restaurantInfo">맛집 정보</label>
-    <textarea class="form-control" rows="5" id="restaurantInfo" placeholder="정보를 입력하세요"></textarea>
+    <textarea class="form-control" rows="5" id="restaurantInfo" placeholder="정보를 입력하세요" name="restaurantInfo"></textarea>
     <!-- <input type="text" class="form-control" id="restaurantInfo" placeholder="정보를 입력하세요"> -->
   </div>
   
@@ -446,6 +447,9 @@
 									<div align="center">
 									<button type="submit" class="btn btn-default" >등록하기</button>
 									</div>
+									<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}">
+								
 </form>
 							</div>
 						</div>

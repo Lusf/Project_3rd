@@ -11,37 +11,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import kosta.web.model.service.food.RestaurantInfoService;
+import kosta.web.model.service.food.RestaurantService;
 import kosta.web.model.vo.restaurant.RestaurentVo;
 
 @Controller
+@RequestMapping("/eating")
 public class FoodController {
 	@Autowired
-	private RestaurantInfoService restaurantInfoService;
+	private RestaurantService restaurantService;
 
-	@RequestMapping("eating/eatingMain")
+	@RequestMapping("/eatingMain")
 	public String eatingMain() {
-
+		
 		return "eating/eatingMain";
 	}
 	
-	@RequestMapping("eating/newdesign")
+	@RequestMapping("/newdesign")
 	public String testMark2(){
 		return "eating/new_theme_mark2/index";
 	}
 	
-	@RequestMapping("eating/test")
-	public ModelAndView Test(String contentCode) {
+	@RequestMapping("/test")
+	public ModelAndView Test(String contentCode, RestaurentVo restaurentVo) {
 		System.out.println("123");
 
-		List<RestaurentVo> list = restaurantInfoService.RestauranSearch(null);
+		List<RestaurentVo> list = restaurantService.RestauranSearch(restaurentVo, 1);
 		System.out.println(list);
 
 		return new ModelAndView("eating/test", "list", list);
 
 	}
 	
-	@RequestMapping("eating/insert")
+	@RequestMapping("/insertRestaurent")
 	public String insertRestaurent(HttpServletRequest req, RestaurentVo restaurentVo) throws Exception {
 
 		String path = req.getSession().getServletContext().getRealPath("/resources/restaurent");
@@ -52,7 +53,7 @@ public class FoodController {
 			restaurentVo.setRestaurantPic(file.getOriginalFilename());
 		}
 
-		int result = restaurantInfoService.RestaurantInsert(restaurentVo);
+		int result = restaurantService.RestaurantInsert(restaurentVo);
 		if (result == 0) {
 			throw new Exception();
 		}
