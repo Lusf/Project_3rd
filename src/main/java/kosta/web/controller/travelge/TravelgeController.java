@@ -243,6 +243,35 @@ public class TravelgeController {
 		return list;
 	}
 
+	// 스크롤 페이징 jackson
+	@RequestMapping("/travelgeSearchScroll")
+	@ResponseBody
+	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme, String keyword) {
+
+
+		int currentPage = Integer.parseInt(index);
+
+		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
+
+		if (!currentRegion.equals("전국")) {
+			tempInfo.setTravelgeRegion(currentRegion);
+		}
+		if (!currentTheme.equals("전체")) {
+			tempInfo.setTravelgeTheme(currentTheme);
+		}
+
+		System.out.println(index);
+		System.out.println(currentRegion);
+		System.out.println(currentTheme);
+		System.out.println(keyword);
+		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
+		for(int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i).getTravelgeName());
+		}
+		return list;
+	}
+
 	// DetailView
 	@RequestMapping("/detailView/{contentCode}")
 	public ModelAndView detailView(@PathVariable String contentCode) {
@@ -317,4 +346,5 @@ public class TravelgeController {
 
 		return travelgeService.searchAroundMe(lat, lon);
 	}
+
 }

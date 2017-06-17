@@ -54,4 +54,6 @@ public interface TravelgeService {
 	int travelgeScoreUpdate(AvgScoreVo avgScoreVo);
 	
 	List<TravelgeInfoVo> searchAroundMe(String lat, String lon);
+	
+	List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage, String keyword);
 }

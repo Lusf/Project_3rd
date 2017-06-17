@@ -47,6 +47,36 @@
 	</where>
 	) T1) order by content_code
 	</select>
+	<!-- 키워드 검색 -->
+	<select id="travelgeSearchScroll" resultMap="selectMap" parameterType="map">
+	
+	SELECT *
+	FROM TRAVELGE_INFO 
+	<where>
+		TRAVELGE_THEME = #{travelgeTheme}
+		AND
+		TRAVELGE_REGION =#{travelgeRegion}
+		AND
+		(TRAVELGE_NAME LIKE '%'||#{keyword}||'%'
+		OR
+		TRAVELGE_ADDR LIKE '%'||#{keyword}||'%')
+	</where>
+	</select>
+	
+	<!-- 
+		SELECT *
+	FROM TRAVELGE_INFO 
+	where
+		TRAVELGE_THEME = '문화'
+		AND
+		TRAVELGE_REGION = '전북'
+		AND
+		(TRAVELGE_NAME LIKE '%나중%'
+		OR
+		TRAVELGE_ADDR LIKE '%나중%');
+	
+	
+	 -->
 	
 	
 	<!-- 추가 -->
