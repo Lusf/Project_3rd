@@ -18,6 +18,15 @@
 
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+<!-- daumOpenEditor -->
+<link rel=stylesheet type=text/css
+	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
+<script
+	src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
+	type="text/javascript" charset="UTF-8"></script>
 
 <style>
 /* container 간격 조절 */
@@ -104,7 +113,7 @@ $(function() {
 					var str = "";
 					$.each(result, function(index, item) {
 						str += "<tr>";
-						str += "<td><a href='#'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
+						str += "<td><a href='javascript:;'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
 						str += "</tr>";
 					});
 
@@ -129,17 +138,21 @@ $(function() {
 						$(".cont").empty();
 
 						var conCode = "";
+						var s = "";
+						var c = "";
 						var str = "";
 						$.each(result, function(index, item) {
 							conCode = item.contentCode;
+							s = item.blogTitle;
+							c = item.blogCont;
 							str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td>";
 							
 							//수정, 삭제 권한 판단
 							str+="<sec:authorize access='isAuthenticated()'>";
 							str+="<sec:authentication property='Principal.id' var='loginId'/>";
 							str+="<sec:authorize access='${loginId == blogId}'>";	
-								str+="<a href='#' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
-								str+="<a href='#' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
+								str+="<a href='javascript:;' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
+								str+="<a href='javascript:;' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
 							str+="</sec:authorize>";
 							str+="</sec:authorize>";
 							
@@ -147,31 +160,15 @@ $(function() {
 							str+="<hr>"
 							
 							str+="<p class='lead'><div class='ct'>"+item.blogCont+"</div></p>";
+							
 						});
 						$(".cont").html(str);
-						$(".ct img").attr("width","80%");
-						
+						//$(".ct img").attr("width","80%");
+
 						//수정하기
 						$("#udt").click(function(){
-							$.ajax({
-								type : "post",
-								dataType : "text",
-								success : function(result) {
-									$(".cont").empty();
-									
-									var str = "";
-									
-									$.each(result, function(index, item) {
-										str+="<iframe src='blogUpdateCall.jsp'></iframe>";
-									});
-									
-									$(".cont").html(str);
-									$(".ct img").attr("width","80%");
-								},
-								error : function(err) {
-									console.log("오류발생: "+ err)
-								}
-							})
+							var ti = "blogTitle="+s+"&blogCont="+c+"&contentCode="+conCode;
+							$(".cont").load("blogUpdateCall",ti);
 						});
 						
 						//삭제하기
@@ -257,7 +254,7 @@ $(function() {
 					</tr>
 					<c:forEach items="${blogAllTitle}" var="title">
 					<tr>
-						<td><a href='#'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
+						<td><a href='javascript:;'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
 					</tr>
 					</c:forEach>
 				</table>
