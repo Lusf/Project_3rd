@@ -55,7 +55,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		// 컨텐츠코드 생성
 		contentCode = "T" + travelgeInfoVo.getTravelgeTheme() + travelgeInfoVo.getTravelgeRegion() + ran;
-		System.out.println(contentCode);
+	
 
 		travelgeInfoVo.setContentCode(contentCode);
 
@@ -76,15 +76,19 @@ public class TravelgeServiceImpl implements TravelgeService {
 		// 지역 한글로 변환
 		travelgeInfoVo.setTravelgeRegion(map.get(travelgeInfoVo.getTravelgeRegion()));
 		
-		System.out.println(travelgeInfoVo.toString());
 		
 		return travelgeInfoDAO.travelgeInfoInsert(travelgeInfoVo);
 	}
 
 	@Override
 	public int travelgeInfoUpdate(TravelgeInfoVo travelgeInfoVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		// 테마 한글로 변환
+		travelgeInfoVo.setTravelgeTheme(map.get(travelgeInfoVo.getTravelgeTheme()));
+
+		// 지역 한글로 변환
+		travelgeInfoVo.setTravelgeRegion(map.get(travelgeInfoVo.getTravelgeRegion()));
+		
+		return travelgeInfoDAO.travelgeInfoUpdate(travelgeInfoVo);
 	}
 
 	@Override
