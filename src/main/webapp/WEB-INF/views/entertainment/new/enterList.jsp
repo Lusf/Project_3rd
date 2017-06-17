@@ -79,18 +79,22 @@
 			</div>
 		</div>
 </section><!-- 검색끝 -->
-		
+<%-- 		
 <!-- MovieList -->		
 <div class="container">
+	<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
+	<c:if test="${infoList.lookCate eq 'movie'}">
+												
 	<div>
 	<h3 class="heading">Movie</h3>
 	</div>
+	
 	<div class="row">
     	<!-- BEGIN PRODUCTS -->
   		<div class="col-md-3 col-sm-6">
     		<span class="thumbnail text-center">
-      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/캐비.jpg" alt="...">
-      			<h4 class="text-danger">캐리비안의 해적</h4>
+      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/${lookInfo.lookImg}" alt="...">
+      			<h4 class="text-danger">${lookInfo.lookTitle}</h4>
       			<div class="ratings">
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
@@ -115,86 +119,98 @@
       			</div>
     		</span>
   		</div>
-  		<div class="col-md-3 col-sm-6">
-    		<span class="thumbnail text-center">
-      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/악녀.jpg" alt="...">
-      			<h4 class="text-danger">악녀</h4>
-      			<div class="ratings">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </div>
-
-
-
-      			<hr class="line">
-      			<div class="row">
-      				<div class="col-md-6 col-sm-6">
-      					<button type="button" class="btn btn-link">Heart</button>
-      				</div>
-      				<div class="col-md-6 col-sm-6">
-      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView" >More</a>
-      				</div>
-      				
-      			</div>
-    		</span>
-  		</div>
-  		<div class="col-md-3 col-sm-6">
-    		<span class="thumbnail text-center">
-      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/원더우먼.jpg" alt="...">
-      			<h4 class="text-danger">원더우먼</h4>
-      			<div class="ratings">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </div>
-
-
-
-      			<hr class="line">
-      			<div class="row">
-      				<div class="col-md-6 col-sm-6">
-      					<button type="button" class="btn btn-link">Heart</button>
-      				</div>
-      				<div class="col-md-6 col-sm-6">
-      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView" >More</a>
-      				</div>
-      				
-      			</div>
-    		</span>
-  		</div>
-  		<div class="col-md-3 col-sm-6">
-				<span class="thumbnail text-center"> <img
-					src="${pageContext.request.contextPath}/resources/images/entertainment/movie/심야.jpg"
-					alt="...">
-					<h4 class="text-danger">심야</h4>
-					<div class="ratings">
-						<span class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star"></span> <span
-							class="glyphicon glyphicon-star-empty"></span>
-					</div>
-					<hr class="line">
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<button type="button" class="btn btn-link">Heart</button>
-						</div>
-      				<div class="col-md-6 col-sm-6">
-      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView" >More</a>
-      				</div>
-				</span>
-			</div>
+  		
 		</div>
 		<!-- movie끝 -->
+		</c:if>
+	
+	<!-- tv시작 -->
+	<c:if test="${infoList.lookCate eq 'tv'}">
+												
+	<div>
+	<h3 class="heading">TV</h3>
 	</div>
+	
+	<div class="row">
+    	<!-- BEGIN PRODUCTS -->
+  		<div class="col-md-3 col-sm-6">
+    		<span class="thumbnail text-center">
+      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/tv/${lookInfo.lookImg}" alt="...">
+      			<h4 class="text-danger">${lookInfo.lookTitle}</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
 
 
-<!-- TV List -->		
+
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<button type="button" class="btn btn-link">
+      						HEART
+      					</button>
+      				</div>
+      				<div class="col-md-6 col-sm-6">
+      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView" >More</a>
+      				</div>
+      				
+      			</div>
+    		</span>
+  		</div>
+  		
+		</div>
+		<!-- tv끝-->
+		</c:if>
+		
+	<c:if test="${infoList.lookCate eq 'concert'}">
+												
+	<div>
+	<h3 class="heading">concert</h3>
+	</div>
+	
+	<div class="row">
+    	<!-- BEGIN PRODUCTS -->
+  		<div class="col-md-3 col-sm-6">
+    		<span class="thumbnail text-center">
+      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${lookInfo.lookImg}" alt="...">
+      			<h4 class="text-danger">${lookInfo.lookTitle}</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+
+
+
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6">
+      					<button type="button" class="btn btn-link">
+      						HEART
+      					</button>
+      				</div>
+      				<div class="col-md-6 col-sm-6">
+      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView" >More</a>
+      				</div>
+      				
+      			</div>
+    		</span>
+  		</div>
+  		
+		</div>
+		<!-- concert끝 -->
+		</c:if>
+		</c:forEach>
+	</div> --%>
+
+
+ <!-- TV List -->		
 <div class="container">
 	<div>
 	<h3 class="heading">TV</h3>
@@ -413,7 +429,7 @@
 				</span>
 			</div>
 		</div>
-		<!-- concert끝 -->
+		<!-- concert끝 --> 
 	</div>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>

@@ -104,155 +104,40 @@
 					<ul class="nav nav-center mb-5" style="width:30px;">
 						<li><a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterList" >More</a></li>
 					</ul>
-							
-			
-					<!-- 																	    							    	              					더보기 버튼!!
-				<div class="col-md-12 text-center">
-					<a class="btn btn-default" href="#">More<span class="ti-angle-right"></span></a>
-				</div> -->
+					
+					<!-- movie 이미지 슬라이드 -->
 					<div class="tab-content relative">
 	              		<div role="tabpanel" class="tab-pane fade in active" id="movie">
 							  <div class="rooms-slider overflow-hidden">
 							        <div class="swiper-wrapper">
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/캐비.jpg" alt="offer image">
-														
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
+							        
+							        <c:choose>
+										<c:when test="${empty lookInfoList}">
+											정보가 없습니다.
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
+												<c:if test="${infoList.lookCate eq 'movie'}">
+												
+												<div class="swiper-slide">
+												<!-- single offer box-->
+													<div class="offer-box">
+															<div class="offer-box-head">
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/${infoList.lookImg}" >																																												
+																</a>
+															</div>
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
+															</a>
 													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
-							            
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/심야.jpg" alt="offer image">
-														
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>																								
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
+									            </div>
 
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/베이블레.jpg" alt="offer image">
-														
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-													
-													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
-
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/원더우먼.jpg" alt="offer image">
-														
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-													
-													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
-
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image">
-														<span class="offer-box-price">$350pw</span>
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-													<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
-							            
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image">
-														<span class="offer-box-price">$350pw</span>
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-													<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
-
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/10.jpg" alt="offer image">
-														<span class="offer-box-price">$350pw</span>
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-													<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
-
-							            <div class="swiper-slide">
-										<!-- single offer box-->
-											<div class="offer-box">
-													<div class="offer-box-head">
-														<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/05.jpg" alt="offer image">
-														<span class="offer-box-price">$350pw</span>
-														<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-													</div>
-													<a href="#"> 
-													<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-													<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-													
-													<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-												</a>
-											</div>
-										<!-- / single offer box-->
-							            </div>
+												</c:if>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+									
 							        </div>   
 						        <div class="rooms-pagination-prev left-arrow">
 									<span class="ti-angle-left"></span>
@@ -267,323 +152,90 @@
 	              		</div>
 
 	              		<div role="tabpanel" class="tab-pane fade" id="TV">
-							 <div class="flats-slider overflow-hidden">
-							    <div class="swiper-wrapper">
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/10.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
+							  <div class="rooms-slider overflow-hidden">
+							        <div class="swiper-wrapper">
+							        
+							        <c:choose>
+										<c:when test="${empty lookInfoList}">
+											정보가 없습니다.
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
+												<c:if test="${infoList.lookCate eq 'tv'}">
 												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-						            
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
+												<div class="swiper-slide">
+												<!-- single offer box-->
+													<div class="offer-box">
+															<div class="offer-box-head">
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/TV/${infoList.lookImg}" >																																												
+																</a>
+															</div>
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
+															</a>
+													</div>
+									            </div>
 
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-						            
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/05.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/04.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/03.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-							    </div>
-							    <div class="flats-pagination text-center"></div>
-						    	<div class="flats-pagination-prev left-arrow">
+												</c:if>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+									
+							        </div>   
+						        <div class="rooms-pagination-prev left-arrow">
 									<span class="ti-angle-left"></span>
 								</div>
 
-								<div class="flats-pagination-next right-arrow">
+								<div class="rooms-pagination-next right-arrow">
 									<span class="ti-angle-right"></span>
 								</div>
+						        <!-- Add Pagination -->
+						        <div class="rooms-pagination text-center"></div>
 							</div>
 	              		</div>
 
 	              		<div role="tabpanel" class="tab-pane fade" id="concert">
-							<div class="houses-slider overflow-hidden">
-							    <div class="swiper-wrapper">
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/01.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
+							  <div class="rooms-slider overflow-hidden">
+							        <div class="swiper-wrapper">
+							        
+							        <c:choose>
+										<c:when test="${empty lookInfoList}">
+											정보가 없습니다.
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
+												<c:if test="${infoList.lookCate eq 'concert'}">
 												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-						            
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/02.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
+												<div class="swiper-slide">
+												<!-- single offer box-->
+													<div class="offer-box">
+															<div class="offer-box-head">
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/TV/${infoList.lookImg}" >																																												
+																</a>
+															</div>
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
+															</a>
+													</div>
+									            </div>
 
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/03.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/04.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/05.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-						            
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-										</div>
-									<!-- / single offer box-->
-						            </div>
-
-						            <div class="swiper-slide">
-									<!-- single offer box-->
-										<div class="offer-box">
-												<div class="offer-box-head">
-													<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image">
-													<span class="offer-box-price">$350pw</span>
-													<span class="offer-box-label"><span class="ti-star"></span>featured</span>	
-												</div>
-												<a href="#"> 
-												<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-												<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-												
-												<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-											</a>
-											
-										</div>
-
-									<!-- / single offer box-->
-						            </div>
-						        </div>
-					       		<div class="houses-pagination-prev left-arrow">
+												</c:if>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+									
+							        </div>   
+						        <div class="rooms-pagination-prev left-arrow">
 									<span class="ti-angle-left"></span>
 								</div>
 
-								<div class="houses-pagination-next right-arrow">
+								<div class="rooms-pagination-next right-arrow">
 									<span class="ti-angle-right"></span>
 								</div>
-							    <div class="houses-pagination text-center">
-							    </div>
-
+						        <!-- Add Pagination -->
+						        <div class="rooms-pagination text-center"></div>					        
 							</div>
 	              		</div>
 	              	</div>

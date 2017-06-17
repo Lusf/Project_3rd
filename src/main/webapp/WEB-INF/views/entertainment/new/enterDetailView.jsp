@@ -9,11 +9,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
-<link rel="stylesheet" href="<c:url value='/resources/assets/bootstrap/css/enterDetailView.css' />">
-<link rel="stylesheet" href="<c:url value='/resources/assets/bootstrap/css/enterVideoSliderView.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/enter/enterDetailView.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/enter/enterVideoSliderView.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/enter/enterScSlide.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/js/enter/enterScSlide.js' />">
+
+
 
 </head>
 <body>
+
+
 <%@include file="/WEB-INF/views/header.jsp"%>
 <br><br>
 
@@ -135,19 +141,19 @@
 						  <div class="container">	
 							<ul class="list-unstyled video-list-thumbs row">
 								<li class="col-lg-3 col-sm-4 col-xs-6">
-									<a href="#" title="Claudio Bravo, antes su debut con el Barca en la Liga">
-										<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" height="130px" />
-										<p>Claudio Bravo, antes su debut con el Barca en la Liga</p>
+									<a href="#" title="zootopia_예고편1">
+										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo2.jpg" alt="Barca" class="img-responsive" width="100px" height="130px" />
+										<p>예고편1</p>
 										<span class="glyphicon glyphicon-play-circle"></span>
-										<span class="duration">03:15</span>
+										<span class="duration">00:15</span>
 									</a>
 								</li>
 								<li class="col-lg-3 col-sm-4 col-xs-6">
-									<a href="#" title="Claudio Bravo, antes su debut con el Barca en la Liga">
-										<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive" height="130px" />
-										<p>Claudio Bravo, antes su debut con el Barca en la Liga</p>
+									<a href="#" title="zootopia_예고편2">
+										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo6.jpg" alt="Barca" class="img-responsive" width="100px"  height="130px" />
+										<p>예고편2</p>
 										<span class="glyphicon glyphicon-play-circle"></span>
-										<span class="duration">03:15</span>
+										<span class="duration">01:15</span>
 									</a>
 								</li>
 							</ul>
@@ -155,17 +161,42 @@
 							</div><!-- 영상 슬라이드 리스트 끝 -->
                       	<p>
                       	<hr>
-                      	<p class="post-introduction">
-                        	스틸컷
-                      	</p>
-                      	<hr>
+                      	<!-- 스틸컷 -->                     	
+                        <hr>
                       	<p>
-                      		스틸것 슬라이드로 넣기
-                      	<p>
-                    </div>
+	                      	<p class="post-introduction">
+	                        	스틸컷
+	                      	</p>
+					
+						    <div class="container">
+						 
+						        <div class="row">
+								<div class="col-md-8">
+						        <div class="col-xs-12 col-sm-3 gal_img">
+						            <div class="thumbnail">
+						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo5.jpg" >
+						            </div>
+						        </div>
+						       
+						        <div class="col-xs-12 col-sm-3 gal_img">
+						            <div class="thumbnail">
+						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo3.jpg" >
+						            </div>
+						        </div>
+						      
+						        <div class="col-xs-12 col-sm-3 gal_img">
+						            <div class="thumbnail">
+						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo4.jpg" >
+						            </div>
+						        </div>
+						    </div> 
+						    </div>
+					    </div>
+					</div>
+	
                     <!-- comments-->
                     <div class="comments">
-                        <h3 class="mb-60">Comments<a class="btn btn-primary pull-right" data-toggle="collapse" href="#comments-form">add new</a></h3>
+                        <h3 class="mb-60">Reviews<a class="btn btn-primary pull-right" data-toggle="collapse" href="#comments-form">add new</a></h3>
                         <div class="comments-form collapse col-md-12" id="comments-form">
                             <div class="panel panel-default">
                                 <div class="panel-heading ">
@@ -293,6 +324,6 @@
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
-	
+	<!-- <script src="http://thecodeplayer.com/uploads/js/prefixfree.js" type="text/javascript"></script> -->
 </body>
 </html>
