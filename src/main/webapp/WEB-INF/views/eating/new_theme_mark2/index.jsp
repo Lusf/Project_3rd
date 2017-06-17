@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -365,12 +366,97 @@
 				</div>
 			<!-- / single offer box-->
 				<div class="col-md-12 text-center">
+					<a class="btn btn-default" href="#" data-toggle="modal" data-target="#new">insert<span class="ti-angle-right"></span></a> 
 					<a class="btn btn-default" href="#">view all <span class="ti-angle-right"></span></a>
 				</div>
 			</div><!--/ row -->
 		</div><!--/ container -->
 	</section>
 	
+	<!-- NEWS MODAL -->
+			<div class="modal fade" id="new" role="dialog" tabindex="-1">
+				<div class="modal-dialog">
+					<!-- NEWS MODAL CONTENT -->
+					<div class="modal-content shadow">
+						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+
+						<div class="modal-body">
+							<div class="post-entry post-entry-modal">
+							 
+								<h3 class="section-heading"></h3>
+					<span class="post-entry-meta">
+						<img alt="user avatar" 	class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
+							<span class="post-entry-author-name pull-left">
+							
+							<sec:authentication property="principal.id" />님 로그인중</span>
+							 
+								</span>
+									<div class="form-group " id="holder" style="width: 738; height: 400;"  >
+										<%-- <img src="${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg" > --%>
+										<span  id="holder" class="post-entry-cover"style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
+									</div>
+								<form action="eating/insert">
+								<div>
+								<label for="restaurantAddr">지역별</label>
+  	<select class="form-control">
+  	<option disabled="disabled">지역을 고르세요</option>
+  <option value="SU">서울</option>
+  <option value="DJ">대전</option>
+  <option value="DG">대구</option>
+  <option value="BS">부산</option>
+  <option value="KW">강원도</option>
+</select>
+  </div>
+  
+  <div>
+	<label for="category">음식별</label>
+  	<select class="form-control">
+  	<option disabled="disabled">음식종류를 고르세요</option>
+  <option value="KR">한식</option>
+  <option value="CN">중식</option>
+  <option value="EN">양식</option>
+</select>
+  </div>
+  
+  <div class="form-group">
+    <label for="restaurantName">맛집 이름</label>
+    <input type="text" class="form-control" id="restaurantName" placeholder="상호명을 입력하세요">
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="restaurantInfo">맛집 정보</label>
+    <textarea class="form-control" rows="5" id="restaurantInfo" placeholder="정보를 입력하세요"></textarea>
+    <!-- <input type="text" class="form-control" id="restaurantInfo" placeholder="정보를 입력하세요"> -->
+  </div>
+  
+  <div class="form-group">
+    <label for="file">사진 올리기</label> 
+     <input type="file" name="file" id="upload" class="upload-name" >
+  </div>
+  
+								<!-- <p><font face="궁서체">안녕하세요</font>	</p>
+
+								<p><font face="궁서체">치킨을 먹어보겠슴다. </font>	</p>
+
+
+								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p> -->
+									<div align="center">
+									<button type="submit" class="btn btn-default" >등록하기</button>
+									</div>
+</form>
+							</div>
+						</div>
+					</div>
+					<!-- / NEWS MODAL CONTENT -->
+				</div>
+			</div>
+			<!-- / NEWS MODAL -->
+
+
+
 	<div class="padding">
 		<div class="container">
 			<div class="row">
@@ -1065,4 +1151,29 @@
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
 	</body>
+	
+<script type="text/javascript">
+
+var upload = document.getElementById('upload'),
+holder = document.getElementById('holder');
+
+upload.onchange = function(e) {
+e.preventDefault();
+
+var file = upload.files[0],
+   reader = new FileReader();
+   reader.onload = function(event) {
+   var img = new Image();
+   img.width=738;
+   img.height=400;
+   img.src = event.target.result;
+   holder.innerHTML = '';
+   holder.appendChild(img);
+};
+reader.readAsDataURL(file);
+
+return false;
+};
+
+</script>
 </html>

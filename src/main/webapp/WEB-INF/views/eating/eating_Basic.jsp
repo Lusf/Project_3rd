@@ -846,13 +846,13 @@
 						<!-- SINGLE NEWS ITEM -->
 						<div class="swiper-slide">
 							<div class="post-entry wow fadeInUp">
-								<a href="#" data-toggle="modal" data-target="#post-01"> <span
+								<a href="#" data-toggle="modal" data-target="#new"> <span
 									class="post-entry-cover"
 									style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);">
 								</span>
 								</a> <a class="h3" href="#" data-toggle="modal"
-									data-target="#post-01"> 철구 먹방 </a> <a href="#"
-									data-toggle="modal" data-target="#post-01"
+									data-target="#new"> 철구 먹방 </a>
+									<a href="#"data-toggle="modal" data-target="#new"
 									class="post-entry-more"> read more <span
 									class="ti-arrow-right icon"></span>
 								</a>
@@ -961,7 +961,7 @@
 			</div>
 
 			<!-- NEWS MODAL -->
-			<div class="modal fade" id="post-01" role="dialog" tabindex="-1">
+			<div class="modal fade" id="new" role="dialog" tabindex="-1">
 				<div class="modal-dialog">
 					<!-- NEWS MODAL CONTENT -->
 					<div class="modal-content shadow">

@@ -27,9 +27,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.placeholder.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/resources/js/jquery.inview.js"></script> --%>
 
-<!-- pluton modernizr -->
-<script src="${pageContext.request.contextPath}/resources/js/modernizr.custom.js"></script>
-
 <!-- wow script --><%-- 
 <script src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script> --%>
 
