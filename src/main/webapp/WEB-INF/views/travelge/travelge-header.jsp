@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 
+
+	
 <script>
 	function logout() {
 		document.getElementById("logoutForm").submit();
@@ -79,12 +81,9 @@
 
 				<div class="navbar-buttons">
 					<sec:authorize access="isAuthenticated()">
-						<p>
-						<p>
-							<sec:authentication property="principal.id" />
-							님 환영합니다.
+							<a class="btn btn-link btn-sm mt-10" style="cursor: default;"><sec:authentication property="principal.id" />님</a>
 							<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-							<a href="javascript:logout();">로그아웃</a>
+							<a href="javascript:logout();" class="btn btn-primary btn-sm mt-10">로그아웃</a>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
 						<a href="${pageContext.request.contextPath }/user/loginForm"

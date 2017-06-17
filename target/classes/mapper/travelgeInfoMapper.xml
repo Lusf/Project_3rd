@@ -22,8 +22,7 @@
 	</resultMap>
 
 	
-	
-	
+
 	<!-- 검색 -->
 	<select id="travelgeInfoSearch" resultMap="selectMap" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
 	
@@ -31,10 +30,14 @@
 	FROM( SELECT * FROM TRAVELGE_INFO 
 	<where>
 	<choose>
-	<!-- <when test="travelgeRegion!=null and travelgeTheme!=null">TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%' and TRAVELGE_THEME  LIKE '%'||#{travelgeTheme}||'%'</when> -->
+	<when test="travelgeRegion!=null and travelgeTheme!=null and contentCode!=null and travelgeAddr!=null">
+	TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%' or TRAVELGE_THEME  LIKE '%'||#{travelgeTheme}||'%'
+	or CONTENT_CODE LIKE '%'||#{contentCode}||'%' or TRAVELGE_ADDR LIKE '%'||#{travelgeAddr}||'%'
+	</when>
 	<when test="contentCode!=null">CONTENT_CODE LIKE '%'||#{contentCode}||'%'</when>
 	<when test="travelgeName!=null">TRAVELGE_NAME LIKE '%'||#{travelgeName}||'%'</when>
 	<when test="travelgeAddr!=null">TRAVELGE_ADDR LIKE '%'||#{travelgeAddr}||'%'</when>
+	<when test="travelgeRegion!=null">TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%'</when>
 	<when test="travelgeTheme!=null">
 		TRAVELGE_THEME = #{travelgeTheme}
 		<if test="travelgeRegion != null"> and TRAVELGE_REGION =#{travelgeRegion}</if>
@@ -44,6 +47,36 @@
 	</where>
 	) T1) order by content_code
 	</select>
+	<!-- 키워드 검색 -->
+	<select id="travelgeSearchScroll" resultMap="selectMap" parameterType="map">
+	
+	SELECT *
+	FROM TRAVELGE_INFO 
+	<where>
+		TRAVELGE_THEME = #{travelgeTheme}
+		AND
+		TRAVELGE_REGION =#{travelgeRegion}
+		AND
+		(TRAVELGE_NAME LIKE '%'||#{keyword}||'%'
+		OR
+		TRAVELGE_ADDR LIKE '%'||#{keyword}||'%')
+	</where>
+	</select>
+	
+	<!-- 
+		SELECT *
+	FROM TRAVELGE_INFO 
+	where
+		TRAVELGE_THEME = '문화'
+		AND
+		TRAVELGE_REGION = '전북'
+		AND
+		(TRAVELGE_NAME LIKE '%나중%'
+		OR
+		TRAVELGE_ADDR LIKE '%나중%');
+	
+	
+	 -->
 	
 	
 	<!-- 추가 -->
@@ -61,5 +94,14 @@
 	<delete id="travelgeInfoDelete" parameterType="string">
 	DELETE from TRAVELGE_INFO where content_code = #{_parameter}
 	</delete>
+	
+	<!-- 수정 -->
+	<update id="travelgeInfoUpdate" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
+	UPDATE TRAVELGE_INFO 
+	SET TRAVELGE_NAME = #{travelgeName}, TRAVELGE_ADDR = #{travelgeAddr}, TRAVELGE_DESCRIPTION = #{travelgeDescription}, 
+	TRAVELGE_THEME = #{travelgeTheme}, TRAVELGE_REGION = #{travelgeRegion}, TRAVELGE_COORDINATES = #{travelgeCoordinates}
+	<if test="travelgePhotos != null">,TRAVELGE_PHOTOS = #{travelgePhotos}</if>
+	WHERE CONTENT_CODE = #{contentCode}
+	</update>
 
 </mapper>

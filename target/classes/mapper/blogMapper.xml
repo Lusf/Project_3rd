@@ -55,4 +55,10 @@
 	delete blog where id=#{id} and content_code=#{contentCode}
 </delete>
 
+
+<!-- update -->
+<update id="updateBlog" parameterType="UserBlogVo">
+	update blog set blog_title=#{blogTitle}, blog_cont=#{blogCont} where id=#{id} and content_code=#{contentCode}
+</update>
+
 </mapper>

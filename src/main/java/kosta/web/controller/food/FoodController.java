@@ -1,5 +1,6 @@
 package kosta.web.controller.food;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,39 +8,76 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.food.RestaurantInfoService;
 import kosta.web.model.vo.restaurant.RestaurentVo;
-	
 
 @Controller
 public class FoodController {
 	@Autowired
 	private RestaurantInfoService restaurantInfoService;
-	
+
 	@RequestMapping("eating/eatingMain")
-	public String eatingMain(){
-		
+	public String eatingMain() {
+
 		return "eating/eatingMain";
-	}
-	
-	@RequestMapping("eating/test")
-	public ModelAndView Test( String contentCode){
-		System.out.println("123");
-
-		List<RestaurentVo> list = restaurantInfoService.RestauranSearch(null);
-		System.out.println(list);
-		
-
-		
-		return new ModelAndView("eating/test","list", list);
-		
 	}
 	
 	@RequestMapping("eating/newdesign")
 	public String testMark2(){
 		return "eating/new_theme_mark2/index";
+	}
+	
+	@RequestMapping("eating/test")
+	public ModelAndView Test(String contentCode) {
+		System.out.println("123");
+
+		List<RestaurentVo> list = restaurantInfoService.RestauranSearch(null);
+		System.out.println(list);
+
+		return new ModelAndView("eating/test", "list", list);
+
+	}
+	
+	@RequestMapping("eating/insert")
+	public String insertRestaurent(HttpServletRequest req, RestaurentVo restaurentVo) throws Exception {
+
+		String path = req.getSession().getServletContext().getRealPath("/resources/restaurent");
+
+		MultipartFile file = restaurentVo.getFile();
+
+		if (file.getSize() > 0) {
+			restaurentVo.setRestaurantPic(file.getOriginalFilename());
+		}
+
+		int result = restaurantInfoService.RestaurantInsert(restaurentVo);
+		if (result == 0) {
+			throw new Exception();
+		}
+		// 폴더 생성
+		File mainFolder = new File(path);
+		if (!mainFolder.exists()) {
+			mainFolder.mkdir();
+		}
+		File idFolder = new File(path + "/" + restaurentVo.getId());
+		if (!idFolder.exists()) {
+			idFolder.mkdir();
+		}
+		File profileFolder = new File(path + "/" + restaurentVo.getId() + "/info");
+		if (!profileFolder.exists()) {
+			profileFolder.mkdir();
+		}
+		// -----폴더 생성 끝
+		if (file.getSize() > 0) {
+			try {
+				file.transferTo(new File(path + "/" + restaurentVo.getId() + "/info/" + restaurentVo.getRestaurantPic()));
+			} catch (Exception e) {
+			}
+		}
+
+		return "redirect:/";
 	}
 	
 	//나중에 필요에 맞게 이름 맞꾸기(필요1)

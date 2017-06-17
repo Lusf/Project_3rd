@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,74 +18,16 @@
 
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<%-- <script
-	src="${pageContext.request.contextPath}/resources/js/jquery.mixitup.js"></script>
+<!-- Bootstrap Core JavaScript -->
 <script
-	src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.js"></script>
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+<!-- daumOpenEditor -->
+<link rel=stylesheet type=text/css
+	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
 <script
-	src="${pageContext.request.contextPath}/resources/js/jquery.cslider.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.placeholder.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.inview.js"></script>
-<!-- wow script -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/wow/wow.min.js"></script>
-<!-- boostrap -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/bootstrap/js/bootstrap.js"></script>
-<!-- custom script -->
+	src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
+	type="text/javascript" charset="UTF-8"></script>
 
-<script src="${pageContext.request.contextPath}/resources/assets/script.js"></script>
-<!-- app -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-<!-- blog -->
-
-<!-- style -->
-
-<!-- Google fonts -->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700'
-	rel='stylesheet' type='text/css'>
-<!-- Google Icon -->
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<!-- Load Roboto font -->
-<link
-	href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext'
-	rel='stylesheet' type='text/css'>
-<!-- font awesome -->
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<!-- bootstrap -->
-<link rel="stylesheet"
-	href="<c:url value= '/resources/pluton/css/bootstrap-responsive.css'/>" />
-<!-- animate.css -->
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/animate/animate.css'/>">
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/animate/set.css'/>">
-<!-- favicon -->
-<link rel="shortcut icon"
-	href="<c:url value= '/resources/images/favicon.ico'/>"
-	type="image/x-icon">
-<link rel="icon" href="<c:url value= '/resources/images/favicon.ico'/>"
-	type="image/x-icon">
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/main.css'/>">
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/style.css'/>">
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/style2.css'/>">
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/carousel.css'/>">
-<!-- blog -->
-<link rel="stylesheet"
-	href="<c:url value= '/resources/assets/bootstrap/css/bootstrap.min.css'/>">
-<link href="<c:url value= '/resources/css/blog/blog-post.css'/>"
-	rel="stylesheet"> --%>
-	
 <style>
 /* container 간격 조절 */
 .container {
@@ -170,22 +113,22 @@ $(function() {
 					var str = "";
 					$.each(result, function(index, item) {
 						str += "<tr>";
-						str += "<td><a href='#'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
+						str += "<td><a href='javascript:;'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
 						str += "</tr>";
 					});
 
 					$("#blogTitle").append(str);
 					
-					title();
+					cont();
 				},
 				error : function(err) {
 					console.log("오류발생: " + err)
 				}
 			});
 		});
-		
-		function title(){
-			$("#blogTitle tr td a").click(function() {
+
+		function cont(){
+			$("#blogTitle tr td a").click(function() {				
 				$.ajax({
 					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
 					type : "post",
@@ -193,23 +136,40 @@ $(function() {
 					dataType : "json",
 					success : function(result) {
 						$(".cont").empty();
-	
-						var str = "";
+
 						var conCode = "";
+						var s = "";
+						var c = "";
+						var str = "";
 						$.each(result, function(index, item) {
 							conCode = item.contentCode;
-							
+							s = item.blogTitle;
+							c = item.blogCont;
 							str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td>";
-								str+="<a href='#' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
-								str+="<a href='#' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
+							
+							//수정, 삭제 권한 판단
+							str+="<sec:authorize access='isAuthenticated()'>";
+							str+="<sec:authentication property='Principal.id' var='loginId'/>";
+							str+="<sec:authorize access='${loginId == blogId}'>";	
+								str+="<a href='javascript:;' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
+								str+="<a href='javascript:;' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
+							str+="</sec:authorize>";
+							str+="</sec:authorize>";
+							
 							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
 							str+="<hr>"
 							
 							str+="<p class='lead'><div class='ct'>"+item.blogCont+"</div></p>";
+							
 						});
-	
 						$(".cont").html(str);
-						$(".ct img").attr("width","80%");
+						//$(".ct img").attr("width","80%");
+
+						//수정하기
+						$("#udt").click(function(){
+							var ti = "blogTitle="+s+"&blogCont="+c+"&contentCode="+conCode;
+							$(".cont").load("blogUpdateCall",ti);
+						});
 						
 						//삭제하기
 						$("#dlt").click(function(){
@@ -239,7 +199,7 @@ $(function() {
 				});
 			});
 		}
-		title();
+		cont();
 	});
 </script>
 
@@ -253,22 +213,7 @@ $(function() {
 		<!-- Blog Post Content Column -->
 		<div class="cont">
 			<h1>리뷰 좀 적어봐!!</h1>
-			<a href="#"data-toggle="modal" data-target="#insertReview" class="post-entry-more">
-				Review 
-			</a>
 			
-			<!-- detail MODAL -->
-			<div class="modal fade" id="insertReview" role="dialog" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content shadow">
-						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
-						<div class="modal-body">
-							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp" %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /detail modal 끝 -->
 			<div style="height: 500px"></div>
 		</div>
 
@@ -309,7 +254,7 @@ $(function() {
 					</tr>
 					<c:forEach items="${blogAllTitle}" var="title">
 					<tr>
-						<td><a href='#'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
+						<td><a href='javascript:;'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
 					</tr>
 					</c:forEach>
 				</table>
