@@ -23,4 +23,6 @@ public interface TravelgeInfoDAO {
 	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage);
 	
 	List<TravelgeInfoVo> searchAroundMe();
+	
+	List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage, String keyword);
 }

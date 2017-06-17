@@ -201,4 +201,18 @@ public class TravelgeServiceImpl implements TravelgeService {
 		return newList;
 	}
 
+	@Override
+	public List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage,
+			String keyword) {
+		
+		if (currentPage == 1) {
+			currentPage = 0;
+		} else {
+			currentPage = (currentPage * 10) - 10;
+		}
+
+		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeSearchScroll(travelgeInfoVo, currentPage, keyword);
+		return list;
+	}
+
 }
