@@ -117,9 +117,9 @@ $(function() {
 				}
 			});
 		});
-		
+
 		function cont(){
-			$("#blogTitle tr td a").click(function() {
+			$("#blogTitle tr td a").click(function() {				
 				$.ajax({
 					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
 					type : "post",
@@ -127,19 +127,22 @@ $(function() {
 					dataType : "json",
 					success : function(result) {
 						$(".cont").empty();
-	
-						var str = "";
+
 						var conCode = "";
+						var str = "";
 						$.each(result, function(index, item) {
 							conCode = item.contentCode;
 							str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td>";
-
+							
+							//수정, 삭제 권한 판단
+							str+="<sec:authorize access='isAuthenticated()'>";
 							str+="<sec:authentication property='Principal.id' var='loginId'/>";
 							str+="<sec:authorize access='${loginId == blogId}'>";	
-								str+="<a href='${pageContext.request.contextPath}/blog/updateReview' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
+								str+="<a href='#' alt='수정하기' id='udt'><img src='${pageContext.request.contextPath}/resources/images/blog/update.png'/>수정</a>&nbsp;";
 								str+="<a href='#' alt='삭제하기' id='dlt'><img src='${pageContext.request.contextPath}/resources/images/blog/delete.png'/>삭제</a><p>"
 							str+="</sec:authorize>";
-								
+							str+="</sec:authorize>";
+							
 							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
 							str+="<hr>"
 							
@@ -149,6 +152,27 @@ $(function() {
 						$(".ct img").attr("width","80%");
 						
 						//수정하기
+						$("#udt").click(function(){
+							$.ajax({
+								type : "post",
+								dataType : "text",
+								success : function(result) {
+									$(".cont").empty();
+									
+									var str = "";
+									
+									$.each(result, function(index, item) {
+										str+="<iframe src='blogUpdateCall.jsp'></iframe>";
+									});
+									
+									$(".cont").html(str);
+									$(".ct img").attr("width","80%");
+								},
+								error : function(err) {
+									console.log("오류발생: "+ err)
+								}
+							})
+						});
 						
 						//삭제하기
 						$("#dlt").click(function(){

@@ -2,6 +2,7 @@ package kosta.web.controller.blog;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class UserBlogController {
 	@ResponseBody
 	public List<UserBlogVo> selectCont(String contentCode){
 		String id = (String)session.getAttribute("blogId");
-		
+		System.out.println("selcon:"+contentCode+",id"+id);
 		List<UserBlogVo> list = blogService.selectCont(id, contentCode);
 		
 		return list;
@@ -69,14 +70,9 @@ public class UserBlogController {
 		return "forward:"+blogVo.getId();
 	}*/
 	
-	@RequestMapping("/updateReview")
-	public String update(){
-		return "blog/blogReviewUpdate";
-	}
-	
-	@RequestMapping("/updateBlogReview")
-	public String updateReview(UserBlogVo blogVo){
-		blogService.update(blogVo);
-		return "forward:blog/selectBlogCont";
+	@RequestMapping("/updateBlogCont")
+	@ResponseBody
+	public String updateReview(String contextCode){
+		return "";
 	}
 }
