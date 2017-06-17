@@ -137,22 +137,22 @@ function checkValid() {
 					<div class="panel panel-default">
 
 						<form class="form-horizontal"
-							action="${pageContext.request.contextPath}/user/login"
+							action="${pageContext.request.contextPath}/login"
 							method="post">
 							<br>
 							<h4 class="text-center">
-								<c:if test="${not empty requestScope.errorMessage}">
-									<span style="color: red">${requestScope.errorMessage}</span>
-								</c:if>
+
 							</h4>
 
 							<br> <input class="form-control" placeholder="Username"
 								name="id" /> <input type="password" class="form-control" placeholder="Password"
 								name="password" />
 							<p class="text-right">
-								<a href="">Forgot Password</a>
+																<c:if test="${not empty requestScope.errorMessage}">
+									<span style="color: red">${requestScope.errorMessage}</span>
+								</c:if>
 							</p>
-							<button class="btn btn-primary btn-block">LOG IN</button>
+							<button class="btn btn-primary btn-block">로그인</button>
 							<hr>
 							<hr>
 							<p class="text-center">
@@ -160,6 +160,7 @@ function checkValid() {
 							</p>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
+								<input type="hidden" name="loginRedirect" value="${loginRedirect}" />
 						</form>
 					</div>
 				</div>

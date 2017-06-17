@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,10 +41,12 @@ public class UserController {
 		return mv;
 	}	
 	
-/*	@RequestMapping({"login","{folder}/login"})
-	public String login(){
-
-		return "redirect:/";
+/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginPage(HttpServletRequest request) {
+		System.out.println("¿À³Ä");
+	    String referrer = request.getHeader("Referer");
+	    request.getSession().setAttribute("prevPage", referrer);
+	    return "login";
 	}*/
 
 	@RequestMapping("join")

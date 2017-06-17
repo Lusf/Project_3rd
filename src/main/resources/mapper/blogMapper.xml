@@ -10,11 +10,10 @@
 	<result column="blog_title" property="blogTitle"/>
 	<result column="blog_date" property="blogDate"/>
 	<result column="blog_cont" property="blogCont"/>
-	<result column="blog_img" property="blogImg"/>
 </resultMap>
 
 <sql id="blogColumn">
-	id, blog_num, category, content_code, blog_title, blog_date, blog_cont, blog_img
+	id, blog_num, category, content_code, blog_title, blog_date, blog_cont
 </sql>
 
 <!-- select -->
@@ -34,11 +33,20 @@
 	select blog_num from blog where id=#{id}
 </select>
 
+<!-- contentcode를 이용한 검색 -->
+<select id="selectByContentCode" parameterType="String" resultMap="blogMap">
+	select *
+	from blog
+	where content_code = #{_parameter}
+	order by blog_date
+</select>
+
+
 
 <!-- insert -->
 <insert id="insertBlog" parameterType="UserBlogVo">
 	insert into blog(<include refid="blogColumn"/>)
-	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont},#{blogImg})
+	 values(#{id},#{blogNum},#{category},#{contentCode},#{blogTitle},sysdate,#{blogCont})
 </insert>
 
 

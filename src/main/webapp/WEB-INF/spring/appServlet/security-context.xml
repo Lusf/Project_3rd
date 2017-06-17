@@ -15,10 +15,10 @@
 	
 	<security:form-login
 		login-page="/user/loginForm"
-		login-processing-url="/user/login"
+		login-processing-url="/login"
 		username-parameter="id"
 		password-parameter="password"
-		default-target-url="/"
+		authentication-success-handler-ref="customAuthenticationSuccessHandler"
 		authentication-failure-handler-ref="userAuthenticationFailureHandler"
 	/>
 	
@@ -29,7 +29,14 @@
 		logout-success-url="/"
 	 />
 	 
+	
 </security:http>
+
+<bean id="customAuthenticationSuccessHandler" class="kosta.web.security.CustomAuthenticationSuccessHandler">
+    <property name="targetUrlParameter" value="loginRedirect" />
+    <property name="useReferer" value="false" />
+    <property name="defaultUrl" value="/" />
+</bean>
 
 <security:authentication-manager>
 	<security:authentication-provider ref="userAuthenticationProvider"/>

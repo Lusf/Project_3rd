@@ -2,11 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- star plugin -->
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
-
 <script type="text/javascript">
 	$(function() {
 		return $(".starrr").starrr();
@@ -774,23 +769,6 @@
 		</div>
 	</div>
 </div> --%>
-
-
-<script src="<c:url value='/resources/js/eating/vendor/wow.js'/>"></script>
-<script
-	src="<c:url value='/resources/js/eating/vendor/jquery-1.11.2.min.js'/>"></script>
-<script src="<c:url value='/resources/js/eating/vendor/swiper.min.js'/>"></script>
-<script
-	src="<c:url value='/resources/js/eating/vendor/bootstrap.min.js'/>"></script>
-<script
-	src="<c:url value='/resources/js/eating/vendor/jquery.countTo.js'/>"></script>
-<script
-	src="<c:url value='/resources/js/eating/vendor/jquery.inview.js'/>"></script>
-<script
-	src="<c:url value='/resources/js/eating/vendor/jquery.countdown.js'/>"></script>
-<script src="<c:url value='/resources/js/eating/tt-cart.js'/>"></script>
-<script src="<c:url value='/resources/js/eating/main.js'/>"></script>
-<script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
 
 <!-- ScrollUp button start -->
 <div class="scrollup">
