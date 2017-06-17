@@ -12,7 +12,7 @@
 	<%@include file="/WEB-INF/views/includeFile.jsp" %>
 	<%@include file="/WEB-INF/views/header.jsp"%>
 	
-	<%@include file="/WEB-INF/views/eating/eating_Basic.jsp"%>
+	<%@include file="/WEB-INF/views/eating/eating_Basic.jsp"%> 
 
 	<%@include file="/WEB-INF/views/footer.jsp"%>
 </body>

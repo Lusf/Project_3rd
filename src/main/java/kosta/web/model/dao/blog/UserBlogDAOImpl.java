@@ -61,4 +61,9 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 	public List<Integer> selectBlogNum(String id) {
 		return sqlSession.selectList("blogMapper.selectBlogNum", id);
 	}
+
+	@Override
+	public int update(UserBlogVo userBlogVo) {
+		return sqlSession.update("blogMapper.updateBlog", userBlogVo);
+	}
 }
