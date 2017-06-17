@@ -21,9 +21,23 @@ public class EnterController {
    @Autowired
    private EnterService enterService;
    
+
+   //볼거리 메인
    @RequestMapping("new/enterMain")
    public String enterMain(){
       return "entertainment/new/enterMain";
+   }
+   
+   //볼거리 리스트
+   @RequestMapping("new/enterList")
+   public String enterList(){
+	   return "entertainment/new/enterList";
+   }
+   
+   //볼거리 상세화면
+   @RequestMapping("new/enterDetailView")
+   public String enterDetailView(){
+	   return "entertainment/new/enterDetailView";
    }
    
    @RequestMapping("detailView")
