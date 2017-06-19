@@ -66,4 +66,14 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 	public int update(UserBlogVo userBlogVo) {
 		return sqlSession.update("blogMapper.updateBlog", userBlogVo);
 	}
+
+	@Override
+	public String userPicBlog(String contentCode, String id) {
+		// TODO Auto-generated method stub
+		Map<Object, Object> map = new HashMap<>();
+		map.put("contentCode", contentCode);
+		map.put("id", id);
+		String userPic = sqlSession.selectOne("blogMapper.userPicBlog", map);
+		return userPic;
+	}
 }

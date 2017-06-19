@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-panel" style="text-align: center">
-				<img src="${info.travelgePhotos}">
+				 <span><img style="width:100%;" src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
 				<h2>${info.travelgeName }</h2>
 				<span>${info.travelgeDescription } </span>
 
@@ -36,21 +36,48 @@
 			<div id="map" style="width: 500px; height: 400px;"></div>
 
 			<script>
-			var container = document.getElementById('map');
-			var options = {
-				center : new daum.maps.LatLng${info.travelgeCoordinates},
-				level : 3
-			};
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new daum.maps.LatLng(${info.x}, ${info.y}), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
 
-			var map = new daum.maps.Map(container, options);
-			</script>
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+ 		// 마커가 표시될 위치입니다 
+		var markerPosition  =new daum.maps.LatLng(${info.x}, ${info.y});
+
+		// 마커를 생성합니다
+		var marker = new daum.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map); 
+
+		 var iwContent = "<div style='padding:5px;'>${info.travelgeName }</div>" // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		iwPosition = new daum.maps.LatLng(${info.x}, ${info.y}); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new daum.maps.InfoWindow({
+		    position : iwPosition, 
+		    content : iwContent 
+		});
+		  
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker); 	
+		
+		</script>
 
 			<hr>
 			<!-- Blog Post Content Column -->
 			<div class="cont">
-				<h1>리뷰 좀 적어봐!!</h1>
-				<a href="#" data-toggle="modal" data-target="#insertReview"
-					class="post-entry-more"> Review </a>
+				<h1>Review</h1>
+				<br>
+				<sec:authorize access="isAuthenticated()">
+				<a style="cursor:pointer;"data-toggle="modal" data-target="#insertReview"
+					class="post-entry-more"> 리뷰 작성 </a>
+				</sec:authorize>	
 
 				<!-- detail MODAL -->
 				<div class="modal fade" id="insertReview" role="dialog"
@@ -67,12 +94,12 @@
 				<!-- /detail modal 끝 -->
 				<hr>
 				<c:forEach var="comment" items="${commentList }">
-				<a href="${pageContext.request.contextPath}/blog/selectBlogCont">
-					<span> ${comment.id } </span>
-					<br>
-					<span>${comment.blogTitle }</span>
-					<br>
-				</a>	
+					<a href="${pageContext.request.contextPath}/blog/selectBlogCont">
+					<span>
+						<img style="width:100px; height: 100px" class="img-circle" src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
+						<span> ${comment.id } </span> <span style="color: red">${comment.blogTitle }</span>
+						<br>
+					</a>
 				</c:forEach>
 			</div>
 

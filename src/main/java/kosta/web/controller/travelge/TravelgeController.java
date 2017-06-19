@@ -90,7 +90,7 @@ public class TravelgeController {
 			subFolder.mkdir();
 		}
 		File photosFolder = new File(path + "/" + travelgeInfoVo.getContentCode() + "/photos");
-		if (photosFolder.exists()) {
+		if (!photosFolder.exists()) {
 			photosFolder.mkdir();
 		}
 		// -----폴더 생성 끝
@@ -276,14 +276,21 @@ public class TravelgeController {
 	@RequestMapping("/detailView/{contentCode}")
 	public ModelAndView detailView(@PathVariable String contentCode) {
 
-		// System.out.println(contentCode);
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
+
+		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 
+		
+		/*for(UserBlogVo dto : commentList)
+		{
+			System.out.println(dto.getId() + " : " + dto.getUserPic());
+		}*/
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
+				
 		mv.addObject("info", list.get(0));
 		mv.addObject("commentList", commentList);
 
