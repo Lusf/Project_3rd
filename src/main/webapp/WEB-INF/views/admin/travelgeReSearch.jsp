@@ -15,12 +15,20 @@
 <title>Travelge Info</title>
 
 </head>
+<style>
+<!--
 
+img{
+width: 200px;
+height: 200px;
+}
+-->
+</style>
 
 <body>
 	<div id="wrapper">
 		<%@ include file="/WEB-INF/views/admin/nav.jsp"%>
-
+		
 		<div id="page-wrapper">
 
 			<div class="container-fluid">
@@ -43,7 +51,7 @@
 
 							<!-- 검색 옵션 -->
 							<form
-								action="${pageContext.request.contextPath }/travelge/travelgeInfoSearch"
+								action="${pageContext.request.contextPath }/travelge/travelgeRecommandSearch"
 								method="post" class="form-inline form-horizontal" role="form">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
@@ -53,12 +61,7 @@
 										class="form-control" name="keyField" id="keyField"
 										style="margin-left: 3px; margin-right: 10px">
 										<option value="all">All</option>
-										<option value="contentCode">Content_Code</option>
-										<option value="travelgeName">travelgeName</option>
-										<option value="travelgeAddr">travelgeAddr</option>
-										<option value="travelgeDescription">travelgeDescription</option>
-										<option value="travelgeTheme">travelgeTheme</option>
-										<option value="travelgeRegion">travelgeRegion</option>
+										<option value="contentCode">CONTENT_CODE</option>
 									</select>
 								</div>
 
@@ -83,12 +86,9 @@
 									<table class="table table-bordered table-hover table-striped">
 										<tr>
 											<th>CONTENT_CODE</th>
-											<th>NAME</th>
-											<th>ADDR</th>
+											<th>TITLE</th>
 											<th>DESCRIPTION</th>
-											<th>THEME</th>
-											<th>REGION</th>
-											<th>COORDINATES</th>
+											<th>DATE</th>
 											<th>DELETE</th>
 										</tr>
 										<c:forEach items="${list }" var="list" varStatus="state">
@@ -97,19 +97,16 @@
 												<td>
 												  <a data-toggle="collapse" data-target="#${state.count}">${list.contentCode }</a>
   													<div id="${state.count}" class="collapse">
-  													<a href="${pageContext.request.contextPath }/travelge/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
+  													<a href="${pageContext.request.contextPath }/travelge/travelgeRecommandUpdate?contentCode=${list.contentCode}">수정</a>
 													<a href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
   													</div>		
   																							
 												</td>
-												<td>${list.travelgeName }</td>
-												<td>${list.travelgeAddr }</td>
-												<td>${list.travelgeDescription }</td>
-												<td>${list.travelgeTheme }</td>
-												<td>${list.travelgeRegion }</td>
-												<td>${list.travelgeCoordinates }</td>
+												<td>${list.recommandationTitle }</td>
+												<td>${list.recommandationDescription }</td>
+												<td>${list.recommandationDate }</td>
 												<td><a
-													href="${pageContext.request.contextPath }/travelge/travelgeInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
+													href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}">삭제</a></td>
 
 											</Tr>
 
@@ -123,7 +120,7 @@
 										<!-- < 버튼 -->
 										<c:if test="${startPage != 1 and startPage != null}">
 											<li><a
-												href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
+												href='${pageContext.request.contextPath }/travelge/travelgeRecommandSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
 													class="material-icons">chevron_left</i></a></li>
 										</c:if>
 										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
@@ -134,14 +131,14 @@
 											<!-- 선택되지 않은 페이지 -->
 											<c:if test="${pageNum != spage and pageNum != 0}">
 												<li><a
-													href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
+													href='${pageContext.request.contextPath }/travelge/travelgeRecommandSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
 
 											</c:if>
 										</c:forEach>
 										<!-- > 버튼 -->
 										<c:if test="${endPage != maxPage }">
 											<li><a
-												href='${pageContext.request.contextPath }/travelge/travelgeInfoSearch&currentPage=${endPage+1 }'><i
+												href='${pageContext.request.contextPath }/travelge/travelgeRecommandSearch&currentPage=${endPage+1 }'><i
 													class="material-icons">chevron_right</i></a></li>
 										</c:if>
 
@@ -158,14 +155,15 @@
 		<!-- /.row -->
 
 	</div>
+	<%@ include file="/WEB-INF/views/admin/modal.jsp"%>
 	<!-- /.container-fluid -->
 
-	</div>
+	
 	<!-- /#page-wrapper -->
 
 
 	<!-- /#wrapper -->
-
+	
 	<!-- jQuery -->
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
@@ -173,6 +171,18 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+
+	
+	<script>
+	$(document).ready(function(){
+	   var msg = "${msg}";
+	   if(msg != null){
+		   if(msg != ""){
+	        $("#myModal").modal();
+		   }
+	   }
+	});
+	</script>
 
 </body>
 

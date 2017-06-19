@@ -4,8 +4,8 @@
 
 	<resultMap type="kosta.web.model.vo.travelge.TravelgeRecommandationVo" id="travelgeRecommandationVo">
 	<id column="CONTENT_CODE" property="contentCode"/>
-	<result column="RECOMMANDATION_TITLE" property="recommadationTitle"/>
-	<result column="RECOMMANDATION_Description" property="recommadationDescription"/>
+	<result column="RECOMMANDATION_TITLE" property="recommandationTitle"/>
+	<result column="RECOMMANDATION_Description" property="recommandationDescription"/>
 	<result column="READ_NUM" property="readNum"/>
 	<result column= "RECOMMANDATION_DATE" property="recommandationDate"/>
 	</resultMap>
@@ -18,7 +18,7 @@
 
 	<insert id="recommadationInsert" parameterType="kosta.web.model.vo.travelge.TravelgeRecommandationVo">
 	INSERT INTO TRAVELGE_RECOMMANDATION (Content_Code, RECOMMANDATION_TITLE, RECOMMANDATION_Description, READ_NUM, RECOMMANDATION_DATE)	
-	VALUES (#{contentCode}, #{recommadationTitle},#{recommadationDescription}, 0, SYSDATE)
+	VALUES (#{contentCode}, #{recommandationTitle},#{recommandationDescription}, 0, SYSDATE)
 	</insert>
 
 	<select id="travelgeRecommandSearch" parameterType="string" resultMap="travelgeRecommandationVo">
@@ -29,7 +29,22 @@
 			Content_Code=#{_parameter}
 		</if>
 	</where>
-	
 	</select>
+	
+	<select id="travelgeRecommandSearch2" parameterType="String" resultMap="travelgeRecommandationVo">
+	SELECT *
+	FROM TRAVELGE_RECOMMANDATION
+	<where>
+			<if test="_parameter!=null">
+			Content_Code LIKE '%'||#{_parameter}||'%'
+		</if>
+	</where>
+	</select>
+
+	<delete id="travelgeRecommandDelete" parameterType="string">
+	delete FROM TRAVELGE_RECOMMANDATION
+	where Content_Code=#{_parameter}
+
+	</delete>
 
 </mapper>

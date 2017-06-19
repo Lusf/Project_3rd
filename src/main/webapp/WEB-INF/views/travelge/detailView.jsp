@@ -36,11 +36,13 @@
 			<div id="map" style="width: 500px; height: 400px;"></div>
 
 			<script>
+
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
 		        center: new daum.maps.LatLng(${info.x}, ${info.y}), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };
+
 
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
@@ -126,4 +128,3 @@
 </body>
 </html>
 
-</html>

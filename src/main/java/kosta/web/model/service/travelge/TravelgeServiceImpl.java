@@ -145,8 +145,8 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public int travelgeRecommandDelete(String contentCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return travelgeRecommandationDAO.travelgeRecommandDelete(contentCode);
 	}
 
 	@Override
@@ -232,6 +232,17 @@ public class TravelgeServiceImpl implements TravelgeService {
 	public List<TravelgeInfoVo> latestComment() {
 		// TODO Auto-generated method stub
 		return travelgeInfoDAO.latestComment();
+	}
+
+	@Override
+	public List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage) {
+		if (currentPage == 1) {
+			currentPage = 0;
+		} else {
+			currentPage = (currentPage * 10) - 10;
+		}
+		
+		return travelgeRecommandationDAO.travelgeRecommandSearch2(contentCode, currentPage);
 	}
 
 }

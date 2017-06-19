@@ -46,6 +46,8 @@ public interface TravelgeService {
 	
 	List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode);
 	
+	List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage);
+	
 	int travelgeWishListAdd(AvgScoreVo avgScoreVo);
 	
 	int travelgeWishListDelete(AvgScoreVo avgScoreVo);
