@@ -236,27 +236,27 @@
 	 <section class="padding post-list" id="news">
 		<div class="container">
 			<h5 class="mt-0 mb-30">Latest Review</h5>
-			<c:forEach items="${commentList }" var="travelgeInfoVo" >
-			<c:forEach items="${travelgeInfoVo.userBlogVo }" var="userBlogVo">
+			<c:forEach items="${commentList }" var="TravelgeLatestCommentVo" >
 			<div class="post-list-sidebar-item mb-15">
-				<a href="#"> <img
-					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
-					src="assets/img/blog/01.jpg" alt="blog image">
-				</a>
+				<div
+					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive">
+					<span>
+						<img style="width:100px; height: 100px" class="img-circle" src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
+				</div>
 
 				<div class="col-xs-8 col-sm-9">
-					<a href="${pageContext.request.contextPath}/travelge/detailView/${userBlogVo.contentCode}">
-					<h4>${travelgeInfoVo.travelgeName}</h4>
-					<span> ${userBlogVo.id}</span> 
+					
+					<a href="${pageContext.request.contextPath}/travelge/detailView/${TravelgeLatestCommentVo.contentCode}">
+					<h4>${TravelgeLatestCommentVo.travelgeName}</h4>
+					<span> ${TravelgeLatestCommentVo.id}</span> 
 					<span class="h6 mt-0">
 					${userBlogVo.blogTitle }
 					
-					</span> <span class="post-list-sidebar-item-description">${userBlogVo.blogDate }</span>
+					</span> <span class="post-list-sidebar-item-description">${TravelgeLatestCommentVo.blogDate }</span>
 					</a>
 				</div>
 			</div>
 			</c:forEach> 
-			</c:forEach>
 		</div>
 	</section>
 

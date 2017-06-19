@@ -27,13 +27,13 @@
 	<%@include file="/WEB-INF/views/travelge/travelge-header.jsp"%>
 	<div class="container">
 		<div class="card">
-			<div class="card-panel" style="text-align: center">
+			
 				 <span><img style="width:100%;" src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
 				<h2>${info.travelgeName }</h2>
 				<span>${info.travelgeDescription } </span>
 
-			</div>
-			<div id="map" style="width: 500px; height: 400px;"></div>
+			
+			<div id="map" style="width: 100%; height: 400px;" class="col-md-8"></div>
 
 			<script>
 

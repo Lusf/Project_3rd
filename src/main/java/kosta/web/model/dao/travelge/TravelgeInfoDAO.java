@@ -2,8 +2,8 @@ package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
-import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 
 public interface TravelgeInfoDAO {
 /*travelgeInfoInsert 여행지등록 -member
@@ -28,5 +28,5 @@ public interface TravelgeInfoDAO {
 	List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage, String keyword);
 	
 //	List<UserBlogVo> latestComment();
-	List<TravelgeInfoVo> latestComment();
+	List<TravelgeLatestCommentVo> latestComment();
 }

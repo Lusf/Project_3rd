@@ -3,8 +3,8 @@ package kosta.web.model.service.travelge;
 import java.util.List;
 
 import kosta.web.model.vo.AvgScoreVo;
-import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 
@@ -61,5 +61,5 @@ public interface TravelgeService {
 	List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage, String keyword);
 	
 //	 List<UserBlogVo> latestComment();
-	 List<TravelgeInfoVo> latestComment();
+	 List<TravelgeLatestCommentVo> latestComment();
 }

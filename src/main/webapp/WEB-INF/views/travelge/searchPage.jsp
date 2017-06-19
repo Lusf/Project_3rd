@@ -124,7 +124,7 @@
 		str += "<div class='thumbnail' style='height: 7em;'>";
 		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
 		str += "<div class='caption'>";
-		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
+		str += "<h3>" + item.travelgeName
 				+ "</h3>";
 		str += "<p>" + item.travelgeAddr + "</p>";
 		str += "</div>";
