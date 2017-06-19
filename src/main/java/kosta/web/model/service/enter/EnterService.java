@@ -89,6 +89,10 @@ public interface EnterService {
 	 * */
 	List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo);
 	
+	/**
+	 * 볼거리 검색(contentsCode에따라서)
+	 * */
+	LookInfoVo lookInfoSearchByCode(String contentCode);
 	
 	/*
 	 * *************************************************

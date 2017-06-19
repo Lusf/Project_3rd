@@ -79,22 +79,24 @@
 			</div>
 		</div>
 </section><!-- 검색끝 -->
-<%-- 		
-<!-- MovieList -->		
+		
+<!-- MovieList -->	
+<h3 class="heading">${lookCate}</h3>
+<c:forEach items="${dbLookInfoList}" var="infoList" varStatus="state">	
 <div class="container">
-	<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
-	<c:if test="${infoList.lookCate eq 'movie'}">
-												
-	<div>
-	<h3 class="heading">Movie</h3>
-	</div>
-	
+
+
 	<div class="row">
-    	<!-- BEGIN PRODUCTS -->
+    	
   		<div class="col-md-3 col-sm-6">
+  		
     		<span class="thumbnail text-center">
-      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/${lookInfo.lookImg}" alt="...">
-      			<h4 class="text-danger">${lookInfo.lookTitle}</h4>
+							
+				<c:if test="${lookCate eq infoList.lookCate}">
+				<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >
+      				<img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="...">
+      			</a>
+      			<h4 class="text-danger">${infoList.lookTitle}</h4>
       			<div class="ratings">
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
@@ -102,8 +104,6 @@
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star-empty"></span>
                 </div>
-
-
 
       			<hr class="line">
       			<div class="row">
@@ -113,18 +113,22 @@
       					</button>
       				</div>
       				<div class="col-md-6 col-sm-6">
-      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView" >More</a>
+      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
       				</div>
       				
       			</div>
+      			</c:if>
+      			
     		</span>
+    		
   		</div>
-  		
-		</div>
+  		</div>
+	</div>
+	</c:forEach>
 		<!-- movie끝 -->
-		</c:if>
+<%-- 		</c:if> --%>
 	
-	<!-- tv시작 -->
+<%-- 	<!-- tv시작 -->
 	<c:if test="${infoList.lookCate eq 'tv'}">
 												
 	<div>
@@ -205,12 +209,12 @@
   		
 		</div>
 		<!-- concert끝 -->
-		</c:if>
-		</c:forEach>
-	</div> --%>
+		</c:if> --%>
+<%-- 		</c:forEach>
+ --%>	</div>
 
 
- <!-- TV List -->		
+<%--  <!-- TV List -->		
 <div class="container">
 	<div>
 	<h3 class="heading">TV</h3>
@@ -430,7 +434,7 @@
 			</div>
 		</div>
 		<!-- concert끝 --> 
-	</div>
+	</div> --%>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>

@@ -3,6 +3,7 @@ package kosta.web.controller.enter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,30 +29,49 @@ public class EnterController {
       return "entertainment/new/enterMain";
    }*/
    
-   //볼거리 리스트
-   @RequestMapping("new/enterList")
-   public ModelAndView enterList(LookInfoVo lookInfoVo){
-	      List<LookInfoVo> lookInfoList =  enterService.lookInfoSearch(lookInfoVo);
+   //볼거리 리스트 (카테고리에 따른)
+   @RequestMapping("new/enterList/{lookCate}")
+   public ModelAndView enterList(@PathVariable String lookCate){
+	     
+	   	//session.setAttribute("lookCate", lookCate);
+	   
+	   	LookInfoVo lookInfoVo = new LookInfoVo();
+	   	lookInfoVo.setLookCate(lookCate);
+	   	
+	   	List<LookInfoVo> dbLookInfoList =  enterService.lookInfoSearch(lookInfoVo);
 	      
-	      ModelAndView mv = new ModelAndView();
-	      mv.setViewName("entertainment/new/enterList");
-	      mv.addObject("lookInfoList", lookInfoList);
-	/*      
-	      if(lookInfoVo.getAvgScoreVo().getScore()==0){
-	         
+	    ModelAndView mv = new ModelAndView();
+	     mv.setViewName("entertainment/new/enterList");
+	      
+	     
+	      mv.addObject("dbLookInfoList", dbLookInfoList);
+	      mv.addObject("lookCate", lookCate);
+/*	      
+	      if(lookInfoList.get(0).getLookCate().equals("movie")){
+	    	  mv.addObject("lookInfoListM", lookInfoList)
 	      }*/
-	/*      
-	      int result = enterService.lookScoreInsert(lookInfoVo.getAvgScoreVo());
-	      System.out.println("score result : " + result);*/
 	      
-	      System.out.println(lookInfoList);
+	      System.out.println(dbLookInfoList.get(0).getLookCate());
 	      return mv;
    }
    
+/*   @RequestMapping("new/enterList")
+   public String enterList(){
+	   return "entertainment/new/enterList";
+   }*/
+   
    //볼거리 상세화면
-   @RequestMapping("new/enterDetailView")
-   public String enterDetailView(){
-	   return "entertainment/new/enterDetailView";
+   @RequestMapping("new/enterDetailView/{contentCode}")
+   public ModelAndView enterDetailView(HttpSession session, @PathVariable String contentCode){
+	   session.setAttribute("contentCode", contentCode);
+	   ModelAndView mv = new ModelAndView();
+	   
+	   LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
+	   
+	   mv.setViewName("entertainment/new/enterDetailView");     
+	   mv.addObject("lookInfoOne", lookInfoOne);
+	  
+	   return mv;
    }
    
    @RequestMapping("detailView")
@@ -125,6 +145,8 @@ public class EnterController {
       ModelAndView mv = new ModelAndView();
       mv.setViewName("entertainment/new/enterMain");
       mv.addObject("lookInfoList", lookInfoList);
+     // mv.addObject("lookCate", lookInfoVo.getLookCate());
+    
 /*      
       if(lookInfoVo.getAvgScoreVo().getScore()==0){
          

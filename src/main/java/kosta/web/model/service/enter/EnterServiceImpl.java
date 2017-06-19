@@ -119,4 +119,10 @@ public class EnterServiceImpl implements EnterService {
 		return lookInfoDAO.lookInfoSearch(lookInfoVo);
 	}
 
+	@Override
+	public LookInfoVo lookInfoSearchByCode(String contentCode) {
+		
+		return lookInfoDAO.lookInfoSearchByCode(contentCode);
+	}
+
 }

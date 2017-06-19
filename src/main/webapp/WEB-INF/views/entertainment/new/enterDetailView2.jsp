@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +15,6 @@
 <link rel="stylesheet" href="<c:url value='/resources/js/enter/enterScSlide.js' />">
 
 
-	<!-- star plugin -->
-<!-- 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script> -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
-
 
 </head>
 <body>
@@ -31,40 +25,37 @@
 
 
 <div class="container">
-<h3>♡ 상세보기</h3>
+<h3>♡ 영화 상세보기</h3>
 <hr class="col-md-8" color="gray"><br><br>
 </div>
 
-<div class="container">  
-<%-- 	<c:forEach items="${lookInfoOne}" var="infoDetail" varStatus="state">
-		<c:if test="${contentCode eq lookInfoOne.contentCode}"> --%>
-		<c:if test="${contentCode eq lookInfoOne.contentCode}"> 
+<div class="container">    
 		<div class="row">		
 			<div class="col-md-8">				
 				<div class="panel panel-default  panel--styled">
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" alt="user avatar" alt=""/>
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/movie/zootopia.jpg" alt="user avatar" alt=""/>
 							</div>
 							<div class="col-md-8">	
-								<h3 class="">${lookInfoOne.lookTitle}</h3>
-								<p>${lookInfoOne.lookTitle}, ${lookInfoOne.lookStartDate.substring(0,4)}</p>
+								<h3 class="">주토피아</h3>
+								<p>zootopia, 2016</p>
 								<h5>
-									감독 : ${lookInfoOne.lookMaker}<br><br>
-									장르 : ${lookInfoOne.lookGenre}<br><br>
+									감독 : 바이론 하워드 ,  리치 무어<br><br>
+									장르 : 애니메이션<br><br>
 									등급 : 전체<br><br>
-									개봉 : ${lookInfoOne.lookStartDate}<br><br>
+									개봉 : 2016.02.17<br><br>
 								</h5>
 							</div>
 						</div>
 						
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
-								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a>
+								 <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Score</a>
+								 <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Heart</a>
 								 <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Review</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#share">Share</a>
+								 <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Share</a>
 							</div>
 						</div>
 					</div>
@@ -76,7 +67,7 @@
 
 
                     <div class="sidebar-box">
-                        <h5 class="mt-0 mb-30">관련 영상</h5>
+                        <h5 class="mt-0 mb-30">관련 영화</h5>
                         <div class="post-list-sidebar-item mb-15">
                             <a href="#">
                                 <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/movie/캐비.jpg" alt="blog image">
@@ -117,16 +108,11 @@
 
                 </div>
 		</div>
-		</c:if>
-<%-- 		</c:if>
-		</c:forEach> --%>
     </div>
 
 
 
     <div class="container">
-   <%--  <c:forEach items="${lookInfoOne}" var="infoDetail" varStatus="state"> --%>
-		<c:if test="${contentCode eq lookInfoOne.contentCode}">
         <div class="row">
             <div class="post padding-medium">
                 <div class="col-md-8">    
@@ -135,7 +121,16 @@
                        		줄거리	
                        	</p>
                         <hr>
-                        <p>${lookInfoOne.lookStory}<br>
+                        <p>
+                     		누구나 살고 싶은 도시 1위, 주토피아<br>
+							연쇄 실종 사건 발생!<br>
+							“미치도록 잡고 싶었다!”<br>
+							교양 있고 세련된 라이프 스타일을 주도하는 도시 주토피아.<br>
+							이 곳을 단숨에 혼란에 빠트린 연쇄 실종사건이 발생한다!<br>
+							주토피아 최초의 토끼 경찰관 주디 홉스는 48시간 안에 사건 해결을 지시 받자<br>
+							뻔뻔한 사기꾼 여우 닉 와일드에게 협동 수사를 제안하는데…<br>
+	 
+							2월, 스릴 넘치는 추격전의 신세계가 열린다!<br> </p>
                         <hr>
                         <p class="post-introduction">
                         	트레일러
@@ -179,17 +174,21 @@
 								<div class="col-md-8">
 						        <div class="col-xs-12 col-sm-3 gal_img">
 						            <div class="thumbnail">
-						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" >
+						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo5.jpg" >
 						            </div>
 						        </div>
 						       
 						        <div class="col-xs-12 col-sm-3 gal_img">
 						            <div class="thumbnail">
-						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" >
+						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo3.jpg" >
 						            </div>
 						        </div>
 						      
-	
+						        <div class="col-xs-12 col-sm-3 gal_img">
+						            <div class="thumbnail">
+						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo4.jpg" >
+						            </div>
+						        </div>
 						    </div> 
 						    </div>
 					    </div>
@@ -313,93 +312,8 @@
 
             </div>
         </div>
-        </c:if>
-		<%-- </c:forEach> --%>
     </div>
 
-	<!-- score modal -->
-	<div id="score" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<h4>별점 줄래요?</h4>
-<!-- 							<div class="container">
-								<div class="row lead">
-									<span id="stars-existing" class="starrr" data-rating='1'></span> 
-									<div id="count-existing">1</div>점
-								</div>
-							</div> -->
-							<span class="halflings halflings-star"></span>
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- heart modal -->
-	<div id="heart" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<h4>♡딸기뿅뿅프라노베 먹고싶음♡♡♡♡♡♡</h4>
-<!-- 							<div class="container">
-								<div class="row lead">
-									<span id="stars-existing" class="starrr" data-rating='1'></span> 
-									<div id="count-existing">1</div>점
-								</div>
-							</div> -->
-							<span class="halflings halflings-star"></span>
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- share modal -->
-	<div id="share" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<h4>공유♡</h4>
-<!-- 							<div class="container">
-								<div class="row lead">
-									<span id="stars-existing" class="starrr" data-rating='1'></span> 
-									<div id="count-existing">1</div>점
-								</div>
-							</div> -->
-							<span class="halflings halflings-star"></span>
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
