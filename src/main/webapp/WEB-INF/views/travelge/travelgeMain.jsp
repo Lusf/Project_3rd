@@ -35,21 +35,21 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card1Thumbnail})">
-					<h1 class="light wow fadeInDown mb-30">${card1.recommadationTitle }</h1>
+					<h1 class="light wow fadeInDown mb-30">${card1.recommandationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
 						data-target="#card1view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card2Thumbnail})">
-					<h1 class="light wow fadeInDown mb-30">${card2.recommadationTitle }</h1>
+					<h1 class="light wow fadeInDown mb-30">${card2.recommandationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
 						data-target="#card2view">browse <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${card3Thumbnail})">
-					<h1 class="light wow fadeInDown mb-30">${card3.recommadationTitle }</h1>
+					<h1 class="light wow fadeInDown mb-30">${card3.recommandationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
 						data-target="#card3view">browse <span
 						class="ti-arrow-right light"></span></a>
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<a href="#" class="btn btn-default" data-toggle="modal"
-							data-target="#card4view"><span class="h4 offer-box-title">${card4.recommadationTitle }</span>
+							data-target="#card4view"><span class="h4 offer-box-title">${card4.recommandationTitle }</span>
 						</a>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 							</div>
 						</div>
 						<a href="#" class="btn btn-default" data-toggle="modal"
-							data-target="#card5view"><span class="h4 offer-box-title">${card5.recommadationTitle }</span>
+							data-target="#card5view"><span class="h4 offer-box-title">${card5.recommandationTitle }</span>
 						</a>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 							</div>
 						</div>
 						<a href="#" class="btn btn-default" data-toggle="modal"
-							data-target="#card6view"> <span class="h4 offer-box-title">${card6.recommadationTitle }</span>
+							data-target="#card6view"> <span class="h4 offer-box-title">${card6.recommandationTitle }</span>
 						</a>
 					</div>
 				</div>
@@ -133,10 +133,10 @@
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card1.recommadationTitle }</span>
+						<span class="h4 offer-box-title">${card1.recommandationTitle }</span>
 						<span class="offer-box-location"><i class="material-icons">visibility</i>${card1.readNum }
 						</span> <span class="offer-box-meta">${card1.recommandationDate}</span> <span
-							class="descriptionImg"> ${card1.recommadationDescription }
+							class="descriptionImg"> ${card1.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
@@ -150,10 +150,10 @@
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card2.recommadationTitle }</span>
+						<span class="h4 offer-box-title">${card2.recommandationTitle }</span>
 						<span class="offer-box-location"><i class="material-icons">visibility</i>${card2.readNum }
 						</span> <span class="offer-box-meta">${card2.recommandationDate}</span> <span
-							class="descriptionImg"> ${card2.recommadationDescription }
+							class="descriptionImg"> ${card2.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
@@ -167,10 +167,10 @@
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card3.recommadationTitle }</span>
+						<span class="h4 offer-box-title">${card3.recommandationTitle }</span>
 						<span class="offer-box-location"><i class="material-icons">visibility</i>${card3.readNum }
 						</span> <span class="offer-box-meta">${card3.recommandationDate}</span> <span
-							class="descriptionImg"> ${card3.recommadationDescription }
+							class="descriptionImg"> ${card3.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
@@ -184,10 +184,10 @@
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card4.recommadationTitle }</span>
+						<span class="h4 offer-box-title">${card4.recommandationTitle }</span>
 						<span class="offer-box-location"><i class="material-icons">visibility</i>${card4.readNum }
 						</span> <span class="offer-box-meta">${card4.recommandationDate}</span> <span
-							class="descriptionImg"> ${card4.recommadationDescription }
+							class="descriptionImg"> ${card4.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
@@ -202,10 +202,10 @@
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card5.recommadationTitle }</span>
+						<span class="h4 offer-box-title">${card5.recommandationTitle }</span>
 						<span class="offer-box-location"><i class="material-icons">visibility</i>${card5.readNum }
 						</span> <span class="offer-box-meta">${card5.recommandationDate}</span> <span
-							class="descriptionImg"> ${card5.recommadationDescription }
+							class="descriptionImg"> ${card5.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
@@ -220,10 +220,10 @@
 				<div class="offer-box">
 
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card6.recommadationTitle }</span>
+						<span class="h4 offer-box-title">${card6.recommandationTitle }</span>
 						<span class="offer-box-location"><i class="material-icons">visibility</i>${card6.readNum }
 						</span> <span class="offer-box-meta">${card6.recommandationDate}</span> <span
-							class="descriptionImg"> ${card6.recommadationDescription }
+							class="descriptionImg"> ${card6.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
 				</div>
