@@ -24,6 +24,7 @@ public class LookInfoVo {
 	
 	private AvgScoreVo avgScoreVo;
 	
+	private int cnt;
 	
 	
 	public AvgScoreVo getAvgScoreVo() {
@@ -120,6 +121,12 @@ public class LookInfoVo {
 	public void setLookCate(String lookCate) {
 		this.lookCate = lookCate;
 	}
-	
-	
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 }

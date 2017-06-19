@@ -21,4 +21,9 @@ public class AdminController {
 	
 		return "admin/"+url;
 	}
+	
+	@RequestMapping("{folder}/{url}")
+	public String forderUrl(@PathVariable String folder, @PathVariable String url){
+		return "admin/"+folder+"/"+url;
+	}
 }

@@ -177,7 +177,17 @@
 						<li><a
 							href="${pageContext.request.contextPath}/admin/travelgeReInsertForm">추천추가</a>
 						</li>
-					</ul></li>
+					</ul>
+				</li>
+				<!-- Entertainment nav -->
+				<li><a href="javascript:;" data-toggle="collapse"
+					data-target="#enter"> <i class="fa fa-fw fa-sitemap"></i>Entertainment
+						<i class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="enter" class="collapse">
+						<li><a href="${pageContext.request.contextPath}/admin/enter/enterInfoSearch">조회</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/travelgeInfoInsertForm">추가</a></li>
+					</ul>
+				</li>
 			</ul>
 			<%-- <li><a
 							href="${pageContext.request.contextPath}/admin/travelgeInfo">TravelgeInfo</a>

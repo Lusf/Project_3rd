@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="enterAdminMapper">
+
+	<resultMap type="LookInfoVo" id="enterSelectMap">
+		<id column="content_code" property="contentCode"/>
+		<result column="id" property="id"/>
+		<result column="look_title" property="lookTitle"/>
+		<result column="look_story" property="lookStory"/>
+		<result column="look_maker" property="lookMaker"/>
+		<result column="look_img" property="lookImg"/>
+		<result column="look_genre" property="lookGenre"/>
+		<result column="look_startdate" property="lookStartDate"/>
+		<result column="look_lastdate" property="lookLastDate"/>
+		<result column="look_loca" property="lookLoca"/>
+		<result column="look_cate" property="lookCate"/>
+		<result column="cnt" property="cnt"/>
+	</resultMap>
+
+	<!-- 검색 -->
+	<select id="enterInfoSearch" resultMap="enterSelectMap" parameterType="LookInfoVo">
+	SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT 
+	FROM( SELECT * FROM Look_Info
+	<trim prefix="where" prefixOverrides="or">
+		<if test="contentCode!=null">CONTENT_CODE LIKE upper('%'||#{contentCode}||'%')</if>
+		<if test="lookTitle!=null">or look_title LIKE '%'||#{lookTitle}||'%'</if>
+		<if test="lookStory!=null">or look_story LIKE '%'||#{lookStory}||'%'</if>
+		<if test="lookMaker!=null">or look_maker LIKE '%'||#{lookMaker}||'%'</if>
+		<if test="lookGenre!=null">or look_genre LIKE '%'||#{lookGenre}||'%'</if>
+		<if test="lookStartDate!=null">or look_startdate LIKE '%'||#{lookStartDate}||'%'</if>
+		<if test="lookLastDate!=null">or look_lastdate LIKE '%'||#{lookLastDate}||'%'</if>
+		<if test="lookLoca!=null">or look_loca LIKE '%'||#{lookLoca}||'%'</if>
+		<if test="lookCate!=null">or look_cate LIKE '%'||#{lookCate}||'%'</if>
+	</trim>
+	) T1) order by content_code
+	</select>
+</mapper>
