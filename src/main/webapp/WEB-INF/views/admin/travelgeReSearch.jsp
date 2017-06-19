@@ -10,25 +10,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <title>Travelge Info</title>
 
-</head>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet"
+	href="<c:url value= '/resources/js/table/css/style.css'/>">
+<!-- jQuery -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+
+<!-- TABLE SORT -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.js"></script>
+<%-- <script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery-latest.js"></script> --%>
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.metadata.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.min.js"></script>
+
+
+
 <style>
 <!--
-
-img{
-width: 200px;
-height: 200px;
+img {
+	width: 200px;
+	height: 200px;
 }
 -->
 </style>
 
+</head>
+
+
 <body>
 	<div id="wrapper">
 		<%@ include file="/WEB-INF/views/admin/nav.jsp"%>
-		
+
 		<div id="page-wrapper">
 
 			<div class="container-fluid">
@@ -83,34 +108,38 @@ height: 200px;
 							<div class="panel-body">
 
 								<div class="table-responsive">
-									<table class="table table-bordered table-hover table-striped">
-										<tr>
-											<th>CONTENT_CODE</th>
-											<th>TITLE</th>
-											<th>DESCRIPTION</th>
-											<th>DATE</th>
-											<th>DELETE</th>
-										</tr>
-										<c:forEach items="${list }" var="list" varStatus="state">
-											<Tr>
+									<table
+										class="table table-bordered table-hover table-striped tablesorter"
+										id="myTable">
+										<THEAD>
+											<tr>
+												<th>CONTENT_CODE</th>
+												<th>TITLE</th>
+												<th>DESCRIPTION</th>
+												<th>DATE</th>
+												<th>DELETE</th>
+											</tr>
+										</THEAD>
+										<tbody>
+											<c:forEach items="${list }" var="list" varStatus="state">
 
-												<td>
-												  <a data-toggle="collapse" data-target="#${state.count}">${list.contentCode }</a>
-  													<div id="${state.count}" class="collapse">
-  													<a href="${pageContext.request.contextPath }/travelge/travelgeRecommandUpdate?contentCode=${list.contentCode}">수정</a>
-													<a href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
-  													</div>		
-  																							
-												</td>
-												<td>${list.recommandationTitle }</td>
-												<td>${list.recommandationDescription }</td>
-												<td>${list.recommandationDate }</td>
-												<td><a
-													href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}">삭제</a></td>
-
-											</Tr>
-
-										</c:forEach>
+												<tr>
+													<td><a data-toggle="collapse"
+														data-target="#${state.count}">${list.contentCode }</a>
+														<div id="${state.count}" class="collapse">
+															<a
+																href="${pageContext.request.contextPath }/travelge/travelgeRecommandUpdate?contentCode=${list.contentCode}">수정</a>
+															<a
+																href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
+														</div></td>
+													<td>${list.recommandationTitle }</td>
+													<td>${list.recommandationDescription }</td>
+													<td>${list.recommandationDate }</td>
+													<td><a
+														href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}">삭제</a></td>
+												</tr>
+											</c:forEach>
+										</tbody>
 									</table>
 								</div>
 
@@ -158,31 +187,28 @@ height: 200px;
 	<%@ include file="/WEB-INF/views/admin/modal.jsp"%>
 	<!-- /.container-fluid -->
 
-	
+
 	<!-- /#page-wrapper -->
 
 
 	<!-- /#wrapper -->
-	
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
 
-	
+
 	<script>
-	$(document).ready(function(){
-	   var msg = "${msg}";
-	   if(msg != null){
-		   if(msg != ""){
-	        $("#myModal").modal();
-		   }
-	   }
-	});
+		$(document).ready(function() {
+
+			$("#myTable").tablesorter();
+
+			var msg = "${msg}";
+			if (msg != null) {
+				if (msg != "") {
+					$("#myModal").modal();
+				}
+			}
+		});
 	</script>
+
 
 </body>
 

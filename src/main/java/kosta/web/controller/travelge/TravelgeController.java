@@ -42,16 +42,19 @@ public class TravelgeController {
 			String temp = list.get(i).getRecommandationDescription();
 			int index = temp.indexOf("<img");
 			if (index != -1) {
-				index += 21;
-				// String imgsrc =
-				// "${pageContex.request.contextPath}"+temp.substring(index,
-				// index+56);
+				index += 21;;
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
 				
 				mv.addObject(card + "Thumbnail", imgsrc);
 			}
 		}
 
+		//최신 리뷰
+//		 List<UserBlogVo> latestComment = travelgeService.latestComment();
+		 List<TravelgeInfoVo> latestComment = travelgeService.latestComment();
+		 
+		 mv.addObject("commentList",latestComment);
+		
 		return mv;
 	}
 
@@ -299,11 +302,22 @@ public class TravelgeController {
 
 	// 추천 여행지 정보 추가
 	@RequestMapping("travelgeRecommandInsert")
-	public String travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo) {
+	public ModelAndView travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo) {
 
-		travelgeService.travelgeRecommandInsert(travelgeRecommandationVo);
+		int result = travelgeService.travelgeRecommandInsert(travelgeRecommandationVo);
+		
+		String msg = null;
+		ModelAndView mv = new ModelAndView();
+		
+		if(result == 1)
+		msg = "추가완료";
+		else
+		msg = "추가실패";
+		
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/travelgeReSearch");
 
-		return "admin/index";
+		return mv;
 
 	};
 	@RequestMapping("travelgeReInsertForm")
@@ -322,9 +336,16 @@ public class TravelgeController {
 	@RequestMapping("travelgeRecommandDelete")
 	public ModelAndView travelgeRecommandDelete(String contentCode) {
 		//System.out.println(contentCode);
-		travelgeService.travelgeRecommandDelete(contentCode);
+		int result = travelgeService.travelgeRecommandDelete(contentCode);
+		String msg = null;
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("msg", "삭제완료");
+		
+		if(result == 1)
+		msg = "삭제완료";
+		else
+		msg = "삭제실패";
+		
+		mv.addObject("msg", msg);
 		mv.setViewName("admin/travelgeReSearch");
 		return  mv;
 

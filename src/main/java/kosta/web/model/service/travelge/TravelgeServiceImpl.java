@@ -12,6 +12,7 @@ import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
 import kosta.web.model.dao.travelge.TravelgeInfoDAO;
 import kosta.web.model.dao.travelge.TravelgeRecommandationDAO;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
@@ -178,7 +179,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 		return 0;
 	}
 
-	static final double bound = 0.1;
+	static final double bound = 0.025;
 
 	@Override
 	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon) {
@@ -219,6 +220,18 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeSearchScroll(travelgeInfoVo, currentPage, keyword);
 		return list;
+	}
+/*
+	@Override
+	public List<UserBlogVo> latestComment() {
+		// TODO Auto-generated method stub
+		return travelgeInfoDAO.latestComment();
+	}*/
+
+	@Override
+	public List<TravelgeInfoVo> latestComment() {
+		// TODO Auto-generated method stub
+		return travelgeInfoDAO.latestComment();
 	}
 
 	@Override
