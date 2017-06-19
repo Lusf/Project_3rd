@@ -36,9 +36,15 @@
 	FROM TRAVELGE_RECOMMANDATION
 	<where>
 			<if test="_parameter!=null">
-			Content_Code=#{_parameter}
+			Content_Code LIKE '%'||#{_parameter}||'%'
 		</if>
 	</where>
 	</select>
+
+	<delete id="travelgeRecommandDelete" parameterType="string">
+	delete FROM TRAVELGE_RECOMMANDATION
+	where Content_Code=#{_parameter}
+
+	</delete>
 
 </mapper>

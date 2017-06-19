@@ -53,7 +53,7 @@
 									
 									                            <div class="form-group input-group">
                                 <span class="input-group-addon">제목</span>
-                                <input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommadationTitle">
+                                <input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommandationTitle">
                             </div>
 									
 								</div>
@@ -158,7 +158,7 @@
 								// 본문 내용을 필드를 생성하여 값을 할당하는 부분
 								var textarea = document
 										.createElement('textarea');
-								textarea.name = 'recommadationDescription';
+								textarea.name = 'recommandationDescription';
 								textarea.value = content;
 								textarea.style.display = "none";
 								form.createField(textarea);

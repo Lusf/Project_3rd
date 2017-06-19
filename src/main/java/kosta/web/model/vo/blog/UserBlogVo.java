@@ -8,6 +8,8 @@ public class UserBlogVo {
 	private String blogTitle;
 	private String blogDate;
 	private String blogCont;
+	private String userPic;
+	
 	
 	public UserBlogVo() {}
 	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogDate, String blogCont) {
@@ -74,5 +76,11 @@ public class UserBlogVo {
 
 	public void setBlogCont(String blogCont) {
 		this.blogCont = blogCont;
+	}
+	public String getUserPic() {
+		return userPic;
+	}
+	public void setUserPic(String userPic) {
+		this.userPic = userPic;
 	}
 }

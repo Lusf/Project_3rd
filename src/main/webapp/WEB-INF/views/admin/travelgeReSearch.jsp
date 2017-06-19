@@ -15,12 +15,20 @@
 <title>Travelge Info</title>
 
 </head>
+<style>
+<!--
 
+img{
+width: 200px;
+height: 200px;
+}
+-->
+</style>
 
 <body>
 	<div id="wrapper">
 		<%@ include file="/WEB-INF/views/admin/nav.jsp"%>
-
+		
 		<div id="page-wrapper">
 
 			<div class="container-fluid">
@@ -94,9 +102,8 @@
   													</div>		
   																							
 												</td>
-												<td>${list.travelgeName }</td>
 												<td>${list.recommandationTitle }</td>
-												<td>${list.recommandationDesc }</td>
+												<td>${list.recommandationDescription }</td>
 												<td>${list.recommandationDate }</td>
 												<td><a
 													href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}">삭제</a></td>
@@ -148,6 +155,7 @@
 		<!-- /.row -->
 
 	</div>
+	<%@ include file="/WEB-INF/views/admin/modal.jsp"%>
 	<!-- /.container-fluid -->
 
 	
@@ -155,7 +163,7 @@
 
 
 	<!-- /#wrapper -->
-
+	
 	<!-- jQuery -->
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
@@ -163,6 +171,18 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+
+	
+	<script>
+	$(document).ready(function(){
+	   var msg = "${msg}";
+	   if(msg != null){
+		   if(msg != ""){
+	        $("#myModal").modal();
+		   }
+	   }
+	});
+	</script>
 
 </body>
 

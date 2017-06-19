@@ -28,8 +28,8 @@ public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO 
 
 	@Override
 	public int travelgeRecommandDelete(String contentCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("travelgeRecommandationMapper.travelgeRecommandDelete", contentCode);
 	}
 
 	@Override

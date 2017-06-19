@@ -47,7 +47,7 @@ public class TravelgeController {
 				// "${pageContex.request.contextPath}"+temp.substring(index,
 				// index+56);
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
-				System.out.println(imgsrc);
+				
 				mv.addObject(card + "Thumbnail", imgsrc);
 			}
 		}
@@ -90,7 +90,7 @@ public class TravelgeController {
 			subFolder.mkdir();
 		}
 		File photosFolder = new File(path + "/" + travelgeInfoVo.getContentCode() + "/photos");
-		if (photosFolder.exists()) {
+		if (!photosFolder.exists()) {
 			photosFolder.mkdir();
 		}
 		// -----폴더 생성 끝
@@ -124,7 +124,7 @@ public class TravelgeController {
 			} catch (Exception e) {
 			}
 		}
-		System.out.println(travelgeInfoVo.toString());
+		
 		travelgeService.travelgeInfoUpdate(travelgeInfoVo);
 
 		return "admin/travelgeInfoSearch";
@@ -260,14 +260,14 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 
-		System.out.println(index);
+/*		System.out.println(index);
 		System.out.println(currentRegion);
 		System.out.println(currentTheme);
-		System.out.println(keyword);
+		System.out.println(keyword);*/
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
 		for(int i = 0; i < list.size(); i++)
 		{
-			System.out.println(list.get(i).getTravelgeName());
+			/*System.out.println(list.get(i).getTravelgeName());*/
 		}
 		return list;
 	}
@@ -276,14 +276,21 @@ public class TravelgeController {
 	@RequestMapping("/detailView/{contentCode}")
 	public ModelAndView detailView(@PathVariable String contentCode) {
 
-		 System.out.println(contentCode);
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
+
+		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 
+		
+		/*for(UserBlogVo dto : commentList)
+		{
+			System.out.println(dto.getId() + " : " + dto.getUserPic());
+		}*/
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
+				
 		mv.addObject("info", list.get(0));
 		mv.addObject("commentList", commentList);
 
@@ -313,7 +320,13 @@ public class TravelgeController {
 
 	// 추천 여행지 정보 삭제
 	@RequestMapping("travelgeRecommandDelete")
-	public void travelgeRecommandDelete(String contentCode) {
+	public ModelAndView travelgeRecommandDelete(String contentCode) {
+		//System.out.println(contentCode);
+		travelgeService.travelgeRecommandDelete(contentCode);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg", "삭제완료");
+		mv.setViewName("admin/travelgeReSearch");
+		return  mv;
 
 	};
 
@@ -335,8 +348,6 @@ public class TravelgeController {
 			 else {
 				 contentCode = keyWord;
 			}
-		
-
 
 		// 한 화면에 10개의 게시글을 보여지게함
 		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
