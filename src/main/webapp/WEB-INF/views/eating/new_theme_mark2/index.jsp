@@ -17,9 +17,9 @@
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 
 <script>
-function logout() {
-	document.getElementById("logoutForm").submit();
-}
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
 </script>
 
 </head>
@@ -89,8 +89,10 @@ function logout() {
 							<a href="javascript:logout();">로그아웃</a>
 						</sec:authorize>
 						<sec:authorize access="!isAuthenticated()">
-							<a href="${pageContext.request.contextPath }/user/loginForm" class="btn btn-link btn-sm mt-10">Login</a>
-							<a href="${pageContext.request.contextPath }/user/joinForm" class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
+							<a href="${pageContext.request.contextPath }/user/loginForm"
+								class="btn btn-link btn-sm mt-10">Login</a>
+							<a href="${pageContext.request.contextPath }/user/joinForm"
+								class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
 						</sec:authorize>
 					</div>
 				</div>
@@ -438,10 +440,13 @@ function logout() {
 				<!-- / single offer box-->
 				<div class="col-md-12 text-center">
 					<sec:authorize access="isAuthenticated()">
-						<a class="btn btn-default" href="#" data-toggle="modal" data-target="#new"><strong>리뷰 등록</strong></a> 
+						<a class="btn btn-default" href="#" data-toggle="modal"
+							data-target="#new"><strong>리뷰 등록</strong></a>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
-						<a class="btn btn-default" href="${pageContext.request.contextPath }/user/loginForm"><strong>리뷰 등록</strong></a> 
+						<a class="btn btn-default"
+							href="${pageContext.request.contextPath }/user/loginForm"><strong>리뷰
+								등록</strong></a>
 					</sec:authorize>
 					<a class="btn btn-default" href="#"><strong>전체 리뷰 보기</strong></a>
 				</div>
@@ -463,16 +468,15 @@ function logout() {
 					<div class="post-entry post-entry-modal">
 
 						<h3 class="section-heading"></h3>
-						<span class="post-entry-meta"> <img alt="user avatar" class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
-							<span class="post-entry-author-name pull-left">
-							
-							<sec:authorize access="isAuthenticated()">
-								<sec:authentication property="principal.id" />님
+						<span class="post-entry-meta"> <img alt="user avatar"
+							class="post-entry-author pull-left"
+							src="${pageContext.request.contextPath}/resources/images/eating/user.png">
+							<span class="post-entry-author-name pull-left"> <sec:authorize
+									access="isAuthenticated()">
+									<sec:authentication property="principal.id" />님
+							</sec:authorize> <sec:authorize access="!isAuthenticated()">Guest
 							</sec:authorize>
-							<sec:authorize access="!isAuthenticated()">
-								Guest
-							</sec:authorize>
-							
+
 
 						</span>
 
@@ -523,24 +527,31 @@ function logout() {
 								<label for="file">사진 올리기</label> <input type="file" name="file"
 									id="upload" class="upload-name">
 							</div>
-
-							<!-- <p><font face="궁서체">안녕하세요</font>	</p>
-
-								<p><font face="궁서체">치킨을 먹어보겠슴다. </font>	</p>
-
-
-								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p> -->
-							<div align="center">
-								<button type="submit" class="btn btn-default">등록하기</button>
-							</div>
-						</form>
 					</div>
+
+					<div class="form-group">
+						<label for="file">사진 올리기</label> <input type="file" name="file"
+							id="upload" class="upload-name">
+					</div>
+
+					<div align="center">
+						<button type="submit" class="btn btn-default">등록하기</button>
+
+						<div align="center">
+							<button type="submit" class="btn btn-default">등록하기</button>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}">
+
+						</form>
+
+					</div>
+					</form>
 				</div>
 			</div>
-			<!-- / NEWS MODAL CONTENT -->
 		</div>
+		<!-- / NEWS MODAL CONTENT -->
+	</div>
 	</div>
 	<!-- / NEWS MODAL -->
 

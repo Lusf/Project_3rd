@@ -19,4 +19,6 @@ public interface UserBlogDAO {
 	List<Integer> selectBlogNum(String id);
 
 	List<UserBlogVo> selectByContentCode(String contentCode);
+	
+	String userPicBlog(String contentCode, String id);
 }

@@ -1,5 +1,9 @@
 package kosta.web.model.vo.blog;
 
+import java.util.List;
+
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
+
 public class UserBlogVo {
 	private String id;
 	private int blogNum;
@@ -8,6 +12,11 @@ public class UserBlogVo {
 	private String blogTitle;
 	private String blogDate;
 	private String blogCont;
+	private String userPic;
+	
+	private List<TravelgeInfoVo> commentList; 
+	
+	
 	
 	public UserBlogVo() {}
 	public UserBlogVo(String id, int blogNum, String category, String contentCode, String blogTitle, String blogDate, String blogCont) {
@@ -74,5 +83,17 @@ public class UserBlogVo {
 
 	public void setBlogCont(String blogCont) {
 		this.blogCont = blogCont;
+	}
+	public String getUserPic() {
+		return userPic;
+	}
+	public void setUserPic(String userPic) {
+		this.userPic = userPic;
+	}
+	public List<TravelgeInfoVo> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<TravelgeInfoVo> commentList) {
+		this.commentList = commentList;
 	}
 }
