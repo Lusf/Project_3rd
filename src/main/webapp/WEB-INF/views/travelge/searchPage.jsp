@@ -75,7 +75,7 @@
 			//alert($(this).text());
 			$('#dropdownMenu2').text(tempText);
 			currentPage = 1;
-			currentRegion = tempText;
+			currentTheme = tempText;
 			//$(".scrollPaging:gt(0)").remove();
 			//getReadList();
 		})

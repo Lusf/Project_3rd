@@ -42,16 +42,19 @@ public class TravelgeController {
 			String temp = list.get(i).getRecommadationDescription();
 			int index = temp.indexOf("<img");
 			if (index != -1) {
-				index += 21;
-				// String imgsrc =
-				// "${pageContex.request.contextPath}"+temp.substring(index,
-				// index+56);
+				index += 21;;
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
 				System.out.println(imgsrc);
 				mv.addObject(card + "Thumbnail", imgsrc);
 			}
 		}
 
+		//ÃÖ½Å ¸®ºä
+//		 List<UserBlogVo> latestComment = travelgeService.latestComment();
+		 List<TravelgeInfoVo> latestComment = travelgeService.latestComment();
+		 
+		 mv.addObject("commentList",latestComment);
+		
 		return mv;
 	}
 
