@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kosta.web.model.vo.restaurant.RestaurentVo;
+import kosta.web.model.vo.restaurant.RestaurantVo;
 
 @Repository
 public class RestaurantDAOImpl implements RestaurantDAO{
@@ -16,14 +16,14 @@ public class RestaurantDAOImpl implements RestaurantDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public int RestaurantInsert(RestaurentVo restaurentVo) {
+	public int RestaurantInsert(RestaurantVo restaurantVo) {
 		
 		
-		return sqlSession.insert("foodMapper.insertRestaurant",restaurentVo);
+		return sqlSession.insert("foodMapper.insertRestaurant",restaurantVo);
 	}
 
 	@Override
-	public int RestaurantUpdate(RestaurentVo restaurentVo) {
+	public int RestaurantUpdate(RestaurantVo restaurantVo) {
 
 		return 0;
 	}
@@ -41,9 +41,9 @@ public class RestaurantDAOImpl implements RestaurantDAO{
 	}*/
 
 	@Override
-	public List<RestaurentVo> RestaurantSearch(RestaurentVo restaurentVo, int i) {
+	public List<RestaurantVo> RestaurantSearch(RestaurantVo restaurantVo, int i) {
 		
-		return sqlSession.selectList("foodMapper.selectByRestaurant",restaurentVo, new RowBounds(i,10));
+		return sqlSession.selectList("foodMapper.selectByRestaurant",restaurantVo, new RowBounds(i,10));
 	}
 
 }

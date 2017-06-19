@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +68,6 @@
 									</ul>
 								</li>
 							</ul></li>
-
 					</ul>
 
 					<div class="navbar-buttons">
@@ -241,22 +238,18 @@
 
 				<div class="col-md-9">
 					<div class="col-md-12 pl-0 pr-0">
-						<h4 class="heading ">Featured adds</h4>
+						<h4 class="heading "><b>맛집 정보</b></h4> 
 					</div>
+					
+					<c:forEach items="${requestScope.listA}"  var="list">
 					<div class="box">
 						<div class="offer-box offer-box-horizontal border">
 							<div class="offer-box-head">
 								<div class="offer-slider">
 									<div class="swiper-wrapper">
 										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/01.jpg"
-												alt="offer image">
-										</div>
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/02.jpg"
-												alt="offer image">
+											<%-- <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/01.jpg" --%>
+											<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
 										</div>
 									</div>
 
@@ -268,229 +261,23 @@
 										<span class="ti-angle-right"></span>
 									</div>
 								</div>
-								<span class="offer-box-price">$350pw</span> <span
-									class="offer-box-label"><span class="ti-star"></span>featured</span>
+								<!-- <span class="offer-box-price">$350pw</span> --> 
+								<!-- <span class="offer-box-label"><span class="ti-star"></span>featured</span> -->
 							</div>
-							<a href="#"> <span class="h4 offer-box-title">Spacious
-									1 Bed Flat near Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-									Bridge, London </span> <span class="offer-box-meta">Nordman
-									Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							</a> <a href="#" class="btn btn-default" data-toggle="modal"
-								data-target="#offer-01">contact</a> <a href="#"
-								class="btn btn-link btn-sm ml-0 pull-right"><span
-								class="ti-star"></span> to favorites</a>
+							<a href="#"> <span class="h4 offer-box-title">${list.restaurantName} </span> 
+							<span class="offer-box-location">
+							<span class="ti-location-pin">
+							</span>${list.restaurantAddr}</span> 
+							<!-- <span class="offer-box-meta">Nordman	Agency | 30 Nov 2016 | Flat | 2 Beds</span> -->
+							</a> 
+									<a href="#" class="btn btn-default" data-toggle="modal"data-target="#offer-01">상세 보기</a>  
+									<a href="#" class="btn btn-link btn-sm ml-0 pull-right">
+									<span 	class="ti-star"></span> to favorites</a>
 						</div>
 					</div>
+					</c:forEach>
 					<!-- / single offer box-->
 
-					<!-- / single offer box-->
-					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-							<div class="offer-box-head">
-								<div class="offer-slider">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/03.jpg"
-												alt="offer image">
-										</div>
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/04.jpg"
-												alt="offer image">
-										</div>
-									</div>
-
-									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left"></span>
-									</div>
-
-									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right"></span>
-									</div>
-								</div>
-								<span class="offer-box-price">$350pw</span> <span
-									class="offer-box-label"><span class="ti-star"></span>featured</span>
-							</div>
-							<a href="#"> <span class="h4 offer-box-title">Spacious
-									1 Bed Flat near Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-									Bridge, London </span> <span class="offer-box-meta">Nordman
-									Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							</a> <a href="#" class="btn btn-default" data-toggle="modal"
-								data-target="#offer-01">contact</a> <a href="#"
-								class="btn btn-link btn-sm ml-0 pull-right"><span
-								class="ti-star"></span> to favorites</a>
-						</div>
-					</div>
-					<!-- / single offer box-->
-
-					<!-- / single offer box-->
-					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-							<div class="offer-box-head">
-								<div class="offer-slider">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/05.jpg"
-												alt="offer image">
-										</div>
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg"
-												alt="offer image">
-										</div>
-									</div>
-
-									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left"></span>
-									</div>
-
-									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right"></span>
-									</div>
-								</div>
-								<span class="offer-box-price">$350pw</span> <span
-									class="offer-box-label"><span class="ti-star"></span>featured</span>
-							</div>
-							<a href="#"> <span class="h4 offer-box-title">Spacious
-									1 Bed Flat near Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-									Bridge, London </span> <span class="offer-box-meta">Nordman
-									Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							</a> <a href="#" class="btn btn-default" data-toggle="modal"
-								data-target="#offer-01">contact</a> <a href="#"
-								class="btn btn-link btn-sm ml-0 pull-right"><span
-								class="ti-star"></span> to favorites</a>
-						</div>
-					</div>
-					<!-- / single offer box-->
-					<!-- / single offer box-->
-					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-							<div class="offer-box-head">
-								<div class="offer-slider">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/06.jpg"
-												alt="offer image">
-										</div>
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/07.jpg"
-												alt="offer image">
-										</div>
-									</div>
-
-									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left"></span>
-									</div>
-
-									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right"></span>
-									</div>
-								</div>
-								<span class="offer-box-price">$350pw</span> <span
-									class="offer-box-label"><span class="ti-star"></span>featured</span>
-							</div>
-							<a href="#"> <span class="h4 offer-box-title">Spacious
-									1 Bed Flat near Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-									Bridge, London </span> <span class="offer-box-meta">Nordman
-									Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							</a> <a href="#" class="btn btn-default" data-toggle="modal"
-								data-target="#offer-01">contact</a> <a href="#"
-								class="btn btn-link btn-sm ml-0 pull-right"><span
-								class="ti-star"></span> to favorites</a>
-						</div>
-					</div>
-					<!-- / single offer box-->
-
-					<!-- / single offer box-->
-					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-							<div class="offer-box-head">
-								<div class="offer-slider">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg"
-												alt="offer image">
-										</div>
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg"
-												alt="offer image">
-										</div>
-									</div>
-
-									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left"></span>
-									</div>
-
-									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right"></span>
-									</div>
-								</div>
-								<span class="offer-box-price">$350pw</span> <span
-									class="offer-box-label"><span class="ti-star"></span>featured</span>
-							</div>
-							<a href="#"> <span class="h4 offer-box-title">Spacious
-									1 Bed Flat near Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-									Bridge, London </span> <span class="offer-box-meta">Nordman
-									Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							</a> <a href="#" class="btn btn-default" data-toggle="modal"
-								data-target="#offer-01">contact</a> <a href="#"
-								class="btn btn-link btn-sm ml-0 pull-right"><span
-								class="ti-star"></span> to favorites</a>
-						</div>
-					</div>
-					<!-- / single offer box-->
-
-					<!-- / single offer box-->
-					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-							<div class="offer-box-head">
-								<div class="offer-slider">
-									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/10.jpg"
-												alt="offer image">
-										</div>
-										<div class="swiper-slide">
-											<img
-												src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/1.jpg"
-												alt="offer image">
-										</div>
-									</div>
-
-									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left"></span>
-									</div>
-
-									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right"></span>
-									</div>
-								</div>
-								<span class="offer-box-price">$350pw</span> <span
-									class="offer-box-label"><span class="ti-star"></span>featured</span>
-							</div>
-							<a href="#"> <span class="h4 offer-box-title">Spacious
-									1 Bed Flat near Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-									Bridge, London </span> <span class="offer-box-meta">Nordman
-									Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							</a> <a href="#" class="btn btn-default" data-toggle="modal"
-								data-target="#offer-01">contact</a> <a href="#"
-								class="btn btn-link btn-sm ml-0 pull-right"><span
-								class="ti-star"></span> to favorites</a>
-						</div>
-					</div>
 					<!-- / single offer box-->
 					<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
 						<div class="category-pagination text-center">
@@ -517,7 +304,7 @@
 			<!--/ row -->
 		</div>
 		<!--/ container -->
-
+		<!-- 모달시작 -->
 		<!-- OFFER CONTACT FORM-->
 		<div id="offer-01" class="modal fade services-modal" role="dialog">
 			<div class="modal-dialog">
@@ -528,14 +315,11 @@
 							<div class="offer-slider">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
-										<img
-											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg"
-											alt="offer image">
+										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"> 
+										<%-- <img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image"> --%>
 									</div>
 									<div class="swiper-slide">
-										<img
-											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg"
-											alt="offer image">
+										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image">
 									</div>
 								</div>
 
@@ -547,8 +331,8 @@
 									<span class="ti-angle-right"></span>
 								</div>
 							</div>
-							<span class="offer-box-price">$350pw</span> <span
-								class="offer-box-label"><span class="ti-star"></span>featured</span>
+							<span class="offer-box-price">$350pw	${listA.id}</span> 
+							<span class="offer-box-label"><span class="ti-star"></span>featured</span>
 						</div>
 						<div class="offer-content pl-30 pr-30">
 							<span class="h4 offer-box-title">Spacious 1 Bed Flat near
