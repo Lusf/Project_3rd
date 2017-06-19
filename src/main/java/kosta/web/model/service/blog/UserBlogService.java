@@ -19,4 +19,5 @@ public interface UserBlogService {
 	List<Integer> selectBlogNum(String id);
 
 	List<UserBlogVo> selectByContentCode(String contentCode);
+
 }

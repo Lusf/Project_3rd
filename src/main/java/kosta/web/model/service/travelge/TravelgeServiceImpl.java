@@ -56,7 +56,6 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		// 컨텐츠코드 생성
 		contentCode = "T" + travelgeInfoVo.getTravelgeTheme() + travelgeInfoVo.getTravelgeRegion() + ran;
-	
 
 		travelgeInfoVo.setContentCode(contentCode);
 
@@ -65,10 +64,12 @@ public class TravelgeServiceImpl implements TravelgeService {
 		for (i = 0; i < travelgeInfoDAO.travelgeInfoSearch(null, 0).size(); i++) {
 			if (travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo, 0).size() == 1) {
 				ran = (int) (Math.random() * 10000 + 1);
-				contentCode = "T" + travelgeInfoVo.getTravelgeTheme() + travelgeInfoVo.getTravelgeRegion() + ran;
-			}else{
+				contentCode = "T" + travelgeInfoVo.getTravelgeTheme()
+						+ travelgeInfoVo.getTravelgeRegion() + ran;
+			} else {
 				break;
-			};
+			}
+			;
 		}
 
 		// 테마 한글로 변환
@@ -76,8 +77,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		// 지역 한글로 변환
 		travelgeInfoVo.setTravelgeRegion(map.get(travelgeInfoVo.getTravelgeRegion()));
-		
-		
+
 		return travelgeInfoDAO.travelgeInfoInsert(travelgeInfoVo);
 	}
 
@@ -88,13 +88,13 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		// 지역 한글로 변환
 		travelgeInfoVo.setTravelgeRegion(map.get(travelgeInfoVo.getTravelgeRegion()));
-		
+
 		return travelgeInfoDAO.travelgeInfoUpdate(travelgeInfoVo);
 	}
 
 	@Override
 	public int travelgeInfoDelete(String contentCode) {
-		
+
 		return travelgeInfoDAO.travelgeInfoDelete(contentCode);
 	}
 
@@ -108,17 +108,26 @@ public class TravelgeServiceImpl implements TravelgeService {
 			currentPage = (currentPage * 10) - 10;
 		}
 
-		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo, currentPage);
+		List<TravelgeInfoVo> temp = travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo, currentPage);
+		List<TravelgeInfoVo> newList = new ArrayList<>();
 
-		/*
-		 * for (TravelgeInfoVo str : list) {
-		 * if(travelgeAvgScoreDAO.travelgeAvgScore(str.getAvgScoreVo().
-		 * getContentCode()) != null)
-		 * str.setAvgScoreVo(travelgeAvgScoreDAO.travelgeAvgScore(str.
-		 * getAvgScoreVo().getContentCode())); }
-		 */
+		for (TravelgeInfoVo dto : temp) {
+			int point = dto.getTravelgeCoordinates().indexOf(',');
+			int last = dto.getTravelgeCoordinates().indexOf(')');
+			// System.out.println(point);
+			double tempLat = Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
+			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point + 2, last));
 
-		return list;
+			dto.setX(tempLat + "");
+			dto.setY(tempLon + "");
+			// dto.setTravelgeCoordinates(tempLat+", "+tempLon);
+			newList.add(dto);
+			
+//			System.out.println(dto.getX() + " : " + dto.getY());
+
+		}
+		return newList;
+
 	}
 
 	@Override
@@ -135,8 +144,8 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public int travelgeRecommandDelete(String contentCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return travelgeRecommandationDAO.travelgeRecommandDelete(contentCode);
 	}
 
 	@Override
@@ -169,31 +178,28 @@ public class TravelgeServiceImpl implements TravelgeService {
 		return 0;
 	}
 
-	
 	static final double bound = 0.1;
+
 	@Override
-	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon){
-		List <TravelgeInfoVo> temp = travelgeInfoDAO.searchAroundMe();
-		List <TravelgeInfoVo> newList = new ArrayList<>();
-		
+	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon) {
+		List<TravelgeInfoVo> temp = travelgeInfoDAO.searchAroundMe();
+		List<TravelgeInfoVo> newList = new ArrayList<>();
+
 		double doubleLat = Double.parseDouble(lat);
 		double doubleLon = Double.parseDouble(lon);
-		for(TravelgeInfoVo dto : temp)
-		{
+		for (TravelgeInfoVo dto : temp) {
 			int point = dto.getTravelgeCoordinates().indexOf(',');
 			int last = dto.getTravelgeCoordinates().indexOf(')');
-			//System.out.println(point);
-			double tempLat =Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
-			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point+2, last));
-			
-			
-			if(doubleLat +bound > tempLat && doubleLat - bound < tempLat)
-			{
-				if(doubleLon + bound > tempLon && doubleLon - bound < tempLon)
-				{
-					dto.setX(tempLat+"");
-					dto.setY(tempLon+"");
-					//dto.setTravelgeCoordinates(tempLat+", "+tempLon);
+			// System.out.println(point);
+			double tempLat = Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
+			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point + 2, last));
+
+			if (doubleLat + bound > tempLat && doubleLat - bound < tempLat) {
+				if (doubleLon + bound > tempLon && doubleLon - bound < tempLon) {
+					dto.setX(tempLat + "");
+					dto.setY(tempLon + "");
+					// dto.setTravelgeCoordinates(tempLat+",
+					// "+tempLon);
 					newList.add(dto);
 				}
 			}
@@ -204,7 +210,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 	@Override
 	public List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage,
 			String keyword) {
-		
+
 		if (currentPage == 1) {
 			currentPage = 0;
 		} else {
@@ -213,6 +219,17 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeSearchScroll(travelgeInfoVo, currentPage, keyword);
 		return list;
+	}
+
+	@Override
+	public List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage) {
+		if (currentPage == 1) {
+			currentPage = 0;
+		} else {
+			currentPage = (currentPage * 10) - 10;
+		}
+		
+		return travelgeRecommandationDAO.travelgeRecommandSearch2(contentCode, currentPage);
 	}
 
 }

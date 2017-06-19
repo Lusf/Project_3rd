@@ -12,7 +12,6 @@
 </head>
 
 <div class="row">
-
 	<div class="card">
 		<div class="card-panel" style="text-align: center">
 			<h2>타이틀 영역</h2>

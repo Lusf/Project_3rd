@@ -39,7 +39,7 @@ public class TravelgeController {
 			String card = "card" + (i + 1);
 			mv.addObject(card, list.get(i));
 
-			String temp = list.get(i).getRecommadationDescription();
+			String temp = list.get(i).getRecommandationDescription();
 			int index = temp.indexOf("<img");
 			if (index != -1) {
 				index += 21;
@@ -47,7 +47,7 @@ public class TravelgeController {
 				// "${pageContex.request.contextPath}"+temp.substring(index,
 				// index+56);
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
-				System.out.println(imgsrc);
+				
 				mv.addObject(card + "Thumbnail", imgsrc);
 			}
 		}
@@ -90,7 +90,7 @@ public class TravelgeController {
 			subFolder.mkdir();
 		}
 		File photosFolder = new File(path + "/" + travelgeInfoVo.getContentCode() + "/photos");
-		if (photosFolder.exists()) {
+		if (!photosFolder.exists()) {
 			photosFolder.mkdir();
 		}
 		// -----폴더 생성 끝
@@ -124,7 +124,7 @@ public class TravelgeController {
 			} catch (Exception e) {
 			}
 		}
-		System.out.println(travelgeInfoVo.toString());
+		
 		travelgeService.travelgeInfoUpdate(travelgeInfoVo);
 
 		return "admin/travelgeInfoSearch";
@@ -260,14 +260,14 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 
-		System.out.println(index);
+/*		System.out.println(index);
 		System.out.println(currentRegion);
 		System.out.println(currentTheme);
-		System.out.println(keyword);
+		System.out.println(keyword);*/
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
 		for(int i = 0; i < list.size(); i++)
 		{
-			System.out.println(list.get(i).getTravelgeName());
+			/*System.out.println(list.get(i).getTravelgeName());*/
 		}
 		return list;
 	}
@@ -276,14 +276,21 @@ public class TravelgeController {
 	@RequestMapping("/detailView/{contentCode}")
 	public ModelAndView detailView(@PathVariable String contentCode) {
 
-		// System.out.println(contentCode);
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
+
+		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 
+		
+		/*for(UserBlogVo dto : commentList)
+		{
+			System.out.println(dto.getId() + " : " + dto.getUserPic());
+		}*/
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
+				
 		mv.addObject("info", list.get(0));
 		mv.addObject("commentList", commentList);
 
@@ -299,25 +306,77 @@ public class TravelgeController {
 		return "admin/index";
 
 	};
+	@RequestMapping("travelgeReInsertForm")
+	public ModelAndView trtravelgeRecommandInsertForm(String contentCode){
+		
+		return new ModelAndView("admin/travelgeReInsertForm", "contentConde", contentCode);
+	}
 
 	// 추천 여행지 정보 수정
+	@RequestMapping("/travelgeRecommandUpdate")
 	public void travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
 
 	};
 
 	// 추천 여행지 정보 삭제
-	public void travelgeRecommandDelete(String contentCode) {
+	@RequestMapping("travelgeRecommandDelete")
+	public ModelAndView travelgeRecommandDelete(String contentCode) {
+		//System.out.println(contentCode);
+		travelgeService.travelgeRecommandDelete(contentCode);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg", "삭제완료");
+		mv.setViewName("admin/travelgeReSearch");
+		return  mv;
 
 	};
 
 	// 추천 여행지 정보 검색
 	@RequestMapping("/travelgeRecommandSearch")
-	public String travelgeRecommandSearch(String contentCode) {
+	public ModelAndView travelgeRecommandSearch(String keyField, String keyWord, String currentPage) {
 
-		if (contentCode != null) {
-			return "travelge/singlePage";
+		int spage = 1;
+		String page = currentPage;
+		String contentCode = null;
+		if (page != null)
+			spage = Integer.parseInt(page);
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if (keyField.equals("all")) {
+			contentCode = null;
 		}
-		return "travelge/singlePage";
+				
+			 else {
+				 contentCode = keyWord;
+			}
+
+		// 한 화면에 10개의 게시글을 보여지게함
+		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
+		List<TravelgeRecommandationVo> list = travelgeService.travelgeRecommandSearch2(contentCode, spage);
+		int listCount = 0;
+		if (list != null && list.size() != 0) {
+			listCount = list.get(0).getCnt();
+		}
+		// 전체 페이지 수
+		int maxPage = (int) (listCount / 10.0 + 0.9);
+		// 시작 페이지 번호
+		int startPage = (int) (spage / 5.0 + 0.8) * 5 - 4;
+		// 마지막 페이지 번호
+		int endPage = startPage + 9;
+		if (endPage > maxPage)
+			endPage = maxPage;
+
+		// 4개 페이지번호 저장
+		modelAndView.addObject("spage", spage);
+		modelAndView.addObject("maxPage", maxPage);
+		modelAndView.addObject("startPage", startPage);
+		modelAndView.addObject("endPage", endPage);
+		modelAndView.addObject("listCount", listCount);
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("keyField", keyField);
+		modelAndView.addObject("keyWord", keyWord);
+		modelAndView.setViewName("admin/travelgeReSearch");
+		return modelAndView;
+
 	};
 
 	public void travelgeWishListAdd(AvgScoreVo avgScoreVo) {
@@ -341,8 +400,8 @@ public class TravelgeController {
 	@ResponseBody
 	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon) {
 
-		// System.out.println(lat);
-		// System.out.println(lon);
+		/* System.out.println(lat);
+		 System.out.println(lon);*/
 
 		return travelgeService.searchAroundMe(lat, lon);
 	}

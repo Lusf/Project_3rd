@@ -61,4 +61,20 @@
 	update blog set blog_title=#{blogTitle}, blog_cont=#{blogCont} where id=#{id} and content_code=#{contentCode}
 </update>
 
+<!-- 댓글 쓴 사람 얼굴 뽑아버리기 -->
+<!-- 
+SELECT u.id, u.user_pic as userPic
+FROM usertable u JOIN blog b
+on u.id = b.id
+where b.content_code = 'TCTJB710'
+and b.id = 'yun';
+ -->
+<select id="userPicBlog" parameterType="String" resultType="String">
+SELECT u.user_pic as userPic
+FROM usertable u JOIN blog b
+on u.id = b.id
+where b.content_code = #{contentCode}
+and b.id = #{id}
+</select>
+
 </mapper>
