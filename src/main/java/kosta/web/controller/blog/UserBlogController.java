@@ -94,8 +94,11 @@ public class UserBlogController {
 	
 	@RequestMapping(value = "/updateBlogReview", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateReview(UserBlogVo blogVo){
+	public ModelAndView updateReview(UserBlogVo blogVo){
+		ModelAndView mv = new ModelAndView();
 		blogService.update(blogVo);
-		return "redirect:blog/"+blogVo.getId();
+		
+		mv.setViewName("forward:"+blogVo.getId());
+		return mv;
 	}
 }

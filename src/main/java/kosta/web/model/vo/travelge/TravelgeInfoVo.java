@@ -1,8 +1,11 @@
 package kosta.web.model.vo.travelge;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 public class TravelgeInfoVo {
 	/*
@@ -26,6 +29,8 @@ public class TravelgeInfoVo {
 	private String travelgePhotos;
 	
 	private AvgScoreVo avgScoreVo;
+	
+	private  List<UserBlogVo> userBlogVo;
 	
 	private int cnt;
 	
@@ -227,6 +232,20 @@ public class TravelgeInfoVo {
 	public void setY(String y) {
 		this.y = y;
 	}
+	
+	
+
+	public List<UserBlogVo> getUserBlogVo() {
+		return userBlogVo;
+	}
+
+
+
+	public void setUserBlogVo(List<UserBlogVo> userBlogVo) {
+		this.userBlogVo = userBlogVo;
+	}
+
+
 
 	@Override
 	public String toString() {

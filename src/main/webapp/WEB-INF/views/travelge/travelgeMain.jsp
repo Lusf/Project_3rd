@@ -80,7 +80,7 @@
 						<div class="offer-box-head">
 							<div class="offer-slider">
 								<div class="swiper-slide">
-									<img src="${card4Thumbnail }" alt="offer image">
+									<img src="1/${card4Thumbnail }/aa" alt="offer image">
 								</div>
 							</div>
 						</div>
@@ -95,7 +95,7 @@
 						<div class="offer-box-head">
 							<div class="offer-slider">
 								<div class="swiper-slide">
-									<img src="${card5Thumbnail }" alt="offer image">
+									<img src="1/${card5Thumbnail }/aa" alt="offer image">
 								</div>
 							</div>
 						</div>
@@ -110,7 +110,7 @@
 						<div class="offer-box-head">
 							<div class="offer-slider">
 								<div class="swiper-slide">
-									<img src="${card6Thumbnail }" alt="offer image">
+									<img src="${card6Thumbnail }/aa" alt="offer image">
 								</div>
 							</div>
 						</div>
@@ -233,9 +233,11 @@
 
 	<!-- / OFFER CONTACT FORM -->
 
-	<section class="padding post-list" id="news">
+	 <section class="padding post-list" id="news">
 		<div class="container">
 			<h5 class="mt-0 mb-30">Latest Review</h5>
+			<c:forEach items="${commentList }" var="travelgeInfoVo" >
+			<c:forEach items="${travelgeInfoVo.userBlogVo }" var="userBlogVo">
 			<div class="post-list-sidebar-item mb-15">
 				<a href="#"> <img
 					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
@@ -243,66 +245,19 @@
 				</a>
 
 				<div class="col-xs-8 col-sm-9">
-					<a class="dark" href="#"> <span class="h6 mt-0">Post
-							title</span> <span class="post-list-sidebar-item-description">최신
-							리뷰1</span>
+					<a href="${pageContext.request.contextPath}/travelge/detailView/${userBlogVo.contentCode}">
+					<h4>${travelgeInfoVo.travelgeName}</h4>
+					<span> ${userBlogVo.id}</span> 
+					<span class="h6 mt-0">
+					${userBlogVo.blogTitle }
+					
+					</span> <span class="post-list-sidebar-item-description">${userBlogVo.blogDate }</span>
 					</a>
 				</div>
 			</div>
-			<div class="post-list-sidebar-item mb-15">
-				<a href="#"> <img
-					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
-					src="assets/img/blog/02.jpg" alt="blog image">
-				</a>
-
-				<div class="col-xs-8 col-sm-9">
-					<a class="dark" href="#"> <span class="h6 mt-0">Post
-							title</span> <span class="post-list-sidebar-item-description">최신
-							리뷰2</span>
-					</a>
-				</div>
-			</div>
-			<div class="post-list-sidebar-item mb-15">
-				<a href="#"> <img
-					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
-					src="assets/img/blog/01.jpg" alt="blog image">
-				</a>
-
-				<div class="col-xs-8 col-sm-9">
-					<a class="dark" href="#"> <span class="h6 mt-0">Post
-							title</span> <span class="post-list-sidebar-item-description">최신
-							리뷰3</span>
-					</a>
-				</div>
-			</div>
-			<div class="post-list-sidebar-item mb-15">
-				<a href="#"> <img
-					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
-					src="assets/img/blog/02.jpg" alt="blog image">
-				</a>
-
-				<div class="col-xs-8 col-sm-9">
-					<a class="dark" href="#"> <span class="h6 mt-0">Post
-							title</span> <span class="post-list-sidebar-item-description">최신
-							리뷰4</span>
-					</a>
-				</div>
-			</div>
-			<div class="post-list-sidebar-item mb-15">
-				<a href="#"> <img
-					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
-					src="assets/img/blog/02.jpg" alt="blog image">
-				</a>
-
-				<div class="col-xs-8 col-sm-9">
-					<a class="dark" href="#"> <span class="h6 mt-0">Post
-							title</span> <span class="post-list-sidebar-item-description">최신
-							리뷰5</span>
-					</a>
-				</div>
-			</div>
+			</c:forEach> 
+			</c:forEach>
 		</div>
-
 	</section>
 
 	<footer class="footer">
