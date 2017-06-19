@@ -167,8 +167,7 @@
 				<div class="face front">
 					<div class="panel panel-default">
 
-						<form class="form-horizontal"
-							action="${pageContext.request.contextPath}/login" method="post">
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/login" method="post">
 							<br>
 							<h4 class="text-center"></h4>
 

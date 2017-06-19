@@ -31,7 +31,7 @@ function logout() {
 
 			<div class="collapse navbar-collapse js-navbar-collapse row">
 				<ul class="nav navbar-nav">
-					<li class="header-link"><a href="newdesign">home</a></li>
+					<li class="header-link"><a href="#">home</a></li>
 					<li class="header-link"><a href="#">메뉴1</a></li>
 					<li class="header-link"><a href="#">메뉴2</a></li>
 					<li class="header-link"><a href="#">메뉴3</a></li>

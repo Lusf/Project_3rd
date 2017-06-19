@@ -18,6 +18,7 @@
 		login-processing-url="/login"
 		username-parameter="id"
 		password-parameter="password"
+		always-use-default-target="false"
 		authentication-success-handler-ref="customAuthenticationSuccessHandler"
 		authentication-failure-handler-ref="userAuthenticationFailureHandler"
 	/>

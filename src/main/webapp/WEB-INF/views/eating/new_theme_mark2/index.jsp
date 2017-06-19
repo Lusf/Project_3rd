@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,17 @@
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+
+<script>
+	function logout() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
+
 </head>
+
+
+
 <body>
 
 	<header class="header header-fixed nav-down">
@@ -73,12 +85,8 @@
 
 					<div class="navbar-buttons">
 						<sec:authorize access="isAuthenticated()">
-							<p>
-							<p>
-								<sec:authentication property="principal.id" />
-								님 환영합니다.
-								<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-								<a href="javascript:logout();">로그아웃</a>
+							<sec:authentication property="principal.id" />님 환영합니다.
+							<a href="javascript:logout();">로그아웃</a>
 						</sec:authorize>
 						<sec:authorize access="!isAuthenticated()">
 							<a href="${pageContext.request.contextPath }/user/loginForm"
@@ -431,110 +439,121 @@
 				</div>
 				<!-- / single offer box-->
 				<div class="col-md-12 text-center">
-<<<<<<< HEAD
-					<a class="btn btn-default" href="#">view all <span
-						class="ti-angle-right"></span></a>
-=======
-					<a class="btn btn-default" href="#" data-toggle="modal" data-target="#new">insert<span class="ti-angle-right"></span></a> 
-					<a class="btn btn-default" href="#">view all <span class="ti-angle-right"></span></a>
->>>>>>> 135353d56a1330e5764f83fccf5bf59dd6fa895c
+					<sec:authorize access="isAuthenticated()">
+						<a class="btn btn-default" href="#" data-toggle="modal"
+							data-target="#new"><strong>리뷰 등록</strong></a>
+					</sec:authorize>
+					<sec:authorize access="!isAuthenticated()">
+						<a class="btn btn-default"
+							href="${pageContext.request.contextPath }/user/loginForm"><strong>리뷰
+								등록</strong></a>
+					</sec:authorize>
+					<a class="btn btn-default" href="#"><strong>전체 리뷰 보기</strong></a>
 				</div>
 			</div>
 			<!--/ row -->
 		</div>
 		<!--/ container -->
 	</section>
-<<<<<<< HEAD
-=======
-	
+
+
 	<!-- NEWS MODAL -->
-			<div class="modal fade" id="new" role="dialog" tabindex="-1">
-				<div class="modal-dialog">
-					<!-- NEWS MODAL CONTENT -->
-					<div class="modal-content shadow">
-						<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
+	<div class="modal fade" id="new" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+			<!-- NEWS MODAL CONTENT -->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"> <span class="ti-close"></span></a>
 
-						<div class="modal-body">
-							<div class="post-entry post-entry-modal">
-							 
-								<h3 class="section-heading"></h3>
-					<span class="post-entry-meta">
-						<img alt="user avatar" 	class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
-							<span class="post-entry-author-name pull-left">
-							
-							<sec:authentication property="principal.id" />님 로그인중</span>
-							 
-								</span>
-									<div class="form-group " id="holder" style="width: 738; height: 400;"  >
-										<%-- <img src="${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg" > --%>
-										<span  id="holder" class="post-entry-cover"style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
-									</div>
-				<form action="${pageContext.request.contextPath }/eating/insertRestaurent" enctype="multipart/form-data" method="post">
-								<div>
-								 <input type="hidden" name="id" value="${blogId }">
-								<label for="restaurantAddr">지역별</label>
-  	<select class="form-control"  name="restaurantAddr">
-  	<option disabled="disabled">지역을 고르세요</option>
-  <option value="SU">서울</option>
-  <option value="DJ">대전</option>
-  <option value="DG">대구</option>
-  <option value="BS">부산</option>
-  <option value="KW">강원도</option>
-</select>
-  </div>
-  
-  <div>
-	<label for="category">음식별</label>
-  	<select class="form-control" name="category">
-  	<option disabled="disabled">음식종류를 고르세요</option>
-  <option value="KR">한식</option>
-  <option value="CN">중식</option>
-  <option value="EN">양식</option>
-</select>
-  </div>
-  
-  <div class="form-group">
-    <label for="restaurantName">맛집 이름</label>
-    <input type="text" class="form-control" id="restaurantName" placeholder="상호명을 입력하세요" name="restaurantName">
-  </div>
-  
-  
-  <div class="form-group">
-    <label for="restaurantInfo">맛집 정보</label>
-    <textarea class="form-control" rows="5" id="restaurantInfo" placeholder="정보를 입력하세요" name="restaurantInfo"></textarea>
-    <!-- <input type="text" class="form-control" id="restaurantInfo" placeholder="정보를 입력하세요"> -->
-  </div>
-  
-  <div class="form-group">
-    <label for="file">사진 올리기</label> 
-     <input type="file" name="file" id="upload" class="upload-name" >
-  </div>
-  
-								<!-- <p><font face="궁서체">안녕하세요</font>	</p>
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
 
-								<p><font face="궁서체">치킨을 먹어보겠슴다. </font>	</p>
+						<h3 class="section-heading"></h3>
+						<span class="post-entry-meta"> <img alt="user avatar"
+							class="post-entry-author pull-left"
+							src="${pageContext.request.contextPath}/resources/images/eating/user.png">
+							<span class="post-entry-author-name pull-left"> <sec:authorize
+									access="isAuthenticated()">
+									<sec:authentication property="principal.id" />님
+							</sec:authorize> <sec:authorize access="!isAuthenticated()">Guest
+							</sec:authorize>
 
 
-								<p>quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+						</span>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p> -->
-									<div align="center">
-									<button type="submit" class="btn btn-default" >등록하기</button>
-									</div>
-									<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}">
-								
-</form>
-							</div>
+						</span>
+						<div class="form-group " id="holder"
+							style="width: 738; height: 400;">
+							<%-- <img src="${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg" > --%>
+							<span id="holder" class="post-entry-cover"
+								style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
 						</div>
+						<form action="eating/insert">
+							<div>
+								<label for="restaurantAddr">지역별</label> <select
+									class="form-control">
+									<option disabled="disabled">지역을 고르세요</option>
+									<option value="SU">서울</option>
+									<option value="DJ">대전</option>
+									<option value="DG">대구</option>
+									<option value="BS">부산</option>
+									<option value="KW">강원도</option>
+								</select>
+							</div>
+
+							<div>
+								<label for="category">음식별</label> <select class="form-control">
+									<option disabled="disabled">음식종류를 고르세요</option>
+									<option value="KR">한식</option>
+									<option value="CN">중식</option>
+									<option value="EN">양식</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="restaurantName">맛집 이름</label> <input type="text"
+									class="form-control" id="restaurantName"
+									placeholder="상호명을 입력하세요">
+							</div>
+
+
+							<div class="form-group">
+								<label for="restaurantInfo">맛집 정보</label>
+								<textarea class="form-control" rows="5" id="restaurantInfo"
+									placeholder="정보를 입력하세요"></textarea>
+								<!-- <input type="text" class="form-control" id="restaurantInfo" placeholder="정보를 입력하세요"> -->
+							</div>
+
+							<div class="form-group">
+								<label for="file">사진 올리기</label> <input type="file" name="file"
+									id="upload" class="upload-name">
+							</div>
 					</div>
-					<!-- / NEWS MODAL CONTENT -->
+
+					<div class="form-group">
+						<label for="file">사진 올리기</label> <input type="file" name="file"
+							id="upload" class="upload-name">
+					</div>
+
+					<div align="center">
+						<button type="submit" class="btn btn-default">등록하기</button>
+
+						<div align="center">
+							<button type="submit" class="btn btn-default">등록하기</button>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}">
+
+						</form>
+
+					</div>
+					</form>
 				</div>
 			</div>
-			<!-- / NEWS MODAL -->
-
->>>>>>> 135353d56a1330e5764f83fccf5bf59dd6fa895c
-
+		</div>
+		<!-- / NEWS MODAL CONTENT -->
+	</div>
+	</div>
+	<!-- / NEWS MODAL -->
 
 	<div class="padding">
 		<div class="container">
@@ -1239,9 +1258,8 @@
 				<div class="col-md-6 col-sm-12 smartphone-fw">
 					<address>
 						<strong>Main office (HQ)</strong><br> consectetur adipisicing
-						elit 122<br> CF 55678 USA <br>
-						<br> Phone: +1-222-333-4444 <br> E-mail:
-						office@apart.com
+						elit 122<br> CF 55678 USA <br> <br> Phone:
+						+1-222-333-4444 <br> E-mail: office@apart.com
 					</address>
 				</div>
 				<div class="col-md-2 col-sm-12 smartphone-fw">
@@ -1275,7 +1293,6 @@
 			</div>
 		</div>
 	</footer>
-<<<<<<< HEAD
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script
@@ -1295,41 +1312,26 @@
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
 </body>
-=======
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
-	</body>
-	
+
 <script type="text/javascript">
+	var upload = document.getElementById('upload'), holder = document
+			.getElementById('holder');
 
-var upload = document.getElementById('upload'),
-holder = document.getElementById('holder');
+	upload.onchange = function(e) {
+		e.preventDefault();
 
-upload.onchange = function(e) {
-e.preventDefault();
+		var file = upload.files[0], reader = new FileReader();
+		reader.onload = function(event) {
+			var img = new Image();
+			img.width = 738;
+			img.height = 400;
+			img.src = event.target.result;
+			holder.innerHTML = '';
+			holder.appendChild(img);
+		};
+		reader.readAsDataURL(file);
 
-var file = upload.files[0],
-   reader = new FileReader();
-   reader.onload = function(event) {
-   var img = new Image();
-   img.width=738;
-   img.height=400;
-   img.src = event.target.result;
-   holder.innerHTML = '';
-   holder.appendChild(img);
-};
-reader.readAsDataURL(file);
-
-return false;
-};
-
+		return false;
+	};
 </script>
->>>>>>> 135353d56a1330e5764f83fccf5bf59dd6fa895c
 </html>
