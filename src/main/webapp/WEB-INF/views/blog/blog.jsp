@@ -101,6 +101,8 @@ $(function() {
 <!-- blogTitle을 위한 script -->
 <script>
 	$(function() {
+		checkForHash();
+		
 		$(".list-unstyled li a").click(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/blog/selectBlogTitle",
@@ -113,7 +115,7 @@ $(function() {
 					var str = "";
 					$.each(result, function(index, item) {
 						str += "<tr>";
-						str += "<td><a href='javascript:;'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
+						str += "<td><a href='javascript:;' id='${blogId}/"+item.contentCode+"'>" + item.blogTitle + "<input type='hidden' name='contentCode' value='"+item.contentCode+"'/></a></td>";
 						str += "</tr>";
 					});
 
@@ -128,7 +130,9 @@ $(function() {
 		});
 
 		function cont(){
-			$("#blogTitle tr td a").click(function() {				
+			$("#blogTitle tr td a").click(function() {
+				document.body.scrollTop = 0;
+				document.location.hash = "#"+$(this).attr("id");
 				$.ajax({
 					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
 					type : "post",
@@ -142,10 +146,11 @@ $(function() {
 						var c = "";
 						var str = "";
 						$.each(result, function(index, item) {
+							document.body.scrollTop = 0;
 							conCode = item.contentCode;
 							s = item.blogTitle;
 							c = item.blogCont;
-							str+="<table class='blogTop'><tr><td id='bcTitle'><h1>"+item.blogTitle+"</h1></td><td>";
+							str+="<table class='blogTop'><tr><td id='bcTitle'><h2>"+item.blogTitle+"</h2></td><td>";
 							
 							//수정, 삭제 권한 판단
 							str+="<sec:authorize access='isAuthenticated()'>";
@@ -159,11 +164,11 @@ $(function() {
 							str+="<span class='glyphicon glyphicon-time'></span>"+item.blogDate+"</p></td></tr></table>";
 							str+="<hr>"
 							
-							str+="<p class='lead'><div class='ct'>"+item.blogCont+"</div></p>";
-							
+							str+="<div class='ct' style='word-break:break-all;'>"+item.blogCont+"</div>";
 						});
 						$(".cont").html(str);
-						//$(".ct img").attr("width","80%");
+						
+						$(".ct img").attr("style","max-width:90%");
 
 						//수정하기
 						$("#udt").click(function(){
@@ -198,6 +203,14 @@ $(function() {
 					}
 				});
 			});
+		}
+		
+		function checkForHash() {
+		    if(document.location.hash){
+		        var HashLocationName = document.location.hash;
+		        HashLocationName = HashLocationName.replace("#","");
+		        $(".cont").html(HashLocationName)
+		    }
 		}
 		cont();
 	});
@@ -236,9 +249,9 @@ $(function() {
 					<div class="col-lg-6">
 						<form name="listForm" method="post" id="listForm">
 							<ul class="list-unstyled">
-								<li><a href="#" id="Travelge">Travelge</a></li>
-								<li><a href="#" id="Entertainment">Entertainment</a></li>
-								<li><a href="#" id="Food">Food</a></li>
+								<li><a href="javascript:;" id="Travelge">Travelge</a></li>
+								<li><a href="javascript:;" id="Entertainment">Entertainment</a></li>
+								<li><a href="javascript:;" id="Food">Food</a></li>
 							</ul>
 						</form>
 					</div>
@@ -254,7 +267,7 @@ $(function() {
 					</tr>
 					<c:forEach items="${blogAllTitle}" var="title">
 					<tr>
-						<td><a href='javascript:;'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
+						<td><a href='javascript:;' id='${blogId}/${title.contentCode}'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
 					</tr>
 					</c:forEach>
 				</table>

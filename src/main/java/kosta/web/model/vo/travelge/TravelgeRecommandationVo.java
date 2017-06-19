@@ -6,64 +6,65 @@ public class TravelgeRecommandationVo {
 	 */
 
 	private String contentCode;
-	private String recommadationTitle;
-	private String recommadationDescription;
+	private String recommandationTitle;
+	private String recommandationDescription;
 	private int readNum;
 	private String recommandationDate;
-
-
+	private int cnt;
 
 	public TravelgeRecommandationVo() {
 	}
 
-	public TravelgeRecommandationVo(String contentCode, String recommadationTitle, String recommadationDescription) {
+	public TravelgeRecommandationVo(String contentCode, String recommandationTitle, String recommandationDescription) {
 		super();
 		this.contentCode = contentCode;
-		this.recommadationTitle = recommadationTitle;
-		this.recommadationDescription = recommadationDescription;
+		this.recommandationTitle = recommandationTitle;
+		this.recommandationDescription = recommandationDescription;
 	}
 
-	public TravelgeRecommandationVo(String contentCode, String recommadationTitle, String recommadationDescription,
-			int readNum) {
+	public TravelgeRecommandationVo(String contentCode, String recommandationTitle, String recommandationDescription,
+			int readNum, String recommandationDate, int cnt) {
 		super();
 		this.contentCode = contentCode;
-		this.recommadationTitle = recommadationTitle;
-		this.recommadationDescription = recommadationDescription;
+		this.recommandationTitle = recommandationTitle;
+		this.recommandationDescription = recommandationDescription;
 		this.readNum = readNum;
+		this.recommandationDate = recommandationDate;
+		this.cnt = cnt;
 	}
 
-	public TravelgeRecommandationVo(String contentCode, String recommadationTitle, String recommadationDescription,
+	public TravelgeRecommandationVo(String contentCode, String recommandationTitle, String recommandationDescription,
 			int readNum, String recommandationDate) {
 		super();
 		this.contentCode = contentCode;
-		this.recommadationTitle = recommadationTitle;
-		this.recommadationDescription = recommadationDescription;
+		this.recommandationTitle = recommandationTitle;
+		this.recommandationDescription = recommandationDescription;
 		this.readNum = readNum;
 		this.recommandationDate = recommandationDate;
 	}
-	
+
+	public String getRecommandationTitle() {
+		return recommandationTitle;
+	}
+
+	public void setRecommandationTitle(String recommandationTitle) {
+		this.recommandationTitle = recommandationTitle;
+	}
+
+	public String getRecommandationDescription() {
+		return recommandationDescription;
+	}
+
+	public void setRecommandationDescription(String recommandationDescription) {
+		this.recommandationDescription = recommandationDescription;
+	}
+
 	public String getContentCode() {
 		return contentCode;
 	}
 
 	public void setContentCode(String contentCode) {
 		this.contentCode = contentCode;
-	}
-
-	public String getRecommadationTitle() {
-		return recommadationTitle;
-	}
-
-	public void setRecommadationTitle(String recommadationTitle) {
-		this.recommadationTitle = recommadationTitle;
-	}
-
-	public String getRecommadationDescription() {
-		return recommadationDescription;
-	}
-
-	public void setRecommadationDescription(String recommadationDescription) {
-		this.recommadationDescription = recommadationDescription;
 	}
 
 	public int getReadNum() {
@@ -73,12 +74,21 @@ public class TravelgeRecommandationVo {
 	public void setReadNum(int readNum) {
 		this.readNum = readNum;
 	}
+
 	public String getRecommandationDate() {
 		return recommandationDate;
 	}
 
 	public void setRecommandationDate(String recommandationDate) {
 		this.recommandationDate = recommandationDate;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 }

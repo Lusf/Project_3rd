@@ -161,46 +161,43 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
 				<li><a href="${pageContext.request.contextPath }/admin/index">
-				<i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
-				<li><a href="javascript:;" data-toggle="collapse" data-target="#travelge"> 
-				<i class="fa fa-fw fa-sitemap"></i>Travelge <i class="fa fa-fw fa-caret-down"></i></a>
+						<i class="fa fa-fw fa-dashboard"></i> Dashboard
+				</a></li>
+				<li><a href="javascript:;" data-toggle="collapse"
+					data-target="#travelge"> <i class="fa fa-fw fa-sitemap"></i>Travelge
+						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="travelge" class="collapse">
-						<li>	
-						<a href="javascript:;" data-toggle="collapse" data-target="#travelgeInfo">Info</a>
-						<ul id="travelgeInfo" class="collapse ">
-							<li>
-							<a href="${pageContext.request.contextPath}/admin/travelgeInfoSearch">Search</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/admin/travelgeInfoInsertForm">insert</a>
-							</li>
-							<li>
-								<a href="">Update</a>
-							</li>
-						</ul>
+
+						<li><a
+							href="${pageContext.request.contextPath}/admin/travelgeInfoSearch">조회</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/admin/travelgeInfoInsertForm">추가</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/admin/travelgeReSearch">추천조회</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/admin/travelgeReInsertForm">추천추가</a>
 						</li>
-						<li>
-						<a href="javascript:;" data-toggle="collapse" data-target="#travelgeRecommandation">Recommandation</a>
-						<ul id="travelgeRecommandation" class="collapse">
-							<li>
-								<a href="${pageContext.request.contextPath}/admin/travelgeRecommandation">Insert</a>
-							</li>
-							<li>
-								<a href="">Delete</a>
-							</li>
-							<li>
-								<a href="">Update</a>
-							</li>
-						</ul>
-						</li>
-						<%-- <li><a
+					</ul>
+				</li>
+				<!-- Entertainment nav -->
+				<li><a href="javascript:;" data-toggle="collapse"
+					data-target="#enter"> <i class="fa fa-fw fa-sitemap"></i>Entertainment
+						<i class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="enter" class="collapse">
+						<li><a href="${pageContext.request.contextPath}/admin/enter/enterInfoSearch">조회</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/travelgeInfoInsertForm">추가</a></li>
+					</ul>
+				</li>
+			</ul>
+			<%-- <li><a
 							href="${pageContext.request.contextPath}/admin/travelgeInfo">TravelgeInfo</a>
 						</li>
 						<li><a
 							href="${pageContext.request.contextPath}/admin/travelgeRecommandation">TravelgeRecommandation</a>
 						</li> --%>
-					</ul></li>
-				<!--                   
+			</ul>
+			</li>
+			<!--                   
  
 
                     <li>
@@ -238,7 +235,7 @@
                         <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li> -->
 
-				<%--                     <li class="active">
+			<%--                     <li class="active">
                         <a href="${pageContext.request.contextPath }/admin/blank-page"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>
                     <li>

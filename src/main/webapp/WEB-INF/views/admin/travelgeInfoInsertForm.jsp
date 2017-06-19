@@ -96,7 +96,7 @@
 									<label for="travelgeTheme" class="sr-only">travelgeTheme</label>
 									<select class="form-control" name="travelgeTheme"
 										id="travelgeTheme">
-										<option>테마선택</option>
+										<option disabled="disabled">테마선택</option>
 										<option value="TD">관광지</option>
 										<option value="LM">숙박</option>
 										<option value="CT">문화</option>
@@ -107,7 +107,7 @@
 									<label for="travelgeRegion" class="sr-only">travelgeRegion</label>
 									<select class="form-control" name="travelgeRegion"
 										id="travelgeRegion">
-										<option>지역선택</option>
+										<option disabled="disabled">지역선택</option>
 										<option value="SU">서울</option>
 										<option value="GG">경기/인천</option>
 										<option value="CB">충북/대전</option>

@@ -10,6 +10,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		/* var movieTabs = $( "#movie" ).tabs();
+		var tvTabs = $("#tv").tabs();
+		var concertTabs = $("#concert").tabs(); */
+		
+/* 		var tabs = $("#tag").tabs();
+		
+		tabs.on( "click", function(){
+			var lookCate = $(this);
+			alert(lookCate);
+		}); */
+		
+/* 		$("#tag").click(function(){
+			var lookCate = $(this);
+			alert(lookCate);
+		}) */
+		var lookCate = "movie";
+		
+		$("#movie").click(function(){
+			lookCate = "movie";			
+			
+		})
+		
+		$("#tv").click(function(){
+			lookCate ="tv";
+			
+		})
+		
+		$("#concert").click(function(){
+			lookCate="concert";
+
+		})
+		
+		$("#more").click(function(){
+			lookCate = "${pageContext.request.contextPath}/entertainment/new/enterList/"+lookCate;
+			location.href=lookCate;
+		})
+
+	});
+</script>
 
 </head>
 <body>
@@ -58,7 +101,7 @@
 										<option>멜로/로맨스</option>
 										<option>코미디</option>
 										<option>SF</option>
-										<option>애니매이션</option>
+										<option>애니메이션</option>
 										<option>스릴러/미스테리</option>
 										<option>액션</option>
 										<option>공포/호러</option>
@@ -95,22 +138,24 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<ul class="nav nav-tabs nav-center mb-30" role="tablist">
-						<li class="active"><a href="#movie" data-toggle="tab">Movie</a></li>
-						<li class=""><a href="#TV" data-toggle="tab">TV</a></li>
-						<li class="" ><a href="#concert" data-toggle="tab">Concert</a></li>
+					<ul class="nav nav-tabs nav-center mb-30" id="tag" role="tablist">
+						<li class="active"><a href="#movieSlide" data-toggle="tab" id="movie">Movie</a></li>
+						<li class=""><a href="#tvSlide" data-toggle="tab" id="tv">TV</a></li>
+						<li class="" ><a href="#concertSlide" data-toggle="tab" id="concert">Concert</a></li>
 						
 					</ul>
-					<ul class="nav nav-center mb-5" style="width:30px;">
-						<li><a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterList" >More</a></li>
-					</ul>
+ 					<ul class="nav nav-center mb-5" style="width:30px;">
+						<li><a class="btn" id="more" >More</a></li>
+				<%-- 		 href="${pageContext.request.contextPath}/entertainment/new/enterList/${lookCate}"
+				 --%>	</ul>
+										
 					
 					<!-- movie 이미지 슬라이드 -->
 					<div class="tab-content relative">
-	              		<div role="tabpanel" class="tab-pane fade in active" id="movie">
+	              		<div role="tabpanel" class="tab-pane fade in active" id="movieSlide">
 							  <div class="rooms-slider overflow-hidden">
 							        <div class="swiper-wrapper">
-							        
+
 							        <c:choose>
 										<c:when test="${empty lookInfoList}">
 											정보가 없습니다.
@@ -118,16 +163,16 @@
 										<c:otherwise>
 											<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
 												<c:if test="${infoList.lookCate eq 'movie'}">
-												
 												<div class="swiper-slide">
 												<!-- single offer box-->
 													<div class="offer-box">
 															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+<%-- 																<a href="${pageContext.request.contextPath}/entertainment/new/enterList/${infoList.lookCate}">  --%>
+																	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/${infoList.lookImg}" >																																												
 																</a>
 															</div>
-															<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
 																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
 															</a>
 													</div>
@@ -150,8 +195,9 @@
 						        <div class="rooms-pagination text-center"></div>
 							</div>
 	              		</div>
-
-	              		<div role="tabpanel" class="tab-pane fade" id="TV">
+						
+						<!-- tv 이미지 슬라이드 -->
+	              		<div role="tabpanel" class="tab-pane fade" id="tvSlide">
 							  <div class="rooms-slider overflow-hidden">
 							        <div class="swiper-wrapper">
 							        
@@ -167,11 +213,11 @@
 												<!-- single offer box-->
 													<div class="offer-box">
 															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
-																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/TV/${infoList.lookImg}" >																																												
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
+																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/tv/${infoList.lookImg}" >																																												
 																</a>
 															</div>
-															<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
 																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
 															</a>
 													</div>
@@ -195,7 +241,8 @@
 							</div>
 	              		</div>
 
-	              		<div role="tabpanel" class="tab-pane fade" id="concert">
+						<!-- concert 이미지 슬라이드 -->
+	              		<div role="tabpanel" class="tab-pane fade" id="concertSlide">
 							  <div class="rooms-slider overflow-hidden">
 							        <div class="swiper-wrapper">
 							        
@@ -211,11 +258,11 @@
 												<!-- single offer box-->
 													<div class="offer-box">
 															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
-																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/TV/${infoList.lookImg}" >																																												
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
+																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${infoList.lookImg}" >																																												
 																</a>
 															</div>
-															<a href="${pageContext.request.contextPath}/entertainment/new/enterList"> 
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
 																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
 															</a>
 													</div>

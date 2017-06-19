@@ -81,7 +81,7 @@
 								canvas : {
 									exitEditor : { /* desc:'빠져 나오시려면 shift+b를 누르세요.', hotKey: { shiftKey:true, keyCode:66 }, nextElement: document.getElementsByTagName('button')[0] */},
 									styles : {
-										color : "#123456", /* 기본 글자색 */
+										color : "#000000", /* 기본 글자색 */
 										fontFamily : "굴림", /* 기본 글자체 */
 										fontSize : "10pt", /* 기본 글자크기 */
 										backgroundColor : "#fff", /*기본 배경색 */

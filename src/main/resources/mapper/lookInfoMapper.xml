@@ -36,4 +36,11 @@
 	</where>
 </select>
 
+<!-- contentCode에 따른 정보 가져오기 -->
+<select id="searchByCode" resultMap="lookInfoSelectMap" parameterType="String">
+	select *
+	from look_info
+	where content_code=#{contentCode}
+</select>
+
 </mapper>

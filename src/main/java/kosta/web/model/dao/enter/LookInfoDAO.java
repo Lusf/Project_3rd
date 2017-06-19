@@ -27,7 +27,13 @@ public interface LookInfoDAO {
 	int lookInfoDelete(String contentCode);
 	
 	/**
-	 * 볼거리 검색(부분/전체)
+	 * 볼거리 검색(전체)
 	 * */
 	List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo);
+	
+	/**
+	 * 카테고리에 따른 볼거리 검색
+	 * */
+	LookInfoVo lookInfoSearchByCode(String contentCode);
+	
 }

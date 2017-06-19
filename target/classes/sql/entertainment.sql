@@ -17,6 +17,13 @@ insert into Look_Info values ('B07', 'lim2', '터널', '주디가 좋아2', '감독누구2'
 insert into Look_Info values ('B08', 'lim2', '판타스틱', '주디가 좋아3', '감독누구3', '판타스틱.jpg', '애니매이션3', '2017/06/11', '2017/06/13', '판교', 'tv' );
 insert into Look_Info values ('B09', 'lim2', '피고인', '주디가 좋아4', '감독누구4', '피고인.jpg', '애니매이션4', '2017/06/11', '2017/06/13', '판교', 'tv' );
 
+
+insert into Look_Info values ('B10', 'lim2', '거미콘서트', '주디가 좋아1', '감독누구1', '거미.jpg', '발라드', '2017/06/11', '2017/06/19', '판교', 'concert' );
+insert into Look_Info values ('B11', 'lim2', '나윤권콘서트', '주디가 좋아2', '감독누구2', '나윤권콘서트.jpg', '발라드', '2017/06/11', '2017/06/13', '판교', 'concert' );
+insert into Look_Info values ('B12', 'lim2', '볼빨간사춘기', '주디가 좋아3', '감독누구3', '볼빨간사춘기.jpg', '발라드', '2017/06/11', '2017/06/13', '판교', 'concert' );
+insert into Look_Info values ('B13', 'lim2', '커피소년', '주디가 좋아4', '감독누구4', '카페투어콘서트.jpg', '발라드', '2017/06/11', '2017/06/13', '판교', 'concert' );
+insert into Look_Info values ('B14', 'lim2', '악동뮤지션', '주디가 좋아5', '감독누구5', '악동뮤지션.jpg', '발라드', '2017/06/11', '2017/06/13', '판교', 'concert' );
+
 delete from look_info where id='lim2';
 
 

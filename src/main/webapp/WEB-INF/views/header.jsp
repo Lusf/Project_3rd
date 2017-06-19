@@ -31,7 +31,7 @@ function logout() {
 
 			<div class="collapse navbar-collapse js-navbar-collapse row">
 				<ul class="nav navbar-nav">
-					<li class="header-link"><a href="newdesign">home</a></li>
+					<li class="header-link"><a href="#">home</a></li>
 					<li class="header-link"><a href="#">메뉴1</a></li>
 					<li class="header-link"><a href="#">메뉴2</a></li>
 					<li class="header-link"><a href="#">메뉴3</a></li>
@@ -64,10 +64,10 @@ function logout() {
 				</ul>
 
 				<div class="navbar-buttons">
-					<sec:authorize access="isAuthenticated()"><p><p>
-						<a><sec:authentication property="principal.id" />님 환영합니다.</a>
-						<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-						<a href="javascript:logout();">로그아웃</a>
+					<sec:authorize access="isAuthenticated()">
+							<a class="btn btn-link btn-sm mt-10" style="cursor: default;"><sec:authentication property="principal.id" />님</a>
+							<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+							<a href="javascript:logout();" class="btn btn-primary btn-sm mt-10">로그아웃</a>
 					</sec:authorize>
 					<sec:authorize access="!isAuthenticated()">
 						<a href="${pageContext.request.contextPath }/user/loginForm" class="btn btn-link btn-sm mt-10">Login</a>

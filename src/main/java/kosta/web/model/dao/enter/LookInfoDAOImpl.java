@@ -37,4 +37,12 @@ public class LookInfoDAOImpl implements LookInfoDAO {
 		return sqlSession.selectList("lookInfoMapper.searchList", lookInfoVo);
 	}
 
+	@Override
+	public LookInfoVo lookInfoSearchByCode(String contentCode) {
+		
+		return sqlSession.selectOne("lookInfoMapper.searchByCode", contentCode);
+	}
+	
+	
+
 }

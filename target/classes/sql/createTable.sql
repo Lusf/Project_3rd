@@ -40,6 +40,7 @@ create table blog(
 select blog_title, content_code from BLOG where id='a' order by blog_date;
 select * from BLOG where id='a' order by blog_date;
 truncate table blog;
+SELECT * FROM Look_Info where look_genre LIKE '%¿Ã%' or look_title LIKE '%¿Ã%';
 
 insert into blog values('a','1','Entertainment','ba02a2','∫º∞≈∏Æ¡¶∏Ò',sysdate,'πª ∫º±Ó..');
 insert into blog values('a','2','Food','ca02a2','∏‘∞≈∏Æ¡¶∏Ò',sysdate,'π‰πŸπ‰πŸπ‰πŸπŸπ‰');
