@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.web.model.service.enter.EnterService;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("entertainment/")
@@ -161,4 +162,82 @@ public class EnterController {
    
    //별점등록하기
    //@RequestMapping("")
+   
+   
+   //---------------------------
+   /** admin 페이지 */
+   
+   @RequestMapping("enterInfoSearch")
+   public ModelAndView enterInfoSearch(String keyField, String keyWord, String currentPage) {
+		int spage = 1;
+		String page = currentPage;
+
+		if (page != null)
+			spage = Integer.parseInt(page);
+		ModelAndView modelAndView = new ModelAndView();
+		LookInfoVo lookInfoVo = new LookInfoVo();
+		
+		if (keyField.equals("all")) {
+			if (keyWord == null) {
+				lookInfoVo = null;
+			} else {
+				lookInfoVo.setContentCode(keyWord);
+				lookInfoVo.setLookCate(keyWord);
+				lookInfoVo.setLookTitle(keyWord);
+				lookInfoVo.setLookStory(keyWord);
+				lookInfoVo.setLookMaker(keyWord);
+				lookInfoVo.setLookGenre(keyWord);
+				lookInfoVo.setLookStartDate(keyWord);
+				lookInfoVo.setLookLastDate(keyWord);
+				lookInfoVo.setLookLoca(keyWord);
+			}
+		}
+		if (keyField.equals("contentCode"))
+			lookInfoVo.setContentCode(keyWord);
+		if (keyField.equals("lookCate"))
+			lookInfoVo.setLookCate(keyWord);
+		if (keyField.equals("lookTitle"))
+			lookInfoVo.setLookTitle(keyWord);
+		if (keyField.equals("lookStory"))
+			lookInfoVo.setLookStory(keyWord);
+		if (keyField.equals("lookMaker"))
+			lookInfoVo.setLookMaker(keyWord);
+		if (keyField.equals("lookGenre"))
+			lookInfoVo.setLookGenre(keyWord);
+		if (keyField.equals("lookStartDate"))
+			lookInfoVo.setLookStartDate(keyWord);
+		if (keyField.equals("lookLastDate"))
+			lookInfoVo.setLookLastDate(keyWord);
+		if (keyField.equals("lookLoca"))
+			lookInfoVo.setLookLoca(keyWord);
+
+		// 한 화면에 10개의 게시글을 보여지게함
+		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
+		List<LookInfoVo> list = enterService.enterInfoSearch(lookInfoVo, spage);
+		int listCount = 0;
+		if (list != null && list.size() != 0) {
+			listCount = list.get(0).getCnt();
+		}
+		// 전체 페이지 수
+		int maxPage = (int) (listCount / 10.0 + 0.9);
+		// 시작 페이지 번호
+		int startPage = (int) (spage / 5.0 + 0.8) * 5 - 4;
+		// 마지막 페이지 번호
+		int endPage = startPage + 9;
+		if (endPage > maxPage)
+			endPage = maxPage;
+
+		// 4개 페이지번호 저장
+		modelAndView.addObject("spage", spage);
+		modelAndView.addObject("maxPage", maxPage);
+		modelAndView.addObject("startPage", startPage);
+		modelAndView.addObject("endPage", endPage);
+		modelAndView.addObject("listCount", listCount);
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("keyField", keyField);
+		modelAndView.addObject("keyWord", keyWord);
+		modelAndView.setViewName("admin/enter/enterInfoSearch");
+		
+		return modelAndView;
+	};
 }

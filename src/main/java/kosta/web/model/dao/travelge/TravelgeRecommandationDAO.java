@@ -20,4 +20,6 @@ public interface TravelgeRecommandationDAO {
 	int travelgeRecommandDelete(String contentCode);
 	
 	List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode);
+	
+	List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage);
 }

@@ -1,10 +1,12 @@
 package kosta.web.model.service.enter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosta.web.model.dao.enter.EnterAdminInfoDAO;
 import kosta.web.model.dao.enter.LGBoardCommentDAO;
 import kosta.web.model.dao.enter.LookAvgScoreDAO;
 import kosta.web.model.dao.enter.LookInfoDAO;
@@ -13,6 +15,7 @@ import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.enter.LGBoardCommentVo;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Service
 public class EnterServiceImpl implements EnterService {
@@ -28,6 +31,9 @@ public class EnterServiceImpl implements EnterService {
 	
 	@Autowired
 	LookAvgScoreDAO lookAvgScoreDAO;
+	
+	@Autowired
+	EnterAdminInfoDAO enterAdminInfoDAO;
 	
 	
 	@Override
@@ -119,10 +125,27 @@ public class EnterServiceImpl implements EnterService {
 		return lookInfoDAO.lookInfoSearch(lookInfoVo);
 	}
 
+
 	@Override
 	public LookInfoVo lookInfoSearchByCode(String contentCode) {
 		
 		return lookInfoDAO.lookInfoSearchByCode(contentCode);
 	}
 
+
+
+	/** enter admin search */
+	@Override
+	public List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage) {
+		if (currentPage == 1) {
+			currentPage = 0;
+		} else {
+			currentPage = (currentPage * 10) - 10;
+		}
+
+		List<LookInfoVo> list = enterAdminInfoDAO.enterInfoSearch(lookInfoVo, currentPage);
+		return list;
+	}
+
 }
+

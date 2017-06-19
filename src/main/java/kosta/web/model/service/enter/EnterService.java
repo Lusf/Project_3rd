@@ -94,6 +94,10 @@ public interface EnterService {
 	 * */
 	LookInfoVo lookInfoSearchByCode(String contentCode);
 	
+	/** enter admin search */
+	List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage);
+	
+	
 	/*
 	 * *************************************************
 	 * **°ü¸®ÀÚ
