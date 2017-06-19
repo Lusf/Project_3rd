@@ -2,6 +2,7 @@ package kosta.web.model.dao.travelge;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,12 @@ public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO 
 	public List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode) {
 		
 		return sqlSession.selectList("travelgeRecommandationMapper.travelgeRecommandSearch", contentCode);
+	}
+
+	@Override
+	public List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage) {
+		
+		return sqlSession.selectList("travelgeRecommandationMapper.travelgeRecommandSearch2",contentCode, new RowBounds(currentPage, 10));
 	}
 
 }

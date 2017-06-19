@@ -60,7 +60,7 @@
 							<div class="panel-body"><jsp:include
 								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
 						</div>
-							<input type="hidden" name="contentCode" value="A2RECODE">
+							<input type="hidden" name="contentCode" value="${contentCode }">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}"> 
 							<div style="text-align: center; margin-bottom: 3em">

@@ -215,4 +215,15 @@ public class TravelgeServiceImpl implements TravelgeService {
 		return list;
 	}
 
+	@Override
+	public List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage) {
+		if (currentPage == 1) {
+			currentPage = 0;
+		} else {
+			currentPage = (currentPage * 10) - 10;
+		}
+		
+		return travelgeRecommandationDAO.travelgeRecommandSearch2(contentCode, currentPage);
+	}
+
 }

@@ -36,6 +36,7 @@
 			<div id="map" style="width: 500px; height: 400px;"></div>
 
 			<script>
+			
 			var container = document.getElementById('map');
 			var options = {
 				center : new daum.maps.LatLng${info.travelgeCoordinates},
@@ -99,4 +100,3 @@
 </body>
 </html>
 
-</html>
