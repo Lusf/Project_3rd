@@ -47,7 +47,7 @@
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
  		// 마커가 표시될 위치입니다 
-		var markerPosition  =new daum.maps.LatLng(${info.x}, ${info.y});
+		var markerPosition  =new daum.maps.LatLng(${info.x}, ${info.y}); 
 
 		// 마커를 생성합니다
 		var marker = new daum.maps.Marker({

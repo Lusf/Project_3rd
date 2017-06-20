@@ -7,7 +7,6 @@
 			category contentCode -->
 		content_code, restaurant_name, restaurant_info, category, category2, restaurant_address, restaurant_Coordinates, restaurant_pic, id
 	</sql>
-<<<<<<< HEAD
 <!-- 
   content_code varchar2(30) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
@@ -28,16 +27,8 @@
 		<result column="CATEGORY2" property="category2" />
 		<result column="restaurant_address" property="restaurantAddr" />
 		<result column="restaurant_Coordinates" property="restaurantCoordinates" />
-=======
-
-<resultMap type="kosta.web.model.vo.restaurant.RestaurentVo" id="restaurentSelectMap">
-		<id column="content_CODE" property="contentCode" />
-		<result column="RESTAURANT_NAME" property="restaurantName" />
-		<result column="restaurant_address" property="restaurantAddr" />
-		<result column="CATEGORY" property="category" />
-		<result column="restaurant_info" property="restaurantInfo" />
->>>>>>> f8ffb4c9319052bccb3e477c9326efa73c0d2510
 		<result column="restaurant_pic" property="restaurantPic" />
+		<result column="id" property="id"/>
 		</resultMap> 
 <!-- content_code varchar2(30) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
@@ -51,7 +42,6 @@
 
 
 	<!-- 맛집정보 등록하기 -->
-<<<<<<< HEAD
 	<insert id="insertRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
 		insert into Restaurant
 		(content_code, restaurant_name, restaurant_info, category, category2, restaurant_address, restaurant_Coordinates, restaurant_pic, id)
@@ -61,28 +51,14 @@
 	<!-- 맛집정보 확인하기 -->
 	<select id="selectByRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo"	resultMap="restaurantSelectMap">
 		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY , CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES , RESTAURANT_PIC , ID
-=======
-	<insert id="insertRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurentVo">
-		insert into Restaurant
-		(content_code,restaurant_name,restaurant_address,category,restaurant_info,restaurant_pic,id)
-		values (#{contentCode},#{restaurantName}, #{restaurantAddr}, #{category}, #{restaurantInfo},#{restaurantPic},#{id})
-	</insert>
-
-	<!-- 맛집정보 확인하기 -->
-	<select id="selectByRestaurant" parameterType="RestaurentVo"	resultMap="restaurentSelectMap">
-		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_ADDRESS , CATEGORY, RESTAURANT_INFO, RESTAURANT_PIC , ID
->>>>>>> f8ffb4c9319052bccb3e477c9326efa73c0d2510
 		from Restaurant
 <!-- 		<where>
 				RESTAURANT_NAME =#{restaurantName}
 				RESTAURANT_ADDRESS
 				RESTAURANT_INFO
 				CONTENT_CODE = #{_parameter}
-			
 		</where> -->
 	</select>
-	
-	
 	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
 	<!-- 맛집 수정하기 -->
 	<update id="updateRestaurant" >
@@ -102,9 +78,4 @@
 	<delete id="deleteRestaurant" parameterType="String">
 		delete Restaurant_INFO where content_CODE=#{_parameter}
 	</delete>
-	
-	
-	
-	
 </mapper>
-

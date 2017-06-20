@@ -148,8 +148,8 @@ create table restaurant(
   restaurant_info varchar2(2000),
   category varchar2(50),
   category2 varchar2(50),
-  restaurant_address varchar2(100),
-  restaurant_Coordinates varchar2(50),
+  restaurant_address varchar2(50),
+  restaurant_coordinates varchar2(50),
   restaurant_pic varchar2(50),
   id constraint id_restaurant_fk references usertable(id)
 );

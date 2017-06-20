@@ -28,6 +28,7 @@
 		<result column="restaurant_address" property="restaurantAddr" />
 		<result column="restaurant_Coordinates" property="restaurantCoordinates" />
 		<result column="restaurant_pic" property="restaurantPic" />
+		<result column="id" property="id"/>
 		</resultMap> 
 <!-- content_code varchar2(30) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
@@ -56,11 +57,8 @@
 				RESTAURANT_ADDRESS
 				RESTAURANT_INFO
 				CONTENT_CODE = #{_parameter}
-			
 		</where> -->
 	</select>
-	
-	
 	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
 	<!-- 맛집 수정하기 -->
 	<update id="updateRestaurant" >
@@ -80,9 +78,4 @@
 	<delete id="deleteRestaurant" parameterType="String">
 		delete Restaurant_INFO where content_CODE=#{_parameter}
 	</delete>
-	
-	
-	
-	
 </mapper>
-
