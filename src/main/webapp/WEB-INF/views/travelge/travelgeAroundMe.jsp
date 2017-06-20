@@ -81,8 +81,38 @@ $(document).ready(function(){
 		var locPosition = new daum.maps.LatLng(33.450701, 126.570667), message = 'geolocation을 사용할수 없어요..'
 
 		displayMarker(locPosition, message);
-	}
-	
+	} 
+	// 이동 이벤트 등록
+		daum.maps.event.addListener(map, 'dragend', function() {        
+	    
+	    // 지도 중심좌표를 얻어옵니다 
+	    var latlng = map.getCenter(); 
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/travelge/searchAroundMe",
+			type : "post",
+			dataType : "json",
+			data : "lat=" + latlng.getLat() + "&lon="
+					+ latlng.getLng(),
+			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader(header, token)
+			},
+			success : function(result) {
+				$.each(result, function(index, item) {
+					createMarker(index, item);
+					/* alert(item+"는"+index); */
+				})
+
+			},
+			error : function(err) {
+				alert("오류 발생 : " + err);
+			}
+		});
+		
+		map.setCenter(latlng);
+	    
+	});
+		
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 	
@@ -121,8 +151,13 @@ $(document).ready(function(){
 	}	
 	
 })
-
+ 
 </script>
+<style type="text/css">
+#map{
+top: 1.4em;
+}
+</style>
 </head>
 <body>
 
@@ -131,7 +166,6 @@ $(document).ready(function(){
 
 	<script>
 
-		
 
 /* 		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 		function displayMarker(locPosition, message) {
@@ -180,4 +214,3 @@ $(document).ready(function(){
 </body>
 </html>
 
-</html>

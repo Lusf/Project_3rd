@@ -44,39 +44,37 @@
 						</ol>
 					</div>
 					<div class="col-lg-12">
-						<form name="tx_editor_form" id="tx_editor_form"
-							action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert"
+						<form name="tx_editor_form" id="tx_editor_form" action="${pageContext.request.contextPath }/travelge/travelgeRecommandUpdate"
 							method="post" accept-charset="utf-8">
-													<div class="panel panel-default">
-							                            <div class="form-group">
-								
-									
-									                            <div class="form-group input-group">
-                                <span class="input-group-addon">제목</span>
-                                <input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommadationTitle">
-                            </div>
-									
+							<div class="panel panel-default">
+								<div class="form-group">
+									<div class="form-group input-group">
+										<span class="input-group-addon">제목</span> <input type="text"
+											class="form-control" placeholder="제목을 작성해주세요"
+											name="recommandationTitle" value="${vo.recommandationTitle }">
+									</div>
+
 								</div>
-							<div class="panel-body"><jsp:include
-								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
-						</div>
-							<input type="hidden" name="contentCode" value="${contentCode }">
+								<div class="panel-body"><jsp:include
+										page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
+							</div>
+							<input type="hidden" name="contentCode" value="${vo.contentCode }">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}"> 
+								value="${_csrf.token}">
 							<div style="text-align: center; margin-bottom: 3em">
-							<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
-							<button type="reset" class="btn btn-default">다시쓰기</button>
-							</div>	
-							
-								
+								<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
+								<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>
+
+
 						</form>
 
 
 
 						<script type="text/javascript">
-							if ('${board!=null}' == 'true')
+							if ('${vo!=null}' == 'true')
 								Editor.modify({
-									'content' : '${board.board_content}'
+									'content' : '${vo.recommandationDescription}'
 								});
 
 							var config = {
@@ -158,7 +156,7 @@
 								// 본문 내용을 필드를 생성하여 값을 할당하는 부분
 								var textarea = document
 										.createElement('textarea');
-								textarea.name = 'recommadationDescription';
+								textarea.name = 'recommandationDescription';
 								textarea.value = content;
 								textarea.style.display = "none";
 								form.createField(textarea);
