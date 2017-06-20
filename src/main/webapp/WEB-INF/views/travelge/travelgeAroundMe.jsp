@@ -87,7 +87,7 @@ $(document).ready(function(){
 	    
 	    // 지도 중심좌표를 얻어옵니다 
 	    var latlng = map.getCenter(); 
-		
+	  
 		$.ajax({
 			url : "${pageContext.request.contextPath}/travelge/searchAroundMe",
 			type : "post",
@@ -99,6 +99,7 @@ $(document).ready(function(){
 			},
 			success : function(result) {
 				$.each(result, function(index, item) {
+					
 					createMarker(index, item);
 					/* alert(item+"는"+index); */
 				})
@@ -113,6 +114,17 @@ $(document).ready(function(){
 	    
 	});
 		
+/* 	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다 마커를 배열로 안찍고 있어서 못씀
+	function setMarkers(map) {
+		for (var i = 0; i < markers.length; i++) {
+			 markers[i].setMap(map);
+			}            
+		}
+	// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+	function hideMarkers() {
+	    setMarkers(null);    
+	}	 */	
+	
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 	

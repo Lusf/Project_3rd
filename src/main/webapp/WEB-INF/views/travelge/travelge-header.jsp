@@ -22,7 +22,7 @@
 			<div class="navbar-header">
 				<a href="${pageContext.request.contextPath}/"
 					class="header-logo-small mt-15"><img
-					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png"
 					alt="store logo"></a>
 				<button class="navbar-toggle" type="button" data-toggle="collapse"
 					data-target=".js-navbar-collapse">
