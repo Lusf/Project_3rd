@@ -1,5 +1,6 @@
 package kosta.web.controller.enter;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.enter.EnterService;
@@ -240,6 +242,49 @@ public class EnterController {
 		modelAndView.setViewName("admin/enter/enterInfoSearch");
 
 		return modelAndView;
+	}
+	
+	@RequestMapping("enterInfoInsert")
+	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+
+		MultipartFile file = lookInfoVo.getFile();
+
+		if (file.getSize() > 0) {
+			lookInfoVo.setLookImg(file.getOriginalFilename());
+		}
+
+		int result = enterService.enterInfoInsert(lookInfoVo);
+		if (result == 0) {
+			throw new Exception();
+		}
+
+		// 弃歹 积己
+		File mainFolder = new File(path);
+		if (!mainFolder.exists()) {
+			mainFolder.mkdir();
+		}
+		File subFolder = new File(path + "/" + lookInfoVo.getContentCode());
+		if (!subFolder.exists()) {
+			subFolder.mkdir();
+		}
+		File photosFolder = new File(path + "/" + lookInfoVo.getContentCode() + "/photos");
+		if (!photosFolder.exists()) {
+			photosFolder.mkdir();
+		}
+		// -----弃歹 积己 场
+		if (file.getSize() > 0) {
+
+			try {
+				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
+						+ lookInfoVo.getLookImg()));
+
+			} catch (Exception e) {
+			}
+		}
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping("enterInfoDelete")

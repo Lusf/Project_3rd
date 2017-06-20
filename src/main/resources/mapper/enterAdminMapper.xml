@@ -4,7 +4,6 @@
 
 	<resultMap type="LookInfoVo" id="enterSelectMap">
 		<id column="content_code" property="contentCode"/>
-		<result column="id" property="id"/>
 		<result column="look_title" property="lookTitle"/>
 		<result column="look_story" property="lookStory"/>
 		<result column="look_maker" property="lookMaker"/>
@@ -15,6 +14,7 @@
 		<result column="look_loca" property="lookLoca"/>
 		<result column="look_cate" property="lookCate"/>
 		<result column="look_age" property="lookAge"/>
+		<result column="look_coordinates" property="lookCoordinates"/>
 		<result column="cnt" property="cnt"/>
 	</resultMap>
 
@@ -37,6 +37,12 @@
 	) T1) order by content_code
 	</select>
 	
+	<!-- 추가 -->
+	<insert id="enterInfoInsert" parameterType="LookInfoVo">
+		insert into look_info 
+		values(#{contentCode},#{lookTitle},#{lookStory},#{lookMaker},#{lookImg},#{lookGenre},#{lookStartDate},
+			#{lookLastDate},#{lookLoca},#{lookCate},#{lookAge},#{lookCoordinates})
+	</insert>
 	
 	<!-- 삭제 -->
 	<delete id="enterInfoDelete" parameterType="string">

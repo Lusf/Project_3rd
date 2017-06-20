@@ -1,7 +1,8 @@
 package kosta.web.model.service.enter;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,28 @@ import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Service
 public class EnterServiceImpl implements EnterService {
+	
+	Map<String, String> map = new HashMap<>();
+	
+	public EnterServiceImpl() {
+		map.put("M", "영화");
+		map.put("T", "TV");
+		map.put("C", "공연/연극");
 
+		map.put("1", "멜로/로맨스");
+		map.put("2", "코미디");
+		map.put("3", "SF");
+		map.put("4", "애니메이션");
+		map.put("5", "스릴러/미스테리");
+		map.put("6", "액션");
+		map.put("7", "공포/호러");
+		
+		map.put("A", "전체");
+		map.put("B", "12세");
+		map.put("C", "15세");
+		map.put("D", "청불");
+	}
+	
 	@Autowired
 	LookInfoDAO lookInfoDAO;
 	
@@ -152,5 +174,43 @@ public class EnterServiceImpl implements EnterService {
 		return enterAdminInfoDAO.enterInfoDelete(contentCode);
 	}
 
+	@Override
+	public int enterInfoInsert(LookInfoVo lookInfoVo) {
+		String contentCode = null;
+
+		// 컨텐츠코드 난수
+		int ran = (int) (Math.random() * 10000 + 1);
+
+		// 컨텐츠코드 생성
+		contentCode = "B"+lookInfoVo.getLookCate()+lookInfoVo.getLookGenre()+lookInfoVo.getLookAge() + ran;
+
+		lookInfoVo.setContentCode(contentCode);
+
+		// 컨텐츠 코드 중복 체크
+		int i = 0;
+		for (i = 0; i < enterAdminInfoDAO.enterInfoSearch(null, 0).size(); i++) {
+			if (enterAdminInfoDAO.enterInfoSearch(lookInfoVo, 0).size() == 1) {
+				ran = (int) (Math.random() * 10000 + 1);
+				contentCode = "B"+lookInfoVo.getLookCate()+lookInfoVo.getLookGenre()+lookInfoVo.getLookAge() + ran;
+			} else {
+				break;
+			}
+		}
+
+		// 카테고리 한글로 변환
+		lookInfoVo.setLookCate(map.get(lookInfoVo.getLookCate()));
+
+		// 장르 한글로 변환
+		lookInfoVo.setLookGenre(map.get(lookInfoVo.getLookGenre()));
+		
+		// 연령등급 한글로 변환
+		lookInfoVo.setLookAge(map.get(lookInfoVo.getLookAge()));
+		
+		System.out.println(lookInfoVo.getLookAge()+","+lookInfoVo.getLookCate()+","+lookInfoVo.getLookGenre());
+		System.out.println(lookInfoVo.getLookLastDate()+","+lookInfoVo.getLookMaker()+","+lookInfoVo.getLookStartDate());
+		System.out.println(lookInfoVo.getLookStory()+","+lookInfoVo.getLookTitle());
+		System.out.println(lookInfoVo.getContentCode()+","+lookInfoVo.getLookCoordinates()+","+lookInfoVo.getLookImg());
+		return enterAdminInfoDAO.enterInfoInsert(lookInfoVo);
+	}
 }
 
