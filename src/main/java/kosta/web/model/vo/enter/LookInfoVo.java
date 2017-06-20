@@ -21,6 +21,7 @@ public class LookInfoVo {
 	private String lookLastDate;
 	private String lookLoca;
 	private String lookCate;
+	private String lookAge;
 	
 	private AvgScoreVo avgScoreVo;
 	
@@ -38,7 +39,7 @@ public class LookInfoVo {
 	public LookInfoVo(){}
 	
 	public LookInfoVo(String contentCode, String id, String lookTitle, String lookStory, String lookMaker, String lookImg, String lookGenre,
-			String lookStartDate, String lookLastDate, String lookLoca, String lookCate) {
+			String lookStartDate, String lookLastDate, String lookLoca, String lookCate, String lookAge) {
 		super();
 		this.contentCode = contentCode;
 		this.id = id;
@@ -51,6 +52,7 @@ public class LookInfoVo {
 		this.lookLastDate = lookLastDate;
 		this.lookLoca = lookLoca;
 		this.lookCate = lookCate;
+		this.lookAge = lookAge;
 	}
 		
 	public String getContentCode() {
@@ -120,6 +122,12 @@ public class LookInfoVo {
 	}
 	public void setLookCate(String lookCate) {
 		this.lookCate = lookCate;
+	}
+	public String getLookAge() {
+		return lookAge;
+	}
+	public void setLookAge(String lookAge) {
+		this.lookAge = lookAge;
 	}
 
 	public int getCnt() {

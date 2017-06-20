@@ -147,5 +147,10 @@ public class EnterServiceImpl implements EnterService {
 		return list;
 	}
 
+	@Override
+	public int enterInfoDelete(String contentCode) {
+		return enterAdminInfoDAO.enterInfoDelete(contentCode);
+	}
+
 }
 

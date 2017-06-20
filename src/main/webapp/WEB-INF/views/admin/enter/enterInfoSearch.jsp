@@ -82,6 +82,7 @@
 										<option value="lookStartDate">StartDate</option>
 										<option value="lookLastDate">LastDate</option>
 										<option value="lookLoca">Location</option>
+										<option value="lookAge">Age</option>
 									</select>
 								</div>
 
@@ -117,6 +118,7 @@
 												<th>LASTDATE</th>
 												<th>LOCATION</th>
 												<th>CATEGORY</th>
+												<th>AGE</th>
 												<th>DELETE</th>
 											</tr>
 										</THEAD>
@@ -127,9 +129,9 @@
 													data-target="#${state.count}">${list.contentCode }</a>
 													<div id="${state.count}" class="collapse">
 														<a
-															href="${pageContext.request.contextPath }/travelge/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
+															href="${pageContext.request.contextPath }/entertainment/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
 														<a
-															href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
+															href="${pageContext.request.contextPath }/entertainment/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
 													</div></td>
 												<td>${list.lookTitle }</td>
 												<td>${list.lookStory }</td>
@@ -139,8 +141,9 @@
 												<td>${list.lookLastDate }</td>
 												<td>${list.lookLoca }</td>
 												<td>${list.lookCate }</td>
+												<td>${list.lookAge }</td>
 												<td><a
-													href="${pageContext.request.contextPath }/travelge/travelgeInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
+													href="${pageContext.request.contextPath }/entertainment/enterInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
 
 											</Tr>
 

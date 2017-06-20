@@ -189,7 +189,8 @@ create table look_info(
   look_startdate varchar2(20),
   look_lastdate varchar2(20),
   look_loca varchar2(20),
-  look_cate varchar2(20)
+  look_cate varchar2(20),
+  look_age varchar2(20)
 );
 
 

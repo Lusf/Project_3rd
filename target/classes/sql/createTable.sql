@@ -145,11 +145,9 @@ select * from usertable;
 create table restaurant(
   content_code varchar2(30) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
-  restaurant_info varchar2(2000),
+  restaurant_address varchar2(50),
   category varchar2(50),
-  category2 varchar2(50),
-  restaurant_address varchar2(100),
-  restaurant_Coordinates varchar2(50),
+  restaurant_info varchar2(2000),
   restaurant_pic varchar2(50),
   id constraint id_restaurant_fk references usertable(id)
 );
@@ -191,7 +189,8 @@ create table look_info(
   look_startdate varchar2(20),
   look_lastdate varchar2(20),
   look_loca varchar2(20),
-  look_cate varchar2(20)
+  look_cate varchar2(20),
+  look_age varchar2(20)
 );
 
 
