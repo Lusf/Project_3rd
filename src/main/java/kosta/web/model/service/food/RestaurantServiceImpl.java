@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kosta.web.model.dao.food.RestaurantDAO;
-import kosta.web.model.vo.restaurant.RestaurentVo;
+import kosta.web.model.vo.restaurant.RestaurantVo;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -36,38 +36,38 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 	
 	@Autowired
-	private RestaurantDAO restaurentInfoDAO;
+	private RestaurantDAO restaurantInfoDAO;
 	
 	@Override
-	public int RestaurantInsert(RestaurentVo restaurentVo) {
-		
+	public int RestaurantInsert(RestaurantVo restaurantVo) {
+		System.out.println(restaurantVo.getId());
 		String contentCode = null;
 		
 		// 牧刨明内靛 抄荐
 		int ran = (int) (Math.random() * 10000 + 1);
 
 		// 牧刨明内靛 积己
-		contentCode = "C" + restaurentVo.getRestaurantAddr() + restaurentVo.getCategory() + ran;
+		contentCode = "C" + restaurantVo.getCategory() + restaurantVo.getCategory2() + ran;
 		System.out.println(contentCode);
 
-		restaurentVo.setContentCode(contentCode);
+		restaurantVo.setContentCode(contentCode);
 		
 		// 牧刨明 内靛 吝汗 眉农
 		int i = 0;
-		for (i = 0; i < restaurentInfoDAO.RestaurantSearch(null, 0).size(); i++) {
-			if (restaurentInfoDAO.RestaurantSearch(restaurentVo, 0).size() == 1) {
+		for (i = 0; i < restaurantInfoDAO.RestaurantSearch(null, 0).size(); i++) {
+			if (restaurantInfoDAO.RestaurantSearch(restaurantVo, 0).size() == 1) {
 				ran = (int) (Math.random() * 10000 + 1);
-				contentCode = "C" + restaurentVo.getRestaurantAddr() + restaurentVo.getCategory() + ran;
+				contentCode = "C" + restaurantVo.getCategory() + restaurantVo.getCategory2() + ran;
 			}else{
 				break;
 			};
 		}
 		
-		return restaurentInfoDAO.RestaurantInsert(restaurentVo);
+		return restaurantInfoDAO.RestaurantInsert(restaurantVo);
 	}
 
 	@Override
-	public int RestaurantUpdate(RestaurentVo restaurentVo) {
+	public int RestaurantUpdate(RestaurantVo restaurantVo) {
 		return 0;
 	}
 
@@ -77,22 +77,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public List<RestaurentVo> RestauranSearch(RestaurentVo restaurentVo, int i) {
+	public List<RestaurantVo> RestauranSearch(RestaurantVo restaurantVo, int i) {
 
 		if (i == 1) {
 			i = 0;
 		} else {
 			i = (i * 10) - 10;
 		}
-		List<RestaurentVo> list = restaurentInfoDAO.RestaurantSearch(restaurentVo, i);
+		List<RestaurantVo> list = restaurantInfoDAO.RestaurantSearch(restaurantVo, i);
 
 		
 		return list;
 	}
-
-	/*@Override
-	public List<RestaurentVo> RestaurantSearch(String contentCode) {
-		return restaurentInfoDAO.RestaurantSearch(contentCode);
-	}*/
-
 }

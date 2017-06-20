@@ -6,32 +6,35 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.food.RestaurantService;
-import kosta.web.model.vo.restaurant.RestaurentVo;
+import kosta.web.model.vo.UserVo;
+import kosta.web.model.vo.restaurant.RestaurantVo;
 
 @Controller
-@RequestMapping("/eating")
+/*@RequestMapping("/eating")*/
 public class FoodController {
 	@Autowired
 	private RestaurantService restaurantService;
 
-	@RequestMapping("/eatingMain")
+	@RequestMapping("eating/eatingMain")
 	public String eatingMain() {
 		
 		return "eating/eatingMain";
 	}
 	
-	@RequestMapping("/newdesign")
+	@RequestMapping("eating/newdesign")
 	public String testMark2(){
 		return "eating/new_theme_mark2/index";
 	}
 	
-	@RequestMapping("/test")
+	/*@RequestMapping("eating/test")
 	public ModelAndView Test(String contentCode, RestaurentVo restaurentVo) {
 		System.out.println("123");
 
@@ -40,20 +43,26 @@ public class FoodController {
 
 		return new ModelAndView("eating/test", "list", list);
 
-	}
+	}*/
 	
-	@RequestMapping("/insertRestaurent")
-	public String insertRestaurent(HttpServletRequest req, RestaurentVo restaurentVo) throws Exception {
+	@RequestMapping("eating/insertRestaurant")
+	public String insertRestaurant(HttpServletRequest req, RestaurantVo restaurantVo) throws Exception {
+	    /*restaurantVo.setRestaurantPic(restaurantVo.getFile().getOriginalFilename());*/
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserVo uservo = (UserVo)authentication.getPrincipal();
+		restaurantVo.setId(uservo.getId());
+		
+		System.out.println("restaurantVo : "+ restaurantVo);
+		String path = req.getSession().getServletContext().getRealPath("/resources/restaurant");
 
-		String path = req.getSession().getServletContext().getRealPath("/resources/restaurent");
-
-		MultipartFile file = restaurentVo.getFile();
+		MultipartFile file = restaurantVo.getFile();
 
 		if (file.getSize() > 0) {
-			restaurentVo.setRestaurantPic(file.getOriginalFilename());
+			restaurantVo.setRestaurantPic(file.getOriginalFilename());
 		}
 
-		int result = restaurantService.RestaurantInsert(restaurentVo);
+		int result = restaurantService.RestaurantInsert(restaurantVo);
 		if (result == 0) {
 			throw new Exception();
 		}
@@ -62,18 +71,18 @@ public class FoodController {
 		if (!mainFolder.exists()) {
 			mainFolder.mkdir();
 		}
-		File idFolder = new File(path + "/" + restaurentVo.getId());
+		File idFolder = new File(path + "/" + restaurantVo.getId());
 		if (!idFolder.exists()) {
 			idFolder.mkdir();
 		}
-		File profileFolder = new File(path + "/" + restaurentVo.getId() + "/info");
+		File profileFolder = new File(path + "/" + restaurantVo.getId() + "/info");
 		if (!profileFolder.exists()) {
 			profileFolder.mkdir();
 		}
 		// -----폴더 생성 끝
 		if (file.getSize() > 0) {
 			try {
-				file.transferTo(new File(path + "/" + restaurentVo.getId() + "/info/" + restaurentVo.getRestaurantPic()));
+				file.transferTo(new File(path + "/" + restaurantVo.getId() + "/info/" + restaurantVo.getRestaurantPic()));
 			} catch (Exception e) {
 			}
 		}
@@ -104,10 +113,16 @@ public class FoodController {
 		return "eating/new_theme_mark2/landing";
 	}
 	
+	//view all
+	@RequestMapping("eating/new_theme_mark2/search")
+	public ModelAndView search(String contentCode, RestaurantVo restaurantVo){
+		
+		/*return "eating/new_theme_mark2/search";*/
+		
+		List<RestaurantVo> list = restaurantService.RestauranSearch(restaurantVo, 1);
+		System.out.println(list);
 
-	@RequestMapping("eating/search")
-	public String search(){
-		return "eating/new_theme_mark2/search";
+		return new ModelAndView("eating/new_theme_mark2/search", "listA", list);
 	}
 	
 	//나중에 필요에 맞게 이름 맞꾸기(필요6)

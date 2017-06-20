@@ -2,24 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foodMapper">
 
-	<sql id="restaurentColumn">
+	<sql id="restaurantColumn">
 		<!-- RESTAURANT_NAME ADDRESS CATEGORY content_CODE restaurantName addr 
 			category contentCode -->
-		content_code,restaurant_name,restaurant_address,category,restaurant_info,restaurant_pic,id
+		content_code, restaurant_name, restaurant_info, category, category2, restaurant_address, restaurant_Coordinates, restaurant_pic, id
 	</sql>
-
-<resultMap type="kosta.web.model.vo.restaurant.RestaurentVo" id="restaurentSelectMap">
+<!-- 
+  content_code varchar2(30) constraint content_code_ri_pk primary key,
+  restaurant_name varchar2(30),
+  restaurant_info varchar2(2000),
+  restaurant_address varchar2(50),
+  category varchar2(50),
+  category2 varchar2(50),
+  restaurant_address varchar2(50),
+  restaurant_Coordinates
+  restaurant_pic varchar2(50),
+  id constraint id_restaurant_fk references usertable(id) -->
+  
+<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo" id="restaurantSelectMap">
 		<id column="content_CODE" property="contentCode" />
 		<result column="RESTAURANT_NAME" property="restaurantName" />
-		<result column="restaurant_address" property="restaurantAddr" />
-		<result column="CATEGORY" property="category" />
 		<result column="restaurant_info" property="restaurantInfo" />
+		<result column="CATEGORY" property="category" />
+		<result column="CATEGORY2" property="category2" />
+		<result column="restaurant_address" property="restaurantAddr" />
+		<result column="restaurant_Coordinates" property="restaurantCoordinates" />
 		<result column="restaurant_pic" property="restaurantPic" />
 		</resultMap> 
 <!-- content_code varchar2(30) constraint content_code_ri_pk primary key,
   restaurant_name varchar2(30),
   restaurant_address varchar2(50),
   category varchar2(50),
+  category2 varchar2(50),
   restaurant_info varchar2(2000),
   restaurant_pic varchar2(50),
   id constraint id_restaurant_info_fk references usertable(id) -->
@@ -27,15 +41,15 @@
 
 
 	<!-- 맛집정보 등록하기 -->
-	<insert id="insertRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurentVo">
+	<insert id="insertRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
 		insert into Restaurant
-		(content_code,restaurant_name,restaurant_address,category,restaurant_info,restaurant_pic,id)
-		values (#{contentCode},#{restaurantName}, #{restaurantAddr}, #{category}, #{restaurantInfo},#{restaurantPic},#{id})
+		(content_code, restaurant_name, restaurant_info, category, category2, restaurant_address, restaurant_Coordinates, restaurant_pic, id)
+		values (#{contentCode},#{restaurantName}, #{restaurantInfo}, #{category}, #{category2}, #{restaurantAddr}, #{restaurantCoordinates}, #{restaurantPic}, #{id})
 	</insert>
 
 	<!-- 맛집정보 확인하기 -->
-	<select id="selectByRestaurant" parameterType="RestaurentVo"	resultMap="restaurentSelectMap">
-		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_ADDRESS , CATEGORY, RESTAURANT_INFO, RESTAURANT_PIC , ID
+	<select id="selectByRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo"	resultMap="restaurantSelectMap">
+		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY , CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES , RESTAURANT_PIC , ID
 		from Restaurant
 <!-- 		<where>
 				RESTAURANT_NAME =#{restaurantName}
@@ -52,10 +66,12 @@
 	<update id="updateRestaurant" >
 	update Restaurant
 		   set RESTAURANT_NAME = ${restaurantName},
-		   		 RESTAURANT_ADDRESS = ${restaurantAddr},
+		   		 RESTAURANT_INFO = ${restaurantInfo},
 		   		 CATEGORY = ${category},
-		   		 Restaurant_INFO = ${restaurantInfo},
-		   		 restaurant_pic = ${restaurantPic}
+		   		 CATEGORY2 = ${category2},
+		   		 RESTAURANT_ADDRESS = ${restaurantAddr},
+		   		 RESTAURANT_COORDINATES = ${restaurantCoordinates},
+		   		 RESTAURANT_PIC = ${restaurantPic}
 	 where content_CODE=${contentCode}
 	</update>
 	

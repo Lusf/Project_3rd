@@ -10,10 +10,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <title>Entertainment Info</title>
 
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet"
+	href="<c:url value='/resources/js/table/css/style.css'/>">
+<!-- jQuery -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+
+<!-- TABLE SORT -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.js"></script>
+<%-- <script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery-latest.js"></script> --%>
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.metadata.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.min.js"></script>
 </head>
 
 
@@ -34,8 +55,8 @@
 						<ol class="breadcrumb">
 							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 							</li>
-							<li class="active"><i class="fa fa-file"></i> Entertainment Info
-							</li>
+							<li class="active"><i class="fa fa-file"></i> Entertainment
+								Info</li>
 						</ol>
 
 						<div class="panel panel-default">
@@ -61,6 +82,7 @@
 										<option value="lookStartDate">StartDate</option>
 										<option value="lookLastDate">LastDate</option>
 										<option value="lookLoca">Location</option>
+										<option value="lookAge">Age</option>
 									</select>
 								</div>
 
@@ -82,30 +104,32 @@
 							<div class="panel-body">
 
 								<div class="table-responsive">
-									<table class="table table-bordered table-hover table-striped">
-										<tr>
-											<th>CONTENT_CODE</th>
-											<th>TITLE</th>
-											<th>STORY</th>
-											<th>MAKER</th>
-											<th>GENRE</th>
-											<th>STARTDATE</th>
-											<th>LASTDATE</th>
-											<th>LOCATION</th>
-											<th>CATEGORY</th>
-											<th>DELETE</th>
-										</tr>
+									<table
+										class="table table-bordered table-hover table-striped tablesorter"
+										id="myTable">
+										<THEAD>
+											<tr>
+												<th>CONTENT_CODE</th>
+												<th>TITLE</th>
+												<th>STORY</th>
+												<th>MAKER</th>
+												<th>GENRE</th>
+												<th>STARTDATE</th>
+												<th>LASTDATE</th>
+												<th>LOCATION</th>
+												<th>CATEGORY</th>
+												<th>AGE</th>
+												<th>DELETE</th>
+											</tr>
+										</THEAD>
 										<c:forEach items="${list }" var="list" varStatus="state">
 											<Tr>
 
-												<td>
-												  <a data-toggle="collapse" data-target="#${state.count}">${list.contentCode }</a>
-  													<div id="${state.count}" class="collapse">
-  													<a href="${pageContext.request.contextPath }/travelge/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
-													<a href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
-  													</div>		
-  																							
-												</td>
+												<td><a data-toggle="collapse"
+													data-target="#${state.count}">${list.contentCode }</a>
+													<div id="${state.count}" class="collapse">
+														<a href="${pageContext.request.contextPath }/entertainment/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
+													</div></td>
 												<td>${list.lookTitle }</td>
 												<td>${list.lookStory }</td>
 												<td>${list.lookMaker }</td>
@@ -114,8 +138,8 @@
 												<td>${list.lookLastDate }</td>
 												<td>${list.lookLoca }</td>
 												<td>${list.lookCate }</td>
-												<td><a
-													href="${pageContext.request.contextPath }/travelge/travelgeInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
+												<td>${list.lookAge }</td>
+												<td><a href="${pageContext.request.contextPath }/entertainment/enterInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
 
 											</Tr>
 
@@ -160,25 +184,29 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- /.row -->
+			<!-- /.row -->
 
-	</div>
-	<!-- /.container-fluid -->
+		</div>
+		<!-- /.container-fluid -->
 
 	</div>
 	<!-- /#page-wrapper -->
 
+	<%@ include file="/WEB-INF/views/admin/modal.jsp"%>
 
-	<!-- /#wrapper -->
+	<script>
+		$(document).ready(function() {
 
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+			$("#myTable").tablesorter();
 
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+			var msg = "${msg}";
+			if (msg != null) {
+				if (msg != "") {
+					$("#myModal").modal();
+				}
+			}
+		});
+	</script>
 
 </body>
 
