@@ -4,7 +4,6 @@
 
 <resultMap type="LookInfoVo" id="lookInfoSelectMap">
 	<id column="content_code" property="contentCode"/>
-	<result column="id" property="id"/>
 	<result column="look_title" property="lookTitle"/>
 	<result column="look_story" property="lookStory"/>
 	<result column="look_maker" property="lookMaker"/>
@@ -24,9 +23,6 @@
 	<where>
 		<choose>
 			<when test="contentCode!=null">content_code=#{contentCode}</when> 
-		</choose>
-		<choose>
-			<when test="id!=null">id=#{id}</when> 
 		</choose>
 		<choose>
 			<when test="lookImg!=null">look_img=#{lookImg}</when>
