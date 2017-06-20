@@ -1,5 +1,6 @@
 package kosta.web.controller.enter;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.enter.EnterService;
@@ -246,9 +248,64 @@ public class EnterController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/enterInfoDelete")
-	public String enterInfoDelete(String contentCode){
-		enterService.enterInfoDelete(contentCode);
-		return "admin/enter/enterInfoSearch";
+	@RequestMapping("enterInfoInsert")
+	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+
+		MultipartFile file = lookInfoVo.getFile();
+
+		if (file.getSize() > 0) {
+			lookInfoVo.setLookImg(file.getOriginalFilename());
+		}
+
+		int result = enterService.enterInfoInsert(lookInfoVo);
+		if (result == 0) {
+			throw new Exception();
+		}
+
+		// 폴더 생성
+		File mainFolder = new File(path);
+		if (!mainFolder.exists()) {
+			mainFolder.mkdir();
+		}
+		File subFolder = new File(path + "/" + lookInfoVo.getContentCode());
+		if (!subFolder.exists()) {
+			subFolder.mkdir();
+		}
+		File photosFolder = new File(path + "/" + lookInfoVo.getContentCode() + "/photos");
+		if (!photosFolder.exists()) {
+			photosFolder.mkdir();
+		}
+		// -----폴더 생성 끝
+		if (file.getSize() > 0) {
+
+			try {
+				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
+						+ lookInfoVo.getLookImg()));
+
+			} catch (Exception e) {
+			}
+		}
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("enterInfoDelete")
+	public ModelAndView enterInfoDelete(String contentCode){
+		int result = enterService.enterInfoDelete(contentCode);
+		
+		String msg = null;
+		ModelAndView mv = new ModelAndView();
+		
+		if(result == 1)
+			msg = "삭제완료";
+		else
+			msg = "삭제실패";
+		
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/enter/enterInfoSearch");
+		
+		return mv;
 	}
 }

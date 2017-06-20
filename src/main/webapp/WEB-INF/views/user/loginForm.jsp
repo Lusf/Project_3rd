@@ -4,7 +4,8 @@
 <!DOCTYPE html >
 <html>
 <head>
-
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"content="${_csrf.headerName}" />
 <!-- Latest compiled JavaScript -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -69,7 +70,11 @@
 </style>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+	$(document).ready(function(){
 
 				$('.fliper-btn').click(function() {
 					$('.flip').find('.card').toggleClass('flipped');
@@ -92,11 +97,13 @@
 				});
 				
 				$("#password").blur(function(){
-				if( $("#password").val().length < 8 ){
+				if( 0 < $("#password").val().length && $("#password").val().length < 8 ){
+						
 					$("#password").css("background-color", "red");
 					$("#password").attr("placeholder","비밀번호 8자 이상");
 					$("#password").val("");
-				}else{
+					
+				}else if($("#password").val().length > 7 || $("#password").val() == "") {
 					$("#password").css("background-color", "white");
 				}	
 				});
@@ -104,6 +111,8 @@
 				$("#password2").blur(function(){
 					
 				if($("#password").val() != "" && $("#password").val() != null){
+					
+					
 					if( $("#password").val() == $("#password2").val() ){
 						
 						$("#password2").css("background-color", "green");
@@ -112,8 +121,46 @@
 						$("#password2").attr("placeholder","비밀번호 불일치");
 						$("#password2").val("");
 					}
+				}else{
+					$("#password2").css("background-color", "red");
+					$("#password2").attr("placeholder","비밀번호가 없습니다.");
+					$("#password2").val("");
+					$("#password").select();
+					
 				}
 				});
+				
+				$("#idcheck").blur(function() {
+					
+			 		$.ajax({
+						url : "${pageContext.request.contextPath}/user/userSearchById",
+						type : "post",
+						dataType : "json",
+						data : "id=" + $("#idcheck").val(),
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(header, token)
+						},
+						success : function(result) {
+							
+							if(result == 0){
+							$("#checking").empty();
+							$("#checking").css("color","red")
+							$("#checking").append("사용중인 아이디입니다.");
+							$("#checking").attr("hidden", false);
+							}else{
+							$("#checking").empty();	
+							$("#checking").css("color","green")
+							$("#checking").append("사용 가능한 아이디입니다.");
+							$("#checking").attr("hidden", false);
+							}
+						},
+						error : function(err) {
+							alert("오류 발생 : " + err);
+						}
+					}); 
+					
+				});//
+				
 				
 			});
 	function checkValid() {
@@ -148,6 +195,9 @@
 
 		return true;
 	}
+	
+
+	
 </script>
 
 </head>
@@ -168,9 +218,9 @@
 					<div class="panel panel-default">
 
 						<form class="form-horizontal" action="${pageContext.request.contextPath}/login" method="post">
-							<br>
-							<h4 class="text-center"></h4>
-
+							<div style="text-align: center;">
+							<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png" style="width: 80%;height: 20%;">
+							</div>
 							<br> <input class="form-control" placeholder="아이디"
 								name="id" /> <input type="password" class="form-control"
 								placeholder="비밀번호" name="password" />
@@ -207,12 +257,11 @@
 
 							</div>
 
-							<br> <label>기본사항</label> <input class="form-control"
-								placeholder="아이디" name="id" /> <input type="password"
-								class="form-control" placeholder="비밀번호" name="password" id="password"/> <input
-								type="password" class="form-control" placeholder="비밀번호확인"
-								name="password2" id="password2"/> <input class="form-control"
-								placeholder="전화번호" name="tell" /> <label>추가사항</label>
+							<br> <label>기본사항</label> <input class="form-control" placeholder="아이디" name="id" id="idcheck"/> 
+								<div hidden="true" id="checking" style="text-align: center;margin-bottom: 8px;"></div>
+								<input type="password" class="form-control" placeholder="비밀번호" name="password" id="password"/> 
+								<input type="password" class="form-control" placeholder="비밀번호확인" name="password2" id="password2"/> 
+								<input type="tel" class="form-control" placeholder="전화번호" name="tell" /> <label>추가사항</label>
 							<div class="filebox">
 								<!-- 	<input class="form-control" type="file" name="file" placeholder="사진" id="upload" /> -->
 								<input class="upload-name" value="파일선택" disabled="disabled">

@@ -10,9 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <title>Entertainment Info</title>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -128,10 +128,7 @@
 												<td><a data-toggle="collapse"
 													data-target="#${state.count}">${list.contentCode }</a>
 													<div id="${state.count}" class="collapse">
-														<a
-															href="${pageContext.request.contextPath }/entertainment/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
-														<a
-															href="${pageContext.request.contextPath }/entertainment/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
+														<a href="${pageContext.request.contextPath }/entertainment/enterInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
 													</div></td>
 												<td>${list.lookTitle }</td>
 												<td>${list.lookStory }</td>
@@ -142,8 +139,7 @@
 												<td>${list.lookLoca }</td>
 												<td>${list.lookCate }</td>
 												<td>${list.lookAge }</td>
-												<td><a
-													href="${pageContext.request.contextPath }/entertainment/enterInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
+												<td><a href="${pageContext.request.contextPath }/entertainment/enterInfoDelete?contentCode=${list.contentCode}">삭제</a></td>
 
 											</Tr>
 

@@ -26,6 +26,9 @@
 	padding: 0.5em 0;
 	text-align: center;
 }
+.home{
+top:1.4em;
+}
 
 #list-selector {
 	position: fixed;

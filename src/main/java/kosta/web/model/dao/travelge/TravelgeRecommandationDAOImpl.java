@@ -1,6 +1,8 @@
 package kosta.web.model.dao.travelge;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -22,14 +24,18 @@ public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO 
 
 	@Override
 	public int travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update("travelgeRecommandationMapper.travelgeRecommandUpdate", travelgeRecommandationVo);
 	}
 
 	@Override
-	public int travelgeRecommandDelete(String contentCode) {
+	public int travelgeRecommandDelete(String contentCode, String title) {
+		Map<String, String> map = new HashMap<>();
 		
-		return sqlSession.delete("travelgeRecommandationMapper.travelgeRecommandDelete", contentCode);
+		map.put("contentCode", contentCode);
+		map.put("title", title);
+		
+		return sqlSession.delete("travelgeRecommandationMapper.travelgeRecommandDelete", map);
 	}
 
 	@Override
@@ -43,5 +49,14 @@ public class TravelgeRecommandationDAOImpl implements TravelgeRecommandationDAO 
 		
 		return sqlSession.selectList("travelgeRecommandationMapper.travelgeRecommandSearch2",contentCode, new RowBounds(currentPage, 10));
 	}
+	@Override
+	public TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title) {
+		Map<String, String> map = new HashMap<>();
+		map.put("contentCode", contentCode);
+		map.put("title", title);
+		
+		return sqlSession.selectOne("travelgeRecommandationMapper.travelgeRecommandSearch3",map);
+	}
+
 
 }

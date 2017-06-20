@@ -101,6 +101,9 @@ public interface EnterService {
 	/** enter admin delete */
 	int enterInfoDelete(String contentCode);
 	
+	/** enter admin insert */
+	int enterInfoInsert(LookInfoVo lookInfoVo);
+	
 	/*
 	 * *************************************************
 	 * **°ü¸®ÀÚ

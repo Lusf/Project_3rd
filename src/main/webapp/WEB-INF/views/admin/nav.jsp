@@ -185,7 +185,7 @@
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="enter" class="collapse">
 						<li><a href="${pageContext.request.contextPath}/admin/enter/enterInfoSearch">조회</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/travelgeInfoInsertForm">추가</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/enter/enterInfoInsertForm">추가</a></li>
 					</ul>
 				</li>
 			</ul>
