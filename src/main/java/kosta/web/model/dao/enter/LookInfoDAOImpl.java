@@ -43,6 +43,8 @@ public class LookInfoDAOImpl implements LookInfoDAO {
 		return sqlSession.selectOne("lookInfoMapper.searchByCode", contentCode);
 	}
 	
+
+	
 	
 
 }

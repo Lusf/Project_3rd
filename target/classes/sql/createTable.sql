@@ -182,16 +182,17 @@ drop table look_info;
 
 create table look_info(
   content_code varchar2(20) constraint content_code_li_pk primary key,
-  id constraint look_info_id_fk references usertable(id),
-  look_title varchar2(50),
-  look_story varchar2(200),
-  look_maker varchar2(20),
-  look_img varchar2(50),
+  look_title varchar2(100),
+  look_story varchar2(2000),
+  look_maker varchar2(100),
+  look_img varchar2(500),
   look_genre varchar2(20),
   look_startdate varchar2(20),
   look_lastdate varchar2(20),
-  look_loca varchar2(20),
-  look_cate varchar2(20)
+  look_loca varchar2(200),
+  look_cate varchar2(20),
+  look_age varchar2(20),
+  look_coordinates varchar2(200)
 );
 
 

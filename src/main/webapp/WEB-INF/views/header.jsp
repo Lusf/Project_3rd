@@ -14,12 +14,16 @@ function logout() {
 }
 </script>
 
+<style>
+.header-link {font-weight: bold; font-size: large;}
+</style>
+
 <header class="header header-fixed nav-down">
 	<div class="box mb-0">
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
 				<a href="${pageContext.request.contextPath}/" class="header-logo-small mt-15"><img
-					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png"
 					alt="store logo"></a>
 				<button class="navbar-toggle" type="button" data-toggle="collapse"
 					data-target=".js-navbar-collapse">
@@ -31,36 +35,11 @@ function logout() {
 
 			<div class="collapse navbar-collapse js-navbar-collapse row">
 				<ul class="nav navbar-nav">
-					<li class="header-link"><a href="#">home</a></li>
-					<li class="header-link"><a href="#">메뉴1</a></li>
-					<li class="header-link"><a href="#">메뉴2</a></li>
-					<li class="header-link"><a href="#">메뉴3</a></li>
-					<li class="header-link"><a href="#">메뉴4</a></li>
-					<li class="header-link"><a href="#">메뉴5</a></li>
-					<li class="header-link"><a href="#">메뉴6</a></li>
-					<li class="header-link dropdown mega pull-left "><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
-							class="ti-angle-down"></span></a>
-						<ul class="dropdown-menu mega-menu container">
-							<li class="col-sm-3">
-								<ul>
-									<li><img class="img-responsive  col-lg-12 mb-15"
-										src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
-										alt="category image"> <img
-										class="img-responsive col-lg-12"
-										src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
-										alt="category image"></li>
-								</ul>
-							</li>
-
-							<li class="col-sm-3 col-xs-6 smartphone-fw">
-								<ul>
-									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/user/mypage">My Page</a></li>
-									<li class="dropdown-header"><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a></sec:authorize></li>
-								</ul>
-							</li>
-						</ul></li>
-
+					<li class="header-link"><a href="${pageContext.request.contextPath}/travelge/main">Travelge</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/entertainment/new/enterMain">Entertainment</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/eating/newdesign">Food</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/user/mypage">My Page</a></li>
+					<li class="header-link"><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a></sec:authorize></li>
 				</ul>
 
 				<div class="navbar-buttons">

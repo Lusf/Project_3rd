@@ -83,7 +83,7 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 		{
 			for(UserBlogVo li : dto.getUserBlogVo())
 			{
-				System.out.println(li.getBlogTitle());
+				//System.out.println(li.getBlogTitle());
 			}
 		}
 		return list;

@@ -22,7 +22,7 @@
 			<div class="navbar-header">
 				<a href="${pageContext.request.contextPath}/"
 					class="header-logo-small mt-15"><img
-					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png"
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
 					alt="store logo"></a>
 				<button class="navbar-toggle" type="button" data-toggle="collapse"
 					data-target=".js-navbar-collapse">
@@ -35,10 +35,10 @@
 			<div class="collapse navbar-collapse js-navbar-collapse row">
 				<ul class="nav navbar-nav">
 					<li class="header-link"><a
-						href="${pageContext.request.contextPath }/travelge/main"
-						title="채널"> 채널</a>
+						href="${pageContext.request.contextPath }/enter/board/tables"
+						title="추천게시판"> 추천게시판</a>
 					</li>
-					<li class="header-link"><a
+<%-- 					<li class="header-link"><a
 						href="${pageContext.request.contextPath}/travelge/travelgeList"
 						title="지역별"> 지역별</a></li>
 					<li class="header-link"><a
@@ -46,7 +46,7 @@
 						title="내주변"> 내주변</a></li>
 					<li class="header-link"><a
 						href="${pageContext.request.contextPath}/travelge/searchPage"
-						title="검색">검색</a></li>
+						title="검색">검색</a></li> --%>
 
 					<li class="header-link dropdown mega pull-left "><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
@@ -65,9 +65,6 @@
 
 							<li class="col-sm-3 col-xs-6 smartphone-fw">
 								<ul>
-									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/travelge/main">Travelge</a></li>
-									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/entertainment/new/enterMain">Entertainment</a></li>
-									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/eating/newdesign">Food</a></li>
 									<li class="dropdown-header"><a
 										href="${pageContext.request.contextPath}/user/mypage">My
 											Page</a></li>

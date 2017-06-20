@@ -91,4 +91,11 @@ public class TravelgeRecommandationVo {
 		this.cnt = cnt;
 	}
 
+	@Override
+	public String toString() {
+		return "TravelgeRecommandationVo [contentCode=" + contentCode + ", recommandationTitle=" + recommandationTitle
+				+ ", recommandationDescription=" + recommandationDescription + ", readNum=" + readNum
+				+ ", recommandationDate=" + recommandationDate + ", cnt=" + cnt + "]";
+	}
+
 }

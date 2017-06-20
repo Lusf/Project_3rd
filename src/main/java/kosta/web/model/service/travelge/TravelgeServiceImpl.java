@@ -12,7 +12,6 @@ import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
 import kosta.web.model.dao.travelge.TravelgeInfoDAO;
 import kosta.web.model.dao.travelge.TravelgeRecommandationDAO;
 import kosta.web.model.vo.AvgScoreVo;
-import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
@@ -139,14 +138,14 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public int travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return travelgeRecommandationDAO.travelgeRecommandUpdate(travelgeRecommandationVo);
 	}
 
 	@Override
-	public int travelgeRecommandDelete(String contentCode) {
+	public int travelgeRecommandDelete(String contentCode, String title) {
 		
-		return travelgeRecommandationDAO.travelgeRecommandDelete(contentCode);
+		return travelgeRecommandationDAO.travelgeRecommandDelete(contentCode, title);
 	}
 
 	@Override
@@ -243,6 +242,12 @@ public class TravelgeServiceImpl implements TravelgeService {
 		}
 		
 		return travelgeRecommandationDAO.travelgeRecommandSearch2(contentCode, currentPage);
+	}
+
+	@Override
+	public TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title) {
+		
+		return travelgeRecommandationDAO.travelgeRecommandSearch3(contentCode, title);
 	}
 
 }

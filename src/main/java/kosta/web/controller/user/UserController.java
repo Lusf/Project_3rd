@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -95,13 +94,18 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	public String userLogout() {
-		return null;
-	}
 
 	@RequestMapping("userSearchById")
-	public String userSearchById(String id) {
-		return null;
+	@ResponseBody
+	public int userSearchById(String id) {
+		
+		int result = 0;
+			
+		if(userService.userSearchById(id) == null){
+			result = 1;
+		}
+		
+		return result;
 	}
 	
 	//마이페이지

@@ -10,25 +10,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/enter/enterMain.css"> --%>
+
+
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+
+
 <script>
 	$(document).ready(function(){
-		
-		/* var movieTabs = $( "#movie" ).tabs();
-		var tvTabs = $("#tv").tabs();
-		var concertTabs = $("#concert").tabs(); */
-		
-/* 		var tabs = $("#tag").tabs();
-		
-		tabs.on( "click", function(){
-			var lookCate = $(this);
-			alert(lookCate);
-		}); */
-		
-/* 		$("#tag").click(function(){
-			var lookCate = $(this);
-			alert(lookCate);
-		}) */
+
 		var lookCate = "movie";
 		
 		$("#movie").click(function(){
@@ -50,13 +40,17 @@
 			lookCate = "${pageContext.request.contextPath}/entertainment/new/enterList/"+lookCate;
 			location.href=lookCate;
 		})
+		
 
 	});
+	
+
 </script>
 
 </head>
 <body>
-<%@include file="/WEB-INF/views/header.jsp"%>
+<%-- <%@include file="/WEB-INF/views/header.jsp"%> --%>
+<%@include file="/WEB-INF/views/entertainment/new/enterHeader.jsp"%>
 
 <!-- 슬라이드 & 검색 -->
 	<section class="home">
@@ -258,11 +252,11 @@
 												<!-- single offer box-->
 													<div class="offer-box">
 															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}"> 
 																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${infoList.lookImg}" >																																												
 																</a>
 															</div>
-															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}"> 
 																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
 															</a>
 													</div>
@@ -292,6 +286,223 @@
 			</div><!--/ row -->
 		</div><!--/ container -->
 	</section>
+	
+	
+<!-- <div class='container'>
+  <div class='blog-posts'>
+    <div class='post featured'>
+      <a href='#'>
+        <div class='image' style='background-image: url(https://unsplash.it/600/400/?random)'>
+          <div class='time'>
+            <div class='date'>04</div>
+            <div class='month'>APR</div>
+          </div>
+        </div>
+        <div class='content'>
+          <h1>Multiply created make behold fourth yielding living male very god.</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas illo tempore at eveniet adipisci harum error deserunt in sint aspernatur magni asperiores explicabo corporis ratione praesentium illum magnam esse ipsa dignissimos quaerat perferendis dolor vero? Maiores hic modi optio eaque...</p>
+          <div class='meta'>
+            <div class='icon-comment'>22 Comments</div>
+            <ul class='tags'>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class='row cf'>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                24
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                4
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                5
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class='row cf'>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                9
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                24
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class='row cf'>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                25
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                20
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class='post'>
+        <a href='#'>
+          <div class='image'>
+            <div class='time'>
+              <div class='date'>
+                20
+              </div>
+              <div class='month'>MAR</div>
+            </div>
+          </div>
+          <div class='content'>
+            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+            <div class='meta'>
+              <div class='icon-comment'>22 Comments</div>
+              <ul class='tags'>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->
 	
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>

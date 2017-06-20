@@ -14,6 +14,7 @@
 	<result column="look_lastdate" property="lookLastDate"/>
 	<result column="look_loca" property="lookLoca"/>
 	<result column="look_cate" property="lookCate"/>
+	<result column="look_age" property="lookAge"/>
 </resultMap>
 
 <!-- 볼거리 정보 가져오기 -->
@@ -33,6 +34,12 @@
 		<choose>
 			<when test="lookCate!=null">look_cate=#{lookCate}</when>
 		</choose>
+		<choose>
+			<when test="lookGenre!=null">
+				look_genre=#{lookGenre} 
+	
+			</when>
+		</choose>
 	</where>
 </select>
 
@@ -42,5 +49,7 @@
 	from look_info
 	where content_code=#{contentCode}
 </select>
+
+
 
 </mapper>

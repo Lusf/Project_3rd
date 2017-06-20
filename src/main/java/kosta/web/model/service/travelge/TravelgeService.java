@@ -42,11 +42,13 @@ public interface TravelgeService {
 	
 	int travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo);
 	
-	int travelgeRecommandDelete(String contentCode);
+	int travelgeRecommandDelete(String contentCode, String title);
 	
 	List<TravelgeRecommandationVo> travelgeRecommandSearch(String contentCode);
 	
 	List<TravelgeRecommandationVo> travelgeRecommandSearch2(String contentCode, int currentPage);
+	
+	TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title);
 	
 	int travelgeWishListAdd(AvgScoreVo avgScoreVo);
 	

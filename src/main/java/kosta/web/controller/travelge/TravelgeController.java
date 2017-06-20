@@ -42,19 +42,20 @@ public class TravelgeController {
 			String temp = list.get(i).getRecommandationDescription();
 			int index = temp.indexOf("<img");
 			if (index != -1) {
-				index += 21;;
+				index += 21;
+				;
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
-				
+
 				mv.addObject(card + "Thumbnail", imgsrc);
 			}
 		}
 
-		//최신 리뷰
-//		 List<UserBlogVo> latestComment = travelgeService.latestComment();
-		 List<TravelgeInfoVo> latestComment = travelgeService.latestComment();
-		 
-		 mv.addObject("commentList",latestComment);
-		
+		// 최신 리뷰
+		// List<UserBlogVo> latestComment = travelgeService.latestComment();
+		List<TravelgeInfoVo> latestComment = travelgeService.latestComment();
+
+		mv.addObject("commentList", latestComment);
+
 		return mv;
 	}
 
@@ -127,7 +128,7 @@ public class TravelgeController {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		travelgeService.travelgeInfoUpdate(travelgeInfoVo);
 
 		return "admin/travelgeInfoSearch";
@@ -150,7 +151,6 @@ public class TravelgeController {
 	// 여행지 정보 삭제
 	@RequestMapping("/travelgeInfoDelete")
 	public String travelgeInfoDelete(String contentCode) {
-		;
 
 		travelgeService.travelgeInfoDelete(contentCode);
 
@@ -249,8 +249,8 @@ public class TravelgeController {
 	// 스크롤 페이징 jackson
 	@RequestMapping("/travelgeSearchScroll")
 	@ResponseBody
-	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme, String keyword) {
-
+	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme,
+			String keyword) {
 
 		int currentPage = Integer.parseInt(index);
 
@@ -263,14 +263,13 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 
-/*		System.out.println(index);
-		System.out.println(currentRegion);
-		System.out.println(currentTheme);
-		System.out.println(keyword);*/
+		/*
+		 * System.out.println(index); System.out.println(currentRegion);
+		 * System.out.println(currentTheme); System.out.println(keyword);
+		 */
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
-		for(int i = 0; i < list.size(); i++)
-		{
-			/*System.out.println(list.get(i).getTravelgeName());*/
+		for (int i = 0; i < list.size(); i++) {
+			/* System.out.println(list.get(i).getTravelgeName()); */
 		}
 		return list;
 	}
@@ -282,18 +281,16 @@ public class TravelgeController {
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
 
-		
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 
-		
-		/*for(UserBlogVo dto : commentList)
-		{
-			System.out.println(dto.getId() + " : " + dto.getUserPic());
-		}*/
+		/*
+		 * for(UserBlogVo dto : commentList) { System.out.println(dto.getId() +
+		 * " : " + dto.getUserPic()); }
+		 */
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("travelge/detailView");
-				
+
 		mv.addObject("info", list.get(0));
 		mv.addObject("commentList", commentList);
 
@@ -305,49 +302,73 @@ public class TravelgeController {
 	public ModelAndView travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo) {
 
 		int result = travelgeService.travelgeRecommandInsert(travelgeRecommandationVo);
-		
+
 		String msg = null;
 		ModelAndView mv = new ModelAndView();
-		
-		if(result == 1)
-		msg = "추가완료";
+
+		if (result == 1)
+			msg = "추가완료";
 		else
-		msg = "추가실패";
-		
+			msg = "추가실패";
+
 		mv.addObject("msg", msg);
 		mv.setViewName("admin/travelgeReSearch");
 
 		return mv;
 
 	};
+	//추천 여행지 추가 폼으로 이동
 	@RequestMapping("travelgeReInsertForm")
-	public ModelAndView trtravelgeRecommandInsertForm(String contentCode){
-		
+	public ModelAndView travelgeRecommandInsertForm(String contentCode) {
+
 		return new ModelAndView("admin/travelgeReInsertForm", "contentConde", contentCode);
 	}
+	
+	//추천 여행지 정보 수정폼으로 이동
+	@RequestMapping("travelgeReUpdateForm")
+	public ModelAndView travelgeReUpdateForm(String contentCode, String title) {
+		
+		TravelgeRecommandationVo vo = travelgeService.travelgeRecommandSearch3(contentCode, title);
+		
+		return new ModelAndView("admin/travelgeReUpdateForm", "vo", vo);
+		}
 
 	// 추천 여행지 정보 수정
 	@RequestMapping("/travelgeRecommandUpdate")
-	public void travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
+	public ModelAndView travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
+		
+		int result = travelgeService.travelgeRecommandUpdate(travelgeRecommandationVo);
+		String msg = null;
+		ModelAndView mv = new ModelAndView();
+
+		if (result == 1)
+			msg = "수정완료";
+		else
+			msg = "수정실패";
+
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/travelgeReSearch");
+		
+		return mv;
 
 	};
 
 	// 추천 여행지 정보 삭제
 	@RequestMapping("travelgeRecommandDelete")
-	public ModelAndView travelgeRecommandDelete(String contentCode) {
-		//System.out.println(contentCode);
-		int result = travelgeService.travelgeRecommandDelete(contentCode);
+	public ModelAndView travelgeRecommandDelete(String contentCode, String title) {
+		
+		int result = travelgeService.travelgeRecommandDelete(contentCode, title);
 		String msg = null;
 		ModelAndView mv = new ModelAndView();
-		
-		if(result == 1)
-		msg = "삭제완료";
+
+		if (result == 1)
+			msg = "삭제완료";
 		else
-		msg = "삭제실패";
-		
+			msg = "삭제실패";
+
 		mv.addObject("msg", msg);
 		mv.setViewName("admin/travelgeReSearch");
-		return  mv;
+		return mv;
 
 	};
 
@@ -361,14 +382,14 @@ public class TravelgeController {
 		if (page != null)
 			spage = Integer.parseInt(page);
 		ModelAndView modelAndView = new ModelAndView();
-		
+
 		if (keyField.equals("all")) {
 			contentCode = null;
 		}
-				
-			 else {
-				 contentCode = keyWord;
-			}
+
+		else {
+			contentCode = keyWord;
+		}
 
 		// 한 화면에 10개의 게시글을 보여지게함
 		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
@@ -421,8 +442,9 @@ public class TravelgeController {
 	@ResponseBody
 	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon) {
 
-		/* System.out.println(lat);
-		 System.out.println(lon);*/
+		/*
+		 * System.out.println(lat); System.out.println(lon);
+		 */
 
 		return travelgeService.searchAroundMe(lat, lon);
 	}

@@ -10,8 +10,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+
 <link rel=stylesheet type=text/css
 	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
+
 <title>Travelge Recommandation</title>
 
 <script
@@ -47,28 +49,27 @@
 						<form name="tx_editor_form" id="tx_editor_form"
 							action="${pageContext.request.contextPath }/travelge/travelgeRecommandInsert"
 							method="post" accept-charset="utf-8">
-													<div class="panel panel-default">
-							                            <div class="form-group">
-								
-									
-									                            <div class="form-group input-group">
-                                <span class="input-group-addon">제목</span>
-                                <input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommandationTitle">
-                            </div>
-									
+							<div class="panel panel-default">
+								<div class="form-group">
+									<div class="form-group input-group">
+										<span class="input-group-addon">제목</span> 
+										<input type="text" class="form-control" placeholder="제목을 작성해주세요" name="recommandationTitle">
+									</div>
 								</div>
-							<div class="panel-body"><jsp:include
-								page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include></div>
-						</div>
+								<div class="panel-body">
+								<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"/>
+								</div>
+							</div>
 							<input type="hidden" name="contentCode" value="${contentConde }">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}"> 
+								value="${_csrf.token}">
 							<div style="text-align: center; margin-bottom: 3em">
-							<button type="submit" class="btn btn-default" onclick="saveContent()">전송</button>
-							<button type="reset" class="btn btn-default">다시쓰기</button>
-							</div>	
-							
-								
+								<button type="submit" class="btn btn-default"
+									onclick="saveContent()">전송</button>
+								<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>
+
+
 						</form>
 
 

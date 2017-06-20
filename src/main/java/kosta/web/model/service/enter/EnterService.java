@@ -94,16 +94,22 @@ public interface EnterService {
 	 * */
 	LookInfoVo lookInfoSearchByCode(String contentCode);
 	
+	
 	/** enter admin search */
 	List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage);
 	
+	/** enter admin delete */
+	int enterInfoDelete(String contentCode);
+	
+	/** enter admin insert */
+	int enterInfoInsert(LookInfoVo lookInfoVo);
 	
 	/*
 	 * *************************************************
 	 * **관리자
-	 * lookInfoInsert - 볼거리등록
-	 * lookInfoUpdate - 볼거리수정 
-	 * lookInfoDelete - 볼거리삭제 
+	 * enterInfoInsert - 볼거리등록
+	 * enterInfoUpdate - 볼거리수정 
+	 * enterInfoDelete - 볼거리삭제 
 	 *************************************************
 	 * **회원 사용자
 	 * lookgoodBoardInsert - 유저 추천 게시글 등록
