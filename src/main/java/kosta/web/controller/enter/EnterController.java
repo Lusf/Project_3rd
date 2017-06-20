@@ -242,9 +242,21 @@ public class EnterController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/enterInfoDelete")
-	public String enterInfoDelete(String contentCode){
-		enterService.enterInfoDelete(contentCode);
-		return "admin/enter/enterInfoSearch";
+	@RequestMapping("enterInfoDelete")
+	public ModelAndView enterInfoDelete(String contentCode){
+		int result = enterService.enterInfoDelete(contentCode);
+		
+		String msg = null;
+		ModelAndView mv = new ModelAndView();
+		
+		if(result == 1)
+			msg = "삭제완료";
+		else
+			msg = "삭제실패";
+		
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/enter/enterInfoSearch");
+		
+		return mv;
 	}
 }

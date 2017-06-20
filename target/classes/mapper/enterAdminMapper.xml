@@ -14,7 +14,7 @@
 		<result column="look_lastdate" property="lookLastDate"/>
 		<result column="look_loca" property="lookLoca"/>
 		<result column="look_cate" property="lookCate"/>
-		<result column="look_age" property="lookCate"/>
+		<result column="look_age" property="lookAge"/>
 		<result column="cnt" property="cnt"/>
 	</resultMap>
 
