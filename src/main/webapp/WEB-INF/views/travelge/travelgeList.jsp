@@ -87,9 +87,7 @@
 	function getReadList() {
 		$('#loading').html('데이터 로딩중입니다.');
 		//ajax
-		$
-				.ajax({
-					url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
+		$.ajax({	url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 					type : "post",
 					dataType : "json",
 					data : "index=" + currentPage + "&currentRegion="

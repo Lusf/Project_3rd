@@ -23,7 +23,7 @@ function logout() {
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
 				<a href="${pageContext.request.contextPath}/" class="header-logo-small mt-15"><img
-					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png"
 					alt="store logo"></a>
 				<button class="navbar-toggle" type="button" data-toggle="collapse"
 					data-target=".js-navbar-collapse">
@@ -35,9 +35,9 @@ function logout() {
 
 			<div class="collapse navbar-collapse js-navbar-collapse row">
 				<ul class="nav navbar-nav">
-					<li class="header-link"><a href="travelge/main">Travelge</a></li>
-					<li class="header-link"><a href="entertainment/new/enterMain">Entertainment</a></li>
-					<li class="header-link"><a href="eating/newdesign">Food</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/travelge/main">Travelge</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/entertainment/new/enterMain">Entertainment</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/eating/newdesign">Food</a></li>
 					<li class="header-link"><a href="${pageContext.request.contextPath}/user/mypage">My Page</a></li>
 					<li class="header-link"><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a></sec:authorize></li>
 				</ul>
