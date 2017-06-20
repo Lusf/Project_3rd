@@ -183,8 +183,14 @@
 						    </div>
 					    </div>
 					    
-
-	                      	
+					    	<p class="post-introduction">
+	                        	위치
+	                      	</p>
+	                      	<div class="container">
+	                      		<div class="row">
+	                      			
+	                      		</div>
+	                      	</div>
 					</div>
 	
                     <!-- comments-->
@@ -330,29 +336,7 @@
 		</div>
 	</div>
 	
-<!-- 	<!-- heart modal -->
-	<div id="heart" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			Modal content
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
 
-						<div class="services-box text-center">
-							<h4>♡딸기뿅뿅프라노베 먹고싶음♡♡♡♡♡♡</h4>
-
-							<span class="halflings halflings-star"></span>
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	 -->
 	<!-- share modal -->
 	<div id="share" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">

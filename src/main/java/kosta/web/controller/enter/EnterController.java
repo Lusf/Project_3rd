@@ -14,12 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.web.model.service.enter.EnterService;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
-import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("entertainment/")
 public class EnterController {
-
+	
 	@Autowired
 	private EnterService enterService;
 
@@ -32,9 +31,9 @@ public class EnterController {
 
 	// 볼거리 리스트 (카테고리에 따른)
 	@RequestMapping("new/enterList/{lookCate}")
-	public ModelAndView enterList(@PathVariable String lookCate) {
+	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {
 
-		// session.setAttribute("lookCate", lookCate);
+		
 
 		LookInfoVo lookInfoVo = new LookInfoVo();
 		lookInfoVo.setLookCate(lookCate);
@@ -46,12 +45,7 @@ public class EnterController {
 
 		mv.addObject("dbLookInfoList", dbLookInfoList);
 		mv.addObject("lookCate", lookCate);
-		/*
-		 * if(lookInfoList.get(0).getLookCate().equals("movie")){
-		 * mv.addObject("lookInfoListM", lookInfoList) }
-		 */
 
-		System.out.println(dbLookInfoList.get(0).getLookCate());
 		return mv;
 	}
 
@@ -66,10 +60,20 @@ public class EnterController {
 		session.setAttribute("contentCode", contentCode);
 		ModelAndView mv = new ModelAndView();
 
+		//컨텐츠코드에 따른 볼거리
 		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
-
+		
+		//장르에 따른 볼거리
+		String lookGenre = lookInfoOne.getLookGenre();
+		LookInfoVo lookInfoGenre = new LookInfoVo();
+		lookInfoGenre.setLookGenre(lookGenre);
+		
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
+		
 		mv.setViewName("entertainment/new/enterDetailView");
 		mv.addObject("lookInfoOne", lookInfoOne);
+		mv.addObject("lookInfoConList", lookInfoConList);
+		
 
 		return mv;
 	}

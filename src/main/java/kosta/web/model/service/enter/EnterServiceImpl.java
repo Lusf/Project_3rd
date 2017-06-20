@@ -133,7 +133,6 @@ public class EnterServiceImpl implements EnterService {
 	}
 
 
-
 	/** enter admin search */
 	@Override
 	public List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage) {
@@ -151,6 +150,7 @@ public class EnterServiceImpl implements EnterService {
 	public int enterInfoDelete(String contentCode) {
 		return enterAdminInfoDAO.enterInfoDelete(contentCode);
 	}
+
 
 }
 
