@@ -1,5 +1,6 @@
 package kosta.web.controller.enter;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.enter.EnterService;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
-import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("entertainment/")
 public class EnterController {
-
+	
 	@Autowired
 	private EnterService enterService;
 
@@ -32,9 +33,9 @@ public class EnterController {
 
 	// 볼거리 리스트 (카테고리에 따른)
 	@RequestMapping("new/enterList/{lookCate}")
-	public ModelAndView enterList(@PathVariable String lookCate) {
+	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {
 
-		// session.setAttribute("lookCate", lookCate);
+		
 
 		LookInfoVo lookInfoVo = new LookInfoVo();
 		lookInfoVo.setLookCate(lookCate);
@@ -46,12 +47,7 @@ public class EnterController {
 
 		mv.addObject("dbLookInfoList", dbLookInfoList);
 		mv.addObject("lookCate", lookCate);
-		/*
-		 * if(lookInfoList.get(0).getLookCate().equals("movie")){
-		 * mv.addObject("lookInfoListM", lookInfoList) }
-		 */
 
-		System.out.println(dbLookInfoList.get(0).getLookCate());
 		return mv;
 	}
 
@@ -66,10 +62,20 @@ public class EnterController {
 		session.setAttribute("contentCode", contentCode);
 		ModelAndView mv = new ModelAndView();
 
+		//컨텐츠코드에 따른 볼거리
 		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
-
+		
+		//장르에 따른 볼거리
+		String lookGenre = lookInfoOne.getLookGenre();
+		LookInfoVo lookInfoGenre = new LookInfoVo();
+		lookInfoGenre.setLookGenre(lookGenre);
+		
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
+		
 		mv.setViewName("entertainment/new/enterDetailView");
 		mv.addObject("lookInfoOne", lookInfoOne);
+		mv.addObject("lookInfoConList", lookInfoConList);
+		
 
 		return mv;
 	}
@@ -240,6 +246,49 @@ public class EnterController {
 		modelAndView.setViewName("admin/enter/enterInfoSearch");
 
 		return modelAndView;
+	}
+	
+	@RequestMapping("enterInfoInsert")
+	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+
+		MultipartFile file = lookInfoVo.getFile();
+
+		if (file.getSize() > 0) {
+			lookInfoVo.setLookImg(file.getOriginalFilename());
+		}
+
+		int result = enterService.enterInfoInsert(lookInfoVo);
+		if (result == 0) {
+			throw new Exception();
+		}
+
+		// 폴더 생성
+		File mainFolder = new File(path);
+		if (!mainFolder.exists()) {
+			mainFolder.mkdir();
+		}
+		File subFolder = new File(path + "/" + lookInfoVo.getContentCode());
+		if (!subFolder.exists()) {
+			subFolder.mkdir();
+		}
+		File photosFolder = new File(path + "/" + lookInfoVo.getContentCode() + "/photos");
+		if (!photosFolder.exists()) {
+			photosFolder.mkdir();
+		}
+		// -----폴더 생성 끝
+		if (file.getSize() > 0) {
+
+			try {
+				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
+						+ lookInfoVo.getLookImg()));
+
+			} catch (Exception e) {
+			}
+		}
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping("enterInfoDelete")

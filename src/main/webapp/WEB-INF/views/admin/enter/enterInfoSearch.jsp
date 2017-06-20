@@ -128,7 +128,7 @@
 												<td><a data-toggle="collapse"
 													data-target="#${state.count}">${list.contentCode }</a>
 													<div id="${state.count}" class="collapse">
-														<a href="${pageContext.request.contextPath }/entertainment/travelgeInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
+														<a href="${pageContext.request.contextPath }/entertainment/enterInfoUpdateForm?contentCode=${list.contentCode}">수정</a>
 													</div></td>
 												<td>${list.lookTitle }</td>
 												<td>${list.lookStory }</td>

@@ -15,6 +15,7 @@ public class RestaurantVo {
 	private String id;
 	private String x;
 	private String y;
+	private int cnt;
 	
 	private MultipartFile file;
 	
@@ -33,6 +34,84 @@ public class RestaurantVo {
 		this.restaurantPic = restaurantPic;
 		this.id = id;
 		
+	}
+
+	
+	
+	public RestaurantVo(String contentCode, String restaurantName, String category, String category2,
+			String restaurantAddr) {
+		super();
+		this.contentCode = contentCode;
+		this.restaurantName = restaurantName;
+		this.category = category;
+		this.category2 = category2;
+		this.restaurantAddr = restaurantAddr;
+	}
+	
+	
+
+	public RestaurantVo(String contentCode, String restaurantName, String restaurantInfo, String category,
+			String category2, String restaurantAddr, String restaurantCoordinates, String restaurantPic, String x,
+			String y, int cnt) {
+		super();
+		this.contentCode = contentCode;
+		this.restaurantName = restaurantName;
+		this.restaurantInfo = restaurantInfo;
+		this.category = category;
+		this.category2 = category2;
+		this.restaurantAddr = restaurantAddr;
+		this.restaurantCoordinates = restaurantCoordinates;
+		this.restaurantPic = restaurantPic;
+		this.x = x;
+		this.y = y;
+		this.cnt = cnt;
+	}
+
+	public RestaurantVo(String contentCode, String restaurantName, String restaurantInfo, String category,
+			String category2, String restaurantAddr, String restaurantCoordinates, String restaurantPic, String id,
+			String x, String y, int cnt) {
+		super();
+		this.contentCode = contentCode;
+		this.restaurantName = restaurantName;
+		this.restaurantInfo = restaurantInfo;
+		this.category = category;
+		this.category2 = category2;
+		this.restaurantAddr = restaurantAddr;
+		this.restaurantCoordinates = restaurantCoordinates;
+		this.restaurantPic = restaurantPic;
+		this.id = id;
+		this.x = x;
+		this.y = y;
+		this.cnt = cnt;
+	}
+
+	public RestaurantVo(String contentCode, String restaurantName, String restaurantInfo, String category,
+			String category2, String restaurantAddr, String restaurantCoordinates, String restaurantPic, String id,
+			String x, String y, int cnt, MultipartFile file) {
+		super();
+		this.contentCode = contentCode;
+		this.restaurantName = restaurantName;
+		this.restaurantInfo = restaurantInfo;
+		this.category = category;
+		this.category2 = category2;
+		this.restaurantAddr = restaurantAddr;
+		this.restaurantCoordinates = restaurantCoordinates;
+		this.restaurantPic = restaurantPic;
+		this.id = id;
+		this.x = x;
+		this.y = y;
+		this.cnt = cnt;
+		this.file = file;
+	}
+	
+	
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 	public MultipartFile getFile() {

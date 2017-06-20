@@ -77,12 +77,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public List<RestaurantVo> RestauranSearch(RestaurantVo restaurantVo, int i) {
+	public List<RestaurantVo> RestaurantSearch(RestaurantVo restaurantVo, int i) {
 
 		if (i == 1) {
 			i = 0;
 		} else {
-			i = (i * 10) - 10;
+			i = (i * 5) - 5;
 		}
 		List<RestaurantVo> list = restaurantInfoDAO.RestaurantSearch(restaurantVo, i);
 

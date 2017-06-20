@@ -1,5 +1,7 @@
 package kosta.web.model.vo.enter;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kosta.web.model.vo.AvgScoreVo;
 
 /*
@@ -11,7 +13,6 @@ import kosta.web.model.vo.AvgScoreVo;
  * */
 public class LookInfoVo {
 	private String contentCode;
-	private String id;
 	private String lookTitle;
 	private String lookStory;
 	private String lookMaker;
@@ -21,11 +22,14 @@ public class LookInfoVo {
 	private String lookLastDate;
 	private String lookLoca;
 	private String lookCate;
-	private String lookAge;
+	private String lookAge;			//연령등급
+	private String lookCoordinates;	//좌표
 	
 	private AvgScoreVo avgScoreVo;
 	
 	private int cnt;
+	
+	private MultipartFile file;
 	
 	
 	public AvgScoreVo getAvgScoreVo() {
@@ -38,11 +42,10 @@ public class LookInfoVo {
 
 	public LookInfoVo(){}
 	
-	public LookInfoVo(String contentCode, String id, String lookTitle, String lookStory, String lookMaker, String lookImg, String lookGenre,
-			String lookStartDate, String lookLastDate, String lookLoca, String lookCate, String lookAge) {
+	public LookInfoVo(String contentCode, String lookTitle, String lookStory, String lookMaker, String lookImg, String lookGenre,
+			String lookStartDate, String lookLastDate, String lookLoca, String lookCate, String lookAge, String lookCoordinates) {
 		super();
 		this.contentCode = contentCode;
-		this.id = id;
 		this.lookTitle = lookTitle;
 		this.lookStory = lookStory;
 		this.lookMaker = lookMaker;
@@ -53,21 +56,14 @@ public class LookInfoVo {
 		this.lookLoca = lookLoca;
 		this.lookCate = lookCate;
 		this.lookAge = lookAge;
+		this.lookCoordinates = lookCoordinates;
 	}
 		
 	public String getContentCode() {
 		return contentCode;
 	}
-
 	public void setContentCode(String contentCode) {
 		this.contentCode = contentCode;
-	}
-
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public String getLookTitle() {
 		return lookTitle;
@@ -128,6 +124,20 @@ public class LookInfoVo {
 	}
 	public void setLookAge(String lookAge) {
 		this.lookAge = lookAge;
+	}
+	public String getLookCoordinates() {
+		return lookCoordinates;
+	}
+	public void setLookCoordinates(String lookCoordinates) {
+		this.lookCoordinates = lookCoordinates;
+	}
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	public int getCnt() {

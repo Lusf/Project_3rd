@@ -14,6 +14,7 @@ public class UserBlogVo {
 	private String blogCont;
 	private String userPic;
 	
+	
 	private List<TravelgeInfoVo> commentList; 
 	
 	

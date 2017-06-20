@@ -15,11 +15,10 @@
 
 .thumbnail:hover{
 		opacity:1.00;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		transition: box-shadow 0.5s;
 		background-color: white
 		}
-				
 </style>
 
 </head>
@@ -80,142 +79,23 @@
 			</div>
 		</div>
 </section><!-- 검색끝 -->
-
-<%-- 
-<%-- 	
- 
-		<div class="container">
-			
-			<div class="row">
-			<h3 class="heading">${lookCate}</h3>
-<c:forEach items="${dbLookInfoList}" var="infoList" varStatus="state">
-				<div class="col-md-9">
-					<div class="col-md-12 pl-0 pr-0">
-						<h4 class="heading ">${infoList.lookCate}</h4>
-					</div>
-					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-								<!-- <div class="col-md-3 col-sm-6"> -->
-									<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="...">								
-									</a>
-									<span class="h4 offer-box-title">${infoList.lookTitle}</span>
-									<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-									<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-							
-								<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
-						</div>
-					</div>
-					</div>
-				<!-- / single offer box-->
-				 </c:forEach>
-					<!-- pagenation -->
-			        <div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
-	                    <div class="category-pagination text-center">
-	                        <nav aria-label="Page navigation">
-	                            <ul class="pagination">
-	                                <li>
-	                                    <a href="#" aria-label="Previous">
-	                                        <span aria-hidden="true">&laquo;</span>
-	                                    </a>
-	                                </li>
-	                                <li class="active"><a href="#">1</a></li>
-	                                <li><a href="#">2</a></li>
-	                                <li><a href="#">3</a></li>
-	                                <li><a href="#">4</a></li>
-	                                <li><a href="#">5</a></li>
-	                                <li>
-	                                    <a href="#" aria-label="Next">
-	                                        <span aria-hidden="true">&raquo;</span>
-	                                    </a>
-	                                </li>
-	                            </ul>
-	                        </nav>
-	                    </div>
-	                </div>
-	                
-	               
-				</div>
-				
-			</div>
-
- --%>
-
-<%-- 				<div class="col-md-9">
-					<div class="col-md-12 pl-0 pr-0">
-						<h4 class="heading ">${lookCate}</h4>
-					</div>
-					<c:forEach items="${dbLookInfoList}" var="infoList" varStatus="state">
-					<div class="box">
-						<div class="offer-box offer-box-vertical border">
-								<div class="offer-box-head">
-									
-									<div class="offer-slider">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide" style="width:50px;height:100px"><img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="offer image"></div>											
-										</div>
-
-									</div>
-									
-		<!-- 							<span class="offer-box-price">$350pw</span>
-									<span class="offer-box-label"><span class="ti-star"></span>featured</span>	 -->
-								</div>
-								<div class="offer-box-body">
-								<a href="#"> 
-									<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span>
-									<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span>
-									<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
-								</a>
-								<a href="#" class="btn" data-toggle="modal" data-target="#offer-01">more</a>
-</div>
-						</div>
-					</div>
-					</c:forEach>
-				</div>	 --%> 
-							
-<!--List -->
-
+		
+<!-- MovieList -->	
+<h3 class="heading">${lookCate}</h3>
+<c:forEach items="${dbLookInfoList}" var="infoList" varStatus="state">	
 <div class="container">
-	<div class="row">
-		<div class="col-md-12 pl-3 pr-3">
-		<%-- <h2 class="heading">${lookCate}</h2> --%>
-		<h4>*${lookCate}</h4>
-		</div>
-	</div>
-</div>	
 
-<div class="container">
+
 	<div class="row">
-    	<c:forEach items="${dbLookInfoList}" var="infoList" varStatus="state">
-  		<div class="col-md-3 col-sm-10"> 		
-    		<span class="thumbnail text-center">										
-				<c:if test="${infoList.lookCate eq 'concert'}">
-					<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}" >
-	      				<img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="...">
-	      			</a>
-	      			
-		      		<h4 class="text-danger">${infoList.lookTitle}</h4>
-	      			<div class="ratings">
-	                    <span class="glyphicon glyphicon-star"></span>
-	                    <span class="glyphicon glyphicon-star"></span>
-	                    <span class="glyphicon glyphicon-star"></span>
-	                    <span class="glyphicon glyphicon-star"></span>
-	                    <span class="glyphicon glyphicon-star-empty"></span>
-	                </div>
-	                
-		           	<hr class="line">
-	      			<div class="row">
-	      				<div class="col-md-6 col-sm-6" style="float:right">
-	      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
-	      				</div>     				
-	      			</div>
-	      		</c:if>
-	      		
-	      		<c:if test="${lookCate eq infoList.lookCate and lookCate eq 'movie' and lookCate eq 'tv'}">
-	      		<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}" >
-	      			<img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="...">
-	      		</a>
-      			
+    	
+  		<div class="col-md-3 col-sm-6">
+  		
+    		<span class="thumbnail text-center">
+							
+				<c:if test="${lookCate eq infoList.lookCate}">
+				<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >
+      				<img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="...">
+      			</a>
       			<h4 class="text-danger">${infoList.lookTitle}</h4>
       			<div class="ratings">
                     <span class="glyphicon glyphicon-star"></span>
@@ -227,44 +107,26 @@
 
       			<hr class="line">
       			<div class="row">
-      				<div class="col-md-6 col-sm-6" style="float:right">
+      				<div class="col-md-6 col-sm-6">
+      					<button type="button" class="btn btn-link">
+      						HEART
+      					</button>
+      				</div>
+      				<div class="col-md-6 col-sm-6">
       						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
-      				</div>     				
+      				</div>
+      				
       			</div>
       			</c:if>
       			
     		</span>
     		
   		</div>
-  		</c:forEach>
   		</div>
 	</div>
-	
-<div class="container">
-	<div class="row">
-			<!-- pagenation -->
-			<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
-				<div class="category-pagination text-center">
-					<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"> <span
-									aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-</div>
-
+	</c:forEach>
+		<!-- movie끝 -->
+<%-- 		</c:if> --%>
 	
 <%-- 	<!-- tv시작 -->
 	<c:if test="${infoList.lookCate eq 'tv'}">
@@ -349,7 +211,7 @@
 		<!-- concert끝 -->
 		</c:if> --%>
 <%-- 		</c:forEach>
- --%>	<!-- </div> -->
+ --%>	</div>
 
 
 <%--  <!-- TV List -->		
