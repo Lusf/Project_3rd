@@ -127,11 +127,8 @@
 				<div class="row">
 					<div class="">
 						<div class="box">
-<<<<<<< HEAD
 							<form class="form-inline" action="search">
-=======
 							<form class="form-inline" action="new_theme_mark2/search">
->>>>>>> 8096a4836de92050efe11cbd8fae7e90dbcfef6d
 								<div class="form-group col-md-2">
 									<select id="type2" class="selectpicker"	data-live-search="false" title="전국">
 										<option>전국</option>
