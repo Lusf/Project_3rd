@@ -2,7 +2,9 @@ package kosta.web.controller.travelge;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -252,6 +254,15 @@ public class TravelgeController {
 		}
 
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
+		for(TravelgeInfoVo dto : list)
+		{
+			if(dto.getAvgScoreVo()!= null)
+			{
+				System.out.println(dto.getTravelgeName() + " / " + dto.getAvgScoreVo().getPersonCount());
+			}
+		}
+		
+
 		return list;
 	}
 
@@ -310,12 +321,6 @@ public class TravelgeController {
         {
             mv.addObject("blogList",naverServiceImpl.searchBook(keyword,0,1));
         }
-		/*
-		 * for(UserBlogVo dto : commentList) { System.out.println(dto.getId() +
-		 * " : " + dto.getUserPic()); }
-		 */
-
-		// 평점도 저장하자
 
 		mv.setViewName("travelge/detailView");
 
@@ -465,7 +470,7 @@ public class TravelgeController {
 
 	@RequestMapping("/travelgeScoreUpdate")
 	@ResponseBody
-	public String travelgeScoreUpdate(String value, String contentCode) {
+	public Map<Object, Object> travelgeScoreUpdate(String value, String contentCode) {
 
 		UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = user.getId();
@@ -481,7 +486,12 @@ public class TravelgeController {
 		TravelgeInfoVo tra = new TravelgeInfoVo();
 		tra.setContentCode(contentCode);
 		double temp = travelgeService.travelgeInfoSearch(tra,0).get(0).getAvgScoreVo().getScore();
-		return temp+"";
+		int count = travelgeService.travelgeInfoSearch(tra,0).get(0).getAvgScoreVo().getPersonCount();
+		Map<Object, Object> map = new HashMap<>();
+		map.put("score", temp);
+		map.put("count", count);
+		
+		return map;
 
 	};
 
