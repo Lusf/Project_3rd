@@ -146,14 +146,15 @@ $( document ).ready(function() {
   	  	$.ajax({
 			url : "${pageContext.request.contextPath}/travelge/travelgeScoreUpdate",
 			type : "post",
-			dataType : "text",
+			dataType : "json",
 			data : "value="+value +"&contentCode=${info.contentCode}",
 			beforeSend : function(xhr) { 
 				xhr.setRequestHeader(header, token)
 			},
 			success : function(result) {
-				//alert(result);
-				$('#count').html(result);
+			
+				//alert(result.score);
+				$('#count').html(result.score+'개' +result.count+'명');
 				},
 			error : function(err) {
 				alert("오류 발생 : " + err);
@@ -240,7 +241,12 @@ $( document ).ready(function() {
 			<h3>평점</h3>
 			<div>
 				<div class="row lead">
-					★ <span id="count">${info.avgScoreVo.score }</span>개 <span> (${info.avgScoreVo.personCount }명)</span>
+					<c:if test="${info.avgScoreVo.personCount != null}">
+					★ <span id="count">${info.avgScoreVo.score }개  (${info.avgScoreVo.personCount }명)</span>
+					</c:if>
+					<c:if test="${info.avgScoreVo.personCount == null }">
+					★ <span id="count">0개  (0명)</span>
+					</c:if>
 				</div>
 
 			</div>

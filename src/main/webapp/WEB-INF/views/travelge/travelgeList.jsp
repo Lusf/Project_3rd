@@ -96,9 +96,10 @@
 						xhr.setRequestHeader(header, token)
 					},
 					success : function(result) {
-						console.log("result = " + result);
+						
 						var str = "";
 						$.each(result, function(index, item) {
+							
 							str += makeCard(item, index);
 						})
 						if (result != "") {
@@ -120,15 +121,16 @@
 		str += "<div class='thumbnail' style='height: 7em;'>";
 		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
 		str += "<div class='caption'>";
-		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
-				+ "</h3>";
+		str += "<h3>"+ item.travelgeName+"</h3>";
 		str += "<p>" + item.travelgeAddr + "</p>";
+ 		str += "<c:if test='${item.avgScoreVo.personCount != null}'><span>★${item.avgScoreVo.score }  (${item.avgScoreVo.personCount}명)</span></c:if>";
+		str += "<c:if test='${item.avgScoreVo.personCount == null}'><span>★0.0  (0명)</span></c:if>";	 
 		str += "</div>";
 		str += "</div>";
 		str += "</a>";
 		str += "</div>";
 		str += "</div>";
-
+		
 		return str;
 	};
 
