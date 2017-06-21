@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.web.model.service.enter.EnterService;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("entertainment/")
@@ -288,7 +289,18 @@ public class EnterController {
 			}
 		}
 		
-		return "redirect:/";
+		return "redirect:/enterInfoSearch";
+	}
+	
+	@RequestMapping("enterInfoUpdateForm")
+	public ModelAndView enterInfoUpdateForm(HttpServletRequest request, String contentCode) {
+		LookInfoVo lookInfoVo = new LookInfoVo();
+		
+		lookInfoVo.setContentCode(contentCode);
+
+		List<LookInfoVo> list = enterService.enterInfoSearch(lookInfoVo, 0);
+
+		return new ModelAndView("admin/enter/enterInfoUpdateForm", "list", list);
 	}
 	
 	@RequestMapping("enterInfoDelete")

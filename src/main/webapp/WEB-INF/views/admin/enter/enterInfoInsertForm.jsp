@@ -315,7 +315,7 @@
 	</script>
 
 	<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-1.8.3.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-ui-1.9.2.custom.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->

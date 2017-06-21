@@ -25,7 +25,7 @@ public class EnterServiceImpl implements EnterService {
    public EnterServiceImpl() {
       map.put("M", "영화");
       map.put("T", "TV");
-      map.put("C", "공연/연극");
+      map.put("P", "공연/연극");
 
       map.put("1", "멜로/로맨스");
       map.put("2", "코미디");

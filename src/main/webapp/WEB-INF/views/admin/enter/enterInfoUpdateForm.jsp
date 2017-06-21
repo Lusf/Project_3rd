@@ -84,7 +84,7 @@
 							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 							</li>
 							<li class="active"><i class="fa fa-file"></i> Entertainment Info
-								InsertForm</li>
+								UpdateForm</li>
 						</ol>
 
 						<!-- 검색 옵션 -->
@@ -93,18 +93,25 @@
 							method="post" role="form" enctype="multipart/form-data">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
+								
+							<!-- contentCode -->
+							<div class="form-group col xs-6">
+								<label for="contentCode">contentCode</label>
+								<input type="text" value="${list[0].contentCode}" class="form-control"  disabled="disabled" id="contentCode">
+								<input type="hidden" value="${list[0].contentCode}" name="contentCode">
+							</div>
 							
 							<!-- 제목 / 제작사 -->
 							<div class="row">
 								<div class="form-group col-xs-6">
 									<label for="lookTitle">Title</label> <input
 										type="text" class="form-control" name="lookTitle"
-										id="lookTitle " placeholder="제목">
+										id="lookTitle " value="${list[0].lookTitle}">
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="lookMaker">Maker</label> <input
 										type="text" class="form-control" name="lookMaker"
-										id="lookMaker" placeholder="제작사">
+										id="lookMaker" value="${list[0].lookMaker}">
 								</div>
 								<div class="form-group col-xs-3"><br>
 									<button type="submit" class="btn btn-default">등록</button>
@@ -156,19 +163,19 @@
 								<div class="form-group col-xs-3">
 									<label for="lookStartDate">StartDate</label> <input
 										type="text" class="form-control" name="lookStartDate"
-										id="lookStartDate" placeholder="시작일">
+										id="lookStartDate" value="${list[0].lookStartDate}">
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="lookLastDate">LastDate</label> <input
 										type="text" class="form-control" name="lookLastDate"
-										id="lookLastDate" placeholder="종료일">
+										id="lookLastDate" value="${list[0].lookLastDate}">
 								</div>
 							</div>
 							
 							<!-- 줄거리 -->
 							<div class="form-group">
 								<label for="lookStory">Story</label>
-								<textarea class="form-control" rows="3" name="lookStory"></textarea>
+								<textarea class="form-control" rows="3" name="lookStory">${list[0].lookStory}</textarea>
 							</div>
 							
 							<!-- 지도 -->
@@ -176,20 +183,28 @@
 								<div class="form-group col-xs-3">
 									<label for="lookLoca">Location</label> <input
 										type="text" class="form-control" name="lookLoca"
-										id="lookLoca" placeholder="장소">
+										id="lookLoca" value="${list[0].lookLoca}">
 								</div>
-								<div class="form-group col-xs-2">
+								<div class="form-group col-xs-1">
 									<button type="button" onclick="DaumPostcode()"
 										class="btn btn-default" style="margin-top: 25px">주소검색</button>
 								</div>
-								<div class="form-group col-xs-6">
-									<label for="lookCoordinates">Coordinates</label> <input
-										type="text" id="lookCoordinates"
-										placeholder="좌표" name="lookCoordinates"
-										class="form-control">
-
-									<div id="map"
+								<div class="form-group col-xs-7">
+									<div class="form-group col-xs-2">
+										<label for="Coordinates">Coordinates</label>										
+									</div><br>
+									<div class="form-group col-xs-4">
+										<input type="text" id="x"
+											value="${list[0].x}" name="x"
+											class="form-control" disabled="disabled">
+										<div id="map"
 										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+									</div>
+									<div class="form-group col-xs-4">
+										<input type="text" id="y"
+											value="${list[0].y}" name="y"
+											class="form-control" disabled="disabled">
+									</div>
 								</div>
 							</div>
 							
@@ -198,13 +213,14 @@
 								<div class="filebox">
 									<div class="form-groupcol-xs-6" id="holder">
 										<img
-											src="${pageContext.request.contextPath}/resources/images/travelge/admin/null.png"
+											src="${pageContext.request.contextPath}/resources/enter/${list[0].contentCode}/${list[0].lookImg}"
 											width="100" height="100">
 									</div>
 									<div class="form-groupcol-xs-6">
-										<input class="upload-name" value="파일선택" disabled="disabled">
-										<label for="upload">사진 업로드</label> <input type="file"
-											id="upload" class="upload-hidden" name="file">
+										<input class="upload-name" value="${list[0].lookImg}" disabled="disabled" >
+										<label for="upload">사진 업로드</label> 
+										<input type="file" id="upload" class="upload-hidden" name="file" value="${list[0].lookImg}">
+										<input type="hidden" name="lookImg" value="${list[0].lookImg}">
 									</div>
 								</div>
 							</div>
@@ -307,7 +323,7 @@
 	</script>
 
 	<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-1.8.3.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-ui-1.9.2.custom.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->

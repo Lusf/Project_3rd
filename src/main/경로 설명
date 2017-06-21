@@ -24,3 +24,11 @@ webapp/resources 밑에 저장할것
 --------------------------------
 유저 이미지 경로
 .metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\3rd_project\resources\user
+
+------------------------------
+
+볼거리 이미지 경로
+
+.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\3rd\resources\enter\컨텐츠코드\photos
+
+
