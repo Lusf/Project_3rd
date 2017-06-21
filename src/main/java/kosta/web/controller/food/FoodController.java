@@ -26,7 +26,8 @@ public class FoodController {
 	@RequestMapping("eating/eatingMain")
 	public String eatingMain() {
 		
-		return "eating/eatingMain";
+		/*return "eating/eatingMain";*/
+		return "eating/new_theme_mark2/webconf";
 	}
 	
 	@RequestMapping("eating/newdesign")
