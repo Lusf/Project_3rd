@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.blog.UserBlogService;
+import kosta.web.model.service.naver.NaverServiceImpl;
 import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.blog.UserBlogVo;
@@ -29,6 +30,9 @@ public class TravelgeController {
 
 	@Autowired
 	private UserBlogService userBlogService;
+	
+	@Autowired
+	private NaverServiceImpl naverServiceImpl;
 
 	@RequestMapping("/main")
 	public ModelAndView travelgeMain() {
@@ -283,16 +287,22 @@ public class TravelgeController {
 
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
-
+		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme()+" "+list.get(0).getTravelgeAddr();
+		ModelAndView mv = new ModelAndView();
+        if(keyword !=null)
+        {
+            mv.addObject("blogList",naverServiceImpl.searchBook(keyword,0,1));
+        }
 		/*
 		 * for(UserBlogVo dto : commentList) { System.out.println(dto.getId() +
 		 * " : " + dto.getUserPic()); }
 		 */
-		ModelAndView mv = new ModelAndView();
+		
 		mv.setViewName("travelge/detailView");
 
 		mv.addObject("info", list.get(0));
 		mv.addObject("commentList", commentList);
+		
 
 		return mv;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +29,12 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-panel" style="text-align: center">
-				 <span><img style="width:100%;" src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
+				 <span><img style="width:80%; height: 400px" src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
 				<h2>${info.travelgeName }</h2>
 				<span>${info.travelgeDescription } </span>
 
 			</div>
-			<div id="map" style="width: 500px; height: 400px;"></div>
+			<div class="container" id="map" style="width: 80%; height: 300px;"></div>
 
 			<script>
 
@@ -70,7 +71,26 @@
 		infowindow.open(map, marker); 	
 		
 		</script>
-
+			<hr>
+			<h2>블로그 리뷰(${fn:length(blogList)})</h2>
+			<div class="container" style="width: 80%">
+			<c:forEach items="${blogList }" var="b" >
+			<a href="${b.link}">
+			<table style="text-align:left; border-bottom: gray 1px solid;">
+			<tr>
+                <th colspan="2">${b.title}</th>
+			</tr>
+			<tr>
+			<td colspan="2">${b.description}</td>
+			</tr>
+			<tr>       
+                <td >${b.postdate }</td>
+                <td >${b.link}</td>
+                </tr>
+			</table></a>
+			<br>
+			</c:forEach>
+			</div>
 			<hr>
 			<!-- Blog Post Content Column -->
 			<div class="cont">
