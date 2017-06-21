@@ -33,7 +33,6 @@
 		<choose>
 			<when test="lookGenre!=null">
 				look_genre=#{lookGenre} 
-	
 			</when>
 		</choose>
 	</where>
