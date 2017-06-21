@@ -260,7 +260,7 @@ public class TravelgeController {
 	@ResponseBody
 	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme,
 			String keyword) {
-
+		System.out.println(currentRegion + "/" + currentTheme+"/"+keyword);
 		int currentPage = Integer.parseInt(index);
 
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
@@ -279,7 +279,7 @@ public class TravelgeController {
 		 */
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
 		for (int i = 0; i < list.size(); i++) {
-			/* System.out.println(list.get(i).getTravelgeName()); */
+			System.out.println(list.get(i).getTravelgeName()); 
 		}
 		return list;
 	}

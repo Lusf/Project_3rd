@@ -59,7 +59,7 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 		map.put("travelgeRegion", travelgeInfoVo.getTravelgeRegion());
 		map.put("keyword", keyword);	
 
-		return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(currentPage, 10));
+		return sqlSession.selectList("travelgeInfoMapper.travelgeSearchScroll", map, new RowBounds(currentPage, 10));
 	}
 
 
