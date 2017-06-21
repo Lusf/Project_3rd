@@ -20,18 +20,6 @@
 
 	</resultMap>
 
-
-
-	<resultMap type="TravelgeInfoVo" id="latestCommentVo">
-		<result column="CONTENT_CODE" property="contentCode" />
-		<result column="TRAVELGE_NAME" property="travelgeName" />
-		<collection property="userBlogVo" ofType="UserBlogVo">
-			<result column="id" property="id" />
-			<result column="blog_title" property="blogTitle" />
-			<result column="content_code" property="contentCode" />
-			<result column="blog_date" property="blogDate" />
-		</collection>
-	</resultMap>
 	<!-- 검색 -->
 	<select id="travelgeInfoSearch" resultMap="selectMap"
 		parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
@@ -110,8 +98,8 @@
 	</update>
 
 <!-- 최신 리뷰 불러오기 Join 사용 -->
-	<select id="latestComment" resultMap="latestCommentVo">
-		select b.id, b.blog_title, b.content_code, tr.travelge_name, b.blog_date
+	<select id="latestComment" resultType="TravelgeLatestCommentVo">
+		select b.id as id , b.blog_title as blogTitle, b.content_code as contentCode, tr.travelge_name as travelgeName, b.blog_date as blogDate, b.blog_cont as blogCont
 		from blog b join TRAVELGE_INFO tr
 		on b.content_code = tr.content_code
 		where category = 'Travelge'

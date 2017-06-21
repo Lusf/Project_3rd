@@ -8,11 +8,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosta.web.model.dao.blog.UserBlogDAO;
 import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
 import kosta.web.model.dao.travelge.TravelgeInfoDAO;
 import kosta.web.model.dao.travelge.TravelgeRecommandationDAO;
 import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 @Service
@@ -45,7 +47,9 @@ public class TravelgeServiceImpl implements TravelgeService {
 	private TravelgeRecommandationDAO travelgeRecommandationDAO;
 	@Autowired
 	private TravelgeAvgScoreDAO travelgeAvgScoreDAO;
-
+	@Autowired
+	private UserBlogDAO userBlogDAO;
+	
 	@Override
 	public int travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo) {
 
@@ -228,8 +232,13 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}*/
 
 	@Override
-	public List<TravelgeInfoVo> latestComment() {
-		// TODO Auto-generated method stub
+	public List<TravelgeLatestCommentVo> latestComment() {
+		List<TravelgeLatestCommentVo> list = travelgeInfoDAO.latestComment();
+		for(TravelgeLatestCommentVo dto : list)
+		{
+			dto.setUserPic(userBlogDAO.userPicBlog(dto.getContentCode(), dto.getId()));
+		}
+		
 		return travelgeInfoDAO.latestComment();
 	}
 

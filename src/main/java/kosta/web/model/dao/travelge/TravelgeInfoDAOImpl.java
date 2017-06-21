@@ -9,8 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 
 @Repository
 public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
@@ -76,16 +76,9 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 		return list;
 	}*/
 	@Override
-	public List<TravelgeInfoVo> latestComment() {
-		List<TravelgeInfoVo> list = sqlSession.selectList("travelgeInfoMapper.latestComment");
-		
-		for(TravelgeInfoVo dto : list)
-		{
-			for(UserBlogVo li : dto.getUserBlogVo())
-			{
-				//System.out.println(li.getBlogTitle());
-			}
-		}
+	public List<TravelgeLatestCommentVo> latestComment() {
+		List<TravelgeLatestCommentVo> list = sqlSession.selectList("travelgeInfoMapper.latestComment");
+
 		return list;
 	}
 	
