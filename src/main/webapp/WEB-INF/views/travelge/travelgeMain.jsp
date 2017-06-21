@@ -25,7 +25,7 @@
 </script>
 <style type="text/css">
 .home {
-top: 0.3em;
+	top: 0.3em;
 }
 </style>
 
@@ -237,29 +237,39 @@ top: 0.3em;
 
 	<!-- / OFFER CONTACT FORM -->
 
-	 <section class="padding post-list" id="news">
+	<section class="padding post-list" id="news">
 		<div class="container">
 			<h5 class="mt-0 mb-30">Latest Review</h5>
-			<c:forEach items="${commentList }" var="travelgeInfoVo" >
-			<c:forEach items="${travelgeInfoVo.userBlogVo }" var="userBlogVo">
-			<div class="post-list-sidebar-item mb-15">
-				<a href="#"> <img
-					class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive"
-					src="assets/img/blog/01.jpg" alt="blog image">
-				</a>
+			<c:forEach items="${commentList }" var="item" varStatus="vs">
+				<div class="post-list-sidebar-item mb-15">
+					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
+						src="assets/img/blog/01.jpg" alt="blog image"> <span
+						class="col-md-2"> ${item.id}</span>
+					</a> <a
+						href="${pageContext.request.contextPath}/travelge/detailView/${item.contentCode}"
+						class="col-md-2"> ${item.travelgeName} </a> <a class="col-md-4"
+						data-toggle="modal" data-target="#comment${vs.index}"> <span>
+							${item.blogTitle } </span>
+					</a> <span class="post-list-sidebar-item-description col-md-2">${item.blogDate }</span>
 
-				<div class="col-xs-8 col-sm-9">
-					<a href="${pageContext.request.contextPath}/travelge/detailView/${userBlogVo.contentCode}">
-					<h4>${travelgeInfoVo.travelgeName}</h4>
-					<span> ${userBlogVo.id}</span> 
-					<span class="h6 mt-0">
-					${userBlogVo.blogTitle }
-					
-					</span> <span class="post-list-sidebar-item-description">${userBlogVo.blogDate }</span>
-					</a>
 				</div>
-			</div>
-			</c:forEach> 
+				<div id="comment${vs.index}" class="modal fade services-modal"
+					role="dialog">
+					<div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-content shadow">
+							<div class="offer-box">
+								<div class="offer-content pl-30 pr-30">
+									<span class="h4 offer-box-title">${item.blogTitle }</span> <span>
+										${item.id}</span> <span class="offer-box-location"> <span
+										class="offer-box-meta">${item.blogDate }</span> <span
+										class="descriptionImg"> ${item.blogCont } </span> <a
+										class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</c:forEach>
 		</div>
 	</section>
