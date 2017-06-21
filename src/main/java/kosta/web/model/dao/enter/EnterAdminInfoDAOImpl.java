@@ -30,4 +30,9 @@ public class EnterAdminInfoDAOImpl implements EnterAdminInfoDAO {
 		return sqlSession.insert("enterAdminMapper.enterInfoInsert", lookInfoVo);
 	}
 
+	@Override
+	public int enterInfoUpdate(LookInfoVo lookInfoVo) {
+		return sqlSession.update("enterAdminMapper.enterInfoUpdate", lookInfoVo);
+	}
+
 }

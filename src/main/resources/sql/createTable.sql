@@ -186,12 +186,12 @@ create table look_info(
   look_story varchar2(2000),
   look_maker varchar2(100),
   look_img varchar2(500),
-  look_genre varchar2(20),
+  look_genre varchar2(100),
   look_startdate varchar2(20),
   look_lastdate varchar2(20),
   look_loca varchar2(200),
-  look_cate varchar2(20),
-  look_age varchar2(20),
+  look_cate varchar2(100),
+  look_age varchar2(100),
   look_x varchar2(100),
   look_y varchar2(100)
 );

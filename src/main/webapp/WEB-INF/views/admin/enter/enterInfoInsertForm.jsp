@@ -121,7 +121,7 @@
 										<option disabled="disabled">카테고리</option>
 										<option value="M">영화</option>
 										<option value="T">TV</option>
-										<option value="C">공연/연극</option>
+										<option value="P">공연/연극</option>
 									</select>
 								</div>
 								<div class="form-group col-xs-3">
@@ -189,14 +189,14 @@
 									<div class="form-group col-xs-4">
 										<input type="text" id="x"
 											placeholder="X좌표" name="x"
-											class="form-control" disabled="disabled">
+											class="form-control" readonly="readonly">
 										<div id="map"
 										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
 									</div>
 									<div class="form-group col-xs-4">
 										<input type="text" id="y"
 											placeholder="Y좌표" name="y"
-											class="form-control" disabled="disabled">
+											class="form-control" readonly="readonly">
 									</div>
 								</div>
 							</div>
@@ -334,8 +334,8 @@
 						changeMonth: true,
 						dateFormat: "yy/mm/dd"
 					});
-					
 
+					
 					var fileTarget = $('.filebox .upload-hidden');
 					fileTarget.on('change', function() {
 						// 값이 변경되면

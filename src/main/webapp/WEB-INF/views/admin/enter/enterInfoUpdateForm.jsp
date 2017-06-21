@@ -128,7 +128,7 @@
 										<option disabled="disabled">카테고리</option>
 										<option value="M">영화</option>
 										<option value="T">TV</option>
-										<option value="C">공연/연극</option>
+										<option value="P">공연/연극</option>
 									</select>
 								</div>
 								<div class="form-group col-xs-3">
@@ -196,14 +196,14 @@
 									<div class="form-group col-xs-4">
 										<input type="text" id="x"
 											value="${list[0].x}" name="x"
-											class="form-control" disabled="disabled">
+											class="form-control" readonly="readonly">
 										<div id="map"
 										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
 									</div>
 									<div class="form-group col-xs-4">
 										<input type="text" id="y"
 											value="${list[0].y}" name="y"
-											class="form-control" disabled="disabled">
+											class="form-control" readonly="readonly">
 									</div>
 								</div>
 							</div>
@@ -213,7 +213,7 @@
 								<div class="filebox">
 									<div class="form-groupcol-xs-6" id="holder">
 										<img
-											src="${pageContext.request.contextPath}/resources/enter/${list[0].contentCode}/${list[0].lookImg}"
+											src="${pageContext.request.contextPath}/resources/enter/${list[0].contentCode}/photos/${list[0].lookImg}"
 											width="100" height="100">
 									</div>
 									<div class="form-groupcol-xs-6">
@@ -342,6 +342,10 @@
 						changeMonth: true,
 						dateFormat: "yy/mm/dd"
 					});
+					
+					$("#lookCate > option:contains(${list[0].lookCate})").attr("selected", "selected");
+					$("#lookGenre > option:contains(${list[0].lookGenre})").attr("selected", "selected");
+					$("#lookAge > option:contains(${list[0].lookAge})").attr("selected", "selected");
 
 					var fileTarget = $('.filebox .upload-hidden');
 					fileTarget.on('change', function() {

@@ -251,7 +251,7 @@ public class EnterController {
 	
 	@RequestMapping("enterInfoInsert")
 	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
-
+		
 		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
 
 		MultipartFile file = lookInfoVo.getFile();
@@ -289,7 +289,7 @@ public class EnterController {
 			}
 		}
 		
-		return "redirect:/enterInfoSearch";
+		return "admin/enter/enterInfoSearch";
 	}
 	
 	@RequestMapping("enterInfoUpdateForm")
@@ -319,9 +319,9 @@ public class EnterController {
 			}
 		}
 
-		//travelgeService.travelgeInfoUpdate(travelgeInfoVo);
+		enterService.enterInfoUpdate(lookInfoVo);
 
-		return "admin/enterInfoSearch";
+		return "admin/enter/enterInfoSearch";
 	}
 	
 	@RequestMapping("enterInfoDelete")
