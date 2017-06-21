@@ -18,6 +18,7 @@ import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 @Controller
@@ -52,9 +53,9 @@ public class TravelgeController {
 
 		// √÷Ω≈ ∏Æ∫‰
 		// List<UserBlogVo> latestComment = travelgeService.latestComment();
-		List<TravelgeInfoVo> latestComment = travelgeService.latestComment();
-
-		mv.addObject("commentList", latestComment);
+		 List<TravelgeLatestCommentVo> latestComment = travelgeService.latestComment();
+		 
+		 mv.addObject("commentList",latestComment);
 
 		return mv;
 	}

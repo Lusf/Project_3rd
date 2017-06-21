@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kosta.web.model.service.enter.EnterService;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
+import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("entertainment/")
@@ -250,7 +251,7 @@ public class EnterController {
 	
 	@RequestMapping("enterInfoInsert")
 	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
-
+		
 		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
 
 		MultipartFile file = lookInfoVo.getFile();
@@ -288,7 +289,39 @@ public class EnterController {
 			}
 		}
 		
-		return "redirect:/";
+		return "admin/enter/enterInfoSearch";
+	}
+	
+	@RequestMapping("enterInfoUpdateForm")
+	public ModelAndView enterInfoUpdateForm(HttpServletRequest request, String contentCode) {
+		LookInfoVo lookInfoVo = new LookInfoVo();
+		
+		lookInfoVo.setContentCode(contentCode);
+
+		List<LookInfoVo> list = enterService.enterInfoSearch(lookInfoVo, 0);
+
+		return new ModelAndView("admin/enter/enterInfoUpdateForm", "list", list);
+	}
+	
+	@RequestMapping("enterInfoUpdate")
+	public String enterInfoUpdate(HttpServletRequest request, LookInfoVo lookInfoVo) {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		MultipartFile file = lookInfoVo.getFile();
+
+		if (file.getSize() > 0) {
+			lookInfoVo.setLookImg(file.getOriginalFilename());
+			try {
+				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
+						+ lookInfoVo.getLookImg()));
+
+			} catch (Exception e) {
+			}
+		}
+
+		enterService.enterInfoUpdate(lookInfoVo);
+
+		return "admin/enter/enterInfoSearch";
 	}
 	
 	@RequestMapping("enterInfoDelete")

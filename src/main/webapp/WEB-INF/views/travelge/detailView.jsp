@@ -74,8 +74,7 @@
 			<hr>
 			<!-- Blog Post Content Column -->
 			<div class="cont">
-				<h1>Review</h1>
-				<br>
+				<h3>Review</h3>
 				<sec:authorize access="isAuthenticated()">
 				<a style="cursor:pointer;"data-toggle="modal" data-target="#insertReview"
 					class="post-entry-more"> 리뷰 작성 </a>
@@ -94,14 +93,37 @@
 					</div>
 				</div>
 				<!-- /detail modal 끝 -->
-				<hr>
-				<c:forEach var="comment" items="${commentList }">
-					<a href="${pageContext.request.contextPath}/blog/selectBlogCont">
-					<span>
-						<img style="width:100px; height: 100px" class="img-circle" src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
-						<span> ${comment.id } </span> <span style="color: red">${comment.blogTitle }</span>
-						<br>
-					</a>
+				<c:forEach var="comment" items="${commentList }" varStatus="vs">
+					<div class="row" >
+					<a href="${pageContext.request.contextPath}/blog/${comment.id}">
+					
+					<span class="col-md-2">
+						<img style="width:100px; height: 100px; vertical-align: center;" class="img-circle" src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}" ></span>
+						<span class="col-md-2"> ${comment.id } </span></a> 
+						
+						<a class="col-md-4"
+						data-toggle="modal" data-target="#comment${vs.index}">
+						<span style="color: red">${comment.blogTitle }</span>
+						</a>
+					</div>	
+
+				<!--  comment Modal -->	
+				<div id="comment${vs.index}" class="modal fade services-modal"
+					role="dialog">
+				<div class="modal-dialog">
+						<div class="modal-content shadow">
+							<div class="offer-box">
+								<div class="offer-content pl-30 pr-30">
+									<span class="h4 offer-box-title">${comment.blogTitle }</span> <span>
+										${comment.id}</span> <span class="offer-box-location"> <span
+										class="offer-box-meta">${comment.blogDate }</span> <span
+										class="descriptionImg"> ${comment.blogCont } </span> <a
+										class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>	
 				</c:forEach>
 			</div>
 
