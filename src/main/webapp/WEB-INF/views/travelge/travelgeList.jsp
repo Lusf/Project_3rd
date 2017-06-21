@@ -123,14 +123,12 @@
 		str += "<div class='caption'>";
 		str += "<h3>"+ item.travelgeName+"</h3>";
 		str += "<p>" + item.travelgeAddr + "</p>";
- 		str += "<c:if test='${item.avgScoreVo.personCount != null}'><span>★${item.avgScoreVo.score }  (${item.avgScoreVo.personCount}명)</span></c:if>";
-		str += "<c:if test='${item.avgScoreVo.personCount == null}'><span>★0.0  (0명)</span></c:if>";	 
+ 		str += "<span>★"+item.avgScoreVo.score+"("+item.avgScoreVo.personCount+"명)</span>";
 		str += "</div>";
 		str += "</div>";
 		str += "</a>";
 		str += "</div>";
 		str += "</div>";
-		
 		return str;
 	};
 

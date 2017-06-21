@@ -253,15 +253,7 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 
-		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
-		for(TravelgeInfoVo dto : list)
-		{
-			if(dto.getAvgScoreVo()!= null)
-			{
-				System.out.println(dto.getTravelgeName() + " / " + dto.getAvgScoreVo().getPersonCount());
-			}
-		}
-		
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);		
 
 		return list;
 	}
