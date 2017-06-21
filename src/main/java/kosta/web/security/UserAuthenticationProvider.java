@@ -70,6 +70,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 			authList.add(new SimpleGrantedAuthority(au.getRole()));
 		}
 		
+		
 		return new UsernamePasswordAuthenticationToken(userVo, null, authList);
 	}
 	/**
