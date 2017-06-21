@@ -14,7 +14,8 @@
 		<result column="look_loca" property="lookLoca"/>
 		<result column="look_cate" property="lookCate"/>
 		<result column="look_age" property="lookAge"/>
-		<result column="look_coordinates" property="lookCoordinates"/>
+		<result column="x" property="x"/>
+		<result column="y" property="y"/>
 		<result column="cnt" property="cnt"/>
 	</resultMap>
 
@@ -41,7 +42,7 @@
 	<insert id="enterInfoInsert" parameterType="LookInfoVo">
 		insert into look_info 
 		values(#{contentCode},#{lookTitle},#{lookStory},#{lookMaker},#{lookImg},#{lookGenre},#{lookStartDate},
-			#{lookLastDate},#{lookLoca},#{lookCate},#{lookAge},#{lookCoordinates})
+			#{lookLastDate},#{lookLoca},#{lookCate},#{lookAge},#{x},#{y})
 	</insert>
 	
 	<!-- 삭제 -->
