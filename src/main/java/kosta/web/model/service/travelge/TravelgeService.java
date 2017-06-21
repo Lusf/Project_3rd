@@ -3,8 +3,8 @@ package kosta.web.model.service.travelge;
 import java.util.List;
 
 import kosta.web.model.vo.AvgScoreVo;
-import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 
@@ -54,14 +54,15 @@ public interface TravelgeService {
 	
 	int travelgeWishListDelete(AvgScoreVo avgScoreVo);
 	
-	int travelgeScoreInsert(AvgScoreVo avgScoreVo);
+	int travelgeScoreInsert(String id, String contentCode, double score);
 	
-	int travelgeScoreUpdate(AvgScoreVo avgScoreVo);
+	int travelgeScoreUpdate(String id, String contentCode, double score);
 	
 	List<TravelgeInfoVo> searchAroundMe(String lat, String lon);
 	
 	List<TravelgeInfoVo> travelgeSearchScroll(TravelgeInfoVo travelgeInfoVo, int currentPage, String keyword);
-	
-//	 List<UserBlogVo> latestComment();
-	 List<TravelgeInfoVo> latestComment();
+
+	 List<TravelgeLatestCommentVo> latestComment();
+	 
+	 AvgScoreVo selectUserScore(String contentCode, String id);
 }

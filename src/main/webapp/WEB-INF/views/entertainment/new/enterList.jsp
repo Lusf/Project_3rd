@@ -191,7 +191,6 @@
     		<span class="thumbnail text-center">										
 				<c:if test="${infoList.lookCate eq 'concert'}">
 					<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}" >
-	      				<img src="${pageContext.request.contextPath}/resources/images/entertainment/${infoList.lookCate}/${infoList.lookImg}" alt="...">
 	      			</a>
 	      			
 		      		<h4 class="text-danger">${infoList.lookTitle}</h4>

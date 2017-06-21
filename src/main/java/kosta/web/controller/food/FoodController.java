@@ -10,20 +10,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.food.RestaurantService;
 import kosta.web.model.vo.UserVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.restaurant.RestaurantVo;
-import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 /*@RequestMapping("/eating")*/
 public class FoodController {
 	@Autowired
 	private RestaurantService restaurantService;
+	
+	@Autowired
+	private UserBlogService userBlogService;
 
 	@RequestMapping("eating/eatingMain")
 	public String eatingMain() {
@@ -189,14 +192,26 @@ public class FoodController {
 	
 	//view all
 	@RequestMapping("eating/new_theme_mark2/search")
-	public ModelAndView search(String contentCode, RestaurantVo restaurantVo){
+	public ModelAndView search(String contentCode){
 		
+		RestaurantVo temp = new RestaurantVo();
+		temp.setContentCode(contentCode);
+
 		/*return "eating/new_theme_mark2/search";*/
 		
-		List<RestaurantVo> list = restaurantService.RestaurantSearch(restaurantVo, 1);
+		List<RestaurantVo> list = restaurantService.RestaurantSearch(temp, 0);
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		System.out.println(list);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("eating/new_theme_mark2/search");
 
-		return new ModelAndView("eating/new_theme_mark2/search", "listA", list);
+		mv.addObject("info", list.get(0));
+		mv.addObject("commentList", commentList);
+
+		return mv;
+		
+		//return new ModelAndView("eating/new_theme_mark2/search", "listA", list);
 	}
 	
 	//나중에 필요에 맞게 이름 맞꾸기(필요6)

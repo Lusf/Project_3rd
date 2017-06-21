@@ -23,7 +23,8 @@ public class LookInfoVo {
 	private String lookLoca;
 	private String lookCate;
 	private String lookAge;			//연령등급
-	private String lookCoordinates;	//좌표
+	private String x;
+	private String y;
 	
 	private AvgScoreVo avgScoreVo;
 	
@@ -43,7 +44,7 @@ public class LookInfoVo {
 	public LookInfoVo(){}
 	
 	public LookInfoVo(String contentCode, String lookTitle, String lookStory, String lookMaker, String lookImg, String lookGenre,
-			String lookStartDate, String lookLastDate, String lookLoca, String lookCate, String lookAge, String lookCoordinates) {
+			String lookStartDate, String lookLastDate, String lookLoca, String lookCate, String lookAge) {
 		super();
 		this.contentCode = contentCode;
 		this.lookTitle = lookTitle;
@@ -56,7 +57,6 @@ public class LookInfoVo {
 		this.lookLoca = lookLoca;
 		this.lookCate = lookCate;
 		this.lookAge = lookAge;
-		this.lookCoordinates = lookCoordinates;
 	}
 		
 	public String getContentCode() {
@@ -125,13 +125,23 @@ public class LookInfoVo {
 	public void setLookAge(String lookAge) {
 		this.lookAge = lookAge;
 	}
-	public String getLookCoordinates() {
-		return lookCoordinates;
-	}
-	public void setLookCoordinates(String lookCoordinates) {
-		this.lookCoordinates = lookCoordinates;
-	}
 	
+	public String getX() {
+		return x;
+	}
+
+	public void setX(String x) {
+		this.x = x;
+	}
+
+	public String getY() {
+		return y;
+	}
+
+	public void setY(String y) {
+		this.y = y;
+	}
+
 	public MultipartFile getFile() {
 		return file;
 	}

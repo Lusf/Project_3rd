@@ -10,4 +10,6 @@ public interface EnterAdminInfoDAO {
 	int enterInfoDelete(String contentCode);
 	
 	int enterInfoInsert(LookInfoVo lookInfoVo);
+	
+	int enterInfoUpdate(LookInfoVo lookInfoVo);
 }

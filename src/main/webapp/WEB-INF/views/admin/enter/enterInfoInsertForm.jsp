@@ -14,6 +14,8 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <title>Entertainment Info Insert</title>
 
+<link rel="stylesheet" href="<c:url value='/resources/jqueryui/css/smoothness/jquery-ui-1.9.2.custom.min.css'/>">
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script
 	src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
@@ -119,7 +121,7 @@
 										<option disabled="disabled">카테고리</option>
 										<option value="M">영화</option>
 										<option value="T">TV</option>
-										<option value="C">공연/연극</option>
+										<option value="P">공연/연극</option>
 									</select>
 								</div>
 								<div class="form-group col-xs-3">
@@ -154,7 +156,7 @@
 								<div class="form-group col-xs-3">
 									<label for="lookStartDate">StartDate</label> <input
 										type="text" class="form-control" name="lookStartDate"
-										id="lookStartDate " placeholder="시작일">
+										id="lookStartDate" placeholder="시작일">
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="lookLastDate">LastDate</label> <input
@@ -176,18 +178,26 @@
 										type="text" class="form-control" name="lookLoca"
 										id="lookLoca" placeholder="장소">
 								</div>
-								<div class="form-group col-xs-2">
+								<div class="form-group col-xs-1">
 									<button type="button" onclick="DaumPostcode()"
 										class="btn btn-default" style="margin-top: 25px">주소검색</button>
 								</div>
-								<div class="form-group col-xs-6">
-									<label for="lookCoordinates">Coordinates</label> <input
-										type="text" id="lookCoordinates"
-										placeholder="좌표" name="lookCoordinates"
-										class="form-control">
-
-									<div id="map"
+								<div class="form-group col-xs-7">
+									<div class="form-group col-xs-2">
+										<label for="Coordinates">Coordinates</label>										
+									</div><br>
+									<div class="form-group col-xs-4">
+										<input type="text" id="x"
+											placeholder="X좌표" name="x"
+											class="form-control" readonly="readonly">
+										<div id="map"
 										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+									</div>
+									<div class="form-group col-xs-4">
+										<input type="text" id="y"
+											placeholder="Y좌표" name="y"
+											class="form-control" readonly="readonly">
+									</div>
 								</div>
 							</div>
 							
@@ -294,8 +304,8 @@
 													// 마커를 결과값으로 받은 위치로 옮긴다.
 													marker.setPosition(coords)
 													// 좌표 정보를 해당 필드에 넣는다.
-													document
-															.getElementById("lookCoordinates").value = coords;
+													document.getElementById("x").value = result.addr[0].lat;
+													document.getElementById("y").value = result.addr[0].lng;
 
 												}
 											});
@@ -305,8 +315,8 @@
 	</script>
 
 	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-ui-1.9.2.custom.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
@@ -314,7 +324,18 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+					$("#lookStartDate").datepicker({
+						changeYear: true,
+						changeMonth: true,
+						dateFormat: "yy/mm/dd"
+					});
+					$("#lookLastDate").datepicker({
+						changeYear: true,
+						changeMonth: true,
+						dateFormat: "yy/mm/dd"
+					});
 
+					
 					var fileTarget = $('.filebox .upload-hidden');
 					fileTarget.on('change', function() {
 						// 값이 변경되면

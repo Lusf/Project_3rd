@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.controller.food.FoodController;
 import kosta.web.controller.travelge.TravelgeController;
 import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.user.UserService;
@@ -34,6 +35,9 @@ public class UserBlogController {
 	
 	@Autowired
 	private TravelgeController travelgeController;
+	
+	@Autowired
+	private FoodController foodController;
 
 	@RequestMapping("/{id}")
 	public String userBlog(@PathVariable String id){
@@ -78,11 +82,12 @@ public class UserBlogController {
 		mv.setViewName("blog/blogReviewInsert");
 		
 		if(ini.equals("T"))
-			mv = travelgeController.detailView(blogVo.getContentCode());
+			mv = travelgeController.detailView(blogVo.getContentCode(), null);
 		else if(ini.equals("B"))
 			blogVo.setCategory("Entertainment");
 		else if(ini.equals("C"))
 			blogVo.setCategory("Food");
+			mv = foodController.search(blogVo.getContentCode());
 		
 		return mv;
 	}
