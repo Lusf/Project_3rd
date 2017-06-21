@@ -47,7 +47,10 @@
 	
 	<!-- 수정 -->
 	<update id="enterInfoUpdate">
-		update look_info set look_title=#{lookTitle}, look_story=#{lookStory}, look_maker=#{lookMaker}
+		update look_info set look_title=#{lookTitle}, look_story=#{lookStory}, look_maker=#{lookMaker},
+			look_img=#{lookImg}, look_genre=#{lookGenre}, look_startdate=#{lookStartDate}, look_lastdate=#{lookLastDate},
+			look_loca=#{lookLoca},look_cate=#{lookCate},look_x=#{x},look_y=#{y}
+		where content_code=#{contentCode}
 	</update>
 	
 	<!-- 삭제 -->
