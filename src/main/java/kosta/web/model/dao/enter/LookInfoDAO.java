@@ -36,4 +36,5 @@ public interface LookInfoDAO {
 	 * */
 	LookInfoVo lookInfoSearchByCode(String contentCode);
 	
+
 }

@@ -127,16 +127,14 @@ img {
 													<td><a data-toggle="collapse"
 														data-target="#${state.count}">${list.contentCode }</a>
 														<div id="${state.count}" class="collapse">
-															<a
-																href="${pageContext.request.contextPath }/travelge/travelgeRecommandUpdate?contentCode=${list.contentCode}">수정</a>
-															<a
-																href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
+															<a href="${pageContext.request.contextPath }/travelge/travelgeReUpdateForm?contentCode=${list.contentCode}&title=${list.recommandationTitle}">수정</a>
+															<a href="${pageContext.request.contextPath }/travelge/travelgeReInsertForm?contentCode=${list.contentCode}">추가</a>
 														</div></td>
 													<td>${list.recommandationTitle }</td>
 													<td>${list.recommandationDescription }</td>
 													<td>${list.recommandationDate }</td>
 													<td><a
-														href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}">삭제</a></td>
+														href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}&title=${list.recommandationTitle}">삭제</a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

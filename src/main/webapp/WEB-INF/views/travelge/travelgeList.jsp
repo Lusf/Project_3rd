@@ -32,11 +32,12 @@
 #list-selector {
 	position: fixed;
 	width: 100%;
-	top: 6em;
+	top: 3.4em;
 	z-index: 999;
-	border-top: 1px grey solid;
+	/* border-top: 1px grey solid; */
 	padding: 0.5em;
 	text-align: center;
+	background-color: white;
 }
 
 #locationDropdown li:hover {
@@ -86,9 +87,7 @@
 	function getReadList() {
 		$('#loading').html('데이터 로딩중입니다.');
 		//ajax
-		$
-				.ajax({
-					url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
+		$.ajax({	url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 					type : "post",
 					dataType : "json",
 					data : "index=" + currentPage + "&currentRegion="
@@ -150,8 +149,8 @@
 	<div class="row" id="title-row"></div>
 
 	<div id="list-selector">
-		<div class="col-md-offset-5 col-md-2">
-			<div class="dropdown" role="presentation" style="width: 100%">
+		<div class="col-md-offset-5 col-md-2"><br>
+			<div class="dropdown" role="presentation" style="width: 100%;margin-bottom: -1.5em;">
 				<button class="btn btn-default dropdown-toggle" type="button"
 					id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="true" style="width: 100%">

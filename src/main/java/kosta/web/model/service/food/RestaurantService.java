@@ -8,5 +8,5 @@ public interface RestaurantService {
 	int RestaurantInsert(RestaurantVo restaurantVo);
 	int RestaurantUpdate(RestaurantVo restaurantVo);
 	int RestaurantDelete(String contentCode);
-	List<RestaurantVo> RestauranSearch(RestaurantVo restaurantVo, int i);
+	List<RestaurantVo> RestaurantSearch(RestaurantVo restaurantVo, int i);
 }

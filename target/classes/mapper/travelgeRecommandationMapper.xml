@@ -40,11 +40,24 @@
 		</if>
 	</where>
 	</select>
+	
+	<select id="travelgeRecommandSearch3" parameterType="map" resultMap="travelgeRecommandationVo">
+	SELECT *
+	FROM TRAVELGE_RECOMMANDATION
+	where
+	Content_Code=#{contentCode} and RECOMMANDATION_TITLE=#{title}
+	
+	</select>
 
-	<delete id="travelgeRecommandDelete" parameterType="string">
+	<delete id="travelgeRecommandDelete" parameterType="map">
 	delete FROM TRAVELGE_RECOMMANDATION
-	where Content_Code=#{_parameter}
-
+	where Content_Code=#{contentCode} and RECOMMANDATION_TITLE=#{title}
 	</delete>
+
+	<update id="travelgeRecommandUpdate" parameterType="kosta.web.model.vo.travelge.TravelgeRecommandationVo">
+	UPDATE TRAVELGE_RECOMMANDATION SET RECOMMANDATION_TITLE = #{recommandationTitle}, RECOMMANDATION_Description = #{recommandationDescription}, RECOMMANDATION_DATE = SYSDATE
+	WHERE Content_Code=#{contentCode} and RECOMMANDATION_TITLE=#{recommandationTitle}
+	
+	</update>
 
 </mapper>

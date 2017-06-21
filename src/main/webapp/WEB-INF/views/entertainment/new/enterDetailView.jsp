@@ -16,11 +16,11 @@
 <link rel="stylesheet" href="<c:url value='/resources/js/enter/enterScSlide.js' />">
 
 
-	<!-- star plugin -->
+<!-- star plugin -->
 <!-- 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script> -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
-
+ --%>
 
 </head>
 <body>
@@ -31,17 +31,25 @@
 
 
 <div class="container">
-<h3>♡ 상세보기</h3>
-<hr class="col-md-8" color="gray"><br><br>
+	<div class="row">
+		<div class="post">
+		<div class="col-md-12 pl-3 pr-3">
+			<span class="h4 offer-box-title">
+			♡ 상세보기<br>
+			<hr class="col-md-8" color="black"><br><br>
+			</span>
+		</div>
+		</div>
+	</div>
+	
 </div>
 
-<div class="container">  
-<%-- 	<c:forEach items="${lookInfoOne}" var="infoDetail" varStatus="state">
-		<c:if test="${contentCode eq lookInfoOne.contentCode}"> --%>
-		<c:if test="${contentCode eq lookInfoOne.contentCode}"> 
-		<div class="row">		
+    <div class="container" >
+		<c:if test="${contentCode eq lookInfoOne.contentCode}">
+        <div class="row" >
+			
 			<div class="col-md-8">				
-				<div class="panel panel-default  panel--styled">
+	
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
@@ -53,7 +61,7 @@
 								<h5>
 									감독 : ${lookInfoOne.lookMaker}<br><br>
 									장르 : ${lookInfoOne.lookGenre}<br><br>
-									등급 : 전체<br><br>
+									등급 : ${lookInfoOne.lookAge}<br><br>
 									개봉 : ${lookInfoOne.lookStartDate}<br><br>
 								</h5>
 							</div>
@@ -62,77 +70,58 @@
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a>
-								 <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Review</a>
+								 <!-- <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> -->
+								 <a class="btn btn-default" data-toggle="collapse" href="#reviews">Review</a>
 								 <a class="btn btn-default" data-toggle="modal" href="#share">Share</a>
 							</div>
 						</div>
-					</div>
-				</div>
+					</div>				
 			</div>
 			
 			
 			    <div class="col-md-3 col-xs-12">
 
-
+					
                     <div class="sidebar-box">
-                        <h5 class="mt-0 mb-30">관련 영상</h5>
-                        <div class="post-list-sidebar-item mb-15">
-                            <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/movie/캐비.jpg" alt="blog image">
-                            </a>
-
-                            <div class="col-xs-8 col-sm-9">
-                                <a class="dark" href="#">
-                                    <span class="h6 mt-0">캐리비안의 해적</span>
-                                    <span class="post-list-sidebar-item-description">재미있을까?</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-list-sidebar-item mb-15">
-                            <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/movie/악녀.jpg" alt="blog image">
-                            </a>
-
-                            <div class="col-xs-8 col-sm-9">
-                                <a class="dark" href="#">
-                                    <span class="h6 mt-0">악녀</span>
-                                    <span class="post-list-sidebar-item-description">ㅇㅇㅇㅇ</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-list-sidebar-item mb-15">
-                            <a href="#">
-                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/movie/심야.jpg" alt="blog image">
-                            </a>
-
-                            <div class="col-xs-8 col-sm-9">
-                                <a class="dark" href="#">
-                                    <span class="h6 mt-0">심야식당</span>
-                                    <span class="post-list-sidebar-item-description">ㅎㅎㅎㅎ</span>
-                                </a>
-                            </div>
-                        </div>
+                        <h5 class="mt-0 mb-30">관련 영상</h5>                        
+                   	
+                        		<c:choose>
+                        		<c:when test="${empty lookInfoConList}">
+                        			관련 영상이 없습니다.
+                        		</c:when>
+                        		<c:otherwise>
+	                        		<c:forEach items="${lookInfoConList}"  var="lookConList" varStatus="state">
+	                        		<c:if test="${lookConList.lookTitle != lookInfoOne.lookTitle and lookConList.lookCate eq lookInfoOne.lookCate and state.count lt 6}">	                        		                       		
+		                        		<div class="post-list-sidebar-item mb-15">
+				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
+				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookConList.lookCate}/${lookConList.lookImg}" alt="blog image">
+				                            </a>
+				
+				                            <div class="col-xs-8 col-sm-9">
+				                                <a class="dark" href="#">
+				                                    <span class="h6 mt-0">${lookConList.lookTitle}</span>
+				                                    <span class="post-list-sidebar-item-description">${lookConList.lookStory}</span>
+				                                </a>
+				                            </div>
+				                         </div>			                         
+			                  
+			                       </c:if>
+		                            </c:forEach>
+                        		</c:otherwise>
+                        		</c:choose>                
                     </div>
 
-                </div>
+                </div>               
 		</div>
 		</c:if>
-<%-- 		</c:if>
-		</c:forEach> --%>
-    </div>
-
-
-
-    <div class="container">
-   <%--  <c:forEach items="${lookInfoOne}" var="infoDetail" varStatus="state"> --%>
-		<c:if test="${contentCode eq lookInfoOne.contentCode}">
-        <div class="row">
+        
+   
             <div class="post padding-medium">
                 <div class="col-md-8">    
                     <div class="post-content">
-                     <h3 class="mb-60">Detail</h3> <p class="post-introduction">
-                       		줄거리	
+                    
+                     <h3 class="mb-10">Detail</h3> 
+                        <p class="post-introduction">줄거리	
                        	</p>
                         <hr>
                         <p>${lookInfoOne.lookStory}<br>
@@ -193,10 +182,13 @@
 						    </div> 
 						    </div>
 					    </div>
+					    
+
+	                      	
 					</div>
 	
                     <!-- comments-->
-                    <div class="comments">
+                    <div class="reviews">
                         <h3 class="mb-60">Reviews<a class="btn btn-primary pull-right" data-toggle="collapse" href="#comments-form">add new</a></h3>
                         <div class="comments-form collapse col-md-12" id="comments-form">
                             <div class="panel panel-default">
@@ -313,9 +305,7 @@
 
             </div>
         </div>
-        </c:if>
-		<%-- </c:forEach> --%>
-    </div>
+
 
 	<!-- score modal -->
 	<div id="score" class="modal fade services-modal" role="dialog">
@@ -328,12 +318,7 @@
 
 						<div class="services-box text-center">
 							<h4>별점 줄래요?</h4>
-<!-- 							<div class="container">
-								<div class="row lead">
-									<span id="stars-existing" class="starrr" data-rating='1'></span> 
-									<div id="count-existing">1</div>점
-								</div>
-							</div> -->
+
 							<span class="halflings halflings-star"></span>
 							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
@@ -345,10 +330,10 @@
 		</div>
 	</div>
 	
-	<!-- heart modal -->
+<!-- 	<!-- heart modal -->
 	<div id="heart" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
-			<!-- Modal content-->
+			Modal content
 			<div class="modal-content shadow">
 				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 				<div class="modal-body">
@@ -356,12 +341,7 @@
 
 						<div class="services-box text-center">
 							<h4>♡딸기뿅뿅프라노베 먹고싶음♡♡♡♡♡♡</h4>
-<!-- 							<div class="container">
-								<div class="row lead">
-									<span id="stars-existing" class="starrr" data-rating='1'></span> 
-									<div id="count-existing">1</div>점
-								</div>
-							</div> -->
+
 							<span class="halflings halflings-star"></span>
 							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
@@ -372,7 +352,7 @@
 			</div>
 		</div>
 	</div>
-	
+	 -->
 	<!-- share modal -->
 	<div id="share" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
@@ -383,14 +363,7 @@
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<h4>공유♡</h4>
-<!-- 							<div class="container">
-								<div class="row lead">
-									<span id="stars-existing" class="starrr" data-rating='1'></span> 
-									<div id="count-existing">1</div>점
-								</div>
-							</div> -->
-							<span class="halflings halflings-star"></span>
+							<h4>공유♡</h4>	
 							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
 						</div>
@@ -410,6 +383,5 @@
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
-	<!-- <script src="http://thecodeplayer.com/uploads/js/prefixfree.js" type="text/javascript"></script> -->
 </body>
 </html>

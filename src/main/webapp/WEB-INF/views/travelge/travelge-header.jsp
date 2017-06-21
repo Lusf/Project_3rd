@@ -22,7 +22,7 @@
 			<div class="navbar-header">
 				<a href="${pageContext.request.contextPath}/"
 					class="header-logo-small mt-15"><img
-					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png"
 					alt="store logo"></a>
 				<button class="navbar-toggle" type="button" data-toggle="collapse"
 					data-target=".js-navbar-collapse">
@@ -65,6 +65,9 @@
 
 							<li class="col-sm-3 col-xs-6 smartphone-fw">
 								<ul>
+									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/travelge/main">Travelge</a></li>
+									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/entertainment/new/enterMain">Entertainment</a></li>
+									<li class="dropdown-header"><a href="${pageContext.request.contextPath}/eating/newdesign">Food</a></li>
 									<li class="dropdown-header"><a
 										href="${pageContext.request.contextPath}/user/mypage">My
 											Page</a></li>

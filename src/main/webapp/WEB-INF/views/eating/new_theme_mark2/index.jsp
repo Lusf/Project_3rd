@@ -127,7 +127,11 @@
 				<div class="row">
 					<div class="">
 						<div class="box">
+<<<<<<< HEAD
 							<form class="form-inline" action="search">
+=======
+							<form class="form-inline" action="new_theme_mark2/search">
+>>>>>>> 8096a4836de92050efe11cbd8fae7e90dbcfef6d
 								<div class="form-group col-md-2">
 									<select id="type2" class="selectpicker"	data-live-search="false" title="전국">
 										<option>전국</option>
@@ -278,7 +282,11 @@
 							<img alt="user avatar" class="post-entry-author pull-left" src="${pageContext.request.contextPath}/resources/images/eating/user.png">
 							<span class="post-entry-author-name pull-left">
 								<sec:authorize access="isAuthenticated()">
+<<<<<<< HEAD
 									<sec:authentication property="principal.id" />님 로그인중		
+=======
+									<sec:authentication property="principal.id" />님 로그인중
+>>>>>>> 8096a4836de92050efe11cbd8fae7e90dbcfef6d
 								</sec:authorize>
 							</span>
 						</span>

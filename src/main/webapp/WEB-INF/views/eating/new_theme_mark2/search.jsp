@@ -9,6 +9,12 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	
+	<!-- daumOpenEditor -->
+<link rel=stylesheet type=text/css  href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
+<script src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
+	type="text/javascript" charset="utf-8"></script>
+	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet"
@@ -74,8 +80,7 @@
 						<sec:authorize access="isAuthenticated()">
 							<p>
 							<p>
-								<sec:authentication property="principal.id" />
-								님 환영합니다.
+								<sec:authentication property="principal.id" />님 환영합니다.
 								<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 								<a href="javascript:logout();">로그아웃</a>
 						</sec:authorize>
@@ -114,8 +119,7 @@
 								<div class="home-search-row col-md-12">
 									<div class="home-search-group pt-30 pb-30">
 										<div class="form-group col-md-2">
-											<select id="type" class="selectpicker"
-												data-live-search="false" title="전국">
+											<select id="type" class="selectpicker" data-live-search="false" title="전국">
 												<option>전국</option>
 												<option>서울</option>
 												<option>경기</option>
@@ -173,8 +177,7 @@
 					<div class="sidebar-box">
 						<h5 class="mb-15">Region</h5>
 						<ul>
-							<li><a href="#"><span class="ti-angle-left"></span>United
-									Kingdom</a></li>
+							<li><a href="#"><span class="ti-angle-left"></span>United Kingdom</a></li>
 							<li><a href="#"><span class="ti-angle-left"></span>England</a></li>
 						</ul>
 
@@ -227,15 +230,16 @@
 								</label>
 							</span></li>
 
-							<li><span class="checkbox checkbox-primary pull-left">
-									<input id="checkbox5" class="styled" type="checkbox"> <label
-									for="checkbox5"> new only <span>263</span>
-								</label>
-							</span></li>
+							<li>
+								<span class="checkbox checkbox-primary pull-left">
+									<input id="checkbox5" class="styled" type="checkbox"> 
+									<label for="checkbox5"> new only <span>263</span></label>
+								</span>
+							</li>
 						</ul>
 					</div>
 				</div>
-
+<!--  -->
 				<div class="col-md-9">
 					<div class="col-md-12 pl-0 pr-0">
 						<h4 class="heading "><b>맛집 정보</b></h4> 
@@ -254,30 +258,30 @@
 									</div>
 
 									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left"></span>
+										<span class="ti-angle-left">asd</span>
 									</div>
 
 									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right"></span>
+										<span class="ti-angle-right">qqq</span>
 									</div>
 								</div>
 								<!-- <span class="offer-box-price">$350pw</span> --> 
 								<!-- <span class="offer-box-label"><span class="ti-star"></span>featured</span> -->
 							</div>
-							<a href="#"> <span class="h4 offer-box-title">${list.restaurantName} </span> 
+							<a href="#"> <span class="h4 offer-box-title">11111111111  ${list.restaurantName} </span>  
 							<span class="offer-box-location">
 							<span class="ti-location-pin">
-							</span>${list.restaurantAddr}</span> 
+							</span>${list.restaurantAddr} 11111111</span> 
 							<!-- <span class="offer-box-meta">Nordman	Agency | 30 Nov 2016 | Flat | 2 Beds</span> -->
 							</a> 
-									<a href="#" class="btn btn-default" data-toggle="modal"data-target="#offer-01">상세 보기</a>  
-									<a href="#" class="btn btn-link btn-sm ml-0 pull-right">
-									<span 	class="ti-star"></span> to favorites</a>
+									<a href="#" class="btn btn-default" data-toggle="modal" data-target="#offer-01" id="test">상세 보기</a>  
+									<a href="#" class="btn btn-link btn-sm ml-0 pull-right"> <span 	class="ti-star"></span> to favorites</a>
 						</div>
 					</div>
-					</c:forEach>
+					 </c:forEach>
 					<!-- / single offer box-->
-
+	
+	
 					<!-- / single offer box-->
 					<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
 						<div class="category-pagination text-center">
@@ -291,8 +295,8 @@
 									<li><a href="#">3</a></li>
 									<li><a href="#">4</a></li>
 									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+									<li><a href="#" aria-label="Next"> 
+									<span 	aria-hidden="true">&raquo;</span>
 									</a></li>
 								</ul>
 							</nav>
@@ -304,8 +308,10 @@
 			<!--/ row -->
 		</div>
 		<!--/ container -->
+		
 		<!-- 모달시작 -->
 		<!-- OFFER CONTACT FORM-->
+		<c:forEach  items="${requestScope.listA}"  var="list">
 		<div id="offer-01" class="modal fade services-modal" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
@@ -315,12 +321,12 @@
 							<div class="offer-slider">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
-										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"> 
-										<%-- <img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image"> --%>
+										<%-- <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"> --%> 
+										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
 									</div>
-									<div class="swiper-slide">
+									<%-- <div class="swiper-slide">
 										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image">
-									</div>
+									</div> --%>
 								</div>
 
 								<div class="offer-pagination-prev left-arrow">
@@ -331,42 +337,48 @@
 									<span class="ti-angle-right"></span>
 								</div>
 							</div>
-							<span class="offer-box-price">$350pw	${listA.id}</span> 
+							<span class="offer-box-price">$350pw	</span> 
 							<span class="offer-box-label"><span class="ti-star"></span>featured</span>
 						</div>
+						
+						<!-- private String id;
+								private int blogNum;
+								private String category;
+								private String contentCode;
+								private String blogTitle;
+								private String blogDate;
+								private String blogCont;
+								private String userPic; -->
 						<div class="offer-content pl-30 pr-30">
-							<span class="h4 offer-box-title">Spacious 1 Bed Flat near
-								Bermondsey Sq. Lovely Period property</span> <span
-								class="offer-box-location"><span class="ti-location-pin"></span>Tower
-								Bridge, London </span> <span class="offer-box-meta">Nordman
-								Agency | 30 Nov 2016 | Flat | 2 Beds</span> <a href="#"
-								class="btn btn-link btn-sm pr-0 pull-right"><span
-								class="ti-star"></span> to favorites</a> <a class="close"
-								data-dismiss="modal"><span class="ti-close"></span></a>
+							<span class="h4 offer-box-title">${list.restaurantName }</span> 
+							<span class="offer-box-location">
+								<span class="ti-location-pin"></span>${list.restaurantAddr } </span> 
+								<!-- <span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span> --> 
+								<a href="#" class="btn btn-link btn-sm pr-0 pull-right">
+								<span class="ti-star"></span> to favorites</a> 
+								<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 							<div class="contact-form mt-60">
+							
 								<form>
 									<div class="form-group">
-										<input type="text" class="form-control" id="name" name="name"
-											placeholder="Name" required>
+										<input type="text" class="form-control" id="name" name="blogTitle" placeholder="Name" required>
 									</div>
+
+									<!-- <div class="form-group">
+										<input type="text" class="form-control" id="contact-email" name="contact-email" placeholder="Email" required>
+									</div> -->
+
+									<!-- <div class="form-group">
+										<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
+									</div> -->
 
 									<div class="form-group">
-										<input type="text" class="form-control" id="contact-email"
-											name="contact-email" placeholder="Email" required>
+										<textarea class="form-control" id="message" 	placeholder="Message" maxlength="140" rows="7"></textarea>
 									</div>
-
-									<div class="form-group">
-										<input type="text" class="form-control" id="mobile"
-											name="mobile" placeholder="Mobile Number" required>
+									<div>
+									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 									</div>
-
-									<div class="form-group">
-										<textarea class="form-control" id="message"
-											placeholder="Message" maxlength="140" rows="7"></textarea>
-									</div>
-
-									<button type="button" id="submit" name="submit"
-										class="btn btn-primary btn-lg text-center float-right">Send</button>
+									<button type="button" id="submit" name="submit" class="btn btn-primary btn-lg text-center float-right">Send</button>
 								</form>
 							</div>
 						</div>
@@ -374,6 +386,7 @@
 				</div>
 			</div>
 		</div>
+		</c:forEach>
 		<!-- / OFFER CONTACT FORM -->
 	</section>
 
@@ -442,7 +455,6 @@
 			</div>
 		</div>
 	</footer>
-
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script
@@ -461,5 +473,105 @@
 		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
+		
+	<!-- jQuery -->
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+							if ('${blogCont!=null}' == 'true')
+								Editor.modify({
+									'content' : '${blogCont}'
+								});
+
+							var config = {
+								txHost : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
+								txPath : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
+								txService : 'sample', /* 수정필요없음. */
+								txProject : 'sample', /* 수정필요없음. 프로젝트가 여러개일 경우만 수정한다. */
+								initializedId : "", /* 대부분의 경우에 빈문자열 */
+								wrapper : "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
+								form : 'tx_editor_form' + "", /* 등록하기 위한 Form 이름 */
+								txIconPath : "${ pageContext.request.contextPath }/resources/assets/daumOpenEditor/images/icon/editor/", /* 에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
+								txDecoPath : "${ pageContext.request.contextPath }/resources/assets/daumOpenEditor/images/deco/contents/", /* 본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
+								canvas : {
+									exitEditor : { /* desc:'빠져 나오시려면 shift+b를 누르세요.', hotKey: { shiftKey:true, keyCode:66 }, nextElement: document.getElementsByTagName('button')[0] */},
+									styles : {
+										color : "#000000", /* 기본 글자색 */
+										fontFamily : "굴림", /* 기본 글자체 */
+										fontSize : "10pt", /* 기본 글자크기 */
+										backgroundColor : "#fff", /*기본 배경색 */
+										lineHeight : "1.5", /*기본 줄간격 */
+										padding : "8px" /* 위지윅 영역의 여백 */
+									},
+									showGuideArea : false
+								},
+								events : {
+									preventUnload : false
+								},
+								sidebar : {
+
+									attachbox : {
+										show : true,
+										confirmForDeleteAll : true
+									},
+									attacher : {
+										image : {
+											features : {
+												left : 250,
+												top : 65,
+												width : 465,
+												height : 220,
+												scrollbars : 0
+											}, //팝업창 사이즈 
+											popPageUrl : '${pageContext.request.contextPath}/daumOpenEditor/imagePopup' //팝업창 주소 
+										}
+									}
+
+								},
+								size : {
+									contentWidth : 700
+								/* 지정된 본문영역의 넓이가 있을 경우에 설정 */}
+							};
+							EditorJSLoader.ready(function(Editor) {
+								var editor = new Editor(config);
+							});
+
+							function saveContent() {
+								Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
+							}
+
+							function validForm(editor) {
+								// Place your validation logic here
+
+								// sample : validate that content exists
+								var validator = new Trex.Validator();
+								var content = editor.getContent();
+								if (!validator.exists(content)) {
+									alert('내용을 입력하세요');
+									return false;
+								}
+
+								return true;
+							}
+
+							function setForm(editor) {
+								var i, input;
+								var form = editor.getForm();
+								var content = editor.getContent();
+
+								// 본문 내용을 필드를 생성하여 값을 할당하는 부분
+								var textarea = document
+										.createElement('textarea');
+								textarea.name = 'blogCont';
+								textarea.value = content;
+								textarea.style.display = "none";
+								form.createField(textarea);
+								return true;
+							}
+						</script>
+
 </body>
 </html>

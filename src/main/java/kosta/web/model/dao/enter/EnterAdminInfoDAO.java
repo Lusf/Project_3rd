@@ -6,4 +6,8 @@ import kosta.web.model.vo.enter.LookInfoVo;
 
 public interface EnterAdminInfoDAO {
 	List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage);
+	
+	int enterInfoDelete(String contentCode);
+	
+	int enterInfoInsert(LookInfoVo lookInfoVo);
 }

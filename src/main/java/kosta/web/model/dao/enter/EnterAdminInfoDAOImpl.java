@@ -20,4 +20,14 @@ public class EnterAdminInfoDAOImpl implements EnterAdminInfoDAO {
 		return sqlSession.selectList("enterAdminMapper.enterInfoSearch", lookInfoVo, new RowBounds(currentPage, 10));
 	}
 
+	@Override
+	public int enterInfoDelete(String contentCode) {
+		return sqlSession.delete("enterAdminMapper.enterInfoDelete", contentCode);
+	}
+
+	@Override
+	public int enterInfoInsert(LookInfoVo lookInfoVo) {
+		return sqlSession.insert("enterAdminMapper.enterInfoInsert", lookInfoVo);
+	}
+
 }

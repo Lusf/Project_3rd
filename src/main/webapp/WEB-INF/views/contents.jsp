@@ -24,7 +24,7 @@ h1 {
 }
 
 #indexGrid {
-	padding-top: 6em
+	padding-top: 2em
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px) {
@@ -86,7 +86,7 @@ h1 {
 				<p id="desc">
 					<br> TV부터 공연까지<br> 
 					<!-- <a href="entertainment/enterMain" id="astyle">View more</a> -->
-					<a href="entertainment/new/enterMain" id="astyle">New</a>
+					<a href="entertainment/new/enterMain" id="astyle">View more</a>
 			</figcaption>
 		</figure>
 	</div>
@@ -100,8 +100,7 @@ h1 {
 				<h1>Food</h1>
 				<p id="desc">
 					<br> 나에게 음식이란???<br> 
-					<a href="eating/eatingMain" id="astyle"	onclick="eat()">Mark1</a>
-					<a href="eating/newdesign" id="astyle">Mark2</a>
+					<a href="eating/newdesign" id="astyle">View more</a>
 				</p>
 			</figcaption>
 		</figure>
