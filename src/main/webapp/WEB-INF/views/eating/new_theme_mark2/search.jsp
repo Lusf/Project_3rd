@@ -262,16 +262,16 @@
 									</div>
 
 									<div class="offer-pagination-next right-arrow">
-										<span class="ti-angle-right">qqq</span>
+										<span class="ti-angle-right"></span>
 									</div>
 								</div>
 								<!-- <span class="offer-box-price">$350pw</span> --> 
 								<!-- <span class="offer-box-label"><span class="ti-star"></span>featured</span> -->
 							</div>
-							<a href="#"> <span class="h4 offer-box-title">11111111111  ${list.restaurantName} </span>  
+							<a href="#"> <span class="h4 offer-box-title">  ${list.restaurantName} </span>  
 							<span class="offer-box-location">
 							<span class="ti-location-pin">
-							</span>${list.restaurantAddr} 11111111</span> 
+							</span>${list.restaurantAddr} </span> 
 							<!-- <span class="offer-box-meta">Nordman	Agency | 30 Nov 2016 | Flat | 2 Beds</span> -->
 							</a> 
 									<a href="#" class="btn btn-default" data-toggle="modal" data-target="#offer-01" id="test">상세 보기</a>  
@@ -337,8 +337,8 @@
 									<span class="ti-angle-right"></span>
 								</div>
 							</div>
-							<span class="offer-box-price">$350pw	</span> 
-							<span class="offer-box-label"><span class="ti-star"></span>featured</span>
+							<!-- <span class="offer-box-price">$350pw	</span> 
+							<span class="offer-box-label"><span class="ti-star"></span>featured</span> -->
 						</div>
 						
 						<!-- private String id;
@@ -359,27 +359,48 @@
 								<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 							<div class="contact-form mt-60">
 							
-								<form>
+								<form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
+								<%-- <form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
 									<div class="form-group">
-										<input type="text" class="form-control" id="name" name="blogTitle" placeholder="Name" required>
+										<input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="제목" required>
 									</div>
 
-									<!-- <div class="form-group">
-										<input type="text" class="form-control" id="contact-email" name="contact-email" placeholder="Email" required>
-									</div> -->
-
-									<!-- <div class="form-group">
-										<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
-									</div> -->
-
-									<div class="form-group">
-										<textarea class="form-control" id="message" 	placeholder="Message" maxlength="140" rows="7"></textarea>
-									</div>
 									<div>
-									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
+										<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 									</div>
-									<button type="button" id="submit" name="submit" class="btn btn-primary btn-lg text-center float-right">Send</button>
-								</form>
+									<div style="text-align: center; margin-bottom: 3em">
+										<button type="submit" class="btn btn-default" 	onclick="saveContent()">전송</button>
+										<button type="reset" class="btn btn-default">다시쓰기</button>
+									</div>
+								</form> --%>
+								
+								
+					<form name="tx_editor_form" id="tx_editor_form" action="${pageContext.request.contextPath}/blog/insertBlogReview"
+							method="post" accept-charset="utf-8">
+							<div class="panel panel-default">
+								<div class="form-group">
+									<div class="form-group input-group">
+										<span class="input-group-addon">제목</span> <input type="text"
+											class="form-control" placeholder="제목을 작성해주세요" name="blogTitle">
+									</div>
+								</div>
+								<div class="panel-body">
+									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
+								</div>
+							</div>
+							<input type="hidden" name="contentCode" value="${info.contentCode }">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}">
+							<sec:authorize access="isAuthenticated()">
+								<input type="hidden" name="id" value="<sec:authentication property="principal.id" />">
+							</sec:authorize>
+							<div style="text-align: center; margin-bottom: 3em">
+								<button type="submit" class="btn btn-default"
+									onclick="saveContent()">전송</button>
+								<button type="reset" class="btn btn-default">다시쓰기</button>
+							</div>
+						</form>
+						
 							</div>
 						</div>
 					</div>

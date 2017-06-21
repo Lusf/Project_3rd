@@ -85,7 +85,7 @@
 	})
 
 	function getReadList() {
-		$('#loading').html('데이터 로딩중입니다.');
+		//$('#loading').html('데이터 로딩중입니다.');
 		//ajax
 		$.ajax({	url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 					type : "post",
@@ -96,9 +96,10 @@
 						xhr.setRequestHeader(header, token)
 					},
 					success : function(result) {
-						console.log("result = " + result);
+						
 						var str = "";
 						$.each(result, function(index, item) {
+							
 							str += makeCard(item, index);
 						})
 						if (result != "") {
@@ -120,15 +121,14 @@
 		str += "<div class='thumbnail' style='height: 7em;'>";
 		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
 		str += "<div class='caption'>";
-		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
-				+ "</h3>";
+		str += "<h3>"+ item.travelgeName+"</h3>";
 		str += "<p>" + item.travelgeAddr + "</p>";
+ 		str += "<span>★"+item.avgScoreVo.score+"("+item.avgScoreVo.personCount+"명)</span>";
 		str += "</div>";
 		str += "</div>";
 		str += "</a>";
 		str += "</div>";
 		str += "</div>";
-
 		return str;
 	};
 
