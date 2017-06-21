@@ -104,6 +104,9 @@ public interface EnterService {
 	/** enter admin insert */
 	int enterInfoInsert(LookInfoVo lookInfoVo);
 	
+	/** enter admin update */
+	int enterInfoUpdate(LookInfoVo lookInfoVo);
+	
 	/*
 	 * *************************************************
 	 * **°ü¸®ÀÚ

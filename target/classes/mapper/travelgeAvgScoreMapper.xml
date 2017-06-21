@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="travelgeAvgScoreMapper">
+<resultMap type="AvgScoreVo" id="avgScoreMap">
+	<id column="id" property="id"/>
+	<result column="content_code" property="contentCode"/>
+	<result column="score" property="score"/>
+	<result column="wish_list" property="wish_list"/>
+</resultMap>
+
+<!-- 별점등록 -->
+<insert id="travelgeScoreInsert" parameterType="AvgScoreVo">
+	insert into avg_score (id, content_code, score)
+	values(#{id}, #{contentCode}, #{score})
+</insert>
+
+<!-- 별점 수정 -->
+<update id="travelgeScoreUpdate" parameterType="AvgScoreVo">
+UPDATE avg_score
+SET score = #{score}
+WHERE id=#{id}
+AND content_code=#{contentCode}
+</update>
+<!-- 평점출력 -->
+<select id="selectScore" parameterType="String" resultType = "AvgScoreVo">
+	select content_code as contentCode, avg(score) as score, count(content_code) as personCount
+	from avg_score
+	where content_code = #{_parameter}
+	group by content_code
+</select>
+
+<!-- 개인 별점출력 -->
+<select id="selectUserScore" parameterType="map" resultMap = "avgScoreMap">
+	select content_code as contentCode,  score
+	from avg_score
+	where content_code = #{contentCode}
+	and id = #{id}
+</select>
+</mapper>

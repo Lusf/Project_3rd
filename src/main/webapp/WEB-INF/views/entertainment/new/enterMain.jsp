@@ -44,7 +44,7 @@
 
 	});
 	
-
+	
 </script>
 
 </head>
@@ -156,14 +156,14 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${lookInfoList}" var="infoList" varStatus="state">
-												<c:if test="${infoList.lookCate eq 'movie'}">
+												<c:if test="${infoList.lookCate eq '영화'}">
 												<div class="swiper-slide">
 												<!-- single offer box-->
 													<div class="offer-box">
 															<div class="offer-box-head">
 <%-- 																<a href="${pageContext.request.contextPath}/entertainment/new/enterList/${infoList.lookCate}">  --%>
 																	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/movie/${infoList.lookImg}" >																																												
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >																																												
 																</a>
 															</div>
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
@@ -208,7 +208,7 @@
 													<div class="offer-box">
 															<div class="offer-box-head">
 																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
-																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/tv/${infoList.lookImg}" >																																												
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >																																																																																																						
 																</a>
 															</div>
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
@@ -253,7 +253,7 @@
 													<div class="offer-box">
 															<div class="offer-box-head">
 																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}"> 
-																	<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${infoList.lookImg}" >																																												
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >																																																																																																						
 																</a>
 															</div>
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}"> 

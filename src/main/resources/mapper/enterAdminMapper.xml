@@ -14,7 +14,8 @@
 		<result column="look_loca" property="lookLoca"/>
 		<result column="look_cate" property="lookCate"/>
 		<result column="look_age" property="lookAge"/>
-		<result column="look_coordinates" property="lookCoordinates"/>
+		<result column="look_x" property="x"/>
+		<result column="look_y" property="y"/>
 		<result column="cnt" property="cnt"/>
 	</resultMap>
 
@@ -41,8 +42,16 @@
 	<insert id="enterInfoInsert" parameterType="LookInfoVo">
 		insert into look_info 
 		values(#{contentCode},#{lookTitle},#{lookStory},#{lookMaker},#{lookImg},#{lookGenre},#{lookStartDate},
-			#{lookLastDate},#{lookLoca},#{lookCate},#{lookAge},#{lookCoordinates})
+			#{lookLastDate},#{lookLoca},#{lookCate},#{lookAge},#{x},#{y})
 	</insert>
+	
+	<!-- 수정 -->
+	<update id="enterInfoUpdate">
+		update look_info set look_title=#{lookTitle}, look_story=#{lookStory}, look_maker=#{lookMaker},
+			look_img=#{lookImg}, look_genre=#{lookGenre}, look_startdate=#{lookStartDate}, look_lastdate=#{lookLastDate},
+			look_loca=#{lookLoca},look_cate=#{lookCate},look_x=#{x},look_y=#{y}
+		where content_code=#{contentCode}
+	</update>
 	
 	<!-- 삭제 -->
 	<delete id="enterInfoDelete" parameterType="string">

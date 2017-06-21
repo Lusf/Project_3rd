@@ -8,11 +8,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosta.web.model.dao.blog.UserBlogDAO;
 import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
 import kosta.web.model.dao.travelge.TravelgeInfoDAO;
 import kosta.web.model.dao.travelge.TravelgeRecommandationDAO;
 import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
+import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
 
 @Service
@@ -45,7 +47,9 @@ public class TravelgeServiceImpl implements TravelgeService {
 	private TravelgeRecommandationDAO travelgeRecommandationDAO;
 	@Autowired
 	private TravelgeAvgScoreDAO travelgeAvgScoreDAO;
-
+	@Autowired
+	private UserBlogDAO userBlogDAO;
+	
 	@Override
 	public int travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo) {
 
@@ -114,16 +118,18 @@ public class TravelgeServiceImpl implements TravelgeService {
 		for (TravelgeInfoVo dto : temp) {
 			int point = dto.getTravelgeCoordinates().indexOf(',');
 			int last = dto.getTravelgeCoordinates().indexOf(')');
-			// System.out.println(point);
+
 			double tempLat = Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
 			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point + 2, last));
 
 			dto.setX(tempLat + "");
 			dto.setY(tempLon + "");
-			// dto.setTravelgeCoordinates(tempLat+", "+tempLon);
+
+			
+			//평점 가져오기
+			dto.setAvgScoreVo(travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode()));
 			newList.add(dto);
 			
-//			System.out.println(dto.getX() + " : " + dto.getY());
 
 		}
 		return newList;
@@ -167,15 +173,15 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}
 
 	@Override
-	public int travelgeScoreInsert(AvgScoreVo avgScoreVo) {
+	public int travelgeScoreInsert(String id, String contentCode, double score) {
 		// TODO Auto-generated method stub
-		return 0;
+		return travelgeAvgScoreDAO.travelgeScoreInsert(id, contentCode, score);
 	}
 
 	@Override
-	public int travelgeScoreUpdate(AvgScoreVo avgScoreVo) {
+	public int travelgeScoreUpdate(String id, String contentCode, double score) {
 		// TODO Auto-generated method stub
-		return 0;
+		return travelgeAvgScoreDAO.travelgeScoreUpdate(id, contentCode, score);
 	}
 
 	static final double bound = 0.025;
@@ -228,8 +234,13 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}*/
 
 	@Override
-	public List<TravelgeInfoVo> latestComment() {
-		// TODO Auto-generated method stub
+	public List<TravelgeLatestCommentVo> latestComment() {
+		List<TravelgeLatestCommentVo> list = travelgeInfoDAO.latestComment();
+		for(TravelgeLatestCommentVo dto : list)
+		{
+			dto.setUserPic(userBlogDAO.userPicBlog(dto.getContentCode(), dto.getId()));
+		}
+		
 		return travelgeInfoDAO.latestComment();
 	}
 
@@ -248,6 +259,12 @@ public class TravelgeServiceImpl implements TravelgeService {
 	public TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title) {
 		
 		return travelgeRecommandationDAO.travelgeRecommandSearch3(contentCode, title);
+	}
+
+	@Override
+	public AvgScoreVo selectUserScore(String contentCode, String id) {
+		
+		return travelgeAvgScoreDAO.selectUserScore(contentCode, id);
 	}
 
 }
