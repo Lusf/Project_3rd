@@ -5,7 +5,7 @@
 <resultMap type="LookInfoVo" id="lookInfoSelectMap">
 	<id column="content_code" property="contentCode"/>
 	<result column="look_title" property="lookTitle"/>
-	<result column="look_story" property="lookStory"/>
+	<result column="look_title" property="lookStory"/>
 	<result column="look_maker" property="lookMaker"/>
 	<result column="look_img" property="lookImg"/>
 	<result column="look_genre" property="lookGenre"/>
@@ -14,11 +14,16 @@
 	<result column="look_loca" property="lookLoca"/>
 	<result column="look_cate" property="lookCate"/>
 	<result column="look_age" property="lookAge"/>
+	<result column="look_coordinates" property="lookCoordinates"/>
 </resultMap>
+
+<sql id="lookInfo">
+	look_title, look_title, look_maker, look_img, look_genre, look_startdate, look_lastdate, look_loca, look_cate, look_age 
+</sql>
 
 <!-- 볼거리 정보 가져오기 -->
 <select id="searchList" resultMap="lookInfoSelectMap" parameterType="LookInfoVo">
-	select *
+	select <include refid="lookInfo"/> , substr(look_coordinates, ) as x 
 	from look_info
 	<where>
 		<choose>
@@ -33,6 +38,12 @@
 		<choose>
 			<when test="lookGenre!=null">
 				look_genre=#{lookGenre} 
+			</when>
+		</choose>
+		<choose>
+			<when test="lookCoordinates!=null">
+				look_coordinates = #{lookCoordinates}
+				<if test=""></if>
 			</when>
 		</choose>
 	</where>
