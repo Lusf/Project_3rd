@@ -89,7 +89,7 @@
 
 						<!-- 검색 옵션 -->
 						<form
-							action="${pageContext.request.contextPath }/entertainment/enterInfoInsert"
+							action="${pageContext.request.contextPath }/entertainment/enterInfoUpdate"
 							method="post" role="form" enctype="multipart/form-data">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">

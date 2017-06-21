@@ -14,7 +14,8 @@
 	<result column="look_loca" property="lookLoca"/>
 	<result column="look_cate" property="lookCate"/>
 	<result column="look_age" property="lookAge"/>
-	<result column="look_coordinates" property="lookCoordinates"/>
+	<result column="look_x" property="x"/>
+	<result column="look_y" property="y"/>
 </resultMap>
 
 <sql id="lookInfo">

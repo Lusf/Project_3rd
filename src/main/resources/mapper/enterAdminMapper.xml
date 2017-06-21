@@ -45,6 +45,11 @@
 			#{lookLastDate},#{lookLoca},#{lookCate},#{lookAge},#{x},#{y})
 	</insert>
 	
+	<!-- 수정 -->
+	<update id="enterInfoUpdate">
+		update look_info set look_title=#{lookTitle}, look_story=#{lookStory}, look_maker=#{lookMaker}
+	</update>
+	
 	<!-- 삭제 -->
 	<delete id="enterInfoDelete" parameterType="string">
 		delete look_info where content_code=#{_parameter}

@@ -303,6 +303,27 @@ public class EnterController {
 		return new ModelAndView("admin/enter/enterInfoUpdateForm", "list", list);
 	}
 	
+	@RequestMapping("enterInfoUpdate")
+	public String enterInfoUpdate(HttpServletRequest request, LookInfoVo lookInfoVo) {
+
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		MultipartFile file = lookInfoVo.getFile();
+
+		if (file.getSize() > 0) {
+			lookInfoVo.setLookImg(file.getOriginalFilename());
+			try {
+				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
+						+ lookInfoVo.getLookImg()));
+
+			} catch (Exception e) {
+			}
+		}
+
+		//travelgeService.travelgeInfoUpdate(travelgeInfoVo);
+
+		return "admin/enterInfoSearch";
+	}
+	
 	@RequestMapping("enterInfoDelete")
 	public ModelAndView enterInfoDelete(String contentCode){
 		int result = enterService.enterInfoDelete(contentCode);
