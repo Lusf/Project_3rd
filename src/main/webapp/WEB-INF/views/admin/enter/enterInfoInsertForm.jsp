@@ -118,7 +118,7 @@
 									<label for="lookCate">Category</label>
 									<select class="form-control" name="lookCate"
 										id="lookCate">
-										<option disabled="disabled">카테고리</option>
+										<option value="0">카테고리</option>
 										<option value="M">영화</option>
 										<option value="T">TV</option>
 										<option value="P">공연/연극</option>
@@ -128,7 +128,7 @@
 									<label for="lookGenre">Genre</label>
 									<select class="form-control" name="lookGenre"
 										id="lookGenre">
-										<option disabled="disabled">장르</option>
+										<option value="0">장르</option>
 										<option value="1">멜로/로맨스</option>
 										<option value="2">코미디</option>
 										<option value="3">SF</option>
@@ -142,7 +142,7 @@
 									<label for="lookAge">Age</label>
 									<select class="form-control" name="lookAge"
 										id="lookAge">
-										<option disabled="disabled">연령등급</option>
+										<option value="0">연령등급</option>
 										<option value="A">전체</option>
 										<option value="B">12세</option>
 										<option value="C">15세</option>
@@ -189,14 +189,14 @@
 									<div class="form-group col-xs-4">
 										<input type="text" id="x"
 											placeholder="X좌표" name="x"
-											class="form-control" readonly="readonly">
+											class="form-control" value="0" readonly="readonly">
 										<div id="map"
 										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
 									</div>
 									<div class="form-group col-xs-4">
 										<input type="text" id="y"
 											placeholder="Y좌표" name="y"
-											class="form-control" readonly="readonly">
+											class="form-control" value="0" readonly="readonly">
 									</div>
 								</div>
 							</div>
@@ -210,9 +210,27 @@
 											width="100" height="100">
 									</div>
 									<div class="form-groupcol-xs-6">
-										<input class="upload-name" value="파일선택" disabled="disabled">
-										<label for="upload">사진 업로드</label> <input type="file"
+										<input class="upload-name" id="upname" value="파일선택" disabled="disabled">
+										<label for="upload">포스터 업로드</label> <input type="file"
 											id="upload" class="upload-hidden" name="file">
+									</div>
+									
+									<div class="form-groupcol-xs-12">
+										<input class="upload-name" id="picName1" value="파일선택" disabled="disabled">
+										<label for="pic1">사진1</label> <input type="file"
+											id="pic1" class="upload-hidden" name="pic1">
+											
+										<input class="upload-name" id="picName2" value="파일선택" disabled="disabled">
+										<label for="pic2">사진2</label> <input type="file"
+											id="pic2" class="upload-hidden" name="pic2">
+											
+										<input class="upload-name" id="picName3" value="파일선택" disabled="disabled">
+										<label for="pic3">사진3</label> <input type="file"
+											id="pic3" class="upload-hidden" name="pic3">
+											
+										<input class="upload-name" id="picName4" value="파일선택" disabled="disabled">
+										<label for="pic4">사진4</label> <input type="file"
+											id="pic4" class="upload-hidden" name="pic4">
 									</div>
 								</div>
 							</div>
@@ -226,18 +244,9 @@
 		<!-- /.row -->
 
 	</div>
-	<!-- /.container-fluid -->
-
-
-	<!-- /#page-wrapper -->
-
-
-	<!-- /#wrapper -->
-
-
+	
 	<!-- 주소검색 -->
 	<!--46b3765fabdb091e03e9b1d9b145dc32  -->
-
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
@@ -323,40 +332,119 @@
 		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(
-				function() {
-					$("#lookStartDate").datepicker({
-						changeYear: true,
-						changeMonth: true,
-						dateFormat: "yy/mm/dd"
-					});
-					$("#lookLastDate").datepicker({
-						changeYear: true,
-						changeMonth: true,
-						dateFormat: "yy/mm/dd"
-					});
-
-					
-					var fileTarget = $('.filebox .upload-hidden');
-					fileTarget.on('change', function() {
-						// 값이 변경되면
-						if (window.FileReader) {
-							// modern browser 
-							var filename = $(this)[0].files[0].name;
-						} else {
-							// old IE 
-							var filename = $(this).val().split('/').pop()
-									.split('\\').pop();
-						}
-						// 파일명만 추출 } // 추출한 파일명 삽입 
-						$(this).siblings('.upload-name').val(filename);
-
-					});
-
+			function() {
+				$("#lookStartDate").datepicker({
+					changeYear: true,
+					changeMonth: true,
+					dateFormat: "yy/mm/dd"
+				});
+				$("#lookLastDate").datepicker({
+					changeYear: true,
+					changeMonth: true,
+					dateFormat: "yy/mm/dd"
 				});
 
-		var upload = document.getElementById('upload'), holder = document
-				.getElementById('holder');
+				//유효성 검사
+				$("button[type='submit']").click(function(){
+					var din = $("input[name='lookStartDate']").val();
+			        var dout = $("input[name='lookLastDate']").val();
+			         
+			        var dia = din.split("/");
+			        var doa = dout.split("/");
+			         
+			        var cin = new Date(dia[0],dia[1],dia[2]);
+			        var cout = new Date(doa[0],doa[1],doa[2]);
+			      
+			        if(cin.getTime() > cout.getTime()){
+			           alert("시작 날짜가 종료 날짜보다 전이거나 같아야 합니다.");
+			           $("input[name='lookStartDate']").val("");
+			           $("input[name='lookLastDate']").val("");
+			           return false;
+			        }
+			        
+			        if($("#lookCate").val()==0){
+			        	alert("카테고리를 선택해주세요.")
+			        	return false;
+			        }
+			        if($("#lookGenre").val()==0){
+			        	alert("장르를 선택해주세요.")
+			        	return false;
+			        }
+			        if($("#lookAge").val()==0){
+			        	alert("연령등급을 선택해주세요.")
+			        	return false;
+			        }
+			        
+			        if($("input[type='text']").val()=="" || $("input[type='text']").val()==null || $("textarea").val()=="" || $("textarea").val()==null){
+			        	alert("모든 칸을 입력해주세요.")
+			        	return false;
+			        }
+			        
+			        if($("#upload").val()=="" || $("#upload").val()==null){
+			        	alert("포스터 사진을 올려주세요.")
+			        	return false;
+			        }
+				});
+				
+				
+				var fileTarget = $('.filebox #upload');
+				fileTarget.on('change', function() {
+					// 값이 변경되면
+					if (window.FileReader) {
+						// modern browser 
+						var filename = $(this)[0].files[0].name;
+					} else {
+						// old IE 
+						var filename = $(this).val().split('/').pop()
+								.split('\\').pop();
+					}
+					// 파일명만 추출 } // 추출한 파일명 삽입 
+					$(this).siblings('#upname').val(filename);
+				});
+				
+				var pic1 = $('.filebox #pic1');
+				pic1.on('change', function() {
+					if (window.FileReader) {
+						var filename = $(this)[0].files[0].name;
+					} else {
+						var filename = $(this).val().split('/').pop()
+								.split('\\').pop();
+					}
+					$(this).siblings('#picName1').val(filename);
+				});
+				var pic2 = $('.filebox #pic2');
+				pic2.on('change', function() {
+					if (window.FileReader) {
+						var filename = $(this)[0].files[0].name;
+					} else {
+						var filename = $(this).val().split('/').pop()
+								.split('\\').pop();
+					}
+					$(this).siblings('#picName2').val(filename);
+				});
+				var pic3 = $('.filebox #pic3');
+				pic3.on('change', function() {
+					if (window.FileReader) {
+						var filename = $(this)[0].files[0].name;
+					} else {
+						var filename = $(this).val().split('/').pop()
+								.split('\\').pop();
+					}
+					$(this).siblings('#picName3').val(filename);
+				});
+				var pic4 = $('.filebox #pic4');
+				pic4.on('change', function() {
+					if (window.FileReader) {
+						var filename = $(this)[0].files[0].name;
+					} else {
+						var filename = $(this).val().split('/').pop()
+								.split('\\').pop();
+					}
+					$(this).siblings('#picName4').val(filename);
+				});
+			});
 
+		var upload = document.getElementById('upload'), holder = document.getElementById('holder');
 		upload.onchange = function(e) {
 			e.preventDefault();
 
