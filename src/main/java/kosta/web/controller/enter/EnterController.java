@@ -289,7 +289,7 @@ public class EnterController {
 			}
 		}
 		
-		return "redirect:/";
+		return "admin/enter/enterInfoSearch";
 	}
 	
 	@RequestMapping("enterInfoUpdateForm")
@@ -319,9 +319,9 @@ public class EnterController {
 			}
 		}
 
-		//travelgeService.travelgeInfoUpdate(travelgeInfoVo);
+		enterService.enterInfoUpdate(lookInfoVo);
 
-		return "admin/enterInfoSearch";
+		return "admin/enter/enterInfoSearch";
 	}
 	
 	@RequestMapping("enterInfoDelete")
