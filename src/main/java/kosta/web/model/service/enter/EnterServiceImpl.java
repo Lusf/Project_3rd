@@ -205,10 +205,7 @@ public class EnterServiceImpl implements EnterService {
       // 연령등급 한글로 변환
       lookInfoVo.setLookAge(map.get(lookInfoVo.getLookAge()));
       
-      System.out.println(lookInfoVo.getLookAge()+","+lookInfoVo.getLookCate()+","+lookInfoVo.getLookGenre());
-      System.out.println(lookInfoVo.getLookLastDate()+","+lookInfoVo.getLookMaker()+","+lookInfoVo.getLookStartDate());
-      System.out.println(lookInfoVo.getLookStory()+","+lookInfoVo.getLookTitle());
-      System.out.println(lookInfoVo.getContentCode()+","+lookInfoVo.getLookCoordinates()+","+lookInfoVo.getLookImg());
+      
       return enterAdminInfoDAO.enterInfoInsert(lookInfoVo);
    }
 }

@@ -14,6 +14,8 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <title>Entertainment Info Insert</title>
 
+<link rel="stylesheet" href="<c:url value='/resources/jqueryui/css/smoothness/jquery-ui-1.9.2.custom.min.css'/>">
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script
 	src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
@@ -154,7 +156,7 @@
 								<div class="form-group col-xs-3">
 									<label for="lookStartDate">StartDate</label> <input
 										type="text" class="form-control" name="lookStartDate"
-										id="lookStartDate " placeholder="시작일">
+										id="lookStartDate" placeholder="시작일">
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="lookLastDate">LastDate</label> <input
@@ -305,8 +307,8 @@
 	</script>
 
 	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-1.8.3.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/jqueryui/js/jquery-ui-1.9.2.custom.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
@@ -314,6 +316,16 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+					$("#lookStartDate").datepicker({
+						changeYear: true,
+						changeMonth: true,
+						dateFormat: "yy/mm/dd"
+					});
+					$("#lookLastDate").datepicker({
+						changeYear: true,
+						changeMonth: true,
+						dateFormat: "yy/mm/dd"
+					});
 
 					var fileTarget = $('.filebox .upload-hidden');
 					fileTarget.on('change', function() {
