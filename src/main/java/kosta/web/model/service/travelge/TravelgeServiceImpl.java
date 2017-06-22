@@ -141,6 +141,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 				UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				String id = user.getId();
 				avgScore.setId(id);
+				dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
 			}
 			dto.setAvgScoreVo(avgScore);
 

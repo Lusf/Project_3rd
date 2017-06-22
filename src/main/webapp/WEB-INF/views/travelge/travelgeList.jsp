@@ -128,8 +128,16 @@
 		str += "<span>" + item.travelgeAddr + " </span>";
 		str += "</a>";
  		if (item.avgScoreVo.id != null) {
+ 			if(item.wish_list == 0)
+ 			{
 			str += "<span style='float:right' class= 'glyphicon glyphicon-heart-empty' id='wishlist'><span style='display:none'>"
 					+ contentCode + "</span></span>"
+ 			}
+ 			else
+ 			{
+			str += "<span style='float:right' class= 'glyphicon glyphicon-heart' id='wishlist'><span style='display:none'>"
+					+ contentCode + "</span></span>"
+ 			}	 			
 		} 
 
 		str += "<span style='float:right' class= 'glyphicon glyphicon-star'>"
