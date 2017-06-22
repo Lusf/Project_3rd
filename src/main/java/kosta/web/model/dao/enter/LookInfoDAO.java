@@ -32,9 +32,22 @@ public interface LookInfoDAO {
 	List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo);
 	
 	/**
-	 * 카테고리에 따른 볼거리 검색
+	 * 컨텐츠코드에 따른 볼거리 검색
 	 * */
 	LookInfoVo lookInfoSearchByCode(String contentCode);
 	
+	/**
+	 * 카테고리에 따른 검색
+	 * */
+	List<LookInfoVo> lookInfoSearchByCate(String lookCate);
 
+	/**
+	 * 장르에 따른 검색
+	 * */
+	List<LookInfoVo> lookInfoSearchByGenre(String lookGenre);
+
+	/**
+	 * 최신순서대로 검색(5개이하)
+	 * */
+	List<LookInfoVo> lookInfoSearchByNewList();
 }

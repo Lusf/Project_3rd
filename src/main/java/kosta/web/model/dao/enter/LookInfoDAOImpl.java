@@ -44,7 +44,23 @@ public class LookInfoDAOImpl implements LookInfoDAO {
 		return sqlSession.selectOne("lookInfoMapper.searchByCode", contentCode);
 	}
 	
+	@Override
+	public List<LookInfoVo> lookInfoSearchByCate(String lookCate) {
+	
+		return sqlSession.selectList("lookInfoMapper.searchByCate", lookCate);
+	}
 
+	@Override
+	public List<LookInfoVo> lookInfoSearchByGenre(String lookGenre) {
+		
+		return sqlSession.selectList("lookInfoMapper.searchByGenre", lookGenre);
+	}
+	
+	@Override
+	public List<LookInfoVo> lookInfoSearchByNewList() {
+
+		return sqlSession.selectList("lookInfoMapper.searchByNewList");
+	}
 	
 	
 
