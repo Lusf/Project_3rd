@@ -212,7 +212,7 @@
 		<div class="box home-search">
 			<div class="container">
 				<div class="box">
-					<form class="form-inline" onsubmit="searchAjax()">
+					<form class="form-inline" onsubmit="searchAjax(); return false;">
 						<div class="dropdown col-md-2" role="presentation">
 							<button class="btn btn-default dropdown-toggle" type="button"
 								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
