@@ -1,5 +1,7 @@
 package kosta.web.model.vo;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class UserVo {
@@ -9,6 +11,8 @@ public class UserVo {
 	private String tell;
 	private String userPic;
 	private int point;
+
+
 
 	private MultipartFile file;
 

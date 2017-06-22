@@ -28,8 +28,7 @@
 		FROM( SELECT * FROM TRAVELGE_INFO
 		<where>
 			<choose>
-				<when
-					test="travelgeRegion!=null and travelgeTheme!=null and contentCode!=null and travelgeAddr!=null">
+				<when test="travelgeRegion!=null and travelgeTheme!=null and contentCode!=null and travelgeAddr!=null">
 					TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%' or TRAVELGE_THEME LIKE
 					'%'||#{travelgeTheme}||'%'
 					or CONTENT_CODE LIKE '%'||#{contentCode}||'%' or TRAVELGE_ADDR LIKE
@@ -56,9 +55,11 @@
 		SELECT *
 		FROM TRAVELGE_INFO
 		<where>
+		<if test="travelgeRegion!=null and travelgeTheme!=null ">
 			TRAVELGE_THEME = #{travelgeTheme}
 			AND
-			TRAVELGE_REGION =#{travelgeRegion}
+			TRAVELGE_REGION =#{travelgeRegion}		
+		</if>
 			AND
 			(TRAVELGE_NAME LIKE '%'||#{keyword}||'%'
 			OR

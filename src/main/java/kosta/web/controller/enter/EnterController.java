@@ -276,21 +276,14 @@ public class EnterController {
 
 		return modelAndView;
 	}
-	
-	/** 이미지 파일의 처리를 위한 함수(insert, update) */
-	String path = null;
-	String poster = null;
-	String pic[] = new String[4];
-	MultipartFile file;
-	MultipartFile pic1;
-	MultipartFile pic2;
-	MultipartFile pic3;
-	MultipartFile pic4;
-	
-	public void fileForm(HttpServletRequest request, LookInfoVo lookInfoVo){
-		path = request.getSession().getServletContext().getRealPath("/resources/enter");
+
+	@RequestMapping("enterInfoInsert")
+	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		String poster = null;
+		String pic[] = new String[4];
 		
-		file = lookInfoVo.getFile();
+		MultipartFile file = lookInfoVo.getFile();
 		if (file.getSize() > 0) {
 			poster = file.getOriginalFilename();
 		}
@@ -313,12 +306,6 @@ public class EnterController {
 		}
 		
 		lookInfoVo.setLookImg(poster+":"+pic[0]+";"+pic[1]+";"+pic[2]+";"+pic[3]);
-	}
-	
-	@RequestMapping("enterInfoInsert")
-	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
-		
-		fileForm(request, lookInfoVo);
 		
 		int result = enterService.enterInfoInsert(lookInfoVo);
 		if (result == 0) {
@@ -368,13 +355,15 @@ public class EnterController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("img", img);
 		mv.addObject("infoVo", infoVo);
 		mv.addObject("poster", poster[0]);
 		
-		for(int i=0; i<4; i++){
+		for(int i=0; i<cut.length; i++){
 			if(cut[i].equals("null"))
 				cut[i] = "사진없음";
 		}
+		
 		mv.addObject("pic1", cut[0]);
 		mv.addObject("pic2", cut[1]);
 		mv.addObject("pic3", cut[2]);
@@ -387,8 +376,52 @@ public class EnterController {
 	
 	@RequestMapping("enterInfoUpdate")
 	public String enterInfoUpdate(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		String poster = null;
+		String pic[] = new String[4];
 		
-		fileForm(request, lookInfoVo);
+		String img = lookInfoVo.getLookImg();
+		String pos[] = img.split(":");
+		String cut[] = pos[1].split(";");
+		
+		MultipartFile file = lookInfoVo.getFile();
+		if(file.getSize() > 0)
+			poster = file.getOriginalFilename();
+		else
+			poster = pos[0];
+		
+		MultipartFile pic1 = lookInfoVo.getPic1();
+		if(pic1.getSize() > 0)
+			pic[0] = pic1.getOriginalFilename();
+		else
+			pic[0] = cut[0];
+		MultipartFile pic2 = lookInfoVo.getPic2();
+		if(pic2.getSize() > 0)
+			pic[1] = pic2.getOriginalFilename();
+		else
+			pic[1] = cut[1];
+		MultipartFile pic3 = lookInfoVo.getPic3();
+		if(pic3.getSize() > 0)
+			pic[2] = pic3.getOriginalFilename();
+		else
+			pic[2] = cut[2];
+		MultipartFile pic4 = lookInfoVo.getPic4();
+		if(pic4.getSize() > 0)
+			pic[3] = pic4.getOriginalFilename();
+		else
+			pic[3] = cut[3];
+		
+		for(int i=0; i<pic.length; i++){
+			if(pic[i].equals("사진없음"))
+				pic[i] = "null";
+		}
+		
+		lookInfoVo.setLookImg(poster+":"+pic[0]+";"+pic[1]+";"+pic[2]+";"+pic[3]);
+
+		int result = enterService.enterInfoUpdate(lookInfoVo);
+		if (result == 0) {
+			throw new Exception();
+		}
 
 		if(file.getSize() > 0) 
 			file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + poster));
@@ -400,8 +433,6 @@ public class EnterController {
 			pic3.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[2]));
 		if(pic4.getSize() > 0)
 			pic4.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[3]));
-
-		enterService.enterInfoUpdate(lookInfoVo);
 
 		return "admin/enter/enterInfoSearch";
 	}

@@ -49,7 +49,7 @@
 	</insert>
 
 	<!-- 맛집정보 확인하기 -->
-	<select id="selectByRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo"	resultMap="restaurantSelectMap">
+	<select id="selectRestaurant" 	resultMap="restaurantSelectMap">
 		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY , CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES , RESTAURANT_PIC , ID
 		from Restaurant
 <!-- 		<where>
@@ -60,6 +60,18 @@
 		</where> -->
 	</select>
 	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
+	
+	<!-- 검색 (이름으로 검색하기) -->
+	<select id="selectByRestaurant" parameterType="String">
+		select	*
+		from Restaurant
+		<where>
+			RESTAURANT_NAME =#{_parameter}
+		</where>
+	
+	</select>	
+	
+	
 	<!-- 맛집 수정하기 -->
 	<update id="updateRestaurant" >
 	update Restaurant

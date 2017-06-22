@@ -9,7 +9,7 @@ public class AvgScoreVo {
 	private String contentCode;
 	private double score;
 	private int personCount;
-	private String wish_list;
+	private int wish_list;
 
 	public AvgScoreVo() {}
 	
@@ -21,7 +21,7 @@ public class AvgScoreVo {
 		this.contentCode = contentCode;
 	}
 
-	public AvgScoreVo(String id, String contentCode, int score, String wish_list) {
+	public AvgScoreVo(String id, String contentCode, int score, int wish_list) {
 		super();
 		this.id = id;
 		this.contentCode = contentCode;
@@ -53,11 +53,11 @@ public class AvgScoreVo {
 		this.score = score;
 	}
 
-	public String getWish_list() {
+	public int getWish_list() {
 		return wish_list;
 	}
 
-	public void setWish_list(String wish_list) {
+	public void setWish_list(int wish_list) {
 		this.wish_list = wish_list;
 	}
 
