@@ -220,9 +220,11 @@ width: 900px;
 height: 20px;
 color: black;
 }
+
 #btag b{
 font-weight: normal;
 }
+
 
 </style>
 </head>
@@ -240,10 +242,10 @@ font-weight: normal;
                ${info.travelgeName }
             </span>
             <span class="text-block2">별점위치</span>
-            <span class="text-block3">찜하기 리뷰위치</span>
+            <span class="text-block3">찜하기 </span>
          </div>
       <div>
-      버튼 위치 1 버튼 위치 2 버튼 위치 3 버튼 위치 4
+      버튼 위치 1 버튼 위치 2 버튼 위치 3 버튼 위치 4 ${fn:length(commentList)}
       </div>
          <hr>
       </div>
@@ -322,7 +324,9 @@ font-weight: normal;
                      <th colspan="2"><B>${b.title}</B></th>
                   </tr>
                   <tr>
+
                      <td colspan="2"><span id="btag">${b.description}</span></td>
+
                   </tr>
                   <tr>
                      <td>${b.postdate }</td>

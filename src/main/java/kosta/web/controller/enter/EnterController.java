@@ -24,6 +24,8 @@ public class EnterController {
 	
 	@Autowired
 	private EnterService enterService;
+	
+	private String lookGenre;
 
 	/*
 	 * //볼거리 메인
@@ -34,47 +36,27 @@ public class EnterController {
 
 	// 볼거리 리스트 (카테고리에 따른)
 	@RequestMapping("new/enterList/{lookCate}")
-	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {
-
-		
-
-		LookInfoVo lookInfoVo = new LookInfoVo();
+	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {	
 		
 		if(lookCate.equals("movie")){
-			lookInfoVo.setLookCate("영화");
-			System.out.println("영화넣음");
+			lookCate="영화";			
 		}else if(lookCate.equals("concert")){
-			lookInfoVo.setLookCate("공연/영화");
-			System.out.println("공연/영화넣음");
-	
+			lookCate="공연/연극";
+		}else if(lookCate.equals("TV")){
+			lookCate="TV";
 		}
 		
-		System.out.println("lookinfovo : " + lookInfoVo.getLookCate());
-		//lookInfoVo.setLookCate(lookCate);
+		List<LookInfoVo> dbLookInfoList = enterService.lookInfoSearchByCate(lookCate);
 		
-
-		List<LookInfoVo> dbLookInfoList = enterService.lookInfoSearch(lookInfoVo);
-		
-		System.out.println("lookInfovo title : " + lookInfoVo.getLookTitle());
-
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterList");
 
 		mv.addObject("dbLookInfoList", dbLookInfoList);
 		mv.addObject("lookCate", lookCate);
-		System.out.println("lookcate : " + lookCate);
-		
-		System.out.println("dbLookInfoList.looktitle : " + dbLookInfoList.size());
-		//System.out.println("dbLookInfoList.lookcate : " + dbLookInfoList.get(0).getLookCate());
-		System.out.println("너 어디있어?");
 
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping("new/enterList") public String enterList(){ return
-	 * "entertainment/new/enterList"; }
-	 */
 
 	// 볼거리 상세화면(공연)
 	@RequestMapping("new/enterDetailConcertView/{contentCode}")
@@ -85,12 +67,18 @@ public class EnterController {
 		//컨텐츠코드에 따른 볼거리
 		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
 		
-		//장르에 따른 볼거리
-		String lookGenre = lookInfoOne.getLookGenre();
-		LookInfoVo lookInfoGenre = new LookInfoVo();
-		lookInfoGenre.setLookGenre(lookGenre);
+/*		System.out.println(lookInfoOne.getLookTitle());
+		System.out.println(lookInfoOne.getLookGenre());
+		System.out.println(lookInfoOne.getLookAge());*/
 		
-		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
+		//장르에 따른 볼거리
+		
+		lookGenre = lookInfoOne.getLookGenre();
+		System.out.println("lookGenre : " + lookGenre);
+/*		LookInfoVo lookInfoGenre = new LookInfoVo();
+		lookInfoGenre.setLookGenre(lookGenre);*/
+		
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
 		
 		mv.setViewName("entertainment/new/enterDetailConcertView");
 		mv.addObject("lookInfoOne", lookInfoOne);
@@ -188,14 +176,21 @@ public class EnterController {
 	// 메인 볼거리 정보 가져오기
 	@RequestMapping("new/enterMain")
 	public ModelAndView enterContents(LookInfoVo lookInfoVo) {
+		
+		//볼거리 정보 가져오기(전체)
 		List<LookInfoVo> lookInfoList = enterService.lookInfoSearch(lookInfoVo);
 
+		//볼거리 정보 최신순으로 가져오기
+		List<LookInfoVo> lookInfoNewList = enterService.lookInfoSearchByNewList();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterMain");
 		mv.addObject("lookInfoList", lookInfoList);
-		
-
-		System.out.println(lookInfoList.get(0).getContentCode());
+		mv.addObject("lookInfoNewList", lookInfoNewList);
+	
+		for(int i=0; i<lookInfoNewList.size(); i++){
+		System.out.println("title : " + lookInfoNewList.get(i).getLookTitle());
+		}
 		return mv;
 	}
 

@@ -97,10 +97,12 @@
 <div class="container">
 	<div class="row">
     	<c:forEach items="${dbLookInfoList}" var="infoList" varStatus="state">
+    	
   		<div class="col-md-3 col-sm-10"> 		
     		<span class="thumbnail text-center">										
 				<%-- <c:if test="${lookCate eq '공연' and infoList.lookCate.substring(0,2) eq '공연'}"> --%>
-				<c:if test="${infoList.lookCate eq '공연/연극' }">
+				<c:choose>
+				<c:when test="${infoList.lookCate eq '공연/연극' }">
 					<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}" >
 						<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >	
 					</a>
@@ -120,9 +122,9 @@
 	      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}" >More</a>
 	      				</div>     				
 	      			</div>
-	      		</c:if>
+	      		</c:when>
 	      		
-	      		<c:if test="${lookCate eq 'movie' or lookCate eq 'TV'}">
+	      		<c:when test="${infoList.lookCate eq '영화'}">
 	      		<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >
 	      			<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >
 	      		</a>
@@ -142,11 +144,34 @@
       						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
       				</div>     				
       			</div>
-      			</c:if>
+      			</c:when>
       			
+      			<c:when test="${infoList.lookCate eq 'TV'  and lookCate eq 'TV'}">
+	      		<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >
+	      			<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >
+	      		</a>
+      			
+      			<h4 class="text-danger">${infoList.lookTitle}</h4>
+      			<div class="ratings">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+
+      			<hr class="line">
+      			<div class="row">
+      				<div class="col-md-6 col-sm-6" style="float:right">
+      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
+      				</div>     				
+      			</div>
+      			</c:when>
+      			</c:choose>
     		</span>
     		
   		</div>
+  		
   		</c:forEach>
   		</div>
 	</div>
