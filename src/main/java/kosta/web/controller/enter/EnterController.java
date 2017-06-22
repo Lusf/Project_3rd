@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.enter.EnterService;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
@@ -24,6 +26,9 @@ public class EnterController {
 	
 	@Autowired
 	private EnterService enterService;
+	
+	@Autowired
+	private UserBlogService userBlogService;
 
 	/*
 	 * //볼거리 메인
@@ -58,8 +63,8 @@ public class EnterController {
 
 	// 볼거리 상세화면(공연)
 	@RequestMapping("new/enterDetailConcertView/{contentCode}")
-	public ModelAndView enterDetailConcertView(HttpSession session, @PathVariable String contentCode) {
-		session.setAttribute("contentCode", contentCode);
+	public ModelAndView enterDetailConcertView(@PathVariable String contentCode) {
+		//session.setAttribute("contentCode", contentCode);
 		ModelAndView mv = new ModelAndView();
 
 		//컨텐츠코드에 따른 볼거리
@@ -70,17 +75,21 @@ public class EnterController {
 		System.out.println(lookInfoOne.getLookAge());*/
 		
 		//장르에 따른 볼거리
-		//lookGenre = lookInfoOne.getLookGenre();
-		//System.out.println("lookGenre : " + lookGenre);
-/*		LookInfoVo lookInfoGenre = new LookInfoVo();
-		lookInfoGenre.setLookGenre(lookGenre);*/
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());		
 		
-		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());
-		
+		//블로그
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
+		System.out.println("공연상세사항 들어왔닝?");
 		mv.setViewName("entertainment/new/enterDetailConcertView");
 		mv.addObject("lookInfoOne", lookInfoOne);
-		mv.addObject("lookInfoConList", lookInfoConList);
 		
+		mv.addObject("lookInfoConList", lookInfoConList);
+		mv.addObject("commentList", commentList);
+		System.out.println("comment List : " + commentList);
+		for(int i=0; i<commentList.size(); i++){
+			System.out.println("com List : "  + commentList.get(i).getId());
+		}
+		//System.out.println("comment List : " + commentList.get(0).getId());
 		//System.out.println("lookinfoOnd x : " + lookInfoOne.getX() + " , " + lookInfoOne.getY());
 
 		return mv;
@@ -102,11 +111,15 @@ public class EnterController {
 		
 		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
 		
+		//블로그
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
+		
 		mv.setViewName("entertainment/new/enterDetailView");
 		mv.addObject("lookInfoOne", lookInfoOne);
 		mv.addObject("lookInfoConList", lookInfoConList);
+		mv.addObject("commentList", commentList);
+		//System.out.println("comment List : " + commentList.get(0).getId());
 		
-
 		return mv;
 	}
 

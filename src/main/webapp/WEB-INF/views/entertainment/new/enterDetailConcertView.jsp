@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+   prefix="sec"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -199,9 +202,9 @@ On click the images will be displayed at normal size to complete the effect
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <!-- <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> -->
-								 <a class="btn btn-default" data-toggle="collapse" href="#reviews">Review</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#share">Share</a>
+								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
+								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
+								<%--  <a class="btn btn-default" href="${pageContext.request.contextPath}/blog/${comment.id}">Review</a> --%>
 							</div>
 						</div>
 					</div>				
@@ -390,10 +393,14 @@ On click the images will be displayed at normal size to complete the effect
 </div>
 	
                     <!-- reviews -->
-                   
-                    <div class="reviews">
-                        <h3 class="mb-60">Reviews</h3>
-
+                   <div class="review">
+                   <h3 class="mb-60">Reviews</h3>
+                    <c:forEach var="comment" items="${commentList }" varStatus="state">
+                    <div class="row">
+                    <c:if test="${empty commentList }">
+                    	블로그 정보 없음
+                    </c:if>
+                  		 <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
                         <ul class="comments-list">
                             <li>
                                 <span class="comments-nick h5">Martin</span>
@@ -421,6 +428,7 @@ On click the images will be displayed at normal size to complete the effect
                                     </li>                            
                         </ul>
                     </div><!-- /review -->
+                    </c:forEach>
                 </div>
 
             </div>
@@ -451,8 +459,8 @@ On click the images will be displayed at normal size to complete the effect
 	</div>
 	
 
-	<!-- share modal -->
-	<div id="share" class="modal fade services-modal" role="dialog">
+	<!-- heart 주기 modal -->
+	<div id="heart" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
@@ -461,8 +469,8 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<h4>공유♡</h4>	
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
+							<h4>좋아요♡</h4>	
+							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">하트주기</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
 						</div>
 
@@ -483,8 +491,30 @@ On click the images will be displayed at normal size to complete the effect
 
 						<div class="services-box text-center">
 							<video width="420" height="340" controls>
- 								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
+ 							<%-- 	 <source src="${lookInfoOne.lookTariler }" type="video/mp4"> --%>
 							</video>												
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- review 작성 modal -->
+	<div id="reviews" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
+
+						<div class="services-box text-center">							
+
+							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
+							<!-- <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
+							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a> -->
 						</div>
 
 					</div>

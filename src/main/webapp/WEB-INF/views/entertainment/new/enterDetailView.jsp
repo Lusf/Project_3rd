@@ -136,9 +136,9 @@ On click the images will be displayed at normal size to complete the effect
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <!-- <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> -->
-								 <a class="btn btn-default" data-toggle="modal" href="#blogCon">Review</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#share">Share</a>
+								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
+								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
+								 <!-- <a class="btn btn-default" data-toggle="modal" href="#share">Share</a> -->
 							</div>
 						</div>
 					</div>				
@@ -270,8 +270,14 @@ On click the images will be displayed at normal size to complete the effect
                         		
                    <!-- comments-->
                    
-                    <div class="reviews">
-                        <h3 class="mb-60">Reviews</h3>
+                    <div class="review">
+                    <h3 class="mb-60">Reviews</h3>
+                    <c:forEach var="comment" items="${commentList }" varStatus="state">
+                    <div class="row">
+                    <c:if test="${empty commentList }">
+                    	블로그 정보 없음
+                    </c:if>
+                        <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
 
                         <ul class="comments-list">
                             <li>
@@ -299,7 +305,9 @@ On click the images will be displayed at normal size to complete the effect
                                         
                                     </li>                            
                         </ul>
-                    </div><!-- /review -->              
+                    </div><!-- /review -->  
+                  
+                    </c:forEach>           
                     </div>
 
                 </div> 
@@ -337,8 +345,8 @@ On click the images will be displayed at normal size to complete the effect
 		</div>
 	</div>
 	
-	<!-- blog connect modal -->
-	<div id="blogCon" class="modal fade services-modal" role="dialog">
+	<!-- review 작성 modal -->
+	<div id="reviews" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
@@ -347,7 +355,7 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<h4>리뷰?</h4>
+							<h4>Review</h4>
 
 							
 							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
@@ -360,7 +368,7 @@ On click the images will be displayed at normal size to complete the effect
 		</div>
 	</div>
 	<!-- share modal -->
-	<div id="share" class="modal fade services-modal" role="dialog">
+	<div id="heart" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
@@ -369,8 +377,8 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<h4>공유♡</h4>	
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
+							<h4>좋아요♡</h4>	
+							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">하트주기</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
 						</div>
 
@@ -391,8 +399,8 @@ On click the images will be displayed at normal size to complete the effect
 
 						<div class="services-box text-center">
 							<video width="420" height="340" controls>
- 								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
-							</video>												
+ 							<%-- 	<source src="${lookInfoOne.lookTariler }" type="video/mp4"> --%>
+ 							</video>												
 						</div>
 
 					</div>
