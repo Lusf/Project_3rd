@@ -196,6 +196,22 @@ public class EnterController {
 
 	// 별점등록하기
 	// @RequestMapping("")
+	
+	
+	/** 볼거리 검색하기 */
+	@RequestMapping("enterSearch")
+	public String enterSearch(LookInfoVo lookInfoVo){
+		return "entertainment/new/enterSearch";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// -----------------------------------------------
 	/** admin 페이지 */

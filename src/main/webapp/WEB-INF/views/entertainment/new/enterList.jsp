@@ -33,7 +33,7 @@
 				<div class="row">
 					<div class="">
 						<div class="box">
-							<form class="form-inline" action="search.html">
+							<form class="form-inline" action="${pageContext.request.contextPath}/entertainment/enterSearch">
 								<div class="form-group col-md-1" style="width:120px;float:center" >
 									<select id="type" class="selectpicker" data-live-search="false" title="종류" >
 										
