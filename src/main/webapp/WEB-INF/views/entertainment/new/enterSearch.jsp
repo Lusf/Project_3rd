@@ -180,10 +180,10 @@
 								</div>
 							</div>
 							<a href="#">
-								<span class="h4 offer-box-title">lookTitle</span>
-								<span class="offer-box-label">lookCate</span>
-								<span class="offer-box-label">lookGenre</span>
-								<span class="offer-box-label">lookAge</span>
+								<span class="h3">lookTitle</span><br><br>
+								<span class="">lookCate</span><br>
+								<span class="">lookGenre</span><br>
+								<span class="">lookAge</span><br><br>
 								<span class="offer-box-location"><span class="ti-location-pin"></span>lookLoca</span>
 								<span class="offer-box-meta">StartDate ~ LastDate</span>
 							</a>
