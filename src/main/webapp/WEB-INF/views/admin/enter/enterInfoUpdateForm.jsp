@@ -114,8 +114,7 @@
 										id="lookMaker" value="${infoVo.lookMaker}">
 								</div>
 								<div class="form-group col-xs-3"><br>
-									<button type="submit" class="btn btn-default">등록</button>
-									<button type="reset" class="btn btn-default">다시쓰기</button>
+									<button type="submit" class="btn btn-default">수정하기</button>
 								</div>
 							</div>
 							
@@ -218,29 +217,25 @@
 										<input class="upload-name" id="posterName" value="${poster}" disabled="disabled" >
 										<label for="upload">포스터 업로드</label> 
 										<input type="file" id="upload" class="upload-hidden" name="file" value="${poster}">
-										<input type="hidden" name="poster" value="${poster}">
+										<input type="hidden" name="lookImg" value="${img}">
 									</div>
 									
 									<div class="form-groupcol-xs-12">
 										<input class="upload-name" id="picName1" value="${pic1}" disabled="disabled">
 										<label for="pic1">사진1</label>
 										<input type="file" id="pic1" class="upload-hidden" name="pic1"  value="${pic1}">
-										<input type="hidden" name="pic1" value="${pic1}">
 											
 										<input class="upload-name" id="picName2" value="${pic2}" disabled="disabled">
 										<label for="pic2">사진2</label>
 										<input type="file" id="pic2" class="upload-hidden" name="pic2"  value="${pic2}">
-										<input type="hidden" name="pic2" value="${pic2}">
 											
 										<input class="upload-name" id="picName3" value="${pic3}" disabled="disabled">
 										<label for="pic3">사진3</label>
 										<input type="file" id="pic3" class="upload-hidden" name="pic3"  value="${pic3}">
-										<input type="hidden" name="pic3" value="${pic3}">
 											
 										<input class="upload-name" id="picName4" value="${pic4}" disabled="disabled">
 										<label for="pic4">사진4</label>
 										<input type="file" id="pic4" class="upload-hidden" name="pic4"  value="${pic4}">
-										<input type="hidden" name="pic4" value="${pic4}">
 									</div>
 								</div>
 							</div>
@@ -394,11 +389,6 @@
 				        	alert("모든 칸을 입력해주세요.")
 				        	return false;
 				        }
-				        
-				        if($("#upload").val()=="" || $("#upload").val()==null){
-				        	alert("포스터 사진을 올려주세요.")
-				        	return false;
-				        }
 					});
 					
 					
@@ -414,7 +404,7 @@
 									.split('\\').pop();
 						}
 						// 파일명만 추출 } // 추출한 파일명 삽입 
-						$(this).siblings('#upname').val(filename);
+						$(this).siblings('#posterName').val(filename);
 					});
 
 					var pic1 = $('.filebox #pic1');
