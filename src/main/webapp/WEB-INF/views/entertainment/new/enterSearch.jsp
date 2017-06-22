@@ -16,6 +16,11 @@
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+
+<style>
+
+</style>
+	
 </head>
 <body>
 	<%@include file="/WEB-INF/views/header.jsp"%>
@@ -63,8 +68,8 @@
 										</div>
 
 										<div class="form-group col-md-4">
-											<input type="text" id="textbox" class="form-control"
-												placeholder="검색어를 입력하세요"/>
+											<input type="text" id="lookTitle" name="lookTitleS" class="form-control"
+												placeholder="제목을 입력하세요"/>
 										</div>
 
 										<div class="form-group col-md-2">
@@ -83,7 +88,7 @@
 												<h6>Start Date</h6>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-from" class="selectpicker"
+												<select id="price-from" class="selectpicker" id="startYear"
 													data-live-search="true" title="Year">
 													<c:forEach begin="0" end="17" var="yy">
 														<option value="${2000+yy}">${2000+yy}</option>
@@ -91,7 +96,7 @@
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-to" class="selectpicker"
+												<select id="price-to" class="selectpicker" id="startMonth"
 													data-live-search="true" title="Month">
 													<c:forEach begin="1" end="12" var="mm">
 														<option value="${mm}">${mm}</option>
@@ -108,7 +113,7 @@
 												<h6>Last Date</h6>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-from" class="selectpicker"
+												<select id="price-from" class="selectpicker" id="lastYear"
 													data-live-search="true" title="Year">
 													<c:forEach begin="0" end="17" var="yy">
 														<option value="${2000+yy}">${2000+yy}</option>
@@ -116,7 +121,7 @@
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-to" class="selectpicker"
+												<select id="price-to" class="selectpicker"  id="lastMonth"
 													data-live-search="true" title="Month">
 													<c:forEach begin="1" end="12" var="mm">
 														<option value="${mm}">${mm}</option>
@@ -130,16 +135,7 @@
 									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
-												<h6>Ty</h6>
-											</div>
-											<div class="form-group col-md-4">
-												<button type="button" class="btn btn-primary">Movie</button>
-											</div>
-											<div class="form-group col-md-4">
-												<button type="button" class="btn btn-primary">TV</button>
-											</div>
-											<div class="form-group col-md-4">
-												<button type="button" class="btn btn-primary">Play</button>
+												<h6>???</h6>
 											</div>
 										</div>
 									</div>
@@ -155,7 +151,7 @@
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 sidebar">
+				<div class="col-md-3 sidebar" style="width:200px;">
 					<div class="sidebar-box">
 						<div class="col-md-12">
 							<h5 class="mb-15">Sort</h5>
@@ -170,24 +166,31 @@
 
 				<div class="col-md-9">
 					<div class="col-md-12 pl-0 pr-0">
-						<h4 class="heading ">Featured adds</h4>
+						<h4 class="heading">Featured adds</h4>
 					</div>
 					<div class="box">
-						<div class="offer-box offer-box-horizontal border">
-							<div class="offer-box-head">
-								<div class="offer-slider">
-									<h1>IMG</h1>
+						<c:if test="${empty list}">
+							<h2>검색결과 없음</h2>
+						</c:if>
+						<c:if test="${!empty list}">
+						<c:forEach items="${list}" var="list">
+							<div class="offer-box offer-box-horizontal border">
+								<div class="offer-box-head" style="width:200px;">
+									<div class="imgBox">
+										<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"/>
+									</div>
 								</div>
+								<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
+									<span class="h4 offer-box-title">${list.lookTitle}</span><br><br>
+									<span class="">카테고리: ${list.lookCate}</span><br>
+									<span class="">장르: ${list.lookGenre}</span><br>
+									<span class="">등급: ${list.lookAge}</span><br><br>
+									<span class="offer-box-location"><span class="ti-location-pin"></span>${list.lookLoca}</span>
+									<span class="offer-box-meta">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
+								</a>
 							</div>
-							<a href="#">
-								<span class="h4 offer-box-title">lookTitle</span>
-								<span class="offer-box-label">lookCate</span>
-								<span class="offer-box-label">lookGenre</span>
-								<span class="offer-box-label">lookAge</span>
-								<span class="offer-box-location"><span class="ti-location-pin"></span>lookLoca</span>
-								<span class="offer-box-meta">StartDate ~ LastDate</span>
-							</a>
-						</div>
+						</c:forEach>
+						</c:if>
 					</div>
 					<!-- / single offer box-->
 

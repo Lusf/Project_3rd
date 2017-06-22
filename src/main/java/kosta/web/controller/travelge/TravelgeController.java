@@ -273,15 +273,10 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
-<<<<<<< HEAD
 
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getTravelgeName()); 
-=======
 		for(int i = 0; i < list.size(); i++)
 		{
 			list.get(i).setCommentCount(userBlogService.selectByContentCode(list.get(i).getContentCode()).size());
->>>>>>> 74041aebbbf2eb3d149693ad363b6fde7cf7833b
 		}
 		return list;
 	}

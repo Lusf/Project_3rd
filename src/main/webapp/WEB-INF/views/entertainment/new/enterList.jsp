@@ -33,45 +33,52 @@
 				<div class="row">
 					<div class="">
 						<div class="box">
-							<form class="form-inline" action="${pageContext.request.contextPath}/entertainment/enterSearch">
-								<div class="form-group col-md-1" style="width:120px;float:center" >
-									<select id="type" class="selectpicker" data-live-search="false" title="종류" >
-										
-										<option>영화</option>
-										<option>TV</option>
-										<option>공연</option>
-								
-									</select>
-								</div>
+							<form class="form-inline" action="${pageContext.request.contextPath}/entertainment/enterSearchPage">
+								<div class="home-search-row col-md-12" style="margin-top:-30px;">
+									<div class="home-search-group pt-30 pb-20">
+										<div class="form-group col-md-2">
+											<select id="type" class="selectpicker" name="lookCate"
+												data-live-search="false" title="종류">
+												<option value="M">영화</option>
+												<option value="T">TV</option>
+												<option value="P">공연/연극</option>
+											</select>
+										</div>
 
-								<div class="form-group col-md-1"  style="width:200px;float:center">
-									<select id="genre" class="selectpicker" data-live-search="false" title="장르" >			
-										<option>멜로/로맨스</option>
-										<option>코미디</option>
-										<option>SF</option>
-										<option>애니매이션</option>
-										<option>스릴러/미스테리</option>
-										<option>액션</option>
-										<option>공포/호러</option>
-									</select>
-								</div>
-								
-								<div class="form-group col-md-1"  style="width:120px;float:center">
-									<select id="grade" class="selectpicker" data-live-search="false" title="등급" >
-										<option>전체</option>
-										<option>12세</option>
-										<option>15세</option>
-										<option>청불</option>
-									</select>
-								</div>
+										<div class="form-group col-md-2">
+											<select id="genre" class="selectpicker" name="lookGenre"
+												data-live-search="false" title="장르">
+												<option value="1">멜로/로맨스</option>
+												<option value="2">코미디</option>
+												<option value="3">SF</option>
+												<option value="4">애니메이션</option>
+												<option value="5">스릴러/미스테리</option>
+												<option value="6">액션</option>
+												<option value="7">공포/호러</option>
+											</select>
+										</div>
 
-								<div class="form-group col-md-5" style="float:center" >									
-									<input type="text" id="textbox" class="form-control" placeholder="" style="width:450px;" />								
-								</div>
+										<div class="form-group col-md-2">
+											<select id="grade" class="selectpicker" name="lookAge"
+												data-live-search="false" title="등급">
+												<option value="A">전체</option>
+												<option value="B">12세</option>
+												<option value="C">15세</option>
+												<option value="D">청불</option>
+											</select>
+										</div>
 
-								<div class="form-group col-md-2" style="float:left">
-									<button type="submit" class="btn btn-primary" >search </button>
-									<!-- <span class="ti-angle-right"></span> -->
+										<div class="form-group col-md-4">
+											<input type="text" id="lookTitle" name="lookTitleS" class="form-control"
+												placeholder="제목을 입력하세요"/>
+										</div>
+
+										<div class="form-group col-md-2">
+											<button type="submit" class="btn btn-primary">
+												search <span class="ti-angle-right"></span>
+											</button>
+										</div>
+									</div>
 								</div>
 							</form>
 					    </div>
