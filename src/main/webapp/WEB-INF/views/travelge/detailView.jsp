@@ -211,6 +211,9 @@ width: 600px;
 height: 20px;
 color: black;
 }
+#aa b{
+	font-weight: normal;
+}
 </style>
 </head>
 <body>
@@ -227,10 +230,10 @@ color: black;
                ${info.travelgeName }
             </span>
             <span class="text-block2">별점위치</span>
-            <span class="text-block3">찜하기 리뷰위치</span>
+            <span class="text-block3">찜하기 </span>
          </div>
       <div>
-      버튼 위치 1 버튼 위치 2 버튼 위치 3 버튼 위치 4
+      버튼 위치 1 버튼 위치 2 버튼 위치 3 버튼 위치 4 ${fn:length(commentList)}
       </div>
          <hr>
       </div>
@@ -309,7 +312,7 @@ color: black;
                      <th colspan="2">${b.title}</th>
                   </tr>
                   <tr>
-                     <td colspan="2">${b.description}</td>
+                     <td colspan="2" style="text-decoration: none" ><span id= 'aa'>${b.description}</span></td>
                   </tr>
                   <tr>
                      <td>${b.postdate }</td>
