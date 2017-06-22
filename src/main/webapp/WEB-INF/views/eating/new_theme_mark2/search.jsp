@@ -245,7 +245,7 @@
 						<h4 class="heading "><b>맛집 정보</b></h4> 
 					</div>
 					
-					<c:forEach items="${requestScope.listA}"  var="list">
+					<c:forEach items="${requestScope.listA}"  var="list" varStatus="state">
 					<div class="box">
 						<div class="offer-box offer-box-horizontal border">
 							<div class="offer-box-head">
@@ -274,7 +274,7 @@
 							</span>${list.restaurantAddr} </span> 
 							<!-- <span class="offer-box-meta">Nordman	Agency | 30 Nov 2016 | Flat | 2 Beds</span> -->
 							</a> 
-									<a href="#" class="btn btn-default" data-toggle="modal" data-target="#offer-01" id="test">상세 보기</a>  
+									<a href="#" class="btn btn-default" data-toggle="modal" data-target="#offer-${state.count }" id="test">상세 보기</a>  
 									<a href="#" class="btn btn-link btn-sm ml-0 pull-right"> <span 	class="ti-star"></span> to favorites</a>
 						</div>
 					</div>
@@ -311,8 +311,8 @@
 		
 		<!-- 모달시작 -->
 		<!-- OFFER CONTACT FORM-->
-		<c:forEach  items="${requestScope.listA}"  var="list">
-		<div id="offer-01" class="modal fade services-modal" role="dialog">
+		<c:forEach  items="${requestScope.listA}"  var="list" varStatus="state">
+		<div id="offer-${state.count }" class="modal fade services-modal" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content shadow">
@@ -373,8 +373,8 @@
 									</div>
 								</form> --%>
 								
-								
-					<form name="tx_editor_form" id="tx_editor_form" action="${pageContext.request.contextPath}/blog/insertBlogReview"
+					
+					<form name="tx_editor_form" id="tx_editor_form-${state.count }" action="${pageContext.request.contextPath}/eating/insertReview"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">
@@ -387,7 +387,7 @@
 									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 								</div>
 							</div>
-							<input type="hidden" name="contentCode" value="${info.contentCode }">
+							<input type="text" name="contentCode" value="${list.contentCode }">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
 							<sec:authorize access="isAuthenticated()">
@@ -409,7 +409,7 @@
 		</c:forEach>
 		<!-- / OFFER CONTACT FORM -->
 	</section>
-
+<!-- ///////////////////////////////////////////////// -->
 	<footer class="footer">
 		<div class="footer-top">
 			<div class="container">
@@ -560,6 +560,7 @@
 							});
 
 							function saveContent() {
+								
 								Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
 							}
 

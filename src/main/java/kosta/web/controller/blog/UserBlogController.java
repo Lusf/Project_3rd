@@ -87,7 +87,7 @@ public class UserBlogController {
 			blogVo.setCategory("Entertainment");
 		else if(ini.equals("C"))
 			blogVo.setCategory("Food");
-			mv = foodController.search(blogVo.getContentCode());
+			//mv = foodController.search(blogVo.getContentCode());
 		
 		return mv;
 	}
