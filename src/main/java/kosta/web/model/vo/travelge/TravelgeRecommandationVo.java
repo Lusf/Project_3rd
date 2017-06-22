@@ -11,7 +11,9 @@ public class TravelgeRecommandationVo {
 	private int readNum;
 	private String recommandationDate;
 	private int cnt;
-
+	private String thumbnail;
+	
+	
 	public TravelgeRecommandationVo() {
 	}
 
@@ -89,6 +91,15 @@ public class TravelgeRecommandationVo {
 
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+
+	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	@Override
