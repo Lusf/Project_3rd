@@ -1,6 +1,7 @@
 package kosta.web.controller.enter;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -196,9 +197,25 @@ public class EnterController {
 	
 	
 	/** 볼거리 검색하기 */
-	@RequestMapping("enterSearch")
-	public String enterSearch(LookInfoVo lookInfoVo){
-		return "entertainment/new/enterSearch";
+	@RequestMapping("enterSearchPage")
+	public ModelAndView enterSearch(LookInfoVo lookInfoVo){
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo);
+		List<LookInfoVo> imgList = new ArrayList<>();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(list != null){
+			for(LookInfoVo ivo : list){
+				String img[] = ivo.getLookImg().split(":");
+				ivo.setLookImg(img[0]);
+				imgList.add(ivo);
+			}
+		}
+
+		mv.addObject("list", imgList);
+		mv.setViewName("entertainment/new/enterSearch");
+		
+		return mv;
 	}
 	
 	
