@@ -39,15 +39,34 @@ public class EnterController {
 		
 
 		LookInfoVo lookInfoVo = new LookInfoVo();
-		lookInfoVo.setLookCate(lookCate);
+		
+		if(lookCate.equals("movie")){
+			lookInfoVo.setLookCate("영화");
+			System.out.println("영화넣음");
+		}else if(lookCate.equals("concert")){
+			lookInfoVo.setLookCate("공연/영화");
+			System.out.println("공연/영화넣음");
+	
+		}
+		
+		System.out.println("lookinfovo : " + lookInfoVo.getLookCate());
+		//lookInfoVo.setLookCate(lookCate);
+		
 
 		List<LookInfoVo> dbLookInfoList = enterService.lookInfoSearch(lookInfoVo);
+		
+		System.out.println("lookInfovo title : " + lookInfoVo.getLookTitle());
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterList");
 
 		mv.addObject("dbLookInfoList", dbLookInfoList);
 		mv.addObject("lookCate", lookCate);
+		System.out.println("lookcate : " + lookCate);
+		
+		System.out.println("dbLookInfoList.looktitle : " + dbLookInfoList.size());
+		//System.out.println("dbLookInfoList.lookcate : " + dbLookInfoList.get(0).getLookCate());
+		System.out.println("너 어디있어?");
 
 		return mv;
 	}
@@ -57,10 +76,35 @@ public class EnterController {
 	 * "entertainment/new/enterList"; }
 	 */
 
+	// 볼거리 상세화면(공연)
+	@RequestMapping("new/enterDetailConcertView/{contentCode}")
+	public ModelAndView enterDetailConcertView(HttpSession session, @PathVariable String contentCode) {
+		session.setAttribute("contentCode", contentCode);
+		ModelAndView mv = new ModelAndView();
+
+		//컨텐츠코드에 따른 볼거리
+		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
+		
+		//장르에 따른 볼거리
+		String lookGenre = lookInfoOne.getLookGenre();
+		LookInfoVo lookInfoGenre = new LookInfoVo();
+		lookInfoGenre.setLookGenre(lookGenre);
+		
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
+		
+		mv.setViewName("entertainment/new/enterDetailConcertView");
+		mv.addObject("lookInfoOne", lookInfoOne);
+		mv.addObject("lookInfoConList", lookInfoConList);
+		
+		//System.out.println("lookinfoOnd x : " + lookInfoOne.getX() + " , " + lookInfoOne.getY());
+
+		return mv;
+	}
+	
 	// 볼거리 상세화면
 	@RequestMapping("new/enterDetailView/{contentCode}")
 	public ModelAndView enterDetailView(HttpSession session, @PathVariable String contentCode) {
-		session.setAttribute("contentCode", contentCode);
+		//session.setAttribute("contentCode", contentCode);
 		ModelAndView mv = new ModelAndView();
 
 		//컨텐츠코드에 따른 볼거리
@@ -149,20 +193,9 @@ public class EnterController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterMain");
 		mv.addObject("lookInfoList", lookInfoList);
-		// mv.addObject("lookCate", lookInfoVo.getLookCate());
+		
 
-		/*
-		 * if(lookInfoVo.getAvgScoreVo().getScore()==0){
-		 * 
-		 * }
-		 */
-		/*
-		 * int result =
-		 * enterService.lookScoreInsert(lookInfoVo.getAvgScoreVo());
-		 * System.out.println("score result : " + result);
-		 */
-
-		System.out.println(lookInfoList);
+		System.out.println(lookInfoList.get(0).getContentCode());
 		return mv;
 	}
 
