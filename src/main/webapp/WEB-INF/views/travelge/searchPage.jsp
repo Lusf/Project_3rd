@@ -93,16 +93,14 @@
 	function getReadList(keyword) {
 		$('#loading').html('데이터 로딩중입니다.');
 		//ajax
-		$
-				.ajax({
+		$.ajax({
 					url : "${pageContext.request.contextPath}/travelge/travelgeSearchScroll",
 					type : "post",
 					dataType : "json",
 					data : "index=" + currentPage + "&currentRegion="
 							+ currentRegion + "&currentTheme=" + currentTheme +"&keyword="+keyword,
-					beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-						xhr.setRequestHeader(header, token)
-						
+					beforeSend : function(xhr) { 
+						xhr.setRequestHeader(header, token)						
 					},
 					success : function(result) {
 						console.log("result = " + result);
@@ -118,7 +116,7 @@
 					error : function(err) {
 						alert("오류 발생 : " + err);
 					}
-				});
+				}); 
 	};
 	function makeCard(item, index) {
 		var contentCode = item.contentCode;
@@ -214,7 +212,7 @@
 		<div class="box home-search">
 			<div class="container">
 				<div class="box">
-					<form class="form-inline">
+					<form class="form-inline" onsubmit="searchAjax()">
 						<div class="dropdown col-md-2" role="presentation">
 							<button class="btn btn-default dropdown-toggle" type="button"
 								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
@@ -260,7 +258,7 @@
 
 						<div class="form-group col-md-2">
 							<button type="button" class="btn btn-primary"
-								onclick="searchAjax();">
+								onclick="searchAjax()">
 								search <span class="ti-angle-right"></span>
 							</button>
 						</div>

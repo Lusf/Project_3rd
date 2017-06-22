@@ -261,7 +261,7 @@ public class TravelgeController {
 	@ResponseBody
 	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme,
 			String keyword) {
-//		System.out.println(currentRegion + "/" + currentTheme+"/"+keyword);
+		//System.out.println(currentRegion + "/" + currentTheme+"/"+keyword);
 		int currentPage = Integer.parseInt(index);
 
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
