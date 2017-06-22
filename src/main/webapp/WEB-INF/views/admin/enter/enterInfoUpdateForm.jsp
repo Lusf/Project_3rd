@@ -97,8 +97,8 @@
 							<!-- contentCode -->
 							<div class="form-group col xs-6">
 								<label for="contentCode">contentCode</label>
-								<input type="text" value="${list[0].contentCode}" class="form-control"  disabled="disabled" id="contentCode">
-								<input type="hidden" value="${list[0].contentCode}" name="contentCode">
+								<input type="text" value="${infoVo.contentCode}" class="form-control"  disabled="disabled" id="contentCode">
+								<input type="hidden" value="${infoVo.contentCode}" name="contentCode">
 							</div>
 							
 							<!-- 제목 / 제작사 -->
@@ -106,16 +106,15 @@
 								<div class="form-group col-xs-6">
 									<label for="lookTitle">Title</label> <input
 										type="text" class="form-control" name="lookTitle"
-										id="lookTitle " value="${list[0].lookTitle}">
+										id="lookTitle " value="${infoVo.lookTitle}">
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="lookMaker">Maker</label> <input
 										type="text" class="form-control" name="lookMaker"
-										id="lookMaker" value="${list[0].lookMaker}">
+										id="lookMaker" value="${infoVo.lookMaker}">
 								</div>
 								<div class="form-group col-xs-3"><br>
-									<button type="submit" class="btn btn-default">등록</button>
-									<button type="reset" class="btn btn-default">다시쓰기</button>
+									<button type="submit" class="btn btn-default">수정하기</button>
 								</div>
 							</div>
 							
@@ -163,19 +162,19 @@
 								<div class="form-group col-xs-3">
 									<label for="lookStartDate">StartDate</label> <input
 										type="text" class="form-control" name="lookStartDate"
-										id="lookStartDate" value="${list[0].lookStartDate}">
+										id="lookStartDate" value="${infoVo.lookStartDate}">
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="lookLastDate">LastDate</label> <input
 										type="text" class="form-control" name="lookLastDate"
-										id="lookLastDate" value="${list[0].lookLastDate}">
+										id="lookLastDate" value="${infoVo.lookLastDate}">
 								</div>
 							</div>
 							
 							<!-- 줄거리 -->
 							<div class="form-group">
 								<label for="lookStory">Story</label>
-								<textarea class="form-control" rows="3" name="lookStory">${list[0].lookStory}</textarea>
+								<textarea class="form-control" rows="3" name="lookStory">${infoVo.lookStory}</textarea>
 							</div>
 							
 							<!-- 지도 -->
@@ -183,7 +182,7 @@
 								<div class="form-group col-xs-3">
 									<label for="lookLoca">Location</label> <input
 										type="text" class="form-control" name="lookLoca"
-										id="lookLoca" value="${list[0].lookLoca}">
+										id="lookLoca" value="${infoVo.lookLoca}">
 								</div>
 								<div class="form-group col-xs-1">
 									<button type="button" onclick="DaumPostcode()"
@@ -195,14 +194,14 @@
 									</div><br>
 									<div class="form-group col-xs-4">
 										<input type="text" id="x"
-											value="${list[0].x}" name="x"
+											value="${infoVo.x}" name="x"
 											class="form-control" readonly="readonly">
 										<div id="map"
 										style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
 									</div>
 									<div class="form-group col-xs-4">
 										<input type="text" id="y"
-											value="${list[0].y}" name="y"
+											value="${infoVo.y}" name="y"
 											class="form-control" readonly="readonly">
 									</div>
 								</div>
@@ -212,15 +211,31 @@
 							<div class="row">
 								<div class="filebox">
 									<div class="form-groupcol-xs-6" id="holder">
-										<img
-											src="${pageContext.request.contextPath}/resources/enter/${list[0].contentCode}/photos/${list[0].lookImg}"
-											width="100" height="100">
+										<img src="${pageContext.request.contextPath}/resources/enter/${infoVo.contentCode}/photos/${poster}" id="posterImg" width="100" height="100">
 									</div>
 									<div class="form-groupcol-xs-6">
-										<input class="upload-name" value="${list[0].lookImg}" disabled="disabled" >
-										<label for="upload">사진 업로드</label> 
-										<input type="file" id="upload" class="upload-hidden" name="file" value="${list[0].lookImg}">
-										<input type="hidden" name="lookImg" value="${list[0].lookImg}">
+										<input class="upload-name" id="posterName" value="${poster}" disabled="disabled" >
+										<label for="upload">포스터 업로드</label> 
+										<input type="file" id="upload" class="upload-hidden" name="file" value="${poster}">
+										<input type="hidden" name="lookImg" value="${img}">
+									</div>
+									
+									<div class="form-groupcol-xs-12">
+										<input class="upload-name" id="picName1" value="${pic1}" disabled="disabled">
+										<label for="pic1">사진1</label>
+										<input type="file" id="pic1" class="upload-hidden" name="pic1"  value="${pic1}">
+											
+										<input class="upload-name" id="picName2" value="${pic2}" disabled="disabled">
+										<label for="pic2">사진2</label>
+										<input type="file" id="pic2" class="upload-hidden" name="pic2"  value="${pic2}">
+											
+										<input class="upload-name" id="picName3" value="${pic3}" disabled="disabled">
+										<label for="pic3">사진3</label>
+										<input type="file" id="pic3" class="upload-hidden" name="pic3"  value="${pic3}">
+											
+										<input class="upload-name" id="picName4" value="${pic4}" disabled="disabled">
+										<label for="pic4">사진4</label>
+										<input type="file" id="pic4" class="upload-hidden" name="pic4"  value="${pic4}">
 									</div>
 								</div>
 							</div>
@@ -234,18 +249,9 @@
 		<!-- /.row -->
 
 	</div>
-	<!-- /.container-fluid -->
-
-
-	<!-- /#page-wrapper -->
-
-
-	<!-- /#wrapper -->
-
 
 	<!-- 주소검색 -->
 	<!--46b3765fabdb091e03e9b1d9b145dc32  -->
-
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
@@ -343,11 +349,50 @@
 						dateFormat: "yy/mm/dd"
 					});
 					
-					$("#lookCate > option:contains(${list[0].lookCate})").attr("selected", "selected");
-					$("#lookGenre > option:contains(${list[0].lookGenre})").attr("selected", "selected");
-					$("#lookAge > option:contains(${list[0].lookAge})").attr("selected", "selected");
-
-					var fileTarget = $('.filebox .upload-hidden');
+					$("#lookCate > option:contains(${infoVo.lookCate})").attr("selected", "selected");
+					$("#lookGenre > option:contains(${infoVo.lookGenre})").attr("selected", "selected");
+					$("#lookAge > option:contains(${infoVo.lookAge})").attr("selected", "selected");
+					
+					
+					//유효성 검사
+					$("button[type='submit']").click(function(){
+						var din = $("input[name='lookStartDate']").val();
+				        var dout = $("input[name='lookLastDate']").val();
+				         
+				        var dia = din.split("/");
+				        var doa = dout.split("/");
+				         
+				        var cin = new Date(dia[0],dia[1],dia[2]);
+				        var cout = new Date(doa[0],doa[1],doa[2]);
+				      
+				        if(cin.getTime() > cout.getTime()){
+				           alert("시작 날짜가 종료 날짜보다 전이거나 같아야 합니다.");
+				           $("input[name='lookStartDate']").val("");
+				           $("input[name='lookLastDate']").val("");
+				           return false;
+				        }
+				        
+				        if($("#lookCate").val()==0){
+				        	alert("카테고리를 선택해주세요.")
+				        	return false;
+				        }
+				        if($("#lookGenre").val()==0){
+				        	alert("장르를 선택해주세요.")
+				        	return false;
+				        }
+				        if($("#lookAge").val()==0){
+				        	alert("연령등급을 선택해주세요.")
+				        	return false;
+				        }
+				        
+				        if($("input[type='text']").val()=="" || $("input[type='text']").val()==null || $("textarea").val()=="" || $("textarea").val()==null){
+				        	alert("모든 칸을 입력해주세요.")
+				        	return false;
+				        }
+					});
+					
+					
+					var fileTarget = $('.filebox #upload');
 					fileTarget.on('change', function() {
 						// 값이 변경되면
 						if (window.FileReader) {
@@ -359,10 +404,49 @@
 									.split('\\').pop();
 						}
 						// 파일명만 추출 } // 추출한 파일명 삽입 
-						$(this).siblings('.upload-name').val(filename);
-
+						$(this).siblings('#posterName').val(filename);
 					});
 
+					var pic1 = $('.filebox #pic1');
+					pic1.on('change', function() {
+						if (window.FileReader) {
+							var filename = $(this)[0].files[0].name;
+						} else {
+							var filename = $(this).val().split('/').pop()
+									.split('\\').pop();
+						}
+						$(this).siblings('#picName1').val(filename);
+					});
+					var pic2 = $('.filebox #pic2');
+					pic2.on('change', function() {
+						if (window.FileReader) {
+							var filename = $(this)[0].files[0].name;
+						} else {
+							var filename = $(this).val().split('/').pop()
+									.split('\\').pop();
+						}
+						$(this).siblings('#picName2').val(filename);
+					});
+					var pic3 = $('.filebox #pic3');
+					pic3.on('change', function() {
+						if (window.FileReader) {
+							var filename = $(this)[0].files[0].name;
+						} else {
+							var filename = $(this).val().split('/').pop()
+									.split('\\').pop();
+						}
+						$(this).siblings('#picName3').val(filename);
+					});
+					var pic4 = $('.filebox #pic4');
+					pic4.on('change', function() {
+						if (window.FileReader) {
+							var filename = $(this)[0].files[0].name;
+						} else {
+							var filename = $(this).val().split('/').pop()
+									.split('\\').pop();
+						}
+						$(this).siblings('#picName4').val(filename);
+					});
 				});
 
 		var upload = document.getElementById('upload'), holder = document

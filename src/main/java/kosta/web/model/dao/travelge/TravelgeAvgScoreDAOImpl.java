@@ -1,6 +1,7 @@
 package kosta.web.model.dao.travelge;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,17 +17,35 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int travelgeWishListAdd(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int travelgeWishListUpdate(String id, String contentCode, int wishList) {
+		Map <Object, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("contentCode",contentCode);
+		map.put("wishList", wishList);
+
+		return sqlSession.delete("travelgeAvgScoreMapper.updateWishList",map);
 	}
 
 	@Override
-	public int travelgeWishListDelete(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int travelgeWishListInsert(String id, String contentCode) {
+		Map <Object, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("contentCode",contentCode);
+			
+		return sqlSession.insert("travelgeAvgScoreMapper.insertWishList",map);
 	}
+	@Override
+	public List<AvgScoreVo> travelgeWishListSelect(AvgScoreVo avgScoreVo) {
 
+		List<AvgScoreVo> list = sqlSession.selectList("travelgeAvgScoreMapper.travelgeWishListSelect",avgScoreVo);
+/*		for(AvgScoreVo dto : list)
+		{
+			System.out.println(dto.getContentCode());
+		}*/
+		
+		return list;
+	}
+	
 
 	@Override
 	public AvgScoreVo travelgeAvgScore(String contentCode) {
@@ -36,13 +55,11 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 
 	@Override
 	public AvgScoreVo selectUserScore(String contentCode, String id) {
-		// TODO Auto-generated method stub
+
 		Map <Object, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("contentCode",contentCode);
-//		System.out.println("id : " + id + "\tcontentCode : " + contentCode);
 		AvgScoreVo temp = sqlSession.selectOne("travelgeAvgScoreMapper.selectUserScore", map);
-//		System.out.println(temp.getScore());
 		return temp;
 	}
 
@@ -53,7 +70,8 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 		map.put("contentCode",contentCode);
 		map.put("score", score);
 
-		return sqlSession.insert("travelgeAvgScoreMapper.travelgeScoreInsert", map);
+		int result = sqlSession.insert("travelgeAvgScoreMapper.travelgeScoreInsert", map);
+		return result;
 	}
 
 	@Override
@@ -65,5 +83,8 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 
 		return sqlSession.insert("travelgeAvgScoreMapper.travelgeScoreUpdate", map);
 	}
+
+
+
 
 }

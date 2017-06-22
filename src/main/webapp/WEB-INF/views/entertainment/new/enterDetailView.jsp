@@ -53,7 +53,7 @@
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" alt="user avatar" alt=""/>
+								<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >	
 							</div>
 							<div class="col-md-8">	
 								<h3 class="">${lookInfoOne.lookTitle}</h3>

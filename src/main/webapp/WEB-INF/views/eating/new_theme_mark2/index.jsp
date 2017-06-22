@@ -97,21 +97,21 @@
 	<section class="home">
 		<div class="home-slider home-slider-half-page">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide home-slider-centered"
-					style="background-image:url(${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/강민경.jpg)">
+				<div class="swiper-slide home-slider-centered" 	style="background-image:url(${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/강민경.jpg)">
 					<h1 class="light wow fadeInDown mb-30">
 						over 430 000<br/> flats, houses, plots
 					</h1>
 					<a class="btn btn-primary wow fadeInUp">browse</a>
 				</div>
-				<div class="swiper-slide home-slider-centered"
+				<%-- <div class="swiper-slide home-slider-centered"
 					style="background-image:url(${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/slider/slide5.jpg)">
 					<h1 class="light wow fadeInDown mb-30">
 						over 430 000<br/> flats, houses, plots
 					</h1>
 					<a class="btn btn-primary wow fadeInUp">browse<span class="ti-arrow-right light"></span></a>
-				</div>
+				</div> --%>
 			</div>
+			
 			<!-- Add Pagination -->
 			<div class="home-slider-pagination"></div>
 			<div class="home-slider-prev left-arrow">
@@ -122,6 +122,7 @@
 			</div>
 		</div>
 		
+	<%-- <section class="home"> --%>
 		<div class="box home-search">
 			<div class="container">
 				<div class="row">
@@ -129,32 +130,21 @@
 						<div class="box">
 							<form class="form-inline" action="new_theme_mark2/search">
 								<div class="form-group col-md-2">
-									<select id="type2" class="selectpicker"	data-live-search="false" title="전국">
-										<option>전국</option>
-										<option>서울</option>
-										<option>경기</option>
-										<option>인천</option>
-										<option>대전/충청/세종</option>
-										<option>부산/대구/경상</option>
-										<option>광주/전라</option>
-										<option>강원</option>
-										<option>제주</option>
-									</select>
+									<select id="type" class="selectpicker" data-live-search="false" title="전국">
+										<option value="SU">서울</option>
+										<option value="DJ">대전</option>
+										<option value="DG">대구</option>
+										<option value="BS">부산</option>
+										<option value="KW">강원도</option>
+									</select> 
 								</div>
 
 								<div class="form-group col-md-2">
 									<select id="type" class="selectpicker" data-live-search="false" title="음식 종류">
-										<option>전체</option>
-										<option>한식</option>
-										<option>양식</option>
-										<option>중식</option>
-										<option>일식</option>
-										<option>아시아식</option>
-										<option>컨템퍼러리</option>
-										<option>뷔페</option>
-										<option>술집</option>
-										<option>카페/베이커리</option>
-										<option>구이</option>
+										<option value="AL">전체</option>
+										<option value="KR">한식</option>
+										<option value="CN">중식</option>
+										<option value="EN">양식</option>
 									</select>
 								</div>
 
@@ -163,8 +153,7 @@
 								</div>
 
 								<div class="form-group col-md-2">
-									<button type="submit" class="btn btn-primary">
-										search <span class="ti-angle-right"></span>
+									<button type="submit" class="btn btn-primary"> search! <span class="ti-angle-right"></span>
 									</button>
 								</div>
 							</form>
@@ -174,13 +163,13 @@
 			</div>
 		</div>
 	</section>
-
+	
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<!-- <div class="col-md-12">
 					<h4 class="heading">Featured adds</h4>
-				</div>
+				</div> -->
 				<!-- single offer box-->
 				<div class="col-md-4">
 					<div class="offer-box">
@@ -250,12 +239,12 @@
 				<!-- / single offer box-->
 				<div class="col-md-12 text-center">
 						<sec:authorize access="isAuthenticated()">
-							<a class="btn btn-default" href="#" data-toggle="modal"	data-target="#new"><strong>리뷰 등록</strong></a>
+							<a class="btn btn-default" href="#" data-toggle="modal"	data-target="#new"><strong>맛집 등록</strong></a>
 						</sec:authorize>
 						<sec:authorize access="!isAuthenticated()">
 							<a class="btn btn-default" href="${pageContext.request.contextPath }/user/loginForm"><strong>리뷰 등록</strong></a>
 						</sec:authorize>
-					<a class="btn btn-default" href="new_theme_mark2/search"><strong>전체 리뷰 보기</strong></a>
+					<a class="btn btn-default" href="new_theme_mark2/search"><strong>전체 맛집 보기</strong></a>
 				</div>
 			</div>
 			<!--/ row -->
@@ -287,7 +276,7 @@
 							<%-- <img src="${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg" > --%>
 							<span id="holder" class="post-entry-cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/eating/blog-cover.jpg);"></span>
 						</div>
-						<form action="insertRestaurant" method="post" enctype="multipart/form-data">
+						<form action="${pageContext.request.contextPath}/eating/insertRestaurant" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<div>
 								<label for="category">지역별</label> <select class="form-control" name="category">
@@ -348,8 +337,8 @@
 	</div>
 	<!-- / NEWS MODAL -->
 
-
-	<div class="padding">
+	<!-- 시작 -->
+	<%-- <div class="padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -883,7 +872,9 @@
 			<!--/ row -->
 		</div>
 		<!--/ container -->
-	</div>
+	</div> --%>
+	<!-- 끝 -->
+	
 	<section class="text-center padding light-bg">
 		<div class="about-counter" id="about-counter">
 
@@ -925,7 +916,9 @@
 			</div>
 		</div>
 	</section>
-	<section class="padding post-list" id="news">
+	
+	
+	<%-- <section class="padding post-list" id="news">
 		<div class="container overflow-hidden">
 			<div class="row">
 				<div class="col-md-12">
@@ -1015,7 +1008,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --%>
 
 	<footer class="footer">
 		<div class="footer-top">
@@ -1055,17 +1048,11 @@
 					<h6 class="heading">ACCOUNT</h6>
 					<ul>
 						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
 					</ul>
 				</div>
 				<div class="col-md-2 col-sm-12 smartphone-fw">
 					<h6 class="heading">INFORMATION</h6>
 					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
 						<li><a href="#"> Lorem Ipsum </a></li>
 					</ul>
 				</div>
@@ -1074,42 +1061,28 @@
 					<h6 class="heading">ACCOUNT</h6>
 					<ul>
 						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</footer>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
 </body>
 <!-- jQuery -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script
-	src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services">
+<script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services">
 	
 </script>
 

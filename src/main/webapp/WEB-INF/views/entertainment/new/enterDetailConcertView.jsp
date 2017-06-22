@@ -14,6 +14,137 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/enter/enterVideoSliderView.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/css/enter/enterScSlide.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/js/enter/enterScSlide.js' />">
+<script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
+
+<!-- slide css -->
+<style>
+/*Time for the CSS*/
+* {margin: 0; padding: 0;}
+body {background: #ccc;}
+
+.slider{
+	width: 640px; /*Same as width of the large image*/
+	position: relative;
+	/*Instead of height we will use padding*/
+	padding-top: 320px; /*That helps bring the labels down*/
+	
+	margin: 100px auto;
+	
+	/*Lets add a shadow*/
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+}
+
+
+/*Last thing remaining is to add transitions*/
+.slider>img{
+	position: absolute;
+	left: 0; top: 0;
+	transition: all 0.5s;
+}
+
+.slider input[name='slide_switch'] {
+	display: none;
+}
+
+.slider label {
+	/*Lets add some spacing for the thumbnails*/
+	margin: 18px 0 0 18px;
+	border: 3px solid #999;
+	
+	float: left;
+	cursor: pointer;
+	transition: all 0.5s;
+	
+	/*Default style = low opacity*/
+	opacity: 0.6;
+}
+
+.slider label img{
+	display: block;
+}
+
+/*Time to add the click effects*/
+.slider input[name='slide_switch']:checked+label {
+	border-color: #666;
+	opacity: 1;
+}
+/*Clicking any thumbnail now should change its opacity(style)*/
+/*Time to work on the main images*/
+.slider input[name='slide_switch'] ~ img {
+	opacity: 0;
+	transform: scale(1.1);
+}
+/*That hides all main images at a 110% size
+On click the images will be displayed at normal size to complete the effect
+*/
+.slider input[name='slide_switch']:checked+label+img {
+	opacity: 1;
+	transform: scale(1);
+	
+
+.video{
+	width: 640px; /*Same as width of the large image*/
+	position: relative;
+	/*Instead of height we will use padding*/
+	padding-top: 320px; /*That helps bring the labels down*/
+	
+	margin: 100px auto;
+	
+	/*Lets add a shadow*/
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+}
+
+
+/*Last thing remaining is to add transitions*/
+.video>img{
+	position: absolute;
+	left: 0; top: 0;
+	transition: all 0.5s;
+}
+
+.video input[name='slide_switch'] {
+	display: none;
+}
+
+.video label {
+	/*Lets add some spacing for the thumbnails*/
+	margin: 18px 0 0 18px;
+	border: 3px solid #999;
+	
+	float: left;
+	cursor: pointer;
+	transition: all 0.5s;
+	
+	/*Default style = low opacity*/
+	opacity: 0.6;
+}
+
+.video label img{
+	display: block;
+}
+
+/*Time to add the click effects*/
+.video input[name='slide_switch']:checked+label {
+	border-color: #666;
+	opacity: 1;
+}
+/*Clicking any thumbnail now should change its opacity(style)*/
+/*Time to work on the main images*/
+.video input[name='slide_switch'] ~ img {
+	opacity: 0;
+	transform: scale(1.1);
+}
+/*That hides all main images at a 110% size
+On click the images will be displayed at normal size to complete the effect
+*/
+.video input[name='slide_switch']:checked+label+img {
+	opacity: 1;
+	transform: scale(1);	
+}
+/*Clicking on any thumbnail now should activate the image related to it*/
+
+/*We are done :)*/
+</style>
 
 </head>
 <body>
@@ -46,7 +177,7 @@
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" alt="user avatar" alt=""/>
+								<img class="img-responsive" src="<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >" alt="user avatar" alt=""/>
 							</div>
 							<div class="col-md-8">	
 								<h3 class="">${lookInfoOne.lookTitle}</h3>
@@ -87,7 +218,7 @@
 	                        		<c:if test="${lookConList.lookTitle != lookInfoOne.lookTitle and lookConList.lookCate eq lookInfoOne.lookCate and state.count lt 6}">	                        		                       		
 		                        		<div class="post-list-sidebar-item mb-15">
 				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
-				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookConList.lookCate}/${lookConList.lookImg}" alt="blog image">
+				                                <img src="${pageContext.request.contextPath}/resources/enter/${lookConList.contentCode}/photos/${lookConList.lookImg}" >	
 				                            </a>
 				
 				                            <div class="col-xs-8 col-sm-9">
@@ -149,12 +280,51 @@
                       	<p>
                       	<hr>
                       	<!-- 스틸컷 -->                     	
-                        <hr>
+                        
                       	<p>
 	                      	<p class="post-introduction">
 	                        	스틸컷
 	                      	</p>
+	                      	<hr>					
+<!-- slider -->	
+<div class="slider">
+	<input type="radio" name="slide_switch" id="id1" />
+	
+	<!-- <label for="id1"> -->
+<!-- 		<label for="id1"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/AWdA7hdP4ZA?rel=0&showinfo=0" frameborder="0" allowfullscreen width="640px" ></iframe></label>	
+	 --><!-- </label>	 -->
+<!-- 	<label for="id1">
+		<video src="https://www.youtube.com/embed/AWdA7hdP4ZA?rel=0&showinfo=0" controls poster="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg">왜왜왱</video>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100"/> -->
+	
+	<!--Lets show the second image by default on page load-->
+	<input type="radio" name="slide_switch" id="id2" />
+	<label for="id2">
+		<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"/>
+	
+	<input type="radio" name="slide_switch" id="id3"/>
+	<label for="id3">
+		<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"/>
+	
+	<input type="radio" name="slide_switch" id="id4"/>
+	<label for="id4">
+		<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"/>
+	
+	<input type="radio" name="slide_switch" id="id5"/>
+	<label for="id5">
+		<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
+</div>
 					
+ 					
 						    <div class="container">
 						 
 						        <div class="row">
@@ -174,62 +344,53 @@
 	
 						    </div> 
 						    </div>
-					    </div>
+					    </div> 
 					    
-					    	<!-- 콘서트 장소 위치 지도 보여주기 -->
 					    	<p class="post-introduction">
 	                        	위치
 	                      	</p>
+			<div id="map" style="width: 500px; height: 400px;"></div>
 
-							<div class="container">
-								<div class="card">
-									<div class="card-panel" style="text-align: center">
-										<span><img style="width:100%;" src="${pageContext.request.contextPath }/resources/enter/${lookInfoOne.contentCode}/photos/${lookInfoOne.lookImg}"></span>
-										<h2>${info.travelgeName }</h2>
-										<span>${info.travelgeDescription } </span>						
-									</div>
-									<div id="map" style="width: 500px; height: 400px;"></div>
-						
-									<script>
-						
-									var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-								    mapOption = { 
-								        center: new daum.maps.LatLng(${lookInfoOne.lookCoordinates}, ${info.y}), // 지도의 중심좌표
-								        level: 3 // 지도의 확대 레벨
-								    };
-						
-						
-								var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-						
-						 		// 마커가 표시될 위치입니다 
-								var markerPosition  =new daum.maps.LatLng(${info.x}, ${info.y}); 
-						
-								// 마커를 생성합니다
-								var marker = new daum.maps.Marker({
-								    position: markerPosition
-								});
-						
-								// 마커가 지도 위에 표시되도록 설정합니다
-								marker.setMap(map); 
-						
-								 var iwContent = "<div style='padding:5px;'>${info.travelgeName }</div>" // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-								iwPosition = new daum.maps.LatLng(${info.x}, ${info.y}); //인포윈도우 표시 위치입니다
-						
-								// 인포윈도우를 생성합니다
-								var infowindow = new daum.maps.InfoWindow({
-								    position : iwPosition, 
-								    content : iwContent 
-								});
-								  
-								// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-								infowindow.open(map, marker); 	
-								
-								</script>						
-						
-								</div>
-							</div>
+			<script>
+
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new daum.maps.LatLng(${lookInfoOne.x}, ${lookInfoOne.y}), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
 
 
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+ 		// 마커가 표시될 위치입니다 
+		var markerPosition  =new daum.maps.LatLng(${lookInfoOne.x}, ${lookInfoOne.y}); 
+
+		// 마커를 생성합니다
+		var marker = new daum.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map); 
+
+		 var iwContent = "<div style='padding:5px;'>${lookInfoOne.lookTitle }</div>" // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		iwPosition = new daum.maps.LatLng(${lookInfoOne.x}, ${lookInfoOne.y}); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new daum.maps.InfoWindow({
+		    position : iwPosition, 
+		    content : iwContent 
+		});
+		  
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker); 	
+		
+		</script>
+
+
+
+		</div>
+	</div>
 					</div>
 	
                     <!-- comments-->

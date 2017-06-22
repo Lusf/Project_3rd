@@ -236,12 +236,8 @@ public class TravelgeController {
 	// 스크롤 페이징 jackson
 	@RequestMapping("/travelgeInfoScroll")
 	@ResponseBody
-	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme) {
+	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme, Principal principal) {
 
-		// System.out.println(index);
-		// System.out.println("현재 지역 : " + currentRegion + " / 현재 테마 : "
-		// +
-		// currentTheme);
 		int currentPage = Integer.parseInt(index);
 
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
@@ -254,14 +250,7 @@ public class TravelgeController {
 		}
 
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
-		for(TravelgeInfoVo dto : list)
-		{
-			if(dto.getAvgScoreVo()!= null)
-			{
-				System.out.println(dto.getTravelgeName() + " / " + dto.getAvgScoreVo().getPersonCount());
-			}
-		}
-		
+					
 
 		return list;
 	}
@@ -282,16 +271,13 @@ public class TravelgeController {
 		if (!currentTheme.equals("전체")) {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
-
-		/*
-		 * System.out.println(index); System.out.println(currentRegion);
-		 * System.out.println(currentTheme);
-		 * System.out.println(keyword);
-		 */
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
+<<<<<<< HEAD
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).getTravelgeName()); 
 		}
+=======
+>>>>>>> 0aacdbe9784e462f176cf86982c85d7d44aaf432
 		return list;
 	}
 
@@ -456,17 +442,19 @@ public class TravelgeController {
 
 	};
 
-	public void travelgeWishListAdd(AvgScoreVo avgScoreVo) {
+	@RequestMapping("/travelgeWishListUpdate")
+	@ResponseBody
+	public int travelgeWishListUpdate(String contentCode){
+		
+		UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = user.getId();
+		
+		int result = travelgeService.travelgeWishListUpdate(id, contentCode);
+		
+		
+		return result;
+	}
 
-	};
-
-	public void travelgeWishListDelete(AvgScoreVo avgScoreVo) {
-
-	};
-
-	public void travelgeScoreInsert(AvgScoreVo avgScoreVo) {
-
-	};
 
 	@RequestMapping("/travelgeScoreUpdate")
 	@ResponseBody
@@ -474,7 +462,6 @@ public class TravelgeController {
 
 		UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = user.getId();
-//		System.out.println(value);
 		int result = 0;
 		AvgScoreVo score = travelgeService.selectUserScore(contentCode, id);
 		double userScore = Double.parseDouble(value);

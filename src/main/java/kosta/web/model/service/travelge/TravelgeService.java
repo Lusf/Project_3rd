@@ -50,13 +50,13 @@ public interface TravelgeService {
 	
 	TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title);
 	
-	int travelgeWishListAdd(AvgScoreVo avgScoreVo);
-	
-	int travelgeWishListDelete(AvgScoreVo avgScoreVo);
+	int travelgeWishListUpdate(String id, String contentCode);
 	
 	int travelgeScoreInsert(String id, String contentCode, double score);
 	
 	int travelgeScoreUpdate(String id, String contentCode, double score);
+	
+	List<AvgScoreVo> travelgeWishListSelect(AvgScoreVo avgScoreVo);
 	
 	List<TravelgeInfoVo> searchAroundMe(String lat, String lon);
 	
