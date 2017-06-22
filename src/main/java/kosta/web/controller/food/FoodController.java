@@ -50,7 +50,7 @@ public class FoodController {
 		return new ModelAndView("eating/test", "list", list);
 
 	}*/
-	
+	//맛집등록
 	@RequestMapping("eating/insertRestaurant")
 	public String insertRestaurant(HttpServletRequest req, RestaurantVo restaurantVo) throws Exception {
 	    /*restaurantVo.setRestaurantPic(restaurantVo.getFile().getOriginalFilename());*/
@@ -96,7 +96,7 @@ public class FoodController {
 		return "redirect:/";
 	}
 	
-	//검색 
+	//맛집 검색용(검색바)
 	@RequestMapping("/restaurantSearch")
 	public ModelAndView restaurantSearch(String keyField, String keyWord, String currentPage){
 		int spage = 1;
@@ -161,12 +161,6 @@ public class FoodController {
 
 	}
 	
-	
-
-	
-		
-	
-	
 	//나중에 필요에 맞게 이름 맞꾸기(필요1)
 	@RequestMapping("eating/about-us")
 	public String menu1(){
@@ -190,28 +184,33 @@ public class FoodController {
 		return "eating/new_theme_mark2/landing";
 	}
 	
-	//view all
+	//전체 맛집보기(버튼용)
 	@RequestMapping("eating/new_theme_mark2/search")
 	public ModelAndView search(String contentCode){
 		
 		RestaurantVo temp = new RestaurantVo();
 		temp.setContentCode(contentCode);
 
-		/*return "eating/new_theme_mark2/search";*/
-		
 		List<RestaurantVo> list = restaurantService.RestaurantSearch(temp, 0);
-		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		System.out.println(list);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("eating/new_theme_mark2/search");
 
-		mv.addObject("info", list.get(0));
-		mv.addObject("commentList", commentList);
-
-		return mv;
+		return new ModelAndView("eating/new_theme_mark2/search", "listA", list);
+	}
+	
+	@RequestMapping("eating/insertReview")
+	public String insertReview(UserBlogVo blogVo){
 		
-		//return new ModelAndView("eating/new_theme_mark2/search", "listA", list);
+		UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = user.getId();
+		
+		blogVo.setId(id);
+		userBlogService.insert(blogVo);
+		
+		
+		return "redirect:/eating/new_theme_mark2/search";
 	}
 	
 	//나중에 필요에 맞게 이름 맞꾸기(필요6)

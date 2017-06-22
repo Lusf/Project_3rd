@@ -26,6 +26,8 @@ AND content_code=#{contentCode}
 	select content_code as contentCode, avg(score) as score, count(content_code) as personCount
 	from avg_score
 	where content_code = #{_parameter}
+	and
+	score is not null
 	group by content_code
 </select>
 
@@ -36,4 +38,30 @@ AND content_code=#{contentCode}
 	where content_code = #{contentCode}
 	and id = #{id}
 </select>
+
+<!--  wishlist 등록 -->
+<insert id="insertWishList" parameterType="AvgScoreVo">
+	insert into avg_score (id, content_code, wish_list)
+	values(#{id}, #{contentCode}, 1)
+</insert>
+
+<update id="updateWishList" parameterType="AvgScoreVo">
+	update avg_score
+	set wish_list = #{wishList}
+	where
+	id = #{id}
+	and 
+	content_code =  #{contentCode}
+</update>
+<!--  wishlist 조회 -->
+<select id="travelgeWishListSelect" parameterType="AvgScoreVo" resultType = "AvgScoreVo">
+	select content_code as contentCode, wish_list
+	from avg_score
+	where
+	<if test="contentCode!=null">
+	content_code = #{contentCode} AND
+	</if>
+	id = #{id}
+</select>
+
 </mapper>

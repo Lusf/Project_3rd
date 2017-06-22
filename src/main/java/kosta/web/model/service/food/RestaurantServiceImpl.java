@@ -14,11 +14,7 @@ import kosta.web.model.vo.restaurant.RestaurantVo;
 public class RestaurantServiceImpl implements RestaurantService {
 	
 	Map<String, String> map = new HashMap<>();
-	/*<option value="SU">서울</option>
-	  <option value="DJ">대전</option>
-	  <option value="DG">대구</option>
-	  <option value="BS">부산</option>
-	  <option value="KW">강원도</option>*/
+	
 	public RestaurantServiceImpl(){
 		
 		//지역별
@@ -32,6 +28,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		map.put("KR", "한식");
 		map.put("CN", "중식");
 		map.put("EN", "양식");
+		
 		
 	}
 	
@@ -88,5 +85,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 		
 		return list;
+	}
+
+	@Override
+	public List<RestaurantVo> Search(String contentCode) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
