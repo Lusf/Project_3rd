@@ -151,7 +151,26 @@ public class EnterServiceImpl implements EnterService {
 
 		return lookInfoDAO.lookInfoSearchByCode(contentCode);
 	}
+	
 
+	@Override
+	public List<LookInfoVo> lookInfoSearchByCate(String lookCate) {
+		
+		return lookInfoDAO.lookInfoSearchByCate(lookCate);
+	}	
+
+	@Override
+	public List<LookInfoVo> lookInfoSearchByGenre(String lookGenre) {
+		
+		return lookInfoDAO.lookInfoSearchByGenre(lookGenre);
+	}
+	
+	@Override
+	public List<LookInfoVo> lookInfoSearchByNewList() {
+		
+		return lookInfoDAO.lookInfoSearchByNewList();
+	}
+	
 	/** enter admin search */
 	@Override
 	public List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage) {
@@ -235,4 +254,8 @@ public class EnterServiceImpl implements EnterService {
 
 		return enterAdminInfoDAO.enterInfoUpdate(lookInfoVo);
 	}
+
+
+
+
 }
