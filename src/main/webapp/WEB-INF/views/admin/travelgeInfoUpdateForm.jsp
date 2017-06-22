@@ -161,7 +161,7 @@
 								<div class="filebox">
 
 									<div class="form-groupcol-xs-6" id="holder">
-										<img src="${pageContext.request.contextPath}/resources/travelge/${list[0].contentCode}/${list[0].travelgePhotos}" width="100" height="100">
+										<img src="${pageContext.request.contextPath}/resources/travelge/${list[0].contentCode}/photos/${list[0].travelgePhotos}" width="100" height="100">
 
 									</div>
 									<div class="form-groupcol-xs-6">

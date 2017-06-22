@@ -121,7 +121,7 @@
 		str += "<div class='col-md-offset-1 col-md-10'>";
 
 		str += "<div class='thumbnail' style='height: 7em;'>";
-		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
+		str += "<img src='${pageContext.request.contextPath}/resources/travelge/"+contentCode+"/photos/"+item.travelgePhotos+"' style='float: left; height: 100%''>";
 		str += "<div class='caption'>";
 		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
 		str += "<h4>" + item.travelgeName + "</h4>";

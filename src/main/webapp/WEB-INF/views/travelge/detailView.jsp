@@ -73,7 +73,7 @@ var __slice = [].slice;
 
       _results = [];
       for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
-        _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
+        _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty' style='color:#FF6B6B'></span>"));
       }
       return _results;
     };
@@ -177,15 +177,15 @@ $( document ).ready(function() {
 .infocard img{
    
    height: 300px;
-   margin: 1.4em 1.4em;
-   width: 95%;
+   margin-top: 1.4em;
+   width: 100%;
    
-   -webkit-filter: contrast(60%);
+   -webkit-filter: contrast(80%);
 }
 
 .text-block1 {
     top: 6em;
-    left: 3em;
+    left: 1.6em;
     position: absolute;
     font-size: 200%;
     color: white;
@@ -202,79 +202,95 @@ $( document ).ready(function() {
 
 .text-block3 {
     top: 18em;
-    left: 5em;
+    left: 6em;
+    position: absolute;
+    font-size: 100%;
+    color: white;
+    display: block;
+}
+.text-block4 {
+    top: 18em;
+    left: 3em;
     position: absolute;
     font-size: 100%;
     color: white;
     display: block;
 }
 
-.container{
-   width: 80%;
-}
 .pcontent {
 overflow: hidden; 
 text-overflow: ellipsis;
 white-space: nowrap; 
-width: 900px;
+width: 1000px;
 height: 20px;
-color: black;
+color: #aaa;
 }
 
+#btag{
+color: #aaa;
+}
 #btag b{
 font-weight: normal;
+
 }
+.material-icons {
 
+font-size:18px;
 
+}
+span .glyphicon {
+color: #FF6B6B;
+}
 </style>
 </head>
 <body>
 
    <%@include file="/WEB-INF/views/travelge/travelge-header.jsp"%>
-   <div class="container">
-   <div class="container">
+   <div class="container" style="width: 80%">
+   <div >
    
       <div class="infocard">
          <div class="card content">
-            <img src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}" style="">
+            <img src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}" >
 
             <span class="text-block1">
                ${info.travelgeName }
             </span>
-            <span class="text-block2">별점위치</span>
-            <span class="text-block3">찜하기 </span>
+            <span class="text-block2">
+				<c:if test="${info.avgScoreVo.personCount != null}">
+               <i class="material-icons" style="color:white;">star</i><span id="count">${info.avgScoreVo.score }점</span>
+               </c:if>
+               <c:if test="${info.avgScoreVo.personCount == null }">
+               <i class="material-icons" style="color:white;">star</i><span id="count">0</span>
+               </c:if></span>
+            <span class="text-block4"><i class="material-icons" style="color:white;">favorite</i>${fn:length(commentList)}</span>
+            <a  href="#reviewcont"><span class="text-block3"><i class="material-icons" style="color:white;">messenger</i>${fn:length(commentList)}</span></a>
          </div>
       <div>
-      버튼 위치 1 버튼 위치 2 버튼 위치 3 버튼 위치 4 ${fn:length(commentList)}
+      버튼 위치 1 버튼 위치 2 버튼 위치 3 버튼 위치 4 
       </div>
          <hr>
       </div>
 
    </div>
    
-   <div class="container" style="width: 90%">
+   <div >
      <h3>소개</h3>
      <div style="text-align: center;">
-     <p class="pcontent" id="pcontent"> ${info.travelgeDescription }</p>
-     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#content" id="morebtn" style="background-color: #FF6B6B; border: none;">더보기</button>
-     <div id="content" class="collapse">
-      ${info.travelgeDescription }
+     <p class="pcontent" id="pcontent" align="left"> ${info.travelgeDescription }</p>
+     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#content" id="morebtn" style="color: #FF6B6B;background-color: white;border-color: #FF6B6B"">상세 정보 더보기</button>
+     <div id="content" class="collapse" align="left">
+      <p>${info.travelgeDescription }</p>
      </div>
      </div>
+     
    </div>
+   <hr>
    <br>
-
-   <%--    <div class="card-panel" style="text-align: center">
-      <span><img style="width: 80%; height: 400px"
-         src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
-      <h2>${info.travelgeName }</h2>
-      <span>${info.travelgeDescription } </span>
-   </div> --%>
-   
-   <div class="container" id="map" style="width: 90%; height: 300px;"></div>
+   <div  id="map" style="width: 100%; height: 300px;"></div>
    <Br>
-    <p>주소: ${info.travelgeAddr }</p>
-   </div>
+    <p><i class="material-icons">place</i>주소: ${info.travelgeAddr }</p>
+   
    
    <script>
 
@@ -311,26 +327,23 @@ font-weight: normal;
       infowindow.open(map, marker);    
       
       </script>
-      <!-- <div class="container"> -->
-   
-      
-      <div class="container" style="width: 80%">
+
+      <div>
          <hr>
       <h3>블로그 리뷰(${fn:length(blogList)})</h3>
          <c:forEach items="${blogList }" var="b">
             <a href="${b.link}">
-               <table style="text-align: left; border-bottom: gray 1px solid; color: black">
+               <table style="text-align: left; color: black">
                <tr>
                      <th colspan="2"><B>${b.title}</B></th>
                   </tr>
                   <tr>
-
                      <td colspan="2"><span id="btag">${b.description}</span></td>
 
                   </tr>
                   <tr>
-                     <td>${b.postdate }</td>
-                     <td>${b.link}</td>
+                     <td style="color: #aaa;">${b.postdate }</td>
+                     <td style="color: #aaa;">${b.link}</td>
                   </tr>
                </table>
             </a>
@@ -339,30 +352,33 @@ font-weight: normal;
 
 
          <!-- --------------------평점  -->
-         <h3>평점</h3>
+<%--          <h3>평점</h3>
          <div>
             <div class="row lead">
                <c:if test="${info.avgScoreVo.personCount != null}">
-               ★ <span id="count">${info.avgScoreVo.score }개
+               <i class="material-icons">star</i><span id="count">${info.avgScoreVo.score }점
                      (${info.avgScoreVo.personCount }명)</span>
                </c:if>
                <c:if test="${info.avgScoreVo.personCount == null }">
-               ★ <span id="count">0개 (0명)</span>
+               <i class="material-icons">star</i><span id="count">0개 (0명)</span>
                </c:if>
             </div>
 
-         </div>
+         </div> --%>
          <hr>
 
          <div class="row lead">
 
             <sec:authorize access="isAuthenticated()">
-               <h3>이곳을 평가해 주세요</h3>
-               <div class="row lead">
+            <div style="text-align:  center;">
+               <p>평가하려면 별표 탭 또는 드래그하세요</p>
+               <div class="row lead" >
                   <div id="stars-existing" class="starrr"
-                     data-rating='${userScore.score }'></div>
-                  선택한 평점 : <span id="count-existing">${userScore.score }</span> 개
+                     data-rating='${userScore.score }'style="color: #FF6B6B"></div>
+               <%--    선택한 평점 : <span id="count-existing">${userScore.score }</span> 점 --%>
                </div>
+                <p style="color: #FF6B6B">이곳을 평가해 주세요.</p>
+                </div>
             </sec:authorize>
             <!-- 
          <div class="row lead">
@@ -374,12 +390,12 @@ font-weight: normal;
           -->
 
             <!-- Blog Post Content Column -->
-            <div class="cont">
+            <div class="cont" id="reviewcont">
                <h3>Review</h3>
-               <sec:authorize access="isAuthenticated()">
-                  <a style="cursor: pointer;" data-toggle="modal"
-                     data-target="#insertReview" class="post-entry-more"> 리뷰 작성 </a>
-               </sec:authorize>
+<%--                <sec:authorize access="isAuthenticated()">
+                  <button style="cursor: pointer;" data-toggle="modal"
+                     data-target="#insertReview" class="btn btn-info"> 리뷰 작성 </button>
+               </sec:authorize> --%>
 
                <!-- detail MODAL -->
                <div class="modal fade" id="insertReview" role="dialog"
@@ -429,8 +445,16 @@ font-weight: normal;
                      </div>
                   </div>
                </c:forEach>
+               <div style="text-align: center;">
+               <sec:authorize access="isAuthenticated()">
+                  <button style="cursor: pointer; color: #FF6B6B;background-color: white;border-color: #FF6B6B" data-toggle="modal"
+                     data-target="#insertReview" class="btn btn-info" > 리뷰 작성 </button>
+               </sec:authorize>
+               </div>
             </div>
          </div>
+      </div>
+      
       </div>
    <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
