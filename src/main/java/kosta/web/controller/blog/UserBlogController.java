@@ -82,7 +82,7 @@ public class UserBlogController {
 		mv.setViewName("blog/blogReviewInsert");
 		
 		if(ini.equals("T"))
-			mv = travelgeController.detailView(blogVo.getContentCode());
+			mv = travelgeController.detailView(blogVo.getContentCode(), null);
 		else if(ini.equals("B"))
 			blogVo.setCategory("Entertainment");
 		else if(ini.equals("C"))

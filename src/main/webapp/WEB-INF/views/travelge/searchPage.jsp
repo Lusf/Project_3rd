@@ -197,6 +197,7 @@ top:1.4em;
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu2"
 										id="themeDropdown">
+										<li><a>전체</a></li>
 										<li><a>관광지</a></li>
 										<li><a>숙박</a></li>
 										<li><a>문화</a></li>

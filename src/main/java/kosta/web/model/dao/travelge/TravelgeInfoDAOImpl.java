@@ -62,19 +62,7 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 		return sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(currentPage, 10));
 	}
 
-/*	@Override
-	public List<UserBlogVo> latestComment() {
-		List<UserBlogVo> list = sqlSession.selectList("mapper.sampleMapper.latestComment");
-		
-		for(UserBlogVo dto : list)
-		{
-			for(TravelgeInfoVo li : dto.getCommentList())
-			{
-				System.out.println(li.getTravelgeName());
-			}
-		}
-		return list;
-	}*/
+
 	@Override
 	public List<TravelgeLatestCommentVo> latestComment() {
 		List<TravelgeLatestCommentVo> list = sqlSession.selectList("travelgeInfoMapper.latestComment");

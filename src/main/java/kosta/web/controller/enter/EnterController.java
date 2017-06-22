@@ -282,17 +282,49 @@ public class EnterController {
 		return modelAndView;
 	}
 	
+	/** 이미지 파일의 처리를 위한 함수(insert, update) */
+	String path = null;
+	String poster = null;
+	String pic[] = new String[4];
+	MultipartFile file;
+	MultipartFile pic1;
+	MultipartFile pic2;
+	MultipartFile pic3;
+	MultipartFile pic4;
+	
+	public void fileForm(HttpServletRequest request, LookInfoVo lookInfoVo){
+		path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		
+		file = lookInfoVo.getFile();
+		if (file.getSize() > 0) {
+			poster = file.getOriginalFilename();
+		}
+		
+		MultipartFile pic1 = lookInfoVo.getPic1();
+		if (pic1.getSize() > 0) {
+			pic[0] = pic1.getOriginalFilename();
+		}
+		MultipartFile pic2 = lookInfoVo.getPic2();
+		if (pic2.getSize() > 0) {
+			pic[1] = pic2.getOriginalFilename();
+		}
+		MultipartFile pic3 = lookInfoVo.getPic3();
+		if (pic3.getSize() > 0) {
+			pic[2] = pic3.getOriginalFilename();
+		}
+		MultipartFile pic4 = lookInfoVo.getPic4();
+		if (pic4.getSize() > 0) {
+			pic[3] = pic4.getOriginalFilename();
+		}
+		
+		lookInfoVo.setLookImg(poster+":"+pic[0]+";"+pic[1]+";"+pic[2]+";"+pic[3]);
+	}
+	
 	@RequestMapping("enterInfoInsert")
 	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
 		
-		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
-
-		MultipartFile file = lookInfoVo.getFile();
-
-		if (file.getSize() > 0) {
-			lookInfoVo.setLookImg(file.getOriginalFilename());
-		}
-
+		fileForm(request, lookInfoVo);
+		
 		int result = enterService.enterInfoInsert(lookInfoVo);
 		if (result == 0) {
 			throw new Exception();
@@ -312,15 +344,16 @@ public class EnterController {
 			photosFolder.mkdir();
 		}
 		// -----폴더 생성 끝
-		if (file.getSize() > 0) {
-
-			try {
-				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
-						+ lookInfoVo.getLookImg()));
-
-			} catch (Exception e) {
-			}
-		}
+		if(file.getSize() > 0) 
+			file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + poster));
+		if(pic1.getSize() > 0)
+			pic1.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[0]));
+		if(pic2.getSize() > 0)
+			pic2.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[1]));
+		if(pic3.getSize() > 0)
+			pic3.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[2]));
+		if(pic4.getSize() > 0)
+			pic4.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[3]));
 		
 		return "admin/enter/enterInfoSearch";
 	}
@@ -332,25 +365,46 @@ public class EnterController {
 		lookInfoVo.setContentCode(contentCode);
 
 		List<LookInfoVo> list = enterService.enterInfoSearch(lookInfoVo, 0);
-
-		return new ModelAndView("admin/enter/enterInfoUpdateForm", "list", list);
+		LookInfoVo infoVo = list.get(0);
+		
+		String img = infoVo.getLookImg();
+		String poster[] = img.split(":");
+		String cut[] = poster[1].split(";");
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("infoVo", infoVo);
+		mv.addObject("poster", poster[0]);
+		
+		for(int i=0; i<4; i++){
+			if(cut[i].equals("null"))
+				cut[i] = "사진없음";
+		}
+		mv.addObject("pic1", cut[0]);
+		mv.addObject("pic2", cut[1]);
+		mv.addObject("pic3", cut[2]);
+		mv.addObject("pic4", cut[3]);
+		
+		mv.setViewName("admin/enter/enterInfoUpdateForm");
+		
+		return mv;
 	}
 	
 	@RequestMapping("enterInfoUpdate")
-	public String enterInfoUpdate(HttpServletRequest request, LookInfoVo lookInfoVo) {
+	public String enterInfoUpdate(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+		
+		fileForm(request, lookInfoVo);
 
-		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
-		MultipartFile file = lookInfoVo.getFile();
-
-		if (file.getSize() > 0) {
-			lookInfoVo.setLookImg(file.getOriginalFilename());
-			try {
-				file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/"
-						+ lookInfoVo.getLookImg()));
-
-			} catch (Exception e) {
-			}
-		}
+		if(file.getSize() > 0) 
+			file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + poster));
+		if(pic1.getSize() > 0)
+			pic1.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[0]));
+		if(pic2.getSize() > 0)
+			pic2.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[1]));
+		if(pic3.getSize() > 0)
+			pic3.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[2]));
+		if(pic4.getSize() > 0)
+			pic4.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[3]));
 
 		enterService.enterInfoUpdate(lookInfoVo);
 
