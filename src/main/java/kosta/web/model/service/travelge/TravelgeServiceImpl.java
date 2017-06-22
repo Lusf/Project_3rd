@@ -141,7 +141,10 @@ public class TravelgeServiceImpl implements TravelgeService {
 				UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				String id = user.getId();
 				avgScore.setId(id);
-				dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+				if(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).size() != 0)
+				{
+					dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+				}
 			}
 			dto.setAvgScoreVo(avgScore);
 
@@ -187,10 +190,11 @@ public class TravelgeServiceImpl implements TravelgeService {
 			if (temp.get(0).getWish_list() == 0) {
 				travelgeAvgScoreDAO.travelgeWishListUpdate(id, contentCode, 1);
 				result = 1;
+				System.out.println("update1");
 			} else {
 				travelgeAvgScoreDAO.travelgeWishListUpdate(id, contentCode, 0);
-
 				result = 0;
+				System.out.println("update0");
 			}
 		} else {
 			travelgeAvgScoreDAO.travelgeWishListInsert(id, contentCode);

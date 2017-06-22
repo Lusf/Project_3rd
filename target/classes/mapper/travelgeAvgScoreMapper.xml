@@ -26,6 +26,8 @@ AND content_code=#{contentCode}
 	select content_code as contentCode, avg(score) as score, count(content_code) as personCount
 	from avg_score
 	where content_code = #{_parameter}
+	and
+	score is not null
 	group by content_code
 </select>
 
