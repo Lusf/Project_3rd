@@ -257,8 +257,7 @@
 						</div>
 
 						<div class="form-group col-md-2">
-							<button type="button" class="btn btn-primary"
-								onclick="searchAjax()">
+							<button type="submit" class="btn btn-primary">
 								search <span class="ti-angle-right"></span>
 							</button>
 						</div>
