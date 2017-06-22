@@ -3,31 +3,35 @@
 <mapper namespace="adminMapper">
 
 <!-- 현재 유저의 수 조회 -->
-<select id = "userCount" resultType="kosta.web.model.vo.ChartVo">
-select cnt_date as cntDate, cnt_user as cntUser 
-from usercount
+<select id = "selectUserCount" resultType="kosta.web.model.vo.ChartVo">
+select count(*) as cntUser from usertable  where to_char(join_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
 </select>
 
 <!-- 하루에 한번씩 유저 수 카운트 -->
-<insert id = "insertCount">
+<insert id = "insertUserCount">
 insert into usercount values(sysdate, (select count(id) from usertable))
 </insert>
 
 <!-- 여행지에 등록된 컨텐츠의 수 -->
-<select id = "travelgeInfoCount" resultType="int">
+<select id = "selectTravelgeCount" resultType="int">
 select count(*) from TRAVELGE_INFO
 </select>
 <!-- 먹거리에 등록된 컨텐츠의 수 -->
-<select id = "restaurantInfoCount" resultType="int">
+<select id = "selectFoodCount" resultType="int">
 select count(*) from RESTAURANT
 </select>
 <!-- 볼거리에 등록된 컨텐츠의 수 -->
-<select id = "lookInfoCount" resultType="int">
+<select id = "selectLookCount" resultType="int">
 select count(*) from LOOK_INFO
 </select>
 
 <!-- 최신 리뷰 (블로그 date 기준으로 하루)의 수 -->
-<select id = "latestReview" resultType="int">
+<select id = "latestReviewCount" resultType="int">
 select count(*) from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+</select>
+
+<!-- 좋아요 순위? -->
+<select id = "wishListRank" resultType = "ChartVo">
+select content_code as contentCode, count(wish_list) as wishCnt, rank() over (order by count(wish_list) desc) as wishRank from avg_score group by content_code
 </select>
 </mapper>

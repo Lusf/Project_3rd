@@ -51,16 +51,16 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
+                <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-comments fa-5x"></i>
+                                        <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>New Comments!</div>
+                                        <div class="huge">${userCount.cntUser }</div>
+                                        <div>현재 유저 수</div>
                                     </div>
                                 </div>
                             </div>
@@ -74,15 +74,15 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-tasks fa-5x"></i>
+                                        <i class="fa fa-comments fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>New Tasks!</div>
+                                        <div class="huge">${latestReviewCount}</div>
+                                        <div>오늘 등록된 리뷰</div>
                                     </div>
                                 </div>
                             </div>
@@ -103,8 +103,8 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
-                                        <div>New Orders!</div>
+                                        <div class="huge">${contentCount }</div>
+                                        <div>등록된 정보의 수</div>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
+                                        <div>좋아요가 가장 많은 컨텐츠</div>
                                     </div>
                                 </div>
                             </div>
