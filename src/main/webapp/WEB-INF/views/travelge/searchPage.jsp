@@ -101,6 +101,7 @@ top:1.4em;
 							+ currentRegion + "&currentTheme=" + currentTheme +"&keyword="+keyword,
 					beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 						xhr.setRequestHeader(header, token)
+						
 					},
 					success : function(result) {
 						console.log("result = " + result);
@@ -124,7 +125,7 @@ top:1.4em;
 		str += "<div class='row scrollPaging'>";
 		str += "<div class='col-md-offset-1 col-md-10'>";
 		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
-		str += "<div class='thumbnail' style='height: 7em;'>";
+		str += "<div class='thumbnail' style='height: 7em;top:9em;'>";
 		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
 		str += "<div class='caption'>";
 		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
