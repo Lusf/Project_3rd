@@ -46,20 +46,17 @@ public class TravelgeController {
 		mv.setViewName("travelge/travelgeMain");
 		List<TravelgeRecommandationVo> list = travelgeService.travelgeRecommandSearch(null);
 		for (int i = 0; i < list.size(); i++) {
-			String card = "card" + (i + 1);
-			mv.addObject(card, list.get(i));
-
 			String temp = list.get(i).getRecommandationDescription();
 			int index = temp.indexOf("<img");
 			if (index != -1) {
 				index += 21;
-				;
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
-
-				mv.addObject(card + "Thumbnail", imgsrc);
+				list.get(i).setThumbnail(imgsrc);
+				
 			}
 		}
-
+		
+		mv.addObject("list",list);
 		// ÃÖ½Å ¸®ºä
 		// List<UserBlogVo> latestComment =
 		// travelgeService.latestComment();
