@@ -83,11 +83,12 @@
 		})
 		getReadList();
 	})
-
 	function getReadList() {
 		//$('#loading').html('데이터 로딩중입니다.');
 		//ajax
-		$.ajax({	url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
+		$
+				.ajax({
+					url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 					type : "post",
 					dataType : "json",
 					data : "index=" + currentPage + "&currentRegion="
@@ -96,10 +97,10 @@
 						xhr.setRequestHeader(header, token)
 					},
 					success : function(result) {
-						
+
 						var str = "";
 						$.each(result, function(index, item) {
-							
+
 							str += makeCard(item, index);
 						})
 						if (result != "") {
@@ -112,26 +113,69 @@
 					}
 				});
 	};
+
 	function makeCard(item, index) {
 		var contentCode = item.contentCode;
 		var str = "";
 		str += "<div class='row scrollPaging'>";
 		str += "<div class='col-md-offset-1 col-md-10'>";
-		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
+
 		str += "<div class='thumbnail' style='height: 7em;'>";
 		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
 		str += "<div class='caption'>";
-		str += "<h3>"+ item.travelgeName+"</h3>";
-		str += "<p>" + item.travelgeAddr + "</p>";
- 		str += "<span>★"+item.avgScoreVo.score+"("+item.avgScoreVo.personCount+"명)</span>";
-		str += "</div>";
-		str += "</div>";
+		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
+		str += "<h4>" + item.travelgeName + "</h4>";
+		str += "<span>" + item.travelgeAddr + " </span>";
 		str += "</a>";
+ 		if (item.avgScoreVo.id != null) {
+			str += "<span style='float:right' class= 'glyphicon glyphicon-heart-empty' id='wishlist'><span style='display:none'>"
+					+ contentCode + "</span></span>"
+		} 
+
+		str += "<span style='float:right' class= 'glyphicon glyphicon-star'>"
+				+ item.avgScoreVo.score + "</span>";
+		str += "</div>";
+		str += "</div>";
 		str += "</div>";
 		str += "</div>";
 		return str;
 	};
 
+	$(document)
+			.on(
+					'click',
+					'#wishlist',
+					function() {
+						var contentCode = $(this).children().text();
+						var heart = $(this);
+
+						$
+								.ajax({
+									url : "${pageContext.request.contextPath}/travelge/travelgeWishListUpdate",
+									type : "post",
+									dataType : "text",
+									data : "contentCode=" + contentCode,
+									beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+										xhr.setRequestHeader(header, token)
+									},
+									success : function(result) {
+										if (result == '1') {
+											heart
+													.attr("class",
+															"glyphicon glyphicon-heart");
+
+										} else {
+											heart
+													.attr("class",
+															"glyphicon glyphicon-heart-empty");
+
+										}
+									},
+									error : function(err) {
+										alert("오류 발생 : " + err);
+									}
+								});
+					})
 	//무한 스크롤
 	$(window).scroll(
 			function() {
@@ -149,8 +193,10 @@
 	<div class="row" id="title-row"></div>
 
 	<div id="list-selector">
-		<div class="col-md-offset-5 col-md-2"><br>
-			<div class="dropdown" role="presentation" style="width: 100%;margin-bottom: -1.5em;">
+		<div class="col-md-offset-5 col-md-2">
+			<br>
+			<div class="dropdown" role="presentation"
+				style="width: 100%; margin-bottom: -1.5em;">
 				<button class="btn btn-default dropdown-toggle" type="button"
 					id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="true" style="width: 100%">
