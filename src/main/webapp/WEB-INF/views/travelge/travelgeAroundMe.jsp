@@ -114,16 +114,6 @@ $(document).ready(function(){
 	    
 	});
 		
-/* 	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다 마커를 배열로 안찍고 있어서 못씀
-	function setMarkers(map) {
-		for (var i = 0; i < markers.length; i++) {
-			 markers[i].setMap(map);
-			}            
-		}
-	// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-	function hideMarkers() {
-	    setMarkers(null);    
-	}	 */	
 	
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -165,46 +155,13 @@ $(document).ready(function(){
 })
  
 </script>
-<style type="text/css">
-#map{
-top: 1.4em;
-}
-</style>
+
 </head>
 <body>
 
 	<%@include file="/WEB-INF/views/travelge/travelge-header.jsp"%>
 	<div id="map" style="width: 100%; height: 500px;"></div>
 
-	<script>
-
-
-/* 		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-		function displayMarker(locPosition, message) {
-
-			// 마커를 생성합니다
-			var marker = new daum.maps.Marker({
-				map : map,
-				position : locPosition
-			});
-
-			var iwContent = message, // 인포윈도우에 표시할 내용
-			iwRemoveable = true;
-
-			// 인포윈도우를 생성합니다
-			var infowindow = new daum.maps.InfoWindow({
-				content : iwContent,
-				removable : iwRemoveable
-			});
-
-			// 인포윈도우를 마커위에 표시합니다 
-			infowindow.open(map, marker);
-
-			// 지도 중심좌표를 접속위치로 변경합니다
-			map.setCenter(locPosition);
-		} */
-
-	</script>
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script

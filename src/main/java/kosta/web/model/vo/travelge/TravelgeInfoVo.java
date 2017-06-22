@@ -32,6 +32,8 @@ public class TravelgeInfoVo {
 	
 	private  List<UserBlogVo> userBlogVo;
 	
+	int commentCount;
+	
 	private int cnt;
 	
 	private int wish_list;
@@ -258,6 +260,18 @@ public class TravelgeInfoVo {
 
 	public void setWish_list(int wish_list) {
 		this.wish_list = wish_list;
+	}
+
+
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 
 
