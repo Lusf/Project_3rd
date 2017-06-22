@@ -272,12 +272,11 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
-<<<<<<< HEAD
-		for (int i = 0; i < list.size(); i++) {
+
+/*		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).getTravelgeName()); 
-		}
-=======
->>>>>>> 0aacdbe9784e462f176cf86982c85d7d44aaf432
+		}*/
+
 		return list;
 	}
 
@@ -301,11 +300,11 @@ public class TravelgeController {
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		//°Ë»öapi
-		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme()+" "+list.get(0).getTravelgeAddr();
+		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme();
 
         if(keyword !=null)
         {
-            mv.addObject("blogList",naverServiceImpl.searchBook(keyword,0,1));
+            mv.addObject("blogList",naverServiceImpl.searchBook(keyword,5,1));
         }
 
 		mv.setViewName("travelge/detailView");

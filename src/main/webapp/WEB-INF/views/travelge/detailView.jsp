@@ -157,7 +157,16 @@ $( document ).ready(function() {
             alert("오류 발생 : " + err);
          }
       });
-       });    
+       });  
+      
+      // onclick 시 pcontent 영역 감추기
+      $("#morebtn").click(function() {
+    	  $("#pcontent").hide();
+    	  $("#morebtn").hide();
+    	 
+	})
+
+	
 })
   
 </script>
@@ -207,10 +216,14 @@ $( document ).ready(function() {
 overflow: hidden; 
 text-overflow: ellipsis;
 white-space: nowrap; 
-width: 600px;
+width: 900px;
 height: 20px;
 color: black;
 }
+#btag b{
+font-weight: normal;
+}
+
 </style>
 </head>
 <body>
@@ -237,11 +250,11 @@ color: black;
 
    </div>
    
-   <div class="container" style="width: 80%">
+   <div class="container" style="width: 90%">
      <h3>소개</h3>
      <div style="text-align: center;">
-     <p class="pcontent"> ${info.travelgeDescription }</p>
-     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#content" style="background-color: #FF6B6B; border: none;">더보기</button>
+     <p class="pcontent" id="pcontent"> ${info.travelgeDescription }</p>
+     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#content" id="morebtn" style="background-color: #FF6B6B; border: none;">더보기</button>
      <div id="content" class="collapse">
       ${info.travelgeDescription }
      </div>
@@ -304,12 +317,12 @@ color: black;
       <h3>블로그 리뷰(${fn:length(blogList)})</h3>
          <c:forEach items="${blogList }" var="b">
             <a href="${b.link}">
-               <table style="text-align: left; border-bottom: gray 1px solid;">
+               <table style="text-align: left; border-bottom: gray 1px solid; color: black">
                <tr>
-                     <th colspan="2">${b.title}</th>
+                     <th colspan="2"><B>${b.title}</B></th>
                   </tr>
                   <tr>
-                     <td colspan="2">${b.description}</td>
+                     <td colspan="2"><span id="btag">${b.description}</span></td>
                   </tr>
                   <tr>
                      <td>${b.postdate }</td>
