@@ -24,8 +24,6 @@ public class EnterController {
 	
 	@Autowired
 	private EnterService enterService;
-	
-	private String lookGenre;
 
 	/*
 	 * //볼거리 메인
@@ -72,13 +70,12 @@ public class EnterController {
 		System.out.println(lookInfoOne.getLookAge());*/
 		
 		//장르에 따른 볼거리
-		
-		lookGenre = lookInfoOne.getLookGenre();
-		System.out.println("lookGenre : " + lookGenre);
+		//lookGenre = lookInfoOne.getLookGenre();
+		//System.out.println("lookGenre : " + lookGenre);
 /*		LookInfoVo lookInfoGenre = new LookInfoVo();
 		lookInfoGenre.setLookGenre(lookGenre);*/
 		
-		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());
 		
 		mv.setViewName("entertainment/new/enterDetailConcertView");
 		mv.addObject("lookInfoOne", lookInfoOne);

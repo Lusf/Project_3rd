@@ -269,12 +269,10 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
-<<<<<<< HEAD
+
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).getTravelgeName()); 
 		}
-=======
->>>>>>> 0aacdbe9784e462f176cf86982c85d7d44aaf432
 		return list;
 	}
 
