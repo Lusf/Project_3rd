@@ -3,7 +3,10 @@ package kosta.web.model.vo;
 public class ChartVo {
 
 	private int cntUser;
-	private String cntDate;
+	private int wishCnt;
+	private int wishRank;
+	private String contentCode;
+	
 	
 	public int getCntUser() {
 		return cntUser;
@@ -11,11 +14,24 @@ public class ChartVo {
 	public void setCntUser(int cntUser) {
 		this.cntUser = cntUser;
 	}
-	public String getCntDate() {
-		return cntDate;
+
+	public int getWishCnt() {
+		return wishCnt;
 	}
-	public void setCntDate(String cntDate) {
-		this.cntDate = cntDate;
+	public void setWishCnt(int wishCnt) {
+		this.wishCnt = wishCnt;
+	}
+	public String getContentCode() {
+		return contentCode;
+	}
+	public void setContentCode(String contentCode) {
+		this.contentCode = contentCode;
+	}
+	public int getWishRank() {
+		return wishRank;
+	}
+	public void setWishRank(int wishRank) {
+		this.wishRank = wishRank;
 	}
 	
 	
