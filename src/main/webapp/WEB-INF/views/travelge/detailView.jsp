@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 <meta charset="utf-8">
 <title>travelge main - 오지랖</title>
 <meta name="description" content="">
@@ -21,6 +28,142 @@
 	src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
 
 
+
+
+<script>
+//Starrr plugin (https://github.com/dobtco/starrr)
+var __slice = [].slice;
+
+(function($, window) {
+  var Starrr;
+
+  Starrr = (function() {
+    Starrr.prototype.defaults = {
+      rating: void 0,
+      numStars: 5,
+      change: function(e, value) {}
+    };
+
+    function Starrr($el, options) {
+      var i, _, _ref,
+        _this = this;
+
+      this.options = $.extend({}, this.defaults, options);
+      this.$el = $el;
+      _ref = this.defaults;
+      for (i in _ref) {
+        _ = _ref[i];
+        if (this.$el.data(i) != null) {
+          this.options[i] = this.$el.data(i);
+        }
+      }
+      this.createStars();
+      this.syncRating();
+      this.$el.on('mouseover.starrr', 'span', function(e) {
+        return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      this.$el.on('mouseout.starrr', function() {
+        return _this.syncRating();
+      });
+      this.$el.on('click.starrr', 'span', function(e) {
+        return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+      });
+      this.$el.on('starrr:change', this.options.change);
+    }
+
+    Starrr.prototype.createStars = function() {
+      var _i, _ref, _results;
+
+      _results = [];
+      for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+        _results.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"));
+      }
+      return _results;
+    };
+
+    Starrr.prototype.setRating = function(rating) {
+      if (this.options.rating === rating) {
+        rating = void 0;
+      }
+      this.options.rating = rating;
+      this.syncRating();
+      return this.$el.trigger('starrr:change', rating);
+    };
+
+    Starrr.prototype.syncRating = function(rating) {
+      var i, _i, _j, _ref;
+
+      rating || (rating = this.options.rating);
+      if (rating) {
+        for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+          this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        }
+      }
+      if (rating && rating < 5) {
+        for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+          this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+        }
+      }
+      if (!rating) {
+        return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+      }
+    };
+
+    return Starrr;
+
+  })();
+  return $.fn.extend({
+    starrr: function() {
+      var args, option;
+
+      option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      return this.each(function() {
+        var data;
+
+        data = $(this).data('star-rating');
+        if (!data) {
+          $(this).data('star-rating', (data = new Starrr($(this), option)));
+        }
+        if (typeof option === 'string') {
+          return data[option].apply(data, args);
+        }
+      });
+    }
+  });
+})(window.jQuery, window);
+
+$(function() {
+  return $(".starrr").starrr();
+});
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+$( document ).ready(function() {
+      	
+
+  	 $('#stars-existing').on('starrr:change', function(e, value){
+  	    	$('#count-existing').html(value);
+  	  	$.ajax({
+			url : "${pageContext.request.contextPath}/travelge/travelgeScoreUpdate",
+			type : "post",
+			dataType : "json",
+			data : "value="+value +"&contentCode=${info.contentCode}",
+			beforeSend : function(xhr) { 
+				xhr.setRequestHeader(header, token)
+			},
+			success : function(result) {
+			
+				//alert(result.score);
+				$('#count').html(result.score+'개' +result.count+'명');
+				},
+			error : function(err) {
+				alert("오류 발생 : " + err);
+			}
+		});
+  	  });	 
+})
+  
+</script>
 </head>
 <body>
 
@@ -28,12 +171,14 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-panel" style="text-align: center">
-				 <span><img style="width:100%;" src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
+
+				 <span><img style="width:80%; height: 400px" src="${pageContext.request.contextPath }/resources/travelge/${info.contentCode }/photos/${info.travelgePhotos}"></span>
+
 				<h2>${info.travelgeName }</h2>
 				<span>${info.travelgeDescription } </span>
 
 			</div>
-			<div id="map" style="width: 500px; height: 400px;"></div>
+			<div class="container" id="map" style="width: 80%; height: 300px;"></div>
 
 			<script>
 
@@ -72,13 +217,68 @@
 		</script>
 
 			<hr>
+			<h2>블로그 리뷰(${fn:length(blogList)})</h2>
+			<div class="container" style="width: 80%">
+			<c:forEach items="${blogList }" var="b" >
+			<a href="${b.link}">
+			<table style="text-align:left; border-bottom: gray 1px solid;">
+			<tr>
+                <th colspan="2">${b.title}</th>
+			</tr>
+			<tr>
+			<td colspan="2">${b.description}</td>
+			</tr>
+			<tr>       
+                <td >${b.postdate }</td>
+                <td >${b.link}</td>
+                </tr>
+			</table></a>
+			<br>
+			</c:forEach>
+
+
+<!-- --------------------평점  -->
+			<h3>평점</h3>
+			<div>
+				<div class="row lead">
+					<c:if test="${info.avgScoreVo.personCount != null}">
+					★ <span id="count">${info.avgScoreVo.score }개  (${info.avgScoreVo.personCount }명)</span>
+					</c:if>
+					<c:if test="${info.avgScoreVo.personCount == null }">
+					★ <span id="count">0개  (0명)</span>
+					</c:if>
+				</div>
+
+			</div>
+			<hr>
+			
+			<div class="row lead">
+    
+			<sec:authorize access="isAuthenticated()">
+				<h3>이곳을 평가해 주세요</h3>
+				<div class="row lead">
+					<div id="stars-existing" class="starrr" 
+						data-rating='${userScore.score }'></div>
+					선택한 평점 : <span id="count-existing">${userScore.score }</span>
+					개
+				</div>
+			</sec:authorize>
+			<!-- 
+			<div class="row lead">
+				<p>Also you can give a default rating by adding attribute
+					data-rating</p>
+				<div id="stars" class="starrr" data-rating='4'></div>
+				You gave a rating of <span id="count">4</span> star(s)
+			</div>
+			 -->
+
 			<!-- Blog Post Content Column -->
 			<div class="cont">
 				<h3>Review</h3>
 				<sec:authorize access="isAuthenticated()">
-				<a style="cursor:pointer;"data-toggle="modal" data-target="#insertReview"
-					class="post-entry-more"> 리뷰 작성 </a>
-				</sec:authorize>	
+					<a style="cursor: pointer;" data-toggle="modal"
+						data-target="#insertReview" class="post-entry-more"> 리뷰 작성 </a>
+				</sec:authorize>
 
 				<!-- detail MODAL -->
 				<div class="modal fade" id="insertReview" role="dialog"
@@ -94,36 +294,37 @@
 				</div>
 				<!-- /detail modal 끝 -->
 				<c:forEach var="comment" items="${commentList }" varStatus="vs">
-					<div class="row" >
-					<a href="${pageContext.request.contextPath}/blog/${comment.id}">
-					
-					<span class="col-md-2">
-						<img style="width:100px; height: 100px; vertical-align: center;" class="img-circle" src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}" ></span>
-						<span class="col-md-2"> ${comment.id } </span></a> 
-						
-						<a class="col-md-4"
-						data-toggle="modal" data-target="#comment${vs.index}">
-						<span style="color: red">${comment.blogTitle }</span>
-						</a>
-					</div>	
+					<div class="row">
+						<a href="${pageContext.request.contextPath}/blog/${comment.id}">
 
-				<!--  comment Modal -->	
-				<div id="comment${vs.index}" class="modal fade services-modal"
-					role="dialog">
-				<div class="modal-dialog">
-						<div class="modal-content shadow">
-							<div class="offer-box">
-								<div class="offer-content pl-30 pr-30">
-									<span class="h4 offer-box-title">${comment.blogTitle }</span> <span>
-										${comment.id}</span> <span class="offer-box-location"> <span
-										class="offer-box-meta">${comment.blogDate }</span> <span
-										class="descriptionImg"> ${comment.blogCont } </span> <a
-										class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
+							<span class="col-md-2"> <img
+								style="width: 100px; height: 100px; vertical-align: center;"
+								class="img-circle"
+								src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
+							<span class="col-md-2"> ${comment.id } </span>
+						</a> <a class="col-md-4" data-toggle="modal"
+							data-target="#comment${vs.index}"> <span style="color: red">${comment.blogTitle }</span>
+						</a>
+					</div>
+
+					<!--  comment Modal -->
+					<div id="comment${vs.index}" class="modal fade services-modal"
+						role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content shadow">
+								<div class="offer-box">
+									<div class="offer-content pl-30 pr-30">
+										<span class="h4 offer-box-title">${comment.blogTitle }</span>
+										<span> ${comment.id}</span> <span class="offer-box-location">
+											<span class="offer-box-meta">${comment.blogDate }</span> <span
+											class="descriptionImg"> ${comment.blogCont } </span> <a
+											class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+										</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>	
-				</div>	
+					</div>
 				</c:forEach>
 			</div>
 
@@ -131,8 +332,6 @@
 	</div>
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
-	<script
-		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
 	<script
@@ -147,6 +346,9 @@
 		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/resources/js/starrr-gh-pages/dist/starrr.js"></script>
 </body>
 </html>
 

@@ -1,11 +1,15 @@
 package kosta.web.controller.travelge;
 
 import java.io.File;
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.blog.UserBlogService;
+import kosta.web.model.service.naver.NaverServiceImpl;
 import kosta.web.model.service.travelge.TravelgeService;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
@@ -30,6 +36,9 @@ public class TravelgeController {
 
 	@Autowired
 	private UserBlogService userBlogService;
+	
+	@Autowired
+	private NaverServiceImpl naverServiceImpl;
 
 	@RequestMapping("/main")
 	public ModelAndView travelgeMain() {
@@ -52,10 +61,11 @@ public class TravelgeController {
 		}
 
 		// 최신 리뷰
-		// List<UserBlogVo> latestComment = travelgeService.latestComment();
-		 List<TravelgeLatestCommentVo> latestComment = travelgeService.latestComment();
-		 
-		 mv.addObject("commentList",latestComment);
+		// List<UserBlogVo> latestComment =
+		// travelgeService.latestComment();
+		List<TravelgeLatestCommentVo> latestComment = travelgeService.latestComment();
+
+		mv.addObject("commentList", latestComment);
 
 		return mv;
 	}
@@ -243,7 +253,8 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 
-		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);		
+
 		return list;
 	}
 
@@ -266,7 +277,8 @@ public class TravelgeController {
 
 		/*
 		 * System.out.println(index); System.out.println(currentRegion);
-		 * System.out.println(currentTheme); System.out.println(keyword);
+		 * System.out.println(currentTheme);
+		 * System.out.println(keyword);
 		 */
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
 		for (int i = 0; i < list.size(); i++) {
@@ -277,23 +289,36 @@ public class TravelgeController {
 
 	// DetailView
 	@RequestMapping("/detailView/{contentCode}")
-	public ModelAndView detailView(@PathVariable String contentCode) {
+	public ModelAndView detailView(@PathVariable String contentCode, Principal principal) {
 
+		String id = "";
+		ModelAndView mv = new ModelAndView();
+		// 평점도 저장하자
+		if (principal != null) {
+			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			id = user.getId();
+			AvgScoreVo score = travelgeService.selectUserScore(contentCode, id);
+			mv.addObject("userScore", score);
+
+		}
 		TravelgeInfoVo temp = new TravelgeInfoVo();
 		temp.setContentCode(contentCode);
 
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
+		//검색api
+		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme()+" "+list.get(0).getTravelgeAddr();
 
-		/*
-		 * for(UserBlogVo dto : commentList) { System.out.println(dto.getId() +
-		 * " : " + dto.getUserPic()); }
-		 */
-		ModelAndView mv = new ModelAndView();
+        if(keyword !=null)
+        {
+            mv.addObject("blogList",naverServiceImpl.searchBook(keyword,0,1));
+        }
+
 		mv.setViewName("travelge/detailView");
 
 		mv.addObject("info", list.get(0));
 		mv.addObject("commentList", commentList);
+		
 
 		return mv;
 	}
@@ -318,26 +343,27 @@ public class TravelgeController {
 		return mv;
 
 	};
-	//추천 여행지 추가 폼으로 이동
+
+	// 추천 여행지 추가 폼으로 이동
 	@RequestMapping("travelgeReInsertForm")
 	public ModelAndView travelgeRecommandInsertForm(String contentCode) {
 
 		return new ModelAndView("admin/travelgeReInsertForm", "contentConde", contentCode);
 	}
-	
-	//추천 여행지 정보 수정폼으로 이동
+
+	// 추천 여행지 정보 수정폼으로 이동
 	@RequestMapping("travelgeReUpdateForm")
 	public ModelAndView travelgeReUpdateForm(String contentCode, String title) {
-		
+
 		TravelgeRecommandationVo vo = travelgeService.travelgeRecommandSearch3(contentCode, title);
-		
+
 		return new ModelAndView("admin/travelgeReUpdateForm", "vo", vo);
-		}
+	}
 
 	// 추천 여행지 정보 수정
 	@RequestMapping("/travelgeRecommandUpdate")
 	public ModelAndView travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
-		
+
 		int result = travelgeService.travelgeRecommandUpdate(travelgeRecommandationVo);
 		String msg = null;
 		ModelAndView mv = new ModelAndView();
@@ -349,7 +375,7 @@ public class TravelgeController {
 
 		mv.addObject("msg", msg);
 		mv.setViewName("admin/travelgeReSearch");
-		
+
 		return mv;
 
 	};
@@ -357,7 +383,7 @@ public class TravelgeController {
 	// 추천 여행지 정보 삭제
 	@RequestMapping("travelgeRecommandDelete")
 	public ModelAndView travelgeRecommandDelete(String contentCode, String title) {
-		
+
 		int result = travelgeService.travelgeRecommandDelete(contentCode, title);
 		String msg = null;
 		ModelAndView mv = new ModelAndView();
@@ -434,7 +460,30 @@ public class TravelgeController {
 
 	};
 
-	public void travelgeScoreUpdate(AvgScoreVo avgScoreVo) {
+	@RequestMapping("/travelgeScoreUpdate")
+	@ResponseBody
+	public Map<Object, Object> travelgeScoreUpdate(String value, String contentCode) {
+
+		UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = user.getId();
+//		System.out.println(value);
+		int result = 0;
+		AvgScoreVo score = travelgeService.selectUserScore(contentCode, id);
+		double userScore = Double.parseDouble(value);
+		if (score == null) {
+			result = travelgeService.travelgeScoreInsert(id, contentCode, userScore);
+		}
+		result = travelgeService.travelgeScoreUpdate(id, contentCode, userScore);
+		
+		TravelgeInfoVo tra = new TravelgeInfoVo();
+		tra.setContentCode(contentCode);
+		double temp = travelgeService.travelgeInfoSearch(tra,0).get(0).getAvgScoreVo().getScore();
+		int count = travelgeService.travelgeInfoSearch(tra,0).get(0).getAvgScoreVo().getPersonCount();
+		Map<Object, Object> map = new HashMap<>();
+		map.put("score", temp);
+		map.put("count", count);
+		
+		return map;
 
 	};
 
@@ -442,10 +491,6 @@ public class TravelgeController {
 	@RequestMapping("/searchAroundMe")
 	@ResponseBody
 	public List<TravelgeInfoVo> searchAroundMe(String lat, String lon) {
-
-		/*
-		 * System.out.println(lat); System.out.println(lon);
-		 */
 
 		return travelgeService.searchAroundMe(lat, lon);
 	}

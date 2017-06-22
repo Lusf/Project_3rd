@@ -18,18 +18,19 @@
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
 
-<link
-	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
-	rel="stylesheet">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 </head>
-<body>
 
+<script>
+	$().function()
+</script>
+
+
+<body>
+	<%@include file="/WEB-INF/views/header.jsp"%>
 
 	<div class="container">
 		<div class="row">
@@ -37,7 +38,7 @@
 				<div class="well profile">
 					<div class="col-sm-12">
 						<div class="col-xs-12 col-sm-8">
-							<h2>${userInfo.id }</h2>
+							<h2>${userInfo.id}</h2>
 							<p>
 								<strong>Tell : </strong>${userInfo.tell}
 							</p>
@@ -45,9 +46,13 @@
 								<strong>Point : </strong>${userInfo.point}
 							</p>
 							<p>
-<!--나중에 수정					<strong>Skills: </strong> <span class="tags">html5</span> <span
+								<!--<strong>Skills: </strong> <span class="tags">html5</span> <span
 									class="tags">css3</span> <span class="tags">jquery</span> <span
 									class="tags">bootstrap3</span> -->
+							<div class="btn-group dropup btn-block">
+								<a href="#" class="btn btn-default" data-toggle="modal"
+									data-target="#offer-01" id="test">정보 수정</a>
+							</div>
 							</p>
 						</div>
 						<div class="col-xs-12 col-sm-4 text-center">
@@ -61,52 +66,26 @@
 							<h2>
 								<strong> 20,7K </strong>
 							</h2>
-							<p>
-								<small>Followers</small>
-							</p>
 							<button class="btn btn-success btn-block">
-								<span class="fa fa-plus-circle"></span> Follow
+								<span class="fa fa-plus-circle">리뷰 확인</span>
 							</button>
 						</div>
 						<div class="col-xs-12 col-sm-4 emphasis">
 							<h2>
 								<strong>245</strong>
 							</h2>
-							<p>
-								<small>Following</small>
-							</p>
 							<button class="btn btn-info btn-block">
-								<span class="fa fa-user"></span> View Profile
+								<span class="fa fa-user">관심 분야</span>
 							</button>
 						</div>
 						<div class="col-xs-12 col-sm-4 emphasis">
 							<h2>
 								<strong>43</strong>
 							</h2>
-							<p>
-								<small>Snippets</small>
-							</p>
 							<div class="btn-group dropup btn-block">
 								<button type="button" class="btn btn-primary">
-									<span class="fa fa-gear"></span> Options
+									<span class="fa fa-gear">찜한 목록</span>
 								</button>
-								<button type="button" class="btn btn-primary dropdown-toggle"
-									data-toggle="dropdown">
-									<span class="caret"></span> <span class="sr-only">Toggle
-										Dropdown</span>
-								</button>
-								<ul class="dropdown-menu text-left" role="menu">
-									<li><a href="#"><span
-											class="fa fa-envelope pull-right"></span> Send an email </a></li>
-									<li><a href="#"><span class="fa fa-list pull-right"></span>
-											Add or remove from a list </a></li>
-									<li class="divider"></li>
-									<li><a href="#"><span class="fa fa-warning pull-right"></span>Report
-											this user for spam</a></li>
-									<li class="divider"></li>
-									<li><a href="#" class="btn disabled" role="button">
-											Unfollow </a></li>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -115,5 +94,77 @@
 		</div>
 	</div>
 
+	<!-- 수정 -->
+	<div id="offer-01" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">Name</label>
+					<div class="col-md-4">
+						<input id="textinput" name="textinput" placeholder=""
+							class="form-control input-md" required="" type="text">
+
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">Phrase</label>
+					<div class="col-md-4">
+						<input id="textinput" name="textinput" placeholder=""
+							class="form-control input-md" required="" type="text">
+
+					</div>
+				</div>
+
+				<!-- Textarea -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textarea">Description</label>
+					<div class="col-md-4">
+						<textarea class="form-control" id="textarea" name="textarea"></textarea>
+					</div>
+				</div>
+
+				<!-- Button (Double) -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="btnCancel">Save
+						Marker</label>
+					<div class="col-md-8">
+						<button id="btnCancel" name="btnCancel" class="btn btn-primary">Cancel</button>
+						<button id="btnSave" name="btnSave" class="btn btn-success">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
+	<script
+		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
+
+	<!-- jQuery -->
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+	<script type="text/javascript"></script>
 </body>
 </html>

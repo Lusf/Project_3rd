@@ -359,6 +359,7 @@
 								<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 							<div class="contact-form mt-60">
 							
+								<form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
 								<%-- <form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
 									<div class="form-group">
 										<input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="제목" required>

@@ -142,6 +142,7 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo) {
+		System.out.println("³­ service¾ß ");
 		return lookInfoDAO.lookInfoSearch(lookInfoVo);
 	}
 

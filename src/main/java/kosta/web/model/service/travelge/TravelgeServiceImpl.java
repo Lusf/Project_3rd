@@ -118,16 +118,27 @@ public class TravelgeServiceImpl implements TravelgeService {
 		for (TravelgeInfoVo dto : temp) {
 			int point = dto.getTravelgeCoordinates().indexOf(',');
 			int last = dto.getTravelgeCoordinates().indexOf(')');
-			// System.out.println(point);
+
 			double tempLat = Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
 			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point + 2, last));
 
 			dto.setX(tempLat + "");
 			dto.setY(tempLon + "");
-			// dto.setTravelgeCoordinates(tempLat+", "+tempLon);
+
+			
+			//평점 가져오기 
+			AvgScoreVo avgScore = travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode());
+			if(avgScore == null)
+			{
+				
+				avgScore = new AvgScoreVo();
+				avgScore.setScore(0.0);
+				avgScore.setPersonCount(0);
+			}
+			dto.setAvgScoreVo(avgScore);
+			
 			newList.add(dto);
 			
-//			System.out.println(dto.getX() + " : " + dto.getY());
 
 		}
 		return newList;
@@ -171,15 +182,15 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}
 
 	@Override
-	public int travelgeScoreInsert(AvgScoreVo avgScoreVo) {
+	public int travelgeScoreInsert(String id, String contentCode, double score) {
 		// TODO Auto-generated method stub
-		return 0;
+		return travelgeAvgScoreDAO.travelgeScoreInsert(id, contentCode, score);
 	}
 
 	@Override
-	public int travelgeScoreUpdate(AvgScoreVo avgScoreVo) {
+	public int travelgeScoreUpdate(String id, String contentCode, double score) {
 		// TODO Auto-generated method stub
-		return 0;
+		return travelgeAvgScoreDAO.travelgeScoreUpdate(id, contentCode, score);
 	}
 
 	static final double bound = 0.025;
@@ -257,6 +268,12 @@ public class TravelgeServiceImpl implements TravelgeService {
 	public TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title) {
 		
 		return travelgeRecommandationDAO.travelgeRecommandSearch3(contentCode, title);
+	}
+
+	@Override
+	public AvgScoreVo selectUserScore(String contentCode, String id) {
+		
+		return travelgeAvgScoreDAO.selectUserScore(contentCode, id);
 	}
 
 }

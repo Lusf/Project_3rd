@@ -17,11 +17,11 @@ public interface TravelgeAvgScoreDAO {
 	
 	int travelgeWishListDelete(AvgScoreVo avgScoreVo);
 	
-	int travelgeScoreInsert(AvgScoreVo avgScoreVo);
+	int travelgeScoreInsert(String id, String contentCode, double score);
 	
-	int travelgeScoreUpdate(AvgScoreVo avgScoreVo);
+	int travelgeScoreUpdate(String id, String contentCode, double score);
 	
 	AvgScoreVo travelgeAvgScore(String contentCode);
 	
-	AvgScoreVo travelgeScore(AvgScoreVo avgScoreVo);
+	AvgScoreVo selectUserScore(String contentCode, String id);
 }
