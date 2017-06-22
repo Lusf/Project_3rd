@@ -23,6 +23,7 @@ public class LookInfoVo {
 	private String lookLoca;
 	private String lookCate;
 	private String lookAge;			//연령등급
+	private String lookTrailer;
 	private String x;
 	private String y;
 	
@@ -130,7 +131,13 @@ public class LookInfoVo {
 	public void setLookAge(String lookAge) {
 		this.lookAge = lookAge;
 	}
-	
+	public String getLookTrailer() {
+		return lookTrailer;
+	}
+	public void setLookTrailer(String lookTrailer) {
+		this.lookTrailer = lookTrailer;
+	}
+
 	public String getX() {
 		return x;
 	}

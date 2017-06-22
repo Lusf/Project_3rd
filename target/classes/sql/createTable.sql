@@ -192,6 +192,7 @@ create table look_info(
   look_loca varchar2(200),
   look_cate varchar2(100),
   look_age varchar2(100),
+  look_trailer varchar2(200),
   look_x varchar2(100),
   look_y varchar2(100)
 );
