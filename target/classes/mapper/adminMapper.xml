@@ -34,4 +34,28 @@ select count(*) from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,
 <select id = "wishListRank" resultType = "ChartVo">
 select content_code as contentCode, count(wish_list) as wishCnt, rank() over (order by count(wish_list) desc) as wishRank from avg_score group by content_code
 </select>
+
+<!-- 3개 컨텐츠 장소 찜한 수 순위  -->
+<select id="">
+SELECT count(t.travelge_name) as cnt, t.travelge_name as name
+ FROM usertable  U, avg_score A, travelge_info T
+ WHERE U.ID = A.ID
+ AND A.content_code = t.content_code and a.wish_list = 1
+ GROUP BY t.travelge_name
+ UNION
+ SELECT count(r.RESTAURANT_NAME) as cnt, R.RESTAURANT_NAME as name
+ FROM usertable  U, avg_score A, RESTAURANT R
+ WHERE U.ID = A.ID
+ AND A.content_code = r.content_code and a.wish_list = 1
+ GROUP BY r.RESTAURANT_NAME
+ UNION
+ SELECT count(L.LOOK_TITLE) as cnt, L.LOOK_TITLE as name
+ FROM usertable  U, avg_score A, LOOK_INFO L
+ WHERE U.ID = A.ID
+ AND A.content_code = L.content_code and a.wish_list = 1
+ GROUP BY L.LOOK_TITLE 
+ ORDER BY cnt desc
+</select>
+
+
 </mapper>
