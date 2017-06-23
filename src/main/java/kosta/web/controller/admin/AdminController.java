@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.admin.AdminService;
 import kosta.web.model.vo.ChartVo;
+import kosta.web.security.CountManager;
 
 @Controller
 @RequestMapping("admin")
@@ -18,8 +19,7 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
-	
+
 	@RequestMapping("{url}")
 	public String url(@PathVariable String url){
 	
@@ -31,7 +31,7 @@ public class AdminController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		ChartVo userCount = adminService.selectUserCount(); //현재 유저 수, 날짜 기준
+		ChartVo userCount = adminService.selectUserCount(); //현재 가입 유저 수, 날짜 기준
 		int travelgeCount = adminService.selectTravelgeCount();
 		int foodCount = adminService.selectFoodCount();
 		int lookCount = adminService.selectLookCount();
@@ -42,10 +42,7 @@ public class AdminController {
 		List<ChartVo> wishRank = adminService.wishListRank();
 		List<ChartVo> totalUserCount = adminService.totalUserCount();
 		
-		for(ChartVo temp : totalUserCount)
-		{
-			System.out.println(temp.getJoin_date());
-		}
+		mv.addObject("count",CountManager.getCount()); //현재 접속자 수
 		mv.addObject("userCount",userCount);
 /*		mv.addObject("travelgeCount",travelgeCount);
 		mv.addObject("foodCount",foodCount);
