@@ -88,8 +88,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public List<RestaurantVo> Search(String contentCode) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RestaurantVo> Search(RestaurantVo restaurantVo, int i) {
+		if (i == 1) {
+			i = 0;
+		} else {
+			i = (i * 5) - 5;
+		}
+		List<RestaurantVo> list = restaurantInfoDAO.Search(restaurantVo, i);
+
+		
+		return list;
 	}
 }

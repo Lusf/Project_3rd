@@ -135,10 +135,12 @@ On click the images will be displayed at normal size to complete the effect
 						
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
+							<sec:authorize access="isAuthenticated()">
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
 								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
 								 <!-- <a class="btn btn-default" data-toggle="modal" href="#share">Share</a> -->
+							</sec:authorize>
 							</div>
 						</div>
 					</div>				
@@ -275,7 +277,7 @@ On click the images will be displayed at normal size to complete the effect
                     <c:forEach var="comment" items="${commentList }" varStatus="state">
                     <div class="row">
                     <c:if test="${empty commentList }">
-                    	블로그 정보 없음
+                    	블로그 리스트 정보 없음
                     </c:if>
                         <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
 

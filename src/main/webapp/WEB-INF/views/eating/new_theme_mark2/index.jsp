@@ -40,8 +40,7 @@
 						<li class="header-link"><a href="developer">메뉴3</a></li>
 						<li class="header-link"><a href="landing">메뉴4</a></li>
 						<li class="header-link"><a href="offer">메뉴6</a></li>
-						<li class="header-link dropdown mega pull-left "><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span class="ti-angle-down"></span></a>
+						<li class="header-link dropdown mega pull-left "><a href="#"	class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span class="ti-angle-down"></span></a>
 							<ul class="dropdown-menu mega-menu container">
 								<li class="col-sm-3">
 									<ul>
@@ -121,16 +120,17 @@
 				<span class="ti-angle-right"></span>
 			</div>
 		</div>
-		
-	<%-- <section class="home"> --%>
+	</section>
+	
+	<section class="home">
 		<div class="box home-search">
 			<div class="container">
 				<div class="row">
 					<div class="">
 						<div class="box">
 							<form class="form-inline" action="new_theme_mark2/search">
-								<div class="form-group col-md-2">
-									<select id="type" class="selectpicker" data-live-search="false" title="전국">
+								<div class="form-group col-md-2"  >
+									<select id="type" class="selectpicker" data-live-search="false" title="전국"  name="">
 										<option value="SU">서울</option>
 										<option value="DJ">대전</option>
 										<option value="DG">대구</option>
@@ -148,13 +148,14 @@
 									</select>
 								</div>
 
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-5">
 									<input type="text" class="form-control"	placeholder="지역, 식당 또는 음식" />
 								</div>
 
 								<div class="form-group col-md-2">
-									<button type="submit" class="btn btn-primary"> search! <span class="ti-angle-right"></span>
-									</button>
+									<button type="submit" class="btn btn-primary"> search! </button>
+									<!-- <span class="ti-angle-right"></span> -->
+									
 								</div>
 							</form>
 						</div>
@@ -163,6 +164,7 @@
 			</div>
 		</div>
 	</section>
+	<!-- 검색끝 -->
 	
 	<section class="padding">
 		<div class="container">
@@ -1066,6 +1068,16 @@
 			</div>
 		</div>
 	</footer>
+<%-- 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.inview.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
+	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script> --%>
+	
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
@@ -1075,16 +1087,14 @@
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countdown.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap-select.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
+
 </body>
 <!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services">
-	
-</script>
+	<script src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
 
 <!-- 주소검색 -->
 <script>

@@ -71,3 +71,5 @@ maxvalue 10000
 drop sequence seq_num;
 
 commit
+
+select * from blog;

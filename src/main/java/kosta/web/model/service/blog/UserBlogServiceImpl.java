@@ -27,7 +27,7 @@ public class UserBlogServiceImpl implements UserBlogService {
 	@Override
 	public int insert(UserBlogVo blogVo) {
 		//블로그 번호 넣기
-		List<Integer> list = selectBlogNum(blogVo.getId());
+		List<Integer> list = selectBlogNum(blogVo.getId()); 
 		int last = 0;
 		if(list.size() > 0)
 		{
@@ -35,8 +35,8 @@ public class UserBlogServiceImpl implements UserBlogService {
 		}
 		
 		blogVo.setBlogNum(last+1);
-		System.out.println(last);
-		//contentCode를 받아서 category설정하기
+		//System.out.println(last); 
+		//contentCode를 받아서 category설정하기 
 		String ini = blogVo.getContentCode().substring(0,1);
 		if(ini.equals("T"))
 			blogVo.setCategory("Travelge");
@@ -66,12 +66,13 @@ public class UserBlogServiceImpl implements UserBlogService {
 	@Override
 	public List<UserBlogVo> selectByContentCode(String contentCode)
 	{
+		System.out.println("userblogservice contentcode : " + contentCode);
 		List<UserBlogVo> list = blogDAO.selectByContentCode(contentCode); 
-		
+		System.out.println("userblogservice list : " + list);
 		for(UserBlogVo dto : list)
 		{
 			dto.setUserPic(blogDAO.userPicBlog(contentCode, dto.getId()));
-			
+			System.out.println("blogservice contentCode : " + list.get(0).getContentCode());
 		}
 		return list;
 	}

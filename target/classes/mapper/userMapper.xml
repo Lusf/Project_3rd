@@ -31,11 +31,11 @@
 				insert into usertable(
 				<include refid="userColumn" />
 				)
-				values(#{id},#{password},#{tell},#{userPic},#{point},sysdate)
+				values(#{id},#{password},#{tell},#{userPic},#{point},to_char(sysdate,'YYYY-MM-DD'))
 			</when>
 			<otherwise>
 				insert into usertable(id, password, tell , point, join_date) values
-				(#{id},#{password},#{tell},#{point},sysdate)
+				(#{id},#{password},#{tell},#{point},to_char(sysdate,'YYYY-MM-DD'))
 			</otherwise>
 		</choose>
 

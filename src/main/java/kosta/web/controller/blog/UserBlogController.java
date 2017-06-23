@@ -78,7 +78,7 @@ public class UserBlogController {
 
 	@RequestMapping("/insertBlogReview")
 	public ModelAndView insertReview(UserBlogVo blogVo){
-		blogService.insert(blogVo);
+		blogService.insert(blogVo); 
 		
 		ModelAndView mv = new ModelAndView();
 		String ini = blogVo.getContentCode().substring(0,1);
@@ -88,8 +88,7 @@ public class UserBlogController {
 		if(ini.equals("T"))
 			mv = travelgeController.detailView(blogVo.getContentCode(), null);
 		else if(ini.equals("B"))
-			//blogVo.setCategory("Entertainment");
-			mv = enterController.enterDetailConcertView(blogVo.getContentCode());
+			mv = enterController.enterDetailConcertView(blogVo.getContentCode(), null);
 		else if(ini.equals("C"))
 			blogVo.setCategory("Food");
 			//mv = foodController.search(blogVo.getContentCode());
