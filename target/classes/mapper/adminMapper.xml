@@ -9,13 +9,13 @@ select count(*) as cntUser from usertable
 
 
 <!-- 누적 가입자 수 (그래프)-->
-<select id = "totalUserCount">
-select join_date, count(*) as 오늘가입자,
-	sum(count(*)) over (order by join_date) as 누적가입자수
+<select id = "totalUserCount"  resultType="kosta.web.model.vo.ChartVo">
+select to_char(join_date, 'YYYY-MM-DD') as join_date, sum(count(*)) over (order by join_date) as cntUser
 from (select join_date, id from usertable)
 group by join_date
 order by join_date
 </select>
+
 <!-- 하루에 한번씩 유저 수 카운트 -->
 <insert id = "insertUserCount">
 insert into usercount values(sysdate, (select count(id) from usertable))

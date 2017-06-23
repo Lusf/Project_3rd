@@ -40,7 +40,12 @@ public class AdminController {
 		int latestReviewCount = adminService.latestReviewCount();
 		
 		List<ChartVo> wishRank = adminService.wishListRank();
+		List<ChartVo> totalUserCount = adminService.totalUserCount();
 		
+		for(ChartVo temp : totalUserCount)
+		{
+			System.out.println(temp.getJoin_date());
+		}
 		mv.addObject("userCount",userCount);
 /*		mv.addObject("travelgeCount",travelgeCount);
 		mv.addObject("foodCount",foodCount);
@@ -48,6 +53,7 @@ public class AdminController {
 		mv.addObject("contentCount",contentCount);
 		mv.addObject("latestReviewCount",latestReviewCount);
 		mv.addObject("wishRank", wishRank);
+		mv.addObject("totalUserCount",totalUserCount);
 		
 		mv.setViewName("admin/index");
 		return mv;
