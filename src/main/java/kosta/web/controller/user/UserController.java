@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,33 +33,25 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping("loginForm")
+
+	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public ModelAndView loginForm(HttpServletRequest request){
+		
+		String referrer = request.getHeader("Referer");
+		request.getSession().setAttribute("loginRedirect", referrer);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/loginForm");
 		mv.addObject("flag", 1);
 		return mv;
 	}	
 	
-/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPage(HttpServletRequest request) {
-		System.out.println("¿À³Ä");
-	    String referrer = request.getHeader("Referer");
-	    request.getSession().setAttribute("prevPage", referrer);
-	    return "login";
-	}*/
-
 	@RequestMapping("join")
 	public String userJoin(HttpServletRequest request, UserVo userVo) throws Exception {
 
-//		String path = request.getSession().getServletContext().getContextPath()+"/resources/data";
 		String path = request.getSession().getServletContext().getRealPath("/resources/user");
 
-		
-//		System.out.println(path);
 		MultipartFile file = userVo.getFile();
-		
-//		System.out.println(file.getOriginalFilename());
 
 		if (file.getSize() > 0) {
 			userVo.setUserPic(file.getOriginalFilename());
