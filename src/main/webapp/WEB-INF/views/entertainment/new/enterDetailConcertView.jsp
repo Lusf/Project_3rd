@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+   prefix="sec"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,6 +147,11 @@ On click the images will be displayed at normal size to complete the effect
 /*Clicking on any thumbnail now should activate the image related to it*/
 
 /*We are done :)*/
+
+.sidebar-box {
+    margin-top: -20em;
+    margin-left: 4em;
+}
 </style>
 
 </head>
@@ -177,7 +185,7 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img class="img-responsive" src="<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >" alt="user avatar" alt=""/>
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"/>
 							</div>
 							<div class="col-md-8">	
 								<h3 class="">${lookInfoOne.lookTitle}</h3>
@@ -194,9 +202,9 @@ On click the images will be displayed at normal size to complete the effect
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <!-- <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> -->
-								 <a class="btn btn-default" data-toggle="collapse" href="#reviews">Review</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#share">Share</a>
+								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
+								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
+								<%--  <a class="btn btn-default" href="${pageContext.request.contextPath}/blog/${comment.id}">Review</a> --%>
 							</div>
 						</div>
 					</div>				
@@ -259,17 +267,17 @@ On click the images will be displayed at normal size to complete the effect
 						  <div class="container">	
 							<ul class="list-unstyled video-list-thumbs row">
 								<li class="col-lg-3 col-sm-4 col-xs-6">
-									<a href="#" title="zootopia_예고편1">
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo2.jpg" alt="Barca" class="img-responsive" width="100px" height="130px" />
-										<p>예고편1</p>
+									<a href="#preVideo" title="zootopia_예고편1" data-toggle="modal">
+										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo2.jpg" alt="Barca" class="img-responsive" width="300px" height="200px" />
+									
 										<span class="glyphicon glyphicon-play-circle"></span>
 										<span class="duration">00:15</span>
 									</a>
 								</li>
 								<li class="col-lg-3 col-sm-4 col-xs-6">
 									<a href="#" title="zootopia_예고편2">
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo6.jpg" alt="Barca" class="img-responsive" width="100px"  height="130px" />
-										<p>예고편2</p>
+										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo6.jpg" alt="Barca" class="img-responsive" width="300px" height="200px" />
+										
 										<span class="glyphicon glyphicon-play-circle"></span>
 										<span class="duration">01:15</span>
 									</a>
@@ -288,18 +296,9 @@ On click the images will be displayed at normal size to complete the effect
 	                      	<hr>					
 <!-- slider -->	
 <div class="slider">
-	<input type="radio" name="slide_switch" id="id1" />
 	
-	<!-- <label for="id1"> -->
-<!-- 		<label for="id1"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/AWdA7hdP4ZA?rel=0&showinfo=0" frameborder="0" allowfullscreen width="640px" ></iframe></label>	
-	 --><!-- </label>	 -->
-<!-- 	<label for="id1">
-		<video src="https://www.youtube.com/embed/AWdA7hdP4ZA?rel=0&showinfo=0" controls poster="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg">왜왜왱</video>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100"/> -->
-	
-	<!--Lets show the second image by default on page load-->
-	<input type="radio" name="slide_switch" id="id2" />
+
+	<input type="radio" name="slide_switch" id="id2" checked="checked"/>
 	<label for="id2">
 		<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100"/>
 	</label>
@@ -325,7 +324,7 @@ On click the images will be displayed at normal size to complete the effect
 </div>
 					
  					
-						    <div class="container">
+<%-- 						    <div class="container">
 						 
 						        <div class="row">
 								<div class="col-md-8">
@@ -344,7 +343,7 @@ On click the images will be displayed at normal size to complete the effect
 	
 						    </div> 
 						    </div>
-					    </div> 
+					    </div>  --%>
 					    
 					    	<p class="post-introduction">
 	                        	위치
@@ -391,36 +390,17 @@ On click the images will be displayed at normal size to complete the effect
 
 		</div>
 	</div>
-					</div>
+</div>
 	
-                    <!-- comments-->
-                    <div class="reviews">
-                        <h3 class="mb-60">Reviews<a class="btn btn-primary pull-right" data-toggle="collapse" href="#comments-form">add new</a></h3>
-                        <div class="comments-form collapse col-md-12" id="comments-form">
-                            <div class="panel panel-default">
-                                <div class="panel-heading ">
-                                    <div class="panel-title h3">Add new
-                                        <div class="pull-right login-context-info">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <form id="comment-new" class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <textarea class="form-control" placeholder="Your comment"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <!-- Button -->
-                                            <div class="col-md-12 login-btn">
-                                                <a href="#" class="btn btn-primary">Add your comment </a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- reviews -->
+                   <div class="review">
+                   <h3 class="mb-60">Reviews</h3>
+                    <c:forEach var="comment" items="${commentList }" varStatus="state">
+                    <div class="row">
+                    <c:if test="${empty commentList }">
+                    	블로그 정보 없음
+                    </c:if>
+                  		 <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
                         <ul class="comments-list">
                             <li>
                                 <span class="comments-nick h5">Martin</span>
@@ -432,9 +412,7 @@ On click the images will be displayed at normal size to complete the effect
                                     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                                
-                                <ul class="collapse ml-60" id="reply-open">
+                                </p>                                                                
                                     <li class="mb-60">
                                         <span class="comments-nick h5">Martin</span>
                                         <span class="comments-date">14.07.2017</span>
@@ -447,66 +425,10 @@ On click the images will be displayed at normal size to complete the effect
                                             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                         </p>
                                         
-                                    </li>
-                                    <li class="mb-60">
-                                        <span class="comments-nick h5">Martin</span>
-                                        <span class="comments-date">14.07.2017</span>
-                                        <p class="comments-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        
-                                    </li>
-                                    <li class="mb-60">
-                                        <span class="comments-nick h5">Martin</span>
-                                        <span class="comments-date">14.07.2017</span>
-                                        <p class="comments-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        
-                                    </li>
-                                </ul>
-                                <a data-toggle="collapse" href="#reply" class="btn btn-default">reply</a>
-                                <a class="btn btn-default" data-toggle="collapse" href="#reply-open">3 comments</a>
-                                <div class="comments-form collapse col-md-12" id="reply">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading ">
-                                            <div class="panel-title h3">reply
-                                                <div class="pull-right login-context-info">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <form id="reply-form" class="form-horizontal">
-                                                
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <textarea class="form-control" placeholder="Your comment"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <!-- Button -->
-                                                    <div class="col-md-12 login-btn">
-                                                        <a href="#" class="btn btn-primary">Add your reply </a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                    </li>                            
                         </ul>
-                    </div>
-                    <!-- / comments -->
+                    </div><!-- /review -->
+                    </c:forEach>
                 </div>
 
             </div>
@@ -537,8 +459,8 @@ On click the images will be displayed at normal size to complete the effect
 	</div>
 	
 
-	<!-- share modal -->
-	<div id="share" class="modal fade services-modal" role="dialog">
+	<!-- heart 주기 modal -->
+	<div id="heart" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
@@ -547,9 +469,52 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<h4>공유♡</h4>	
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
+							<h4>좋아요♡</h4>	
+							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">하트주기</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- video modal -->
+	<div id="preVideo" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
+
+						<div class="services-box text-center">
+							<video width="420" height="340" controls>
+ 							<%-- 	 <source src="${lookInfoOne.lookTariler }" type="video/mp4"> --%>
+							</video>												
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- review 작성 modal -->
+	<div id="reviews" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
+
+						<div class="services-box text-center">							
+
+							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
+							<!-- <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
+							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a> -->
 						</div>
 
 					</div>

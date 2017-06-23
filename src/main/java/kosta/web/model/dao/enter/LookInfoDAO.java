@@ -50,4 +50,7 @@ public interface LookInfoDAO {
 	 * 최신순서대로 검색(5개이하)
 	 * */
 	List<LookInfoVo> lookInfoSearchByNewList();
+	
+	/** search */
+	List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo);
 }

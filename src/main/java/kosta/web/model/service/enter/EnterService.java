@@ -109,6 +109,12 @@ public interface EnterService {
 	 * */
 	List<LookInfoVo> lookInfoSearchByNewList();
 	
+	/** search */
+	List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo);
+	
+	
+	
+	
 	/** enter admin search */
 	List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage);
 	

@@ -207,20 +207,20 @@
 								</div>
 							</div>
 							
-							
+							<!-- 포스터 / 트레일러 / 스틸컷 -->
 							<div class="row">
 								<div class="filebox">
-									<div class="form-groupcol-xs-6" id="holder">
+									<div class="form-group col-xs-2" id="holder">
 										<img src="${pageContext.request.contextPath}/resources/enter/${infoVo.contentCode}/photos/${poster}" id="posterImg" width="100" height="100">
 									</div>
-									<div class="form-groupcol-xs-6">
+									<div class="form-group col-xs-7">
 										<input class="upload-name" id="posterName" value="${poster}" disabled="disabled" >
 										<label for="upload">포스터 업로드</label> 
 										<input type="file" id="upload" class="upload-hidden" name="file" value="${poster}">
 										<input type="hidden" name="lookImg" value="${img}">
 									</div>
 									
-									<div class="form-groupcol-xs-12">
+									<div class="form-group col-xs-12">
 										<input class="upload-name" id="picName1" value="${pic1}" disabled="disabled">
 										<label for="pic1">사진1</label>
 										<input type="file" id="pic1" class="upload-hidden" name="pic1"  value="${pic1}">
@@ -236,6 +236,12 @@
 										<input class="upload-name" id="picName4" value="${pic4}" disabled="disabled">
 										<label for="pic4">사진4</label>
 										<input type="file" id="pic4" class="upload-hidden" name="pic4"  value="${pic4}">
+									</div>
+									
+									<div class="form-group col-xs-8">
+										<label for="lookTrailer">Trailer</label>
+										<input type="text" class="form-control" name="lookTrailer"
+											id="lookTrailer " placeholder="트레일러" value="${infoVo.lookTrailer}">
 									</div>
 								</div>
 							</div>
