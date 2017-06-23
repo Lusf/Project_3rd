@@ -56,4 +56,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.totalUserCount();
 	}
 
+	@Override
+	public List<ChartVo> scoreRank() {
+		return adminDAO.scoreRank();
+	}
+
 }

@@ -15,7 +15,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import kosta.web.model.vo.Book;
 import kosta.web.model.vo.NaverVo;
 
 @Service

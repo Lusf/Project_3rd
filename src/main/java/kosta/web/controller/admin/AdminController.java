@@ -41,19 +41,16 @@ public class AdminController {
 		
 		List<ChartVo> wishRank = adminService.wishListRank();
 		List<ChartVo> totalUserCount = adminService.totalUserCount();
-		
-		for(ChartVo temp : totalUserCount)
-		{
-			System.out.println(temp.getJoin_date());
-		}
-		mv.addObject("userCount",userCount);
-/*		mv.addObject("travelgeCount",travelgeCount);
-		mv.addObject("foodCount",foodCount);
-		mv.addObject("lookCount",lookCount);*/
-		mv.addObject("contentCount",contentCount);
-		mv.addObject("latestReviewCount",latestReviewCount);
-		mv.addObject("wishRank", wishRank);
-		mv.addObject("totalUserCount",totalUserCount);
+		List<ChartVo> scoreRank = adminService.scoreRank();
+		mv.addObject("userCount",userCount);			//총 유저의 수
+		mv.addObject("travelgeCount",travelgeCount);		//여행지 컨텐츠 수
+		mv.addObject("foodCount",foodCount);			//먹거리 컨텐츠 수
+		mv.addObject("lookCount",lookCount);			//볼거리 컨텐츠 수
+		mv.addObject("contentCount",contentCount);		//컨텐츠의 총 수
+		mv.addObject("latestReviewCount",latestReviewCount);	//최신 리뷰의 수
+		mv.addObject("wishRank", wishRank);			//좋아요 순위
+		mv.addObject("scoreRank",scoreRank);			//평점 순위
+		mv.addObject("totalUserCount",totalUserCount);	//유저의 수 누적 그래프
 		
 		mv.setViewName("admin/index");
 		return mv;
