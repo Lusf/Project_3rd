@@ -158,7 +158,7 @@ On click the images will be displayed at normal size to complete the effect
 <body>
 
 
-<%@include file="/WEB-INF/views/header.jsp"%>
+<%@include file="/WEB-INF/views/entertainment/new/enterHeader.jsp"%>
 <br><br>
 
 

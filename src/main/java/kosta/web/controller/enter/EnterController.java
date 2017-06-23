@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -229,6 +230,22 @@ public class EnterController {
 		mv.setViewName("entertainment/new/enterSearch");
 		
 		return mv;
+	}
+	
+	@RequestMapping("/entSearch")
+	@ResponseBody
+	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo){
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo);
+		List<LookInfoVo> imgList = new ArrayList<>();
+		
+		if(list != null){
+			for(LookInfoVo ivo : list){
+				String img[] = ivo.getLookImg().split(":");
+				ivo.setLookImg(img[0]);
+				imgList.add(ivo);
+			}
+		}
+		return imgList;
 	}
 	
 	
