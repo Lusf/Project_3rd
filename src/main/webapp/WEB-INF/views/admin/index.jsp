@@ -12,16 +12,21 @@
     <meta name="author" content="">
     <script src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
     <title>Admin Page</title>
+<!-- TABLE SORT -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.js"></script>
+<%-- <script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery-latest.js"></script> --%>
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.metadata.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.min.js"></script>
 
 <script>
 $(function()
 {
-	  // Line Chart
     Morris.Line({
-        // ID of the element in which to draw the chart.
         element: 'morris-line-chart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
         data:   [
          		<c:forEach items="${totalUserCount}" var="item" varStatus="i">    
             			<c:if test="${!i.first }">,</c:if>   
@@ -30,20 +35,30 @@ $(function()
     			users: ${item.cntUser}
             	}
         </c:forEach> 
-
         ],
-        // The name of the data record attribute that contains x-visitss.
         xkey: 'day',
-        // A list of names of data record attributes that contain y-visitss.
         ykeys: ['users'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
         labels: ['users'],
-        // Disables line smoothing
         smooth: false,
         resize: true
     });
-	
+
+ // Donut Chart
+    Morris.Donut({
+        element: 'morris-donut-chart',
+        data: [{
+            label: "Travelge",
+            value: ${travelgeCount}
+        }, {
+            label: "Food",
+            value: ${foodCount}
+        }, {
+            label: "Entertainment",
+            value: ${lookCount}
+        }],
+        colors:['#f44336', '#ff9800', '#000000'],
+        resize: true
+    });
 })
 </script>
 
@@ -166,8 +181,71 @@ $(function()
                         </div>
                     </div>
                 </div>
-                
-
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">등록된 정보의 수 (${contentCount }개)</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-donut-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+		<div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">좋아요 순위</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>장소</th>
+                                                <th>좋아요</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${wishRank}" var="list">
+                                            <tr>
+                                                <td>${list.name}</td>
+                                                <td>${list.cnt}</td>
+                                            </tr>
+                                         </c:forEach>   
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">평점 순위</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>장소</th>
+                                                <th>평점/인원</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${scoreRank}" var="list">
+                                            <tr>
+                                                <td>${list.name}</td>
+                                                <td>${list.avg} / ${list.cnt}(명)</td>
+                                            </tr>
+                                         </c:forEach>   
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <!-- /.container-fluid -->
 

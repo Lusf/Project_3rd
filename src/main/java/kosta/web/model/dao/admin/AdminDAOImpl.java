@@ -2,6 +2,7 @@ package kosta.web.model.dao.admin;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,13 +49,19 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<ChartVo> wishListRank() {
 		
-		return sqlSession.selectList("adminMapper.wishListRank");
+		return sqlSession.selectList("adminMapper.wishListRank" , new RowBounds(0, 10));
 	}
 
 	@Override
 	public List<ChartVo> totalUserCount() {
 
 		return sqlSession.selectList("adminMapper.totalUserCount");
+	}
+
+	@Override
+	public List<ChartVo> scoreRank() {
+		
+		return sqlSession.selectList("adminMapper.scoreRank", new RowBounds(0, 10));
 	}
 
 }
