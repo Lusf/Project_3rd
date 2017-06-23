@@ -51,4 +51,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList("adminMapper.wishListRank");
 	}
 
+	@Override
+	public List<ChartVo> totalUserCount() {
+
+		return sqlSession.selectList("adminMapper.totalUserCount");
+	}
+
 }

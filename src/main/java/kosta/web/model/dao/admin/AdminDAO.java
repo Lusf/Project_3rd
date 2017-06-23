@@ -37,4 +37,9 @@ public interface AdminDAO {
 	 */
 	List<ChartVo> wishListRank();
 	
+	/**
+	 * 누적 가입자수 (그래프)
+	 */
+	List<ChartVo> totalUserCount();
+	
 }

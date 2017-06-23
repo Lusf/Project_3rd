@@ -50,4 +50,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.wishListRank();
 	}
 
+	@Override
+	public List<ChartVo> totalUserCount() {
+
+		return adminDAO.totalUserCount();
+	}
+
 }
