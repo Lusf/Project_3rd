@@ -73,7 +73,7 @@
 						<div class="offer-box-head">
 							<div class="offer-slider">
 								<div class="swiper-slide">
-									<img src="이미지경로/${card.thumbnail }" alt="offer image">
+									<img src="${card.thumbnail }" alt="offer image">
 								</div>
 							</div>
 						</div>
