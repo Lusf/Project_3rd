@@ -2,11 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
 
-<!-- 현재 유저의 수 조회 -->
+<!-- 총 유저의 수 조회 -->
 <select id = "selectUserCount" resultType="kosta.web.model.vo.ChartVo">
-select count(*) as cntUser from usertable  where to_char(join_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+select count(*) as cntUser from usertable
 </select>
 
+
+<!-- 누적 가입자 수 (그래프)-->
+<select id = "totalUserCount">
+select join_date, count(*) as 오늘가입자,
+	sum(count(*)) over (order by join_date) as 누적가입자수
+from (select join_date, id from usertable)
+group by join_date
+order by join_date
+</select>
 <!-- 하루에 한번씩 유저 수 카운트 -->
 <insert id = "insertUserCount">
 insert into usercount values(sysdate, (select count(id) from usertable))
