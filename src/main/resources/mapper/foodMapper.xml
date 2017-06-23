@@ -5,21 +5,17 @@
 	<sql id="restaurantColumn">
 		<!-- RESTAURANT_NAME ADDRESS CATEGORY content_CODE restaurantName addr 
 			category contentCode -->
-		content_code, restaurant_name, restaurant_info, category, category2, restaurant_address, restaurant_Coordinates, restaurant_pic, id
+		content_code, restaurant_name, restaurant_info, category, category2,
+		restaurant_address, restaurant_Coordinates, restaurant_pic, id
 	</sql>
-<!-- 
-  content_code varchar2(30) constraint content_code_ri_pk primary key,
-  restaurant_name varchar2(30),
-  restaurant_info varchar2(2000),
-  restaurant_address varchar2(50),
-  category varchar2(50),
-  category2 varchar2(50),
-  restaurant_address varchar2(50),
-  restaurant_Coordinates
-  restaurant_pic varchar2(50),
-  id constraint id_restaurant_fk references usertable(id) -->
-  
-<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo" id="restaurantSelectMap">
+	<!-- content_code varchar2(30) constraint content_code_ri_pk primary key, 
+		restaurant_name varchar2(30), restaurant_info varchar2(2000), restaurant_address 
+		varchar2(50), category varchar2(50), category2 varchar2(50), restaurant_address 
+		varchar2(50), restaurant_Coordinates restaurant_pic varchar2(50), id constraint 
+		id_restaurant_fk references usertable(id) -->
+
+	<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo"
+		id="restaurantSelectMap">
 		<id column="content_CODE" property="contentCode" />
 		<result column="RESTAURANT_NAME" property="restaurantName" />
 		<result column="restaurant_info" property="restaurantInfo" />
@@ -28,66 +24,155 @@
 		<result column="restaurant_address" property="restaurantAddr" />
 		<result column="restaurant_Coordinates" property="restaurantCoordinates" />
 		<result column="restaurant_pic" property="restaurantPic" />
-		<result column="id" property="id"/>
-		</resultMap> 
-<!-- content_code varchar2(30) constraint content_code_ri_pk primary key,
-  restaurant_name varchar2(30),
-  restaurant_address varchar2(50),
-  category varchar2(50),
-  category2 varchar2(50),
-  restaurant_info varchar2(2000),
-  restaurant_pic varchar2(50),
-  id constraint id_restaurant_info_fk references usertable(id) -->
-	
+		<result column="id" property="id" />
+	</resultMap>
+	<!-- content_code varchar2(30) constraint content_code_ri_pk primary key, 
+		restaurant_name varchar2(30), restaurant_address varchar2(50), category varchar2(50), 
+		category2 varchar2(50), restaurant_info varchar2(2000), restaurant_pic varchar2(50), 
+		id constraint id_restaurant_info_fk references usertable(id) -->
+
 
 
 	<!-- 맛집정보 등록하기 -->
 	<insert id="insertRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
-		insert into Restaurant
-		(content_code, restaurant_name, restaurant_info, category, category2, restaurant_address, restaurant_Coordinates, restaurant_pic, id)
-		values (#{contentCode},#{restaurantName}, #{restaurantInfo}, #{category}, #{category2}, #{restaurantAddr}, #{restaurantCoordinates}, #{restaurantPic}, #{id})
+		insert into
+		Restaurant
+		(content_code, restaurant_name, restaurant_info, category,
+		category2, restaurant_address, restaurant_Coordinates, restaurant_pic,
+		id)
+		values (#{contentCode},#{restaurantName}, #{restaurantInfo},
+		#{category}, #{category2}, #{restaurantAddr},
+		#{restaurantCoordinates}, #{restaurantPic}, #{id})
 	</insert>
 
 	<!-- 맛집정보 확인하기 -->
-	<select id="selectRestaurant" 	resultMap="restaurantSelectMap">
-		select 	CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY , CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES , RESTAURANT_PIC , ID
+	<select id="selectRestaurant" resultMap="restaurantSelectMap">
+		select CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY ,
+		CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES ,
+		RESTAURANT_PIC , ID
 		from Restaurant
-<!-- 		<where>
-				RESTAURANT_NAME =#{restaurantName}
-				RESTAURANT_ADDRESS
-				RESTAURANT_INFO
-				CONTENT_CODE = #{_parameter}
-		</where> -->
+		<!-- <where> C =#{restaurantName} RESTAURANT_ADDRESS RESTAURANT_INFO 
+			CONTENT_CODE = #{_parameter} </where> -->
 	</select>
 	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
-	
-	<!-- 검색 (이름으로 검색하기) -->
-	<select id="selectByRestaurant" parameterType="String">
-		select	*
+
+	<select id="searchByRestaurant" resultMap="restaurantSelectMap"
+		parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
+		select *
 		from Restaurant
 		<where>
-			RESTAURANT_NAME =#{_parameter}
+			<choose>
+			<when test="category ==null and category2 == null and restaurantName ==null "	>
+				1=1
+			</when>
+			
+			<when test="category !=null and category2 != null ">
+				CATEGORY =  #{category} and 
+				CATEGORY2 =  #{category2}  
+				<if test="restaurantName !=null or restaurantInfo !=null">
+					and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
+					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+				</if>
+			</when>
+			
+			<when test="category ==null and category2 !=null">
+				<if test="restaurantName ==null or restaurantInfo ==null">
+					CATEGORY2 =  #{category2}
+				</if>
+				<if test="restaurantName !=null or restaurantInfo !=null">
+					and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
+					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+				</if>
+			
+			</when>
+			
+			<when test="category != null and category2 ==null ">
+				<if test="restaurantName ==null or restaurantInfo ==null">
+					CATEGORY =  #{category}
+				</if>	
+				
+				<if test="restaurantName !=null or restaurantInfo !=null">
+					CATEGORY =  #{category} and
+					RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
+					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+				</if>
+			</when>
+			
+			<when test="category ==null and category2 ==null">
+				<if test="restaurantName !=null or restaurantInfo !=null">
+					RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
+					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+				</if>
+			</when>
+			
+			</choose>
+			
+			<!-- <if test="category2 !=null">
+				<if test="restaurantName !=null or restaurantName ==null">
+						CATEGORY2 =  #{category2} and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or restaurant_info LIKE '%'||#{restaurantInfo} ||'%'
+				</if>
+			</if>
+			
+			<if test="restaurantName !=null or restaurantInfo !=null">
+				RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or restaurant_info LIKE '%'||#{restaurantInfo} ||'%'
+			</if> -->
+				
 		</where>
-	
-	</select>	
-	
-	
+	</select>
+	<!-- <when test="category !=null and category2 !=null and restaurantName 
+		!=null and restaurantAddr !=null and contentCode !=null"> CATEGORY '%' || 
+		#{category} || '%' or CATEGORY2 '%' || #{category2} || '%' or RESTAURANT_NAME 
+		'%' || #{restaurantName} || '%' or RESTAURANT_ADDRESS '%' || #{restaurantAddr} 
+		|| '%' or content_CODE '%' || #{contentCode} || '%' </when> <when test="contentCode!=null"> 
+		CONTENT_CODE LIKE '%'||#{contentCode}||'%'</when> <when test="restaurantName 
+		!=null"> RESTAURANT_NAME '%' || #{restaurantName} || '%'</when> <when test="restaurantAddr 
+		!=null"> RESTAURANT_ADDRESS '%' || #{restaurantAddr} || '%'</when> <when 
+		test="category !=null"> CATEGORY '%' || #{category} || '%'</when> <when test="category2 
+		!=null"> CATEGORY2 '%' || #{category2} <if test ="category !=null" > and 
+		CATEGORY =#{category}</if> </when> -->
+	<!-- 검색 (이름으로 검색하기) -->
+	<!-- <select id="selectByRestaurant" resultMap="restaurantSelectMap" parameterType="kosta.web.model.vo.restaurant.RestaurantVo"> 
+		select * from Restaurant <where> <choose> <when test ="category !=null and 
+		category2 !=null and restaurantName !=null and restaurantAddr !=null and 
+		contentCode !=null"> CATEGORY '%' || #{category} || '%' or CATEGORY2 '%' 
+		|| #{category2} || '%' or RESTAURANT_NAME '%' || #{restaurantName} || '%' 
+		or RESTAURANT_ADDRESS '%' || #{restaurantAddr} || '%' or content_CODE '%' 
+		|| #{contentCode} || '%' </when> <when test="contentCode!=null"> CONTENT_CODE 
+		LIKE '%'||#{contentCode}||'%'</when> <when test="restaurantName !=null"> 
+		RESTAURANT_NAME '%' || #{restaurantName} || '%'</when> <when test="restaurantAddr 
+		!=null"> RESTAURANT_ADDRESS '%' || #{restaurantAddr} || '%'</when> <when 
+		test="category !=null"> CATEGORY '%' || #{category} || '%'</when> <when test="category2 
+		!=null"> CATEGORY2 '%' || #{category2} <if test ="category !=null" > and 
+		CATEGORY =#{category}</if> </when> <otherwise>1=1</otherwise> </choose> </where> 
+		</select> -->
+
+
+	<!-- <where> RESTAURANT_NAME =#{restaurantName} AND CATEGORY = #{category} 
+		AND CATEGORY2 =#{category2} AND (RESTAURANT_NAME LIKE '%'||#{keyword}||'%' 
+		OR CATEGORY LIKE '%'||#{keyword}||'%' OR CATEGORY2 LIKE '%'||#{keyword}||'%') 
+		</where> -->
+
+
 	<!-- 맛집 수정하기 -->
-	<update id="updateRestaurant" >
-	update Restaurant
-		   set RESTAURANT_NAME = ${restaurantName},
-		   		 RESTAURANT_INFO = ${restaurantInfo},
-		   		 CATEGORY = ${category},
-		   		 CATEGORY2 = ${category2},
-		   		 RESTAURANT_ADDRESS = ${restaurantAddr},
-		   		 RESTAURANT_COORDINATES = ${restaurantCoordinates},
-		   		 RESTAURANT_PIC = ${restaurantPic}
-	 where content_CODE=${contentCode}
+	<update id="updateRestaurant">
+		update Restaurant
+		set RESTAURANT_NAME =
+		${restaurantName},
+		RESTAURANT_INFO = ${restaurantInfo},
+		CATEGORY =
+		${category},
+		CATEGORY2 = ${category2},
+		RESTAURANT_ADDRESS =
+		${restaurantAddr},
+		RESTAURANT_COORDINATES = ${restaurantCoordinates},
+		RESTAURANT_PIC = ${restaurantPic}
+		where content_CODE=${contentCode}
 	</update>
-	
-	
-	<!-- 맛집 삭제하기-->
+
+
+	<!-- 맛집 삭제하기 -->
 	<delete id="deleteRestaurant" parameterType="String">
-		delete Restaurant_INFO where content_CODE=#{_parameter}
+		delete
+		Restaurant_INFO where content_CODE=#{_parameter}
 	</delete>
 </mapper>

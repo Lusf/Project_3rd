@@ -108,68 +108,9 @@
 			</script>
 		</sec:authorize>
 	</header>
-
-	<section class="home">
-		<div class="box home-search">
-			<div class="container">
-				<div class="row">
-					<div class="">
-						<div class="box">
-							<form class="form-inline" action="search">
-								<div class="home-search-row col-md-12">
-									<div class="home-search-group pt-30 pb-30">
-										<div class="form-group col-md-2">
-											<select id="type" class="selectpicker" data-live-search="false" title="전국">
-												<option>전국</option>
-												<option>서울</option>
-												<option>경기</option>
-												<option>인천</option>
-												<option>대전/충청/세종</option>
-												<option>부산/대구/경상</option>
-												<option>광주/전라</option>
-												<option>강원</option>
-												<option>제주</option>
-											</select>
-										</div>
-
-										<div class="form-group col-md-2">
-											<select id="for" class="selectpicker"
-												data-live-search="false" title="음식 종류">
-												<option>전체</option>
-												<option>한식</option>
-												<option>양식</option>
-												<option>중식</option>
-												<option>일식</option>
-												<option>아시아식</option>
-												<option>컨템퍼러리</option>
-												<option>뷔페</option>
-												<option>술집</option>
-												<option>카페/베이커리</option>
-												<option>구이</option>
-											</select>
-										</div>
-
-										<div class="form-group col-md-6">
-											<input type="text" class="form-control"
-												placeholder="지역, 식당 또는 음식" />
-										</div>
-
-										<div class="form-group col-md-2">
-											<button type="submit" class="btn btn-primary">
-												search <span class="ti-angle-right"></span>
-											</button>
-										</div>
-									</div>
-								</div>
-
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
+<!--검색  -->
+	<%@include file="/WEB-INF/views/eating/new_theme_mark2/searchView.jsp" %>
+<!-- 검색 -->
 	<section class="padding">
 		<div class="container">
 			<div class="row">
@@ -312,6 +253,7 @@
 		<!-- 모달시작 -->
 		<!-- OFFER CONTACT FORM-->
 		<c:forEach  items="${requestScope.listA}"  var="list" varStatus="state">
+		  
 		<div id="offer-${state.count }" class="modal fade services-modal" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
@@ -321,6 +263,7 @@
 							<div class="offer-slider">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
+									
 										<%-- <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"> --%> 
 										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
 									</div>
@@ -359,7 +302,7 @@
 								<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 							<div class="contact-form mt-60">
 							
-								<form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
+								<!-- <form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8"> -->
 								<%-- <form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
 									<div class="form-group">
 										<input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="제목" required>
@@ -375,7 +318,7 @@
 								</form> --%>
 								
 					
-					<form name="tx_editor_form" id="tx_editor_form-${state.count }" action="${pageContext.request.contextPath}/eating/insertReview"
+					<form name="tx_editor_form${state.count }"  id="tx_editor_form-${state.count }" action="${pageContext.request.contextPath}/eating/insertReview"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">
@@ -495,18 +438,14 @@
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/main.js'/>"></script>
 		
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
+	
+	          var count=1;
 							if ('${blogCont!=null}' == 'true')
 								Editor.modify({
 									'content' : '${blogCont}'
 								});
-
+                            
 							var config = {
 								txHost : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
 								txPath : '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
