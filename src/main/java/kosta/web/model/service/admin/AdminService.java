@@ -35,4 +35,14 @@ public interface AdminService {
 	 * 좋아요 순위
 	 */
 	List<ChartVo> wishListRank();
+	
+	/**
+	 * 평점 순위
+	 */
+	List<ChartVo> scoreRank();
+
+	/**
+	 * 누적 가입자 수
+	 */
+	List<ChartVo> totalUserCount();
 }

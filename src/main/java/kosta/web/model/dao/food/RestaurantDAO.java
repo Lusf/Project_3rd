@@ -9,5 +9,5 @@ public interface RestaurantDAO {
 	int RestaurantUpdate(RestaurantVo restaurantVo);
 	int RestaurantDelete(String contentCode);
 	List<RestaurantVo> RestaurantSearch(RestaurantVo restaurantVo, int i);
-	List<RestaurantVo> Search(String contentCode);
+	List<RestaurantVo> Search(RestaurantVo restaurantVo, int i);
 }

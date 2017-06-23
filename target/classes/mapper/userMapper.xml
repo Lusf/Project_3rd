@@ -3,7 +3,7 @@
 <mapper namespace="userMapper">
 
 	<sql id="userColumn">
-		id, password, tell, user_pic , point
+		id, password, tell, user_pic , point, join_date
 	</sql>
 	<resultMap type="kosta.web.model.vo.UserVo" id="userVo">
 		<id column="id" property="id" />
@@ -11,6 +11,7 @@
 		<result column="tell" property="tell" />
 		<result column="point" property="point" />
 		<result column="user_pic" property="userPic"/>
+		<result column="join_date" property="joinDate"/>
 	</resultMap>
 
 
@@ -30,11 +31,11 @@
 				insert into usertable(
 				<include refid="userColumn" />
 				)
-				values(#{id},#{password},#{tell},#{userPic},#{point})
+				values(#{id},#{password},#{tell},#{userPic},#{point},to_char(sysdate,'YYYY-MM-DD'))
 			</when>
 			<otherwise>
-				insert into usertable(id, password, tell , point) values
-				(#{id},#{password},#{tell},#{point})
+				insert into usertable(id, password, tell , point, join_date) values
+				(#{id},#{password},#{tell},#{point},to_char(sysdate,'YYYY-MM-DD'))
 			</otherwise>
 		</choose>
 

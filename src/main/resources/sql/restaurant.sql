@@ -5,8 +5,9 @@
 
 drop table restaurant;
 
-select * from restaurant;
+select * from restaurant where category2 = '';
 
+select * from restaurant where category ='DJ' and category2='CN' and RESTAURANT_NAME like '%진영%' or RESTAURANT_INFO like '%진영%';
 select * from usertable;
 
 create table restaurant(
@@ -46,3 +47,17 @@ create table tasty_onair(
 
 
 select   content_CODE,  RESTAURANT_NAME, ADDRESS, CATEGORY   from Restaurant_INFO   ;
+
+select	*
+		from Restaurant
+		where
+			RESTAURANT_NAME =#{restaurantName}
+			CATEGORY = #{category}
+			AND
+			CATEGORY2 =#{category2}
+			AND
+			(RESTAURANT_NAME LIKE '%'||#{keyword}||'%'
+			OR
+			CATEGORY LIKE '%'||#{keyword}||'%'
+			OR
+			CATEGORY2 LIKE '%'||#{keyword}||'%')

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.admin.AdminService;
 import kosta.web.model.vo.ChartVo;
+import kosta.web.security.CountManager;
 
 @Controller
 @RequestMapping("admin")
@@ -18,8 +19,7 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
-	
+
 	@RequestMapping("{url}")
 	public String url(@PathVariable String url){
 	
@@ -31,7 +31,7 @@ public class AdminController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		ChartVo userCount = adminService.selectUserCount(); //현재 유저 수, 날짜 기준
+		ChartVo userCount = adminService.selectUserCount(); //현재 가입 유저 수, 날짜 기준
 		int travelgeCount = adminService.selectTravelgeCount();
 		int foodCount = adminService.selectFoodCount();
 		int lookCount = adminService.selectLookCount();
@@ -40,14 +40,20 @@ public class AdminController {
 		int latestReviewCount = adminService.latestReviewCount();
 		
 		List<ChartVo> wishRank = adminService.wishListRank();
-		
-		mv.addObject("userCount",userCount);
-/*		mv.addObject("travelgeCount",travelgeCount);
-		mv.addObject("foodCount",foodCount);
-		mv.addObject("lookCount",lookCount);*/
-		mv.addObject("contentCount",contentCount);
-		mv.addObject("latestReviewCount",latestReviewCount);
-		mv.addObject("wishRank", wishRank);
+		List<ChartVo> totalUserCount = adminService.totalUserCount();
+
+		List<ChartVo> scoreRank = adminService.scoreRank();
+		mv.addObject("count",CountManager.getCount()); //현재 접속자 수
+		mv.addObject("userCount",userCount);			//총 유저의 수
+		mv.addObject("travelgeCount",travelgeCount);		//여행지 컨텐츠 수
+		mv.addObject("foodCount",foodCount);			//먹거리 컨텐츠 수
+		mv.addObject("lookCount",lookCount);			//볼거리 컨텐츠 수
+		mv.addObject("contentCount",contentCount);		//컨텐츠의 총 수
+		mv.addObject("latestReviewCount",latestReviewCount);	//최신 리뷰의 수
+		mv.addObject("wishRank", wishRank);			//좋아요 순위
+		mv.addObject("scoreRank",scoreRank);			//평점 순위
+		mv.addObject("totalUserCount",totalUserCount);	//유저의 수 누적 그래프
+
 		
 		mv.setViewName("admin/index");
 		return mv;

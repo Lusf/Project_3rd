@@ -72,5 +72,9 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<!-- 현재 유저수 -->
+	   <listener>
+   		 <listener-class>kosta.web.security.CountManager</listener-class>
+		</listener>
+	
 </web-app>
