@@ -1,5 +1,7 @@
 package kosta.web.model.dao.travelge;
 
+import java.util.List;
+
 import kosta.web.model.vo.AvgScoreVo;
 
 public interface TravelgeAvgScoreDAO {
@@ -13,9 +15,11 @@ public interface TravelgeAvgScoreDAO {
 	travelgeScore 내가준별점
 	*/
 	
-	int travelgeWishListAdd(AvgScoreVo avgScoreVo);
+	int travelgeWishListInsert(String id, String contentCode);
 	
-	int travelgeWishListDelete(AvgScoreVo avgScoreVo);
+	int travelgeWishListUpdate(String id, String contentCode, int wishList);
+	
+	List<AvgScoreVo> travelgeWishListSelect(AvgScoreVo avgScoreVo);
 	
 	int travelgeScoreInsert(String id, String contentCode, double score);
 	

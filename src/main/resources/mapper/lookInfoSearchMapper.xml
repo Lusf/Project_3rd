@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lookInfoSearchMapper">
+
+<resultMap type="LookInfoVo" id="lookInfoSearchMap">
+	<id column="content_code" property="contentCode"/>
+	<result column="look_title" property="lookTitle"/>
+	<result column="look_story" property="lookStory"/>
+	<result column="look_maker" property="lookMaker"/>
+	<result column="look_img" property="lookImg"/>
+	<result column="look_genre" property="lookGenre"/>
+	<result column="look_startdate" property="lookStartDate"/>
+	<result column="look_lastdate" property="lookLastDate"/>
+	<result column="look_loca" property="lookLoca"/>
+	<result column="look_cate" property="lookCate"/>
+	<result column="look_age" property="lookAge"/>
+	<result column="look_trailer" property="lookTrailer"/>
+	<result column="look_x" property="x"/>
+	<result column="look_y" property="y"/>
+</resultMap>
+
+<!-- select -->
+<select id="enterSearchSelect" parameterType="map" resultMap="lookInfoSearchMap">
+	select * from look_info
+	<trim prefix="where" prefixOverrides="and">
+		<if test="lookTitle!=null">
+			look_title like '%'||#{lookTitle}||'%'
+		</if>
+		<if test="lookCate!=null">
+			and look_cate = #{lookCate}
+		</if>
+		<if test="lookGenre!=null">
+			and look_genre = #{lookGenre}
+		</if>
+		<if test="lookAge!=null">
+			and look_age = #{lookAge}
+		</if>
+	</trim>
+</select>
+
+</mapper>

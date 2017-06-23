@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.controller.enter.EnterController;
 import kosta.web.controller.food.FoodController;
 import kosta.web.controller.travelge.TravelgeController;
 import kosta.web.model.service.blog.UserBlogService;
@@ -35,6 +36,9 @@ public class UserBlogController {
 	
 	@Autowired
 	private TravelgeController travelgeController;
+	
+	@Autowired
+	private EnterController enterController;
 	
 	@Autowired
 	private FoodController foodController;
@@ -84,7 +88,8 @@ public class UserBlogController {
 		if(ini.equals("T"))
 			mv = travelgeController.detailView(blogVo.getContentCode(), null);
 		else if(ini.equals("B"))
-			blogVo.setCategory("Entertainment");
+			//blogVo.setCategory("Entertainment");
+			mv = enterController.enterDetailConcertView(blogVo.getContentCode());
 		else if(ini.equals("C"))
 			blogVo.setCategory("Food");
 			//mv = foodController.search(blogVo.getContentCode());

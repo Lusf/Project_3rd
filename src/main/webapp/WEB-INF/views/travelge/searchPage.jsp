@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-	<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
 <link rel="stylesheet"
@@ -26,8 +26,9 @@
 	padding: 0.5em 0;
 	text-align: center;
 }
-.home{
-top:1.4em;
+
+.home {
+	top: 1.4em;
 }
 
 #list-selector {
@@ -92,15 +93,14 @@ top:1.4em;
 	function getReadList(keyword) {
 		$('#loading').html('데이터 로딩중입니다.');
 		//ajax
-		$
-				.ajax({
+		$.ajax({
 					url : "${pageContext.request.contextPath}/travelge/travelgeSearchScroll",
 					type : "post",
 					dataType : "json",
 					data : "index=" + currentPage + "&currentRegion="
 							+ currentRegion + "&currentTheme=" + currentTheme +"&keyword="+keyword,
-					beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-						xhr.setRequestHeader(header, token)
+					beforeSend : function(xhr) { 
+						xhr.setRequestHeader(header, token)						
 					},
 					success : function(result) {
 						console.log("result = " + result);
@@ -116,28 +116,77 @@ top:1.4em;
 					error : function(err) {
 						alert("오류 발생 : " + err);
 					}
-				});
+				}); 
 	};
 	function makeCard(item, index) {
 		var contentCode = item.contentCode;
 		var str = "";
 		str += "<div class='row scrollPaging'>";
 		str += "<div class='col-md-offset-1 col-md-10'>";
-		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
-		str += "<div class='thumbnail' style='height: 7em;'>";
-		str += "<img src='${pageContext.request.contextPath}/resources/images/eating/product3.png' style='float: left; height: 100%''>";
-		str += "<div class='caption'>";
-		str += "<h3>" + currentPage + " : " + index + ":" + item.travelgeName
-				+ "</h3>";
-		str += "<p>" + item.travelgeAddr + "</p>";
-		str += "</div>";
-		str += "</div>";
-		str += "</a>";
-		str += "</div>";
-		str += "</div>";
 
+		str += "<div class='thumbnail'style='height: 7em; background-color:white; border:4px solid #ecebeb''>";
+		str += "<img src='${pageContext.request.contextPath}/resources/travelge/"+contentCode+"/photos/"+item.travelgePhotos+"' style='float: left; height: 100%;'>";
+		str += "<div>";
+		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
+		str += "<h4 style='color : black; font-weight : 700'>" + item.travelgeName + "</h4>";
+		str += "<span>" + item.travelgeAddr + " </span>";
+		str += "</a>";
+	
+			if (item.wish_list == 1) {
+				str += "<span style='float:right' id='wishlist'><span style='display:none'>"
+						+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i></span>"
+			} else {
+				str += "<span style='float:right' id='wishlist'><span style='display:none'>"
+						+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i></span>"
+			}
+		
+		str += "<br>";
+		str += "<span><i class='material-icons' style='vertical-align:sub; font-size:18px'>star</i>"
+				+ item.avgScoreVo.score + "    </span>";
+		str += "<span><i class='material-icons' style='vertical-align:bottom; font-size:18px'>messenger</i>"+item.commentCount+"</span>";		
+		str += "</div>";
+		str += "</div>";
+		str += "</div>";
+		str += "</div>";
+		
 		return str;
 	};
+	
+	$(document)
+	.on(
+			'click',
+			'#wishlist',
+			function() {
+				var contentCode = $(this).children().first().text();
+				var heart = $(this);
+
+				$
+						.ajax({
+							url : "${pageContext.request.contextPath}/travelge/travelgeWishListUpdate",
+							type : "post",
+							dataType : "text",
+							data : "contentCode=" + contentCode,
+							beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+								xhr.setRequestHeader(header, token)
+							},
+							success : function(result) {
+								if (result == '1') {
+									heart.html("<span style='display:none'>"
+											+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i>");
+								} else {
+									
+									heart.html("<span style='display:none'>"
+											+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>");
+							
+								}
+							},
+							error : function(err) {
+								alert("오류 발생 : " + err);
+							}
+						});
+			})
+			
+					
 	function searchAjax(){
 		$(".scrollPaging:gt(0)").remove();
 		keyword=$("#keyword").val();
@@ -160,67 +209,62 @@ top:1.4em;
 
 	<%@include file="/WEB-INF/views/travelge/travelge-header.jsp"%>
 
-	<section class="home">
 		<div class="box home-search">
 			<div class="container">
-				<div class="row">
-					<div class="">
-						<div class="box">
-							<form class="form-inline">
-								<div class="dropdown col-md-2" role="presentation">
-									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="true" style="width: 100%">
-										전국 <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
-										id="locationDropdown">
-										<li><a>전국</a></li>
-										<li><a>서울</a></li>
-										<li><a>경기/인천</a></li>
-										<li><a>충북/대전</a></li>
-										<li><a>충남/세종</a></li>
-										<li><a>부산</a></li>
-										<li><a>경북/대구</a></li>
-										<li><a>경남/울산</a></li>
-										<li><a>전북</a></li>
-										<li><a>전남/광주</a></li>
-										<li><a>제주도</a></li>
-									</ul>
-								</div>
-
-								<div class="dropdown col-md-2" role="presentation">
-									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="true" style="width: 100%">
-										전체 <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenu2"
-										id="themeDropdown">
-										<li><a>전체</a></li>
-										<li><a>관광지</a></li>
-										<li><a>숙박</a></li>
-										<li><a>문화</a></li>
-										<li><a>레포츠</a></li>
-									</ul>
-								</div>
-
-								<div class="form-group col-md-6">
-									<input type="text" class="form-control" placeholder="통합 검색"  id="keyword"/>
-								</div>
-
-								<div class="form-group col-md-2">
-									<button type="button" class="btn btn-primary" onclick="searchAjax();">
-										search <span class="ti-angle-right"></span>
-									</button>
-								</div>
-							</form>
+				<div class="box">
+					<form class="form-inline" onsubmit="searchAjax(); return false;">
+						<div class="dropdown col-md-2" role="presentation">
+							<button class="btn btn-default dropdown-toggle" type="button"
+								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="true" style="width: 100%">
+								전국 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
+								id="locationDropdown">
+								<li><a>전국</a></li>
+								<li><a>서울</a></li>
+								<li><a>경기/인천</a></li>
+								<li><a>충북/대전</a></li>
+								<li><a>충남/세종</a></li>
+								<li><a>부산</a></li>
+								<li><a>경북/대구</a></li>
+								<li><a>경남/울산</a></li>
+								<li><a>전북</a></li>
+								<li><a>전남/광주</a></li>
+								<li><a>제주도</a></li>
+							</ul>
 						</div>
-					</div>
+
+						<div class="dropdown col-md-2" role="presentation">
+							<button class="btn btn-default dropdown-toggle" type="button"
+								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="true" style="width: 100%">
+								전체 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu2"
+								id="themeDropdown">
+								<li><a>전체</a></li>
+								<li><a>관광지</a></li>
+								<li><a>숙박</a></li>
+								<li><a>문화</a></li>
+								<li><a>레포츠</a></li>
+							</ul>
+						</div>
+
+						<div class="form-group col-md-6">
+							<input type="text" class="form-control" placeholder="통합 검색"
+								id="keyword" />
+						</div>
+
+						<div class="form-group col-md-2">
+							<button type="submit" class="btn btn-primary">
+								search <span class="ti-angle-right"></span>
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-	</section>
 
 	<div class="row" id="title-row"></div>
 	<div class="scrollPaging" id="first-scroll"></div>

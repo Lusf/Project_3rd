@@ -1,6 +1,7 @@
 package kosta.web.controller.enter;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.enter.EnterService;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
@@ -24,6 +27,9 @@ public class EnterController {
 	
 	@Autowired
 	private EnterService enterService;
+	
+	@Autowired
+	private UserBlogService userBlogService;
 
 	/*
 	 * //볼거리 메인
@@ -34,68 +40,57 @@ public class EnterController {
 
 	// 볼거리 리스트 (카테고리에 따른)
 	@RequestMapping("new/enterList/{lookCate}")
-	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {
-
-		
-
-		LookInfoVo lookInfoVo = new LookInfoVo();
+	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {	
 		
 		if(lookCate.equals("movie")){
-			lookInfoVo.setLookCate("영화");
-			System.out.println("영화넣음");
+			lookCate="영화";			
 		}else if(lookCate.equals("concert")){
-			lookInfoVo.setLookCate("공연/영화");
-			System.out.println("공연/영화넣음");
-	
+			lookCate="공연/연극";
+		}else if(lookCate.equals("TV")){
+			lookCate="TV";
 		}
 		
-		System.out.println("lookinfovo : " + lookInfoVo.getLookCate());
-		//lookInfoVo.setLookCate(lookCate);
+		List<LookInfoVo> dbLookInfoList = enterService.lookInfoSearchByCate(lookCate);
 		
-
-		List<LookInfoVo> dbLookInfoList = enterService.lookInfoSearch(lookInfoVo);
-		
-		System.out.println("lookInfovo title : " + lookInfoVo.getLookTitle());
-
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterList");
 
 		mv.addObject("dbLookInfoList", dbLookInfoList);
 		mv.addObject("lookCate", lookCate);
-		System.out.println("lookcate : " + lookCate);
-		
-		System.out.println("dbLookInfoList.looktitle : " + dbLookInfoList.size());
-		//System.out.println("dbLookInfoList.lookcate : " + dbLookInfoList.get(0).getLookCate());
-		System.out.println("너 어디있어?");
 
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping("new/enterList") public String enterList(){ return
-	 * "entertainment/new/enterList"; }
-	 */
 
 	// 볼거리 상세화면(공연)
 	@RequestMapping("new/enterDetailConcertView/{contentCode}")
-	public ModelAndView enterDetailConcertView(HttpSession session, @PathVariable String contentCode) {
-		session.setAttribute("contentCode", contentCode);
+	public ModelAndView enterDetailConcertView(@PathVariable String contentCode) {
+		//session.setAttribute("contentCode", contentCode);
 		ModelAndView mv = new ModelAndView();
 
 		//컨텐츠코드에 따른 볼거리
 		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
 		
+/*		System.out.println(lookInfoOne.getLookTitle());
+		System.out.println(lookInfoOne.getLookGenre());
+		System.out.println(lookInfoOne.getLookAge());*/
+		
 		//장르에 따른 볼거리
-		String lookGenre = lookInfoOne.getLookGenre();
-		LookInfoVo lookInfoGenre = new LookInfoVo();
-		lookInfoGenre.setLookGenre(lookGenre);
+		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());		
 		
-		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
-		
+		//블로그
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
+		System.out.println("공연상세사항 들어왔닝?");
 		mv.setViewName("entertainment/new/enterDetailConcertView");
 		mv.addObject("lookInfoOne", lookInfoOne);
-		mv.addObject("lookInfoConList", lookInfoConList);
 		
+		mv.addObject("lookInfoConList", lookInfoConList);
+		mv.addObject("commentList", commentList);
+		System.out.println("comment List : " + commentList);
+		for(int i=0; i<commentList.size(); i++){
+			System.out.println("com List : "  + commentList.get(i).getId());
+		}
+		//System.out.println("comment List : " + commentList.get(0).getId());
 		//System.out.println("lookinfoOnd x : " + lookInfoOne.getX() + " , " + lookInfoOne.getY());
 
 		return mv;
@@ -117,11 +112,15 @@ public class EnterController {
 		
 		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
 		
+		//블로그
+		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
+		
 		mv.setViewName("entertainment/new/enterDetailView");
 		mv.addObject("lookInfoOne", lookInfoOne);
 		mv.addObject("lookInfoConList", lookInfoConList);
+		mv.addObject("commentList", commentList);
+		//System.out.println("comment List : " + commentList.get(0).getId());
 		
-
 		return mv;
 	}
 
@@ -188,19 +187,58 @@ public class EnterController {
 	// 메인 볼거리 정보 가져오기
 	@RequestMapping("new/enterMain")
 	public ModelAndView enterContents(LookInfoVo lookInfoVo) {
+		
+		//볼거리 정보 가져오기(전체)
 		List<LookInfoVo> lookInfoList = enterService.lookInfoSearch(lookInfoVo);
 
+		//볼거리 정보 최신순으로 가져오기
+		List<LookInfoVo> lookInfoNewList = enterService.lookInfoSearchByNewList();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterMain");
 		mv.addObject("lookInfoList", lookInfoList);
-		
-
-		System.out.println(lookInfoList.get(0).getContentCode());
+		mv.addObject("lookInfoNewList", lookInfoNewList);
+	
+		for(int i=0; i<lookInfoNewList.size(); i++){
+		System.out.println("title : " + lookInfoNewList.get(i).getLookTitle());
+		}
 		return mv;
 	}
 
 	// 별점등록하기
 	// @RequestMapping("")
+	
+	
+	/** 볼거리 검색하기 */
+	@RequestMapping("enterSearchPage")
+	public ModelAndView enterSearch(LookInfoVo lookInfoVo){
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo);
+		List<LookInfoVo> imgList = new ArrayList<>();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(list != null){
+			for(LookInfoVo ivo : list){
+				String img[] = ivo.getLookImg().split(":");
+				ivo.setLookImg(img[0]);
+				imgList.add(ivo);
+			}
+		}
+
+		mv.addObject("list", imgList);
+		mv.setViewName("entertainment/new/enterSearch");
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// -----------------------------------------------
 	/** admin 페이지 */
@@ -281,21 +319,14 @@ public class EnterController {
 
 		return modelAndView;
 	}
-	
-	/** 이미지 파일의 처리를 위한 함수(insert, update) */
-	String path = null;
-	String poster = null;
-	String pic[] = new String[4];
-	MultipartFile file;
-	MultipartFile pic1;
-	MultipartFile pic2;
-	MultipartFile pic3;
-	MultipartFile pic4;
-	
-	public void fileForm(HttpServletRequest request, LookInfoVo lookInfoVo){
-		path = request.getSession().getServletContext().getRealPath("/resources/enter");
+
+	@RequestMapping("enterInfoInsert")
+	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		String poster = null;
+		String pic[] = new String[4];
 		
-		file = lookInfoVo.getFile();
+		MultipartFile file = lookInfoVo.getFile();
 		if (file.getSize() > 0) {
 			poster = file.getOriginalFilename();
 		}
@@ -318,12 +349,6 @@ public class EnterController {
 		}
 		
 		lookInfoVo.setLookImg(poster+":"+pic[0]+";"+pic[1]+";"+pic[2]+";"+pic[3]);
-	}
-	
-	@RequestMapping("enterInfoInsert")
-	public String enterInfoInsert(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
-		
-		fileForm(request, lookInfoVo);
 		
 		int result = enterService.enterInfoInsert(lookInfoVo);
 		if (result == 0) {
@@ -373,13 +398,15 @@ public class EnterController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("img", img);
 		mv.addObject("infoVo", infoVo);
 		mv.addObject("poster", poster[0]);
 		
-		for(int i=0; i<4; i++){
+		for(int i=0; i<cut.length; i++){
 			if(cut[i].equals("null"))
 				cut[i] = "사진없음";
 		}
+		
 		mv.addObject("pic1", cut[0]);
 		mv.addObject("pic2", cut[1]);
 		mv.addObject("pic3", cut[2]);
@@ -392,8 +419,52 @@ public class EnterController {
 	
 	@RequestMapping("enterInfoUpdate")
 	public String enterInfoUpdate(HttpServletRequest request, LookInfoVo lookInfoVo) throws Exception {
+		String path = request.getSession().getServletContext().getRealPath("/resources/enter");
+		String poster = null;
+		String pic[] = new String[4];
 		
-		fileForm(request, lookInfoVo);
+		String img = lookInfoVo.getLookImg();
+		String pos[] = img.split(":");
+		String cut[] = pos[1].split(";");
+		
+		MultipartFile file = lookInfoVo.getFile();
+		if(file.getSize() > 0)
+			poster = file.getOriginalFilename();
+		else
+			poster = pos[0];
+		
+		MultipartFile pic1 = lookInfoVo.getPic1();
+		if(pic1.getSize() > 0)
+			pic[0] = pic1.getOriginalFilename();
+		else
+			pic[0] = cut[0];
+		MultipartFile pic2 = lookInfoVo.getPic2();
+		if(pic2.getSize() > 0)
+			pic[1] = pic2.getOriginalFilename();
+		else
+			pic[1] = cut[1];
+		MultipartFile pic3 = lookInfoVo.getPic3();
+		if(pic3.getSize() > 0)
+			pic[2] = pic3.getOriginalFilename();
+		else
+			pic[2] = cut[2];
+		MultipartFile pic4 = lookInfoVo.getPic4();
+		if(pic4.getSize() > 0)
+			pic[3] = pic4.getOriginalFilename();
+		else
+			pic[3] = cut[3];
+		
+		for(int i=0; i<pic.length; i++){
+			if(pic[i].equals("사진없음"))
+				pic[i] = "null";
+		}
+		
+		lookInfoVo.setLookImg(poster+":"+pic[0]+";"+pic[1]+";"+pic[2]+";"+pic[3]);
+
+		int result = enterService.enterInfoUpdate(lookInfoVo);
+		if (result == 0) {
+			throw new Exception();
+		}
 
 		if(file.getSize() > 0) 
 			file.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + poster));
@@ -405,8 +476,6 @@ public class EnterController {
 			pic3.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[2]));
 		if(pic4.getSize() > 0)
 			pic4.transferTo(new File(path + "/" + lookInfoVo.getContentCode() + "/photos/" + pic[3]));
-
-		enterService.enterInfoUpdate(lookInfoVo);
 
 		return "admin/enter/enterInfoSearch";
 	}

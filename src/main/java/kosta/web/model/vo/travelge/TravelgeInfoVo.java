@@ -32,7 +32,12 @@ public class TravelgeInfoVo {
 	
 	private  List<UserBlogVo> userBlogVo;
 	
+	int commentCount;
+	
 	private int cnt;
+	
+	private int wish_list;
+
 	
 	private MultipartFile file;
 
@@ -243,6 +248,30 @@ public class TravelgeInfoVo {
 
 	public void setUserBlogVo(List<UserBlogVo> userBlogVo) {
 		this.userBlogVo = userBlogVo;
+	}
+
+
+
+	public int getWish_list() {
+		return wish_list;
+	}
+
+
+
+	public void setWish_list(int wish_list) {
+		this.wish_list = wish_list;
+	}
+
+
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 
 

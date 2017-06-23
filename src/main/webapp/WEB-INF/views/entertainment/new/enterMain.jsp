@@ -270,45 +270,52 @@ height:auto
 				<div class="row">
 					<div class="">
 						<div class="box">
-							<form class="form-inline" action="search.html">
-								<div class="form-group col-md-1" style="width:120px;float:center" >
-									<select id="type" class="selectpicker" data-live-search="false" title="종류" >
-										
-										<option>영화</option>
-										<option>TV</option>
-										<option>공연</option>
-								
-									</select>
-								</div>
+							<form class="form-inline" action="${pageContext.request.contextPath}/entertainment/enterSearchPage">
+								<div class="home-search-row col-md-12" style="margin-top:-30px;">
+									<div class="home-search-group pt-30 pb-20">
+										<div class="form-group col-md-2">
+											<select id="type" class="selectpicker" name="lookCate"
+												data-live-search="false" title="종류">
+												<option value="M">영화</option>
+												<option value="T">TV</option>
+												<option value="P">공연/연극</option>
+											</select>
+										</div>
 
-								<div class="form-group col-md-1"  style="width:200px;float:center">
-									<select id="genre" class="selectpicker" data-live-search="false" title="장르" >			
-										<option>멜로/로맨스</option>
-										<option>코미디</option>
-										<option>SF</option>
-										<option>애니메이션</option>
-										<option>스릴러/미스테리</option>
-										<option>액션</option>
-										<option>공포/호러</option>
-									</select>
-								</div>
-								
-								<div class="form-group col-md-1"  style="width:120px;float:center">
-									<select id="grade" class="selectpicker" data-live-search="false" title="등급" >
-										<option>전체</option>
-										<option>12세</option>
-										<option>15세</option>
-										<option>청불</option>
-									</select>
-								</div>
+										<div class="form-group col-md-2">
+											<select id="genre" class="selectpicker" name="lookGenre"
+												data-live-search="false" title="장르">
+												<option value="1">멜로/로맨스</option>
+												<option value="2">코미디</option>
+												<option value="3">SF</option>
+												<option value="4">애니메이션</option>
+												<option value="5">스릴러/미스테리</option>
+												<option value="6">액션</option>
+												<option value="7">공포/호러</option>
+											</select>
+										</div>
 
-								<div class="form-group col-md-5" style="float:center" >									
-									<input type="text" id="textbox" class="form-control" placeholder="" style="width:450px;" />								
-								</div>
+										<div class="form-group col-md-2">
+											<select id="grade" class="selectpicker" name="lookAge"
+												data-live-search="false" title="등급">
+												<option value="A">전체</option>
+												<option value="B">12세</option>
+												<option value="C">15세</option>
+												<option value="D">청불</option>
+											</select>
+										</div>
 
-								<div class="form-group col-md-2" style="float:left">
-									<button type="submit" class="btn btn-primary" >search </button>
-									<!-- <span class="ti-angle-right"></span> -->
+										<div class="form-group col-md-4">
+											<input type="text" id="lookTitle" name="lookTitleS" class="form-control"
+												placeholder="제목을 입력하세요"/>
+										</div>
+
+										<div class="form-group col-md-2">
+											<button type="submit" class="btn btn-primary">
+												search <span class="ti-angle-right"></span>
+											</button>
+										</div>
+									</div>
 								</div>
 							</form>
 					    </div>
@@ -477,360 +484,46 @@ height:auto
 			</div><!--/ row -->
 		</div><!--/ container -->
 	</section>
-<!-- 	
-	블로그 리뷰 보여주기???
-	<article class="panel-group">
-		tablist
 
-		<div class="col-md-4 col-md-offset-4">
-			<div role="tablist" class="visible-xs black-no-height">
-				<header class="panel-heading top">
-					<h1 class="text-center top">Header</h1>
-					<small class="muted">Lorem Ipsum Dolor</small>
-				</header>
-				Nav tabs
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#ausl1"
-						aria-controls="home" role="tab" data-toggle="tab">Ausl</a></li>
-					<li role="presentation"><a href="#ausl2"
-						aria-controls="profile" role="tab" data-toggle="tab">Aus</a></li>
-					<li role="presentation"><a href="#ausl3"
-						aria-controls="messages" role="tab" data-toggle="tab">Aus</a></li>
-					<li role="presentation"><a href="#ausl4"
-						aria-controls="settings" role="tab" data-toggle="tab">Aus</a></li>
-				</ul>
-			</div>
-			<div class="tab-content  ">
-
-				<div role="tabpanel" class="tab-pane fade  white active in"
-					id="ausl1">
-					<div class="panel">
-						<div class="panel-body ">
-
-							<img src="http://placehold.it/400x200/000.png" alt="" class="img-responsive center-block " style="margin-top:4em;">
-							<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"
-								alt="" class="img-responsive center-block "
-								style="margin-top: 4em;">
-
-							<h3>Tab1</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Doloribus, doloremque, dolores, autem eum sequi voluptatum in
-							veniam rerum magni nisi qui iure voluptatem provident. Inventore,
-							minus molestiae ut est asperiores voluptates repellendus quos
-							atque fugiat dolores maxime unde eos odit adipisci corporis
-							veritatis tenetur magnam saepe consequuntur beatae ipsam. Nulla
-							quasi esse non dolore quaerat rerum odit sit officia commodi.
-
-							<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" alt="" class="img-responsive center-block">
-
-						</div>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane fade white" id="ausl2">
-					<div class="panel">
-						<div class="panel-body ">
-
-							<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"
-								alt="" class="img-responsive center-block "
-								style="margin-top: 4em;">
-
-
-							<h3>Tab2</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Doloribus, doloremque, dolores, autem eum sequi voluptatum in
-							veniam rerum magni nisi qui iure voluptatem provident. Inventore,
-							minus molestiae ut est asperiores voluptates repellendus quos
-							atque fugiat dolores maxime unde eos odit adipisci corporis
-							veritatis tenetur magnam saepe consequuntur beatae ipsam. Nulla
-							quasi esse non dolore quaerat rerum odit sit officia commodi.
-
-						</div>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane fade white" id="ausl3">
-					<div class="panel">
-						<div class="panel-body ">
-
-							<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"
-								alt="" class="img-responsive center-block "
-								style="margin-top: 4em;">
-
-
-							<h3>Tab3</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Doloribus, doloremque, dolores, autem eum sequi voluptatum in
-							veniam rerum magni nisi qui iure voluptatem provident. Inventore,
-							minus molestiae ut est asperiores voluptates repellendus quos
-							atque fugiat dolores maxime unde eos odit adipisci corporis
-							veritatis tenetur magnam saepe consequuntur beatae ipsam. Nulla
-							quasi esse non dolore quaerat rerum odit sit officia commodi.
-					    				
-						</div>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane fade white" id="ausl4">
-					<div class="panel">
-						<div class="panel-body ">
-
-							<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"
-								alt="" class="img-responsive center-block "
-								style="margin-top: 4em;">
-
-
-							<h3>Tab4</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Doloribus, doloremque, dolores, autem eum sequi voluptatum in
-							veniam rerum magni nisi qui iure voluptatem provident. Inventore,
-							minus molestiae ut est asperiores voluptates repellendus quos
-							atque fugiat dolores maxime unde eos odit adipisci corporis
-							veritatis tenetur magnam saepe consequuntur beatae ipsam. Nulla
-							quasi esse non dolore quaerat rerum odit sit officia commodi. 
-							<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" alt=""
-								class="img-responsive center-block">
-
-						</div>
-					</div>
-				</div>
-
-			</div>
-			/.tab-content
-		</div>
-		/.col-lg-5 col-lg-offset-7 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8
-		<div class="col-md-4 black hidden-xs">
-			tablist
-			<header class="panel-heading top">
-				<h2 class="text-center top">Blog Reviews</h2>
-				<small class="muted">Top 4</small>
-			</header>
-			<div class="nav top   " role="tablist">
-				<div class="row bottom">
-					<div class="col-md-6 col-sm-6 col-lg-6">
-
-						<a href="#ausl1" role="tab" data-toggle="tab">
-							<figure class="fader-home">
-								<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"
-									alt="" class="img-responsive " width="300" height="300">
-								<figcaption class="fader-in">Aussteller1</figcaption>
-
-							</figure>
-						</a>
-
-					</div>
-					<div class="col-md-6 col-sm-6 col-lg-6">
-
-						<a href="#ausl2" role="tab" data-toggle="tab"> <img
-							src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" alt=""
-							class="img-responsive" width="300" height="300">
-						</a>
-
-
-					</div>
-				</div>
-				<div class="row top">
-					<div class="col-md-6 col-sm-6 col-lg-6">
-
-						<a href="#ausl3" role="tab" data-toggle="tab"><img
-							src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" alt=""
-							class="img-responsive" width="300" height="300"></a>
-
-					</div>
-					<div class="col-md-6 col-sm-6 col-lg-6">
-
-						<a href="#ausl4" role="tab" data-toggle="tab"> <img
-							src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" alt=""
-							class="img-responsive" width="300" height="300">
-						</a>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		./tablist
-	</article>
-	/.article
-	
-	
-
- -->
- 
-<!--  아랫부분  -->
-<!--  <div class="container">
-	<div class="row">
-		<div id="my-carousel" class="carousel" data-ride="carousel" data-interval="false">
-		 
-			<div class="col-sm-5">
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="goof activate" data-target="#my-carousel" data-slide-to="0">
-							one	
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="goof" data-target="#my-carousel" data-slide-to="1">
-							<h4>
-								Two
-							</h4>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="goof" data-target="#my-carousel" data-slide-to="2">
-							<h4>
-								Three
-							</h4>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="goof" data-target="#my-carousel" data-slide-to="3">
-							<h4>	
-								Four
-							</h4>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="goof" data-target="#my-carousel" data-slide-to="4">
-							<h4>
-								Five
-							</h4>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="goof" data-target="#my-carousel" data-slide-to="5">
-							<h4>
-								Six
-							</h4>
-						</div>
-					</div>
-				</div>
-		  	</div>
-
-			<div class="col-sm-7">
-			  	<div class="carousel-inner" role="listbox">
-				    <div class="item active gaf">
-				      <h3>1</h3>
-				    </div>
-				    <div class="item gaf">
-				      <h3>2</h3>
-				    </div>
-				    <div class="item gaf">
-				      <h3>3</h3>
-				    </div>
-				    <div class="item gaf">
-				      <h3>4</h3>
-				    </div>
-				    <div class="item gaf">
-				      <h3>5</h3>
-				    </div>
-				    <div class="item gaf">
-				      <h3>6</h3>
-				    </div>
-		  		</div>
-			</div>
-		  
-		</div>
-	</div>
-</div> -->
-
-<!-- 휙휙 -->
- 
 
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+<!-- 최신순서대로 보여주기 -->
 <div class="container-fluid">
     <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
         <!-- Wrapper for slides -->
-        <div class="carousel-inner">
+        <div class="carousel-inner">        
+        	<c:forEach items="${lookInfoNewList }" var="newList" varStatus="state" >
+        	<c:if test="${state.index lt 4}">
+            <div class="item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="top col-md-6 col-xs-12"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" class="img-responsive"></div>
+                        <div class="content col-md-6 col-xs-12">
+                            <h2>${newList.lookTitle}</h2>
+                      		<p>${newList.lookStory}</p>
+                       </div>
+                    </div>
+                </div>            
+            </div> 
+            </c:if>
+            </c:forEach>
+                       
             <div class="item active">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfNTNcc2OcD-1.jpg" class="img-responsive"></div>
+                        <div class="top col-md-6 col-xs-12"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" class="img-responsive"></div>
                         <div class="content col-md-6 col-xs-12">
-                            <h2>영화 1</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
-                        </div>
+                        <c:forEach items="${lookInfoNewList }" var="newList" varStatus="state" >
+                        	<c:if test="${state.last}">
+	                            <h2>${newList.lookTitle}</h2>
+	                      		<p>${newList.lookStory}</p>
+                      		</c:if>
+                      	</c:forEach>
+                       </div>
                     </div>
                 </div>            
             </div> 
-            <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfdaC7_IvMS-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>영화  2</h2>
-                            <p>재밌어요 재밌어요 두번보세요 세번보세요 여러번보세요 일곱번보세요 지금 보고 있어요???? 보세요 안봐도 괜찮지만 보세요 뭐라구요??? 정신없어요 지금</p>
-                        </div>
-                    </div>
-                </div>            
-            </div> 
-            <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfiaASNcDB7-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>영화 3</h2>
-                                  <p>재밌어요 재밌어요 두번보세요 세번보세요 여러번보세요 일곱번보세요 지금 보고 있어요???? 보세요 안봐도 괜찮지만 보세요 뭐라구요??? 정신없어요 지금</p> </div>
-                    </div>
-                </div>           
-            </div>
-         <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfNTNcc2OcD-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>영화 1</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
-                        </div>
-                    </div>
-                </div>            
-            </div> 
-            <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfdaC7_IvMS-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>Slide 2</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
-                        </div>
-                    </div>
-                </div>            
-            </div> 
-            <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfiaASNcDB7-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>Slide 3</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
-                        </div>
-                    </div>
-                </div>           
-            </div>
-             <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfiaASNcDB7-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>Slide 3</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
-                        </div>
-                    </div>
-                </div>           
-            </div>
-                  <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://disecor.imaginacolombia.com/assets/mfiaASNcDB7-1.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>Slide 3</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
-                        </div>
-                    </div>
-                </div>           
-            </div>
-
         <!-- End Item -->
         </div>
         <a data-slide="prev" href="#custom_carousel" class="izq carousel-control">‹</a>
@@ -838,16 +531,29 @@ height:auto
         <!-- End Carousel Inner -->
                 <div class="controls draggable ui-widget-content col-md-6 col-xs-12">
             <ul class="nav ui-widget-header">
-
-                <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="http://disecor.imaginacolombia.com/assets/mfNTNcc2OcD-1.jpg"><small>Slide One</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>Slide Two</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>Slide Three</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>Slide Four</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="4"><a href="#"><img src="http://disecor.imaginacolombia.com/assets/mfdaC7_IvMS-1.jpg"><small>Slide Five</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="5"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>Slide Six</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="6"><a href="#"><img src="http://disecor.imaginacolombia.com/assets/mfiaASNcDB7-1.jpg"><small>Slide Six</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="7"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>Slide Six</small></a></li>
-              
+				<c:forEach items="${lookInfoNewList }" var="newList" varStatus="state">
+					<c:if test="${state.first}">
+						<li data-target="#custom_carousel" data-slide-to="${state.index}" class="active">
+							<a href="#">
+								<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${newList.lookTitle}</small>
+							</a>
+						</li>
+                	</c:if>
+                	<c:if test="${not state.first}">             
+                		<li data-target="#custom_carousel" data-slide-to="${state.index}">
+                			<a href="#">
+                				<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg">
+                				<small>${newList.lookTitle}</small>
+                			</a>
+                		</li>               
+					</c:if>
+				</c:forEach>
+<%--                 <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(0).lookTitle}</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(1).lookTitle}</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(2).lookTitle}</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(3).lookTitle}</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="4"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(4).lookTitle}</small></a></li>
+                --%>
             </ul>
         </div>
     </div>

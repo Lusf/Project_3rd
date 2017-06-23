@@ -2,6 +2,7 @@ package kosta.web.controller.travelge;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,23 +47,17 @@ public class TravelgeController {
 		mv.setViewName("travelge/travelgeMain");
 		List<TravelgeRecommandationVo> list = travelgeService.travelgeRecommandSearch(null);
 		for (int i = 0; i < list.size(); i++) {
-			String card = "card" + (i + 1);
-			mv.addObject(card, list.get(i));
-
 			String temp = list.get(i).getRecommandationDescription();
 			int index = temp.indexOf("<img");
 			if (index != -1) {
 				index += 21;
-				;
 				String imgsrc = "/controller" + temp.substring(index, index + 56);
-
-				mv.addObject(card + "Thumbnail", imgsrc);
+				list.get(i).setThumbnail(imgsrc);
+				
 			}
 		}
-
-		// 최신 리뷰
-		// List<UserBlogVo> latestComment =
-		// travelgeService.latestComment();
+		
+		mv.addObject("list",list);
 		List<TravelgeLatestCommentVo> latestComment = travelgeService.latestComment();
 
 		mv.addObject("commentList", latestComment);
@@ -236,12 +231,9 @@ public class TravelgeController {
 	// 스크롤 페이징 jackson
 	@RequestMapping("/travelgeInfoScroll")
 	@ResponseBody
-	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme) {
+	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme, Principal principal) {
 
-		// System.out.println(index);
-		// System.out.println("현재 지역 : " + currentRegion + " / 현재 테마 : "
-		// +
-		// currentTheme);
+		
 		int currentPage = Integer.parseInt(index);
 
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
@@ -253,8 +245,14 @@ public class TravelgeController {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
 
-		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);		
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
 
+		
+		for(int i = 0; i < list.size(); i++)
+		{
+			
+			list.get(i).setCommentCount(userBlogService.selectByContentCode(list.get(i).getContentCode()).size());
+		}
 		return list;
 	}
 
@@ -263,7 +261,7 @@ public class TravelgeController {
 	@ResponseBody
 	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme,
 			String keyword) {
-
+		//System.out.println(currentRegion + "/" + currentTheme+"/"+keyword);
 		int currentPage = Integer.parseInt(index);
 
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
@@ -274,15 +272,11 @@ public class TravelgeController {
 		if (!currentTheme.equals("전체")) {
 			tempInfo.setTravelgeTheme(currentTheme);
 		}
-
-		/*
-		 * System.out.println(index); System.out.println(currentRegion);
-		 * System.out.println(currentTheme);
-		 * System.out.println(keyword);
-		 */
 		List<TravelgeInfoVo> list = travelgeService.travelgeSearchScroll(tempInfo, currentPage, keyword);
-		for (int i = 0; i < list.size(); i++) {
-			/* System.out.println(list.get(i).getTravelgeName()); */
+
+		for(int i = 0; i < list.size(); i++)
+		{
+			list.get(i).setCommentCount(userBlogService.selectByContentCode(list.get(i).getContentCode()).size());
 		}
 		return list;
 	}
@@ -307,11 +301,11 @@ public class TravelgeController {
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		//검색api
-		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme()+" "+list.get(0).getTravelgeAddr();
+		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme();
 
         if(keyword !=null)
         {
-            mv.addObject("blogList",naverServiceImpl.searchBook(keyword,0,1));
+            mv.addObject("blogList",naverServiceImpl.searchBook(keyword,5,1));
         }
 
 		mv.setViewName("travelge/detailView");
@@ -448,17 +442,20 @@ public class TravelgeController {
 
 	};
 
-	public void travelgeWishListAdd(AvgScoreVo avgScoreVo) {
+	@RequestMapping("/travelgeWishListUpdate")
+	@ResponseBody
+	public int travelgeWishListUpdate(String contentCode){
+		
+		int result = 0;
+		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+		{
+			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String id = user.getId();
+			result = travelgeService.travelgeWishListUpdate(id, contentCode);
+		}
+		return result;
+	}
 
-	};
-
-	public void travelgeWishListDelete(AvgScoreVo avgScoreVo) {
-
-	};
-
-	public void travelgeScoreInsert(AvgScoreVo avgScoreVo) {
-
-	};
 
 	@RequestMapping("/travelgeScoreUpdate")
 	@ResponseBody
@@ -466,7 +463,6 @@ public class TravelgeController {
 
 		UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = user.getId();
-//		System.out.println(value);
 		int result = 0;
 		AvgScoreVo score = travelgeService.selectUserScore(contentCode, id);
 		double userScore = Double.parseDouble(value);

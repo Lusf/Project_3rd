@@ -151,7 +151,44 @@ public class EnterServiceImpl implements EnterService {
 
 		return lookInfoDAO.lookInfoSearchByCode(contentCode);
 	}
+	
 
+	@Override
+	public List<LookInfoVo> lookInfoSearchByCate(String lookCate) {
+		
+		return lookInfoDAO.lookInfoSearchByCate(lookCate);
+	}	
+
+	@Override
+	public List<LookInfoVo> lookInfoSearchByGenre(String lookGenre) {
+		
+		return lookInfoDAO.lookInfoSearchByGenre(lookGenre);
+	}
+	
+	@Override
+	public List<LookInfoVo> lookInfoSearchByNewList() {
+		
+		return lookInfoDAO.lookInfoSearchByNewList();
+	}
+	
+	@Override
+	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo) {
+		// 카테고리 한글로 변환
+		lookInfoVo.setLookCate(map.get(lookInfoVo.getLookCate()));
+
+		// 장르 한글로 변환
+		lookInfoVo.setLookGenre(map.get(lookInfoVo.getLookGenre()));
+
+		// 연령등급 한글로 변환
+		lookInfoVo.setLookAge(map.get(lookInfoVo.getLookAge()));
+		
+		return lookInfoDAO.enterSearch(lookInfoVo);
+	}
+	
+	
+	
+	
+	
 	/** enter admin search */
 	@Override
 	public List<LookInfoVo> enterInfoSearch(LookInfoVo lookInfoVo, int currentPage) {
@@ -235,4 +272,9 @@ public class EnterServiceImpl implements EnterService {
 
 		return enterAdminInfoDAO.enterInfoUpdate(lookInfoVo);
 	}
+
+
+
+
+
 }

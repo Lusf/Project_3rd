@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import kosta.web.model.dao.blog.UserBlogDAO;
@@ -13,6 +14,7 @@ import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
 import kosta.web.model.dao.travelge.TravelgeInfoDAO;
 import kosta.web.model.dao.travelge.TravelgeRecommandationDAO;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 import kosta.web.model.vo.travelge.TravelgeLatestCommentVo;
 import kosta.web.model.vo.travelge.TravelgeRecommandationVo;
@@ -49,7 +51,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 	private TravelgeAvgScoreDAO travelgeAvgScoreDAO;
 	@Autowired
 	private UserBlogDAO userBlogDAO;
-	
+
 	@Override
 	public int travelgeInfoInsert(TravelgeInfoVo travelgeInfoVo) {
 
@@ -125,20 +127,28 @@ public class TravelgeServiceImpl implements TravelgeService {
 			dto.setX(tempLat + "");
 			dto.setY(tempLon + "");
 
-			
-			//평점 가져오기 
+			// 평점 가져오기
 			AvgScoreVo avgScore = travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode());
-			if(avgScore == null)
-			{
-				
+			if (avgScore == null) {
+
 				avgScore = new AvgScoreVo();
 				avgScore.setScore(0.0);
 				avgScore.setPersonCount(0);
 			}
+
+			if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+			{
+				UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				String id = user.getId();
+				avgScore.setId(id);
+				if(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).size() != 0)
+				{
+					dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+				}
+			}
 			dto.setAvgScoreVo(avgScore);
-			
+
 			newList.add(dto);
-			
 
 		}
 		return newList;
@@ -153,13 +163,13 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 	@Override
 	public int travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo) {
-		
+
 		return travelgeRecommandationDAO.travelgeRecommandUpdate(travelgeRecommandationVo);
 	}
 
 	@Override
 	public int travelgeRecommandDelete(String contentCode, String title) {
-		
+
 		return travelgeRecommandationDAO.travelgeRecommandDelete(contentCode, title);
 	}
 
@@ -170,15 +180,34 @@ public class TravelgeServiceImpl implements TravelgeService {
 	}
 
 	@Override
-	public int travelgeWishListAdd(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int travelgeWishListUpdate(String id, String contentCode) {
+
+		AvgScoreVo avgScoreVo = new AvgScoreVo(id, contentCode);
+		List<AvgScoreVo> temp = travelgeAvgScoreDAO.travelgeWishListSelect(avgScoreVo);
+
+		int result;
+		if (temp != null && temp.size() != 0) {
+			if (temp.get(0).getWish_list() == 0) {
+				travelgeAvgScoreDAO.travelgeWishListUpdate(id, contentCode, 1);
+				result = 1;
+				//System.out.println("update1");
+			} else {
+				travelgeAvgScoreDAO.travelgeWishListUpdate(id, contentCode, 0);
+				result = 0;
+				//System.out.println("update0");
+			}
+		} else {
+			travelgeAvgScoreDAO.travelgeWishListInsert(id, contentCode);
+			//System.out.println("insert1");
+			result = 1;
+		}
+
+		return result;
 	}
 
 	@Override
-	public int travelgeWishListDelete(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<AvgScoreVo> travelgeWishListSelect(AvgScoreVo avgScoreVo) {
+		return travelgeAvgScoreDAO.travelgeWishListSelect(avgScoreVo);
 	}
 
 	@Override
@@ -205,7 +234,6 @@ public class TravelgeServiceImpl implements TravelgeService {
 		for (TravelgeInfoVo dto : temp) {
 			int point = dto.getTravelgeCoordinates().indexOf(',');
 			int last = dto.getTravelgeCoordinates().indexOf(')');
-			// System.out.println(point);
 			double tempLat = Double.parseDouble(dto.getTravelgeCoordinates().substring(1, point));
 			double tempLon = Double.parseDouble(dto.getTravelgeCoordinates().substring(point + 2, last));
 
@@ -213,8 +241,6 @@ public class TravelgeServiceImpl implements TravelgeService {
 				if (doubleLon + bound > tempLon && doubleLon - bound < tempLon) {
 					dto.setX(tempLat + "");
 					dto.setY(tempLon + "");
-					// dto.setTravelgeCoordinates(tempLat+",
-					// "+tempLon);
 					newList.add(dto);
 				}
 			}
@@ -232,24 +258,42 @@ public class TravelgeServiceImpl implements TravelgeService {
 			currentPage = (currentPage * 10) - 10;
 		}
 
-		List<TravelgeInfoVo> list = travelgeInfoDAO.travelgeSearchScroll(travelgeInfoVo, currentPage, keyword);
-		return list;
+		List<TravelgeInfoVo> temp = travelgeInfoDAO.travelgeSearchScroll(travelgeInfoVo, currentPage, keyword);
+		List<TravelgeInfoVo> newList = new ArrayList<>();
+		
+		for (TravelgeInfoVo dto : temp) {
+			// 평점 가져오기
+			AvgScoreVo avgScore = travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode());
+			if (avgScore == null) {
+				avgScore = new AvgScoreVo();
+				avgScore.setScore(0.0);
+				avgScore.setPersonCount(0);
+			}
+			if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+			{
+				UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				String id = user.getId();
+				avgScore.setId(id);
+				if(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).size() != 0)
+				{
+					dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+				}
+			}
+			dto.setAvgScoreVo(avgScore);
+
+			newList.add(dto);
+
+		}								
+		return newList;		
 	}
-/*
-	@Override
-	public List<UserBlogVo> latestComment() {
-		// TODO Auto-generated method stub
-		return travelgeInfoDAO.latestComment();
-	}*/
 
 	@Override
 	public List<TravelgeLatestCommentVo> latestComment() {
 		List<TravelgeLatestCommentVo> list = travelgeInfoDAO.latestComment();
-		for(TravelgeLatestCommentVo dto : list)
-		{
+		for (TravelgeLatestCommentVo dto : list) {
 			dto.setUserPic(userBlogDAO.userPicBlog(dto.getContentCode(), dto.getId()));
 		}
-		
+
 		return travelgeInfoDAO.latestComment();
 	}
 
@@ -260,19 +304,19 @@ public class TravelgeServiceImpl implements TravelgeService {
 		} else {
 			currentPage = (currentPage * 10) - 10;
 		}
-		
+
 		return travelgeRecommandationDAO.travelgeRecommandSearch2(contentCode, currentPage);
 	}
 
 	@Override
 	public TravelgeRecommandationVo travelgeRecommandSearch3(String contentCode, String title) {
-		
+
 		return travelgeRecommandationDAO.travelgeRecommandSearch3(contentCode, title);
 	}
 
 	@Override
 	public AvgScoreVo selectUserScore(String contentCode, String id) {
-		
+
 		return travelgeAvgScoreDAO.selectUserScore(contentCode, id);
 	}
 

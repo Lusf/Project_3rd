@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+
+<!-- 총 유저의 수 조회 -->
+<select id = "selectUserCount" resultType="kosta.web.model.vo.ChartVo">
+select count(*) as cntUser from usertable
+</select>
+
+
+<!-- 누적 가입자 수 (그래프)-->
+<select id = "totalUserCount"  resultType="kosta.web.model.vo.ChartVo">
+select to_char(join_date, 'YYYY-MM-DD') as join_date, sum(count(*)) over (order by join_date) as cntUser
+from (select join_date, id from usertable)
+group by join_date
+order by join_date
+</select>
+
+<!-- 여행지에 등록된 컨텐츠의 수 -->
+<select id = "selectTravelgeCount" resultType="int">
+select count(*) from TRAVELGE_INFO
+</select>
+<!-- 먹거리에 등록된 컨텐츠의 수 -->
+<select id = "selectFoodCount" resultType="int">
+select count(*) from RESTAURANT
+</select>
+<!-- 볼거리에 등록된 컨텐츠의 수 -->
+<select id = "selectLookCount" resultType="int">
+select count(*) from LOOK_INFO
+</select>
+
+<!-- 최신 리뷰 (블로그 date 기준으로 하루)의 수 -->
+<select id = "latestReviewCount" resultType="int">
+select count(*) from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+</select>
+
+<!-- 3개 컨텐츠 장소 찜한 수 순위  -->
+<select id = "wishListRank" resultType = "ChartVo">
+SELECT count(t.travelge_name) as cnt, t.travelge_name as name
+ FROM usertable  U, avg_score A, travelge_info T
+ WHERE U.ID = A.ID
+ AND A.content_code = t.content_code and a.wish_list = 1
+ GROUP BY t.travelge_name
+ UNION
+ SELECT count(r.RESTAURANT_NAME) as cnt, R.RESTAURANT_NAME as name
+ FROM usertable  U, avg_score A, RESTAURANT R
+ WHERE U.ID = A.ID
+ AND A.content_code = r.content_code and a.wish_list = 1
+ GROUP BY r.RESTAURANT_NAME
+ UNION
+ SELECT count(L.LOOK_TITLE) as cnt, L.LOOK_TITLE as name
+ FROM usertable  U, avg_score A, LOOK_INFO L
+ WHERE U.ID = A.ID
+ AND A.content_code = L.content_code and a.wish_list = 1
+ GROUP BY L.LOOK_TITLE 
+ ORDER BY cnt desc
+</select>
+
+<!-- 3개 컨텐츠 장소 평점 순 // 평점준인원 -->
+<select id = "scoreRank" resultType = "ChartVo">
+ SELECT avg(a.score)as avg , count(a.score) as cnt ,t.travelge_name as name
+ FROM usertable  U, avg_score A, travelge_info T
+ WHERE U.ID = A.ID
+ AND A.content_code = t.content_code AND a.score is not null AND a.score != 0
+ GROUP BY t.travelge_name
+ UNION
+ SELECT avg(a.score)as avg,count(a.score) as cnt , R.RESTAURANT_NAME
+ FROM usertable  U, avg_score A, RESTAURANT R
+ WHERE U.ID = A.ID
+ AND A.content_code = r.content_code AND a.score is not null AND a.score != 0
+ GROUP BY r.RESTAURANT_NAME
+ UNION
+ SELECT avg(a.score)as avg,count(a.score) as cnt , L.LOOK_TITLE 
+ FROM usertable  U, avg_score A, LOOK_INFO L
+ WHERE U.ID = A.ID
+ AND A.content_code = L.content_code AND a.score is not null AND a.score != 0
+ GROUP BY L.LOOK_TITLE 
+ ORDER BY avg desc, cnt desc
+</select>
+
+</mapper>
