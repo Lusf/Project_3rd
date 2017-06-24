@@ -37,6 +37,9 @@ public class FoodController {
 
 	@RequestMapping("eating/newdesign")
 	public String testMark2() {
+		
+		
+		
 		return "eating/new_theme_mark2/index2";
 	}
 
@@ -98,7 +101,7 @@ public class FoodController {
 			}
 		}
 
-		return "redirect:/";
+		return "eating/new_theme_mark2/index2";
 	}
 
 	// 맛집 검색용(검색바)
@@ -168,10 +171,6 @@ public class FoodController {
 			restaurantVo.setRestaurantName(keyWord);
 			restaurantVo.setRestaurantInfo(keyWord);
 			System.out.println("카테1+카테2+제목또는 내용");
-			
-		
-			
-			
 		}
 		
 		
