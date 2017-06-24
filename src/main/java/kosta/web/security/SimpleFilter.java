@@ -32,7 +32,6 @@ public class SimpleFilter implements Filter{
 			throws IOException, ServletException {
 		
 		XSSRequestWrapper xss = new XSSRequestWrapper((HttpServletRequest)request);
-    	System.out.println(xss.getParameter("name"));
 		//chain.doFilter(request, response);	//필터링 땐 request 대신 xss
 		
 		chain.doFilter(xss, response);

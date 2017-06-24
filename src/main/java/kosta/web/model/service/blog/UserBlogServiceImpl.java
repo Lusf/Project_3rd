@@ -66,14 +66,12 @@ public class UserBlogServiceImpl implements UserBlogService {
 	@Override
 	public List<UserBlogVo> selectByContentCode(String contentCode)
 	{
-		System.out.println("userblogservice contentcode : " + contentCode);
-		List<UserBlogVo> list = blogDAO.selectByContentCode(contentCode); 
-		System.out.println("userblogservice list : " + list);
+		List<UserBlogVo> list = blogDAO.selectByContentCode(contentCode);
+		
 		for(UserBlogVo dto : list)
 		{
 			dto.setUserPic(blogDAO.userPicBlog(contentCode, dto.getId()));
-			System.out.println("blogservice contentCode : " + list.get(0).getContentCode());
-		}
+			}
 		return list;
 	}
 

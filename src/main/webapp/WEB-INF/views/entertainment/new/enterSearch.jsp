@@ -30,7 +30,7 @@ function searchEnter(){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/entertainment/entSearch",
 		type : "post",
-		data : $("form").serialize(),
+		data : $("form").serialize()+"?searchYear="+$("searchYear").val()+"&searchMonth="+$("searchMonth").val(),
 		dataType : "json",
 		success : function(result) {
 			$("#searchList").empty();
@@ -135,16 +135,16 @@ function searchEnter(){
 												<h6>Year / Month</h6>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-from" class="selectpicker" id="startYear"
-													data-live-search="true" title="Year">
+												<select id="price-from" class="selectpicker" id="searchYear"
+													data-live-search="true" title="Year" name="searchYear">
 													<c:forEach begin="0" end="17" var="yy">
 														<option value="${2000+yy}">${2000+yy}</option>
 													</c:forEach>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-to" class="selectpicker" id="startMonth"
-													data-live-search="true" title="Month">
+												<select id="price-to" class="selectpicker" id="searchMonth"
+													data-live-search="true" title="Month" name="searchMonth">
 													<c:forEach begin="1" end="12" var="mm">
 														<option value="${mm}">${mm}</option>
 													</c:forEach>

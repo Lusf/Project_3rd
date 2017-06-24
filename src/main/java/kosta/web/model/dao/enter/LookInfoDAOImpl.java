@@ -34,7 +34,7 @@ public class LookInfoDAOImpl implements LookInfoDAO {
 
 	@Override
 	public List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo) {
-		System.out.println("³­ dao¾ß");
+		
 		return sqlSession.selectList("lookInfoMapper.searchList", lookInfoVo);
 	}
 
