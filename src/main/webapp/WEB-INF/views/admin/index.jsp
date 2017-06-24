@@ -115,7 +115,7 @@ $(function()
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="#userCount">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -159,7 +159,7 @@ $(function()
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="#contentCount">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -170,19 +170,19 @@ $(function()
                     </div>
                 </div>
                 <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" id="userCount">
                         <div class="panel panel-red">
                             <div class="panel-heading">
                                 <h3 class="panel-title">유저의 수</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-line-chart"></div>
-                                                         </div>
+                              </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" id="contentCount">
                         <div class="panel panel-yellow">
                             <div class="panel-heading">
                                 <h3 class="panel-title">등록된 정보의 수 (${contentCount }개)</h3>
@@ -218,8 +218,8 @@ $(function()
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
+                    </div> 
+                    <div class="col-lg-4" id="scoreRank">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">평점 순위</h3>

@@ -34,6 +34,9 @@ select count(*) from LOOK_INFO
 select count(*) from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
 </select>
 
+<!--  select (select count(BLOG_DATE) as cnt from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')) as cnt, blog_title, category  from blog  where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD') order by category;
+ -->
+
 <!-- 3개 컨텐츠 장소 찜한 수 순위  -->
 <select id = "wishListRank" resultType = "ChartVo">
 SELECT count(t.travelge_name) as cnt, t.travelge_name as name
