@@ -26,11 +26,21 @@
 </style>
 
 <script>
-$(function(){
-	$("#sortName").click(function(){
-		alert(1)
-	});
-});
+
+var sort = "";
+
+function sortTitle(){
+	sort = "title";
+	searchEnter();
+}
+function sortNew(){
+	sort = "new";
+	searchEnter();
+}
+function sortScore(){
+	sort = "score";
+	searchEnter();
+}
 
 function searchEnter(){
 	$.ajax({
@@ -198,9 +208,9 @@ function searchEnter(){
 							<h5 class="mb-15">Sort</h5>
 						</div>
 						<ul>
-							<li><h5 class="mb-15"><a href="javascript:;" id="sortName">Name</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" id="sortNew">New</a></h5></a></li>
-							<li><h5 class="mb-15"><a href="javascript:;" id="sortScore">Score</a></h5></a></li>
+							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
+							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
+							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortScore(); return false;">Score</a></h5></li>
 						</ul>
 					</div>
 				</div>
@@ -256,6 +266,33 @@ function searchEnter(){
 											aria-hidden="true">&raquo;</span>
 									</a></li>
 								</ul>
+								<%-- <ul class="center-align pagination">
+										<!-- < 버튼 -->
+										<c:if test="${startPage != 1 and startPage != null}">
+											<li><a
+												href='${pageContext.request.contextPath }/entertainment/enterInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
+													class="material-icons">chevron_left</i></a></li>
+										</c:if>
+										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
+											<c:if test="${pageNum == spage and pageNum != null}">
+												<!-- 선택페이지 -->
+												<li class="active"><a>${pageNum}</a></li>
+											</c:if>
+											<!-- 선택되지 않은 페이지 -->
+											<c:if test="${pageNum != spage and pageNum != 0}">
+												<li><a
+													href='${pageContext.request.contextPath }/entertainment/enterInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
+
+											</c:if>
+										</c:forEach>
+										<!-- > 버튼 -->
+										<c:if test="${endPage != maxPage }">
+											<li><a
+												href='${pageContext.request.contextPath }/entertainment/enterInfoSearch&currentPage=${endPage+1 }'><i
+													class="material-icons">chevron_right</i></a></li>
+										</c:if>
+
+									</ul> --%>
 							</nav>
 						</div>
 					</div>

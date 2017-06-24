@@ -233,7 +233,7 @@ public class EnterController {
 	/** 볼거리 검색하기 */
 	@RequestMapping("enterSearchPage")
 	public ModelAndView enterSearch(LookInfoVo lookInfoVo){
-		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, null, null);
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, null, null, "title");
 		List<LookInfoVo> imgList = new ArrayList<>();
 		
 		ModelAndView mv = new ModelAndView();
@@ -271,13 +271,14 @@ public class EnterController {
 	
 	@RequestMapping("/entSearch")
 	@ResponseBody
-	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth){
+	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort){
+		
 		if(searchYear.equals(""))
 			searchYear = null;
 		if(searchMonth.equals(""))
 			searchMonth = null;
 	
-		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, searchYear, searchMonth);
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, searchYear, searchMonth, sort);
 		List<LookInfoVo> imgList = new ArrayList<>();
 
 		if(list != null){

@@ -42,6 +42,14 @@
 			and to_char(look_startdate,'mm') >= #{searchMonth}
 		</if>
 	</trim>
+	<if test="sort!=null">
+		<if test="sort=='title'">
+			order by look_title
+		</if>
+		<if test="sort=='new'">
+			order by look_startdate desc
+		</if>
+	</if>
 </select>
 
 </mapper>
