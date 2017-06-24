@@ -15,13 +15,15 @@
 <!-- TABLE SORT -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.js"></script>
-<%-- <script
-	src="${pageContext.request.contextPath}/resources/js/table/jquery-latest.js"></script> --%>
 <script
 	src="${pageContext.request.contextPath}/resources/js/table/jquery.metadata.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/table/jquery.tablesorter.min.js"></script>
-
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
 $(function()
 {
@@ -65,7 +67,7 @@ $(function()
 
 </head>
 
-<body>
+<body style="padding-top: 0px">
 
     <div id="wrapper">
 
@@ -79,13 +81,8 @@ $(function()
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            Dashboard
                         </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -93,9 +90,7 @@ $(function()
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        	현재접속자수 : ${count }
-                        
+                        	현재접속자수 : ${count }      
                         </div>
                     </div>
                 </div>
@@ -107,7 +102,7 @@ $(function()
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-tasks fa-5x"></i>
+                                        <i class="fa fa-user-circle fa-5x"></i>	
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">${userCount.cntUser }</div>
@@ -151,7 +146,7 @@ $(function()
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                        <i class="fa fa-files-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">${contentCount }</div>
@@ -193,7 +188,7 @@ $(function()
                         </div>
                     </div>
 		<div class="col-lg-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-teal">
                             <div class="panel-heading">
                                 <h3 class="panel-title">좋아요 순위</h3>
                             </div>
@@ -220,7 +215,7 @@ $(function()
                         </div>
                     </div> 
                     <div class="col-lg-4" id="scoreRank">
-                        <div class="panel panel-default">
+                        <div class="panel panel-purple">
                             <div class="panel-heading">
                                 <h3 class="panel-title">평점 순위</h3>
                             </div>
@@ -239,6 +234,61 @@ $(function()
                                                 <td>${list.name}</td>
                                                 <td>${list.avg} / ${list.cnt}(명)</td>
                                             </tr>
+                                         </c:forEach>   
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class = "row">
+            <div class="col-lg-12" id="scoreRank">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">최신 리뷰</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>카테고리</th>
+                                                <th>컨텐츠 이름</th>
+                                                <th>리뷰 제목</th>
+                                                <th>작성 날짜</th>
+                                                <th>작성자</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${commentList}" var="list" varStatus="vs">   
+                                       
+                                            <tr>
+                                            
+                                                <td>${list.category}</td>
+                                                <td> <a data-toggle="modal" data-target="#comment${vs.index}">      ${list.name} </a></td>
+                                                <td> <a data-toggle="modal" data-target="#comment${vs.index}">      ${list.blogTitle}</a></td>
+                                                <td>${list.blogDate}</td>
+                                                <td>${list.id }</td>
+                                            </tr>
+                                        
+               <div id="comment${vs.index}" class="modal fade services-modal"
+                     role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content shadow">
+                           <div class="offer-box">
+                              <div class="offer-content pl-30 pr-30">
+                                 <span class="h4 offer-box-title">${list.blogTitle }</span>
+                                 <span> ${comment.id}</span>  <span
+                                    class="descriptionImg">${list.blogDate }<br>${list.blogCont } </span> <a
+                                    class="close" data-dismiss="modal"><span
+                                       class="ti-close"></span></a>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                                          </c:forEach>   
                                         </tbody>
                                     </table>

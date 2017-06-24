@@ -232,7 +232,7 @@ public class TravelgeController {
 	// 스크롤 페이징 jackson
 	@RequestMapping("/travelgeInfoScroll")
 	@ResponseBody
-	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme, Principal principal) {
+	public List<TravelgeInfoVo> travelgeInfoScroll(String index, String currentRegion, String currentTheme) {
 
 		
 		int currentPage = Integer.parseInt(index);
@@ -262,7 +262,7 @@ public class TravelgeController {
 	@ResponseBody
 	public List<TravelgeInfoVo> travelgeSearchScroll(String index, String currentRegion, String currentTheme,
 			String keyword) {
-		//System.out.println(currentRegion + "/" + currentTheme+"/"+keyword);
+//		System.out.println(currentRegion + "/" + currentTheme+"/"+keyword);
 		int currentPage = Integer.parseInt(index);
 
 		TravelgeInfoVo tempInfo = new TravelgeInfoVo();
@@ -278,6 +278,7 @@ public class TravelgeController {
 		for(int i = 0; i < list.size(); i++)
 		{
 			list.get(i).setCommentCount(userBlogService.selectByContentCode(list.get(i).getContentCode()).size());
+//			System.out.println(index + " : " + list.get(i).getContentCode());
 		}
 		return list;
 	}

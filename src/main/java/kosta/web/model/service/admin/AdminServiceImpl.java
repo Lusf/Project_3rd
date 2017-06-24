@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kosta.web.model.dao.admin.AdminDAO;
 import kosta.web.model.vo.ChartVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -59,6 +60,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ChartVo> scoreRank() {
 		return adminDAO.scoreRank();
+	}
+
+	@Override
+	public List<UserBlogVo> latestSelect() {
+		return adminDAO.latestSelect();
 	}
 
 }

@@ -84,6 +84,8 @@ public class EnterController {
 		String cutImgClone[] = allImg.split(":");
 		
 		String cutImgSemiClone[] = cutImgClone[1].split(";");
+		String posterImg = cutImgClone[0];
+		
 		
 		//장르에 따른 볼거리
 		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());		
@@ -104,8 +106,15 @@ public class EnterController {
 		mv.addObject("lookInfoConList", lookInfoConList);
 		mv.addObject("commentList", commentList);
 		
+
+		mv.addObject("cutImgSemiClone", cutImgSemiClone);
+		mv.addObject("posterImg", posterImg);
+	
+
+
 		mv.addObject("imgs", cutImgSemiClone);
 		
+
 		return mv;
 	}
 	

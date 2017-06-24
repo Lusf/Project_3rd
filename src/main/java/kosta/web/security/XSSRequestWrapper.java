@@ -9,6 +9,9 @@ public class XSSRequestWrapper extends HttpServletRequestWrapper {
     private static Pattern[] patterns = new Pattern[]{
         // Script fragments
         Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE),
+        // src='...'
+/*        Pattern.compile("src[\r\n]*=[\r\n]*\\\'(.*?)\\\'", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),
+        Pattern.compile("src[\r\n]*=[\r\n]*\\\"(.*?)\\\"", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),*/
         // lonely script tags
         Pattern.compile("</script>", Pattern.CASE_INSENSITIVE),
         Pattern.compile("<script(.*?)>", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL),
