@@ -38,7 +38,7 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 	}
 
 	@Override
-	public int insert(UserBlogVo blogVo) {
+	public int insert(UserBlogVo blogVo) { 
 		return sqlSession.insert("blogMapper.insertBlog", blogVo);
 	}
 

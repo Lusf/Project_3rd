@@ -276,6 +276,7 @@ height:auto
 										<div class="form-group col-md-2">
 											<select id="type" class="selectpicker" name="lookCate"
 												data-live-search="false" title="종류">
+												<option> - 종류</option>
 												<option value="M">영화</option>
 												<option value="T">TV</option>
 												<option value="P">공연/연극</option>
@@ -285,6 +286,7 @@ height:auto
 										<div class="form-group col-md-2">
 											<select id="genre" class="selectpicker" name="lookGenre"
 												data-live-search="false" title="장르">
+												<option> - 장르</option>
 												<option value="1">멜로/로맨스</option>
 												<option value="2">코미디</option>
 												<option value="3">SF</option>
@@ -298,6 +300,7 @@ height:auto
 										<div class="form-group col-md-2">
 											<select id="grade" class="selectpicker" name="lookAge"
 												data-live-search="false" title="등급">
+												<option> - 등급</option>
 												<option value="A">전체</option>
 												<option value="B">12세</option>
 												<option value="C">15세</option>

@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
    prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"  %>
    
 <!DOCTYPE html>
 <html>
@@ -158,7 +159,7 @@ On click the images will be displayed at normal size to complete the effect
 <body>
 
 
-<%@include file="/WEB-INF/views/header.jsp"%>
+<%@include file="/WEB-INF/views/entertainment/new/enterHeader.jsp"%>
 <br><br>
 
 
@@ -177,7 +178,7 @@ On click the images will be displayed at normal size to complete the effect
 </div>
 
     <div class="container" >
-		<c:if test="${contentCode eq lookInfoOne.contentCode}">
+		<c:if test="${contentCode eq info.contentCode}">
         <div class="row" >
 			
 			<div class="col-md-8">				
@@ -185,25 +186,27 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"/>
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/enter/${ggList.contentCode}/photos/${infoList.lookImg}"/>
 							</div>
 							<div class="col-md-8">	
-								<h3 class="">${lookInfoOne.lookTitle}</h3>
-								<p>${lookInfoOne.lookTitle}, ${lookInfoOne.lookStartDate.substring(0,4)}</p>
+								<h3 class="">${info.lookTitle}</h3>
+								<p>${info.lookTitle}, ${info.lookStartDate.substring(0,4)}</p>
 								<h5>
-									감독 : ${lookInfoOne.lookMaker}<br><br>
-									장르 : ${lookInfoOne.lookGenre}<br><br>
-									등급 : ${lookInfoOne.lookAge}<br><br>
-									개봉 : ${lookInfoOne.lookStartDate}<br><br>
+									감독 : ${info.lookMaker}<br><br>
+									장르 : ${info.lookGenre}<br><br>
+									등급 : ${info.lookAge}<br><br>
+									개봉 : ${info.lookStartDate}<br><br>
 								</h5>
 							</div>
 						</div>
 						
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
+							<sec:authorize access="isAuthenticated()">
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
 								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
+							</sec:authorize>
 								<%--  <a class="btn btn-default" href="${pageContext.request.contextPath}/blog/${comment.id}">Review</a> --%>
 							</div>
 						</div>
@@ -223,7 +226,7 @@ On click the images will be displayed at normal size to complete the effect
                         		</c:when>
                         		<c:otherwise>
 	                        		<c:forEach items="${lookInfoConList}"  var="lookConList" varStatus="state">
-	                        		<c:if test="${lookConList.lookTitle != lookInfoOne.lookTitle and lookConList.lookCate eq lookInfoOne.lookCate and state.count lt 6}">	                        		                       		
+	                        		<c:if test="${lookConList.lookTitle != info.lookTitle and lookConList.lookCate eq info.lookCate and state.count lt 6}">	                        		                       		
 		                        		<div class="post-list-sidebar-item mb-15">
 				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
 				                                <img src="${pageContext.request.contextPath}/resources/enter/${lookConList.contentCode}/photos/${lookConList.lookImg}" >	
@@ -256,7 +259,7 @@ On click the images will be displayed at normal size to complete the effect
                         <p class="post-introduction">줄거리	
                        	</p>
                         <hr>
-                        <p>${lookInfoOne.lookStory}<br>
+                        <p>${info.lookStory}<br>
                         <hr>
                         <p class="post-introduction">
                         	트레일러
@@ -295,7 +298,7 @@ On click the images will be displayed at normal size to complete the effect
 	                      	</p>
 	                      	<hr>					
 <!-- slider -->	
-<div class="slider">
+<!-- <div class="slider">
 	
 
 	<input type="radio" name="slide_switch" id="id2" checked="checked"/>
@@ -321,6 +324,37 @@ On click the images will be displayed at normal size to complete the effect
 		<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100"/>
 	</label>
 	<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
+</div> -->
+
+<div class="slider">
+	
+
+	<input type="radio" name="slide_switch" id="id2" checked="checked"/>
+	<label for="id2">
+		<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"/>
+	
+	<input type="radio" name="slide_switch" id="id3"/>
+	<label for="id3">
+		<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"/>
+	
+	<input type="radio" name="slide_switch" id="id4"/>
+	<label for="id4">
+		<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100"/>
+	</label>
+	<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"/>
+	
+<%-- 	<c:forEach items="${imgs}" var="imgg" varStatus="state">
+		<input type="radio" name="slide_switch" id="id5"/>
+		<label for="id5">
+			<img src="${imgg}" width="100"/>
+		</label>
+		<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
+	</c:forEach> --%>
+
 </div>
 					
  					
@@ -354,7 +388,7 @@ On click the images will be displayed at normal size to complete the effect
 
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
-		        center: new daum.maps.LatLng(${lookInfoOne.x}, ${lookInfoOne.y}), // 지도의 중심좌표
+		        center: new daum.maps.LatLng(${info.x}, ${info.y}), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };
 
@@ -362,7 +396,7 @@ On click the images will be displayed at normal size to complete the effect
 		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
  		// 마커가 표시될 위치입니다 
-		var markerPosition  =new daum.maps.LatLng(${lookInfoOne.x}, ${lookInfoOne.y}); 
+		var markerPosition  =new daum.maps.LatLng(${info.x}, ${info.y}); 
 
 		// 마커를 생성합니다
 		var marker = new daum.maps.Marker({
@@ -372,8 +406,8 @@ On click the images will be displayed at normal size to complete the effect
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map); 
 
-		 var iwContent = "<div style='padding:5px;'>${lookInfoOne.lookTitle }</div>" // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-		iwPosition = new daum.maps.LatLng(${lookInfoOne.x}, ${lookInfoOne.y}); //인포윈도우 표시 위치입니다
+		 var iwContent = "<div style='padding:5px;'>${info.lookTitle }</div>" // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		iwPosition = new daum.maps.LatLng(${info.x}, ${info.y}); //인포윈도우 표시 위치입니다
 
 		// 인포윈도우를 생성합니다
 		var infowindow = new daum.maps.InfoWindow({
@@ -393,46 +427,86 @@ On click the images will be displayed at normal size to complete the effect
 </div>
 	
                     <!-- reviews -->
+                   
                    <div class="review">
-                   <h3 class="mb-60">Reviews</h3>
-                    <c:forEach var="comment" items="${commentList }" varStatus="state">
                     <div class="row">
-                    <c:if test="${empty commentList }">
-                    	블로그 정보 없음
-                    </c:if>
-                  		 <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
-                        <ul class="comments-list">
-                            <li>
-                                <span class="comments-nick h5">Martin</span>
-                                <span class="comments-date">14.07.2017</span>
-                                <p class="comments-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>                                                                
-                                    <li class="mb-60">
-                                        <span class="comments-nick h5">Martin</span>
-                                        <span class="comments-date">14.07.2017</span>
-                                        <p class="comments-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        
-                                    </li>                            
-                        </ul>
-                    </div><!-- /review -->
-                    </c:forEach>
+                   
+                   	<h3 class="mb-60">
+                   			Reviews
+
+                   	</h3>
+					
+					  <!-- review 리스트 출력 -->
+     					<c:forEach var="comment" items="${commentList }" varStatus="state">
+	                    <c:if test="${empty commentList }">
+	                    	리뷰가 없어요. 작성하고 싶죠?
+	                    </c:if>	
+	                    <c:if test="${not empty commentList }"  >
+	                    <c:if test="${state.first }">
+		                    <sec:authorize access="isAuthenticated()">
+		                        <a class="btn btn-default" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">내 리뷰만 볼래요?</a>
+							</sec:authorize> 
+							<hr>
+						</c:if>
+						<c:if test="${state.count lt 5 }" >                						
+	                        <ul class="comments-list">
+	                            <li>
+	                                <span class="comments-nick h5">${comment.id }  </span><br>
+	                                 <span class="comments-date">${comment.blogDate }</span><br>
+	                                <span class="comments-nick h5">${comment.blogTitle }</span>
+	                               
+	                                <p class="comments-content">
+	                                    ${comment.blogCont }
+	                                </p>
+	                                <hr>
+	                            </li>                                                                                        
+	                        </ul>
+	                     </c:if>
+	                     </c:if>
+	                     </c:forEach>   
+	                    </div><!-- /review -->  
+	                          
+                    </div>
                 </div>
 
-            </div>
-        </div>
+	
+            
+ 	<!-- review 보기  modal -->
+	<div id="reviewLook" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
+
+						<div class="services-box text-center">
+                   		<c:if test="${empty commentList}">
+	                    	블로그 정보 없음
+	                    </c:if>
+	                    <div id="reviewLook">
+	                    <c:forEach var="comment" items="${commentList }" varStatus="state">
+		                    <div class="row">
+		                         <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
+	                        <ul class="comments-list">
+	                            <li>
+	                                <span class="comments-nick h5">${comment.blogTitle }</span>
+	                                <span class="comments-date">${comment.blogDate }</span>
+	                                <p class="comments-content">
+	                                    ${comment.blogCont }
+	                                </p>
+	                            </li>                                                                                                    
+	                        </ul>
+	                    </div><!-- /review -->
+	                    </c:forEach>
+                    </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>  
+	</div>   
 
 
 	<!-- score modal -->
@@ -486,17 +560,9 @@ On click the images will be displayed at normal size to complete the effect
 			<!-- Modal content-->
 			<div class="modal-content shadow">
 				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<video width="420" height="340" controls>
- 							<%-- 	 <source src="${lookInfoOne.lookTariler }" type="video/mp4"> --%>
-							</video>												
-						</div>
-
-					</div>
-				</div>
+					<div class="modal-body">
+						<iframe id="moviemovie" class="embed-responsive-item" width="854" height="480" src="${info.lookTrailer }" frameborder="0" allowfullscreen></iframe>
+       				</div>
 			</div>
 		</div>
 	</div>
@@ -511,10 +577,7 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">							
-
 							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
-							<!-- <a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a> -->
 						</div>
 
 					</div>
@@ -522,6 +585,7 @@ On click the images will be displayed at normal size to complete the effect
 			</div>
 		</div>
 	</div>
+
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
