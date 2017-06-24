@@ -52,4 +52,11 @@ public class RestaurantDAOImpl implements RestaurantDAO{
 		return sqlSession.selectList("foodMapper.selectRestaurant",restaurantVo, new RowBounds(i,5));
 	}
 
+	@Override
+	public List<RestaurantVo> RecommandRestaurant() {
+		
+		
+		return sqlSession.selectList("foodMapper.recommandRestaurant",new RowBounds(0,6));
+	}
+
 }
