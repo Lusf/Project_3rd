@@ -190,7 +190,7 @@ public class EnterServiceImpl implements EnterService {
 	}
 	
 	@Override
-	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo) {
+	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort) {
 		// 카테고리 한글로 변환
 		lookInfoVo.setLookCate(map.get(lookInfoVo.getLookCate()));
 
@@ -200,7 +200,7 @@ public class EnterServiceImpl implements EnterService {
 		// 연령등급 한글로 변환
 		lookInfoVo.setLookAge(map.get(lookInfoVo.getLookAge()));
 		
-		return lookInfoDAO.enterSearch(lookInfoVo);
+		return lookInfoDAO.enterSearch(lookInfoVo, searchYear, searchMonth, sort);
 	}
 	
 	

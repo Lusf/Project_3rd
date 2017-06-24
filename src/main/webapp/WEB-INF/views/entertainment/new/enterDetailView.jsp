@@ -111,7 +111,7 @@ On click the images will be displayed at normal size to complete the effect
 </div> 
 
     <div class="container" >
-		<c:if test="${contentCode eq lookInfoOne.contentCode}">
+		<c:if test="${contentCode eq info.contentCode}">
         <div class="row" >
 			
 			<div class="col-md-8">				
@@ -122,13 +122,13 @@ On click the images will be displayed at normal size to complete the effect
 								<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >	
 							</div>
 							<div class="col-md-8">	
-								<h3 class="">${lookInfoOne.lookTitle}</h3>
-								<p>${lookInfoOne.lookTitle}, ${lookInfoOne.lookStartDate.substring(0,4)}</p>
+								<h3 class="">${info.lookTitle}</h3>
+								<p>${info.lookTitle}, ${info.lookStartDate.substring(0,4)}</p>
 								<h5>
-									감독 : ${lookInfoOne.lookMaker}<br><br>
-									장르 : ${lookInfoOne.lookGenre}<br><br>
-									등급 : ${lookInfoOne.lookAge}<br><br>
-									개봉 : ${lookInfoOne.lookStartDate}<br><br>
+									감독 : ${info.lookMaker}<br><br>
+									장르 : ${info.lookGenre}<br><br>
+									등급 : ${info.lookAge}<br><br>
+									개봉 : ${info.lookStartDate}<br><br>
 								</h5>
 							</div>
 						</div>
@@ -155,7 +155,7 @@ On click the images will be displayed at normal size to complete the effect
                         <p class="post-introduction">줄거리	
                        	</p>
                         <hr>
-                        <p>${lookInfoOne.lookStory}<br>
+                        <p>${info.lookStory}<br>
                         <hr>
                         <p class="post-introduction">
                         	트레일러
@@ -250,7 +250,7 @@ On click the images will be displayed at normal size to complete the effect
                         		</c:when>
                         		<c:otherwise>
 	                        		<c:forEach items="${lookInfoConList}"  var="lookConList" varStatus="state">
-	                        		<c:if test="${lookConList.lookTitle != lookInfoOne.lookTitle and lookConList.lookCate eq lookInfoOne.lookCate and state.count lt 6}">	                        		                       		
+	                        		<c:if test="${lookConList.lookTitle != info.lookTitle and lookConList.lookCate eq info.lookCate and state.count lt 6}">	                        		                       		
 		                        		<div class="post-list-sidebar-item mb-15">
 				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
 				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookConList.lookCate}/${lookConList.lookImg}" alt="blog image">
@@ -401,8 +401,13 @@ On click the images will be displayed at normal size to complete the effect
 
 						<div class="services-box text-center">
 							<video width="420" height="340" controls>
+<<<<<<< HEAD
+ 							<%-- 	<source src="${info.lookTariler }" type="video/mp4"> --%>
+ 							</video>												
+=======
  								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
 							</video>												
+>>>>>>> 186892f57dfc7506c7e2b378c48347cc0a99b265
 						</div>
 
 					</div>

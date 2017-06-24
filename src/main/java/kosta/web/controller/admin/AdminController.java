@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.admin.AdminService;
+import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.vo.ChartVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.security.CountManager;
 
 @Controller
@@ -41,7 +43,7 @@ public class AdminController {
 		
 		List<ChartVo> wishRank = adminService.wishListRank();
 		List<ChartVo> totalUserCount = adminService.totalUserCount();
-
+		List<UserBlogVo> commentList = adminService.latestSelect();
 		List<ChartVo> scoreRank = adminService.scoreRank();
 		mv.addObject("count",CountManager.getCount()); //현재 접속자 수
 		mv.addObject("userCount",userCount);			//총 유저의 수
@@ -53,6 +55,7 @@ public class AdminController {
 		mv.addObject("wishRank", wishRank);			//좋아요 순위
 		mv.addObject("scoreRank",scoreRank);			//평점 순위
 		mv.addObject("totalUserCount",totalUserCount);	//유저의 수 누적 그래프
+		mv.addObject("commentList",commentList); 		//최신 리뷰 리스트
 
 		
 		mv.setViewName("admin/index");

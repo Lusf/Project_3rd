@@ -66,22 +66,18 @@
 	$(document).ready(function() {
 		$('#locationDropdown li').click(function() {
 			var tempText = $(this).text();
-			//alert($(this).text());
 			$('#dropdownMenu1').text(tempText);
 			currentPage = 1;
 			currentRegion = tempText;
-			//$(".scrollPaging:gt(0)").remove();
-			//getReadList();
+
 
 		})
 		$('#themeDropdown li').click(function() {
 			var tempText = $(this).text();
-			//alert($(this).text());
 			$('#dropdownMenu2').text(tempText);
 			currentPage = 1;
 			currentTheme = tempText;
-			//$(".scrollPaging:gt(0)").remove();
-			//getReadList();
+
 		})
 	})
 
@@ -90,7 +86,8 @@
 	
 	
 	
-	function getReadList(keyword) {
+	function getReadList() {
+		keyword=$("#keyword").val();
 		$('#loading').html('데이터 로딩중입니다.');
 		//ajax
 		$.ajax({
@@ -189,8 +186,8 @@
 					
 	function searchAjax(){
 		$(".scrollPaging:gt(0)").remove();
-		keyword=$("#keyword").val();
-		getReadList(keyword);
+		
+		getReadList();
 	}
 	//무한 스크롤
 	$(window).scroll(

@@ -1,6 +1,8 @@
 package kosta.web.model.dao.enter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +65,15 @@ public class LookInfoDAOImpl implements LookInfoDAO {
 	}
 
 	@Override
-	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo) {
-		return sqlSession.selectList("lookInfoSearchMapper.enterSearchSelect", lookInfoVo);
+	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo,String searchYear, String searchMonth, String sort) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("info", lookInfoVo);
+		map.put("searchYear", searchYear);
+		map.put("searchMonth", searchMonth);
+		map.put("sort", sort);
+		
+		return sqlSession.selectList("lookInfoSearchMapper.enterSearchSelect", map);
 	}
 	
 	
