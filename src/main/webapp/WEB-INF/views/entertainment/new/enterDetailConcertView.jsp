@@ -186,7 +186,7 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/enter/${ggList.contentCode}/photos/${infoList.lookImg}"/>
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${posterImg}"/>
 							</div>
 							<div class="col-md-8">	
 								<h3 class="">${info.lookTitle}</h3>
@@ -504,7 +504,10 @@ On click the images will be displayed at normal size to complete the effect
 			<div class="modal-content shadow">
 				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					<div class="modal-body">
-						<iframe id="moviemovie" class="embed-responsive-item" width="854" height="480" src="${info.lookTrailer }" frameborder="0" allowfullscreen></iframe>
+						<%-- <iframe id="moviemovie" class="embed-responsive-item" width="854" height="480" src="${info.lookTrailer }" frameborder="0" allowfullscreen></iframe> --%>
+							<video width="420" height="340" controls>
+ 								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
+							</video>
        				</div>
 			</div>
 		</div>
