@@ -26,20 +26,27 @@
 </style>
 
 <script>
+$(function(){
+	$("#sortName").click(function(){
+		alert(1)
+	});
+});
+
 function searchEnter(){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/entertainment/entSearch",
 		type : "post",
-		data : $("form").serialize()+"?searchYear="+$("searchYear").val()+"&searchMonth="+$("searchMonth").val(),
+		data : $("form").serialize()+"&sort="+sort,
 		dataType : "json",
 		success : function(result) {
 			$("#searchList").empty();
 
 			var str = "";
-			$.each(result, function(index, item) {
-				if(item==null)
-					str += "<h2>검색결과 없음</h2>";
-				else{
+
+			if(result.length == 0)
+				str += "<h2>검색결과 없음</h2>";
+			else{
+				$.each(result, function(index, item) {
 					str += "<div class='offer-box border col-md-3' id='imgList'>";
 					str += "<div class='offer-box-head' id='img"+item.contentCode+"' style='display:none;'>";
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
@@ -52,8 +59,8 @@ function searchEnter(){
 					str += "<span class='offer-box-location'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
 					str += "<span class='offer-box-meta'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
 					str += "</a></div></div>";
-				}
-			});
+				});
+			}
 
 			$("#searchList").append(str);
 			
@@ -137,7 +144,7 @@ function searchEnter(){
 											<div class="form-group col-md-6">
 												<select id="price-from" class="selectpicker" id="searchYear"
 													data-live-search="true" title="Year" name="searchYear">
-													<c:forEach begin="0" end="17" var="yy">
+													<c:forEach begin="10" end="17" var="yy">
 														<option value="${2000+yy}">${2000+yy}</option>
 													</c:forEach>
 												</select>
@@ -145,9 +152,12 @@ function searchEnter(){
 											<div class="form-group col-md-6">
 												<select id="price-to" class="selectpicker" id="searchMonth"
 													data-live-search="true" title="Month" name="searchMonth">
-													<c:forEach begin="1" end="12" var="mm">
-														<option value="${mm}">${mm}</option>
+													<c:forEach begin="1" end="9" var="mm">
+														<option value="0${mm}">${mm}</option>
 													</c:forEach>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
 												</select>
 											</div>
 										</div>
@@ -188,9 +198,9 @@ function searchEnter(){
 							<h5 class="mb-15">Sort</h5>
 						</div>
 						<ul>
-							<li><h5 class="mb-15"><a href="#">Name</a></h5></li>
-							<li><h5 class="mb-15"><a href="#">New</a></h5></a></li>
-							<li><h5 class="mb-15"><a href="#">Score</a></h5></a></li>
+							<li><h5 class="mb-15"><a href="javascript:;" id="sortName">Name</a></h5></li>
+							<li><h5 class="mb-15"><a href="javascript:;" id="sortNew">New</a></h5></a></li>
+							<li><h5 class="mb-15"><a href="javascript:;" id="sortScore">Score</a></h5></a></li>
 						</ul>
 					</div>
 				</div>

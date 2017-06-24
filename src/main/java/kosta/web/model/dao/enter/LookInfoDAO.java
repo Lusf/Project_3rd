@@ -52,5 +52,5 @@ public interface LookInfoDAO {
 	List<LookInfoVo> lookInfoSearchByNewList();
 	
 	/** search */
-	List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo);
+	List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth);
 }

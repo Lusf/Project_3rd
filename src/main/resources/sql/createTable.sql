@@ -31,7 +31,7 @@ create table blog(
   blog_num number(4),
   category varchar2(20),
   content_code varchar2(20),
-  blog_title varchar2(30),
+  blog_title varchar2(30),			/* ±Ê¿Ã ¥√∏Æ¿⁄!! */
   blog_date date,
   blog_cont varchar2(2000),
   constraint blog_pk primary key(id, content_code)
@@ -187,8 +187,8 @@ create table look_info(
   look_maker varchar2(100),
   look_img varchar2(500),
   look_genre varchar2(100),
-  look_startdate varchar2(20),
-  look_lastdate varchar2(20),
+  look_startdate date,
+  look_lastdate date,
   look_loca varchar2(200),
   look_cate varchar2(100),
   look_age varchar2(100),
