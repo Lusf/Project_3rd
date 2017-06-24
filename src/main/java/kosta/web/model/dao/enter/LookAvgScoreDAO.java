@@ -1,5 +1,7 @@
 package kosta.web.model.dao.enter;
 
+import java.util.List;
+
 import kosta.web.model.vo.AvgScoreVo;
 
 public interface LookAvgScoreDAO {
@@ -13,12 +15,17 @@ public interface LookAvgScoreDAO {
 	/**
 	 * 볼거리 찜 등록
 	 * */
-	int lookWishListAdd(AvgScoreVo avgScoreVo);
+	int lookWishListInsert(String id, String contentCode);
 	
 	/**
-	 * 볼거리 찜 삭제
+	 * 볼거리 찜 조회
 	 * */
-	int lookWishListDelete(AvgScoreVo avgScoreVo);
+	List<AvgScoreVo> lookWishListSelect(AvgScoreVo avgScoreVo);
+	
+	/**
+	 * 볼거리 찜 수정
+	 * */
+	int lookWishListUpdate(String id, String contentCode, int wishList);
 	
 	/**
 	 * 별점 등록

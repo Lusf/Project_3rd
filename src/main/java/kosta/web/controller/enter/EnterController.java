@@ -268,8 +268,20 @@ public class EnterController {
 		return imgList;
 	}
 	
-	
-	
+	//찜하기기
+	@RequestMapping("/lookWishListUpdate")
+	public int lookWishListUpdate(String contentCode){
+		int result = 0;
+		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+		{
+			System.out.println("찜하기 되었나요???");
+			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String id = user.getId();
+			result = enterService.lookWishListUpdate(id, contentCode);
+			System.out.println("result : " + result);
+		}
+		return result;
+	}
 	
 	
 	

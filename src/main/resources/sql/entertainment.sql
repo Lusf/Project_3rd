@@ -13,7 +13,7 @@ FROM (SELECT look_coordinates FROM look_info where look_title='Á¦¿¡¸ñ') A
 CONNECT BY LEVEL <= length(regexp_replace(A.TXT, '[^,]'))+1
 ;
 
-	
+select wish_list from avg_score
 
 SELECT regexp_substr(tel1,'[^,]+',1,1) as x
 FROM  (SELECT look_coordinates FROM look_info)

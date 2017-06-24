@@ -137,7 +137,7 @@
 						+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i></span>"
 			} else {
 				str += "<span style='float:right' id='wishlist'><span style='display:none'>"
-						+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>찜하기</span>"
+						+ 1 + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>찜하기</span>"
 			}
 		
 		str += "<br>";

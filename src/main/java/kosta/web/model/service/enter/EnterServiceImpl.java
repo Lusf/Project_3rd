@@ -116,17 +116,35 @@ public class EnterServiceImpl implements EnterService {
 		return 0;
 	}
 
+	
 	@Override
-	public int lookWishListAdd(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<AvgScoreVo> lookWishListSelect(AvgScoreVo avgScoreVo) {
+		
+		return lookAvgScoreDAO.lookWishListSelect(avgScoreVo);
 	}
 
 	@Override
-	public int lookWishListDelete(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int lookWishListUpdate(String id, String contentCode) {
+		AvgScoreVo avgScoreVo = new AvgScoreVo(id, contentCode);
+		List<AvgScoreVo> temp = lookAvgScoreDAO.lookWishListSelect(avgScoreVo);
+		int result;
+		if (temp != null && temp.size() != 0) {
+			if (temp.get(0).getWish_list() == 0) {
+				lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 1);
+				result = 1;
+				
+			} else {
+				lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 0);
+				result = 0;
+			}
+		} else {
+			lookAvgScoreDAO.lookWishListInsert(id, contentCode);
+			result = 1;
+		}
+
+		return result;
 	}
+	
 
 	@Override
 	public int lookScoreInsert(AvgScoreVo avgScoreVo) {
@@ -272,9 +290,5 @@ public class EnterServiceImpl implements EnterService {
 
 		return enterAdminInfoDAO.enterInfoUpdate(lookInfoVo);
 	}
-
-
-
-
 
 }
