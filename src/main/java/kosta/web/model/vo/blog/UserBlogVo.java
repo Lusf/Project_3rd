@@ -14,9 +14,8 @@ public class UserBlogVo {
 	private String blogCont;
 	private String userPic;
 	
-	
-	private List<TravelgeInfoVo> commentList; 
-	
+	private String name;
+
 	
 	
 	public UserBlogVo() {}
@@ -91,10 +90,11 @@ public class UserBlogVo {
 	public void setUserPic(String userPic) {
 		this.userPic = userPic;
 	}
-	public List<TravelgeInfoVo> getCommentList() {
-		return commentList;
+	public String getName() {
+		return name;
 	}
-	public void setCommentList(List<TravelgeInfoVo> commentList) {
-		this.commentList = commentList;
+	public void setName(String name) {
+		this.name = name;
 	}
+	
 }

@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
 
+<resultMap type="UserBlogVo" id="blogMap">
+	<id column="id" property="id"/>
+	<result column="blog_num" property="blogNum"/>
+	<result column="category" property="category"/>
+	<result column="content_code" property="contentCode"/>
+	<result column="blog_title" property="blogTitle"/>
+	<result column="blog_date" property="blogDate"/>
+	<result column="blog_cont" property="blogCont"/>
+	<result column="name" property="name"/>
+</resultMap>
+
+
 <!-- 총 유저의 수 조회 -->
 <select id = "selectUserCount" resultType="kosta.web.model.vo.ChartVo">
 select count(*) as cntUser from usertable
@@ -33,9 +45,22 @@ select count(*) from LOOK_INFO
 <select id = "latestReviewCount" resultType="int">
 select count(*) from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
 </select>
+<!-- 최신 리뷰 -->
+<select id= "latestSelect" resultMap="blogMap">
+select b.id, b.category, t.TRAVELGE_NAME as name,  b.content_code, b.blog_title, b.blog_date, b.blog_cont
+from blog b join travelge_info t
+on b.content_code = t.content_code
+union
+select b.id, b.category, r.restaurant_name as name, b.content_code, b.blog_title, b.blog_date, b.blog_cont
+from blog b join RESTAURANT r
+on b.content_code = r.content_code
+union
+select b.id, b.category,  l.look_title as name,b.content_code, b.blog_title, b.blog_date, b.blog_cont
+from blog b join LOOK_INFO l
+on b.content_code = l.content_code
+order by blog_date desc
+</select>
 
-<!--  select (select count(BLOG_DATE) as cnt from blog where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')) as cnt, blog_title, category  from blog  where to_char(blog_date,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD') order by category;
- -->
 
 <!-- 3개 컨텐츠 장소 찜한 수 순위  -->
 <select id = "wishListRank" resultType = "ChartVo">
