@@ -401,8 +401,8 @@ On click the images will be displayed at normal size to complete the effect
 
 						<div class="services-box text-center">
 							<video width="420" height="340" controls>
- 							<%-- 	<source src="${lookInfoOne.lookTariler }" type="video/mp4"> --%>
- 							</video>												
+ 								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
+							</video>												
 						</div>
 
 					</div>

@@ -225,3 +225,41 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+
+.panel-teal {
+    border-color: #004d40;
+}
+
+.panel-teal > .panel-heading {
+    border-color: #004d40;
+    color: #fff;
+    background-color: #004d40;
+}
+
+.panel-teal > a {
+    color: #004d40;
+}
+
+.panel-teal > a:hover {
+    color: #004d40;
+}
+
+
+.panel-purple {
+    border-color: #5e35b1;
+}
+
+.panel-purple > .panel-heading {
+    border-color: #5e35b1;
+    color: #fff;
+    background-color: #5e35b1;
+}
+
+.panel-purple > a {
+    color: #5e35b1;
+}
+
+.panel-purple > a:hover {
+    color: #5e35b1;
+}

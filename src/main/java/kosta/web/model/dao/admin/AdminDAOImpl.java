@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kosta.web.model.vo.ChartVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -49,7 +50,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<ChartVo> wishListRank() {
 		
-		return sqlSession.selectList("adminMapper.wishListRank" , new RowBounds(0, 10));
+		return sqlSession.selectList("adminMapper.wishListRank" , 0, new RowBounds(0, 10));
 	}
 
 	@Override
@@ -61,7 +62,12 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<ChartVo> scoreRank() {
 		
-		return sqlSession.selectList("adminMapper.scoreRank", new RowBounds(0, 10));
+		return sqlSession.selectList("adminMapper.scoreRank", 0,  new RowBounds(0, 10));
+	}
+
+	@Override
+	public List<UserBlogVo> latestSelect() {
+		return sqlSession.selectList("adminMapper.latestSelect", 0, new RowBounds(0, 10));
 	}
 
 }

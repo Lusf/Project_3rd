@@ -16,10 +16,7 @@
 <meta name="description" content="">
 <meta name="viewport"
    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
    rel="stylesheet">
    <script
@@ -350,21 +347,6 @@ color: #FF6B6B;
             <br>
          </c:forEach>
 
-
-         <!-- --------------------평점  -->
-<%--          <h3>평점</h3>
-         <div>
-            <div class="row lead">
-               <c:if test="${info.avgScoreVo.personCount != null}">
-               <i class="material-icons">star</i><span id="count">${info.avgScoreVo.score }점
-                     (${info.avgScoreVo.personCount }명)</span>
-               </c:if>
-               <c:if test="${info.avgScoreVo.personCount == null }">
-               <i class="material-icons">star</i><span id="count">0개 (0명)</span>
-               </c:if>
-            </div>
-
-         </div> --%>
          <hr>
 
          <div class="row lead">
@@ -380,22 +362,12 @@ color: #FF6B6B;
                 <p style="color: #FF6B6B">이곳을 평가해 주세요.</p>
                 </div>
             </sec:authorize>
-            <!-- 
-         <div class="row lead">
-            <p>Also you can give a default rating by adding attribute
-               data-rating</p>
-            <div id="stars" class="starrr" data-rating='4'></div>
-            You gave a rating of <span id="count">4</span> star(s)
-         </div>
-          -->
+
 
             <!-- Blog Post Content Column -->
             <div class="cont" id="reviewcont">
                <h3>Review</h3>
-<%--                <sec:authorize access="isAuthenticated()">
-                  <button style="cursor: pointer;" data-toggle="modal"
-                     data-target="#insertReview" class="btn btn-info"> 리뷰 작성 </button>
-               </sec:authorize> --%>
+
 
                <!-- detail MODAL -->
                <div class="modal fade" id="insertReview" role="dialog"

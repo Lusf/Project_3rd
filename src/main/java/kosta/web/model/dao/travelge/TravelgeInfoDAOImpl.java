@@ -65,7 +65,7 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 
 	@Override
 	public List<TravelgeLatestCommentVo> latestComment() {
-		List<TravelgeLatestCommentVo> list = sqlSession.selectList("travelgeInfoMapper.latestComment");
+		List<TravelgeLatestCommentVo> list = sqlSession.selectList("travelgeInfoMapper.latestComment", 0, new RowBounds(0,5));
 
 		return list;
 	}

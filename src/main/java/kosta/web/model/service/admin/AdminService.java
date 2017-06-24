@@ -3,6 +3,7 @@ package kosta.web.model.service.admin;
 import java.util.List;
 
 import kosta.web.model.vo.ChartVo;
+import kosta.web.model.vo.blog.UserBlogVo;
 
 public interface AdminService {
 	/**
@@ -31,6 +32,10 @@ public interface AdminService {
 	 */
 	int latestReviewCount();
 	
+	/**
+	 * 최신 리뷰 리스트
+	 */
+	List<UserBlogVo> latestSelect();
 	/**
 	 * 좋아요 순위
 	 */
