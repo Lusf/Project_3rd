@@ -54,7 +54,7 @@ public class UserBlogDAOImpl implements UserBlogDAO {
 
 	@Override
 	public List<UserBlogVo> selectByContentCode(String contentCode)
-	{System.out.println("selectbycontentcode dao contentcode : " + contentCode);
+	{
 		return sqlSession.selectList("blogMapper.selectByContentCode", contentCode);
 	}
 	@Override

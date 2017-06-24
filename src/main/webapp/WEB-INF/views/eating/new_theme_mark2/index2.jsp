@@ -140,40 +140,30 @@
 <section class="padding">
 		<div class="container">
 			<div class="row">
-				<!-- <div class="col-md-12">
-					<h4 class="heading">Featured adds</h4>
-				</div> -->
+			
 				<!-- single offer box-->
+				<c:forEach items="${requestScope.listA}"  var="list" varStatus="state">
 				<div class="col-md-4">
 					<div class="offer-box">
 						<div class="offer-box-head">
 							<div class="offer-slider">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
-										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image">
+										
+										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
 									</div>
-									<div class="swiper-slide">
-										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/02.jpg"	alt="offer image">
-									</div>
-								</div>
-
-								<div class="offer-pagination-prev left-arrow">
-									<span class="ti-angle-left"></span>
-								</div>
-
-								<div class="offer-pagination-next right-arrow">
-									<span class="ti-angle-right"></span>
 								</div>
 							</div>
 							<span class="offer-box-price">$350pw</span> <span class="offer-box-label"><span class="ti-star"></span>featured</span>
 						</div>
 						<a href="#"> 
-							<span class="h4 offer-box-title">Spacious 1 Bed Flat near Bermondsey Sq. Lovely Period property</span> 
-							<span class="offer-box-location"><span class="ti-location-pin"></span>Tower Bridge, London </span> 
-							<span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span>
+							<span class="h4 offer-box-title">${list.restaurantName}</span> 
+							<span class="offer-box-location"><span class="ti-location-pin"></span>${list.restaurantAddr} </span> 
+							<span class="offer-box-meta">${list.restaurantCoordinates}</span>
 						</a>
 					</div>
 				</div>
+			</c:forEach>
 				<!-- /single offer box-->
 
 
@@ -209,6 +199,7 @@
 						</a>
 					</div>
 				</div>
+				
 				<!-- / single offer box-->
 				<div class="col-md-12 text-center">
 						<sec:authorize access="isAuthenticated()">

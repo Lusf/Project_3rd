@@ -43,13 +43,13 @@ public class RestaurantDAOImpl implements RestaurantDAO{
 	@Override
 	public List<RestaurantVo> RestaurantSearch(RestaurantVo restaurantVo, int i) {
 
-		return sqlSession.selectList("foodMapper.searchByRestaurant",restaurantVo, new RowBounds(i,10));
+		return sqlSession.selectList("foodMapper.searchByRestaurant",restaurantVo, new RowBounds(i,5));
 	}
 
 	@Override
 	public List<RestaurantVo> Search(RestaurantVo restaurantVo, int i) {
 		
-		return sqlSession.selectList("foodMapper.selectRestaurant",restaurantVo, new RowBounds(i,10));
+		return sqlSession.selectList("foodMapper.selectRestaurant",restaurantVo, new RowBounds(i,5));
 	}
 
 }

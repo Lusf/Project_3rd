@@ -40,7 +40,7 @@
 
 				<div class="collapse navbar-collapse js-navbar-collapse row">
 					<ul class="nav navbar-nav">
-						<li class="header-link"><a href="newdesign">home</a></li>
+						<li class="header-link"><a href="${pageContext.request.contextPath}/eating/newdesign">home</a></li>
 						<li class="header-link"><a href="about-us">메뉴1</a></li>
 						<li class="header-link"><a href="blog-post">메뉴2</a></li>
 						<li class="header-link"><a href="developer">메뉴3</a></li>
@@ -318,7 +318,7 @@
 								</form> --%>
 								
 					
-					<form name="tx_editor_form${state.count }"  id="tx_editor_form-${state.count }" action="${pageContext.request.contextPath}/eating/insertReview"
+					<form name="tx_editor_form"  id="tx_editor_form" action="${pageContext.request.contextPath}/eating/insertReview"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">

@@ -30,7 +30,7 @@ function searchEnter(){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/entertainment/entSearch",
 		type : "post",
-		data : $("form").serialize(),
+		data : $("form").serialize()+"?searchYear="+$("searchYear").val()+"&searchMonth="+$("searchMonth").val(),
 		dataType : "json",
 		success : function(result) {
 			$("#searchList").empty();
@@ -132,19 +132,19 @@ function searchEnter(){
 									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
-												<h6>Start Date</h6>
+												<h6>Year / Month</h6>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-from" class="selectpicker" id="startYear"
-													data-live-search="true" title="Year">
+												<select id="price-from" class="selectpicker" id="searchYear"
+													data-live-search="true" title="Year" name="searchYear">
 													<c:forEach begin="0" end="17" var="yy">
 														<option value="${2000+yy}">${2000+yy}</option>
 													</c:forEach>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<select id="price-to" class="selectpicker" id="startMonth"
-													data-live-search="true" title="Month">
+												<select id="price-to" class="selectpicker" id="searchMonth"
+													data-live-search="true" title="Month" name="searchMonth">
 													<c:forEach begin="1" end="12" var="mm">
 														<option value="${mm}">${mm}</option>
 													</c:forEach>
@@ -158,22 +158,6 @@ function searchEnter(){
 										<div class="home-search-group">
 											<div class="col-md-12">
 												<h6>Last Date</h6>
-											</div>
-											<div class="form-group col-md-6">
-												<select id="price-from" class="selectpicker" id="lastYear"
-													data-live-search="true" title="Year">
-													<c:forEach begin="0" end="17" var="yy">
-														<option value="${2000+yy}">${2000+yy}</option>
-													</c:forEach>
-												</select>
-											</div>
-											<div class="form-group col-md-6">
-												<select id="price-to" class="selectpicker"  id="lastMonth"
-													data-live-search="true" title="Month">
-													<c:forEach begin="1" end="12" var="mm">
-														<option value="${mm}">${mm}</option>
-													</c:forEach>
-												</select>
 											</div>
 										</div>
 									</div>
@@ -228,12 +212,14 @@ function searchEnter(){
 								</div>
 								<div id="cont${list.contentCode}">
 									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
+									<div>
 										<span class="h4 offer-box-title">${list.lookTitle}</span><br><br>
 										<span class="">카테고리: ${list.lookCate}</span><br>
 										<span class="">장르: ${list.lookGenre}</span><br>
 										<span class="">등급: ${list.lookAge}</span><br><br>
 										<span class="offer-box-location"><span class="ti-location-pin"></span>${list.lookLoca}</span>
 										<span class="offer-box-meta">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
+									</div>
 									</a>
 								</div>
 							</div>

@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -103,8 +104,13 @@ public class EnterController {
 		mv.addObject("lookInfoConList", lookInfoConList);
 		mv.addObject("commentList", commentList);
 		
+
 		mv.addObject("cutImgSemiClone", cutImgSemiClone);
 	
+
+
+		mv.addObject("imgs", cutImgSemiClone);
+		
 
 		return mv;
 	}
@@ -127,7 +133,6 @@ public class EnterController {
 		
 		//블로그
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
-		System.out.println("commentList : " + commentList);
 		
 		mv.setViewName("entertainment/new/enterDetailView");
 		mv.addObject("info", lookInfoOne);
@@ -176,7 +181,7 @@ public class EnterController {
 	}
 
 	// 게시글 작성하기
-	@RequestMapping("board/userBoardWrite/insert")
+	@RequestMapping(value = "board/userBoardWrite/insert", method = RequestMethod.POST)
 	public String write(HttpServletRequest request, LookgoodBoardVo lookgoodBoardVo) {
 		enterService.lookgoodBoardInsert(lookgoodBoardVo);
 		return "redirect:/entertainment/board/userBoardList";
@@ -213,7 +218,7 @@ public class EnterController {
 		mv.addObject("lookInfoNewList", lookInfoNewList);
 	
 		for(int i=0; i<lookInfoNewList.size(); i++){
-		System.out.println("title : " + lookInfoNewList.get(i).getLookTitle());
+
 		}
 		return mv;
 	}
@@ -246,10 +251,10 @@ public class EnterController {
 	
 	@RequestMapping("/entSearch")
 	@ResponseBody
-	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo){
+	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth){
 		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo);
 		List<LookInfoVo> imgList = new ArrayList<>();
-		
+		System.out.println(searchYear+","+searchMonth);
 		if(list != null){
 			for(LookInfoVo ivo : list){
 				String img[] = ivo.getLookImg().split(":");
