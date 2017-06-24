@@ -104,7 +104,6 @@
 		from blog b join TRAVELGE_INFO tr
 		on b.content_code = tr.content_code
 		where category = 'Travelge'
-		and rownum &lt;6
 		order by b.blog_date desc
 	</select>
 	

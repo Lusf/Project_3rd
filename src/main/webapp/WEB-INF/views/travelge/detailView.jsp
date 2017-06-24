@@ -16,10 +16,7 @@
 <meta name="description" content="">
 <meta name="viewport"
    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/bootstrap/css/bootstrap.css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
    rel="stylesheet">
    <script
