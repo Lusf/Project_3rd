@@ -103,9 +103,8 @@ public class EnterController {
 		mv.addObject("lookInfoConList", lookInfoConList);
 		mv.addObject("commentList", commentList);
 		
-		mv.addObject("imgs", cutImgSemiClone);
-		
-		System.out.println("comment List : " + commentList);
+		mv.addObject("cutImgSemiClone", cutImgSemiClone);
+	
 
 		return mv;
 	}

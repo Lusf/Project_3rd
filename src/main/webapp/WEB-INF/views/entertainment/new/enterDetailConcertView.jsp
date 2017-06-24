@@ -27,7 +27,7 @@
 body {background: #ccc;}
 
 .slider{
-	width: 640px; /*Same as width of the large image*/
+	width: 200px; /*Same as width of the large image*/
 	position: relative;
 	/*Instead of height we will use padding*/
 	padding-top: 320px; /*That helps bring the labels down*/
@@ -297,88 +297,31 @@ On click the images will be displayed at normal size to complete the effect
 	                        	스틸컷
 	                      	</p>
 	                      	<hr>					
-<!-- slider -->	
-<!-- <div class="slider">
-	
-
-	<input type="radio" name="slide_switch" id="id2" checked="checked"/>
-	<label for="id2">
-		<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"/>
-	
-	<input type="radio" name="slide_switch" id="id3"/>
-	<label for="id3">
-		<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"/>
-	
-	<input type="radio" name="slide_switch" id="id4"/>
-	<label for="id4">
-		<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"/>
-	
-	<input type="radio" name="slide_switch" id="id5"/>
-	<label for="id5">
-		<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
-</div> -->
 
 <div class="slider">
-	
 
-	<input type="radio" name="slide_switch" id="id2" checked="checked"/>
-	<label for="id2">
-		<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"/>
-	
-	<input type="radio" name="slide_switch" id="id3"/>
-	<label for="id3">
-		<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"/>
-	
-	<input type="radio" name="slide_switch" id="id4"/>
-	<label for="id4">
-		<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100"/>
-	</label>
-	<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"/>
-	
-<%-- 	<c:forEach items="${imgs}" var="imgg" varStatus="state">
-		<input type="radio" name="slide_switch" id="id5"/>
-		<label for="id5">
-			<img src="${imgg}" width="100"/>
-		</label>
-		<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
-	</c:forEach> --%>
+ 	<c:forEach items="${cutImgSemiClone}" var="imgs" varStatus="state">
+ 		<c:if test="${state.first }">
+ 			<input type="radio" name="slide_switch" id="${state.count}" checked="checked"/>
+ 				<label for="${state.count}">
+					<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${imgs}" width="30"/>
+				</label>
+			<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${imgs}"/>
+ 		</c:if>
+ 		
+ 		<c:if test="${not state.first }">		
+			<input type="radio" name="slide_switch" id="${state.count}"/>
+				<label for="${state.count}">
+					<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${imgs}" width="30"/>
+				</label>
+			<img src="${pageContext.request.contextPath}/resources/images/entertainment/concert/${imgs}"/>
+		</c:if>
+	</c:forEach>
 
 </div>
 					
- 					
-<%-- 						    <div class="container">
-						 
-						        <div class="row">
-								<div class="col-md-8">
-						        <div class="col-xs-12 col-sm-3 gal_img">
-						            <div class="thumbnail">
-						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" >
-						            </div>
-						        </div>
-						       
-						        <div class="col-xs-12 col-sm-3 gal_img">
-						            <div class="thumbnail">
-						                 <img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookInfoOne.lookCate}/${lookInfoOne.lookImg}" >
-						            </div>
-						        </div>
-						      
-	
-						    </div> 
-						    </div>
-					    </div>  --%>
-					    
+
+					    <br>
 					    	<p class="post-introduction">
 	                        	위치
 	                      	</p>
