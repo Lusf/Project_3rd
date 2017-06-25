@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
    prefix="sec"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="heart"  %>
    
 <!DOCTYPE html>
 <html>
@@ -18,9 +18,12 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/enter/enterVideoSliderView.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/css/enter/enterScSlide.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/js/enter/enterScSlide.js' />">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
-
-<!-- slide css -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- slide css -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.1.1.min.js"></script>
 <style>
 /*Time for the CSS*/
 * {margin: 0; padding: 0;}
@@ -155,22 +158,81 @@ On click the images will be displayed at normal size to complete the effect
 }
 </style>
 <script>
+$(document).ready(function() {
+	$(document).on('click','#wishlist', function() {
+		var contentCode = '${info.contentCode}';
+		var heart = $(this);
+
+		$.ajax({
+					url : "${pageContext.request.contextPath}/travelge/travelgeWishListUpdate",
+					type : "post",
+					dataType : "text",
+					data : "contentCode=" + contentCode,
+					beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(header, token)
+					},
+					success : function(result) {
+						if (result == '1') {
+							alert("찜하기")
+							heart.html("<span style='display:none'>"
+									+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i>"); 
+						} else {
+							alert("찜하기 취소")
+							heart.html("<span style='display:none'>"
+									+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i>");
+					
+						}
+					},
+					error : function(err) {
+						alert("오류 발생 : " + err);
+					}
+				});
+	})
+});
+
+/* var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+$(document).ready(function() {
+	
+});
+
+
+function makeHeart(item) {
+	var contentCode = item.contentCode;
+	var str = "";
+
+		str="<div >"
+		if (item.wish_list == 1) {
+			str += "<span style='float:right' id='wishlist'><span style='display:none'>"
+					+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i></span>"
+		} else {
+			str += "<span style='float:right' id='wishlist'><span style='display:none'>"
+					+ 1 + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>찜하기</span>"
+		}
+		str="</div>"
+	
+
+	
+	return str;
+}; 
+ 
 $(document)
 .on(
 		'click',
-		'#heartPP',
+		'#wishlist',
 		function() {
 			var contentCode = $(this).children().first().text();
 			var heart = $(this);
 
 			$
 					.ajax({
-						url : "${pageContext.request.contextPath}/entertainmetn/lookWishListUpdate",
+						url : "${pageContext.request.contextPath}/entertainment/lookWishListUpdate",
 						type : "post",
 						dataType : "text",
 						data : "contentCode=" + contentCode,
 						beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-							xhr.setRequestHeader(header, token)
+/* 							xhr.setRequestHeader(header, token)
 						},
 						success : function(result) {
 							if (result == '1') {
@@ -187,7 +249,9 @@ $(document)
 							alert("오류 발생 : " + err);
 						}
 					});
-		})
+		}) */ 
+		
+
 </script>
 </head>
 <body>
@@ -210,7 +274,9 @@ $(document)
 	</div>
 	
 </div>
+<div class="heartPrint">
 
+</div>
     <div class="container" >
 		<c:if test="${contentCode eq info.contentCode}">
         <div class="row" >
@@ -237,8 +303,17 @@ $(document)
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 							<sec:authorize access="isAuthenticated()">
+					<!-- 찜하기 -->
+				
+						<%-- <c:when test="${info.wish_list == 0 }"> --%>
+						<button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
+						<%-- </c:when> --%>
+	<%-- 					<c:otherwise>
+						<button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i><p style='float: right;"color: #FF6B6B;'></button>
+						</c:otherwise> --%>
+				
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
+								<!--  <a class="btn btn-default" data-toggle="modal" href="#">Heart</a>  -->
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
 							</sec:authorize>
 								<%--  <a class="btn btn-default" href="${pageContext.request.contextPath}/blog/${comment.id}">Review</a> --%>
@@ -584,7 +659,7 @@ $(document)
 
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
-	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
+	
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>

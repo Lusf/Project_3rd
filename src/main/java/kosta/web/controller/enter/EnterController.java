@@ -310,6 +310,7 @@ public class EnterController {
 	
 	//ÂòÇÏ±â±â
 	@RequestMapping("/lookWishListUpdate")
+	@ResponseBody
 	public int lookWishListUpdate(String contentCode){
 		int result = 0;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))

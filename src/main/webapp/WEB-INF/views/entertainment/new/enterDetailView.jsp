@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 <title>appart - property and classifieds bootstrap template</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -14,6 +17,10 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/enter/enterVideoSliderView.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/css/enter/enterScSlide.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/js/enter/enterScSlide.js' />">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
 
 <!-- slide css -->
@@ -88,6 +95,41 @@ On click the images will be displayed at normal size to complete the effect
 	
 </style>
 
+<script type="text/javascript">
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+$(document).on('click','#wishlist', function() {
+	var contentCode = '${info.contentCode}';
+	var heart = $(this);
+
+	$.ajax({
+				url : "${pageContext.request.contextPath}/travelge/travelgeWishListUpdate",
+				type : "post",
+				dataType : "text",
+				data : "contentCode=" + contentCode,
+				beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+					xhr.setRequestHeader(header, token)
+				},
+				success : function(result) {
+					if (result == '1') {
+						//alert("찜하기")
+						heart.html("<span style='display:none'>"
+								+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i>"); 
+					} else {
+						//alert("찜하기 취소")
+						heart.html("<span style='display:none'>"
+								+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i>");
+				
+					}
+				},
+				error : function(err) {
+					alert("오류 발생 : " + err);
+				}
+			});
+});
+</script>
+
 </head>
 <body>
 
@@ -136,8 +178,8 @@ On click the images will be displayed at normal size to complete the effect
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 							<sec:authorize access="isAuthenticated()">
-								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
-								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
+							 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
+								 <button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
 								 <!-- <a class="btn btn-default" data-toggle="modal" href="#share">Share</a> -->
 							</sec:authorize>
@@ -401,13 +443,13 @@ On click the images will be displayed at normal size to complete the effect
 
 						<div class="services-box text-center">
 							<video width="420" height="340" controls>
-<<<<<<< HEAD
+
  							<%-- 	<source src="${info.lookTariler }" type="video/mp4"> --%>
  							</video>												
-=======
+
  								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
 							</video>												
->>>>>>> 186892f57dfc7506c7e2b378c48347cc0a99b265
+
 						</div>
 
 					</div>
