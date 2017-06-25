@@ -132,7 +132,7 @@ $(function()
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="#scoreRank2">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -164,6 +164,7 @@ $(function()
                         </div>
                     </div>
                 </div>
+                </div>
                 <div class="row">
                 <div class="col-lg-12" id="userCount">
                         <div class="panel panel-red">
@@ -187,7 +188,7 @@ $(function()
                             </div>
                         </div>
                     </div>
-		<div class="col-lg-4">
+				<div class="col-lg-4">
                         <div class="panel panel-teal">
                             <div class="panel-heading">
                                 <h3 class="panel-title">좋아요 순위</h3>
@@ -241,7 +242,7 @@ $(function()
                             </div>
                         </div>
                     </div>
-            </div>
+            </div><!-- row -->
             <div class = "row">
             <div class="col-lg-12" id="scoreRank">
                         <div class="panel panel-primary">
@@ -288,11 +289,14 @@ $(function()
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> <!-- comment${vs.index} -->
                                          </c:forEach>   
+                                         
                                         </tbody>
                                     </table>
+                                    <div id="scoreRank2"></div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

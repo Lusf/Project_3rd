@@ -166,8 +166,10 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public LookInfoVo lookInfoSearchByCode(String contentCode) {
-
-		return lookInfoDAO.lookInfoSearchByCode(contentCode);
+		//dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+		LookInfoVo vo = lookInfoDAO.lookInfoSearchByCode(contentCode);
+		
+		return vo;
 	}
 	
 

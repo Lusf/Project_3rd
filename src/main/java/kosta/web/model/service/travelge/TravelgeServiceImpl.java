@@ -129,7 +129,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 			// 평점 가져오기
 			AvgScoreVo avgScore = travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode());
-			if (avgScore == null) {
+			if (avgScore == null) { 
 
 				avgScore = new AvgScoreVo();
 				avgScore.setScore(0.0);

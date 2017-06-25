@@ -304,7 +304,7 @@ public class TravelgeController {
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		//°Ë»öapi
 		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme();
-
+		
         if(keyword !=null)
         {
             mv.addObject("blogList",naverServiceImpl.searchBook(keyword,5,1));
@@ -447,7 +447,6 @@ public class TravelgeController {
 	@RequestMapping("/travelgeWishListUpdate")
 	@ResponseBody
 	public int travelgeWishListUpdate(String contentCode){
-		
 		int result = 0;
 		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
 		{
