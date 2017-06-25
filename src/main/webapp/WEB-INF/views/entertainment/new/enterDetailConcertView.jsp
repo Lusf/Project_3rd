@@ -154,7 +154,41 @@ On click the images will be displayed at normal size to complete the effect
     margin-left: 4em;
 }
 </style>
+<script>
+$(document)
+.on(
+		'click',
+		'#heartPP',
+		function() {
+			var contentCode = $(this).children().first().text();
+			var heart = $(this);
 
+			$
+					.ajax({
+						url : "${pageContext.request.contextPath}/entertainmetn/lookWishListUpdate",
+						type : "post",
+						dataType : "text",
+						data : "contentCode=" + contentCode,
+						beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+							xhr.setRequestHeader(header, token)
+						},
+						success : function(result) {
+							if (result == '1') {
+								heart.html("<span style='display:none'>"
+										+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i>");
+							} else {
+								
+								heart.html("<span style='display:none'>"
+										+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>");
+						
+							}
+						},
+						error : function(err) {
+							alert("오류 발생 : " + err);
+						}
+					});
+		})
+</script>
 </head>
 <body>
 
@@ -486,8 +520,9 @@ On click the images will be displayed at normal size to complete the effect
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<h4>좋아요♡</h4>	
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">하트주기</a>
+							<h4>좋아요♡</h4>	<%-- 
+							href="${pageContext.request.contextPath}/entertainment/lookWishListUpdate" --%>
+							<a class="btn btn-default" id="heartPP" >하트주기</a>
 							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
 						</div>
 
@@ -496,6 +531,21 @@ On click the images will be displayed at normal size to complete the effect
 			</div>
 		</div>
 	</div>
+	
+	<!-- giveHeart -->
+	<div id="giveHeart" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+					<div class="modal-body">
+						<div class="post-entry post-entry-modal">
+							<div class="services-box text-center">	
+						  	하트줬어요?? 어디갔어 내하트
+       						</div>
+						</div>
+					</div>
+			</div>
 	
 	<!-- video modal -->
 	<div id="preVideo" class="modal fade services-modal" role="dialog">

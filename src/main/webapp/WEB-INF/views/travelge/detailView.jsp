@@ -384,7 +384,7 @@ span .glyphicon {
       infowindow.open(map, marker);    
       
       </script>
-
+	
 		<div>
 			<hr>
 			<h3>블로그 리뷰(${fn:length(blogList)})</h3>

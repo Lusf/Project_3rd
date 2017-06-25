@@ -1,5 +1,9 @@
 package kosta.web.model.dao.enter;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,16 +16,27 @@ public class LookAvgScoreDAOImpl implements LookAvgScoreDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	public List<AvgScoreVo> lookWishListSelect(AvgScoreVo avgScoreVo) {
+		return sqlSession.selectList("LookAvgScoreMapper.selectWishList" , avgScoreVo);		
+	}
+	
 	@Override
-	public int lookWishListAdd(AvgScoreVo avgScoreVo) {
+	public int lookWishListInsert(String id, String contentCode) {
+		Map <Object, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("contentCode",contentCode);
 		
-		return 0;
+		return sqlSession.insert("LookAvgScoreMapper.insertWishList", map);
 	}
 
 	@Override
-	public int lookWishListDelete(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int lookWishListUpdate(String id, String contentCode, int wishList) {
+		Map <Object, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("contentCode",contentCode);
+		map.put("wishList", wishList);
+
+		return sqlSession.delete("lookAvgScoreMapper.updateWishList",map);
 	}
 
 	@Override

@@ -233,7 +233,7 @@ public class EnterController {
 	/** 볼거리 검색하기 */
 	@RequestMapping("enterSearchPage")
 	public ModelAndView enterSearch(LookInfoVo lookInfoVo){
-		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo);
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, null, null, "title");
 		List<LookInfoVo> imgList = new ArrayList<>();
 		
 		ModelAndView mv = new ModelAndView();
@@ -242,6 +242,23 @@ public class EnterController {
 			for(LookInfoVo ivo : list){
 				String img[] = ivo.getLookImg().split(":");
 				ivo.setLookImg(img[0]);
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+				}
+				
+				if(ivo.getLookLastDate()!=null){
+					String y = ivo.getLookLastDate().substring(0,4);
+					String m = ivo.getLookLastDate().substring(5,7);
+					String d = ivo.getLookLastDate().substring(8,10);
+					ivo.setLookLastDate(y+"/"+m+"/"+d);
+				}
+				else
+					ivo.setLookLastDate("없음");
+				
 				imgList.add(ivo);
 			}
 		}
@@ -254,22 +271,57 @@ public class EnterController {
 	
 	@RequestMapping("/entSearch")
 	@ResponseBody
-	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth){
-		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo);
+	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort){
+		
+		if(searchYear.equals(""))
+			searchYear = null;
+		if(searchMonth.equals(""))
+			searchMonth = null;
+	
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, searchYear, searchMonth, sort);
 		List<LookInfoVo> imgList = new ArrayList<>();
-		System.out.println(searchYear+","+searchMonth);
+
 		if(list != null){
 			for(LookInfoVo ivo : list){
 				String img[] = ivo.getLookImg().split(":");
 				ivo.setLookImg(img[0]);
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+				}
+				
+				if(ivo.getLookLastDate()!=null){
+					String y = ivo.getLookLastDate().substring(0,4);
+					String m = ivo.getLookLastDate().substring(5,7);
+					String d = ivo.getLookLastDate().substring(8,10);
+					ivo.setLookLastDate(y+"/"+m+"/"+d);
+				}
+				else
+					ivo.setLookLastDate("없음");
+				
 				imgList.add(ivo);
 			}
 		}
 		return imgList;
 	}
 	
-	
-	
+	//찜하기기
+	@RequestMapping("/lookWishListUpdate")
+	public int lookWishListUpdate(String contentCode){
+		int result = 0;
+		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+		{
+			System.out.println("찜하기 되었나요???");
+			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String id = user.getId();
+			result = enterService.lookWishListUpdate(id, contentCode);
+			System.out.println("result : " + result);
+		}
+		return result;
+	}
 	
 	
 	
