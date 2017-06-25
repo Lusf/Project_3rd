@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
    prefix="sec"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="heart"  %>
    
 <!DOCTYPE html>
 <html>
@@ -155,17 +155,75 @@ On click the images will be displayed at normal size to complete the effect
 }
 </style>
 <script>
+
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+$(document).ready(function() {
+	
+});
+
+/* function getReadList() {
+	//$('#loading').html('데이터 로딩중입니다.');
+	//ajax
+	$
+			.ajax({
+				url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
+				type : "post",
+				dataType : "json",
+				data : "index=" + currentPage + "&currentRegion="
+						+ currentRegion + "&currentTheme=" + currentTheme,
+				beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+/* 					xhr.setRequestHeader(header, token)
+				},
+				success : function(result) {
+
+					var str = "";
+					$.each(result, function(index, item) {
+
+						str += makeCard(item, index);
+					})
+					if (result != "") {
+						$(".scrollPaging:last").after(str);
+					}
+					$('#loading').empty();
+				},
+				error : function(err) {
+					alert("오류 발생 : " + err);
+				}
+			});
+};
+
+function makeCard(item) {
+	var contentCode = item.contentCode;
+	var str = "";
+
+		str="<div >"
+		if (item.wish_list == 1) {
+			str += "<span style='float:right' id='wishlist'><span style='display:none'>"
+					+ contentCode + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i></span>"
+		} else {
+			str += "<span style='float:right' id='wishlist'><span style='display:none'>"
+					+ 1 + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>찜하기</span>"
+		}
+		str="</div>"
+	
+
+	
+	return str;
+}; */
+ 
 $(document)
 .on(
 		'click',
-		'#heartPP',
+		'#wishlist',
 		function() {
 			var contentCode = $(this).children().first().text();
 			var heart = $(this);
 
 			$
 					.ajax({
-						url : "${pageContext.request.contextPath}/entertainmetn/lookWishListUpdate",
+						url : "${pageContext.request.contextPath}/entertainment/lookWishListUpdate",
 						type : "post",
 						dataType : "text",
 						data : "contentCode=" + contentCode,
@@ -236,7 +294,15 @@ $(document)
 						
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
-							<sec:authorize access="isAuthenticated()">
+							<sec:authorize access="isAuthenticated()">${info.avgScoreVo.wish_list}
+									<c:if test="${info.avgScoreVo.wish_list eq 1}" >
+				<span style='float:right' id='wishlist'><span style='display:none'>
+						 ${info.contentCode } </span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i></span>"
+				</c:if>	
+			 <c:if test="${info.avgScoreVo.wish_list eq 0 }">
+				<span style='float:right' id='wishlist'><span style='display:none'>
+						</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>찜하기</span>
+			</c:if>
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
 								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>

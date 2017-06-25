@@ -136,6 +136,13 @@ On click the images will be displayed at normal size to complete the effect
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
 							<sec:authorize access="isAuthenticated()">
+			if (${info.wish_list} == 1) {
+				<span style='float:right' id='wishlist'><span style='display:none'>"
+						+ ${info.contentCode } + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite</i></span>"
+			} else {
+				<span style='float:right' id='wishlist'><span style='display:none'>"
+						+ 1 + "</span><i class='material-icons' style='color:#FF6B6B; cursor:pointer'>favorite_border</i>찜하기</span>
+			}							
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
 								 <a class="btn btn-default" data-toggle="modal" href="#heart">Heart</a> 
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
@@ -401,13 +408,13 @@ On click the images will be displayed at normal size to complete the effect
 
 						<div class="services-box text-center">
 							<video width="420" height="340" controls>
-<<<<<<< HEAD
+
  							<%-- 	<source src="${info.lookTariler }" type="video/mp4"> --%>
  							</video>												
-=======
+
  								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
 							</video>												
->>>>>>> 186892f57dfc7506c7e2b378c48347cc0a99b265
+
 						</div>
 
 					</div>
