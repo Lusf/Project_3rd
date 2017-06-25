@@ -32,7 +32,7 @@
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">리뷰 쓰기</h1>
+						<h3 class="page-header">리뷰 쓰기</h3>
 					</div>
 					<div class="col-lg-12">
 						<form name="tx_editor_form" id="tx_editor_form"
