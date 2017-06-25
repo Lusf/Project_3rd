@@ -303,7 +303,7 @@ public class TravelgeController {
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		//°Ë»öapi
-		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion() +" "+list.get(0).getTravelgeTheme();
+		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion();
 		
         if(keyword !=null)
         {
