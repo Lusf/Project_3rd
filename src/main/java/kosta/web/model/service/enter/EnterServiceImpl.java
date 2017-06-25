@@ -116,17 +116,35 @@ public class EnterServiceImpl implements EnterService {
 		return 0;
 	}
 
+	
 	@Override
-	public int lookWishListAdd(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<AvgScoreVo> lookWishListSelect(AvgScoreVo avgScoreVo) {
+		
+		return lookAvgScoreDAO.lookWishListSelect(avgScoreVo);
 	}
 
 	@Override
-	public int lookWishListDelete(AvgScoreVo avgScoreVo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int lookWishListUpdate(String id, String contentCode) {
+		AvgScoreVo avgScoreVo = new AvgScoreVo(id, contentCode);
+		List<AvgScoreVo> temp = lookAvgScoreDAO.lookWishListSelect(avgScoreVo);
+		int result;
+		if (temp != null && temp.size() != 0) {
+			if (temp.get(0).getWish_list() == 0) {
+				lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 1);
+				result = 1;
+				
+			} else {
+				lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 0);
+				result = 0;
+			}
+		} else {
+			lookAvgScoreDAO.lookWishListInsert(id, contentCode);
+			result = 1;
+		}
+
+		return result;
 	}
+	
 
 	@Override
 	public int lookScoreInsert(AvgScoreVo avgScoreVo) {
@@ -148,8 +166,10 @@ public class EnterServiceImpl implements EnterService {
 
 	@Override
 	public LookInfoVo lookInfoSearchByCode(String contentCode) {
-
-		return lookInfoDAO.lookInfoSearchByCode(contentCode);
+		//dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+		LookInfoVo vo = lookInfoDAO.lookInfoSearchByCode(contentCode);
+		
+		return vo;
 	}
 	
 
@@ -172,7 +192,7 @@ public class EnterServiceImpl implements EnterService {
 	}
 	
 	@Override
-	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo) {
+	public List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort) {
 		// 카테고리 한글로 변환
 		lookInfoVo.setLookCate(map.get(lookInfoVo.getLookCate()));
 
@@ -182,7 +202,7 @@ public class EnterServiceImpl implements EnterService {
 		// 연령등급 한글로 변환
 		lookInfoVo.setLookAge(map.get(lookInfoVo.getLookAge()));
 		
-		return lookInfoDAO.enterSearch(lookInfoVo);
+		return lookInfoDAO.enterSearch(lookInfoVo, searchYear, searchMonth, sort);
 	}
 	
 	
@@ -272,9 +292,5 @@ public class EnterServiceImpl implements EnterService {
 
 		return enterAdminInfoDAO.enterInfoUpdate(lookInfoVo);
 	}
-
-
-
-
 
 }

@@ -65,14 +65,14 @@ public interface EnterService {
 	int lGBoardCommentDelete(int lgbcomNum);
 	
 	/**
-	 * 볼거리 찜 등록
+	 * 볼거리 찜 조회
 	 * */
-	int lookWishListAdd(AvgScoreVo avgScoreVo);
+	List<AvgScoreVo> lookWishListSelect(AvgScoreVo avgScoreVo);
 	
 	/**
-	 * 볼거리 찜 삭제
+	 * 볼거리 찜 수정
 	 * */
-	int lookWishListDelete(AvgScoreVo avgScoreVo);
+	int lookWishListUpdate(String id, String contentCode);
 	
 	/**
 	 * 별점 등록
@@ -110,7 +110,7 @@ public interface EnterService {
 	List<LookInfoVo> lookInfoSearchByNewList();
 	
 	/** search */
-	List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo);
+	List<LookInfoVo> enterSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort);
 	
 	
 	

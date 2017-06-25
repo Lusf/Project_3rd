@@ -23,20 +23,7 @@
 	<!-- 검색 -->
 	<select id="enterInfoSearch" resultMap="enterSelectMap" parameterType="LookInfoVo">
 	SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT 
-	FROM( SELECT * FROM Look_Info
-	<trim prefix="where" prefixOverrides="or">
-		<if test="contentCode!=null">CONTENT_CODE LIKE upper('%'||#{contentCode}||'%')</if>
-		<if test="lookTitle!=null">or look_title LIKE '%'||#{lookTitle}||'%'</if>
-		<if test="lookStory!=null">or look_story LIKE '%'||#{lookStory}||'%'</if>
-		<if test="lookMaker!=null">or look_maker LIKE '%'||#{lookMaker}||'%'</if>
-		<if test="lookGenre!=null">or look_genre LIKE '%'||#{lookGenre}||'%'</if>
-		<if test="lookStartDate!=null">or look_startdate LIKE '%'||#{lookStartDate}||'%'</if>
-		<if test="lookLastDate!=null">or look_lastdate LIKE '%'||#{lookLastDate}||'%'</if>
-		<if test="lookLoca!=null">or look_loca LIKE '%'||#{lookLoca}||'%'</if>
-		<if test="lookCate!=null">or look_cate LIKE '%'||#{lookCate}||'%'</if>
-		<if test="lookAge!=null">or look_age LIKE '%'||#{lookAge}||'%'</if>
-	</trim>
-	) T1) order by content_code
+	FROM( SELECT * FROM Look_Info) T1) order by content_code
 	</select>
 	
 	<!-- 추가 -->

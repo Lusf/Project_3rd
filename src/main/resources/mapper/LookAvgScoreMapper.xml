@@ -14,4 +14,56 @@
 	values(#{id}, #{contentCode}, #{score})
 </insert>
 
+<!-- 별점 수정 -->
+<update id="updateScore" parameterType="AvgScoreVo">
+UPDATE avg_score
+SET score = #{score}
+WHERE id=#{id}
+AND content_code=#{contentCode}
+</update>
+<!-- 평점출력 -->
+<select id="selectScore" parameterType="String" resultType = "AvgScoreVo">
+	select content_code as contentCode, avg(score) as score, count(content_code) as personCount
+	from avg_score
+	where content_code = #{_parameter}
+	and
+	score is not null
+	group by content_code
+</select>
+
+<!-- 개인 별점출력 -->
+<select id="selectUserScore" parameterType="map" resultMap = "avgScoreMap">
+	select content_code as contentCode,  score
+	from avg_score
+	where content_code = #{contentCode}
+	and id = #{id}
+</select>
+
+<!--  wishlist 등록 -->
+<insert id="insertWishList" parameterType="AvgScoreVo">
+	insert into avg_score (id, content_code, wish_list)
+	values(#{id}, #{contentCode}, 1)
+</insert>
+
+<!-- wishlist수정 -->
+<update id="updateWishList" parameterType="AvgScoreVo">
+	update avg_score
+	set wish_list = #{wishList}
+	where
+	id = #{id}
+	and 
+	content_code =  #{contentCode}
+</update>
+
+<!--  wishlist 조회 -->
+<select id="selectWishList" parameterType="AvgScoreVo" resultType = "AvgScoreVo">
+	select content_code as contentCode, wish_list
+	from avg_score
+	where
+	<if test="contentCode!=null">
+	content_code = #{contentCode} AND
+	</if>
+	id = #{id}
+</select>
+
 </mapper>
