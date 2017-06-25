@@ -22,8 +22,9 @@
 	rel="stylesheet">
 <script src="//apis.daum.net/maps/maps3.js?apikey=46b3765fabdb091e03e9b1d9b145dc32&libraries=services"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- slide css -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.1.1.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<%-- <script src="${pageContext.request.contextPath}/resources/js/jquery-3.1.1.min.js"></script> --%>
+<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
 <style>
 /*Time for the CSS*/
 * {margin: 0; padding: 0;}
@@ -304,14 +305,11 @@ $(document)
 							<div class="col-md-22" style="text-align:right">
 							<sec:authorize access="isAuthenticated()">
 					<!-- 찜하기 -->
-				
-						<%-- <c:when test="${info.wish_list == 0 }"> --%>
-						<button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
-						<%-- </c:when> --%>
-	<%-- 					<c:otherwise>
-						<button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i><p style='float: right;"color: #FF6B6B;'></button>
-						</c:otherwise> --%>
-				
+			
+<!-- 						<button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
+ -->			
+ 							<a class="btn btn-default" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i></a>
+ 								
 								 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
 								<!--  <a class="btn btn-default" data-toggle="modal" href="#">Heart</a>  -->
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
@@ -659,7 +657,7 @@ $(document)
 
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
-	
+<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>	
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/swiper.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery.countTo.js'/>"></script>
