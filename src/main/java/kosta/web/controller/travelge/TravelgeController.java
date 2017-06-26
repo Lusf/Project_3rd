@@ -76,10 +76,10 @@ public class TravelgeController {
 
 	// 여행지 정보 입력
 	@RequestMapping("/travelgeInfoInsert")
-	public String travelgeInfoInsert(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) throws Exception {
+	public ModelAndView travelgeInfoInsert(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) throws Exception {
 
 		String path = request.getSession().getServletContext().getRealPath("/resources/travelge");
-
+		ModelAndView mv = new ModelAndView();
 		MultipartFile file = travelgeInfoVo.getFile();
 
 		if (file.getSize() > 0) {
@@ -114,18 +114,25 @@ public class TravelgeController {
 			} catch (Exception e) {
 			}
 		}
+		String msg = "";
+		if (result == 1)
+			msg = "추가완료";
+		else
+			msg = "추가실패";
 
-		return "redirect:/";
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/travelgeInfoSearch");
+		return mv;
 
 	};
 	// 여행지 정보 수정
 
 	@RequestMapping("/travelgeInfoUpdate")
-	public String travelgeInfoUpdate(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) {
+	public ModelAndView travelgeInfoUpdate(HttpServletRequest request, TravelgeInfoVo travelgeInfoVo) {
 
 		String path = request.getSession().getServletContext().getRealPath("/resources/travelge");
 		MultipartFile file = travelgeInfoVo.getFile();
-
+		ModelAndView mv  = new ModelAndView();
 		if (file.getSize() > 0) {
 			travelgeInfoVo.setTravelgePhotos(file.getOriginalFilename());
 			try {
@@ -136,9 +143,16 @@ public class TravelgeController {
 			}
 		}
 
-		travelgeService.travelgeInfoUpdate(travelgeInfoVo);
+		int result = travelgeService.travelgeInfoUpdate(travelgeInfoVo);
+		String msg = "";
+		if (result == 1)
+			msg = "수정완료";
+		else
+			msg = "수정실패";
 
-		return "admin/travelgeInfoSearch";
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/travelgeInfoSearch");
+		return mv;
 	};
 
 	// 여행지 정보 수정 페이지로 이동
@@ -149,7 +163,7 @@ public class TravelgeController {
 
 		travelgeInfoVo.setContentCode(contentCode);
 
-		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(travelgeInfoVo, 0);
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch2(travelgeInfoVo, 0);
 
 		return new ModelAndView("admin/travelgeInfoUpdateForm", "list", list);
 
@@ -157,11 +171,19 @@ public class TravelgeController {
 
 	// 여행지 정보 삭제
 	@RequestMapping("/travelgeInfoDelete")
-	public String travelgeInfoDelete(String contentCode) {
+	public ModelAndView travelgeInfoDelete(String contentCode) {
+		ModelAndView mv = new ModelAndView();
+		int result = travelgeService.travelgeInfoDelete(contentCode);
+		String msg = "";
+		if (result == 1)
+			msg = "삭제완료";
+		else
+			msg = "삭제실패";
 
-		travelgeService.travelgeInfoDelete(contentCode);
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/travelgeInfoSearch");
+		return mv;
 
-		return "admin/travelgeInfoSearch";
 
 	}
 
@@ -176,8 +198,8 @@ public class TravelgeController {
 			spage = Integer.parseInt(page);
 		ModelAndView modelAndView = new ModelAndView();
 		TravelgeInfoVo travelgeInfoVo = new TravelgeInfoVo();
-		if (keyField.equals("all")) {
-			if (keyWord == null) {
+		if (keyField.equals("all") ) {
+			if (keyWord == null || keyWord.equals("")) {
 				travelgeInfoVo = null;
 			} else {
 				travelgeInfoVo.setContentCode(keyWord);
@@ -201,11 +223,12 @@ public class TravelgeController {
 
 		// 한 화면에 10개의 게시글을 보여지게함
 		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
-		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(travelgeInfoVo, spage);
+		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch2(travelgeInfoVo, spage);
 		int listCount = 0;
 		if (list != null && list.size() != 0) {
 			listCount = list.get(0).getCnt();
 		}
+		
 		// 전체 페이지 수
 		int maxPage = (int) (listCount / 10.0 + 0.9);
 		// 시작 페이지 번호
@@ -228,6 +251,7 @@ public class TravelgeController {
 		return modelAndView;
 
 	};
+	
 
 	// 스크롤 페이징 jackson
 	@RequestMapping("/travelgeInfoScroll")
@@ -445,7 +469,7 @@ public class TravelgeController {
 		return modelAndView;
 
 	};
-
+	
 	@RequestMapping("/travelgeWishListUpdate")
 	@ResponseBody
 	public int travelgeWishListUpdate(String contentCode){

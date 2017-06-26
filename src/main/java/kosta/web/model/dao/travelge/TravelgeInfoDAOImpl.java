@@ -38,10 +38,10 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 
 	@Override
 	public List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage) {
+	
 			 List<TravelgeInfoVo> list = sqlSession.selectList("travelgeInfoMapper.travelgeInfoLIst", travelgeInfoVo, new RowBounds(currentPage, 10));
-
+			 	
 			return list; 
-
 	}
 
 	@Override
@@ -67,6 +67,12 @@ public class TravelgeInfoDAOImpl implements TravelgeInfoDAO {
 	public List<TravelgeLatestCommentVo> latestComment() {
 		List<TravelgeLatestCommentVo> list = sqlSession.selectList("travelgeInfoMapper.latestComment", 0, new RowBounds(0,5));
 
+		return list;
+	}
+
+	@Override
+	public List<TravelgeInfoVo> travelgeInfoSearch2(TravelgeInfoVo travelgeInfoVo, int currentPage) {
+		 List<TravelgeInfoVo> list = sqlSession.selectList("travelgeInfoMapper.travelgeInfoSearch", travelgeInfoVo, new RowBounds(currentPage, 10));
 		return list;
 	}
 	
