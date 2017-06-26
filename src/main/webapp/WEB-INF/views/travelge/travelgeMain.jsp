@@ -113,28 +113,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="heading">Featured adds</h4>
+					<h2 class="heading" style="font-size: 18px">요즘,화제,여기</h2>
 				</div>
 				<c:forEach items="${list }" var="card" begin="3" end="5" varStatus="vs">
-				<!-- / single offer box-->
-<%-- 				<div class="col-md-4">
-					<div class="offer-box">
-						<div class="offer-box-head">
-							<div class="offer-slider">
-								<div class="swiper-slide">
-									<img src="${card.thumbnail }" alt="offer image">
-								</div>
-							</div>
-						</div>
-						<a href="#" class="btn btn-default" data-toggle="modal"
-							data-target="#card${vs.index}View"><span class="h4 offer-box-title">${card.recommandationTitle }</span>
-						</a>
-					</div>
-				</div> --%>
 				
 				<div class="col-md-4 ">
                 <div class="card">
-                    <img class="card-img-top" src="${card.thumbnail }">
+                    <img class="card-img-top" src="${card.thumbnail }" style="height: 240px;" alt="${card.recommandationTitle }">
                     <div class="card-block">
                         <h4 class="card-title">${card.recommandationTitle }</h4>
                         <div class="card-text" style="text-overflow: ellipsis; width: 350px;height: 45px;overflow: hidden;color: #aaa">
@@ -143,7 +128,7 @@
                     </div>
                     <div class="card-footer" style="text-align: center;">
                     <a href="#" class="btn btn-default" data-toggle="modal"
-							data-target="#card${vs.index}View">show</a>
+							data-target="#card${vs.index}View">자세히 보기</a>
                     </div>
                 </div>
             </div>
@@ -185,7 +170,7 @@
 
 	<section class="padding post-list" id="news">
 		<div class="container">
-			<h5 class="mt-0 mb-30">Latest Review</h5>
+			<h5 class="mt-0 mb-30">최신 리뷰</h5>
 			<c:forEach items="${commentList }" var="item" varStatus="vs">
 				<div class="post-list-sidebar-item mb-15">
 					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
@@ -225,72 +210,8 @@
 			</c:forEach>
 		</div>
 	</section>
+	<%@include file="/WEB-INF/views/travelge/travelge-footer.jsp"%>
 
-	<footer class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<p>
-							Support: <span>+48 123 456 789</span>
-						</p>
-					</div>
-					<div class="col-md-6">
-						<ul class="footer-social pull-right">
-							<li><a href="#" class="pull-left"><span
-									class="ti-facebook"></span></a></li>
-							<li><a href="#" class="pull-left"><span
-									class="ti-twitter"></span></a></li>
-							<li><a href="#" class="pull-left"><span
-									class="ti-instagram"></span></a></li>
-							<li><a href="#" class="pull-left"><span
-									class="ti-youtube"></span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-sm-12 smartphone-fw">
-					<address>
-						<strong>Main office (HQ)</strong><br> consectetur adipisicing
-						elit 122<br> CF 55678 USA <br> <br> Phone:
-						+1-222-333-4444 <br> E-mail: office@apart.com
-					</address>
-				</div>
-				<div class="col-md-2 col-sm-12 smartphone-fw">
-					<h6 class="heading">ACCOUNT</h6>
-					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-					</ul>
-				</div>
-				<div class="col-md-2 col-sm-12 smartphone-fw">
-					<h6 class="heading">INFORMATION</h6>
-					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-2 col-sm-12 smartphone-fw">
-					<h6 class="heading">ACCOUNT</h6>
-					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<script
 		src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 <script

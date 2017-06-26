@@ -99,14 +99,6 @@ On click the images will be displayed at normal size to complete the effect
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
-$( document ).ready(function() {
-	
-	$("#reviews").click(function() {
-		location.href="/WEB-INF/views/blog/blogReviewInsert.jsp"; 	 
-	})
-	
-}
-
 
 $(document).on('click','#wishlist', function() {
 	var contentCode = '${info.contentCode}';
@@ -198,7 +190,7 @@ $(document).on('click','#wishlist', function() {
 							<c:if test="${info.wish_list eq 0}">
 								 <button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
 							</c:if>
-								 <a class="btn btn-default" data-toggle="collapse" id="reviews">Review</a>
+								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
 								 <!-- <a class="btn btn-default" data-toggle="modal" href="#share">Share</a> -->
 							</sec:authorize>
 							</div>
@@ -346,16 +338,14 @@ $(document).on('click','#wishlist', function() {
 		                        		<div class="post-list-sidebar-item mb-15">
 				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
 				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookConList.lookCate}/${lookConList.lookImg}" alt="blog image">
-				                            </a>
-				
+				                            
 				                            <div class="col-xs-8 col-sm-9">
-				                                <a class="dark" href="#">
-				                                    <span class="h6 mt-0">${lookConList.lookTitle}</span>
-				                                    <span class="post-list-sidebar-item-description">				                                    	
+				                                 <span class="h6 mt-0">${lookConList.lookTitle}</span>
+				                                 <span class="post-list-sidebar-item-description">				                                    	
 				                                    		${lookConList.lookStory.substring(0,10)}..			                                    	
-				                                    </span>
-				                                </a>
+				                                 </span>
 				                            </div>
+				                            </a>
 				                         </div>			                         
 			                  
 			                       </c:if>
@@ -386,7 +376,7 @@ $(document).on('click','#wishlist', function() {
 	                    <c:if test="${not empty commentList }"  >
 	                    <c:if test="${state.first }">
 		                    <sec:authorize access="isAuthenticated()">
-		                        <a class="btn btn-default" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">내 리뷰만 볼래요?</a>
+		                        <a class="btn btn-default" data-toggle="modal" href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">내 리뷰만 볼래요?</a>
 							</sec:authorize> 
 							<hr>
 						</c:if>
@@ -448,24 +438,21 @@ $(document).on('click','#wishlist', function() {
 	</div>
 	
 	<!-- review 작성 modal -->
-<%-- 	<div id="reviews" class="modal fade services-modal" role="dialog">
+	<div id="reviews" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
 				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 				<div class="modal-body">
 					<div class="post-entry post-entry-modal">
-
 						<div class="services-box text-center">							
-							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
-							
+							<%@include file="/WEB-INF/views/entertainment/new/blogReviewInsert.jsp"%>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> --%>
+	</div>
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
