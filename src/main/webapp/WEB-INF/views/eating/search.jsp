@@ -23,93 +23,102 @@
 <body>
 
 	<header class="header header-fixed nav-down">
-		<div class="box mb-0">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header">
-					<a href="${pageContext.request.contextPath}/"
-						class="header-logo-small mt-15"><img
-						src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo.png"
-						alt="store logo"></a>
-					<button class="navbar-toggle" type="button" data-toggle="collapse"
-						data-target=".js-navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
+	<div class="box mb-0">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a href="${pageContext.request.contextPath}/" class="header-logo-small mt-15"><img
+					src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/logo2.png"
+					alt="store logo"></a>
+				<button class="navbar-toggle" type="button" data-toggle="collapse"
+					data-target=".js-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse js-navbar-collapse row">
+				<ul class="nav navbar-nav">
+					<li class="header-link"><a
+						href="${pageContext.request.contextPath}/eating/main"
+						title="메인"> 메인</a>
+					</li>
+					<li class="header-link dropdown mega pull-left "><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown">Contents <span
+							class="ti-angle-down"></span></a>
+						<ul class="dropdown-menu mega-menu container col-sm-12">
+							<li class="col-sm-4">
+								<ul>
+									<li>
+									<a href="${pageContext.request.contextPath}/travelge/main" style="background: none">
+									<img class="img-responsive  col-lg-12 mb-15"
+										src="${pageContext.request.contextPath}/resources/images/header/content/travelge.png"
+										alt="travelge">
+									</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="col-sm-4">
+								<ul>
+									<li>
+									<a href="${pageContext.request.contextPath}/entertainment/new/enterMain" style="background: none">
+									<img class="img-responsive  col-lg-12 mb-15"
+										src="${pageContext.request.contextPath}/resources/images/header/content/entertainment.png"
+										alt="entertainment">
+									</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li class="col-sm-4">
+								<ul>
+									<li>
+									<a href="${pageContext.request.contextPath}/eating/main" style="background: none">
+									<img class="img-responsive  col-lg-12 mb-15"
+										src="${pageContext.request.contextPath}/resources/images/header/content/food.jpg"
+										alt="food">
+									</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				<div class="navbar-buttons">
+					<sec:authorize access="isAuthenticated()">
+							<a class="btn btn-link btn-sm mt-10" style="cursor: default;"><sec:authentication property="principal.id" />님</a>
+							<a class="btn btn-link btn-sm mt-10" href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">My Blog</a>
+							<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
+							<a href="javascript:logout();" class="btn btn-primary btn-sm mt-10">로그아웃</a>
+					</sec:authorize>
+					<sec:authorize access="!isAuthenticated()">
+						<a href="${pageContext.request.contextPath }/user/loginForm"
+							class="btn btn-link btn-sm mt-10">Login</a>
+						<a href="${pageContext.request.contextPath }/user/joinForm"
+							class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
+					</sec:authorize>
 				</div>
+			</div>
+		</nav>
+	</div>
 
-				<div class="collapse navbar-collapse js-navbar-collapse row">
-					<ul class="nav navbar-nav">
-						<li class="header-link"><a href="${pageContext.request.contextPath}/eating/newdesign">home</a></li>
-						<li class="header-link"><a href="about-us">메뉴1</a></li>
-						<li class="header-link"><a href="blog-post">메뉴2</a></li>
-						<li class="header-link"><a href="developer">메뉴3</a></li>
-						<li class="header-link"><a href="landing">메뉴4</a></li>
-						<li class="header-link"><a href="offer">메뉴6</a></li>
-						<li class="header-link dropdown mega pull-left "><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
-								class="ti-angle-down"></span></a>
-							<ul class="dropdown-menu mega-menu container">
-								<li class="col-sm-3">
-									<ul>
-										<li><img class="img-responsive  col-lg-12 mb-15"
-											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
-											alt="category image"> <img
-											class="img-responsive col-lg-12"
-											src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/menu-add.png"
-											alt="category image"></li>
-									</ul>
-								</li>
+	<form id="logoutForm"
+		action="${pageContext.request.contextPath}/user/logout" method="post"
+		style="display: none">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
 
-								<li class="col-sm-3 col-xs-6 smartphone-fw">
-									<ul>
-										<li class="dropdown-header"><a
-											href="${pageContext.request.contextPath}/user/mypage">My
-												Page</a></li>
-										<li class="dropdown-header"><sec:authorize
-												access="isAuthenticated()">
-												<a
-													href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a>
-											</sec:authorize></li>
-									</ul>
-								</li>
-							</ul></li>
-					</ul>
-
-					<div class="navbar-buttons">
-						<sec:authorize access="isAuthenticated()">
-							<p>
-							<p>
-								<sec:authentication property="principal.id" />님 환영합니다.
-								<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
-								<a href="javascript:logout();">로그아웃</a>
-						</sec:authorize>
-						<sec:authorize access="!isAuthenticated()">
-							<a href="${pageContext.request.contextPath }/user/loginForm"
-								class="btn btn-link btn-sm mt-10">Login</a>
-							<a href="${pageContext.request.contextPath }/user/joinForm"
-								class="btn btn-primary btn-sm mt-10"><span class="ti-plus"></span>Join</a>
-						</sec:authorize>
-					</div>
-				</div>
-			</nav>
-		</div>
-
-		<form id="logoutForm"
-			action="${pageContext.request.contextPath}/user/logout" method="post"
-			style="display: none">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-		</form>
-
-		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<script>
-				location.href = "${pageContext.request.contextPath}/admin/index";
-			</script>
-		</sec:authorize>
-	</header>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<script>
+			location.href="${pageContext.request.contextPath}/admin/index";
+		</script>
+	</sec:authorize>
+</header>
 <!--검색  -->
-	<%@include file="/WEB-INF/views/eating/new_theme_mark2/searchView.jsp" %>
+	<%@include file="/WEB-INF/views/eating/searchView.jsp" %>
 <!-- 검색 -->
 	<section class="padding">
 		<div class="container">
@@ -227,18 +236,28 @@
 					<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
 						<div class="category-pagination text-center">
 							<nav aria-label="Page navigation">
+							
 								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> 
-									<span 	aria-hidden="true">&raquo;</span>
-									</a></li>
+									<!-- < 버튼 -->
+									<%-- ${spage } --%>
+										<c:if test="${startPage != 1 and startPage != null}">
+											<li><a href="${pageContext.request.contextPath }/eating/restaurantSearch?currentPage=${startPage-1}&category=${category}&category2=${category2}&keyWord=${keyWord}">
+											<i	class="material-icons">chevron_left</i></a></li>
+										</c:if>
+										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
+											<c:if test="${pageNum == spage and pageNum != null}">
+												<!-- 선택페이지 -->
+												<li class="active"><a>${pageNum}</a></li>
+											</c:if>
+											<!-- 선택되지 않은 페이지 -->
+											<c:if test="${pageNum != spage and pageNum != 0}">
+												<li><a href="${pageContext.request.contextPath }/eating/restaurantSearch?currentPage=${pageNum}&category=${category}&category2=${category2}&keyWord=${keyWord}">${pageNum}&nbsp;</a></li>
+											</c:if>
+										</c:forEach>
+										<!-- > 버튼 -->
+										<c:if test="${endPage != maxPage }">
+											<li><a href="${pageContext.request.contextPath }/eating/restaurantSearch?currentPage=${endPage+1 }"><i class="material-icons">chevron_right</i></a></li>
+										</c:if>
 								</ul>
 							</nav>
 						</div>

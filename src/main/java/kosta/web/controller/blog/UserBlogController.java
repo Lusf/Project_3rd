@@ -103,6 +103,29 @@ public class UserBlogController {
 		return mv;
 	}
 	
+	@RequestMapping("/insertBlogReview2")
+	public ModelAndView insertReview2(UserBlogVo blogVo){
+		String contentCode = blogVo.getContentCode();
+		blogService.insert(blogVo); 
+		
+		ModelAndView mv = new ModelAndView();
+		String ini = blogVo.getContentCode().substring(0,1);
+		System.out.println("¾îµð´Ï");
+		mv.setViewName("entertainment/new/enterDetailView/"+contentCode);
+		
+		//mv.addObject("contentCode", blogVo.getContentCode());
+		
+		if(ini.equals("T"))
+			mv = travelgeController.detailView(blogVo.getContentCode(), null);
+		else if(ini.equals("B"))
+			mv = enterController.enterDetailConcertView(blogVo.getContentCode(), null);
+		else if(ini.equals("C"))
+			blogVo.setCategory("Food");
+			//mv = foodController.search(blogVo.getContentCode());
+		
+		return mv;
+	}
+	
 	@RequestMapping("/blogUpdateCall")
 	public String call(){
 		return "blog/blogReviewUpdate";

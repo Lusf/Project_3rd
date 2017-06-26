@@ -27,6 +27,55 @@
 .home {
 	top: 0.3em;
 }
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+
 </style>
 
 </head>
@@ -42,7 +91,7 @@
 					style="background-image:url(${card.thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card.recommandationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
-						data-target="#card${vs.index}View">browse <span
+						data-target="#card${vs.index}View">더보기 <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				</c:forEach>
@@ -68,7 +117,7 @@
 				</div>
 				<c:forEach items="${list }" var="card" begin="3" end="5" varStatus="vs">
 				<!-- / single offer box-->
-				<div class="col-md-4">
+<%-- 				<div class="col-md-4">
 					<div class="offer-box">
 						<div class="offer-box-head">
 							<div class="offer-slider">
@@ -81,8 +130,29 @@
 							data-target="#card${vs.index}View"><span class="h4 offer-box-title">${card.recommandationTitle }</span>
 						</a>
 					</div>
-				</div>
+				</div> --%>
+				
+				<div class="col-md-4 ">
+                <div class="card">
+                    <img class="card-img-top" src="${card.thumbnail }">
+                    <div class="card-block">
+                        <h4 class="card-title">${card.recommandationTitle }</h4>
+                        <div class="card-text" style="text-overflow: ellipsis; width: 350px;height: 45px;overflow: hidden;color: #aaa">
+                           ${card.recommandationDescription }
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                    <a href="#" class="btn btn-default" data-toggle="modal"
+							data-target="#card${vs.index}View">show</a>
+                    </div>
+                </div>
+            </div>
+				
+				<!--test  -->
+				
 				</c:forEach>
+				<!-- ///////test////// -->
+
 			</div>
 			<!--/ row -->
 		</div>
@@ -96,11 +166,13 @@
 			<!-- Modal content-->
 			<div class="modal-content shadow">
 				<div class="offer-box">
-
 					<div class="offer-content pl-30 pr-30">
-						<span class="h4 offer-box-title">${card.recommandationTitle }</span>
-						<span class="offer-box-location">
-						</span> <span class="offer-box-meta"><span color="black">${card.recommandationDate}</span></span> <span
+
+					<br>
+						<span class="h4 offer-box-title" style="text-align: center;">${card.recommandationTitle }</span>
+						<span class="offer-box-location" style="text-align: right;">${card.recommandationDate}
+						</span> <span class="offer-box-meta"><p></p></span> <span
+
 							class="descriptionImg"> ${card.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>
@@ -119,10 +191,12 @@
 					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
 						src="assets/img/blog/01.jpg" alt="blog image"> <span
 						class="col-md-2"> ${item.id}</span>
-					</a> <a
+					</a> 
+					<a
 						href="${pageContext.request.contextPath}/travelge/detailView/${item.contentCode}"
-						class="col-md-2"> ${item.travelgeName} </a> <a class="col-md-4"
-						data-toggle="modal" data-target="#comment${vs.index}"> <span>
+						class="col-md-2""> ${item.travelgeName} </a>
+						 <a class="col-md-4"
+						data-toggle="modal" data-target="#comment${vs.index}"  style="cursor: pointer;"> <span>
 							${item.blogTitle } </span>
 					</a> <span class="post-list-sidebar-item-description col-md-2">${item.blogDate }</span>
 
@@ -134,11 +208,15 @@
 						<div class="modal-content shadow">
 							<div class="offer-box">
 								<div class="offer-content pl-30 pr-30">
-									<span class="h4 offer-box-title">${item.blogTitle }</span> <span>
-										${item.id}</span> <span class="offer-box-location"> <span
-										class="offer-box-meta">${item.blogDate }</span> <span
-										class="descriptionImg"> ${item.blogCont } </span> <a
-										class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
+									<span class="h4 offer-box-title">${item.blogTitle }</span> 
+									<div style="text-align: right;">
+									<span>작성자: ${item.id}</span> 
+									<span class="offer-box-meta">작성일: ${item.blogDate }</span> 
+									</div>
+									<span class="offer-box-location"> 
+									
+									<span class="descriptionImg"> ${item.blogCont } </span>
+									<a class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
 								</div>
 							</div>
 						</div>

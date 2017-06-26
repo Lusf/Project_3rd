@@ -205,8 +205,8 @@ $(function()
                                         <tbody>
                                         <c:forEach items="${wishRank}" var="list">
                                             <tr>
-                                                <td>${list.name}</td>
-                                                <td>${list.cnt}</td>
+                                                <td style="overflow: hidden;text-overflow: ellipsis; width: 80%;">${list.name}</td>
+                                                <td style="text-align: center;">${list.cnt}</td>
                                             </tr>
                                          </c:forEach>   
                                         </tbody>
@@ -232,7 +232,7 @@ $(function()
                                         <tbody>
                                         <c:forEach items="${scoreRank}" var="list">
                                             <tr>
-                                                <td>${list.name}</td>
+                                                <td class="pcontent">${list.name}</td>
                                                 <td>${list.avg} / ${list.cnt}(명)</td>
                                             </tr>
                                          </c:forEach>   
