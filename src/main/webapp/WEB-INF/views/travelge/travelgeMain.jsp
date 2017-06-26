@@ -131,12 +131,9 @@
 							data-target="#card${vs.index}View">자세히 보기</a>
                     </div>
                 </div>
-            </div>
-				
-				<!--test  -->
-				
+            </div>			
 				</c:forEach>
-				<!-- ///////test////// -->
+
 
 			</div>
 			<!--/ row -->
@@ -156,7 +153,7 @@
 					<br>
 						<span class="h4 offer-box-title" style="text-align: center;">${card.recommandationTitle }</span>
 						<span class="offer-box-location" style="text-align: right;">${card.recommandationDate}
-						</span> <span class="offer-box-meta"><p></p></span> <span
+						</span> <span class="offer-box-meta"><br></span> <span
 
 							class="descriptionImg"> ${card.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
@@ -170,16 +167,16 @@
 
 	<section class="padding post-list" id="news">
 		<div class="container">
-			<h5 class="mt-0 mb-30">최신 리뷰</h5>
+			<h2 class="heading" style="font-size: 18px">최신 리뷰</h2>
 			<c:forEach items="${commentList }" var="item" varStatus="vs">
 				<div class="post-list-sidebar-item mb-15">
 					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
-						src="${pageContext.request.contextPath }/resources/user/${item.id }/profile/${item.userPic}" alt="blog image"> <span
-						class="col-md-2"> ${item.id}</span>
+						src="${pageContext.request.contextPath }/resources/user/${item.id }/profile/${item.userPic}" alt="blog image" style="width: 50px; height: 50px; vertical-align: center;"
+									class="img-circle"> <span class="col-md-2"> ${item.id}</span>
 					</a> 
 					<a
 						href="${pageContext.request.contextPath}/travelge/detailView/${item.contentCode}"
-						class="col-md-2""> ${item.travelgeName} </a>
+						class="col-md-2"> ${item.travelgeName} </a>
 						 <a class="col-md-4"
 						data-toggle="modal" data-target="#comment${vs.index}"  style="cursor: pointer;"> <span>
 							${item.blogTitle } </span>

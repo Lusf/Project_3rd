@@ -90,7 +90,7 @@ $(function()
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
-                        	현재접속자수 : ${count }      
+                        	현재접속자수 : ${count }   누적접속자수 : ${totalCount }   
                         </div>
                     </div>
                 </div>

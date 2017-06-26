@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html >
 <html>
 <head>
@@ -12,8 +13,14 @@
 <div class="container">
 
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">서비스이용약관</a></li>
+  <c:if test="${choice == 0 }">
+      <li class="active"><a data-toggle="tab" href="#home">서비스이용약관</a></li>
     <li><a data-toggle="tab" href="#menu1">개인정보처리방침</a></li>
+  </c:if>
+    <c:if test="${choice == 1 }">
+      <li ><a data-toggle="tab" href="#home">서비스이용약관</a></li>
+    <li class="active"><a data-toggle="tab" href="#menu1">개인정보처리방침</a></li>
+  </c:if>
   </ul>
 
   <div class="tab-content">

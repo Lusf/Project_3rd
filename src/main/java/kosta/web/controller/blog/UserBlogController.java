@@ -110,7 +110,7 @@ public class UserBlogController {
 		
 		ModelAndView mv = new ModelAndView();
 		String ini = blogVo.getContentCode().substring(0,1);
-		System.out.println("¾îµð´Ï");
+		
 		mv.setViewName("entertainment/new/enterDetailView/"+contentCode);
 		
 		//mv.addObject("contentCode", blogVo.getContentCode());
