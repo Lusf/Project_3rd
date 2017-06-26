@@ -18,20 +18,20 @@
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 
 <style>
-#imgList {
-	width:277px; height:380px;
+#imgHead {
+	width:200px; height:300px;
 	padding: 0;
-	margin: 30px 15px;
 }
-.font {}
+#contHead {
+	width:330px; height:300px;
+	margin-left: 10px;
+	background-color: #525975;
+}
 
-.imgHead:hover > .contHead {
-	opacity: 0;
-	transition: opacity 1s
+.contTitle {
+	 font-weight: bold;
 }
-.imgHead:hover > .contHead {
-	opacity: 1;
-}
+.font {color: white;}
 </style>
 
 <script>
@@ -62,18 +62,18 @@ function searchEnter(){
 				str += "<h2>검색결과 없음</h2>";
 			else{
 				$.each(result, function(index, item) {
-					str += "<div class='offer-box border col-md-3' id='imgList'>";
-					str += "<div class='offer-box-head imgHead' id='img"+item.contentCode+"' style='display:none;'>";
-					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
-					str += "</div><div id='cont"+item.contentCode+"' class='contHead'>";
-					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'>";
-					str += "<span class='h4 offer-box-title font'>"+item.lookTitle+"</span><br><br>";
-					str += "<span class='font'>카테고리: "+item.lookCate+"</span><br>";
-					str += "<span class='font'>장르: "+item.lookGenre+"</span><br>";
-					str += "<span class='font'>등급: "+item.lookAge+"</span><br><br>";
-					str += "<span class='offer-box-location font'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
-					str += "<span class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
-					str += "</a></div></div>";
+					str += "<div class='col-md-6'><div class='offer-box border col-md-3' id='imgHead'>";
+					str += "<div class='offer-box-head'>";
+					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail' style='background-color: #525975;'/>";
+					str += "</div></div><div class="offer-box border col-md-3" id="contHead">";
+					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'><div style='height: 100%'>";
+					str += "<h3 class='contTitle font'>"+item.lookTitle+"</h3><br>";
+					str += "<h5 class='font'>카테고리: "+item.lookCate+"</h5>";
+					str += "<h5 class='font'>장르: "+item.lookGenre+"</h5>";
+					str += "<h5 class='font'>등급: "+item.lookAge+"</h5><br><br>";
+					str += "<h5 class='font'><span class='ti-location-pin'></span>"+item.lookLoca+"</h5>";
+					str += "<h5 class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</h5>";
+					str += "</div></a></div></div>";
 				});
 			}
 
@@ -158,7 +158,7 @@ function click(state){
 
 								<div class="home-search-row">
 									<!-- StartDate -->
-									<div class="col-md-5">
+									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
 												<h6>Year / Month</h6>
@@ -192,10 +192,12 @@ function click(state){
 												<h6>Sort</h6>
 											</div>
 											<div class="form-group col-md-6">
-												<h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5>
+												<button type="button" class="btn btn-primary"
+												 onclick="sortTitle(); return false;"> Title </button>
 											</div>
 											<div class="form-group col-md-6">
-												<h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5>
+												<button type="button" class="btn btn-primary"
+												 onclick="sortNew(); return false;"> New </button>
 											</div>
 										</div>
 									</div>
@@ -211,19 +213,7 @@ function click(state){
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 sidebar" style="width:200px;">
-					<div class="sidebar-box">
-						<div class="col-md-12">
-							<h5 class="mb-15">Sort</h5>
-						</div>
-						<ul>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-9" style="width:82%;">
+				<div class="col-md-12">
 					<div class="pl-0 pr-0">
 						<h4 class="heading">Featured adds</h4>
 					</div>
@@ -233,24 +223,26 @@ function click(state){
 						</c:if>
 						<c:if test="${!empty list}">
 						<c:forEach items="${list}" var="list">
-							<div class="offer-box border col-md-3" id="imgList" onclick="click(0); return false;">
-								<div class="offer-box-head imgHead" id="img${list.contentCode}" style="display:none;">
-									<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"
-										 class="img-thumbnail"/>
-								</div>
-								<div id="cont${list.contentCode}" class="contHead">
-									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
-									<div>
-										<span class="h4 offer-box-title font">${list.lookTitle}</span><br><br>
-										<span class="font">카테고리: ${list.lookCate}</span><br>
-										<span class="font">장르: ${list.lookGenre}</span><br>
-										<span class="font">등급: ${list.lookAge}</span><br><br>
-										<span class="offer-box-location font"><span class="ti-location-pin"></span>${list.lookLoca}</span>
-										<span class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
-									</div>
-									</a>
+						<div class="col-md-6 imgList">
+							<div class="offer-box border col-md-3" id="imgHead">
+								<div class="offer-box-head">
+								<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"
+										 class="img-thumbnail" style="background-color: #525975;"/>
 								</div>
 							</div>
+							<div class="offer-box border col-md-3" id="contHead">
+								<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
+								<div style="height: 100%">
+									<h3 class="contTitle font">${list.lookTitle}</h3><br>
+									<h5 class="font">카테고리: ${list.lookCate}</h5>
+									<h5 class="font">장르: ${list.lookGenre}</h5>
+									<h5 class="font">등급: ${list.lookAge}</h5><br><br>
+									<h5 class="font"><span class="ti-location-pin"></span>${list.lookLoca}</h5>
+									<h5 class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</h5>
+								</div>
+								</a>
+							</div>
+						</div>
 						</c:forEach>
 						</c:if>
 					</div>
