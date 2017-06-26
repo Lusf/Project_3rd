@@ -34,6 +34,10 @@
 			<div class="collapse navbar-collapse js-navbar-collapse row">
 				<ul class="nav navbar-nav">
 					<li class="header-link"><a
+						href="${pageContext.request.contextPath}/entertainment/new/enterMain"
+						title="메인"> 메인</a>
+					</li>
+					<li class="header-link"><a
 						href="${pageContext.request.contextPath }/enter/board/tables"
 						title="추천게시판"> 추천게시판</a>
 					</li>
@@ -43,7 +47,7 @@
 					</li>
 
 					<li class="header-link dropdown mega pull-left "><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown">Contents<span
+						class="dropdown-toggle" data-toggle="dropdown">Contents <span
 							class="ti-angle-down"></span></a>
 						<ul class="dropdown-menu mega-menu container">
 							<li class="col-sm-4">

@@ -49,7 +49,7 @@
 						title="검색">검색</a></li>
 
 					<li class="header-link dropdown mega pull-left "><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown">Contents<span
+						class="dropdown-toggle" data-toggle="dropdown">Contents <span
 							class="ti-angle-down"></span></a>
 						<ul class="dropdown-menu mega-menu container">
 							<li class="col-sm-4">
