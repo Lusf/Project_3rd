@@ -453,11 +453,11 @@ height:auto
 												<!-- single offer box-->
 													<div class="offer-box">
 															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}"> 
+																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >
 																</a>
 															</div>
-															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}"> 
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}"> 
 																<span class="h4 offer-box-title">${infoList.lookTitle}</span>													
 															</a>
 													</div>

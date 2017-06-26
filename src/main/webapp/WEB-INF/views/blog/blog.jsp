@@ -103,8 +103,6 @@ $(function() {
 <!-- blogTitle을 위한 script -->
 <script>
 	$(function() {
-		checkForHash();
-		
 		$(".list-unstyled li a").click(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/blog/selectBlogTitle",
@@ -132,9 +130,8 @@ $(function() {
 		});
 
 		function cont(){
-			$("#blogTitle tr td a").click(function() {
+			$("#blogTitle tr td a , .titleTable tr:LAST-CHILD td:NTH-CHILD(2) a").click(function() {
 				document.body.scrollTop = 0;
-				document.location.hash = "#"+$(this).attr("id");
 				$.ajax({
 					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
 					type : "post",
@@ -207,13 +204,6 @@ $(function() {
 			});
 		}
 		
-		function checkForHash() {
-		    if(document.location.hash){
-		        var HashLocationName = document.location.hash;
-		        HashLocationName = HashLocationName.replace("#","");
-		        $(".cont").html(HashLocationName)
-		    }
-		}
 		cont();
 	});
 </script>

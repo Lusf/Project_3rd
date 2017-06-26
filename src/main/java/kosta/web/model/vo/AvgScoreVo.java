@@ -73,5 +73,17 @@ public class AvgScoreVo {
 		this.personCount = personCount;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "AvgScoreVo [id=" + id + ", contentCode=" + contentCode + ", score=" + score + ", personCount="
+				+ personCount + ", wish_list=" + wish_list + ", getId()=" + getId()
+				+ ", getContentCode()=" + getContentCode() + ", getScore()=" + getScore()
+				+ ", getWish_list()=" + getWish_list() + ", getPersonCount()=" + getPersonCount()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
 	
 }
