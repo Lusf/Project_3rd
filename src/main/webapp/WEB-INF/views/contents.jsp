@@ -24,7 +24,7 @@ h1 {
 }
 
 #indexGrid {
-	padding-top: 2em
+	padding-top: 0.3em
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px) {

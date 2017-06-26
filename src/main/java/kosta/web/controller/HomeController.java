@@ -10,4 +10,9 @@ public class HomeController {
    public String home() {
       return "index";
    }
+   
+   @RequestMapping(value="privacyTerms")
+   public String privacyTerms(){
+	   return "privacyTerms";
+   }
 }
