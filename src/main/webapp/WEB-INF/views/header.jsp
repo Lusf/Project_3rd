@@ -37,7 +37,7 @@ function logout() {
 				<ul class="nav navbar-nav">
 					<li class="header-link"><a href="${pageContext.request.contextPath}/travelge/main">Travelge</a></li>
 					<li class="header-link"><a href="${pageContext.request.contextPath}/entertainment/new/enterMain">Entertainment</a></li>
-					<li class="header-link"><a href="${pageContext.request.contextPath}/eating/newdesign">Food</a></li>
+					<li class="header-link"><a href="${pageContext.request.contextPath}/eating/main">Food</a></li>
 					<%-- <sec:authorize access="isAuthenticated()">
 						<li class="header-link"><a href="${pageContext.request.contextPath}/user/mypage">My Page</a></li>
 					</sec:authorize> --%>
