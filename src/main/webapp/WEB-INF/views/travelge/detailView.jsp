@@ -484,7 +484,10 @@ span .glyphicon {
 						</div>
 					</c:forEach>
 
-				</div><br>
+				</div>
+
+			</div>
+							<br>
 					<div style="text-align: center;">
 						<sec:authorize access="isAuthenticated()">
 							<button
@@ -493,7 +496,6 @@ span .glyphicon {
 								class="btn btn-info">리뷰 작성</button>
 						</sec:authorize>
 					</div>
-			</div>
 		</div>
 
 	</div>

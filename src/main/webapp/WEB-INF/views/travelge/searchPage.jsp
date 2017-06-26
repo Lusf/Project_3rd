@@ -39,6 +39,7 @@
 	border-top: 1px grey solid;
 	padding: 0.5em;
 	text-align: center;
+	background-color: #556270;
 }
 
 #locationDropdown li:hover {
@@ -122,7 +123,7 @@
 		str += "<div class='col-md-offset-1 col-md-10'>";
 
 		str += "<div class='thumbnail'style='height: 7em; background-color:white; border:4px solid #ecebeb''>";
-		str += "<img src='${pageContext.request.contextPath}/resources/travelge/"+contentCode+"/photos/"+item.travelgePhotos+"' style='float: left; height: 100%;'>";
+		str += "<img src='${pageContext.request.contextPath}/resources/travelge/"+contentCode+"/photos/"+item.travelgePhotos+"' style='float: left; height: 100%;width:150px;margin-right: 20px;'>";
 		str += "<div>";
 		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
 		str += "<h4 style='color : black; font-weight : 700'>" + item.travelgeName + "</h4>";
@@ -138,9 +139,9 @@
 			}
 		
 		str += "<br>";
-		str += "<span><i class='material-icons' style='vertical-align:sub; font-size:18px'>star</i>"
+		str += "<span><i class='material-icons' style='vertical-align:sub; font-size:18px;color:#556270;'>star</i>"
 				+ item.avgScoreVo.score + "    </span>";
-		str += "<span><i class='material-icons' style='vertical-align:bottom; font-size:18px'>messenger</i>"+item.commentCount+"</span>";		
+		str += "<span><i class='material-icons' style='vertical-align:bottom; font-size:18px;color:#556270;'>messenger</i>"+item.commentCount+"</span>";		
 		str += "</div>";
 		str += "</div>";
 		str += "</div>";
