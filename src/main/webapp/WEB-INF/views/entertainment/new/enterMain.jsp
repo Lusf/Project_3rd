@@ -493,78 +493,14 @@ height:auto
 
 <!-- 최신순서대로 보여주기 -->
 <div class="container-fluid">
-    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">        
-        	<c:forEach items="${lookInfoNewList }" var="newList" varStatus="state" >
-        	<c:if test="${state.index lt 4}">
-            <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                            <h2>${newList.lookTitle}</h2>
-                      		<p>${newList.lookStory}</p>
-                       </div>
-                    </div>
-                </div>            
-            </div> 
-            </c:if>
-            </c:forEach>
-                       
-            <div class="item active">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="top col-md-6 col-xs-12"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" class="img-responsive"></div>
-                        <div class="content col-md-6 col-xs-12">
-                        <c:forEach items="${lookInfoNewList }" var="newList" varStatus="state" >
-                        	<c:if test="${state.last}">
-	                            <h2>${newList.lookTitle}</h2>
-	                      		<p>${newList.lookStory}</p>
-                      		</c:if>
-                      	</c:forEach>
-                       </div>
-                    </div>
-                </div>            
-            </div> 
-        <!-- End Item -->
-        </div>
-        <a data-slide="prev" href="#custom_carousel" class="izq carousel-control">‹</a>
-        <a data-slide="next" href="#custom_carousel" class="der carousel-control">›</a>
-        <!-- End Carousel Inner -->
-                <div class="controls draggable ui-widget-content col-md-6 col-xs-12">
-            <ul class="nav ui-widget-header">
-				<c:forEach items="${lookInfoNewList }" var="newList" varStatus="state">
-					<c:if test="${state.first}">
-						<li data-target="#custom_carousel" data-slide-to="${state.index}" class="active">
-							<a href="#">
-								<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${newList.lookTitle}</small>
-							</a>
-						</li>
-                	</c:if>
-                	<c:if test="${not state.first}">             
-                		<li data-target="#custom_carousel" data-slide-to="${state.index}">
-                			<a href="#">
-                				<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg">
-                				<small>${newList.lookTitle}</small>
-                			</a>
-                		</li>               
-					</c:if>
-				</c:forEach>
-<%--                 <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(0).lookTitle}</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(1).lookTitle}</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(2).lookTitle}</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(3).lookTitle}</small></a></li>
-                <li data-target="#custom_carousel" data-slide-to="4"><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"><small>${lookInfoNewList.get(4).lookTitle}</small></a></li>
-                --%>
-            </ul>
-        </div>
-    </div>
-    <!-- End Carousel -->
+
 </div>
  
  
- 	<!-- We will use PrefixFree - a script that takes care of CSS3 vendor prefixes
+
+
+
+<!-- We will use PrefixFree - a script that takes care of CSS3 vendor prefixes
 You can download it from https://leaverou.github.com/prefixfree/ -->
 <script src="http://thecodeplayer.com/uploads/js/prefixfree.js" type="text/javascript"></script>
 	
