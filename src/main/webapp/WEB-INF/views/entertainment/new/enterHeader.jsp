@@ -77,7 +77,7 @@
 							<li class="col-sm-4">
 								<ul>
 									<li>
-									<a href="${pageContext.request.contextPath}/eating/newdesign" style="background: none">
+									<a href="${pageContext.request.contextPath}/eating/main" style="background: none">
 									<img class="img-responsive  col-lg-12 mb-15"
 										src="${pageContext.request.contextPath}/resources/images/header/content/food.jpg"
 										alt="food">
