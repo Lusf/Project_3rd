@@ -300,8 +300,8 @@ span .glyphicon {
 						style="color: white;">favorite</i>${fn:length(commentList)}</span> <a
 						href="#reviewcont"><span class="text-block3"><i
 							class="material-icons" style="color: white;">messenger</i>${fn:length(commentList)}</span></a>
-				</div>
-				<div style="text-align: right;"><p></p>
+							</div>
+							<div style="text-align: right;"><p></p>
 					<!-- 찜하기 -->
 					<c:choose >
 						<c:when test="${info.wish_list == 0 }">
