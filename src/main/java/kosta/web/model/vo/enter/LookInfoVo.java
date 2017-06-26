@@ -29,6 +29,16 @@ public class LookInfoVo {
 	
 	private AvgScoreVo avgScoreVo;
 	
+	private int wish_list;
+	
+	public int getWish_list() {
+		return wish_list;
+	}
+
+	public void setWish_list(int wish_list) {
+		this.wish_list = wish_list;
+	}
+
 	private int cnt;
 	
 	private MultipartFile file;

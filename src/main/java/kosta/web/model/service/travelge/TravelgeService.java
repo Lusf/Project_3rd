@@ -38,6 +38,8 @@ public interface TravelgeService {
 	
 	List<TravelgeInfoVo> travelgeInfoSearch(TravelgeInfoVo travelgeInfoVo, int currentPage);
 	
+	List<TravelgeInfoVo> travelgeInfoSearch2(TravelgeInfoVo travelgeInfoVo, int currentPage);
+	
 	int travelgeRecommandInsert(TravelgeRecommandationVo travelgeRecommandationVo);
 	
 	int travelgeRecommandUpdate(TravelgeRecommandationVo travelgeRecommandationVo);

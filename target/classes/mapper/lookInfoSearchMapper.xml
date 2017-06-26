@@ -21,7 +21,7 @@
 
 <!-- select -->
 <select id="enterSearchSelect" parameterType="map" resultMap="lookInfoSearchMap">
-	select content_code,look_title,look_cate,look_genre,look_age,look_loca,look_img,look_startdate,look_lastdate from look_info
+	select * from look_info
 	<trim prefix="where" prefixOverrides="and">
 		<if test="info.lookTitle!=null">
 			look_title like '%'||#{info.lookTitle}||'%'

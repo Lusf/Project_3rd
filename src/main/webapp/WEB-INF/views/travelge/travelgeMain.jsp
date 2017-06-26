@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>travelge main - 오지랖</title>
+<title>오지랖 - travelge main</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -99,8 +99,8 @@
 
 					<div class="offer-content pl-30 pr-30">
 						<span class="h4 offer-box-title">${card.recommandationTitle }</span>
-						<span class="offer-box-location"><i class="material-icons">visibility</i>${card.readNum }
-						</span> <span class="offer-box-meta">${card.recommandationDate}</span> <span
+						<span class="offer-box-location">
+						</span> <span class="offer-box-meta"><span color="black">${card.recommandationDate}</span></span> <span
 							class="descriptionImg"> ${card.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>

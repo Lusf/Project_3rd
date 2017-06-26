@@ -38,16 +38,16 @@ function logout() {
 					<li class="header-link"><a href="${pageContext.request.contextPath}/travelge/main">Travelge</a></li>
 					<li class="header-link"><a href="${pageContext.request.contextPath}/entertainment/new/enterMain">Entertainment</a></li>
 					<li class="header-link"><a href="${pageContext.request.contextPath}/eating/newdesign">Food</a></li>
-					<sec:authorize access="isAuthenticated()">
+					<%-- <sec:authorize access="isAuthenticated()">
 						<li class="header-link"><a href="${pageContext.request.contextPath}/user/mypage">My Page</a></li>
-					</sec:authorize>
+					</sec:authorize> --%>
 					
-					<li class="header-link"><sec:authorize access="isAuthenticated()"><a href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">Blog</a></sec:authorize></li>
 				</ul>
 
 				<div class="navbar-buttons">
 					<sec:authorize access="isAuthenticated()">
 							<a class="btn btn-link btn-sm mt-10" style="cursor: default;"><sec:authentication property="principal.id" />님</a>
+							<a class="btn btn-link btn-sm mt-10" href="${pageContext.request.contextPath}/blog/<sec:authentication property='principal.id' />">My Blog</a>
 							<!-- Authentication의 getPrincipal().getName() -> Principal은 Provider에서 Authentication 에 넣어준 VO(생성자 첫 매개변수) -->
 							<a href="javascript:logout();" class="btn btn-primary btn-sm mt-10">로그아웃</a>
 					</sec:authorize>

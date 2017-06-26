@@ -25,13 +25,17 @@
 		parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
 
 		SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT
-		FROM( SELECT * FROM TRAVELGE_INFO
+		FROM( SELECT * FROM
+		TRAVELGE_INFO
 		<where>
 			<choose>
-				<when test="travelgeRegion!=null and travelgeTheme!=null and contentCode!=null and travelgeAddr!=null">
-					TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%' or TRAVELGE_THEME LIKE
+				<when
+					test="travelgeRegion!=null and travelgeTheme!=null and contentCode!=null and travelgeAddr!=null">
+					TRAVELGE_REGION LIKE '%'||#{travelgeRegion}||'%' or
+					TRAVELGE_THEME LIKE
 					'%'||#{travelgeTheme}||'%'
-					or CONTENT_CODE LIKE '%'||#{contentCode}||'%' or TRAVELGE_ADDR LIKE
+					or CONTENT_CODE LIKE
+					'%'||#{contentCode}||'%' or TRAVELGE_ADDR LIKE
 					'%'||#{travelgeAddr}||'%'
 				</when>
 				<when test="contentCode!=null">CONTENT_CODE LIKE '%'||#{contentCode}||'%'</when>
@@ -48,6 +52,34 @@
 		</where>
 		) T1) order by content_code
 	</select>
+
+	<!-- select -->
+	<select id="travelgeInfoLIst" resultMap="selectMap"
+		parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
+
+		SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT
+		FROM( SELECT * FROM
+		TRAVELGE_INFO
+		<where>
+			<if test="travelgeRegion!=null and travelgeTheme!=null ">
+				TRAVELGE_THEME = #{travelgeTheme}
+				AND
+				TRAVELGE_REGION =#{travelgeRegion}
+			</if>
+			<if test="travelgeRegion==null and travelgeTheme!=null ">
+				TRAVELGE_THEME = #{travelgeTheme}
+			</if>
+			<if test="travelgeRegion!=null and travelgeTheme==null ">
+				TRAVELGE_REGION =#{travelgeRegion}
+			</if>
+			<if test= "contentCode != null">
+				content_code =#{contentCode}
+			</if>
+			AND 1=1
+		</where>
+		) T1) order by content_code
+	</select>
+
 	<!-- 키워드 검색 -->
 	<select id="travelgeSearchScroll" resultMap="selectMap"
 		parameterType="map">
@@ -55,15 +87,22 @@
 		SELECT *
 		FROM TRAVELGE_INFO
 		<where>
-		<if test="travelgeRegion!=null and travelgeTheme!=null ">
-			TRAVELGE_THEME = #{travelgeTheme}
-			AND
-			TRAVELGE_REGION =#{travelgeRegion}		
-		</if>
+			<if test="travelgeRegion!=null and travelgeTheme!=null ">
+				TRAVELGE_THEME = #{travelgeTheme}
+				AND
+				TRAVELGE_REGION =#{travelgeRegion}
+			</if>
+			<if test="travelgeRegion==null and travelgeTheme!=null ">
+				TRAVELGE_THEME = #{travelgeTheme}
+			</if>
+			<if test="travelgeRegion!=null and travelgeTheme==null ">
+				TRAVELGE_REGION =#{travelgeRegion}
+			</if>
 			AND
 			(TRAVELGE_NAME LIKE '%'||#{keyword}||'%'
 			OR
-			TRAVELGE_ADDR LIKE '%'||#{keyword}||'%')
+			TRAVELGE_ADDR LIKE
+			'%'||#{keyword}||'%')
 		</where>
 	</select>
 
@@ -74,37 +113,47 @@
 	<!-- 추가 -->
 
 	<insert id="travelgeInfoInsert" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
-		INSERT INTO TRAVELGE_INFO
+		INSERT INTO
+		TRAVELGE_INFO
 		VALUES
-		(#{contentCode},#{travelgeName}, #{travelgeAddr},#{travelgeDescription},
-		#{travelgeTheme}, #{travelgeRegion},#{travelgeCoordinates},#{travelgePhotos} )
+		(#{contentCode},#{travelgeName},
+		#{travelgeAddr},#{travelgeDescription},
+		#{travelgeTheme},
+		#{travelgeRegion},#{travelgeCoordinates},#{travelgePhotos} )
 
 	</insert>
 
 	<!-- 삭제 -->
 
 	<delete id="travelgeInfoDelete" parameterType="string">
-		DELETE from TRAVELGE_INFO where content_code = #{_parameter}
+		DELETE from
+		TRAVELGE_INFO where content_code = #{_parameter}
 	</delete>
 
 	<!-- 수정 -->
 	<update id="travelgeInfoUpdate" parameterType="kosta.web.model.vo.travelge.TravelgeInfoVo">
 		UPDATE TRAVELGE_INFO
-		SET TRAVELGE_NAME = #{travelgeName}, TRAVELGE_ADDR = #{travelgeAddr},
+		SET TRAVELGE_NAME = #{travelgeName}, TRAVELGE_ADDR
+		= #{travelgeAddr},
 		TRAVELGE_DESCRIPTION = #{travelgeDescription},
-		TRAVELGE_THEME = #{travelgeTheme}, TRAVELGE_REGION = #{travelgeRegion},
+		TRAVELGE_THEME = #{travelgeTheme}, TRAVELGE_REGION =
+		#{travelgeRegion},
 		TRAVELGE_COORDINATES = #{travelgeCoordinates}
 		<if test="travelgePhotos != null">,TRAVELGE_PHOTOS = #{travelgePhotos}</if>
 		WHERE CONTENT_CODE = #{contentCode}
 	</update>
 
-<!-- 최신 리뷰 불러오기 Join 사용 -->
+	<!-- 최신 리뷰 불러오기 Join 사용 -->
 	<select id="latestComment" resultType="TravelgeLatestCommentVo">
-		select b.id as id , b.blog_title as blogTitle, b.content_code as contentCode, tr.travelge_name as travelgeName, b.blog_date as blogDate, b.blog_cont as blogCont
+		select b.id as id ,
+		b.blog_title as blogTitle, b.content_code as contentCode,
+		tr.travelge_name as travelgeName, b.blog_date as blogDate, b.blog_cont
+		as blogCont
 		from blog b join TRAVELGE_INFO tr
-		on b.content_code = tr.content_code
+		on b.content_code =
+		tr.content_code
 		where category = 'Travelge'
 		order by b.blog_date desc
 	</select>
-	
+
 </mapper>

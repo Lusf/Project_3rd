@@ -97,7 +97,10 @@
 				</if>
 			</when>
 			</choose>
+<<<<<<< HEAD
 				) T1) order by content_code
+=======
+>>>>>>> 1d34c07399e14d98813200693b317d2898f76f68
 		</where>
 	</select>
 
@@ -127,9 +130,15 @@
 	
 	<!-- 메인에 리뷰 많은 순으로 맛집정보 출력 -->
 	<select id="recommandRestaurant"  resultMap="restaurantSelectMap">
+<<<<<<< HEAD
 		SELECT b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
 		FROM  blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code 
 		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
+=======
+		SELECT b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC
+		FROM  blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code 
+		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC
+>>>>>>> 1d34c07399e14d98813200693b317d2898f76f68
 		ORDER BY COUNT(r.content_code) desc
 	</select>
 	

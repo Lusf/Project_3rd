@@ -23,6 +23,15 @@
 	padding: 0;
 	margin: 30px 15px;
 }
+.font {}
+
+.imgHead:hover > .contHead {
+	opacity: 0;
+	transition: opacity 1s
+}
+.imgHead:hover > .contHead {
+	opacity: 1;
+}
 </style>
 
 <script>
@@ -35,10 +44,6 @@ function sortTitle(){
 }
 function sortNew(){
 	sort = "new";
-	searchEnter();
-}
-function sortScore(){
-	sort = "score";
 	searchEnter();
 }
 
@@ -58,16 +63,16 @@ function searchEnter(){
 			else{
 				$.each(result, function(index, item) {
 					str += "<div class='offer-box border col-md-3' id='imgList'>";
-					str += "<div class='offer-box-head' id='img"+item.contentCode+"' style='display:none;'>";
+					str += "<div class='offer-box-head imgHead' id='img"+item.contentCode+"' style='display:none;'>";
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
-					str += "</div><div id='cont"+item.contentCode+"'>";
+					str += "</div><div id='cont"+item.contentCode+"' class='contHead'>";
 					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'>";
-					str += "<span class='h4 offer-box-title'>"+item.lookTitle+"</span><br><br>";
-					str += "<span>카테고리: "+item.lookCate+"</span><br>";
-					str += "<span>장르: "+item.lookGenre+"</span><br>";
-					str += "<span>등급: "+item.lookAge+"</span><br><br>";
-					str += "<span class='offer-box-location'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
-					str += "<span class='offer-box-meta'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
+					str += "<span class='h4 offer-box-title font'>"+item.lookTitle+"</span><br><br>";
+					str += "<span class='font'>카테고리: "+item.lookCate+"</span><br>";
+					str += "<span class='font'>장르: "+item.lookGenre+"</span><br>";
+					str += "<span class='font'>등급: "+item.lookAge+"</span><br><br>";
+					str += "<span class='offer-box-location font'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
+					str += "<span class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
 					str += "</a></div></div>";
 				});
 			}
@@ -81,6 +86,13 @@ function searchEnter(){
 		}
 	});
 };
+
+
+function click(state){
+	var st = state;
+	
+	alert(st);
+}
 </script>
 	
 </head>
@@ -173,20 +185,19 @@ function searchEnter(){
 										</div>
 									</div>
 									
-									<!-- LastDate -->
+									<!-- Sort -->
 									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
-												<h6>Last Date</h6>
+												<h6>Sort</h6>
 											</div>
-										</div>
-									</div>
-									
-
-									<div class="col-md-4">
-										<div class="home-search-group">
-											<div class="col-md-12">
-												<h6>???</h6>
+											<div class="form-group col-md-6">
+												<button type="button" class="btn btn-primary"
+												 onclick="sortTitle(); return false;"> Title </button>
+											</div>
+											<div class="form-group col-md-6">
+												<button type="button" class="btn btn-primary"
+												 onclick="sortNew(); return false;"> New </button>
 											</div>
 										</div>
 									</div>
@@ -202,43 +213,31 @@ function searchEnter(){
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 sidebar" style="width:200px;">
-					<div class="sidebar-box">
-						<div class="col-md-12">
-							<h5 class="mb-15">Sort</h5>
-						</div>
-						<ul>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortScore(); return false;">Score</a></h5></li>
-						</ul>
-					</div>
-				</div>
 
-				<div class="col-md-9" style="width:82%;">
+				<div class="col-md-12" style="width:82%;">
 					<div class="pl-0 pr-0">
 						<h4 class="heading">Featured adds</h4>
 					</div>
 					<div class="box" id="searchList">
 						<c:if test="${empty list}">
-							<h2>검색결과 없음</h2>
+							<h2 class="font">검색결과 없음</h2>
 						</c:if>
 						<c:if test="${!empty list}">
 						<c:forEach items="${list}" var="list">
-							<div class="offer-box border col-md-3" id="imgList" onmouseover="over()">
-								<div class="offer-box-head" id="img${list.contentCode}" style="display:none;">
+							<div class="offer-box border col-md-3" id="imgList" onclick="click(0); return false;">
+								<div class="offer-box-head imgHead" id="img${list.contentCode}" style="display:none;">
 									<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"
 										 class="img-thumbnail"/>
 								</div>
-								<div id="cont${list.contentCode}">
+								<div id="cont${list.contentCode}" class="contHead">
 									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 									<div>
-										<span class="h4 offer-box-title">${list.lookTitle}</span><br><br>
-										<span class="">카테고리: ${list.lookCate}</span><br>
-										<span class="">장르: ${list.lookGenre}</span><br>
-										<span class="">등급: ${list.lookAge}</span><br><br>
-										<span class="offer-box-location"><span class="ti-location-pin"></span>${list.lookLoca}</span>
-										<span class="offer-box-meta">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
+										<span class="h4 offer-box-title font">${list.lookTitle}</span><br><br>
+										<span class="font">카테고리: ${list.lookCate}</span><br>
+										<span class="font">장르: ${list.lookGenre}</span><br>
+										<span class="font">등급: ${list.lookAge}</span><br><br>
+										<span class="offer-box-location font"><span class="ti-location-pin"></span>${list.lookLoca}</span>
+										<span class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
 									</div>
 									</a>
 								</div>
@@ -247,56 +246,6 @@ function searchEnter(){
 						</c:if>
 					</div>
 					<!-- / single offer box-->
-
-
-					<!-- page -->
-					<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
-						<div class="category-pagination text-center">
-							<nav aria-label="Page navigation">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-								<%-- <ul class="center-align pagination">
-										<!-- < 버튼 -->
-										<c:if test="${startPage != 1 and startPage != null}">
-											<li><a
-												href='${pageContext.request.contextPath }/entertainment/enterInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
-													class="material-icons">chevron_left</i></a></li>
-										</c:if>
-										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-											<c:if test="${pageNum == spage and pageNum != null}">
-												<!-- 선택페이지 -->
-												<li class="active"><a>${pageNum}</a></li>
-											</c:if>
-											<!-- 선택되지 않은 페이지 -->
-											<c:if test="${pageNum != spage and pageNum != 0}">
-												<li><a
-													href='${pageContext.request.contextPath }/entertainment/enterInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
-
-											</c:if>
-										</c:forEach>
-										<!-- > 버튼 -->
-										<c:if test="${endPage != maxPage }">
-											<li><a
-												href='${pageContext.request.contextPath }/entertainment/enterInfoSearch&currentPage=${endPage+1 }'><i
-													class="material-icons">chevron_right</i></a></li>
-										</c:if>
-
-									</ul> --%>
-							</nav>
-						</div>
-					</div>
-					
 				</div>
 				<!--/ col-md-9-->
 			</div>
