@@ -65,7 +65,7 @@ create table avg_score(
   score number(4),
   wish_list varchar2(20)
 );
-
+select * from avg_score;
 
 drop table matching_board;
 
