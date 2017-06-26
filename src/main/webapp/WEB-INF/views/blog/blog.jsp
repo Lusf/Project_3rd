@@ -48,9 +48,9 @@
 
 .profileImg {
 	margin: 0 auto;
-	width: 100px;
-	height: 100px;
 }
+
+#ownerNav {width:100%;height:150px;}
 
 /* 화면 조절 */
 .cont {
@@ -258,12 +258,13 @@ $(function() {
 		<div class="side">
 			<!-- Blog Profile Well -->
 			<div class="well">
-				<h4>Blog Owner</h4>
-				<div class="input-group profileImg">
-					<img src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}" alt="${blogUserPic}"/>
-					<a href="${pageContext.request.contextPath}/blog/${blogId}"><h1>${blogId}</h1></a>
-				</div>
-				<!-- /.input-group -->
+				<h4>Blog Owner</h4><br>
+				<table id="ownerNav">
+					<tr><td>
+					<img align="middle" src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}"
+					 style="width:100%;" alt="${blogUserPic}"/></td></tr>
+					<tr><td style="width:100%;font-size:200%;text-align:center;padding-top:10px;"><a href="${pageContext.request.contextPath}/blog/${blogId}">${blogId}</a></td></tr>
+				</table>
 			</div>
 			
 			<!-- Blog Categories Well -->

@@ -129,13 +129,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 			// 평점 가져오기
 			AvgScoreVo avgScore = travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode());
-			
-			if (avgScore == null) { 
 
-				avgScore = new AvgScoreVo();
-				avgScore.setScore(0.0);
-				avgScore.setPersonCount(0);
-			}
 			
 
 			if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
@@ -327,7 +321,8 @@ public class TravelgeServiceImpl implements TravelgeService {
 			dto.setUserPic(userBlogDAO.userPicBlog(dto.getContentCode(), dto.getId()));
 		}
 
-		return travelgeInfoDAO.latestComment();
+		
+		return list;
 	}
 
 	@Override

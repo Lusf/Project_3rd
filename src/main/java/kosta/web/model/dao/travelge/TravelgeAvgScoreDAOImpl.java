@@ -47,7 +47,21 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 	@Override
 	public AvgScoreVo travelgeAvgScore(String contentCode) {
 		
-		return sqlSession.selectOne("travelgeAvgScoreMapper.selectScore", contentCode);
+		AvgScoreVo avgScore = sqlSession.selectOne("travelgeAvgScoreMapper.selectScore", contentCode);
+		if(avgScore != null)
+		{
+			double d = avgScore.getScore();
+			int a = (int)(d * 10);
+			avgScore.setScore(a/10.0);
+		}
+		if (avgScore == null) { 
+
+			avgScore = new AvgScoreVo();
+			avgScore.setScore(0.0);
+			avgScore.setPersonCount(0);
+		}
+		
+		return avgScore;
 	}
 
 	@Override

@@ -16,13 +16,13 @@
 	href="<c:url value= '/resources/assets/daumOpenEditor/css/editor.css'/>">
 <script
 	src="${pageContext.request.contextPath}/resources/assets/daumOpenEditor/js/editor_loader.js"
-	type="text/javascript" charset="utf-8"></script>
+	type="text/javascript" charset="utf-8"></script><%-- 
 <!-- jQuery -->
 <script
 	src="${pageContext.request.contextPath}/resources/assets/admin/js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script
-	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/assets/admin/js/bootstrap.min.js"></script> --%>
 
 </head>
 <body>

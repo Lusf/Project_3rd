@@ -59,7 +59,6 @@ public class TravelgeController {
 		
 		mv.addObject("list",list);
 		List<TravelgeLatestCommentVo> latestComment = travelgeService.latestComment();
-
 		mv.addObject("commentList", latestComment);
 
 		return mv;
