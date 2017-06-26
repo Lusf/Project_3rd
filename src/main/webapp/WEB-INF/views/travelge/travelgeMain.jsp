@@ -91,7 +91,7 @@
 					style="background-image:url(${card.thumbnail})">
 					<h1 class="light wow fadeInDown mb-30">${card.recommandationTitle }</h1>
 					<a class="btn btn-primary wow fadeInUp" data-toggle="modal"
-						data-target="#card${vs.index}View">browse <span
+						data-target="#card${vs.index}View">더보기 <span
 						class="ti-arrow-right light"></span></a>
 				</div>
 				</c:forEach>
@@ -191,10 +191,12 @@
 					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
 						src="assets/img/blog/01.jpg" alt="blog image"> <span
 						class="col-md-2"> ${item.id}</span>
-					</a> <a
+					</a> 
+					<a
 						href="${pageContext.request.contextPath}/travelge/detailView/${item.contentCode}"
-						class="col-md-2"> ${item.travelgeName} </a> <a class="col-md-4"
-						data-toggle="modal" data-target="#comment${vs.index}"> <span>
+						class="col-md-2""> ${item.travelgeName} </a>
+						 <a class="col-md-4"
+						data-toggle="modal" data-target="#comment${vs.index}"  style="cursor: pointer;"> <span>
 							${item.blogTitle } </span>
 					</a> <span class="post-list-sidebar-item-description col-md-2">${item.blogDate }</span>
 
@@ -206,11 +208,15 @@
 						<div class="modal-content shadow">
 							<div class="offer-box">
 								<div class="offer-content pl-30 pr-30">
-									<span class="h4 offer-box-title">${item.blogTitle }</span> <span>
-										${item.id}</span> <span class="offer-box-location"> <span
-										class="offer-box-meta">${item.blogDate }</span> <span
-										class="descriptionImg"> ${item.blogCont } </span> <a
-										class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
+									<span class="h4 offer-box-title">${item.blogTitle }</span> 
+									<div style="text-align: right;">
+									<span>작성자: ${item.id}</span> 
+									<span class="offer-box-meta">작성일: ${item.blogDate }</span> 
+									</div>
+									<span class="offer-box-location"> 
+									
+									<span class="descriptionImg"> ${item.blogCont } </span>
+									<a class="close" data-dismiss="modal"><span class="ti-close"></span></a></span>
 								</div>
 							</div>
 						</div>
