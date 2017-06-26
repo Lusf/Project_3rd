@@ -327,7 +327,8 @@ public class TravelgeServiceImpl implements TravelgeService {
 			dto.setUserPic(userBlogDAO.userPicBlog(dto.getContentCode(), dto.getId()));
 		}
 
-		return travelgeInfoDAO.latestComment();
+		
+		return list;
 	}
 
 	@Override
