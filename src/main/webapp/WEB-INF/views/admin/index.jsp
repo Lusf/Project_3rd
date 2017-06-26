@@ -164,7 +164,7 @@ $(function()
                         </div>
                     </div>
                 </div>
-                </div>
+                
                 <div class="row">
                 <div class="col-lg-12" id="userCount">
                         <div class="panel panel-red">
@@ -296,7 +296,7 @@ $(function()
                                     </table>
                                     <div id="scoreRank2"></div>
                                 </div>
-                                
+                                </div>
                             </div>
                         </div>
                     </div>

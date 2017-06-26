@@ -84,6 +84,12 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 		return sqlSession.insert("travelgeAvgScoreMapper.travelgeScoreUpdate", map);
 	}
 
+	@Override
+	public AvgScoreVo scoreDuplicate(String contentCode) {
+
+		return sqlSession.selectOne("travelgeAvgScoreMapper.scoreDuplicate", contentCode);
+	}
+
 
 
 

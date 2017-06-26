@@ -31,6 +31,13 @@ AND content_code=#{contentCode}
 	group by content_code
 </select>
 
+<!-- content_code가 존재하는지 확인 -->
+<select id="scoreDuplicate" parameterType="String" resultType = "AvgScoreVo">
+	select content_code as contentCode, avg(score) as score, count(content_code) as personCount
+	from avg_score
+	where content_code = #{_parameter}
+	group by content_code
+</select>
 <!-- 개인 별점출력 -->
 <select id="selectUserScore" parameterType="map" resultMap = "avgScoreMap">
 	select content_code as contentCode,  score
