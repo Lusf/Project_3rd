@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.ChartVo;
 import kosta.web.model.vo.blog.UserBlogVo;
 
@@ -62,7 +63,23 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<ChartVo> scoreRank() {
 		
-		return sqlSession.selectList("adminMapper.scoreRank", 0,  new RowBounds(0, 10));
+		List<ChartVo> score = sqlSession.selectList("adminMapper.scoreRank", 0,  new RowBounds(0, 10));
+		for(ChartVo avgScore : score)
+		{
+			if(avgScore != null)
+			{
+				double d = avgScore.getAvg();
+				int a = (int)(d * 10);
+				avgScore.setAvg(a/10.0);
+			}
+			if (avgScore == null) { 
+
+				avgScore = new ChartVo();
+				avgScore.setAvg(0.0);
+				avgScore.setCntUser(0);
+			}
+		}
+		return score;
 	}
 
 	@Override

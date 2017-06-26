@@ -174,7 +174,7 @@
 			<c:forEach items="${commentList }" var="item" varStatus="vs">
 				<div class="post-list-sidebar-item mb-15">
 					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
-						src="assets/img/blog/01.jpg" alt="blog image"> <span
+						src="${pageContext.request.contextPath }/resources/user/${item.id }/profile/${item.userPic}" alt="blog image"> <span
 						class="col-md-2"> ${item.id}</span>
 					</a> 
 					<a
