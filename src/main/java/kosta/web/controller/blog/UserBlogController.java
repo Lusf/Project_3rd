@@ -48,18 +48,24 @@ public class UserBlogController {
 		UserVo user = userService.userSearchById(id);
 		session.setAttribute("blogId", id);
 		session.setAttribute("blogUserPic", user.getUserPic());
+		
 		List<UserBlogVo> title = blogService.blogTitle(id, null);
+		List<UserBlogVo> trTitle = blogService.blogTitle(id, "Travelge");
+		List<UserBlogVo> enTitle = blogService.blogTitle(id, "Entertainment");
+		List<UserBlogVo> foTitle = blogService.blogTitle(id, "Food");
+		
 		session.setAttribute("blogAllTitle", title);
+		session.setAttribute("trTitle", trTitle);
+		session.setAttribute("enTitle", enTitle);
+		session.setAttribute("foTitle", foTitle);
 		return "blog/blog";
 	}
 	
 	@RequestMapping(value = "/selectBlogTitle", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView selectTitle(String category){
+	public List<UserBlogVo> selectTitle(String category){
 		List<UserBlogVo> list = blogService.blogTitle((String)session.getAttribute("blogId"), category);
-		
-		
-		return null;
+		return list;
 	}
 	
 	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)

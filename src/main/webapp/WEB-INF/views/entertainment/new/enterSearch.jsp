@@ -38,10 +38,6 @@ function sortNew(){
 	sort = "new";
 	searchEnter();
 }
-function sortScore(){
-	sort = "score";
-	searchEnter();
-}
 
 function searchEnter(){
 	$.ajax({
@@ -211,7 +207,6 @@ function searchEnter(){
 						<ul>
 							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
 							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortScore(); return false;">Score</a></h5></li>
 						</ul>
 					</div>
 				</div>
