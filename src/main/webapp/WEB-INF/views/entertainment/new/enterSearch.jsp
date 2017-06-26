@@ -158,7 +158,7 @@ function click(state){
 
 								<div class="home-search-row">
 									<!-- StartDate -->
-									<div class="col-md-5">
+									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
 												<h6>Year / Month</h6>
@@ -192,10 +192,12 @@ function click(state){
 												<h6>Sort</h6>
 											</div>
 											<div class="form-group col-md-6">
-												<h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5>
+												<button type="button" class="btn btn-primary"
+												 onclick="sortTitle(); return false;"> Title </button>
 											</div>
 											<div class="form-group col-md-6">
-												<h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5>
+												<button type="button" class="btn btn-primary"
+												 onclick="sortNew(); return false;"> New </button>
 											</div>
 										</div>
 									</div>
@@ -211,19 +213,8 @@ function click(state){
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 sidebar" style="width:200px;">
-					<div class="sidebar-box">
-						<div class="col-md-12">
-							<h5 class="mb-15">Sort</h5>
-						</div>
-						<ul>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
-						</ul>
-					</div>
-				</div>
 
-				<div class="col-md-9" style="width:82%;">
+				<div class="col-md-12" style="width:82%;">
 					<div class="pl-0 pr-0">
 						<h4 class="heading">Featured adds</h4>
 					</div>
