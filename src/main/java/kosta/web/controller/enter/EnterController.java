@@ -3,6 +3,8 @@ package kosta.web.controller.enter;
 import java.io.File;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -119,17 +121,18 @@ public class EnterController {
 	
 	// 볼거리 상세화면
 	@RequestMapping("new/enterDetailView/{contentCode}")
-	public ModelAndView enterDetailView(HttpSession session, @PathVariable String contentCode, Principal principal) {
+	public ModelAndView enterDetailView(@PathVariable String contentCode, Principal principal) {
 		
 		ModelAndView mv = new ModelAndView();
 		List<LookInfoVo> lookInfoConList;
-		System.out.println(1);
+		
 		
 		//컨텐츠코드에 따른 볼거리
 		String id="";
 		
 		String lookGenre="";
 		String lookCate="";
+		List<String> storyList= new ArrayList<>();
 		
 		if (principal != null) {			
 			
@@ -153,11 +156,28 @@ public class EnterController {
 			
 			for(int i=0; i<lookInfoConList.size(); i++){
 				if(lookInfoConList.get(i).getLookStory().length()>0){
-					lookInfoConList.get(i).getLookStory().substring(0, 20);
+					//lookInfoConList.get(i).getLookStory().substring(0, 20);
+					storyList.add(lookInfoConList.get(i).getLookStory().substring(0, 20));
+					mv.addObject("story", storyList );
+				}
+			}
+						
+			for(LookInfoVo ivo : lookInfoConList){
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+					
+					mv.addObject("lookInfoConList", lookInfoConList);
 				}
 			}
 			
-			mv.addObject("lookInfoConList", lookInfoConList);
+			
 			
 			//이미지 ';'를 구분자로 자르기
 			String allImg = lookInfoOne.getLookImg();
@@ -165,10 +185,12 @@ public class EnterController {
 			String cutImgClone[] = allImg.split(":");
 					
 			String cutImgSemiClone[] = cutImgClone[1].split(";");
+			String videoImg = cutImgSemiClone[0];
 			String posterImg = cutImgClone[0];
 
 			mv.addObject("posterImg", posterImg);
-			mv.addObject("imgs", cutImgSemiClone);
+			mv.addObject("videoImg", videoImg);
+			mv.addObject("cutImgSemiClone", cutImgSemiClone);
 		}
 		else{
 			id = "noname";
@@ -184,8 +206,33 @@ public class EnterController {
 				lookCate="TV";
 			}
 			
+			mv.addObject("lookCate", lookCate);
+			
 			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
 			mv.addObject("lookInfoConList", lookInfoConList);
+			
+			for(int i=0; i<lookInfoConList.size(); i++){
+				if(lookInfoConList.get(i).getLookStory().length()>0){
+					//lookInfoConList.get(i).getLookStory().substring(0, 20);
+					mv.addObject("story", lookInfoConList.get(i).getLookStory().substring(0, 20));
+				}
+			}
+			
+			for(LookInfoVo ivo : lookInfoConList){
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+					mv.addObject("lookInfoConList", lookInfoConList);
+				}
+			}
+			
+			
 			
 			//이미지 ';'를 구분자로 자르기
 			String allImg = lookInfoOne.getLookImg();
@@ -193,10 +240,12 @@ public class EnterController {
 			String cutImgClone[] = allImg.split(":");
 					
 			String cutImgSemiClone[] = cutImgClone[1].split(";");
+			String videoImg = cutImgSemiClone[0];
 			String posterImg = cutImgClone[0];
 			
 			mv.addObject("posterImg", posterImg);
-			mv.addObject("imgs", cutImgSemiClone);
+			mv.addObject("videoImg", videoImg);
+			mv.addObject("cutImgSemiClone", cutImgSemiClone);
 		}
 
 		//장르에 따른 볼거리
@@ -205,9 +254,9 @@ public class EnterController {
 		
 /*		LookInfoVo lookInfoGenre = new LookInfoVo();
 		lookInfoGenre.setLookGenre(lookGenre);*/
-		System.out.println(3);
+		
 		//lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
-		System.out.println(4);
+		
 		
 		//볼거리 정보 가져오기(전체)
 
@@ -411,7 +460,7 @@ public class EnterController {
 		int result = 0;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
 		{
-			System.out.println("찜하기 되었나요???");
+			//System.out.println("찜하기 되었나요???");
 			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String id = user.getId();
 			result = enterService.lookWishListUpdate(id, contentCode);
