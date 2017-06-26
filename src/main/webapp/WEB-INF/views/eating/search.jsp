@@ -46,9 +46,8 @@
 						<li class="header-link"><a href="developer">메뉴3</a></li>
 						<li class="header-link"><a href="landing">메뉴4</a></li>
 						<li class="header-link"><a href="offer">메뉴6</a></li>
-						<li class="header-link dropdown mega pull-left "><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span
-								class="ti-angle-down"></span></a>
+						<li class="header-link dropdown mega pull-left ">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">쓸까말까<span class="ti-angle-down"></span></a>
 							<ul class="dropdown-menu mega-menu container">
 								<li class="col-sm-3">
 									<ul>
@@ -109,7 +108,7 @@
 		</sec:authorize>
 	</header>
 <!--검색  -->
-	<%@include file="/WEB-INF/views/eating/new_theme_mark2/searchView.jsp" %>
+	<%@include file="/WEB-INF/views/eating/searchView.jsp" %>
 <!-- 검색 -->
 	<section class="padding">
 		<div class="container">
@@ -227,18 +226,28 @@
 					<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
 						<div class="category-pagination text-center">
 							<nav aria-label="Page navigation">
+							
 								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> 
-									<span 	aria-hidden="true">&raquo;</span>
-									</a></li>
+									<!-- < 버튼 -->
+									<%-- ${spage } --%>
+										<c:if test="${startPage != 1 and startPage != null}">
+											<li><a href="${pageContext.request.contextPath }/eating/restaurantSearch?currentPage=${startPage-1}&category=${category}&category2=${category2}&keyWord=${keyWord}">
+											<i	class="material-icons">chevron_left</i></a></li>
+										</c:if>
+										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
+											<c:if test="${pageNum == spage and pageNum != null}">
+												<!-- 선택페이지 -->
+												<li class="active"><a>${pageNum}</a></li>
+											</c:if>
+											<!-- 선택되지 않은 페이지 -->
+											<c:if test="${pageNum != spage and pageNum != 0}">
+												<li><a href="${pageContext.request.contextPath }/eating/restaurantSearch?currentPage=${pageNum}&category=${category}&category2=${category2}&keyWord=${keyWord}">${pageNum}&nbsp;</a></li>
+											</c:if>
+										</c:forEach>
+										<!-- > 버튼 -->
+										<c:if test="${endPage != maxPage }">
+											<li><a href="${pageContext.request.contextPath }/eating/restaurantSearch?currentPage=${endPage+1 }"><i class="material-icons">chevron_right</i></a></li>
+										</c:if>
 								</ul>
 							</nav>
 						</div>
