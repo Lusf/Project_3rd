@@ -24,6 +24,7 @@
 	margin: 30px 15px;
 }
 .font {}
+
 </style>
 
 <script>
@@ -55,17 +56,17 @@ function searchEnter(){
 			else{
 				$.each(result, function(index, item) {
 					str += "<div class='offer-box border col-md-3' id='imgList'>";
-					str += "<div class='offer-box-head' id='img"+item.contentCode+"' style='display:none;'>";
+					str += "<div class='offer-box-head imgHead' id='img"+item.contentCode+"' style='display:none;'>";
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
-					str += "</div><div id='cont"+item.contentCode+"'>";
-					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'>";
+					str += "</div><div id='cont"+item.contentCode+"' class='contHead'>";
+					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'><div>";
 					str += "<span class='h4 offer-box-title font'>"+item.lookTitle+"</span><br><br>";
 					str += "<span class='font'>카테고리: "+item.lookCate+"</span><br>";
 					str += "<span class='font'>장르: "+item.lookGenre+"</span><br>";
 					str += "<span class='font'>등급: "+item.lookAge+"</span><br><br>";
 					str += "<span class='offer-box-location font'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
 					str += "<span class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
-					str += "</a></div></div>";
+					str += "</div></a></div></div>";
 				});
 			}
 
@@ -78,6 +79,13 @@ function searchEnter(){
 		}
 	});
 };
+
+
+function click(state){
+	var st = state;
+	
+	alert(st);
+}
 </script>
 	
 </head>
@@ -170,20 +178,19 @@ function searchEnter(){
 										</div>
 									</div>
 									
-									<!-- LastDate -->
+									<!-- Sort -->
 									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
-												<h6>Last Date</h6>
+												<h6>Sort</h6>
 											</div>
-										</div>
-									</div>
-									
-
-									<div class="col-md-4">
-										<div class="home-search-group">
-											<div class="col-md-12">
-												<h6>???</h6>
+											<div class="form-group col-md-6">
+												<button type="button" class="btn btn-primary"
+												 onclick="sortTitle(); return false;"> Title </button>
+											</div>
+											<div class="form-group col-md-6">
+												<button type="button" class="btn btn-primary"
+												 onclick="sortNew(); return false;"> New </button>
 											</div>
 										</div>
 									</div>
@@ -199,19 +206,7 @@ function searchEnter(){
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 sidebar" style="width:200px;">
-					<div class="sidebar-box">
-						<div class="col-md-12">
-							<h5 class="mb-15">Sort</h5>
-						</div>
-						<ul>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-9" style="width:82%;">
+				<div class="col-md-12">
 					<div class="pl-0 pr-0">
 						<h4 class="heading">Featured adds</h4>
 					</div>
@@ -221,12 +216,12 @@ function searchEnter(){
 						</c:if>
 						<c:if test="${!empty list}">
 						<c:forEach items="${list}" var="list">
-							<div class="offer-box border col-md-3" id="imgList" onmouseover="over()">
-								<div class="offer-box-head" id="img${list.contentCode}" style="display:none;">
+							<div class="offer-box border col-md-3" id="imgList">
+								<div class="offer-box-head imgHead" id="img${list.contentCode}">
 									<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"
 										 class="img-thumbnail"/>
 								</div>
-								<div id="cont${list.contentCode}">
+								<%-- <div id="cont${list.contentCode}" class="contHead">
 									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 									<div>
 										<span class="h4 offer-box-title font">${list.lookTitle}</span><br><br>
@@ -237,7 +232,7 @@ function searchEnter(){
 										<span class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
 									</div>
 									</a>
-								</div>
+								</div> --%>
 							</div>
 						</c:forEach>
 						</c:if>

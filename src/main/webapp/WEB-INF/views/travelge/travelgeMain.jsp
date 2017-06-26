@@ -97,10 +97,12 @@
 			<div class="modal-content shadow">
 				<div class="offer-box">
 					<div class="offer-content pl-30 pr-30">
+
 					<br>
 						<span class="h4 offer-box-title" style="text-align: center;">${card.recommandationTitle }</span>
 						<span class="offer-box-location" style="text-align: right;">${card.recommandationDate}
 						</span> <span class="offer-box-meta"><p></p></span> <span
+
 							class="descriptionImg"> ${card.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 					</div>

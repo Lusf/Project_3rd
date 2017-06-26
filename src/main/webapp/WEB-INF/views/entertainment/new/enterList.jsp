@@ -182,31 +182,7 @@
   		</c:forEach>
   		</div>
 	</div>
-	
-<div class="container">
-	<div class="row">
-			<!-- pagenation -->
-			<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
-				<div class="category-pagination text-center">
-					<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li><a href="#" aria-label="Previous"> <span
-									aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-</div>
+
 
 	
 

@@ -51,11 +51,11 @@
 					<li class="header-link dropdown mega pull-left "><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown">Contents <span
 							class="ti-angle-down"></span></a>
-						<ul class="dropdown-menu mega-menu container">
+						<ul class="dropdown-menu mega-menu container col-sm-12">
 							<li class="col-sm-4">
 								<ul>
 									<li>
-									<a href="${pageContext.request.contextPath}/travelge/main">
+									<a href="${pageContext.request.contextPath}/travelge/main" style="background: none">
 									<img class="img-responsive  col-lg-12 mb-15"
 										src="${pageContext.request.contextPath}/resources/images/header/content/travelge.png"
 										alt="travelge">
@@ -67,7 +67,7 @@
 							<li class="col-sm-4">
 								<ul>
 									<li>
-									<a href="${pageContext.request.contextPath}/entertainment/new/enterMain">
+									<a href="${pageContext.request.contextPath}/entertainment/new/enterMain" style="background: none">
 									<img class="img-responsive  col-lg-12 mb-15"
 										src="${pageContext.request.contextPath}/resources/images/header/content/entertainment.png"
 										alt="entertainment">
@@ -79,7 +79,7 @@
 							<li class="col-sm-4">
 								<ul>
 									<li>
-									<a href="${pageContext.request.contextPath}/eating/newdesign">
+									<a href="${pageContext.request.contextPath}/eating/newdesign" style="background: none">
 									<img class="img-responsive  col-lg-12 mb-15"
 										src="${pageContext.request.contextPath}/resources/images/header/content/food.jpg"
 										alt="food">

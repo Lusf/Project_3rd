@@ -1,5 +1,6 @@
 package kosta.web.model.service.enter;
 
+import java.security.Principal;
 import java.util.List;
 
 import kosta.web.model.vo.AvgScoreVo;
@@ -87,12 +88,12 @@ public interface EnterService {
 	/**
 	 * 볼거리 검색(부분/전체)
 	 * */
-	List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo);
+	List<LookInfoVo> lookInfoSearch();
 	
 	/**
 	 * 볼거리 검색(contentsCode에따라서)
 	 * */
-	LookInfoVo lookInfoSearchByCode(String contentCode);
+	LookInfoVo lookInfoSearchByCode(String contentCode, String id);
 	
 	/**
 	 * 볼거리 검색(lookcate에따라서)
