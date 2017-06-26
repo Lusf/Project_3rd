@@ -38,10 +38,7 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 	public List<AvgScoreVo> travelgeWishListSelect(AvgScoreVo avgScoreVo) {
 
 		List<AvgScoreVo> list = sqlSession.selectList("travelgeAvgScoreMapper.travelgeWishListSelect",avgScoreVo);
-/*		for(AvgScoreVo dto : list)
-		{
-			System.out.println(dto.getContentCode());
-		}*/
+
 		
 		return list;
 	}

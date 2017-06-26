@@ -137,22 +137,25 @@ public class TravelgeServiceImpl implements TravelgeService {
 				avgScore.setPersonCount(0);
 			}
 			
-			//좋아요 가져오기
-			AvgScoreVo dupl = new AvgScoreVo();
-			if(dto.getContentCode() != null)
-			{
-//				System.out.println(dto.getTravelgeName());
-				dupl = travelgeAvgScoreDAO.scoreDuplicate(dto.getContentCode());
-			}
+
 			if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
 			{
+				//좋아요 가져오기
+				AvgScoreVo dupl = new AvgScoreVo();
+				if(dto.getContentCode() != null)
+				{
+					dupl = travelgeAvgScoreDAO.scoreDuplicate(dto.getContentCode());
+				}
+
 				UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				String id = user.getId();
-				dupl.setId(id);
-				if(dupl.getContentCode() != null)
+				
+				if(dupl != null &&dupl.getContentCode() != null)
 				{
+					dupl.setId(id);
 					if(travelgeAvgScoreDAO.travelgeWishListSelect(dupl).size()!=0)
 					{
+	
 						dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(dupl).get(0).getWish_list());
 					}
 				}
