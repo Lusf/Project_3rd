@@ -131,12 +131,9 @@
 							data-target="#card${vs.index}View">자세히 보기</a>
                     </div>
                 </div>
-            </div>
-				
-				<!--test  -->
-				
+            </div>			
 				</c:forEach>
-				<!-- ///////test////// -->
+
 
 			</div>
 			<!--/ row -->
@@ -170,11 +167,12 @@
 
 	<section class="padding post-list" id="news">
 		<div class="container">
-			<h5 class="mt-0 mb-30">최신 리뷰</h5>
+			<h2 class="heading" style="font-size: 18px">최신 리뷰</h2>
 			<c:forEach items="${commentList }" var="item" varStatus="vs">
 				<div class="post-list-sidebar-item mb-15">
 					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
-						src="assets/img/blog/01.jpg" alt="blog image"> <span
+						src="assets/img/blog/01.jpg" alt="blog image" style="width: 50px; height: 50px; vertical-align: center;"
+									class="img-circle"> <span
 						class="col-md-2"> ${item.id}</span>
 					</a> 
 					<a

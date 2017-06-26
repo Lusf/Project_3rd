@@ -23,8 +23,8 @@
 				<div class="col-md-2 col-sm-12 col-md-offset-2 smartphone-fw">
 					<h6 class="heading">INFORMATION</h6>
 					<ul>
-						<li><a href="${pageContext.request.contextPath }/privacyTerms"> 서비스이용약관 </a></li>
-						<li><a href="${pageContext.request.contextPath }/privacyTerms#menu1"> 개인정보처리방침 </a></li>
+						<li><a href="${pageContext.request.contextPath }/privacyTerms?choice=0"> 서비스이용약관 </a></li>
+						<li><a href="${pageContext.request.contextPath }/privacyTerms?choice=1"> 개인정보처리방침 </a></li>
 					</ul>
 				</div>
 

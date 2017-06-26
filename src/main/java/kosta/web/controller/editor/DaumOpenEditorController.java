@@ -74,13 +74,13 @@ public class DaumOpenEditorController {
             multipartFile.transferTo(new File(path + modifyName));
 
             // 로그
-            System.out.println("** upload 정보**");
+/*            System.out.println("** upload 정보**");
             System.out.println("** path : " + path + "**");
             System.out.println("** originalName : " + originalName + " **");
-            System.out.println("** modifyName : " + modifyName + " **");
+            System.out.println("** modifyName : " + modifyName + " **");*/
          } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("이미지파일업로드 실패 - singleUploadImageAjax");
+          //  System.out.println("이미지파일업로드 실패 - singleUploadImageAjax");
          }
 
          // CallBack - Map에 담기

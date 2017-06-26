@@ -3,12 +3,9 @@ package kosta.web.controller.enter;
 import java.io.File;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.enter.EnterService;
-import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.enter.LookInfoVo;

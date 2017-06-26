@@ -45,6 +45,7 @@ public class AdminController {
 		List<ChartVo> totalUserCount = adminService.totalUserCount();
 		List<UserBlogVo> commentList = adminService.latestSelect();
 		List<ChartVo> scoreRank = adminService.scoreRank();
+		mv.addObject("totalCount", CountManager.totalCount); // 누적 접속자 수
 		mv.addObject("count",CountManager.getCount()); //현재 접속자 수
 		mv.addObject("userCount",userCount);			//총 유저의 수
 		mv.addObject("travelgeCount",travelgeCount);		//여행지 컨텐츠 수

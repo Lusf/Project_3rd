@@ -210,7 +210,7 @@ $(document).on('click','#wishlist', function() {
 
 .infocard img {
 	height: 300px;
-	margin-top: 1.4em;
+	margin-top: 0.3em;
 	width: 100%;
 	-webkit-filter: contrast(80%);
 }
@@ -450,12 +450,12 @@ span .glyphicon {
 							<a href="${pageContext.request.contextPath}/blog/${comment.id}">
 
 								<span class="col-md-2"> <img
-									style="width: 100px; height: 100px; vertical-align: center;"
+									style="width: 50px; height: 50px; vertical-align: center;"
 									class="img-circle"
 									src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
-								<span class="col-md-2"> ${comment.id } </span>
+								<span class="col-md-1" style="margin-top: 10px"> ${comment.id } </span>
 							</a> <a class="col-md-4" data-toggle="modal"
-								data-target="#comment${vs.index}"> <span style="color: #FF6B6B">${comment.blogTitle }</span>
+								data-target="#comment${vs.index}" style="margin-top: 10px;margin-left: -60px"> <span style="color: #FF6B6B">${comment.blogTitle }</span>
 							</a>
 						</div>
 				</div>
@@ -483,6 +483,8 @@ span .glyphicon {
 							</div>
 						</div>
 					</c:forEach>
+
+				</div><br>
 					<div style="text-align: center;">
 						<sec:authorize access="isAuthenticated()">
 							<button
@@ -491,7 +493,6 @@ span .glyphicon {
 								class="btn btn-info">리뷰 작성</button>
 						</sec:authorize>
 					</div>
-				</div>
 			</div>
 		</div>
 
