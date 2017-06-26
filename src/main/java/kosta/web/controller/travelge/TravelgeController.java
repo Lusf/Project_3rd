@@ -248,6 +248,8 @@ public class TravelgeController {
 
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(tempInfo, currentPage);
 
+//		System.out.println("지역 : " + currentRegion);
+//		System.out.println("테마 : " + currentTheme);
 		
 		for(int i = 0; i < list.size(); i++)
 		{
