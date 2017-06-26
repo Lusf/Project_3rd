@@ -365,6 +365,8 @@ public class EnterController {
 	@ResponseBody
 	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort){
 		
+		if(sort.equals(""))
+			sort = "title";
 		if(searchYear.equals(""))
 			searchYear = null;
 		if(searchMonth.equals(""))

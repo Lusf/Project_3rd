@@ -33,6 +33,14 @@
 }
 .font {color: white;}
 
+.t1 {
+	position: absolute;
+	top: 0px;
+}
+.t2 {
+	position: absolute;
+	top: 30%;
+}
 .t3 {
 	position: absolute;
 	bottom: 0px;
@@ -50,6 +58,7 @@ function sortTitle(){
 function sortNew(){
 	sort = "new";
 	searchEnter();
+	sort = "";
 }
 
 function searchEnter(){
@@ -70,14 +79,14 @@ function searchEnter(){
 					str += "<div class='col-md-6'><div class='offer-box border col-md-3' id='imgHead'>";
 					str += "<div class='offer-box-head'>";
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail' style='background-color: #525975;'/>";
-					str += "</div></div><div class="offer-box border col-md-3" id="contHead">";
+					str += "</div></div><div class='offer-box border col-md-3' id='contHead'>";
 					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'><div style='height: 100%'>";
-					str += "<h3 class='contTitle font'>"+item.lookTitle+"</h3><br>";
-					str += "<h5 class='font'>카테고리: "+item.lookCate+"</h5>";
+					str += "<div class='t1'><h3 class='contTitle font'>"+item.lookTitle+"</h3></div>";
+					str += "<div class='t2'><h5 class='font'>카테고리: "+item.lookCate+"</h5>";
 					str += "<h5 class='font'>장르: "+item.lookGenre+"</h5>";
-					str += "<h5 class='font'>등급: "+item.lookAge+"</h5><br><br>";
-					str += "<h5 class='font'><span class='ti-location-pin'></span>"+item.lookLoca+"</h5>";
-					str += "<h5 class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</h5>";
+					str += "<h5 class='font'>등급: "+item.lookAge+"</h5></div>";
+					str += "<div class='t3'><h5 class='font'><span class='ti-location-pin'></span>"+item.lookLoca+"</h5>";
+					str += "<h5 class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</h5></div>";
 					str += "</div></a></div></div>";
 				});
 			}
@@ -238,7 +247,7 @@ function click(state){
 							<div class="offer-box border col-md-3" id="contHead">
 								<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 								<div style="height: 100%">
-									<h3 class="contTitle font">${list.lookTitle}</h3><br>
+									<div class="t1"><h3 class="contTitle font">${list.lookTitle}</h3></div>
 									<div class="t2">
 									<h5 class="font">카테고리: ${list.lookCate}</h5>
 									<h5 class="font">장르: ${list.lookGenre}</h5>
