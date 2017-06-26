@@ -55,9 +55,11 @@ public class UserBlogController {
 	
 	@RequestMapping(value = "/selectBlogTitle", method = RequestMethod.POST)
 	@ResponseBody
-	public List<UserBlogVo> selectTitle(String category){
+	public ModelAndView selectTitle(String category){
 		List<UserBlogVo> list = blogService.blogTitle((String)session.getAttribute("blogId"), category);
-		return list;
+		
+		
+		return null;
 	}
 	
 	@RequestMapping(value = "/selectBlogCont", method = RequestMethod.POST)

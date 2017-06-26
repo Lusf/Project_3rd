@@ -225,7 +225,16 @@ $(function() {
 	<div class="container">
 		<!-- Blog Post Content Column -->
 		<div class="cont">
-			<h1>리뷰 좀 적어봐!!</h1>
+			<table id="">
+				<tr>
+					<td><h4>Title</h4></td>
+				</tr>
+				<c:forEach items="${blogAllTitle}" var="title">
+				<tr>
+					<td><a href='javascript:;' id='${blogId}/${title.contentCode}'>${title.blogTitle}<input type="hidden" name="contentCode" value="${title.contentCode}"/></a></td>
+				</tr>
+				</c:forEach>
+			</table>
 			
 			<div style="height: 500px"></div>
 		</div>
