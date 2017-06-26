@@ -24,6 +24,14 @@
 	margin: 30px 15px;
 }
 .font {}
+
+.imgHead:hover > .contHead {
+	opacity: 0;
+	transition: opacity 1s
+}
+.imgHead:hover > .contHead {
+	opacity: 1;
+}
 </style>
 
 <script>
@@ -55,9 +63,9 @@ function searchEnter(){
 			else{
 				$.each(result, function(index, item) {
 					str += "<div class='offer-box border col-md-3' id='imgList'>";
-					str += "<div class='offer-box-head' id='img"+item.contentCode+"' style='display:none;'>";
+					str += "<div class='offer-box-head imgHead' id='img"+item.contentCode+"' style='display:none;'>";
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
-					str += "</div><div id='cont"+item.contentCode+"'>";
+					str += "</div><div id='cont"+item.contentCode+"' class='contHead'>";
 					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'>";
 					str += "<span class='h4 offer-box-title font'>"+item.lookTitle+"</span><br><br>";
 					str += "<span class='font'>카테고리: "+item.lookCate+"</span><br>";
@@ -78,6 +86,13 @@ function searchEnter(){
 		}
 	});
 };
+
+
+function click(state){
+	var st = state;
+	
+	alert(st);
+}
 </script>
 	
 </head>
@@ -143,7 +158,7 @@ function searchEnter(){
 
 								<div class="home-search-row">
 									<!-- StartDate -->
-									<div class="col-md-4">
+									<div class="col-md-5">
 										<div class="home-search-group">
 											<div class="col-md-12">
 												<h6>Year / Month</h6>
@@ -170,20 +185,17 @@ function searchEnter(){
 										</div>
 									</div>
 									
-									<!-- LastDate -->
+									<!-- Sort -->
 									<div class="col-md-4">
 										<div class="home-search-group">
 											<div class="col-md-12">
-												<h6>Last Date</h6>
+												<h6>Sort</h6>
 											</div>
-										</div>
-									</div>
-									
-
-									<div class="col-md-4">
-										<div class="home-search-group">
-											<div class="col-md-12">
-												<h6>???</h6>
+											<div class="form-group col-md-6">
+												<h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5>
+											</div>
+											<div class="form-group col-md-6">
+												<h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5>
 											</div>
 										</div>
 									</div>
@@ -221,12 +233,12 @@ function searchEnter(){
 						</c:if>
 						<c:if test="${!empty list}">
 						<c:forEach items="${list}" var="list">
-							<div class="offer-box border col-md-3" id="imgList" onmouseover="over()">
-								<div class="offer-box-head" id="img${list.contentCode}" style="display:none;">
+							<div class="offer-box border col-md-3" id="imgList" onclick="click(0); return false;">
+								<div class="offer-box-head imgHead" id="img${list.contentCode}" style="display:none;">
 									<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"
 										 class="img-thumbnail"/>
 								</div>
-								<div id="cont${list.contentCode}">
+								<div id="cont${list.contentCode}" class="contHead">
 									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 									<div>
 										<span class="h4 offer-box-title font">${list.lookTitle}</span><br><br>
