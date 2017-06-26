@@ -32,6 +32,11 @@
 	 font-weight: bold;
 }
 .font {color: white;}
+
+.t3 {
+	position: absolute;
+	bottom: 0px;
+}
 </style>
 
 <script>
@@ -234,11 +239,15 @@ function click(state){
 								<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 								<div style="height: 100%">
 									<h3 class="contTitle font">${list.lookTitle}</h3><br>
+									<div class="t2">
 									<h5 class="font">카테고리: ${list.lookCate}</h5>
 									<h5 class="font">장르: ${list.lookGenre}</h5>
-									<h5 class="font">등급: ${list.lookAge}</h5><br><br>
+									<h5 class="font">등급: ${list.lookAge}</h5>
+									</div>
+									<div class="t3">
 									<h5 class="font"><span class="ti-location-pin"></span>${list.lookLoca}</h5>
 									<h5 class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</h5>
+									</div>
 								</div>
 								</a>
 							</div>
