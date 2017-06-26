@@ -84,6 +84,8 @@
 
 /* insert를 위한 modal화면 수정 */
 .modal-dialog {width: 900px;}
+
+.titleTable tr:FIRST-CHILD td {border-bottom: 1px solid}
 </style>
 
 <!-- security + ajax를 위해.. -->
@@ -225,7 +227,39 @@ $(function() {
 	<div class="container">
 		<!-- Blog Post Content Column -->
 		<div class="cont">
-			<h1>리뷰 좀 적어봐!!</h1>
+			<table class="table table-hover titleTable">
+				<tr>
+					<td colspan="2"><h4>Travelge</h4></td>
+				</tr>
+				<c:forEach items="${trTitle}" begin="0" end="9" var="tr">
+				<tr>
+					<td style="width: 40px;">${tr.blogNum}</td>
+					<td><a href='javascript:;' id='${blogId}/${tr.contentCode}'>${tr.blogTitle}<input type="hidden" name="contentCode" value="${tr.contentCode}"/></a></td>
+				</tr>
+				</c:forEach>
+			</table>
+			<table class="table table-hover titleTable">
+				<tr>
+					<td colspan="2"><h4>Entertainment</h4></td>
+				</tr>
+				<c:forEach items="${enTitle}" begin="0" end="9" var="en">
+				<tr>
+					<td style="width: 40px;">${en.blogNum}</td>
+					<td><a href='javascript:;' id='${blogId}/${en.contentCode}'>${en.blogTitle}<input type="hidden" name="contentCode" value="${en.contentCode}"/></a></td>
+				</tr>
+				</c:forEach>
+			</table>
+			<table class="table table-hover titleTable">
+				<tr>
+					<td colspan="2"><h4>Food</h4></td>
+				</tr>
+				<c:forEach items="${foTitle}" begin="0" end="9" var="fo">
+				<tr>
+					<td style="width: 40px;">${fo.blogNum}</td>
+					<td><a href='javascript:;' id='${blogId}/${fo.contentCode}'>${fo.blogTitle}<input type="hidden" name="contentCode" value="${fo.contentCode}"/></a></td>
+				</tr>
+				</c:forEach>
+			</table>
 			
 			<div style="height: 500px"></div>
 		</div>

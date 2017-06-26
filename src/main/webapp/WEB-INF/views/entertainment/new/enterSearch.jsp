@@ -23,6 +23,7 @@
 	padding: 0;
 	margin: 30px 15px;
 }
+.font {}
 </style>
 
 <script>
@@ -35,10 +36,6 @@ function sortTitle(){
 }
 function sortNew(){
 	sort = "new";
-	searchEnter();
-}
-function sortScore(){
-	sort = "score";
 	searchEnter();
 }
 
@@ -62,12 +59,12 @@ function searchEnter(){
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
 					str += "</div><div id='cont"+item.contentCode+"'>";
 					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'>";
-					str += "<span class='h4 offer-box-title'>"+item.lookTitle+"</span><br><br>";
-					str += "<span>카테고리: "+item.lookCate+"</span><br>";
-					str += "<span>장르: "+item.lookGenre+"</span><br>";
-					str += "<span>등급: "+item.lookAge+"</span><br><br>";
-					str += "<span class='offer-box-location'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
-					str += "<span class='offer-box-meta'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
+					str += "<span class='h4 offer-box-title font'>"+item.lookTitle+"</span><br><br>";
+					str += "<span class='font'>카테고리: "+item.lookCate+"</span><br>";
+					str += "<span class='font'>장르: "+item.lookGenre+"</span><br>";
+					str += "<span class='font'>등급: "+item.lookAge+"</span><br><br>";
+					str += "<span class='offer-box-location font'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
+					str += "<span class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
 					str += "</a></div></div>";
 				});
 			}
@@ -210,7 +207,6 @@ function searchEnter(){
 						<ul>
 							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortTitle(); return false;">Title</a></h5></li>
 							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortNew(); return false;">New</a></h5></li>
-							<li><h5 class="mb-15"><a href="javascript:;" onclick="sortScore(); return false;">Score</a></h5></li>
 						</ul>
 					</div>
 				</div>
@@ -221,7 +217,7 @@ function searchEnter(){
 					</div>
 					<div class="box" id="searchList">
 						<c:if test="${empty list}">
-							<h2>검색결과 없음</h2>
+							<h2 class="font">검색결과 없음</h2>
 						</c:if>
 						<c:if test="${!empty list}">
 						<c:forEach items="${list}" var="list">
@@ -233,12 +229,12 @@ function searchEnter(){
 								<div id="cont${list.contentCode}">
 									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 									<div>
-										<span class="h4 offer-box-title">${list.lookTitle}</span><br><br>
-										<span class="">카테고리: ${list.lookCate}</span><br>
-										<span class="">장르: ${list.lookGenre}</span><br>
-										<span class="">등급: ${list.lookAge}</span><br><br>
-										<span class="offer-box-location"><span class="ti-location-pin"></span>${list.lookLoca}</span>
-										<span class="offer-box-meta">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
+										<span class="h4 offer-box-title font">${list.lookTitle}</span><br><br>
+										<span class="font">카테고리: ${list.lookCate}</span><br>
+										<span class="font">장르: ${list.lookGenre}</span><br>
+										<span class="font">등급: ${list.lookAge}</span><br><br>
+										<span class="offer-box-location font"><span class="ti-location-pin"></span>${list.lookLoca}</span>
+										<span class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
 									</div>
 									</a>
 								</div>
@@ -247,56 +243,6 @@ function searchEnter(){
 						</c:if>
 					</div>
 					<!-- / single offer box-->
-
-
-					<!-- page -->
-					<div class="col-md-12 ml-0 mr-0 pt-5 pb-0 border">
-						<div class="category-pagination text-center">
-							<nav aria-label="Page navigation">
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-								<%-- <ul class="center-align pagination">
-										<!-- < 버튼 -->
-										<c:if test="${startPage != 1 and startPage != null}">
-											<li><a
-												href='${pageContext.request.contextPath }/entertainment/enterInfoSearch?currentPage=${startPage-1}&keyField=${ketField}&keyWord=${keyWord}'><i
-													class="material-icons">chevron_left</i></a></li>
-										</c:if>
-										<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-											<c:if test="${pageNum == spage and pageNum != null}">
-												<!-- 선택페이지 -->
-												<li class="active"><a>${pageNum}</a></li>
-											</c:if>
-											<!-- 선택되지 않은 페이지 -->
-											<c:if test="${pageNum != spage and pageNum != 0}">
-												<li><a
-													href='${pageContext.request.contextPath }/entertainment/enterInfoSearch?keyField=${keyField}&keyWord=${keyWord}&currentPage=${pageNum}'>${pageNum}&nbsp;</a></li>
-
-											</c:if>
-										</c:forEach>
-										<!-- > 버튼 -->
-										<c:if test="${endPage != maxPage }">
-											<li><a
-												href='${pageContext.request.contextPath }/entertainment/enterInfoSearch&currentPage=${endPage+1 }'><i
-													class="material-icons">chevron_right</i></a></li>
-										</c:if>
-
-									</ul> --%>
-							</nav>
-						</div>
-					</div>
-					
 				</div>
 				<!--/ col-md-9-->
 			</div>
