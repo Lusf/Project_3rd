@@ -20,7 +20,7 @@
 </resultMap>
 
 <!-- 볼거리 정보 가져오기 -->
-<select id="searchList" resultMap="lookInfoSelectMap" parameterType="LookInfoVo">
+<select id="searchList" resultMap="lookInfoSelectMap" >
 	select *
 	from look_info
 	<where>

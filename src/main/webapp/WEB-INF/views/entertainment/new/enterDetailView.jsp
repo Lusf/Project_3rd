@@ -161,7 +161,8 @@ $(document).on('click','#wishlist', function() {
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
-								<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >	
+								<%-- <img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >	 --%>
+								<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${posterImg}">
 							</div>
 							<div class="col-md-8">	
 								<h3 class="">${info.lookTitle}</h3>
@@ -177,9 +178,15 @@ $(document).on('click','#wishlist', function() {
 						
 						<div class="col-md-12 panelBottom">
 							<div class="col-md-22" style="text-align:right">
+							
 							<sec:authorize access="isAuthenticated()">
-							 <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a>
+							<!--  <a class="btn btn-default"  data-toggle="modal" data-target="#score">Score</a> -->
+							<c:if test="${info.wish_list eq 1}">
+								 <button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i><p style='float: right;"color: #FF6B6B;'></button>
+							</c:if>
+							<c:if test="${info.wish_list eq 0}">
 								 <button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
+							</c:if>
 								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
 								 <!-- <a class="btn btn-default" data-toggle="modal" href="#share">Share</a> -->
 							</sec:authorize>
@@ -235,41 +242,34 @@ $(document).on('click','#wishlist', function() {
                       	<hr>
 
                       	<!-- 스틸컷 -->                     	                      
-                      	<p>
 	                      	<p class="post-introduction">
 	                        	스틸컷
 	                      	</p>
 	                      	<hr>					
-						<!-- slider -->	
-						<div class="slider">
-							<input type="radio" name="slide_switch" id="id1" />
-						
+
+							<div class="slider">
+								<c:if test="${empty cutImgSemiClone }">
+									스틸컷이 없습니다.
+								</c:if>
+							 	<c:forEach items="${cutImgSemiClone}" var="imgs" varStatus="state">
+							 		<c:if test="${state.first }">
+							 			<input type="radio" name="slide_switch" id="${state.count}" checked="checked"/>
+							 				<label for="${state.count}">
+												<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}" width="30"/>
+											</label>
+										<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}"/>
+							 		</c:if>
+							 		
+							 		<c:if test="${not state.first }">		
+										<input type="radio" name="slide_switch" id="${state.count}"/>
+											<label for="${state.count}">
+												<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}" width="30"/>
+											</label>
+										<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}"/>
+									</c:if>
+								</c:forEach>
 							
-							<!--Lets show the second image by default on page load-->
-							<input type="radio" name="slide_switch" id="id2" checked="checked"/>
-							<label for="id2">
-								<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100"/>
-							</label>
-							<img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"/>
-							
-							<input type="radio" name="slide_switch" id="id3"/>
-							<label for="id3">
-								<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100"/>
-							</label>
-							<img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"/>
-							
-							<input type="radio" name="slide_switch" id="id4"/>
-							<label for="id4">
-								<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100"/>
-							</label>
-							<img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"/>
-							
-							<input type="radio" name="slide_switch" id="id5"/>
-							<label for="id5">
-								<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100"/>
-							</label>
-							<img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"/>
-						</div>
+							</div>
 	                      	
 					</div>
 	                  
@@ -301,7 +301,9 @@ $(document).on('click','#wishlist', function() {
 				                            <div class="col-xs-8 col-sm-9">
 				                                <a class="dark" href="#">
 				                                    <span class="h6 mt-0">${lookConList.lookTitle}</span>
-				                                    <span class="post-list-sidebar-item-description">${lookConList.lookStory}</span>
+				                                    <span class="post-list-sidebar-item-description">				                                    	
+				                                    		${lookConList.lookStory}..			                                    	
+				                                    </span>
 				                                </a>
 				                            </div>
 				                         </div>			                         
@@ -310,48 +312,53 @@ $(document).on('click','#wishlist', function() {
 		                            </c:forEach>
                         		</c:otherwise>
                         		</c:choose>  
-                   </div>     		
-                        		
-                   <!-- comments-->
+                   </div>    
                    
-                    <div class="review">
-                    <h3 class="mb-60">Reviews</h3>
-                    <c:forEach var="comment" items="${commentList }" varStatus="state">
+                   
+                  <!-- reviews -->
+                   
+                   <div class="reviewList">
                     <div class="row">
-                    <c:if test="${empty commentList }">
-                    	블로그 리스트 정보 없음
-                    </c:if>
-                        <a class="btn" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">add new</a>
+                   
+                   	<h3 class="mb-60">
+                   			Reviews
 
-                        <ul class="comments-list">
-                            <li>
-                                <span class="comments-nick h5">Martin</span>
-                                <span class="comments-date">14.07.2017</span>
-                                <p class="comments-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>                                                                
-                                    <li class="mb-60">
-                                        <span class="comments-nick h5">Martin</span>
-                                        <span class="comments-date">14.07.2017</span>
-                                        <p class="comments-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        
-                                    </li>                            
-                        </ul>
-                    </div><!-- /review -->  
-                  
-                    </c:forEach>           
+                   	</h3>
+					
+					  <!-- review 리스트 출력 -->
+     					<c:forEach var="comment" items="${commentList }" varStatus="state">
+	                    <c:if test="${empty commentList }">
+	                    	리뷰가 없어요. 작성하고 싶죠?
+	                    </c:if>	
+	                    <c:if test="${not empty commentList }"  >
+	                    <c:if test="${state.first }">
+		                    <sec:authorize access="isAuthenticated()">
+		                        <a class="btn btn-default" data-toggle="modal" href="${pageContext.request.contextPath}/blog/${comment.id}">내 리뷰만 볼래요?</a>
+							</sec:authorize> 
+							<hr>
+						</c:if>
+						<c:if test="${state.count lt 5 }" >                						
+	                        <ul class="comments-list">
+	                            <li>
+	                                <span class="comments-nick h5">${comment.id }  </span><br>
+	                                 <span class="comments-date">${comment.blogDate }</span><br>
+	                                <span class="comments-nick h5">${comment.blogTitle }</span>
+	                               
+	                                <p class="comments-content">
+	                                    ${comment.blogCont }
+	                                </p>
+	                                <hr>
+	                            </li>                                                                                        
+	                        </ul>
+	                     </c:if>
+	                     </c:if>
+	                     </c:forEach>   
+	                    </div><!-- /review -->  
+	                          
+                    </div>
+                </div>
+                    		                       
+                                               
                     </div>
 
                 </div> 
@@ -360,78 +367,8 @@ $(document).on('click','#wishlist', function() {
               
 		</div>
 		</c:if>
-        
-   
+  </div>
 
-        </div>
-
-
-	<!-- score modal -->
-	<div id="score" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<h4>별점 줄래요?</h4>
-
-							<span class="halflings halflings-star"></span>
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- review 작성 modal -->
-	<div id="reviews" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<h4>Review</h4>
-
-							
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">Save</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- share modal -->
-	<div id="heart" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content shadow">
-				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
-				<div class="modal-body">
-					<div class="post-entry post-entry-modal">
-
-						<div class="services-box text-center">
-							<h4>좋아요♡</h4>	
-							<a class="btn btn-default" data-toggle="collapse" href="#reply-open">하트주기</a>
-							<a class="btn btn-default"  aria-hidden="true" data-dismiss="modal">Cancle</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	<!-- video modal -->
 	<div id="preVideo" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
@@ -450,6 +387,25 @@ $(document).on('click','#wishlist', function() {
  								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
 							</video>												
 
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- review 작성 modal -->
+	<div id="reviews" class="modal fade services-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content shadow">
+				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+				<div class="modal-body">
+					<div class="post-entry post-entry-modal">
+
+						<div class="services-box text-center">							
+							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
 						</div>
 
 					</div>

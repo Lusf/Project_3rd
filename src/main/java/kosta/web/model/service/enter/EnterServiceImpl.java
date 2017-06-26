@@ -1,10 +1,12 @@
 package kosta.web.model.service.enter;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import kosta.web.model.dao.enter.EnterAdminInfoDAO;
@@ -12,7 +14,9 @@ import kosta.web.model.dao.enter.LGBoardCommentDAO;
 import kosta.web.model.dao.enter.LookAvgScoreDAO;
 import kosta.web.model.dao.enter.LookInfoDAO;
 import kosta.web.model.dao.enter.LookgoodBoardDAO;
+import kosta.web.model.dao.travelge.TravelgeAvgScoreDAO;
 import kosta.web.model.vo.AvgScoreVo;
+import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.enter.LGBoardCommentVo;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
@@ -55,6 +59,9 @@ public class EnterServiceImpl implements EnterService {
 
 	@Autowired
 	EnterAdminInfoDAO enterAdminInfoDAO;
+	
+	@Autowired
+	TravelgeAvgScoreDAO travelgeAvgScoreDAO;
 
 	@Override
 	public int lookInfoInsert(LookInfoVo lookInfoVo) {
@@ -123,22 +130,26 @@ public class EnterServiceImpl implements EnterService {
 		return lookAvgScoreDAO.lookWishListSelect(avgScoreVo);
 	}
 
+
 	@Override
 	public int lookWishListUpdate(String id, String contentCode) {
 		AvgScoreVo avgScoreVo = new AvgScoreVo(id, contentCode);
-		List<AvgScoreVo> temp = lookAvgScoreDAO.lookWishListSelect(avgScoreVo);
+		List<AvgScoreVo> temp = travelgeAvgScoreDAO.travelgeWishListSelect(avgScoreVo);
 		int result;
 		if (temp != null && temp.size() != 0) {
 			if (temp.get(0).getWish_list() == 0) {
-				lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 1);
+				travelgeAvgScoreDAO.travelgeWishListUpdate(id, contentCode, 1);
+				//lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 1);
 				result = 1;
 				
 			} else {
-				lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 0);
+				travelgeAvgScoreDAO.travelgeWishListUpdate(id, contentCode, 0);
+				//lookAvgScoreDAO.lookWishListUpdate(id, contentCode, 0);
 				result = 0;
 			}
 		} else {
-			lookAvgScoreDAO.lookWishListInsert(id, contentCode);
+			travelgeAvgScoreDAO.travelgeWishListInsert(id, contentCode);
+			//lookAvgScoreDAO.lookWishListInsert(id, contentCode);
 			result = 1;
 		}
 
@@ -159,15 +170,40 @@ public class EnterServiceImpl implements EnterService {
 	}
 
 	@Override
-	public List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo) {
+	public List<LookInfoVo> lookInfoSearch() {
 	
-		return lookInfoDAO.lookInfoSearch(lookInfoVo);
+		return lookInfoDAO.lookInfoSearch();
 	}
 
 	@Override
-	public LookInfoVo lookInfoSearchByCode(String contentCode) {
-		//dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+	public LookInfoVo lookInfoSearchByCode(String contentCode, String id) {
 		LookInfoVo vo = lookInfoDAO.lookInfoSearchByCode(contentCode);
+		//String id = "";
+		AvgScoreVo avgScore = new AvgScoreVo();
+		avgScore.setContentCode(contentCode);
+		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
+		{
+		 UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		 id = user.getId();
+		 avgScore.setId(id); 
+		}
+		else{
+			// UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		 
+			UserVo user = new UserVo();
+			user.setId(id);
+			avgScore.setId(id); 
+		}
+		
+		
+		
+		//UserVo user = 
+		
+		if(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).size() != 0)
+		{
+			vo.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+		}
+
 		
 		return vo;
 	}

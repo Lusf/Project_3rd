@@ -75,20 +75,20 @@ public class EnterController {
 		ModelAndView mv = new ModelAndView();
 		String id="";	
 		
-		//컨텐츠코드에 따른 볼거리
-		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
+		//컨텐츠코드에 따른 볼거리(잠시 주석처리합니다~)
+		//LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
 		
 		//이미지 ';'를 구분자로 자르기
-		String allImg = lookInfoOne.getLookImg();
+/*		String allImg = lookInfoOne.getLookImg();
 		
 		String cutImgClone[] = allImg.split(":");
 		
 		String cutImgSemiClone[] = cutImgClone[1].split(";");
-		String posterImg = cutImgClone[0];
+		String posterImg = cutImgClone[0];*/
 		
 		
 		//장르에 따른 볼거리
-		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());		
+		//잠시List<LookInfoVo> lookInfoConList = enterService.lookInfoSearchByGenre(lookInfoOne.getLookGenre());		
 		
 		//블로그		
 /*		if (principal != null) {
@@ -101,7 +101,7 @@ public class EnterController {
 		
 		
 		mv.setViewName("entertainment/new/enterDetailConcertView");
-		mv.addObject("info", lookInfoOne);
+/*		mv.addObject("info", lookInfoOne);
 		
 		mv.addObject("lookInfoConList", lookInfoConList);
 		mv.addObject("commentList", commentList);
@@ -112,7 +112,7 @@ public class EnterController {
 	
 
 
-		mv.addObject("imgs", cutImgSemiClone);
+		mv.addObject("imgs", cutImgSemiClone);*/
 		
 
 		return mv;
@@ -120,26 +120,116 @@ public class EnterController {
 	
 	// 볼거리 상세화면
 	@RequestMapping("new/enterDetailView/{contentCode}")
-	public ModelAndView enterDetailView(HttpSession session, @PathVariable String contentCode) {
-		//session.setAttribute("contentCode", contentCode);
+	public ModelAndView enterDetailView(HttpSession session, @PathVariable String contentCode, Principal principal) {
+		
 		ModelAndView mv = new ModelAndView();
-
+		List<LookInfoVo> lookInfoConList;
+		System.out.println(1);
+		
 		//컨텐츠코드에 따른 볼거리
-		LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode);
+		String id="";
 		
+		String lookGenre="";
+		String lookCate="";
+		
+		if (principal != null) {			
+			
+			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			id = user.getId();
+			LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode, id);
+			lookGenre = lookInfoOne.getLookGenre();
+			mv.addObject("info", lookInfoOne);
+			
+			if(lookInfoOne.getLookCate().equals("영화")){
+				lookCate="movie";			
+			}else if(lookInfoOne.getLookCate().equals("공연/연극")){
+				lookCate="concert";
+			}else if(lookInfoOne.getLookCate().equals("TV")){
+				lookCate="TV";
+			}
+			
+			mv.addObject("lookCate", lookCate);
+			
+			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
+			
+			for(int i=0; i<lookInfoConList.size(); i++){
+				if(lookInfoConList.get(i).getLookStory().length()>0){
+					lookInfoConList.get(i).getLookStory().substring(0, 20);
+				}
+			}
+			
+			mv.addObject("lookInfoConList", lookInfoConList);
+			
+			//이미지 ';'를 구분자로 자르기
+			String allImg = lookInfoOne.getLookImg();
+					
+			String cutImgClone[] = allImg.split(":");
+					
+			String cutImgSemiClone[] = cutImgClone[1].split(";");
+			String posterImg = cutImgClone[0];
+
+			mv.addObject("posterImg", posterImg);
+			mv.addObject("imgs", cutImgSemiClone);
+		}
+		else{
+			id = "noname";
+			LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode, id);
+			lookGenre = lookInfoOne.getLookGenre();
+			mv.addObject("info", lookInfoOne);
+				
+			if(lookInfoOne.getLookCate().equals("영화")){
+				lookCate="movie";			
+			}else if(lookInfoOne.getLookCate().equals("공연/연극")){
+				lookCate="concert";
+			}else if(lookInfoOne.getLookCate().equals("TV")){
+				lookCate="TV";
+			}
+			
+			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
+			mv.addObject("lookInfoConList", lookInfoConList);
+			
+			//이미지 ';'를 구분자로 자르기
+			String allImg = lookInfoOne.getLookImg();
+					
+			String cutImgClone[] = allImg.split(":");
+					
+			String cutImgSemiClone[] = cutImgClone[1].split(";");
+			String posterImg = cutImgClone[0];
+			
+			mv.addObject("posterImg", posterImg);
+			mv.addObject("imgs", cutImgSemiClone);
+		}
+
 		//장르에 따른 볼거리
-		String lookGenre = lookInfoOne.getLookGenre();
-		LookInfoVo lookInfoGenre = new LookInfoVo();
-		lookInfoGenre.setLookGenre(lookGenre);
+		//String lookGenre = lookInfoOne.getLookGenre();
 		
-		List<LookInfoVo> lookInfoConList = enterService.lookInfoSearch(lookInfoGenre);
 		
+/*		LookInfoVo lookInfoGenre = new LookInfoVo();
+		lookInfoGenre.setLookGenre(lookGenre);*/
+		System.out.println(3);
+		//lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
+		System.out.println(4);
+		
+		//볼거리 정보 가져오기(전체)
+
+		List<LookInfoVo> lookInfoList = enterService.lookInfoSearch();
+		//System.out.println("lookInfoList.getwish_list : " + lookInfoList.get(0).getWish_list());
+		//System.out.println("lookInfoOne.getContentCode() : " + lookInfoOne.getContentCode());
+		//System.out.println("lookInfoList getContenco : " + lookInfoList.get(0).getContentCode());
+		
+		//컨텐츠코드에 따른 볼거리(lookInfoOne)에 wish_list를 저장
+		
+		//lookInfoOne.setWish_list(enterService.);
+
+		//System.out.println(5);
+		
+		//enterService
 		//블로그
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		
 		mv.setViewName("entertainment/new/enterDetailView");
-		mv.addObject("info", lookInfoOne);
-		mv.addObject("lookInfoConList", lookInfoConList);
+		//mv.addObject("info", lookInfoOne);
+		//mv.addObject("lookInfoConList", lookInfoConList);
 		mv.addObject("commentList", commentList);
 		
 		return mv;
@@ -210,7 +300,7 @@ public class EnterController {
 	public ModelAndView enterContents(LookInfoVo lookInfoVo) {
 		
 		//볼거리 정보 가져오기(전체)
-		List<LookInfoVo> lookInfoList = enterService.lookInfoSearch(lookInfoVo);
+		List<LookInfoVo> lookInfoList = enterService.lookInfoSearch();
 
 		//볼거리 정보 최신순으로 가져오기
 		List<LookInfoVo> lookInfoNewList = enterService.lookInfoSearchByNewList();
