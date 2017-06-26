@@ -130,7 +130,7 @@ img {
 															<a href="${pageContext.request.contextPath }/travelge/travelgeReUpdateForm?contentCode=${list.contentCode}&title=${list.recommandationTitle}">수정</a>							
 														</div></td>
 													<td>${list.recommandationTitle }</td>
-													<td>${list.recommandationDescription }</td>
+													<td><div style='width:300px; height: 30px;text-overflow:ellipsis; overflow:hidden; white-space:nowrap;'>${list.recommandationDescription }</div></td>
 													<td>${list.recommandationDate }</td>
 													<td><a
 														href="${pageContext.request.contextPath }/travelge/travelgeRecommandDelete?contentCode=${list.contentCode}&title=${list.recommandationTitle}">삭제</a></td>

@@ -72,6 +72,9 @@
 			<if test="travelgeRegion!=null and travelgeTheme==null ">
 				TRAVELGE_REGION =#{travelgeRegion}
 			</if>
+			<if test= "contentCode != null">
+				content_code =#{contentCode}
+			</if>
 			AND 1=1
 		</where>
 		) T1) order by content_code

@@ -14,7 +14,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>Insert title here</title>
+<title>오지랖 - travelge By region</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -125,7 +125,7 @@
 		str += "<div class='row scrollPaging'>";
 		str += "<div class='col-md-offset-1 col-md-10'>";
 		str += "<div class='thumbnail'style='height: 8em; background-color:white; border:4px solid #ecebeb''>";
-		str += "<img src='${pageContext.request.contextPath}/resources/travelge/"+contentCode+"/photos/"+item.travelgePhotos+"' style='float: left; height: 100%;margin-right: 20px;'>";
+		str += "<img src='${pageContext.request.contextPath}/resources/travelge/"+contentCode+"/photos/"+item.travelgePhotos+"' style='float: left; height: 100%; width:150px;margin-right: 20px;'>";
 		str += "<div>";
 		str += "<a href='${pageContext.request.contextPath}/travelge/detailView/"+contentCode+"'>"
 		str += "<h4 style='color : black; font-weight : 700'>" + item.travelgeName + "</h4>";
