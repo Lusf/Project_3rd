@@ -56,7 +56,7 @@ public class RestaurantDAOImpl implements RestaurantDAO{
 	public List<RestaurantVo> RecommandRestaurant() {
 		
 		
-		return sqlSession.selectList("foodMapper.recommandRestaurant",new RowBounds(0,6));
+		return sqlSession.selectList("foodMapper.recommandRestaurant",0,new RowBounds(0,3));
 	}
 
 }

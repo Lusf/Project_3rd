@@ -14,8 +14,7 @@
 		varchar2(50), restaurant_Coordinates restaurant_pic varchar2(50), id constraint 
 		id_restaurant_fk references usertable(id) -->
 
-	<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo"
-		id="restaurantSelectMap">
+	<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo" 	id="restaurantSelectMap">
 		<id column="content_CODE" property="contentCode" />
 		<result column="RESTAURANT_NAME" property="restaurantName" />
 		<result column="restaurant_info" property="restaurantInfo" />
@@ -24,12 +23,9 @@
 		<result column="restaurant_address" property="restaurantAddr" />
 		<result column="restaurant_Coordinates" property="restaurantCoordinates" />
 		<result column="restaurant_pic" property="restaurantPic" />
+		<result column="cnt" property="cnt" />
 		<result column="id" property="id" />
 	</resultMap>
-	<!-- content_code varchar2(30) constraint content_code_ri_pk primary key, 
-		restaurant_name varchar2(30), restaurant_address varchar2(50), category varchar2(50), 
-		category2 varchar2(50), restaurant_info varchar2(2000), restaurant_pic varchar2(50), 
-		id constraint id_restaurant_info_fk references usertable(id) -->
 
 
 
@@ -49,17 +45,13 @@
 	<select id="selectRestaurant" resultMap="restaurantSelectMap">
 		select CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY ,
 		CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES ,
-		RESTAURANT_PIC , ID
+		RESTAURANT_PIC ,  ID
 		from Restaurant
-		<!-- <where> C =#{restaurantName} RESTAURANT_ADDRESS RESTAURANT_INFO 
-			CONTENT_CODE = #{_parameter} </where> -->
 	</select>
-	<!-- content_CODE, RESTAURANT_NAME, ADDRESS, CATEGORY,id -->
 
-	<select id="searchByRestaurant" resultMap="restaurantSelectMap"
-		parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
-		select *
-		from Restaurant
+	<select id="searchByRestaurant" resultMap="restaurantSelectMap" 	parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
+		SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT
+		FROM(select * from Restaurant
 		<where>
 			<choose>
 			<when test="category ==null and category2 == null and restaurantName ==null "	>
@@ -105,6 +97,10 @@
 				</if>
 			</when>
 			</choose>
+<<<<<<< HEAD
+				) T1) order by content_code
+=======
+>>>>>>> 1d34c07399e14d98813200693b317d2898f76f68
 		</where>
 	</select>
 
@@ -134,9 +130,15 @@
 	
 	<!-- 메인에 리뷰 많은 순으로 맛집정보 출력 -->
 	<select id="recommandRestaurant"  resultMap="restaurantSelectMap">
+<<<<<<< HEAD
+		SELECT b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
+		FROM  blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code 
+		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
+=======
 		SELECT b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC
 		FROM  blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code 
 		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC
+>>>>>>> 1d34c07399e14d98813200693b317d2898f76f68
 		ORDER BY COUNT(r.content_code) desc
 	</select>
 	

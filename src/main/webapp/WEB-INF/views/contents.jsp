@@ -100,7 +100,7 @@ h1 {
 				<h1>Food</h1>
 				<p id="desc">
 					<br> 나에게 음식이란???<br> 
-					<a href="eating/newdesign" id="astyle">View more</a>
+					<a href="eating/main" id="astyle">View more</a>
 				</p>
 			</figcaption>
 		</figure>
