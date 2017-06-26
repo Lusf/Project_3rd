@@ -25,13 +25,6 @@
 }
 .font {}
 
-.imgHead:hover > .contHead {
-	opacity: 0;
-	transition: opacity 1s
-}
-.imgHead:hover > .contHead {
-	opacity: 1;
-}
 </style>
 
 <script>
@@ -66,14 +59,14 @@ function searchEnter(){
 					str += "<div class='offer-box-head imgHead' id='img"+item.contentCode+"' style='display:none;'>";
 					str += "<img src='${pageContext.request.contextPath}/resources/enter/"+item.contentCode+"/photos/"+item.lookImg+"' class='img-thumbnail'/>";
 					str += "</div><div id='cont"+item.contentCode+"' class='contHead'>";
-					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'>";
+					str += "<a href='${pageContext.request.contextPath}/entertainment/new/enterDetailView/"+item.contentCode+"'><div>";
 					str += "<span class='h4 offer-box-title font'>"+item.lookTitle+"</span><br><br>";
 					str += "<span class='font'>카테고리: "+item.lookCate+"</span><br>";
 					str += "<span class='font'>장르: "+item.lookGenre+"</span><br>";
 					str += "<span class='font'>등급: "+item.lookAge+"</span><br><br>";
 					str += "<span class='offer-box-location font'><span class='ti-location-pin'></span>"+item.lookLoca+"</span>";
 					str += "<span class='offer-box-meta font'>기간: "+item.lookStartDate+" ~ "+item.lookLastDate+"</span>";
-					str += "</a></div></div>";
+					str += "</div></a></div></div>";
 				});
 			}
 
@@ -213,8 +206,7 @@ function click(state){
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-
-				<div class="col-md-12" style="width:82%;">
+				<div class="col-md-12">
 					<div class="pl-0 pr-0">
 						<h4 class="heading">Featured adds</h4>
 					</div>
@@ -224,12 +216,12 @@ function click(state){
 						</c:if>
 						<c:if test="${!empty list}">
 						<c:forEach items="${list}" var="list">
-							<div class="offer-box border col-md-3" id="imgList" onclick="click(0); return false;">
-								<div class="offer-box-head imgHead" id="img${list.contentCode}" style="display:none;">
+							<div class="offer-box border col-md-3" id="imgList">
+								<div class="offer-box-head imgHead" id="img${list.contentCode}">
 									<img src="${pageContext.request.contextPath}/resources/enter/${list.contentCode}/photos/${list.lookImg}"
 										 class="img-thumbnail"/>
 								</div>
-								<div id="cont${list.contentCode}" class="contHead">
+								<%-- <div id="cont${list.contentCode}" class="contHead">
 									<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
 									<div>
 										<span class="h4 offer-box-title font">${list.lookTitle}</span><br><br>
@@ -240,7 +232,7 @@ function click(state){
 										<span class="offer-box-meta font">기간: ${list.lookStartDate} ~ ${list.lookLastDate}</span>
 									</div>
 									</a>
-								</div>
+								</div> --%>
 							</div>
 						</c:forEach>
 						</c:if>
