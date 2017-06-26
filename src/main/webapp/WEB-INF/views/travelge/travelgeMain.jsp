@@ -99,7 +99,7 @@
 
 					<div class="offer-content pl-30 pr-30">
 						<span class="h4 offer-box-title">${card.recommandationTitle }</span>
-						<span class="offer-box-location"><i class="material-icons">visibility</i>${card.readNum }
+						<span class="offer-box-location">
 						</span> <span class="offer-box-meta">${card.recommandationDate}</span> <span
 							class="descriptionImg"> ${card.recommandationDescription }
 						</span> <a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
