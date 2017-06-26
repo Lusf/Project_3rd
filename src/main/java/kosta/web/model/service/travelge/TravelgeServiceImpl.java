@@ -143,7 +143,7 @@ public class TravelgeServiceImpl implements TravelgeService {
 				//좋아요 가져오기
 				AvgScoreVo dupl = new AvgScoreVo();
 				if(dto.getContentCode() != null)
-				{
+				{				
 					dupl = travelgeAvgScoreDAO.scoreDuplicate(dto.getContentCode());
 				}
 
@@ -279,24 +279,42 @@ public class TravelgeServiceImpl implements TravelgeService {
 		for (TravelgeInfoVo dto : temp) {
 			// 평점 가져오기
 			AvgScoreVo avgScore = travelgeAvgScoreDAO.travelgeAvgScore(dto.getContentCode());
-			if (avgScore == null) {
+			
+			if (avgScore == null) { 
+
 				avgScore = new AvgScoreVo();
 				avgScore.setScore(0.0);
 				avgScore.setPersonCount(0);
 			}
+			
+
 			if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
 			{
+				//좋아요 가져오기
+				AvgScoreVo dupl = new AvgScoreVo();
+				if(dto.getContentCode() != null)
+				{				
+					dupl = travelgeAvgScoreDAO.scoreDuplicate(dto.getContentCode());
+				}
+
 				UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				String id = user.getId();
-				avgScore.setId(id);
-				if(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).size() != 0)
+				
+				if(dupl != null &&dupl.getContentCode() != null)
 				{
-					dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(avgScore).get(0).getWish_list());
+					dupl.setId(id);
+					if(travelgeAvgScoreDAO.travelgeWishListSelect(dupl).size()!=0)
+					{
+	
+						dto.setWish_list(travelgeAvgScoreDAO.travelgeWishListSelect(dupl).get(0).getWish_list());
+					}
 				}
+				
 			}
 			dto.setAvgScoreVo(avgScore);
 
 			newList.add(dto);
+
 
 		}								
 		return newList;		
