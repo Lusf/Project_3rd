@@ -27,6 +27,55 @@
 .home {
 	top: 0.3em;
 }
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+
 </style>
 
 </head>
@@ -68,7 +117,7 @@
 				</div>
 				<c:forEach items="${list }" var="card" begin="3" end="5" varStatus="vs">
 				<!-- / single offer box-->
-				<div class="col-md-4">
+<%-- 				<div class="col-md-4">
 					<div class="offer-box">
 						<div class="offer-box-head">
 							<div class="offer-slider">
@@ -81,8 +130,29 @@
 							data-target="#card${vs.index}View"><span class="h4 offer-box-title">${card.recommandationTitle }</span>
 						</a>
 					</div>
-				</div>
+				</div> --%>
+				
+				<div class="col-md-4 ">
+                <div class="card">
+                    <img class="card-img-top" src="${card.thumbnail }">
+                    <div class="card-block">
+                        <h4 class="card-title">${card.recommandationTitle }</h4>
+                        <div class="card-text" style="text-overflow: ellipsis; width: 350px;height: 45px;overflow: hidden;color: #aaa">
+                           ${card.recommandationDescription }
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                    <a href="#" class="btn btn-default" data-toggle="modal"
+							data-target="#card${vs.index}View">show</a>
+                    </div>
+                </div>
+            </div>
+				
+				<!--test  -->
+				
 				</c:forEach>
+				<!-- ///////test////// -->
+
 			</div>
 			<!--/ row -->
 		</div>
