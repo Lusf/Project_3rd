@@ -27,5 +27,7 @@ public interface TravelgeAvgScoreDAO {
 	
 	AvgScoreVo travelgeAvgScore(String contentCode);
 	
+	AvgScoreVo scoreDuplicate(String contentCode);
+	
 	AvgScoreVo selectUserScore(String contentCode, String id);
 }

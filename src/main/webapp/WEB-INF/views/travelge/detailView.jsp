@@ -446,7 +446,7 @@ span .glyphicon {
 					</div>
 					<!-- /detail modal 끝 -->
 					<c:forEach var="comment" items="${commentList }" varStatus="vs">
-						<div class="row">
+						<div class="row" style="text-align: -webkit-right;">
 							<a href="${pageContext.request.contextPath}/blog/${comment.id}">
 
 								<span class="col-md-2"> <img
