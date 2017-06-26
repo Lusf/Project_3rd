@@ -71,6 +71,22 @@
 
 <script type="text/javascript">
 
+
+
+function chkName(str)
+{
+ var check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+ if(!check.test(str))
+ {
+  return false;
+ }
+ return true;
+}
+
+
+
+
+
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
@@ -132,6 +148,14 @@ var header = $("meta[name='_csrf_header']").attr("content");
 				
 				$("#idcheck").blur(function() {
 					
+					if($("#idcheck").val().length > 5 ){
+						  if(!chkName($("#idcheck").val))
+					  {	$("#checking").empty();
+						 $("#checking").append("한글아이디는 불가능 합니다.");
+						 $("#checking").attr("hidden", false);
+					   return false;
+					  }
+			
 			 		$.ajax({
 						url : "${pageContext.request.contextPath}/user/userSearchById",
 						type : "post",
@@ -158,7 +182,12 @@ var header = $("meta[name='_csrf_header']").attr("content");
 							alert("오류 발생 : " + err);
 						}
 					}); 
-					
+					}else{
+						$("#checking").empty();
+						$("#checking").css("color","red")
+						$("#checking").append("6글자 이상 필요로 합니다.");
+						$("#checking").attr("hidden", false);
+					}
 				});//
 				
 				
@@ -261,7 +290,7 @@ var header = $("meta[name='_csrf_header']").attr("content");
 								<div hidden="true" id="checking" style="text-align: center;margin-bottom: 8px;"></div>
 								<input type="password" class="form-control" placeholder="비밀번호" name="password" id="password"/> 
 								<input type="password" class="form-control" placeholder="비밀번호확인" name="password2" id="password2"/> 
-								<input type="tel" class="form-control" placeholder="전화번호" name="tell" /> <label>추가사항</label>
+								<input type="tel" class="form-control" placeholder="전화번호" name="tell" id="cellPhone" maxlength="13" /> <label>추가사항</label>
 							<div class="filebox">
 								<!-- 	<input class="form-control" type="file" name="file" placeholder="사진" id="upload" /> -->
 								<input class="upload-name" value="파일선택" disabled="disabled">
@@ -287,6 +316,7 @@ var header = $("meta[name='_csrf_header']").attr("content");
 </div>
 
 </div>
+
 <!-- /.container -->
 <script type="text/javascript">
 	var upload = document.getElementById('upload'), holder = document
@@ -309,6 +339,41 @@ var header = $("meta[name='_csrf_header']").attr("content");
 
 		return false;
 	};
+	
+	function autoHypenPhone(str){
+	    str = str.replace(/[^0-9]/g, '');
+	    var tmp = '';
+	    if( str.length < 4){
+	        return str;
+	    }else if(str.length < 7){
+	        tmp += str.substr(0, 3);
+	        tmp += '-';
+	        tmp += str.substr(3);
+	        return tmp;
+	    }else if(str.length < 11){
+	        tmp += str.substr(0, 3);
+	        tmp += '-';
+	        tmp += str.substr(3, 3);
+	        tmp += '-';
+	        tmp += str.substr(6);
+	        return tmp;
+	    }else{              
+	        tmp += str.substr(0, 3);
+	        tmp += '-';
+	        tmp += str.substr(3, 4);
+	        tmp += '-';
+	        tmp += str.substr(7);
+	        return tmp;
+	    }
+	    return str;
+	}
+
+	var cellPhone = document.getElementById('cellPhone');
+	cellPhone.onkeyup = function(event){
+	event = event || window.event;
+	var _val = this.value.trim();
+	this.value = autoHypenPhone(_val) ;
+	}
 </script>
 </body>
 </html>
