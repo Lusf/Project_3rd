@@ -12,7 +12,7 @@
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
 <meta charset="utf-8">
-<title>travelge main - 오지랖</title>
+<title>오지랖 - travelge detailView</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -330,10 +330,11 @@ span .glyphicon {
 			<div style="text-align: center;">
 				<p class="pcontent" id="pcontent" align="left">
 					${info.travelgeDescription }</p>
+					<c:if test="${fn:length(info.travelgeDescription)>50  }">
 				<button type="button" class="btn btn-info" data-toggle="collapse"
 					data-target="#content" id="morebtn"
 					style="color: #FF6B6B; background-color: white; border-color: #FF6B6B">상세
-					정보 더보기</button>
+					정보 더보기</button></c:if>
 				<div id="content" class="collapse" align="left">
 					<p>${info.travelgeDescription }</p>
 				</div>

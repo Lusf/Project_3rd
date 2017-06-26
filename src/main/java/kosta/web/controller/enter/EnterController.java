@@ -25,7 +25,6 @@ import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.enter.LookgoodBoardVo;
-import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("entertainment/")
@@ -332,6 +331,9 @@ public class EnterController {
 			for(LookInfoVo ivo : list){
 				String img[] = ivo.getLookImg().split(":");
 				ivo.setLookImg(img[0]);
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
 				
 				if(ivo.getLookStartDate()!=null){
 					String y = ivo.getLookStartDate().substring(0,4);
@@ -376,6 +378,9 @@ public class EnterController {
 				String img[] = ivo.getLookImg().split(":");
 				ivo.setLookImg(img[0]);
 				
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
 				if(ivo.getLookStartDate()!=null){
 					String y = ivo.getLookStartDate().substring(0,4);
 					String m = ivo.getLookStartDate().substring(5,7);
@@ -400,7 +405,6 @@ public class EnterController {
 	
 	//ÂòÇÏ±â±â
 	@RequestMapping("/lookWishListUpdate")
-	@ResponseBody
 	public int lookWishListUpdate(String contentCode){
 		int result = 0;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))

@@ -104,53 +104,9 @@
 					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
 				</if>
 			</when>
-			
 			</choose>
-			
-			<!-- <if test="category2 !=null">
-				<if test="restaurantName !=null or restaurantName ==null">
-						CATEGORY2 =  #{category2} and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or restaurant_info LIKE '%'||#{restaurantInfo} ||'%'
-				</if>
-			</if>
-			
-			<if test="restaurantName !=null or restaurantInfo !=null">
-				RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or restaurant_info LIKE '%'||#{restaurantInfo} ||'%'
-			</if> -->
-				
 		</where>
 	</select>
-	<!-- <when test="category !=null and category2 !=null and restaurantName 
-		!=null and restaurantAddr !=null and contentCode !=null"> CATEGORY '%' || 
-		#{category} || '%' or CATEGORY2 '%' || #{category2} || '%' or RESTAURANT_NAME 
-		'%' || #{restaurantName} || '%' or RESTAURANT_ADDRESS '%' || #{restaurantAddr} 
-		|| '%' or content_CODE '%' || #{contentCode} || '%' </when> <when test="contentCode!=null"> 
-		CONTENT_CODE LIKE '%'||#{contentCode}||'%'</when> <when test="restaurantName 
-		!=null"> RESTAURANT_NAME '%' || #{restaurantName} || '%'</when> <when test="restaurantAddr 
-		!=null"> RESTAURANT_ADDRESS '%' || #{restaurantAddr} || '%'</when> <when 
-		test="category !=null"> CATEGORY '%' || #{category} || '%'</when> <when test="category2 
-		!=null"> CATEGORY2 '%' || #{category2} <if test ="category !=null" > and 
-		CATEGORY =#{category}</if> </when> -->
-	<!-- 검색 (이름으로 검색하기) -->
-	<!-- <select id="selectByRestaurant" resultMap="restaurantSelectMap" parameterType="kosta.web.model.vo.restaurant.RestaurantVo"> 
-		select * from Restaurant <where> <choose> <when test ="category !=null and 
-		category2 !=null and restaurantName !=null and restaurantAddr !=null and 
-		contentCode !=null"> CATEGORY '%' || #{category} || '%' or CATEGORY2 '%' 
-		|| #{category2} || '%' or RESTAURANT_NAME '%' || #{restaurantName} || '%' 
-		or RESTAURANT_ADDRESS '%' || #{restaurantAddr} || '%' or content_CODE '%' 
-		|| #{contentCode} || '%' </when> <when test="contentCode!=null"> CONTENT_CODE 
-		LIKE '%'||#{contentCode}||'%'</when> <when test="restaurantName !=null"> 
-		RESTAURANT_NAME '%' || #{restaurantName} || '%'</when> <when test="restaurantAddr 
-		!=null"> RESTAURANT_ADDRESS '%' || #{restaurantAddr} || '%'</when> <when 
-		test="category !=null"> CATEGORY '%' || #{category} || '%'</when> <when test="category2 
-		!=null"> CATEGORY2 '%' || #{category2} <if test ="category !=null" > and 
-		CATEGORY =#{category}</if> </when> <otherwise>1=1</otherwise> </choose> </where> 
-		</select> -->
-
-
-	<!-- <where> RESTAURANT_NAME =#{restaurantName} AND CATEGORY = #{category} 
-		AND CATEGORY2 =#{category2} AND (RESTAURANT_NAME LIKE '%'||#{keyword}||'%' 
-		OR CATEGORY LIKE '%'||#{keyword}||'%' OR CATEGORY2 LIKE '%'||#{keyword}||'%') 
-		</where> -->
 
 
 	<!-- 맛집 수정하기 -->
@@ -175,4 +131,13 @@
 		delete
 		Restaurant_INFO where content_CODE=#{_parameter}
 	</delete>
+	
+	<!-- 메인에 리뷰 많은 순으로 맛집정보 출력 -->
+	<select id="recommandRestaurant"  resultMap="restaurantSelectMap">
+		SELECT b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC
+		FROM  blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code 
+		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC
+		ORDER BY COUNT(r.content_code) desc
+	</select>
+	
 </mapper>

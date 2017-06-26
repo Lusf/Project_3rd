@@ -206,7 +206,7 @@
 							<a class="btn btn-default" href="#" data-toggle="modal"	data-target="#new"><strong>맛집 등록</strong></a>
 						</sec:authorize>
 						<sec:authorize access="!isAuthenticated()">
-							<a class="btn btn-default" href="${pageContext.request.contextPath }/user/loginForm"><strong>리뷰 등록</strong></a>
+							<a class="btn btn-default" href="${pageContext.request.contextPath }/user/loginForm"><strong>맛집 등록</strong></a>
 						</sec:authorize>
 					<a class="btn btn-default" href="new_theme_mark2/search"><strong>전체 맛집 보기</strong></a>
 				</div>

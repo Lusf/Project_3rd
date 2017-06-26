@@ -36,24 +36,17 @@ public class FoodController {
 	}
 
 	@RequestMapping("eating/newdesign")
-	public String testMark2() {
+	public ModelAndView testMark2() {
 		
-		
-		
-		return "eating/new_theme_mark2/index2";
+		List<RestaurantVo> list = restaurantService.RecommandRestaurant();
+		System.out.println(list.toString());
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("eating/new_theme_mark2/search");
+
+		return new ModelAndView("eating/new_theme_mark2/index2", "listA", list);
 	}
 
-	/*
-	 * @RequestMapping("eating/test") public ModelAndView Test(String
-	 * contentCode, RestaurentVo restaurentVo) { System.out.println("123");
-	 * 
-	 * List<RestaurentVo> list = restaurantService.RestauranSearch(restaurentVo,
-	 * 1); System.out.println(list);
-	 * 
-	 * return new ModelAndView("eating/test", "list", list);
-	 * 
-	 * }
-	 */
 	// ¸ÀÁýµî·Ï
 	@RequestMapping("eating/insertRestaurant")
 	public String insertRestaurant(HttpServletRequest req, RestaurantVo restaurantVo) throws Exception {

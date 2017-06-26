@@ -99,4 +99,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		return list;
 	}
+	//ÃßÃµ¸ÀÁı
+	@Override
+	public List<RestaurantVo> RecommandRestaurant() {
+		List<RestaurantVo> list = restaurantInfoDAO.RecommandRestaurant();
+		
+		return list;
+	}
 }

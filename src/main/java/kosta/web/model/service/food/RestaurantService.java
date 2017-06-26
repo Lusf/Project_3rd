@@ -10,4 +10,5 @@ public interface RestaurantService {
 	int RestaurantDelete(String contentCode);
 	List<RestaurantVo> RestaurantSearch(RestaurantVo restaurantVo, int i);
 	List<RestaurantVo> Search(RestaurantVo restaurantVo, int i);
+	List<RestaurantVo> RecommandRestaurant();
 }
