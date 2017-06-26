@@ -29,7 +29,7 @@ public interface LookInfoDAO {
 	/**
 	 * 볼거리 검색(전체)
 	 * */
-	List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo);
+	List<LookInfoVo> lookInfoSearch();
 	
 	/**
 	 * 컨텐츠코드에 따른 볼거리 검색

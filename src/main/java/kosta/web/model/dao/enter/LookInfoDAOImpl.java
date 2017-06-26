@@ -35,9 +35,9 @@ public class LookInfoDAOImpl implements LookInfoDAO {
 	}
 
 	@Override
-	public List<LookInfoVo> lookInfoSearch(LookInfoVo lookInfoVo) {
+	public List<LookInfoVo> lookInfoSearch() {
 		
-		return sqlSession.selectList("lookInfoMapper.searchList", lookInfoVo);
+		return sqlSession.selectList("lookInfoMapper.searchList");
 	}
 
 	@Override

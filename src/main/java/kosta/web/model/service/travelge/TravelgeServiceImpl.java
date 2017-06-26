@@ -67,8 +67,8 @@ public class TravelgeServiceImpl implements TravelgeService {
 
 		// 컨텐츠 코드 중복 체크
 		int i = 0;
-		for (i = 0; i < travelgeInfoDAO.travelgeInfoSearch(null, 0).size(); i++) {
-			if (travelgeInfoDAO.travelgeInfoSearch(travelgeInfoVo, 0).size() == 1) {
+		for (i = 0; i < travelgeInfoDAO.travelgeInfoSearch2(null, 0).size(); i++) {
+			if (travelgeInfoDAO.travelgeInfoSearch2(travelgeInfoVo, 0).size() == 1) {
 				ran = (int) (Math.random() * 10000 + 1);
 				contentCode = "T" + travelgeInfoVo.getTravelgeTheme()
 						+ travelgeInfoVo.getTravelgeRegion() + ran;
