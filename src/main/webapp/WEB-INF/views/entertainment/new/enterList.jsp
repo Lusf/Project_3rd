@@ -126,7 +126,7 @@
 		           	<hr class="line">
 	      			<div class="row">
 	      				<div class="col-md-6 col-sm-6" style="float:right">
-	      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailConcertView/${infoList.contentCode}" >More</a>
+	      						<a class="btn" href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}" >More</a>
 	      				</div>     				
 	      			</div>
 	      		</c:when>

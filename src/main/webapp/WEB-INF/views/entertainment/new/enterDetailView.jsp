@@ -99,6 +99,15 @@ On click the images will be displayed at normal size to complete the effect
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
+$( document ).ready(function() {
+	
+	$("#reviews").click(function() {
+		location.href="/WEB-INF/views/blog/blogReviewInsert.jsp"; 	 
+	})
+	
+}
+
+
 $(document).on('click','#wishlist', function() {
 	var contentCode = '${info.contentCode}';
 	var heart = $(this);
@@ -127,6 +136,8 @@ $(document).on('click','#wishlist', function() {
 					alert("오류 발생 : " + err);
 				}
 			});
+	
+	
 });
 </script>
 
@@ -143,7 +154,8 @@ $(document).on('click','#wishlist', function() {
 		<div class="post">
 		<div class="col-md-12 pl-3 pr-3">
 			<span class="h4 offer-box-title">
-			♡ 상세보기<br>
+			<i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i>
+			 상세보기<br>
 			<hr class="col-md-8" color="black"><br><br>
 			</span>
 		</div>
@@ -156,13 +168,12 @@ $(document).on('click','#wishlist', function() {
 		<c:if test="${contentCode eq info.contentCode}">
         <div class="row" >
 			
-			<div class="col-md-8">				
-	
+			<div class="col-md-8">					
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
 								<%-- <img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}" >	 --%>
-								<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${posterImg}">
+								<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${posterImg}" width="185px" height="260px">
 							</div>
 							<div class="col-md-8">	
 								<h3 class="">${info.lookTitle}</h3>
@@ -171,7 +182,7 @@ $(document).on('click','#wishlist', function() {
 									감독 : ${info.lookMaker}<br><br>
 									장르 : ${info.lookGenre}<br><br>
 									등급 : ${info.lookAge}<br><br>
-									개봉 : ${info.lookStartDate}<br><br>
+									개봉 : ${info.lookStartDate.substring(0,10)}<br><br>
 								</h5>
 							</div>
 						</div>
@@ -187,7 +198,7 @@ $(document).on('click','#wishlist', function() {
 							<c:if test="${info.wish_list eq 0}">
 								 <button class="btn btn-info" id="wishlist" style="color: #FF6B6B; background-color: white; border-color: #FF6B6B"><i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite_border</i><p style='float: right;"color: #FF6B6B;'></button>
 							</c:if>
-								 <a class="btn btn-default" data-toggle="modal" href="#reviews">Review</a>
+								 <a class="btn btn-default" data-toggle="collapse" id="reviews">Review</a>
 								 <!-- <a class="btn btn-default" data-toggle="modal" href="#share">Share</a> -->
 							</sec:authorize>
 							</div>
@@ -216,26 +227,14 @@ $(document).on('click','#wishlist', function() {
 							<ul class="list-unstyled video-list-thumbs row">
 								<li class="col-lg-3 col-sm-4 col-xs-6">
 									<a href="#preVideo" title="zootopia_예고편1" data-toggle="modal">
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo2.jpg" alt="Barca" class="img-responsive" width="300px" height="200px" />
+										<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${videoImg}" alt="Barca" class="img-responsive" width="300px" height="200px" />
 								
 										<span class="glyphicon glyphicon-play-circle"></span>
-										<span class="duration">00:15</span>
-									</a>
-								</li>
-								<li class="col-lg-3 col-sm-4 col-xs-6">
-									<a href="#" title="zootopia_예고편2">
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo6.jpg" alt="Barca" class="img-responsive" width="300px" height="200px" />
-										
-										<span class="glyphicon glyphicon-play-circle"></span>
-										<span class="duration">01:15</span>
+										<!-- <span class="duration">00:15</span> -->
 									</a>
 								</li>
 							</ul> 
-							
-<!-- 							
-							<video width="420" height="340" controls>
- 								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
-							</video> -->
+
 							
 						</div><!-- 영상 슬라이드 리스트 끝 -->
                       	<p>
@@ -255,22 +254,69 @@ $(document).on('click','#wishlist', function() {
 							 		<c:if test="${state.first }">
 							 			<input type="radio" name="slide_switch" id="${state.count}" checked="checked"/>
 							 				<label for="${state.count}">
-												<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}" width="30"/>
+												<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${imgs}" width="120px"/>
 											</label>
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}"/>
+										<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${imgs}" width="650px" height="330px"/>
 							 		</c:if>
 							 		
 							 		<c:if test="${not state.first }">		
 										<input type="radio" name="slide_switch" id="${state.count}"/>
 											<label for="${state.count}">
-												<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}" width="30"/>
+												<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${imgs}"width="120px"/>
 											</label>
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/${lookCate}/${imgs}"/>
+										<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${imgs}" width="650px" height="330px"/>
 									</c:if>
 								</c:forEach>
 							
 							</div>
-	                      	
+							
+							<br><br><br>
+							<hr>
+						<c:if test="${lookCate eq 'concert'}">
+							
+							<p class="post-introduction">
+					            위치
+					        </p>
+					        <hr>
+							<div id="map" style="width: 500px; height: 400px;"></div>
+				
+							<script>
+				
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						    mapOption = { 
+						        center: new daum.maps.LatLng(${info.x}, ${info.y}), // 지도의 중심좌표
+						        level: 3 // 지도의 확대 레벨
+						    };
+				
+				
+						var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+				
+				 		// 마커가 표시될 위치입니다 
+						var markerPosition  =new daum.maps.LatLng(${info.x}, ${info.y}); 
+				
+						// 마커를 생성합니다
+						var marker = new daum.maps.Marker({
+						    position: markerPosition
+						});
+				
+						// 마커가 지도 위에 표시되도록 설정합니다
+						marker.setMap(map); 
+				
+						 var iwContent = "<div style='padding:5px;'>${info.lookTitle }</div>" // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+						iwPosition = new daum.maps.LatLng(${info.x}, ${info.y}); //인포윈도우 표시 위치입니다
+				
+						// 인포윈도우를 생성합니다
+						var infowindow = new daum.maps.InfoWindow({
+						    position : iwPosition, 
+						    content : iwContent 
+						});
+						  
+						// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+						infowindow.open(map, marker); 	
+						
+						</script>	
+						</c:if>
+					                      	
 					</div>
 	                  
                 </div>
@@ -284,7 +330,11 @@ $(document).on('click','#wishlist', function() {
 					
                     <div class="sidebar-box">
                     <div class="relation">
-                         <h3 class="mb-60">관련 영상</h3>                     
+                    	<div class="row">
+                         <h3 class="mb-60">
+                         <i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i>			
+                         관련 영상
+                         </h3>                     
                    	
                         		<c:choose>
                         		<c:when test="${empty lookInfoConList}">
@@ -302,7 +352,7 @@ $(document).on('click','#wishlist', function() {
 				                                <a class="dark" href="#">
 				                                    <span class="h6 mt-0">${lookConList.lookTitle}</span>
 				                                    <span class="post-list-sidebar-item-description">				                                    	
-				                                    		${lookConList.lookStory}..			                                    	
+				                                    		${lookConList.lookStory.substring(0,10)}..			                                    	
 				                                    </span>
 				                                </a>
 				                            </div>
@@ -312,18 +362,21 @@ $(document).on('click','#wishlist', function() {
 		                            </c:forEach>
                         		</c:otherwise>
                         		</c:choose>  
-                   </div>    
+                   </div>
+                  
+                       
                    
                    
                   <!-- reviews -->
                    
                    <div class="reviewList">
                     <div class="row">
-                   
-                   	<h3 class="mb-60">
-                   			Reviews
-
-                   	</h3>
+                    <hr>
+                   	
+                         <h3 class="mb-60">
+                         <i class='material-icons' style='color:#FF6B6B; cursor:pointer;font-size:16px'>favorite</i>			
+                        	Reviews
+                         </h3> 
 					
 					  <!-- review 리스트 출력 -->
      					<c:forEach var="comment" items="${commentList }" varStatus="state">
@@ -353,7 +406,8 @@ $(document).on('click','#wishlist', function() {
 	                     </c:if>
 	                     </c:if>
 	                     </c:forEach>   
-	                    </div><!-- /review -->  
+	                    </div>
+	                    <!-- /review -->  
 	                          
                     </div>
                 </div>
@@ -363,11 +417,13 @@ $(document).on('click','#wishlist', function() {
 
                 </div> 
 					</div>
-				</div>
-              
+					
+			<br>
+		
 		</div>
-		</c:if>
-  </div>
+      </c:if>     
+	</div>
+	
 
 	<!-- video modal -->
 	<div id="preVideo" class="modal fade services-modal" role="dialog">
@@ -379,14 +435,10 @@ $(document).on('click','#wishlist', function() {
 					<div class="post-entry post-entry-modal">
 
 						<div class="services-box text-center">
-							<video width="420" height="340" controls>
-
- 							<%-- 	<source src="${info.lookTariler }" type="video/mp4"> --%>
- 							</video>												
-
- 								 <source src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-1/ollie.mp4" type="video/mp4">
-							</video>												
-
+<!-- 							<iframe width="640" height="360" src="https://www.youtube.com/embed/Rn0r6IenhZk" frameborder="0" allowfullscreen="true"></iframe>											
+ -->
+ 							<iframe width="640" height="360" src="${info.lookTrailer }" frameborder="0" allowfullscreen="true"></iframe>											
+ 							
 						</div>
 
 					</div>
@@ -396,7 +448,7 @@ $(document).on('click','#wishlist', function() {
 	</div>
 	
 	<!-- review 작성 modal -->
-	<div id="reviews" class="modal fade services-modal" role="dialog">
+<%-- 	<div id="reviews" class="modal fade services-modal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
@@ -406,13 +458,14 @@ $(document).on('click','#wishlist', function() {
 
 						<div class="services-box text-center">							
 							<%@include file="/WEB-INF/views/blog/blogReviewInsert.jsp"%>
+							
 						</div>
 
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>
