@@ -23,7 +23,42 @@
 	<!-- 검색 -->
 	<select id="enterInfoSearch" resultMap="enterSelectMap" parameterType="LookInfoVo">
 	SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT 
-	FROM( SELECT * FROM Look_Info) T1) order by content_code
+	FROM( SELECT * FROM Look_Info 
+	<where>
+	<choose>
+		<when test="lookTitle!=null">
+			look_title like '%'||#{lookTitle}||'%'
+		</when>
+		<when test="lookCate!=null">
+			look_cate like '%'||#{lookCate}||'%'
+		</when>
+		<when test="lookGenre!=null">
+			look_genre like upper('%'||#{lookGenre}||'%')
+		</when>
+		<when test="lookAge!=null">
+			look_age like '%'||#{lookAge}||'%'
+		</when>
+		<when test="contentCode!=null">
+			content_code like upper('%'||#{contentCode}||'%')
+		</when>
+		<when test="lookStory!=null">
+			look_story like '%'||#{lookStory}||'%'
+		</when>
+		<when test="lookMaker!=null">
+			look_maker like '%'||#{lookMaker}||'%'
+		</when>
+		<when test="lookLoca!=null">
+			look_loca like '%'||#{lookLoca}||'%'
+		</when>
+		<when test="lookStartDate!=null">
+			to_char(look_startdate,'yyyy/mm/dd') >= #{lookStartDate}
+		</when>
+		<when test="lookLastDate!=null">
+			to_char(look_lastdate,'yyyy/mm/dd') >= #{lookLastDate}
+		</when>
+	</choose>
+	</where>
+	) T1) order by content_code
 	</select>
 	
 	<!-- 추가 -->
@@ -34,7 +69,7 @@
 	</insert>
 	
 	<!-- 수정 -->
-	<update id="enterInfoUpdate">
+	<update id="enterInfoUpdate" parameterType="LookInfoVo">
 		update look_info set look_title=#{lookTitle}, look_story=#{lookStory}, look_maker=#{lookMaker},
 			look_img=#{lookImg}, look_genre=#{lookGenre}, look_startdate=#{lookStartDate}, look_lastdate=#{lookLastDate},
 			look_loca=#{lookLoca},look_cate=#{lookCate},look_age=#{lookAge},look_trailer=#{lookTrailer},look_x=#{x},look_y=#{y}

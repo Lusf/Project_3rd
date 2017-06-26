@@ -122,7 +122,7 @@
                     <img class="card-img-top" src="${card.thumbnail }" style="height: 240px;" alt="${card.recommandationTitle }">
                     <div class="card-block">
                         <h4 class="card-title">${card.recommandationTitle }</h4>
-                        <div class="card-text" style="text-overflow: ellipsis; width: 350px;height: 45px;overflow: hidden;color: #aaa">
+                        <div class="card-text" style="text-overflow: ellipsis; width: 335px;height: 45px;overflow: hidden;color: #aaa">
                            ${card.recommandationDescription }
                         </div>
                     </div>

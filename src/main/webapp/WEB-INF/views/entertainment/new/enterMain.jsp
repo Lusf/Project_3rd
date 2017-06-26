@@ -390,18 +390,12 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<%-- 																<a href="${pageContext.request.contextPath}/entertainment/new/enterList/${infoList.lookCate}">  --%>
-																<a
-																	href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																	<img
-																	src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
-															<a
-																href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																<span class="h4 offer-box-title">${infoList.lookTitle}</span>
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																</div>
 															</a>
+															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
 
@@ -440,17 +434,12 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a
-																	href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																	<img
-																	src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
-															<a
-																href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																<span class="h4 offer-box-title">${infoList.lookTitle}</span>
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																</div>
 															</a>
+															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
 
@@ -489,17 +478,12 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a
-																	href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																	<img
-																	src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
-															<a
-																href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
-																<span class="h4 offer-box-title">${infoList.lookTitle}</span>
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																</div>
 															</a>
+															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
 
@@ -562,11 +546,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
@@ -601,11 +585,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
@@ -640,11 +624,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
@@ -679,11 +663,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
@@ -718,11 +702,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
@@ -757,11 +741,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>
@@ -796,11 +780,11 @@ img:hover+.fader-in {
 													<div class="swiper-slide">
 														<!-- single offer box-->
 														<div class="offer-box">
-															<div class="offer-box-head">
-																<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
+																<div class="offer-box-head">
 																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
-																</a>
-															</div>
+																</div>
+															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
 														</div>
 													</div>

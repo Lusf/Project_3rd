@@ -168,8 +168,10 @@ $(document).on('click','#wishlist', function() {
 								<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/${posterImg}" width="185px" height="260px">
 							</div>
 							<div class="col-md-8">	
-								<h3 class="">${info.lookTitle}</h3>
-								<p>${info.lookTitle}, ${info.lookStartDate.substring(0,4)}</p>
+								<h3 class="">${mainTitle}</h3>
+								<c:if test="${!empty subTitle}">
+								<p>${subTitle}, ${info.lookStartDate.substring(0,4)}</p>
+								</c:if>
 								<h5>
 									감독 : ${info.lookMaker}<br><br>
 									장르 : ${info.lookGenre}<br><br>
@@ -337,7 +339,7 @@ $(document).on('click','#wishlist', function() {
 	                        		<c:if test="${lookConList.lookTitle != info.lookTitle and lookConList.lookCate eq info.lookCate and state.count lt 6}">	                        		                       		
 		                        		<div class="post-list-sidebar-item mb-15">
 				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
-				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/images/entertainment/${lookConList.lookCate}/${lookConList.lookImg}" alt="blog image">
+				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/enter/${lookConList.contentCode}/photos/${lookConList.lookImg}" alt="blog image">
 				                            
 				                            <div class="col-xs-8 col-sm-9">
 				                                 <span class="h6 mt-0">${lookConList.lookTitle}</span>
@@ -417,14 +419,14 @@ $(document).on('click','#wishlist', function() {
 
 	<!-- video modal -->
 	<div id="preVideo" class="modal fade services-modal" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog" style="margin-top: -30px;">
 			<!-- Modal content-->
 			<div class="modal-content shadow">
 				<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 				<div class="modal-body">
 					<div class="post-entry post-entry-modal">
 
-						<div class="services-box text-center">
+						<div class="services-box text-center" style="padding:0px;">
 <!-- 							<iframe width="640" height="360" src="https://www.youtube.com/embed/Rn0r6IenhZk" frameborder="0" allowfullscreen="true"></iframe>											
  -->
  							<iframe width="640" height="360" src="${info.lookTrailer }" frameborder="0" allowfullscreen="true"></iframe>											
