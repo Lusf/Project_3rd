@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foodMapper">
- 
+
 	<sql id="restaurantColumn">
 		<!-- RESTAURANT_NAME ADDRESS CATEGORY content_CODE restaurantName addr 
 			category contentCode -->
@@ -14,7 +14,8 @@
 		varchar2(50), restaurant_Coordinates restaurant_pic varchar2(50), id constraint 
 		id_restaurant_fk references usertable(id) -->
 
-	<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo" 	id="restaurantSelectMap">
+	<resultMap type="kosta.web.model.vo.restaurant.RestaurantVo"
+		id="restaurantSelectMap">
 		<id column="content_CODE" property="contentCode" />
 		<result column="RESTAURANT_NAME" property="restaurantName" />
 		<result column="restaurant_info" property="restaurantInfo" />
@@ -43,59 +44,73 @@
 
 	<!-- 맛집정보 확인하기 -->
 	<select id="selectRestaurant" resultMap="restaurantSelectMap">
-		select CONTENT_CODE , RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY ,
-		CATEGORY2 , RESTAURANT_ADDRESS , RESTAURANT_COORDINATES ,
-		RESTAURANT_PIC ,  ID
-		from Restaurant
+		select CONTENT_CODE ,
+		RESTAURANT_NAME , RESTAURANT_INFO , CATEGORY ,
+		CATEGORY2 ,
+		RESTAURANT_ADDRESS , RESTAURANT_COORDINATES ,
+		RESTAURANT_PIC , ID
+		from
+		Restaurant
 	</select>
 
-	<select id="searchByRestaurant" resultMap="restaurantSelectMap" 	parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
+	<select id="searchByRestaurant" resultMap="restaurantSelectMap"
+		parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
 		SELECT * FROM( SELECT T1.*,COUNT(*) OVER() AS CNT
-		FROM(select * from Restaurant
+		FROM(select * from
+		Restaurant
 		<where>
 			<choose>
-			<when test="category ==null and category2 == null and restaurantName ==null "	>
-				1=1
-			</when>
-			
-			<when test="category !=null and category2 != null ">
-				CATEGORY =  #{category} and 
-				CATEGORY2 =  #{category2}  
-				<if test="restaurantName !=null or restaurantInfo !=null">
-					and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
-					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
-				</if>
-			</when>
-			
-			<when test="category ==null and category2 !=null">
-				<if test="restaurantName ==null or restaurantInfo ==null">
-					CATEGORY2 =  #{category2}
-				</if>
-				<if test="restaurantName !=null or restaurantInfo !=null">
-					and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
-					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
-				</if>
-			
-			</when>
-			
-			<when test="category != null and category2 ==null ">
-				<if test="restaurantName ==null or restaurantInfo ==null">
-					CATEGORY =  #{category}
-				</if>	
-				
-				<if test="restaurantName !=null or restaurantInfo !=null">
-					CATEGORY =  #{category} and
-					RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
-					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
-				</if>
-			</when>
-			
-			<when test="category ==null and category2 ==null">
-				<if test="restaurantName !=null or restaurantInfo !=null">
-					RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or 
-					RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
-				</if>
-			</when>
+				<when
+					test="category ==null and category2 == null and restaurantName ==null ">
+					<choose>
+						<when test="contentCode != null">
+							content_code = #{contentCode}
+						</when>
+						<otherwise>
+							1=1
+						</otherwise>
+					</choose>
+				</when>
+
+
+				<when test="category !=null and category2 != null ">
+					CATEGORY = #{category} and
+					CATEGORY2 = #{category2}
+					<if test="restaurantName !=null or restaurantInfo !=null">
+						and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or
+						RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+					</if>
+				</when>
+
+				<when test="category ==null and category2 !=null">
+					<if test="restaurantName ==null or restaurantInfo ==null">
+						CATEGORY2 = #{category2}
+					</if>
+					<if test="restaurantName !=null or restaurantInfo !=null">
+						and RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or
+						RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+					</if>
+
+				</when>
+
+				<when test="category != null and category2 ==null ">
+					<if test="restaurantName ==null or restaurantInfo ==null">
+						CATEGORY = #{category}
+					</if>
+
+					<if test="restaurantName !=null or restaurantInfo !=null">
+						CATEGORY = #{category} and
+						RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or
+						RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+					</if>
+				</when>
+
+				<when test="category ==null and category2 ==null">
+					<if test="restaurantName !=null or restaurantInfo !=null">
+						RESTAURANT_NAME LIKE '%'||#{restaurantName} ||'%' or
+						RESTAURANT_INFO LIKE '%'||#{restaurantInfo} ||'%'
+					</if>
+				</when>
 			</choose>
 			) T1) order by content_code
 		</where>
@@ -103,11 +118,14 @@
 	<!-- 맛집 수정하기 -->
 	<update id="updateRestaurant">
 		update Restaurant
-		set RESTAURANT_NAME =	${restaurantName},
+		set RESTAURANT_NAME =
+		${restaurantName},
 		RESTAURANT_INFO = ${restaurantInfo},
-		CATEGORY = ${category},
+		CATEGORY =
+		${category},
 		CATEGORY2 = ${category2},
-		RESTAURANT_ADDRESS =	${restaurantAddr},
+		RESTAURANT_ADDRESS =
+		${restaurantAddr},
 		RESTAURANT_COORDINATES = ${restaurantCoordinates},
 		RESTAURANT_PIC = ${restaurantPic}
 		where content_CODE=${contentCode}
@@ -117,15 +135,21 @@
 	<!-- 맛집 삭제하기 -->
 	<delete id="deleteRestaurant" parameterType="String">
 		delete
-		Restaurant where content_CODE=#{_parameter}
+		Restaurant
+		where content_CODE=#{_parameter}
 	</delete>
-	
+
 	<!-- 메인에 리뷰 많은 순으로 맛집정보 출력 -->
-	<select id="recommandRestaurant"  resultMap="restaurantSelectMap">
-		SELECT b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
-		FROM  blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code 
-		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME, R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
-		ORDER BY COUNT(r.content_code) desc
+	<select id="recommandRestaurant" resultMap="restaurantSelectMap">
+		SELECT
+		b.content_code, COUNT(r.content_code) as cnt, R.RESTAURANT_NAME,
+		R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
+		FROM
+		blog B LEFT JOIN RESTAURANT R ON b.content_code = r.content_code
+		WHERE b.category='Food' GROUP BY b.content_code, R.RESTAURANT_NAME,
+		R.RESTAURANT_Info, R.RESTAURANT_ADDRESS, R.RESTAURANT_PIC, R.id
+		ORDER
+		BY COUNT(r.content_code) desc
 	</select>
-	
+
 </mapper>
