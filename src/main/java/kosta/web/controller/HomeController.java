@@ -9,7 +9,7 @@ public class HomeController {
 
    @RequestMapping(value = "/")
    public String home() {
-      return "index";
+      return "index"; 
    }
    
    @RequestMapping(value="privacyTerms")

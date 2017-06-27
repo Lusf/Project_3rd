@@ -25,13 +25,13 @@ public class RestaurantDAOImpl implements RestaurantDAO{
 	@Override
 	public int RestaurantUpdate(RestaurantVo restaurantVo) {
 
-		return 0;
+		return sqlSession.update("foodMapper.updateRestaurant", restaurantVo);
 	}
 
 	@Override
 	public int RestaurantDelete(String contentCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete("foodMapper.deleteRestaurant", contentCode);
 	}
 
 /*	@Override

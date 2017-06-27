@@ -65,12 +65,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public int RestaurantUpdate(RestaurantVo restaurantVo) {
-		return 0;
+		
+		return restaurantInfoDAO.RestaurantUpdate(restaurantVo);
 	}
 
 	@Override
 	public int RestaurantDelete(String contentCode) {
-		return 0;
+		
+		return restaurantInfoDAO.RestaurantDelete(contentCode);
 	}
 
 	@Override

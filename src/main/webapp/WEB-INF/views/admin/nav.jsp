@@ -67,8 +67,7 @@
 				<li><a href="${pageContext.request.contextPath }/admin/index">
 						<i class="fa fa-fw fa-dashboard"></i> Dashboard
 				</a></li>
-				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#travelge"> <i class="fa fa-fw fa-map-signs"></i>Travelge
+				<li><a href="javascript:;" data-toggle="collapse" data-target="#travelge"> <i class="fa fa-fw fa-map-signs"></i>Travelge
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="travelge" class="collapse">
 
@@ -81,12 +80,19 @@
 					</ul>
 				</li>
 				<!-- Entertainment nav -->
-				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#enter"> <i class="fa fa-fw fa-sitemap"></i>Entertainment
-						<i class="fa fa-fw fa-caret-down"></i></a>
+				<li><a href="javascript:;" data-toggle="collapse" data-target="#enter"> <i class="fa fa-fw fa-sitemap"></i>Entertainment <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="enter" class="collapse">
 						<li><a href="${pageContext.request.contextPath}/admin/enter/enterInfoSearch">조회</a></li>
 						<li><a href="${pageContext.request.contextPath}/admin/enter/enterInfoInsertForm">추가</a></li>
+					</ul>
+				</li>
+				
+				
+				<!-- Food nav -->
+				<li><a href="javascript:;" data-toggle="collapse" data-target="#food"> <i class="fa fa-fw fa-sitemap"></i>Food <i class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="food" class="collapse">
+						<li><a href="${pageContext.request.contextPath}/admin/eating/restaurantSearch">조회</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/eating/restaurantInsertForm">추가</a></li>
 					</ul>
 				</li>
 			</ul>

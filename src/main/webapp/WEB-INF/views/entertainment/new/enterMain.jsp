@@ -310,7 +310,7 @@ img:hover+.fader-in {
 											<select id="genre" class="selectpicker" name="lookGenre"
 												data-live-search="false" title="장르">
 												<option>- 장르</option>
-												<option value="1">멜로/로맨스</option>
+												<option value="1">로맨스</option>
 												<option value="2">코미디</option>
 												<option value="3">SF</option>
 												<option value="4">애니메이션</option>
@@ -355,7 +355,7 @@ img:hover+.fader-in {
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<h2>&nbsp;&nbsp;&nbsp;&nbsp;Category</h2>
+				<div><h2 style="color:white; background-color:#525975; height:70px;">Category</h2></div>
 			
 				<div class="col-md-12">
 					<ul class="nav nav-tabs nav-center mb-30" id="tag" role="tablist">
@@ -392,7 +392,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -436,7 +437,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -480,7 +482,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -524,13 +527,13 @@ img:hover+.fader-in {
 				
 				<div class="col-md-12">
 					<ul class="nav nav-tabs nav-center mb-30" id="tag" role="tablist">
-						<li class="active"><a href="#Slide1" data-toggle="tab" id="1">멜로/로맨스</a></li>
-						<li class=""><a href="#Slide2" data-toggle="tab" id="2">코미디</a></li>
-						<li class=""><a href="#Slide3" data-toggle="tab" id="3">SF</a></li>
-						<li class=""><a href="#Slide4" data-toggle="tab" id="4">애니메이션</a></li>
-						<li class=""><a href="#Slide5" data-toggle="tab" id="5">스릴러/미스테리</a></li>
-						<li class=""><a href="#Slide6" data-toggle="tab" id="6">액션</a></li>
-						<li class=""><a href="#Slide7" data-toggle="tab" id="7">공포/호러</a></li>
+						<li class="active"><a href="#slide1" data-toggle="tab" id="s1">멜로/로맨스</a></li>
+						<li class=""><a href="#slide2" data-toggle="tab" id="s2">코미디</a></li>
+						<li class=""><a href="#slide3" data-toggle="tab" id="s3">SF</a></li>
+						<li class=""><a href="#slide4" data-toggle="tab" id="s4">애니메이션</a></li>
+						<li class=""><a href="#slide5" data-toggle="tab" id="s5">스릴러/미스테리</a></li>
+						<li class=""><a href="#slide6" data-toggle="tab" id="s6">액션</a></li>
+						<li class=""><a href="#slide7" data-toggle="tab" id="s7">공포/호러</a></li>
 					</ul>
 					<div class="tab-content relative">
 						<div role="tabpanel" class="tab-pane fade in active" id="slide1">
@@ -548,7 +551,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -587,7 +591,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -626,7 +631,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -665,7 +671,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -704,7 +711,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -743,7 +751,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>
@@ -782,7 +791,8 @@ img:hover+.fader-in {
 														<div class="offer-box">
 															<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${infoList.contentCode}">
 																<div class="offer-box-head">
-																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}">
+																	<img src="${pageContext.request.contextPath}/resources/enter/${infoList.contentCode}/photos/${infoList.lookImg}"
+																	class="img-thumbnail" style="background-color: #525975;">
 																</div>
 															</a>
 															<span class="h4 offer-box-title">${infoList.lookTitle}</span>

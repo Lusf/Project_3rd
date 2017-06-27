@@ -336,7 +336,7 @@ $(document).on('click','#wishlist', function() {
                         		</c:when>
                         		<c:otherwise>
 	                        		<c:forEach items="${lookInfoConList}"  var="lookConList" varStatus="state">
-	                        		<c:if test="${lookConList.lookTitle != info.lookTitle and lookConList.lookCate eq info.lookCate and state.count lt 6}">	                        		                       		
+	                        		<c:if test="${lookConList.contentCode != info.contentCode and lookConList.lookCate eq info.lookCate and state.count lt 6}">	                        		                       		
 		                        		<div class="post-list-sidebar-item mb-15">
 				                        	<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${lookConList.contentCode}">                      	
 				                                <img class="no-padding col-md-3 col-sm-3 col-xs-4 img-responsive" src="${pageContext.request.contextPath}/resources/enter/${lookConList.contentCode}/photos/${lookConList.lookImg}" alt="blog image">
@@ -385,8 +385,8 @@ $(document).on('click','#wishlist', function() {
 						<c:if test="${state.count lt 5 }" >                						
 	                        <ul class="comments-list">
 	                            <li>
-	                                <span class="comments-nick h5">${comment.id }  </span><br>
-	                                 <span class="comments-date">${comment.blogDate }</span><br>
+	                                <span class="h3"><a href="${pageContext.request.contextPath}/blog/${comment.id }">${comment.id }</a></span><br>
+	                                <span class="comments-date">${comment.blogDate }</span><br>
 	                                <span class="comments-nick h5">${comment.blogTitle }</span>
 	                               
 	                                <p class="comments-content">

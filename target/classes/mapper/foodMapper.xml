@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foodMapper">
-
+ 
 	<sql id="restaurantColumn">
 		<!-- RESTAURANT_NAME ADDRESS CATEGORY content_CODE restaurantName addr 
 			category contentCode -->
@@ -97,22 +97,17 @@
 				</if>
 			</when>
 			</choose>
-		) T1) order by content_code
+			) T1) order by content_code
 		</where>
 	</select>
-
-
 	<!-- 맛집 수정하기 -->
 	<update id="updateRestaurant">
 		update Restaurant
-		set RESTAURANT_NAME =
-		${restaurantName},
+		set RESTAURANT_NAME =	${restaurantName},
 		RESTAURANT_INFO = ${restaurantInfo},
-		CATEGORY =
-		${category},
+		CATEGORY = ${category},
 		CATEGORY2 = ${category2},
-		RESTAURANT_ADDRESS =
-		${restaurantAddr},
+		RESTAURANT_ADDRESS =	${restaurantAddr},
 		RESTAURANT_COORDINATES = ${restaurantCoordinates},
 		RESTAURANT_PIC = ${restaurantPic}
 		where content_CODE=${contentCode}
@@ -122,7 +117,7 @@
 	<!-- 맛집 삭제하기 -->
 	<delete id="deleteRestaurant" parameterType="String">
 		delete
-		Restaurant_INFO where content_CODE=#{_parameter}
+		Restaurant where content_CODE=#{_parameter}
 	</delete>
 	
 	<!-- 메인에 리뷰 많은 순으로 맛집정보 출력 -->
