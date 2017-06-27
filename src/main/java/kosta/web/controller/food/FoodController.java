@@ -358,18 +358,51 @@ public class FoodController {
 
 	// 전체 맛집보기(버튼용)
 	@RequestMapping("/search")
-	public ModelAndView search(String contentCode) {
+		public ModelAndView search(String category, String category2, String keyWord, String currentPage) {
+		
+		int spage = 1;
+		String page = currentPage;
+		
+		if (page != null)
+			spage = Integer.parseInt(page);
+		ModelAndView modelAndView = new ModelAndView();
+		RestaurantVo restaurantVo = new RestaurantVo();
 
-		RestaurantVo temp = new RestaurantVo();
-		temp.setContentCode(contentCode);
+		if(category.equals("AL") && category2.equals("AL") && keyWord =="" ){
+			//System.out.println("전체검색");
+		}
+		// 한 화면에 10개의 게시글을 보여지게함
+		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
+		List<RestaurantVo> list = restaurantService.RestaurantSearch(restaurantVo, spage);
+		int listCount = list.size();
+		if (list != null && list.size() != 0) {
+			listCount = list.get(0).getCnt();
+		}
+		// 전체 페이지 수
+		int maxPage = (int) (listCount / 5.0 + 0.4);
+		// 시작 페이지 번호
+		int startPage = (int) (spage / 5.0 + 0.8) * 5 - 4;
+		// 마지막 페이지 번호
+		int endPage = startPage + 5;
+		
+		if (endPage > maxPage)
+		endPage = maxPage;
 
-		List<RestaurantVo> list = restaurantService.Search(temp, 0);
-		//System.out.println(list);
+		// 4개 페이지번호 저장
+		modelAndView.addObject("spage", spage);
+		modelAndView.addObject("maxPage", maxPage);
+		modelAndView.addObject("startPage", startPage);
+		modelAndView.addObject("endPage", endPage);
+		modelAndView.addObject("listCount", listCount);
+		modelAndView.addObject("listA", list);
+		modelAndView.addObject("category", category);
+		modelAndView.addObject("category2", category2);
+		modelAndView.addObject("keyWord", keyWord);
+		modelAndView.setViewName("eating/search");
 
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("food/search");
-
-		return new ModelAndView("eating/search", "listA", list);
+		return modelAndView;
+		
+		
 	}
 
 	@RequestMapping("/insertReview")

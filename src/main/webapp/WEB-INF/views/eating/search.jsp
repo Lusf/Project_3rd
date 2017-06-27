@@ -208,7 +208,7 @@
 									</div>
 
 									<div class="offer-pagination-prev left-arrow">
-										<span class="ti-angle-left">asd</span>
+										<span class="ti-angle-left"></span> 
 									</div>
 
 									<div class="offer-pagination-next right-arrow">
@@ -283,74 +283,37 @@
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
 									
-										<%-- <img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/08.jpg" alt="offer image"> --%> 
 										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
 									</div>
-									<%-- <div class="swiper-slide">
-										<img src="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/09.jpg" alt="offer image">
-									</div> --%>
-								</div>
-
-								<div class="offer-pagination-prev left-arrow">
-									<span class="ti-angle-left"></span>
-								</div>
-
-								<div class="offer-pagination-next right-arrow">
-									<span class="ti-angle-right"></span>
 								</div>
 							</div>
-							<!-- <span class="offer-box-price">$350pw	</span> 
-							<span class="offer-box-label"><span class="ti-star"></span>featured</span> -->
 						</div>
-						
-						<!-- private String id;
-								private int blogNum;
-								private String category;
-								private String contentCode;
-								private String blogTitle;
-								private String blogDate;
-								private String blogCont;
-								private String userPic; -->
 						<div class="offer-content pl-30 pr-30">
 							<span class="h4 offer-box-title">${list.restaurantName }</span> 
 							<span class="offer-box-location">
-								<span class="ti-location-pin"></span>${list.restaurantAddr } </span> 
-								<!-- <span class="offer-box-meta">Nordman Agency | 30 Nov 2016 | Flat | 2 Beds</span> --> 
-								<a href="#" class="btn btn-link btn-sm pr-0 pull-right">
-								<span class="ti-star"></span> to favorites</a> 
+							
+								<span class="ti-location-pin"></span>${list.restaurantAddr } </span><br>
+								<span 	class="descriptionImg"> ${list.restaurantInfo }</span>
+								<a href="#" class="btn btn-link btn-sm pr-0 pull-right"></a>
 								<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
 							<div class="contact-form mt-60">
-							
-								<!-- <form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8"> -->
-								<%-- <form name="tx_editor_form" id="tx_editor_form" action="" method="post" accept-charset="UTF-8">
-									<div class="form-group">
-										<input type="text" class="form-control" id="blogTitle" name="blogTitle" placeholder="제목" required>
-									</div>
-
-									<div>
-										<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
-									</div>
-									<div style="text-align: center; margin-bottom: 3em">
-										<button type="submit" class="btn btn-default" 	onclick="saveContent()">전송</button>
-										<button type="reset" class="btn btn-default">다시쓰기</button>
-									</div>
-								</form> --%>
-								
-					
 					<form name="tx_editor_form"  id="tx_editor_form" action="${pageContext.request.contextPath}/eating/insertReview"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">
 									<div class="form-group input-group">
-										<span class="input-group-addon">제목</span> <input type="text"
-											class="form-control" placeholder="제목을 작성해주세요" name="blogTitle">
+										
+									</div>
+									<div class="form-group input-group">
+										<span class="input-group-addon">제목</span> 
+										<input type="text" class="form-control" placeholder="리뷰 제목을 작성해주세요" name="blogTitle">
 									</div>
 								</div>
 								<div class="panel-body">
 									<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
 								</div>
 							</div>
-							<input type="text" name="contentCode" value="${list.contentCode }">
+							<input type="hidden" name="contentCode" value="${list.contentCode }">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}">
 							<sec:authorize access="isAuthenticated()">
