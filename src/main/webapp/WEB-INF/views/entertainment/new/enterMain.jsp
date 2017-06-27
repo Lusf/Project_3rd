@@ -332,7 +332,7 @@ img:hover+.fader-in {
 										</div>
 
 										<div class="form-group col-md-4">
-											<input type="text" id="lookTitle" name="lookTitleS"
+											<input type="text" id="lookTitle" name="lookTitle"
 												class="form-control" placeholder="제목을 입력하세요" />
 										</div>
 
