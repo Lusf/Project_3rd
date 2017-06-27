@@ -184,7 +184,7 @@
 								</div>
 							</div>
 							<a href="#" data-toggle="modal"
-							data-target="#old"> <span class="h4 offer-box-title">${list.restaurantName}</span>
+							data-target="#old-${state.count }"> <span class="h4 offer-box-title">${list.restaurantName}</span>
 								<span class="offer-box-location"><span
 									class="ti-location-pin"></span>${list.restaurantAddr} </span> <span
 								class="offer-box-meta">${list.restaurantCoordinates}</span>
@@ -314,7 +314,7 @@
 	
 	<!-- OLD MODAL -->
 		<c:forEach  items="${requestScope.listA}"  var="list" varStatus="state">
-		<div id="old" class="modal fade services-modal" role="dialog">
+		<div id="old-${state.count }" class="modal fade services-modal" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content shadow">
