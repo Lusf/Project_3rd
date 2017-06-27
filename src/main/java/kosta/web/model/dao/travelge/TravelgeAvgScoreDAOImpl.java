@@ -38,10 +38,7 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 	public List<AvgScoreVo> travelgeWishListSelect(AvgScoreVo avgScoreVo) {
 
 		List<AvgScoreVo> list = sqlSession.selectList("travelgeAvgScoreMapper.travelgeWishListSelect",avgScoreVo);
-/*		for(AvgScoreVo dto : list)
-		{
-			System.out.println(dto.getContentCode());
-		}*/
+
 		
 		return list;
 	}
@@ -50,7 +47,21 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 	@Override
 	public AvgScoreVo travelgeAvgScore(String contentCode) {
 		
-		return sqlSession.selectOne("travelgeAvgScoreMapper.selectScore", contentCode);
+		AvgScoreVo avgScore = sqlSession.selectOne("travelgeAvgScoreMapper.selectScore", contentCode);
+		if(avgScore != null)
+		{
+			double d = avgScore.getScore();
+			int a = (int)(d * 10);
+			avgScore.setScore(a/10.0);
+		}
+		if (avgScore == null) { 
+
+			avgScore = new AvgScoreVo();
+			avgScore.setScore(0.0);
+			avgScore.setPersonCount(0);
+		}
+		
+		return avgScore;
 	}
 
 	@Override
@@ -82,6 +93,12 @@ public class TravelgeAvgScoreDAOImpl implements TravelgeAvgScoreDAO {
 		map.put("score", score);
 
 		return sqlSession.insert("travelgeAvgScoreMapper.travelgeScoreUpdate", map);
+	}
+
+	@Override
+	public AvgScoreVo scoreDuplicate(String contentCode) {
+
+		return sqlSession.selectOne("travelgeAvgScoreMapper.scoreDuplicate", contentCode);
 	}
 
 

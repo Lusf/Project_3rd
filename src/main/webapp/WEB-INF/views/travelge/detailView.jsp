@@ -210,7 +210,7 @@ $(document).on('click','#wishlist', function() {
 
 .infocard img {
 	height: 300px;
-	margin-top: 1.4em;
+	margin-top: 0.3em;
 	width: 100%;
 	-webkit-filter: contrast(80%);
 }
@@ -300,8 +300,8 @@ span .glyphicon {
 						style="color: white;">favorite</i>${fn:length(commentList)}</span> <a
 						href="#reviewcont"><span class="text-block3"><i
 							class="material-icons" style="color: white;">messenger</i>${fn:length(commentList)}</span></a>
-				</div>
-				<div style="text-align: right;"><p></p>
+							</div>
+							<div style="text-align: right;"><p></p>
 					<!-- 찜하기 -->
 					<c:choose >
 						<c:when test="${info.wish_list == 0 }">
@@ -426,6 +426,7 @@ span .glyphicon {
 
 
 				<!-- Blog Post Content Column -->
+			<div class="container">
 				<div class="cont" id="reviewcont">
 					<h3>Review</h3>
 
@@ -445,19 +446,19 @@ span .glyphicon {
 					</div>
 					<!-- /detail modal 끝 -->
 					<c:forEach var="comment" items="${commentList }" varStatus="vs">
-						<div class="row">
+						<div class="row" style="text-align: -webkit-right;">
 							<a href="${pageContext.request.contextPath}/blog/${comment.id}">
 
 								<span class="col-md-2"> <img
-									style="width: 100px; height: 100px; vertical-align: center;"
+									style="width: 50px; height: 50px; vertical-align: center;"
 									class="img-circle"
 									src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
-								<span class="col-md-2"> ${comment.id } </span>
+								<span class="col-md-1" style="margin-top: 10px"> ${comment.id } </span>
 							</a> <a class="col-md-4" data-toggle="modal"
-								data-target="#comment${vs.index}"> <span style="color: red">${comment.blogTitle }</span>
+								data-target="#comment${vs.index}" style="margin-top: 10px;margin-left: -60px"> <span style="color: #FF6B6B">${comment.blogTitle }</span>
 							</a>
 						</div>
-
+				</div>
 						<!--  comment Modal -->
 						<div id="comment${vs.index}" class="modal fade services-modal"
 							role="dialog">
@@ -466,9 +467,13 @@ span .glyphicon {
 									<div class="offer-box">
 										<div class="offer-content pl-30 pr-30">
 											<span class="h4 offer-box-title">${comment.blogTitle }</span>
-											<span> ${comment.id}</span> <span class="offer-box-location">
-												<span class="offer-box-meta">${comment.blogDate }</span> <span
-												class="descriptionImg"> ${comment.blogCont } </span> <a
+											<div style="text-align: right;">
+											<span>작성자:${comment.id}</span> 
+											<span class="offer-box-meta">작성일:${comment.blogDate }</span> 
+											</div>
+											<span class="offer-box-location">
+												<br>
+												<span class="descriptionImg"> ${comment.blogCont } </span> <a
 												class="close" data-dismiss="modal"><span
 													class="ti-close"></span></a>
 											</span>
@@ -478,6 +483,11 @@ span .glyphicon {
 							</div>
 						</div>
 					</c:forEach>
+
+				</div>
+
+			</div>
+							<br>
 					<div style="text-align: center;">
 						<sec:authorize access="isAuthenticated()">
 							<button
@@ -486,8 +496,6 @@ span .glyphicon {
 								class="btn btn-info">리뷰 작성</button>
 						</sec:authorize>
 					</div>
-				</div>
-			</div>
 		</div>
 
 	</div>

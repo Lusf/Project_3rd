@@ -91,8 +91,7 @@
 	function getReadList() {
 		//$('#loading').html('데이터 로딩중입니다.');
 		//ajax
-		$
-				.ajax({
+		$.ajax({
 					url : "${pageContext.request.contextPath}/travelge/travelgeInfoScroll",
 					type : "post",
 					dataType : "json",
@@ -154,16 +153,11 @@
 		return str;
 	};
 
-	$(document)
-			.on(
-					'click',
-					'#wishlist',
-					function() {
+	$(document).on('click','#wishlist',function() {
 						var contentCode = $(this).children().first().text();
 						var heart = $(this);
 
-						$
-								.ajax({
+						$.ajax({
 									url : "${pageContext.request.contextPath}/travelge/travelgeWishListUpdate",
 									type : "post",
 									dataType : "text",

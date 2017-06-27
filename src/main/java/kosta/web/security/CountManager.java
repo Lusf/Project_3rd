@@ -6,9 +6,13 @@ import javax.servlet.http.HttpSessionListener;
 
 public class CountManager implements HttpSessionListener {
     public static int count;
+    public static int totalCount;
 
     public static int getCount() {
         return count;
+    }
+    public static int getTotalCount(){
+    	return totalCount;
     }
 
     public void sessionCreated(HttpSessionEvent event) {
@@ -17,7 +21,7 @@ public class CountManager implements HttpSessionListener {
         session.setMaxInactiveInterval(60*20);
 
         count++;
-
+        totalCount++;
         session.getServletContext().log(session.getId() + " 技记积己 " + ", 立加磊荐 : " + count);
     }
 

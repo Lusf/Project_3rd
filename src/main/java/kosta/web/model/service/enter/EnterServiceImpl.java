@@ -317,7 +317,8 @@ public class EnterServiceImpl implements EnterService {
 
 		// 연령등급 한글로 변환
 		lookInfoVo.setLookAge(map.get(lookInfoVo.getLookAge()));
-
+		
+		System.out.println(lookInfoVo.getLookStartDate());
 		if (lookInfoVo.getLookLoca().equals("")) {
 			lookInfoVo.setLookLoca("정보없음");
 		}

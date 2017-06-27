@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-lg-12">
 						<form name="tx_editor_form" id="tx_editor_form"
-							action="${pageContext.request.contextPath}/blog/insertBlogReview"
+							action="${pageContext.request.contextPath}/blog/insertBlogReview2"
 							method="post" accept-charset="utf-8">
 							<div class="panel panel-default">
 								<div class="form-group">

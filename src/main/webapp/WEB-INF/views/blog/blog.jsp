@@ -48,9 +48,9 @@
 
 .profileImg {
 	margin: 0 auto;
-	width: 100px;
-	height: 100px;
 }
+
+#ownerNav {width:100%;height:150px;}
 
 /* 화면 조절 */
 .cont {
@@ -103,8 +103,6 @@ $(function() {
 <!-- blogTitle을 위한 script -->
 <script>
 	$(function() {
-		checkForHash();
-		
 		$(".list-unstyled li a").click(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/blog/selectBlogTitle",
@@ -132,9 +130,8 @@ $(function() {
 		});
 
 		function cont(){
-			$("#blogTitle tr td a").click(function() {
+			$("#blogTitle tr td a , .titleTable tr:LAST-CHILD td:NTH-CHILD(2) a").click(function() {
 				document.body.scrollTop = 0;
-				document.location.hash = "#"+$(this).attr("id");
 				$.ajax({
 					url : "${pageContext.request.contextPath}/blog/selectBlogCont",
 					type : "post",
@@ -207,13 +204,6 @@ $(function() {
 			});
 		}
 		
-		function checkForHash() {
-		    if(document.location.hash){
-		        var HashLocationName = document.location.hash;
-		        HashLocationName = HashLocationName.replace("#","");
-		        $(".cont").html(HashLocationName)
-		    }
-		}
 		cont();
 	});
 </script>
@@ -268,12 +258,13 @@ $(function() {
 		<div class="side">
 			<!-- Blog Profile Well -->
 			<div class="well">
-				<h4>Blog Owner</h4>
-				<div class="input-group profileImg">
-					<img src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}" alt="${blogUserPic}"/>
-					<a href="${pageContext.request.contextPath}/blog/${blogId}"><h1>${blogId}</h1></a>
-				</div>
-				<!-- /.input-group -->
+				<h4>Blog Owner</h4><br>
+				<table id="ownerNav">
+					<tr><td>
+					<img align="middle" src="${pageContext.request.contextPath}/resources/user/${blogId}/profile/${blogUserPic}"
+					 style="width:100%;" alt="${blogUserPic}"/></td></tr>
+					<tr><td style="width:100%;font-size:200%;text-align:center;padding-top:10px;"><a href="${pageContext.request.contextPath}/blog/${blogId}">${blogId}</a></td></tr>
+				</table>
 			</div>
 			
 			<!-- Blog Categories Well -->

@@ -2,7 +2,6 @@ package kosta.web.controller.travelge;
 
 import java.io.File;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +59,6 @@ public class TravelgeController {
 		
 		mv.addObject("list",list);
 		List<TravelgeLatestCommentVo> latestComment = travelgeService.latestComment();
-
 		mv.addObject("commentList", latestComment);
 
 		return mv;
@@ -329,7 +327,7 @@ public class TravelgeController {
 		List<TravelgeInfoVo> list = travelgeService.travelgeInfoSearch(temp, 0);
 		List<UserBlogVo> commentList = userBlogService.selectByContentCode(contentCode);
 		//°Ë»öapi
-		String keyword = list.get(0).getTravelgeName() +" "+list.get(0).getTravelgeRegion();
+		String keyword = list.get(0).getTravelgeName(); /*+" "+list.get(0).getTravelgeRegion()*/
 		
         if(keyword !=null)
         {

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.enter.EnterService;
-import kosta.web.model.vo.AvgScoreVo;
 import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.blog.UserBlogVo;
 import kosta.web.model.vo.enter.LookInfoVo;
@@ -45,24 +43,55 @@ public class EnterController {
 
 	// 볼거리 리스트 (카테고리에 따른)
 	@RequestMapping("new/enterList/{lookCate}")
-	public ModelAndView enterList(@PathVariable String lookCate, String keyField, String keyWord, String currentPage) {	
+	public ModelAndView enterList(@PathVariable String lookCate) {	
 		
 		if(lookCate.equals("movie")){
-			lookCate="영화";			
+			lookCate="M";			
 		}else if(lookCate.equals("concert")){
-			lookCate="공연/연극";
+			lookCate="P";
 		}else if(lookCate.equals("TV")){
-			lookCate="TV";
+			lookCate="T";
 		}
 		
-		List<LookInfoVo> dbLookInfoList = enterService.lookInfoSearchByCate(lookCate);
+		LookInfoVo lookInfoVo = new LookInfoVo();
+		lookInfoVo.setLookCate(lookCate);
+		
+		List<LookInfoVo> list = enterService.enterSearch(lookInfoVo, null, null, "title");
+		List<LookInfoVo> imgList = new ArrayList<>();
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("entertainment/new/enterList");
+		
+		if(list != null){
+			for(LookInfoVo ivo : list){
+				String img[] = ivo.getLookImg().split(":");
+				ivo.setLookImg(img[0]);
 
-		mv.addObject("dbLookInfoList", dbLookInfoList);
-		mv.addObject("lookCate", lookCate);
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+				}
+				
+				if(ivo.getLookLastDate()!=null){
+					String y = ivo.getLookLastDate().substring(0,4);
+					String m = ivo.getLookLastDate().substring(5,7);
+					String d = ivo.getLookLastDate().substring(8,10);
+					ivo.setLookLastDate(y+"/"+m+"/"+d);
+				}
+				else
+					ivo.setLookLastDate("없음");
+				
+				imgList.add(ivo);
+			}
+		}
 
+		mv.addObject("list", imgList);
+		mv.setViewName("entertainment/new/enterSearch");
+		
 		return mv;
 	}
 
@@ -119,17 +148,18 @@ public class EnterController {
 	
 	// 볼거리 상세화면
 	@RequestMapping("new/enterDetailView/{contentCode}")
-	public ModelAndView enterDetailView(HttpSession session, @PathVariable String contentCode, Principal principal) {
+	public ModelAndView enterDetailView(@PathVariable String contentCode, Principal principal) {
 		
 		ModelAndView mv = new ModelAndView();
 		List<LookInfoVo> lookInfoConList;
-		System.out.println(1);
+		
 		
 		//컨텐츠코드에 따른 볼거리
 		String id="";
 		
 		String lookGenre="";
 		String lookCate="";
+		List<String> storyList= new ArrayList<>();
 		
 		if (principal != null) {			
 			
@@ -137,6 +167,12 @@ public class EnterController {
 			id = user.getId();
 			LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode, id);
 			lookGenre = lookInfoOne.getLookGenre();
+			
+			String mainTitle[] = lookInfoOne.getLookTitle().split(";");
+			
+			mv.addObject("mainTitle", mainTitle[0]);
+			mv.addObject("subTitle", mainTitle[1]);
+			
 			mv.addObject("info", lookInfoOne);
 			
 			if(lookInfoOne.getLookCate().equals("영화")){
@@ -150,14 +186,38 @@ public class EnterController {
 			mv.addObject("lookCate", lookCate);
 			
 			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
+			List<LookInfoVo> conList = new ArrayList<>();
 			
 			for(int i=0; i<lookInfoConList.size(); i++){
 				if(lookInfoConList.get(i).getLookStory().length()>0){
-					lookInfoConList.get(i).getLookStory().substring(0, 20);
+					//lookInfoConList.get(i).getLookStory().substring(0, 20);
+					storyList.add(lookInfoConList.get(i).getLookStory().substring(0, 20));
+					mv.addObject("story", storyList );
 				}
 			}
+						
+			for(LookInfoVo ivo : lookInfoConList){
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				if(ivo.getLookImg()!=null){
+					String conImg[] = ivo.getLookImg().split(":");
+					ivo.setLookImg(conImg[0]);
+				}
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+				}
+
+				conList.add(ivo);
+			}
+
+			mv.addObject("lookInfoConList", conList);
 			
-			mv.addObject("lookInfoConList", lookInfoConList);
 			
 			//이미지 ';'를 구분자로 자르기
 			String allImg = lookInfoOne.getLookImg();
@@ -165,15 +225,23 @@ public class EnterController {
 			String cutImgClone[] = allImg.split(":");
 					
 			String cutImgSemiClone[] = cutImgClone[1].split(";");
+			String videoImg = cutImgSemiClone[0];
 			String posterImg = cutImgClone[0];
 
 			mv.addObject("posterImg", posterImg);
-			mv.addObject("imgs", cutImgSemiClone);
+			mv.addObject("videoImg", videoImg);
+			mv.addObject("cutImgSemiClone", cutImgSemiClone);
 		}
 		else{
 			id = "noname";
 			LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode, id);
 			lookGenre = lookInfoOne.getLookGenre();
+
+			String mainTitle[] = lookInfoOne.getLookTitle().split(";");
+			
+			mv.addObject("mainTitle", mainTitle[0]);
+			mv.addObject("subTitle", mainTitle[1]);
+			
 			mv.addObject("info", lookInfoOne);
 				
 			if(lookInfoOne.getLookCate().equals("영화")){
@@ -184,8 +252,39 @@ public class EnterController {
 				lookCate="TV";
 			}
 			
+			mv.addObject("lookCate", lookCate);
+			
 			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
-			mv.addObject("lookInfoConList", lookInfoConList);
+			List<LookInfoVo> conList = new ArrayList<>();
+			
+			for(int i=0; i<lookInfoConList.size(); i++){
+				if(lookInfoConList.get(i).getLookStory().length()>0){
+					//lookInfoConList.get(i).getLookStory().substring(0, 20);
+					mv.addObject("story", lookInfoConList.get(i).getLookStory().substring(0, 20));
+				}
+			}
+			
+			for(LookInfoVo ivo : lookInfoConList){
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				if(ivo.getLookImg()!=null){
+					String conImg[] = ivo.getLookImg().split(":");
+					ivo.setLookImg(conImg[0]);
+				}
+				
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+				}
+
+				conList.add(ivo);
+			}
+			
+			mv.addObject("lookInfoConList", conList);
 			
 			//이미지 ';'를 구분자로 자르기
 			String allImg = lookInfoOne.getLookImg();
@@ -193,10 +292,12 @@ public class EnterController {
 			String cutImgClone[] = allImg.split(":");
 					
 			String cutImgSemiClone[] = cutImgClone[1].split(";");
+			String videoImg = cutImgSemiClone[0];
 			String posterImg = cutImgClone[0];
 			
 			mv.addObject("posterImg", posterImg);
-			mv.addObject("imgs", cutImgSemiClone);
+			mv.addObject("videoImg", videoImg);
+			mv.addObject("cutImgSemiClone", cutImgSemiClone);
 		}
 
 		//장르에 따른 볼거리
@@ -205,9 +306,9 @@ public class EnterController {
 		
 /*		LookInfoVo lookInfoGenre = new LookInfoVo();
 		lookInfoGenre.setLookGenre(lookGenre);*/
-		System.out.println(3);
+		
 		//lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
-		System.out.println(4);
+		
 		
 		//볼거리 정보 가져오기(전체)
 
@@ -300,18 +401,45 @@ public class EnterController {
 		
 		//볼거리 정보 가져오기(전체)
 		List<LookInfoVo> lookInfoList = enterService.lookInfoSearch();
+		List<LookInfoVo> lookInfoListImg = new ArrayList<>();
+		
+		if(lookInfoList != null){
+			for(LookInfoVo ivo : lookInfoList){
+				String img[] = ivo.getLookImg().split(":");
+				ivo.setLookImg(img[0]);
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				lookInfoListImg.add(ivo);
+			}
+		}
+		
 
 		//볼거리 정보 최신순으로 가져오기
 		List<LookInfoVo> lookInfoNewList = enterService.lookInfoSearchByNewList();
+		List<LookInfoVo> lookInfoNewListImg = new ArrayList<>();
+		
+		if(lookInfoNewList != null){
+			for(LookInfoVo ivo : lookInfoNewList){
+				String img[] = ivo.getLookImg().split(":");
+				ivo.setLookImg(img[0]);
+
+				String title[] = ivo.getLookTitle().split(";");
+				ivo.setLookTitle(title[0]);
+				
+				lookInfoNewListImg.add(ivo);
+			}
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("entertainment/new/enterMain");
-		mv.addObject("lookInfoList", lookInfoList);
-		mv.addObject("lookInfoNewList", lookInfoNewList);
+		mv.addObject("lookInfoList", lookInfoListImg);
+		mv.addObject("lookInfoNewList", lookInfoNewListImg);
 	
-		for(int i=0; i<lookInfoNewList.size(); i++){
+		/*for(int i=0; i<lookInfoNewList.size(); i++){
 
-		}
+		}*/
 		return mv;
 	}
 
@@ -365,6 +493,8 @@ public class EnterController {
 	@ResponseBody
 	public List<LookInfoVo> entSearch(LookInfoVo lookInfoVo, String searchYear, String searchMonth, String sort){
 		
+		if(sort.equals(""))
+			sort = "title";
 		if(searchYear.equals(""))
 			searchYear = null;
 		if(searchMonth.equals(""))
@@ -409,7 +539,7 @@ public class EnterController {
 		int result = 0;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser"))
 		{
-			System.out.println("찜하기 되었나요???");
+			//System.out.println("찜하기 되었나요???");
 			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String id = user.getId();
 			result = enterService.lookWishListUpdate(id, contentCode);
@@ -489,6 +619,27 @@ public class EnterController {
 		int endPage = startPage + 9;
 		if (endPage > maxPage)
 			endPage = maxPage;
+		
+		List<LookInfoVo> fixList = new ArrayList<>();
+		
+		if(list != null){
+			for(LookInfoVo ivo : list){
+				if(ivo.getLookStartDate()!=null){
+					String y = ivo.getLookStartDate().substring(0,4);
+					String m = ivo.getLookStartDate().substring(5,7);
+					String d = ivo.getLookStartDate().substring(8,10);
+					ivo.setLookStartDate(y+"/"+m+"/"+d);
+				}
+				if(ivo.getLookLastDate()!=null){
+					String y = ivo.getLookLastDate().substring(0,4);
+					String m = ivo.getLookLastDate().substring(5,7);
+					String d = ivo.getLookLastDate().substring(8,10);
+					ivo.setLookLastDate(y+"/"+m+"/"+d);
+				}
+				
+				fixList.add(ivo);
+			}
+		}
 
 		// 4개 페이지번호 저장
 		modelAndView.addObject("spage", spage);
@@ -496,7 +647,7 @@ public class EnterController {
 		modelAndView.addObject("startPage", startPage);
 		modelAndView.addObject("endPage", endPage);
 		modelAndView.addObject("listCount", listCount);
-		modelAndView.addObject("list", list);
+		modelAndView.addObject("list", fixList);
 		modelAndView.addObject("keyField", keyField);
 		modelAndView.addObject("keyWord", keyWord);
 		modelAndView.setViewName("admin/enter/enterInfoSearch");
@@ -581,6 +732,19 @@ public class EnterController {
 		String cut[] = poster[1].split(";");
 		
 		ModelAndView mv = new ModelAndView();
+		
+		if(infoVo.getLookStartDate()!=null){
+			String y = infoVo.getLookStartDate().substring(0,4);
+			String m = infoVo.getLookStartDate().substring(5,7);
+			String d = infoVo.getLookStartDate().substring(8,10);
+			infoVo.setLookStartDate(y+"/"+m+"/"+d);
+		}
+		if(infoVo.getLookLastDate()!=null){
+			String y = infoVo.getLookLastDate().substring(0,4);
+			String m = infoVo.getLookLastDate().substring(5,7);
+			String d = infoVo.getLookLastDate().substring(8,10);
+			infoVo.setLookLastDate(y+"/"+m+"/"+d);
+		}
 		
 		mv.addObject("img", img);
 		mv.addObject("infoVo", infoVo);

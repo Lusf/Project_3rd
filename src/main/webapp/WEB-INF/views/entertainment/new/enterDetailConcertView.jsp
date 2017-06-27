@@ -378,7 +378,7 @@ $(document)
 							<ul class="list-unstyled video-list-thumbs row">
 								<li class="col-lg-3 col-sm-4 col-xs-6">
 									<a href="#preVideo" title="zootopia_예고편1" data-toggle="modal">
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo2.jpg" alt="Barca" class="img-responsive" width="300px" height="200px" />
+										<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/" alt="Barca" class="img-responsive" width="300px" height="200px" />
 									
 										<span class="glyphicon glyphicon-play-circle"></span>
 										<span class="duration">00:15</span>
@@ -386,7 +386,7 @@ $(document)
 								</li>
 								<li class="col-lg-3 col-sm-4 col-xs-6">
 									<a href="#" title="zootopia_예고편2">
-										<img src="${pageContext.request.contextPath}/resources/images/entertainment/DetailView/zootopia/zoo6.jpg" alt="Barca" class="img-responsive" width="300px" height="200px" />
+										<img src="${pageContext.request.contextPath}/resources/enter/${info.contentCode}/photos/" alt="Barca" class="img-responsive" width="300px" height="200px" />
 										
 										<span class="glyphicon glyphicon-play-circle"></span>
 										<span class="duration">01:15</span>

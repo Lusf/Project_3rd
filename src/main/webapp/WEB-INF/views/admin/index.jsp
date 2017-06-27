@@ -90,7 +90,7 @@ $(function()
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
-                        	현재접속자수 : ${count }      
+                        	현재접속자수 : ${count }   누적접속자수 : ${totalCount }   
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@ $(function()
                         </div>
                     </div>
                 </div>
-                </div>
+                
                 <div class="row">
                 <div class="col-lg-12" id="userCount">
                         <div class="panel panel-red">
@@ -205,8 +205,8 @@ $(function()
                                         <tbody>
                                         <c:forEach items="${wishRank}" var="list">
                                             <tr>
-                                                <td>${list.name}</td>
-                                                <td>${list.cnt}</td>
+                                                <td style="overflow: hidden;text-overflow: ellipsis; width: 80%;">${list.name}</td>
+                                                <td style="text-align: center;">${list.cnt}</td>
                                             </tr>
                                          </c:forEach>   
                                         </tbody>
@@ -232,7 +232,7 @@ $(function()
                                         <tbody>
                                         <c:forEach items="${scoreRank}" var="list">
                                             <tr>
-                                                <td>${list.name}</td>
+                                                <td class="pcontent">${list.name}</td>
                                                 <td>${list.avg} / ${list.cnt}(명)</td>
                                             </tr>
                                          </c:forEach>   
@@ -296,7 +296,7 @@ $(function()
                                     </table>
                                     <div id="scoreRank2"></div>
                                 </div>
-                                
+                                </div>
                             </div>
                         </div>
                     </div>
