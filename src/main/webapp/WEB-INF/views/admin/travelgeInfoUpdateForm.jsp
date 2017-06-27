@@ -315,7 +315,7 @@
 			
 			
 			$("#reset").click(function(){
-				$("img").attr("src", "${pageContext.request.contextPath}/resources/travelge/${list[0].contentCode}/${list[0].travelgePhotos}");
+				$("img").attr("src", "${pageContext.request.contextPath}/resources/travelge/${list[0].contentCode}/photos/${list[0].travelgePhotos}");
 				//$("#travelgeTheme > option[value=TD]").attr("selected", "selected");
 				$("#travelgeTheme > option:contains(${list[0].travelgeTheme})").attr("selected", "selected");
 				$("#travelgeRegion > option:contains(${list[0].travelgeRegion})").attr("selected", "selected");
