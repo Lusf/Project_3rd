@@ -455,7 +455,7 @@ span .glyphicon {
 									src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
 								<span class="col-md-1" style="margin-top: 10px;font-size: 16px; text-align: -webkit-left"> ${comment.id } </span>
 							</a> <a class="col-md-4" data-toggle="modal"
-								data-target="#comment${vs.index}" style="margin-top: 10px;margin-left: -60px"> <span style="color: #FF6B6B;font-size: 16px">${comment.blogTitle }</span>
+								data-target="#comment${vs.index}" style="margin-top: 10px;margin-left: -60px"> <span style="color: #FF6B6B;font-size: 16px; cursor: pointer;">${comment.blogTitle }</span>
 							</a>
 						</div>
 						<Br>

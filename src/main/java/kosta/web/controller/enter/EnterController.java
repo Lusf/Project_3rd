@@ -175,6 +175,8 @@ public class EnterController {
 				if(mainTitle[1] != null || mainTitle[1] != "")
 					mv.addObject("subTitle", mainTitle[1]);
 			}
+			else
+				mv.addObject("mainTitle", lookInfoOne.getLookTitle());
 			
 			mv.addObject("info", lookInfoOne);
 			
@@ -239,6 +241,8 @@ public class EnterController {
 				if(mainTitle[1] != null || mainTitle[1] != "")
 					mv.addObject("subTitle", mainTitle[1]);
 			}
+			else
+				mv.addObject("mainTitle", lookInfoOne.getLookTitle());
 			
 			mv.addObject("info", lookInfoOne);
 				

@@ -122,8 +122,6 @@
 <!-- 검색 -->
 	<section class="padding">
 		<div class="container">
-			
-<!--  -->
 				<div class="col-md-12">
 					<div class="col-md-12 pl-0 pr-0">
 						<h4 class="heading "><b>맛집 정보</b></h4> 
