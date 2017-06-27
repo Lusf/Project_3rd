@@ -151,7 +151,7 @@ $( document ).ready(function() {
             $('#count').html(result.score+'개' +result.count+'명');
             },
          error : function(err) {
-            alert("오류 발생 : " + err);
+           
          }
       });
        });  
@@ -198,7 +198,7 @@ $(document).on('click','#wishlist', function() {
 							}
 						},
 						error : function(err) {
-							alert("오류 발생 : " + err);
+							
 						}
 					});
 		})
@@ -453,20 +453,22 @@ span .glyphicon {
 									style="width: 50px; height: 50px; vertical-align: center;"
 									class="img-circle"
 									src="${pageContext.request.contextPath }/resources/user/${comment.id }/profile/${comment.userPic}"></span>
-								<span class="col-md-1" style="margin-top: 10px"> ${comment.id } </span>
+								<span class="col-md-1" style="margin-top: 10px;font-size: 16px; text-align: -webkit-left"> ${comment.id } </span>
 							</a> <a class="col-md-4" data-toggle="modal"
-								data-target="#comment${vs.index}" style="margin-top: 10px;margin-left: -60px"> <span style="color: #FF6B6B">${comment.blogTitle }</span>
+								data-target="#comment${vs.index}" style="margin-top: 10px;margin-left: -60px"> <span style="color: #FF6B6B;font-size: 16px">${comment.blogTitle }</span>
 							</a>
 						</div>
+						<Br>
 				</div>
+				
 						<!--  comment Modal -->
 						<div id="comment${vs.index}" class="modal fade services-modal"
-							role="dialog">
+							role="dialog">f
 							<div class="modal-dialog">
 								<div class="modal-content shadow">
 									<div class="offer-box">
 										<div class="offer-content pl-30 pr-30">
-											<span class="h4 offer-box-title">${comment.blogTitle }</span>
+											<span class="h4 offer-box-title"	>${comment.blogTitle }</span>
 											<div style="text-align: right;">
 											<span>작성자:${comment.id}</span> 
 											<span class="offer-box-meta">작성일:${comment.blogDate }</span> 
@@ -496,6 +498,7 @@ span .glyphicon {
 								class="btn btn-info">리뷰 작성</button>
 						</sec:authorize>
 					</div>
+					<br><br>
 		</div>
 
 	</div>

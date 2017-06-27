@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- Footer Starts -->
-	<footer class="footer">
+	<footer class="footer" style="margin-top: 0px">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -31,8 +31,8 @@
 				<div class="col-md-2 col-sm-12 smartphone-fw">
 					<h6 class="heading">ACCOUNT</h6>
 					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
+						<li><a href="#"> 이진영 </a></li>
+						<li><a href="#"> 이하늘 </a></li>
 					</ul>
 				</div>
 				
