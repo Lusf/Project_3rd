@@ -18,12 +18,16 @@
 	href="${pageContext.request.contextPath}/resources/assets/new_theme_mark2/theme/css/theme.css">
 
 <style>
+.imgList {
+	width:530px; height:280px;
+	margin: 13px 0;
+}
 #imgHead {
-	width:200px; height:300px;
+	width:200px; height:280px;
 	padding: 0;
 }
 #contHead {
-	width:330px; height:300px;
+	width:330px; height:280px;
 	margin-left: 10px;
 	background-color: #525975;
 }
@@ -246,7 +250,7 @@ function click(state){
 							</div>
 							<div class="offer-box border col-md-3" id="contHead">
 								<a href="${pageContext.request.contextPath}/entertainment/new/enterDetailView/${list.contentCode}">
-								<div style="height: 100%">
+								<div>
 									<div class="t1"><h3 class="contTitle font">${list.lookTitle}</h3></div>
 									<div class="t2">
 									<h5 class="font">카테고리: ${list.lookCate}</h5>
@@ -273,112 +277,6 @@ function click(state){
 		<!--/ container -->
 	</section>
 
-	<footer class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<p>
-							Support: <span>+48 123 456 789</span>
-						</p>
-					</div>
-					<div class="col-md-6">
-						<ul class="footer-social pull-right">
-							<li><a href="#" class="pull-left"><span
-									class="ti-facebook"></span></a></li>
-							<li><a href="#" class="pull-left"><span
-									class="ti-twitter"></span></a></li>
-							<li><a href="#" class="pull-left"><span
-									class="ti-instagram"></span></a></li>
-							<li><a href="#" class="pull-left"><span
-									class="ti-youtube"></span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-sm-12 smartphone-fw">
-					<address>
-						<strong>Main office (HQ)</strong><br> consectetur adipisicing
-						elit 122<br> CF 55678 USA <br> <br> Phone:
-						+1-222-333-4444 <br> E-mail: <a class="__cf_email__"
-							href="/cdn-cgi/l/email-protection"
-							data-cfemail="ea858c8c83898faa8b9a8b989ec4898587">[email&#160;protected]</a>
-						<script data-cfhash='f9e31' type="text/javascript">
-							/* <![CDATA[ */!function(t, e, r, n, c, a, p) {
-								try {
-									t = document.currentScript
-											|| function() {
-												for (
-														t = document
-																.getElementsByTagName('script'),
-														e = t.length; e--;)
-													if (t[e]
-															.getAttribute('data-cfhash'))
-														return t[e]
-											}();
-									if (t && (c = t.previousSibling)) {
-										p = t.parentNode;
-										if (a = c.getAttribute('data-cfemail')) {
-											for (e = '', r = '0x'
-													+ a.substr(0, 2) | 0, n = 2; a.length
-													- n; n += 2)
-												e += '%'
-														+ ('0' + ('0x'
-																+ a
-																		.substr(
-																				n,
-																				2) ^ r)
-																.toString(16))
-																.slice(-2);
-											p
-													.replaceChild(
-															document
-																	.createTextNode(decodeURIComponent(e)),
-															c)
-										}
-										p.removeChild(t)
-									}
-								} catch (u) {
-								}
-							}()/* ]]> */
-						</script>
-					</address>
-				</div>
-				<div class="col-md-2 col-sm-12 smartphone-fw">
-					<h6 class="heading">ACCOUNT</h6>
-					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-					</ul>
-				</div>
-				<div class="col-md-2 col-sm-12 smartphone-fw">
-					<h6 class="heading">INFORMATION</h6>
-					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-2 col-sm-12 smartphone-fw">
-					<h6 class="heading">ACCOUNT</h6>
-					<ul>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-						<li><a href="#"> Lorem Ipsum </a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<script src="assets/js/wow.js"></script>
 	<script>
 		window.jQuery

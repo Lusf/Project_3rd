@@ -355,7 +355,7 @@ img:hover+.fader-in {
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<div><h2 style="color:white; background-color:#525975; height:70px;">Category</h2></div>
+				<div><h2 style="color:#525975">&nbsp;&nbsp;&nbsp;&nbsp;Category</h2></div>
 			
 				<div class="col-md-12">
 					<ul class="nav nav-tabs nav-center mb-30" id="tag" role="tablist">
@@ -523,7 +523,7 @@ img:hover+.fader-in {
 	<section class="padding">
 		<div class="container">
 			<div class="row">
-				<h2>&nbsp;&nbsp;&nbsp;&nbsp;Genre</h2>
+				<h2 style="color:#525975">&nbsp;&nbsp;&nbsp;&nbsp;Genre</h2>
 				
 				<div class="col-md-12">
 					<ul class="nav nav-tabs nav-center mb-30" id="tag" role="tablist">

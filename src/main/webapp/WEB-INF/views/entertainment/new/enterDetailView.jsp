@@ -170,7 +170,7 @@ $(document).on('click','#wishlist', function() {
 							<div class="col-md-8">	
 								<h3 class="">${mainTitle}</h3>
 								<c:if test="${!empty subTitle}">
-								<p>${subTitle}, ${info.lookStartDate.substring(0,4)}</p>
+									<p>${subTitle}, ${info.lookStartDate.substring(0,4)}</p>
 								</c:if>
 								<h5>
 									감독 : ${info.lookMaker}<br><br>
