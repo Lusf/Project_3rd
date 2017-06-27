@@ -415,7 +415,7 @@ public class FoodController {
 		blogVo.setId(id);
 		userBlogService.insert(blogVo);
 
-		return "redirect:/eating/search";
+		return "redirect:/eating/main";
 	}
 
 	// 나중에 필요에 맞게 이름 맞꾸기(필요6)
