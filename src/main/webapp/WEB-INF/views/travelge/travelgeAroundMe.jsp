@@ -36,7 +36,7 @@ $(document).ready(function(){
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
-		center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		center : new daum.maps.LatLng(37.4020759679, 127.1061115299), // 지도의 중심좌표
 		level : 5
 	// 지도의 확대 레벨 
 	};
