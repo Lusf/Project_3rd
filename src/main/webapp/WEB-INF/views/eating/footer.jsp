@@ -41,13 +41,11 @@
 		<div class="container">  
 			<div class="row">
 				<div class="col-md-4 col-sm-12 smartphone-fw">
-					<address>
-						<strong>Main office (HQ)</strong><br> 
-						<br> U-space tower-B 8th floor 
-						<br> republic of korea <br>
-					<!-- 	<br> Phone: +82-010-9332-9857 
-						<br> E-mail: chysub@gmail.com -->
-					</address>
+						<h6 class="heading">Main office (HQ)</h6>
+						<ul>
+							<li>U-space tower-B 8th floor</li>
+							<li>republic of korea</li>
+						</ul>
 				</div>
 				
 				<div class="col-md-2 col-sm-12 smartphone-fw">
@@ -61,6 +59,7 @@
 						<li><a href="#"> Kim HyeLim </a></li> -->
 					</ul>
 				</div>
+				
 				<div class="col-md-2 col-sm-12 smartphone-fw"> 
 					<h6 class="heading">INFORMATION</h6>
 					<ul>
@@ -70,9 +69,9 @@
 				</div>
  
 				<div class="col-md-4 col-sm-12 smartphone-fw">
-					<h6 class="heading">CONTACT</h6>
+					<h6 class="heading" >CONTACT</h6>
 					<ul>
-						<li><a href="#">Phone : +82-010-9332-9857  </a></li>
+						<li><a href="#" >Phone : +82-010-9332-9857  </a></li>
 						<li><a href="#">Phone : chysub@gmail.com </a></li>
 					</ul>
 				</div>
