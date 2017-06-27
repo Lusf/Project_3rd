@@ -822,6 +822,7 @@ img:hover+.fader-in {
 	</section>
 
 
+	<%@include file="/WEB-INF/views/footer.jsp"%>
 
 				<!-- We will use PrefixFree - a script that takes care of CSS3 vendor prefixes
 You can download it from https://leaverou.github.com/prefixfree/ -->

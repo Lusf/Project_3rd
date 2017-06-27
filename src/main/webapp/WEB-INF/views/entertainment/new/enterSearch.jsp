@@ -233,7 +233,7 @@ function click(state){
 			<div class="row">
 				<div class="col-md-12">
 					<div class="pl-0 pr-0">
-						<h4 class="heading">Featured adds</h4>
+						<h4 class="heading">Search Result</h4>
 					</div>
 					<div class="box" id="searchList">
 						<c:if test="${empty list}">
@@ -276,6 +276,9 @@ function click(state){
 		</div>
 		<!--/ container -->
 	</section>
+	
+	
+	<%@include file="/WEB-INF/views/footer.jsp"%>
 
 	<script src="assets/js/wow.js"></script>
 	<script>

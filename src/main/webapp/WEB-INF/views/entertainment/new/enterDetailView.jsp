@@ -455,6 +455,9 @@ $(document).on('click','#wishlist', function() {
 			</div>
 		</div>
 	</div>
+	
+	
+	<%@include file="/WEB-INF/views/footer.jsp"%>
 
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/wow.js'/>"></script>
 	<script src="<c:url value='/resources/assets/new_theme_mark2/js/jquery-1.11.2.min.js'/>"></script>

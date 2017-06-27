@@ -214,7 +214,7 @@ $(function() {
 	<%@include file="/WEB-INF/views/header.jsp"%>
 
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" style="height: 700px;">
 		<!-- Blog Post Content Column -->
 		<div class="cont">
 			<table class="table table-hover titleTable">

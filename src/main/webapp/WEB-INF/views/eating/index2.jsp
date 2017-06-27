@@ -56,7 +56,7 @@
 				<ul class="nav navbar-nav">
 					<li class="header-link"><a
 						href="${pageContext.request.contextPath}/eating/main"
-						title="메인"> 메인</a>
+						title="채널"> 채널</a>
 					</li>
 
 					<li class="header-link dropdown mega pull-left "><a href="#"

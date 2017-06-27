@@ -35,7 +35,7 @@
 				<ul class="nav navbar-nav">
 					<li class="header-link"><a
 						href="${pageContext.request.contextPath}/entertainment/new/enterMain"
-						title="메인"> 메인</a>
+						title="채널"> 채널</a>
 					</li>
 					<%-- <li class="header-link"><a
 						href="${pageContext.request.contextPath }/enter/board/tables"
