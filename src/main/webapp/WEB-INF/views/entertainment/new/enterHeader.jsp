@@ -37,10 +37,10 @@
 						href="${pageContext.request.contextPath}/entertainment/new/enterMain"
 						title="메인"> 메인</a>
 					</li>
-					<li class="header-link"><a
+					<%-- <li class="header-link"><a
 						href="${pageContext.request.contextPath }/enter/board/tables"
 						title="추천게시판"> 추천게시판</a>
-					</li>
+					</li> --%>
 					<li class="header-link"><a
 						href="${pageContext.request.contextPath}/entertainment/enterSearchPage"
 						title="검색">검색</a>

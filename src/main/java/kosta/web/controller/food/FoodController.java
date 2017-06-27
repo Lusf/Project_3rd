@@ -193,7 +193,7 @@ public class FoodController {
 		RestaurantVo restaurantVo = new RestaurantVo();
 
 		if(category.equals("AL") && category2.equals("AL") && keyWord =="" ){
-			System.out.println("전체검색");
+//			System.out.println("전체검색");
 			
 		}else if (!category.equals("AL") && category2.equals("AL") && keyWord =="" || keyWord ==null){
 			restaurantVo.setCategory(category);
@@ -245,7 +245,7 @@ public class FoodController {
 		if (list != null && list.size() != 0) {
 			listCount = list.get(0).getCnt();
 		}
-		System.out.println(listCount);
+//		System.out.println(listCount);
 		// 전체 페이지 수
 		int maxPage = (int) (listCount / 5.0 + 0.4);
 		// 시작 페이지 번호
@@ -280,8 +280,9 @@ public class FoodController {
 		restaurantVo.setContentCode(contentCode);
 
 		List<RestaurantVo> list = restaurantService.RestaurantSearch(restaurantVo, 0);
-		restaurantVo = list.get(0);
 		
+		restaurantVo = list.get(0);
+	
 		String img = restaurantVo.getRestaurantPic();
 		
 		ModelAndView mv = new ModelAndView();

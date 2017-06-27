@@ -168,10 +168,13 @@ public class EnterController {
 			LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode, id);
 			lookGenre = lookInfoOne.getLookGenre();
 			
-			String mainTitle[] = lookInfoOne.getLookTitle().split(";");
+			if(lookInfoOne.getLookTitle().contains(";")){
+				String mainTitle[] = lookInfoOne.getLookTitle().split(";");
 			
-			mv.addObject("mainTitle", mainTitle[0]);
-			mv.addObject("subTitle", mainTitle[1]);
+				mv.addObject("mainTitle", mainTitle[0]);
+				if(mainTitle[1] != null || mainTitle[1] != "")
+					mv.addObject("subTitle", mainTitle[1]);
+			}
 			
 			mv.addObject("info", lookInfoOne);
 			
@@ -187,14 +190,6 @@ public class EnterController {
 			
 			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
 			List<LookInfoVo> conList = new ArrayList<>();
-			
-			for(int i=0; i<lookInfoConList.size(); i++){
-				if(lookInfoConList.get(i).getLookStory().length()>0){
-					//lookInfoConList.get(i).getLookStory().substring(0, 20);
-					storyList.add(lookInfoConList.get(i).getLookStory().substring(0, 20));
-					mv.addObject("story", storyList );
-				}
-			}
 						
 			for(LookInfoVo ivo : lookInfoConList){
 
@@ -237,10 +232,13 @@ public class EnterController {
 			LookInfoVo lookInfoOne = enterService.lookInfoSearchByCode(contentCode, id);
 			lookGenre = lookInfoOne.getLookGenre();
 
-			String mainTitle[] = lookInfoOne.getLookTitle().split(";");
+			if(lookInfoOne.getLookTitle().contains(";")){
+				String mainTitle[] = lookInfoOne.getLookTitle().split(";");
 			
-			mv.addObject("mainTitle", mainTitle[0]);
-			mv.addObject("subTitle", mainTitle[1]);
+				mv.addObject("mainTitle", mainTitle[0]);
+				if(mainTitle[1] != null || mainTitle[1] != "")
+					mv.addObject("subTitle", mainTitle[1]);
+			}
 			
 			mv.addObject("info", lookInfoOne);
 				
@@ -256,13 +254,6 @@ public class EnterController {
 			
 			lookInfoConList = enterService.lookInfoSearchByGenre(lookGenre);
 			List<LookInfoVo> conList = new ArrayList<>();
-			
-			for(int i=0; i<lookInfoConList.size(); i++){
-				if(lookInfoConList.get(i).getLookStory().length()>0){
-					//lookInfoConList.get(i).getLookStory().substring(0, 20);
-					mv.addObject("story", lookInfoConList.get(i).getLookStory().substring(0, 20));
-				}
-			}
 			
 			for(LookInfoVo ivo : lookInfoConList){
 
@@ -543,7 +534,6 @@ public class EnterController {
 			UserVo user = (UserVo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String id = user.getId();
 			result = enterService.lookWishListUpdate(id, contentCode);
-			System.out.println("result : " + result);
 		}
 		return result;
 	}
@@ -808,7 +798,7 @@ public class EnterController {
 		}
 		
 		lookInfoVo.setLookImg(poster+":"+pic[0]+";"+pic[1]+";"+pic[2]+";"+pic[3]);
-
+		
 		int result = enterService.enterInfoUpdate(lookInfoVo);
 		if (result == 0) {
 			throw new Exception();
