@@ -12,7 +12,7 @@
 <meta name="author" content="">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<title>Entertainment Info Insert</title>
+<title>Food Info Insert</title>
 
 <link rel="stylesheet" href="<c:url value='/resources/jqueryui/css/smoothness/jquery-ui-1.9.2.custom.min.css'/>">
 
@@ -94,70 +94,65 @@
 							<li class="active"><i class="fa fa-file"></i> Food Info UpdateForm</li>
 						</ol>
 
-						<!-- 검색 옵션 -->
+					
 							<form
-								action="${pageContext.request.contextPath }/eating/adminRestaurantSearch"
-								method="post" class="form-inline form-horizontal" role="form">
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}">
-									
-									<div class="form-group" 	style="margin-left: 12px; margin-right: 10px; margin-top: 12px">
-									<label for="category" class="sr-only">category</label> 
-									<select class="form-control" name="category" id="category" 	style="margin-left: 3px; margin-right: 10px">
-										<option value="AL">전체</option>
-										<option value="SU">서울</option>
-										<option value="DJ">대전</option>
-										<option value="DG">대구</option>
-										<option value="BS">부산</option>
-										<option value="KW">강원도</option>
-									</select>
-									<label for="category2" class="sr-only">category2</label>
-									<select class="form-control" name="category2" id="category2" 	style="margin-left: 3px; margin-right: 10px">
-											<option value="AL">전체</option>
-										<option value="KR">한식</option>
-										<option value="CN">중식</option>
-										<option value="EN">양식</option>
-									</select>
-								</div>
-									<!-- ////////// -->
-								<!-- 서치바 -->
+								action="${pageContext.request.contextPath }/eating/restaurantUpdate"
+								method="post" class="form-inline form-horizontal" role="form"enctype="multipart/form-data">
+               <input type="hidden" name="${_csrf.parameterName}"
+                           value="${_csrf.token}">
+                           
+                           <div class="form-group"    style="margin-left: 12px; margin-right: 10px; margin-top: 12px">
+                           <label for="category" class="sr-only">category</label> 
+                           <select class="form-control" name="category" id="category"    style="margin-left: 3px; margin-right: 10px">
+                              <option value="AL">전체</option>
+                              <option value="SU">서울</option>
+                              <option value="DJ">대전</option>
+                              <option value="DG">대구</option>
+                              <option value="BS">부산</option>
+                              <option value="KW">강원도</option>
+                           </select>
+                           <label for="category2" class="sr-only">category2</label>
+                           <select class="form-control" name="category2" id="category2"    style="margin-left: 3px; margin-right: 10px">
+                                 <option value="AL">전체</option>
+                              <option value="KR">한식</option>
+                              <option value="CN">중식</option>
+                              <option value="EN">양식</option>
+                           </select>
+                        </div>
 								<div class="form-group input-group" style="margin-top: 12px">
-									<input type="text" class="form-control" name="keyWord" id="keyWord"> 
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit" 	style="height: 34px">
-											<i class="fa fa-search"></i>
-										</button>
-									</span> 
-										&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="update()">등록</button>
+
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default">등록</button>
 										&nbsp;&nbsp;<button type="reset" class="btn btn-default" id="reset">다시쓰기</button>
 								</div>
 								
 							<div class="row col-xs-12" >
 								<div class="form-group col-xs-3">   
-									<label for="restaurantName">restaurantName</label><br>
+									<label for="restaurantName">이름</label><br>
 									
 									<input type="text" class="form-control" name="restaurantName" 
 										id="restaurantName" placeholder="restaurantName" value="${restaurantVo.restaurantName}">
 								</div>
 								 
-								<div class="form-group col-xs-5">  
-										<label for="restaurantAddr">restaurantAddr</label><br>
-										<button type="button" onclick="DaumPostcode()" class="btn btn-default col-xs-2" >주소</button>
-										<input type="text" class="form-control" name="restaurantAddr" 	id="restaurantAddr" placeholder="restaurantAddr" value="${restaurantVo.restaurantAddr}">
+								<div class="form-group col-xs-3">  
+										<label for="restaurantAddr">주소</label><br>
+										<input type="text" class="form-control" name="restaurantAddr"id="restaurantAddr" placeholder="restaurantAddr" value="${restaurantVo.restaurantAddr}">
+										
 								</div>
 								
-								<div class="form-group col-xs-4">									
-										<label for="restaurantCoordinates">restaurantCoordinates</label>
+								<div class="form-group col-xs-3">									
+										<label for="restaurantCoordinates">상세주소</label>
 										<input type="text" id="restaurantCoordinates" 	placeholder="restaurantCoordinates" name="restaurantCoordinates"
 										class="form-control" value="${restaurantVo.restaurantCoordinates}">
-								</div>
+										
+								</div><br>
+								<button type="button" onclick="DaumPostcode()" class="btn btn-default col-xs-1" >검색</button>
 							</div>
 										
-								
+								<input type="hidden" name="contentCode" value="${restaurantVo.contentCode }">
 							
 							
 							<div class="form-group col-xs-12">
-								<label for="restaurantInfo">restaurantInfo</label><br>
+								<label for="restaurantInfo">내용</label><br>
 								<textarea class="form-control" cols="120"  rows="10" name="restaurantInfo" >${restaurantVo.restaurantInfo}</textarea>
 							</div>
 							
@@ -245,7 +240,7 @@
 							}
 
 							// 주소 정보를 해당 필드에 넣는다.
-							document.getElementById("lookLoca").value = fullAddr;
+							document.getElementById("restaurantAddr").value = fullAddr;
 
 							// 주소로 좌표를 검색
 							geocoder

@@ -116,19 +116,17 @@
 		</where>
 	</select>
 	<!-- 맛집 수정하기 -->
-	<update id="updateRestaurant">
+	<update id="updateRestaurant" parameterType="kosta.web.model.vo.restaurant.RestaurantVo">
 		update Restaurant
-		set RESTAURANT_NAME =
-		${restaurantName},
-		RESTAURANT_INFO = ${restaurantInfo},
-		CATEGORY =
-		${category},
-		CATEGORY2 = ${category2},
-		RESTAURANT_ADDRESS =
-		${restaurantAddr},
-		RESTAURANT_COORDINATES = ${restaurantCoordinates},
-		RESTAURANT_PIC = ${restaurantPic}
-		where content_CODE=${contentCode}
+		set 
+		RESTAURANT_NAME =#{restaurantName},
+		RESTAURANT_INFO = #{restaurantInfo},
+		CATEGORY =#{category},
+		CATEGORY2 = #{category2},
+		RESTAURANT_ADDRESS =#{restaurantAddr},
+		RESTAURANT_COORDINATES = #{restaurantCoordinates},
+		RESTAURANT_PIC = #{restaurantPic}
+		where content_CODE=#{contentCode}
 	</update>
 
 

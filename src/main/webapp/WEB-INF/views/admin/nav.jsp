@@ -92,7 +92,7 @@
 				<li><a href="javascript:;" data-toggle="collapse" data-target="#food"> <i class="fa fa-fw fa-sitemap"></i>Food <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="food" class="collapse">
 						<li><a href="${pageContext.request.contextPath}/admin/eating/restaurantSearch">조회</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/eating/restaurantInsertForm">추가</a></li>
+						<%-- <li><a href="${pageContext.request.contextPath}/admin/eating/restaurantInsertForm">추가</a></li> --%>
 					</ul>
 				</li>
 			</ul>

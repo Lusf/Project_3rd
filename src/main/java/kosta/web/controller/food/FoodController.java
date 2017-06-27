@@ -17,9 +17,7 @@ import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.food.RestaurantService;
 import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.blog.UserBlogVo;
-import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.restaurant.RestaurantVo;
-import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
 @Controller
 @RequestMapping("/eating")
@@ -312,8 +310,8 @@ public class FoodController {
 
 		if(file.getSize() > 0) 
 			file.transferTo(new File(path + "/" + restaurantVo.getContentCode() + "/photos/" + img));
-
-		return "admin/eatingRestaurantSearch";
+			
+		return "admin/eating/restaurantSearch";
 	}
 	//¸ÀÁı »èÁ¦
 	@RequestMapping("deleteRestaurant")
