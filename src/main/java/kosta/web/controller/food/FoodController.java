@@ -17,6 +17,7 @@ import kosta.web.model.service.blog.UserBlogService;
 import kosta.web.model.service.food.RestaurantService;
 import kosta.web.model.vo.UserVo;
 import kosta.web.model.vo.blog.UserBlogVo;
+import kosta.web.model.vo.enter.LookInfoVo;
 import kosta.web.model.vo.restaurant.RestaurantVo;
 import kosta.web.model.vo.travelge.TravelgeInfoVo;
 
@@ -177,7 +178,160 @@ public class FoodController {
 		
 
 	}
+	
+	
+	/* ADMIN */
+	///////////////////
+	@RequestMapping("/adminRestaurantSearch")
+	public ModelAndView adminRestaurantSearch(String category, String category2, String keyWord, String currentPage) {
+		int spage = 1;
+		String page = currentPage;
+		
+		if (page != null)
+			spage = Integer.parseInt(page);
+		ModelAndView modelAndView = new ModelAndView();
+		RestaurantVo restaurantVo = new RestaurantVo();
 
+		if(category.equals("AL") && category2.equals("AL") && keyWord =="" ){
+			System.out.println("전체검색");
+			
+		}else if (!category.equals("AL") && category2.equals("AL") && keyWord =="" || keyWord ==null){
+			restaurantVo.setCategory(category);
+			restaurantVo.setCategory2(null);
+			restaurantVo.setRestaurantName(null);
+			restaurantVo.setRestaurantInfo(null);
+		
+		} else if (category.equals("AL") && !category2.equals("AL") && keyWord =="" || keyWord ==null){
+			restaurantVo.setCategory(null);
+			restaurantVo.setCategory2(category2);
+			restaurantVo.setRestaurantName(null);
+			restaurantVo.setRestaurantInfo(null);
+		
+		} else if(category.equals("AL") && !category2.equals("AL")  && keyWord !="" && keyWord !=null){
+			restaurantVo.setCategory(null);
+			restaurantVo.setCategory2(category2);
+			restaurantVo.setRestaurantName(keyWord);
+			restaurantVo.setRestaurantInfo(keyWord);
+		
+		}else if(!category.equals("AL") && !category2.equals("AL") && keyWord =="" || keyWord ==null ){
+			restaurantVo.setCategory(category);
+			restaurantVo.setCategory2(category2);
+			restaurantVo.setRestaurantName(null);
+			restaurantVo.setRestaurantInfo(null);
+			
+		}else if (category.equals("AL") && category2.equals("AL") && keyWord !="" || keyWord !=null){
+			restaurantVo.setCategory(null);
+			restaurantVo.setCategory2(null);
+			restaurantVo.setRestaurantName(keyWord);
+			restaurantVo.setRestaurantInfo(keyWord);
+			
+		}else if (!category.equals("AL") && category2.equals("AL") && keyWord !="" || keyWord !=null){
+			restaurantVo.setCategory(category);
+			restaurantVo.setCategory2(null);
+			restaurantVo.setRestaurantName(keyWord);
+			restaurantVo.setRestaurantInfo(keyWord);
+			
+		}else if(!category.equals("AL") && !category2.equals("AL") && keyWord !="" || keyWord !=null ){
+			restaurantVo.setCategory(category);
+			restaurantVo.setCategory2(category2);
+			restaurantVo.setRestaurantName(keyWord);
+			restaurantVo.setRestaurantInfo(keyWord);
+		}
+		
+		// 한 화면에 10개의 게시글을 보여지게함
+		// 페이지 번호는 총 5개, 이후로는 [다음]으로 표시
+		List<RestaurantVo> list = restaurantService.RestaurantSearch(restaurantVo, spage);
+		int listCount = list.size();
+		if (list != null && list.size() != 0) {
+			listCount = list.get(0).getCnt();
+		}
+		System.out.println(listCount);
+		// 전체 페이지 수
+		int maxPage = (int) (listCount / 5.0 + 0.4);
+		// 시작 페이지 번호
+		int startPage = (int) (spage / 5.0 + 0.8) * 5 - 4;
+		// 마지막 페이지 번호
+		int endPage = startPage + 5;
+		
+		if (endPage > maxPage)
+		endPage = maxPage;
+
+		// 4개 페이지번호 저장
+		modelAndView.addObject("spage", spage);
+		modelAndView.addObject("maxPage", maxPage);
+		modelAndView.addObject("startPage", startPage);
+		modelAndView.addObject("endPage", endPage);
+		modelAndView.addObject("listCount", listCount);
+		modelAndView.addObject("listA", list);
+		modelAndView.addObject("category", category);
+		modelAndView.addObject("category2", category2);
+		modelAndView.addObject("keyWord", keyWord);
+		modelAndView.setViewName("admin/eating/restaurantSearch");
+
+		return modelAndView;
+	}
+	
+	//맛집 수정페이지로 이동
+	@RequestMapping("restaurantUpdateForm")
+	public ModelAndView restaurantUpdateForm(HttpServletRequest req, String contentCode){
+		
+		RestaurantVo restaurantVo = new RestaurantVo();
+		
+		restaurantVo.setContentCode(contentCode);
+
+		List<RestaurantVo> list = restaurantService.RestaurantSearch(restaurantVo, 0);
+		restaurantVo = list.get(0);
+		
+		String img = restaurantVo.getRestaurantPic();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("img", img);
+		mv.addObject("restaurantVo", restaurantVo);
+		mv.setViewName("admin/eating/restaurantUpdateForm");
+		
+		return mv;
+		
+	}
+	//맛집 수정
+	@RequestMapping("restaurantUpdate")
+	public String restaurantUpdate(HttpServletRequest req, RestaurantVo restaurantVo) throws Exception {
+		String path = req.getSession().getServletContext().getRealPath("/resources/eating");
+		
+		String img = restaurantVo.getRestaurantPic();
+		
+		MultipartFile file = restaurantVo.getFile();
+		
+		restaurantVo.setRestaurantPic(img);
+
+		int result = restaurantService.RestaurantUpdate(restaurantVo);
+		if (result == 0) {
+			throw new Exception();
+		}
+
+		if(file.getSize() > 0) 
+			file.transferTo(new File(path + "/" + restaurantVo.getContentCode() + "/photos/" + img));
+
+		return "admin/eatingRestaurantSearch";
+	}
+	//맛집 삭제
+	@RequestMapping("deleteRestaurant")
+	public ModelAndView enterInfoDelete(String contentCode){
+		int result = restaurantService.RestaurantDelete(contentCode);
+		
+		String msg = null;
+		ModelAndView mv = new ModelAndView();
+		
+		if(result == 1)
+			msg = "삭제완료";
+		else
+			msg = "삭제실패";
+		
+		mv.addObject("msg", msg);
+		mv.setViewName("admin/eating/restaurantSearch");
+		
+		return mv;
+	}
 	// 나중에 필요에 맞게 이름 맞꾸기(필요1)
 	@RequestMapping("about-us")
 	public String menu1() {

@@ -164,6 +164,7 @@
 
 											<img
 												src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}"
+												<%-- src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" --%>
 												alt="offer image">
 										</div>
 									</div>
