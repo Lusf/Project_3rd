@@ -169,10 +169,9 @@
 		<div class="container">
 			<h2 class="heading" style="font-size: 18px">최신 리뷰</h2>
 			<c:forEach items="${commentList }" var="item" varStatus="vs">
-				<div class="post-list-sidebar-item mb-15">
-					<a href="${pageContext.request.contextPath}/blog/${item.id}"> <img class="no-padding col-md-2"
-						src="${pageContext.request.contextPath }/resources/user/${item.id }/profile/${item.userPic}" alt="blog image" style="width: 50px; height: 50px; vertical-align: center;"
-									class="img-circle"> <span class="col-md-2"> ${item.id}</span>
+				<div class="post-list-sidebar-item mb-15" style=" height: 45px; line-height: 45px;">
+					<a href="${pageContext.request.contextPath}/blog/${item.id}"> 
+					<img class="no-padding col-md-2 img-circle" src="${pageContext.request.contextPath }/resources/user/${item.id }/profile/${item.userPic}" alt="blog image" style="width: 50px; height: 50px; "> <span class="col-md-2"> ${item.id}</span>
 					</a> 
 					<a
 						href="${pageContext.request.contextPath}/travelge/detailView/${item.contentCode}"
