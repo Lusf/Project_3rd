@@ -83,6 +83,8 @@ $(document).ready(function(){
 
 		displayMarker(locPosition, message);
 	} 
+	
+
 	// 이동 이벤트 등록
 		daum.maps.event.addListener(map, 'dragend', function() {        
 	    
