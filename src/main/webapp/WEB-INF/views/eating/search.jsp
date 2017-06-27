@@ -122,75 +122,7 @@
 <!-- 검색 -->
 	<section class="padding">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-3 sidebar">
-					<div class="sidebar-box">
-						<h5 class="mb-15">Region</h5>
-						<ul>
-							<li><a href="#"><span class="ti-angle-left"></span>United Kingdom</a></li>
-							<li><a href="#"><span class="ti-angle-left"></span>England</a></li>
-						</ul>
-
-						<h6 class="mt-30 pl-30">London</h6>
-						<ul class="pl-30">
-							<li><a href="#">Central London <span>29 312</span></a></li>
-							<li><a href="#">East London <span>32 768</span></a></li>
-							<li><a href="#">North London <span>17 412</span></a></li>
-							<li><a href="#">North West London <span>16 107</span></a></li>
-							<li><a href="#">South East London <span>19 397</span></a></li>
-							<li><a href="#">South West London <span>17 671</span></a></li>
-							<li><a href="#">West London <span>11 134</span></a></li>
-						</ul>
-					</div>
-
-					<div class="sidebar-box">
-						<h5 class="mb-15">Property</h5>
-						<ul>
-							<li><a href="#">To Rent <span>50 826</span></a></li>
-							<li><a href="#">To Share <span>34 084</span></a></li>
-							<li><a href="#">For Sale <span>240</span></a></li>
-							<li><a href="#">Land, Farms & Estates <span>13</span></a></li>
-						</ul>
-					</div>
-
-					<div class="sidebar-box">
-						<h5 class="mb-15">Filters</h5>
-						<ul>
-							<li><span class="checkbox checkbox-primary pull-left">
-									<input id="checkbox1" class="styled" checked="" type="checkbox">
-									<label for="checkbox1"> Urgent ads <span>34</span>
-								</label>
-							</span></li>
-
-							<li><span class="checkbox checkbox-primary pull-left">
-									<input id="checkbox2" class="styled" checked="" type="checkbox">
-									<label for="checkbox2"> Feature ads <span>554</span>
-								</label>
-							</span></li>
-
-							<li><span class="checkbox checkbox-primary pull-left">
-									<input id="checkbox3" class="styled" type="checkbox"> <label
-									for="checkbox3"> ads with pictures <span>3432</span>
-								</label>
-							</span></li>
-
-							<li><span class="checkbox checkbox-primary pull-left">
-									<input id="checkbox4" class="styled" type="checkbox"> <label
-									for="checkbox4"> Exclusive <span>55</span>
-								</label>
-							</span></li>
-
-							<li>
-								<span class="checkbox checkbox-primary pull-left">
-									<input id="checkbox5" class="styled" type="checkbox"> 
-									<label for="checkbox5"> new only <span>263</span></label>
-								</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-<!--  -->
-				<div class="col-md-9">
+				<div class="col-md-12">
 					<div class="col-md-12 pl-0 pr-0">
 						<h4 class="heading "><b>맛집 정보</b></h4> 
 					</div>
@@ -207,13 +139,13 @@
 										</div>
 									</div>
 
-									<div class="offer-pagination-prev left-arrow">
+								<!-- 	<div class="offer-pagination-prev left-arrow">
 										<span class="ti-angle-left"></span> 
 									</div>
 
 									<div class="offer-pagination-next right-arrow">
 										<span class="ti-angle-right"></span>
-									</div>
+									</div> -->
 								</div>
 								<!-- <span class="offer-box-price">$350pw</span> --> 
 								<!-- <span class="offer-box-label"><span class="ti-star"></span>featured</span> -->
@@ -265,8 +197,8 @@
 				</div>
 				<!--/ col-md-9-->
 			</div>
+		
 			<!--/ row -->
-		</div>
 		<!--/ container -->
 		
 		<!-- 모달시작 -->
@@ -283,7 +215,7 @@
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
 									
-										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
+										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image" width="278px" height="278px">
 									</div>
 								</div>
 							</div>
