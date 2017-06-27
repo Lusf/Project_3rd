@@ -104,7 +104,7 @@
 								<div class="form-group col-xs-3">
 									<label for="lookMaker">Maker</label> <input
 										type="text" class="form-control" name="lookMaker"
-										id="lookMaker" placeholder="제작사">
+										id="lookMaker" placeholder="제작">
 								</div>
 								<div class="form-group col-xs-3"><br>
 									<button type="submit" class="btn btn-default">등록</button>

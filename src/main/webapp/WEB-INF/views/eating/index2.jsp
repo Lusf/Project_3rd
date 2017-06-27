@@ -139,10 +139,12 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide home-slider-centered"
 					style="background-image:url(${pageContext.request.contextPath}/resources/assets/new_theme_mark2/img/offer/강민경.jpg)">
-					<h1 class="light wow fadeInDown mb-30">
-						over 430 000<br /> flats, houses, plots
-					</h1>
-					<a class="btn btn-primary wow fadeInUp">browse</a>
+					<h4 class="light wow fadeInDown mb-30">
+						맛있는 발견의 즐거움 최고의 미식 가이드, <br><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						오지랖이 당신을 관여합니다.  
+					</h4>
+					<!-- <a class="btn btn-primary wow fadeInUp">browse</a> -->
 				</div>
 			</div>
 
@@ -181,7 +183,8 @@
 									</div>
 								</div>
 							</div>
-							<a href="#"> <span class="h4 offer-box-title">${list.restaurantName}</span>
+							<a href="#" data-toggle="modal"
+							data-target="#old"> <span class="h4 offer-box-title">${list.restaurantName}</span>
 								<span class="offer-box-location"><span
 									class="ti-location-pin"></span>${list.restaurantAddr} </span> <span
 								class="offer-box-meta">${list.restaurantCoordinates}</span>
@@ -199,7 +202,7 @@
 						<a class="btn btn-default"
 							href="${pageContext.request.contextPath }/user/loginForm"><strong>맛집 등록</strong></a>
 					</sec:authorize>
-					<a class="btn btn-default" href="${pageContext.request.contextPath }/eating/search"><strong>전체 맛집 보기</strong></a>
+					<a class="btn btn-default" href="${pageContext.request.contextPath}/eating/restaurantSearch?category=AL&category2=AL&keyWord=" ><strong>전체 맛집 보기</strong></a>
 				</div>
 			</div>
 			<!--/ row -->
@@ -308,6 +311,53 @@
 		</div>
 	</div>
 	<!-- / NEWS MODAL -->
+	
+	<!-- OLD MODAL -->
+		<c:forEach  items="${requestScope.listA}"  var="list" varStatus="state">
+		<div id="old" class="modal fade services-modal" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content shadow">
+					<div class="offer-box">
+						<div class="offer-box-head">
+							<div class="offer-slider">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+									
+										<img src="${pageContext.request.contextPath}/resources/restaurant/${list.id}/info/${list.restaurantPic}" alt="offer image">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="offer-content pl-30 pr-30">
+							<span class="h4 offer-box-title">${list.restaurantName }</span> 
+							<span class="offer-box-location">
+							
+								<span class="ti-location-pin"></span>${list.restaurantAddr } </span><br>
+								<span 	class="descriptionImg"> ${list.restaurantInfo }</span>
+								<a href="#" class="btn btn-link btn-sm pr-0 pull-right"></a>
+								<a class="close" data-dismiss="modal"><span class="ti-close"></span></a>
+							<div class="contact-form mt-60">
+					
+						
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</c:forEach>
+		
+	<!-- / NEWS MODAL CONTENT -->
+		</div>
+	</div>
+	<!-- / NEWS MODAL -->
+	
+	
+	
+	
+	
+	
 
 
 

@@ -111,8 +111,6 @@ public class UserBlogController {
 		ModelAndView mv = new ModelAndView();
 		String ini = blogVo.getContentCode().substring(0,1);
 		
-		mv.setViewName("entertainment/new/enterDetailView/"+contentCode);
-		
 		//mv.addObject("contentCode", blogVo.getContentCode());
 		
 		if(ini.equals("T"))
@@ -122,6 +120,9 @@ public class UserBlogController {
 		else if(ini.equals("C"))
 			blogVo.setCategory("Food");
 			//mv = foodController.search(blogVo.getContentCode());
+		
+
+		mv.setViewName("redirect:/entertainment/new/enterDetailView/"+contentCode);
 		
 		return mv;
 	}
